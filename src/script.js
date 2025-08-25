@@ -1,7 +1,9 @@
 
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+
 import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js'
 
 
 /**
@@ -73,18 +75,43 @@ const defaultMaterial = new THREE.MeshStandardMaterial({
 })
 
 
+
 /**
  * 6. Objects (Demo - replace with your own models)
  *
  * Adds 3D objects to the scene. Here, a simple cube is created as a placeholder.
  * - You can replace this with your own models or geometry.
  */
-const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
-const cube = new THREE.Mesh(cubeGeometry, defaultMaterial)
-cube.position.set(0, 0, 0)
-cube.castShadow = true // Cube casts shadows
-cube.receiveShadow = true // Cube receives shadows
-scene.add(cube)
+
+// // Add axes helper to visualize axes
+// const axesHelper = new THREE.AxesHelper(2) // size 2 units
+// scene.add(axesHelper)
+// const cubeGeometry = new THREE.BoxGeometry(1, 1, 1)
+// const cube = new THREE.Mesh(cubeGeometry, defaultMaterial)
+// cube.position.set(0, 0, 0)
+// cube.castShadow = true // Cube casts shadows
+// cube.receiveShadow = true // Cube receives shadows
+
+// Load GLB model (Monkey Test 1.glb)
+const gltfLoader = new GLTFLoader()
+gltfLoader.load(
+    '/models/monkey-1.glb',
+    (gltf) => {
+        const model = gltf.scene
+        model.traverse((child) => {
+            if (child.isMesh) {
+                child.castShadow = true
+                child.receiveShadow = true
+            }
+        })
+        model.position.set(0, -1.5, 0) // Position the model next to the cube
+        scene.add(model)
+    },
+    undefined,
+    (error) => {
+        console.error('An error happened while loading the GLB model:', error)
+    }
+)
 
 
 
