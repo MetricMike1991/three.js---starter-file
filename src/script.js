@@ -75,29 +75,43 @@ const defaultMaterial = new THREE.MeshStandardMaterial({
 // Animation mixer and clock for model animations
 let mixer = null;
 const clock = new THREE.Clock();
+let button7Mesh = null;
+let button7OriginalMaterial = null;
+let button7Action = null;
+let allClickableMeshes = [];
 
 gltfLoader.load(
-    '/models/monkey-animation.glb',
+    '/models/calculator.glb',
     (gltf) => {
-        // Extract the model from the loaded GLB
         const model = gltf.scene;
-        // Enable shadows for all meshes in the model
         model.traverse((child) => {
             if (child.isMesh) {
-                child.castShadow = true;
-                child.receiveShadow = true;
+                allClickableMeshes.push(child);
+                if (child.name === 'button-7') {
+                    button7Mesh = child;
+                    button7OriginalMaterial = child.material.clone();
+                }
             }
         });
-        // Position the model in the scene
         model.position.set(0, -1.5, 0);
+        model.rotateX(-Math.PI / 4);
         scene.add(model);
 
-        // If the model contains animations, set up the mixer and play all clips
         if (Array.isArray(gltf.animations) && gltf.animations.length > 0) {
-            mixer = new THREE.AnimationMixer(model);
+            console.log('Available animation clips:');
             gltf.animations.forEach((clip) => {
-                mixer.clipAction(clip).play();
+                console.log(clip.name);
             });
+            mixer = new THREE.AnimationMixer(model);
+            // Use the animation clip named 'press' for button-7
+            const button7Clip = gltf.animations.find(clip => clip.name.toLowerCase() === 'press');
+            if (button7Clip) {
+                button7Action = mixer.clipAction(button7Clip);
+                button7Action.setLoop(THREE.LoopOnce, 1);
+                button7Action.setEffectiveTimeScale(5);
+                button7Action.clampWhenFinished = true;
+                button7Action.paused = true;
+            }
         }
     },
     undefined,
@@ -188,3 +202,42 @@ const tick = () => {
 };
 
 tick();
+
+
+// Minimal click event: toggle button-7 color and log mesh name/material
+canvas.addEventListener('pointerdown', (event) => {
+    const rect = canvas.getBoundingClientRect();
+    const mouse = new THREE.Vector2(
+        ((event.clientX - rect.left) / rect.width) * 2 - 1,
+        -((event.clientY - rect.top) / rect.height) * 2 + 1
+    );
+    const raycaster = new THREE.Raycaster();
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(allClickableMeshes, true);
+    if (intersects.length > 0) {
+        const mesh = intersects[0].object;
+        if (mesh.name === 'button-7' && button7Mesh) {
+            // Toggle between red and original material
+            if (button7Mesh.material.color.getHex() !== 0xff0000) {
+                button7Mesh.material.color.set(0xff0000);
+            } else {
+                button7Mesh.material.copy(button7OriginalMaterial);
+            }
+            // Play the animation for button-7 if available
+            if (button7Action) {
+                button7Action.reset();
+                button7Action.paused = false;
+                button7Action.play();
+            }
+        }
+        // Log mesh name and material
+        console.log('Clicked mesh name:', mesh.name, '| Material:', mesh.material);
+    }
+});
+
+
+// Ok so what you need to do to select a part of the model is to identify it using the mesh name. 
+// Which is essential the object properties name in Blender 
+// You can use raycaster and console logs to help you identify the current material names.
+
+// You can trigger an animation using the Ray Caster also but the Animation has to be named in the action editor in blender and specifically called in JS.
