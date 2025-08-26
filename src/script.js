@@ -241,5 +241,3 @@ canvas.addEventListener('pointerdown', (event) => {
 // You can use raycaster and console logs to help you identify the current material names.
 
 // You can trigger an animation using the Ray Caster also but the Animation has to be named in the action editor in blender and specifically called in JS.
-
-git push --set-upstream origin 3D-Calculator
