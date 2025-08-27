@@ -145,7 +145,8 @@ window.addEventListener('resize', () => {
 // ---------------------------------------------
 // Perspective camera for 3D view
 const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100);
-camera.position.set(3, 3, 3); // Move camera back and up
+camera.position.set(2.224216867135722, 2.492759602120871, 2.6147942952356633);
+camera.rotation.set(-0.5336563643751832, 0.48339621217215956, 0.26800871378283664, 'XYZ');
 scene.add(camera);
 
 // ---------------------------------------------
@@ -154,6 +155,8 @@ scene.add(camera);
 const controls = new OrbitControls(camera, canvas);
 controls.enableDamping = true; // Smooth camera movement
 controls.dampingFactor = 0.05;
+controls.target.set(-0.18533943332528624, 0.15779640482263038, -1.3371495153760857);
+controls.update();
 
 // Optional: Double-click to focus camera on clicked object
 const raycaster = new THREE.Raycaster();
@@ -167,6 +170,10 @@ canvas.addEventListener('dblclick', (event) => {
         const target = intersects[0].point;
         controls.target.copy(target);
         controls.update();
+        // Log camera and controls info
+        console.log('Camera position:', camera.position);
+        console.log('Camera rotation (radians):', camera.rotation);
+        console.log('Controls target:', controls.target);
     }
 });
 
