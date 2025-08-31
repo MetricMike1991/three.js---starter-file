@@ -15,6 +15,9 @@ const canvas = document.querySelector('canvas.webgl');
 // Create the main Three.js scene
 const scene = new THREE.Scene();
 
+// Ensure canvas background is transparent
+canvas.style.background = 'transparent';
+
 // ---------------------------------------------
 // 3. Loaders: For textures, HDRIs, and models
 // ---------------------------------------------
@@ -36,12 +39,12 @@ rgbeLoader.load('./textures/environmentMap/2k.hdr', (environmentMap) => {
     canvasBg.height = height;
     const ctx = canvasBg.getContext('2d');
     const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, '#ff0000'); // Red at top
-    gradient.addColorStop(1, '#0000ff'); // Blue at bottom
+    gradient.addColorStop(0, '#ffffff'); // White at top
+    gradient.addColorStop(1, '#ffffff'); // White at bottom
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, width, height);
     const bgTexture = new THREE.CanvasTexture(canvasBg);
-    scene.background = bgTexture;
+   // scene.background = bgTexture;
     scene.environment = environmentMap;
 });
 
@@ -265,7 +268,8 @@ canvas.addEventListener('dblclick', (event) => {
 // ---------------------------------------------
 const renderer = new THREE.WebGLRenderer({
     canvas: canvas,
-    antialias: true // Smooths jagged edges
+    antialias: true,
+    alpha: true // Enable transparency
 });
 renderer.setSize(sizes.width, sizes.height);
 renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
@@ -273,6 +277,12 @@ renderer.shadowMap.enabled = true; // Enable shadow rendering
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; // Soft shadow edges
 renderer.toneMapping = THREE.ACESFilmicToneMapping; // Realistic color mapping
 renderer.toneMappingExposure = 1.0;
+
+// Ensure scene background is transparent
+scene.background = null;
+
+// Remove any environment/background texture for transparency
+// scene.environment = ... (keep for lighting only, do not set scene.background)
 
 // ---------------------------------------------
 // 13. Animation Loop: Updates and renders the scene
@@ -327,8 +337,10 @@ canvas.addEventListener('pointerdown', (event) => {
 
 // You can trigger an animation using the Ray Caster also but the Animation has to be named in the action editor in blender and specifically called in JS.
 
-// Add ground plane for shadows
-const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x4B006E, roughness: 1, metalness: 0 });
+// Ground plane: fully transparent, only for catching shadows
+const groundMaterial = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 1, metalness: 0 });
+groundMaterial.transparent = true;
+groundMaterial.opacity = 0;
 const ground = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), groundMaterial);
 ground.rotation.x = -Math.PI / 2;
 ground.position.y = -0.01;
