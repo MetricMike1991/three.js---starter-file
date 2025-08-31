@@ -6,7 +6,8 @@
   "description": "A clean Three.js 3D viewer template for Sketchfab-style model viewing",
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build",
+    "deploy": "vercel --prod"
   },
   "devDependencies": {
     "vite": "^6.2.2",
@@ -14,6 +15,7 @@
   },
   "dependencies": {
     "dat.gui": "^0.7.9",
-    "three": "^0.174.0"
+    "three": "^0.174.0",
+    "vercel": "^46.1.1"
   }
 }

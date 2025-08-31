@@ -29,7 +29,19 @@ const gltfLoader = new GLTFLoader(); // For GLTF/GLB models
 rgbeLoader.load('./textures/environmentMap/2k.hdr', (environmentMap) => {
     environmentMap.mapping = THREE.EquirectangularReflectionMapping;
     // Only use HDRI for lighting, not for background
-    scene.background = new THREE.Color(0x222222); // Set plain background color
+    // Create a red-to-blue vertical gradient texture for the background
+    const width = 512, height = 512;
+    const canvasBg = document.createElement('canvas');
+    canvasBg.width = width;
+    canvasBg.height = height;
+    const ctx = canvasBg.getContext('2d');
+    const gradient = ctx.createLinearGradient(0, 0, 0, height);
+    gradient.addColorStop(0, '#ff0000'); // Red at top
+    gradient.addColorStop(1, '#0000ff'); // Blue at bottom
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, width, height);
+    const bgTexture = new THREE.CanvasTexture(canvasBg);
+    scene.background = bgTexture;
     scene.environment = environmentMap;
 });
 
@@ -316,7 +328,7 @@ canvas.addEventListener('pointerdown', (event) => {
 // You can trigger an animation using the Ray Caster also but the Animation has to be named in the action editor in blender and specifically called in JS.
 
 // Add ground plane for shadows
-const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 1, metalness: 0 });
+const groundMaterial = new THREE.MeshStandardMaterial({ color: 0x4B006E, roughness: 1, metalness: 0 });
 const ground = new THREE.Mesh(new THREE.PlaneGeometry(10, 10), groundMaterial);
 ground.rotation.x = -Math.PI / 2;
 ground.position.y = -0.01;
