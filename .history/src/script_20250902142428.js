@@ -190,8 +190,45 @@ directionalLight.shadow.mapSize.width = 1024;
 directionalLight.shadow.mapSize.height = 1024;
 scene.add(directionalLight);
 
+// Spotlights: Add two spotlights with helpers
+const spotLights = [];
+const spotHelpers = [];
+const spotParams = [
+    {
+        color: '#ffcc00',
+        intensity: 1.2,
+        position: { x: 2, y: 3, z: 2 },
+        angle: Math.PI / 6,
+        penumbra: 0.2,
+        visible: true
+    },
+    {
+        color: '#00ccff',
+        intensity: 1.2,
+        position: { x: -2, y: 3, z: -2 },
+        angle: Math.PI / 6,
+        penumbra: 0.2,
+        visible: true
+    }
+];
+for (let i = 0; i < 2; i++) {
+    const p = spotParams[i];
+    const spot = new THREE.SpotLight(p.color, p.intensity);
+    spot.position.set(p.position.x, p.position.y, p.position.z);
+    spot.angle = p.angle;
+    spot.penumbra = p.penumbra;
+    spot.visible = p.visible;
+    spot.castShadow = false; // Only directional light casts shadows
+    scene.add(spot);
+    spotLights.push(spot);
+    // Add helper/guide
+    const helper = new THREE.SpotLightHelper(spot);
+    scene.add(helper);
+    spotHelpers.push(helper);
+}
 
-// Spotlights removed as requested. Only directional light remains for main lighting and shadows.
+// Ensure only directional light casts shadow by default
+directionalLight.castShadow = true;
 
 // ---------------------------------------------
 // 6. Materials: Default for demo objects
