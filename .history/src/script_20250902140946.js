@@ -1,101 +1,5 @@
 // --- Import Settings from Clipboard ---
-async function importSettingsFromClipboard() {
-    try {
-        const text = await navigator.clipboard.readText();
-        const settings = JSON.parse(text);
 
-        if (settings.background) {
-            if (settings.background.gradientTop) params.gradientTop = settings.background.gradientTop;
-            if (settings.background.gradientBottom) params.gradientBottom = settings.background.gradientBottom;
-            if (settings.background.gradientAlpha !== undefined) params.gradientAlpha = settings.background.gradientAlpha;
-            updateGradientBackground();
-        }
-        // Ground
-        if (settings.ground) {
-            // Always set mode first and trigger GUI update
-            if (settings.ground.mode) {
-                groundParams.mode = settings.ground.mode;
-                // Trigger mode change in GUI (dropdown)
-                if (gui && gui.__folders && gui.__folders['Ground Plane'] && gui.__folders['Ground Plane'].__controllers[0]) {
-                    gui.__folders['Ground Plane'].__controllers[0].setValue(settings.ground.mode);
-                }
-                // Also update geometry/material immediately in case GUI doesn't trigger
-                if (settings.ground.mode === 'Infinite Canvas') {
-                    ground.geometry = planeGeometry;
-                    ground.material = shadowGroundMaterial;
-                    ground.receiveShadow = true;
-                    ground.castShadow = false;
-                } else {
-                    ground.geometry = circleGeometry;
-                    ground.material = solidGroundMaterial;
-                    ground.receiveShadow = settings.ground.receiveShadow !== undefined ? settings.ground.receiveShadow : ground.receiveShadow;
-                    ground.castShadow = settings.ground.castShadow !== undefined ? settings.ground.castShadow : ground.castShadow;
-                }
-                ground.material.needsUpdate = true;
-                ground.geometry.computeBoundingSphere();
-            }
-            if (settings.ground.color) {
-                groundParams.color = settings.ground.color;
-                solidGroundMaterial.color.set(settings.ground.color);
-            }
-            if (settings.ground.roughness !== undefined) {
-                groundParams.roughness = settings.ground.roughness;
-                solidGroundMaterial.roughness = settings.ground.roughness;
-            }
-            if (settings.ground.metalness !== undefined) {
-                groundParams.metalness = settings.ground.metalness;
-                solidGroundMaterial.metalness = settings.ground.metalness;
-            }
-            if (settings.ground.shadowOpacity !== undefined) {
-                groundParams.shadowOpacity = settings.ground.shadowOpacity;
-                shadowGroundMaterial.opacity = settings.ground.shadowOpacity;
-            }
-            if (settings.ground.receiveShadow !== undefined) {
-                groundParams.receiveShadow = settings.ground.receiveShadow;
-                ground.receiveShadow = settings.ground.receiveShadow;
-            }
-            if (settings.ground.castShadow !== undefined) {
-                groundParams.castShadow = settings.ground.castShadow;
-                ground.castShadow = settings.ground.castShadow;
-            }
-            if (settings.ground.visible !== undefined) {
-                groundParams.visible = settings.ground.visible;
-                ground.visible = settings.ground.visible;
-            }
-        }
-        // Light
-        if (settings.light) {
-            if (settings.light.intensity !== undefined) directionalLight.intensity = settings.light.intensity;
-            if (settings.light.color) directionalLight.color.set(settings.light.color);
-            if (settings.light.position) {
-                directionalLight.position.set(
-                    settings.light.position.x,
-                    settings.light.position.y,
-                    settings.light.position.z
-                );
-            }
-            if (settings.light.castShadow !== undefined) directionalLight.castShadow = settings.light.castShadow;
-            if (settings.light.shadowBias !== undefined) directionalLight.shadow.bias = settings.light.shadowBias;
-            if (settings.light.shadowBlur !== undefined) directionalLight.shadow.radius = settings.light.shadowBlur;
-            if (settings.light.shadowMapWidth !== undefined) directionalLight.shadow.mapSize.width = settings.light.shadowMapWidth;
-            if (settings.light.shadowMapHeight !== undefined) directionalLight.shadow.mapSize.height = settings.light.shadowMapHeight;
-        }
-        // Camera
-        if (settings.camera) {
-            if (settings.camera.position) camera.position.fromArray(settings.camera.position);
-            if (settings.camera.rotation) camera.rotation.set(
-                settings.camera.rotation[0],
-                settings.camera.rotation[1],
-                settings.camera.rotation[2]
-            );
-            if (settings.camera.target) controls.target.fromArray(settings.camera.target);
-            controls.update();
-        }
-        alert('Settings imported from clipboard!');
-    } catch (e) {
-        alert('Failed to import settings: ' + e.message);
-    }
-}
 // ---------------------------------------------
 // 1. Imports: Three.js core and extensions
 // ---------------------------------------------
@@ -122,103 +26,7 @@ const scene = new THREE.Scene();
 const gui = new GUI();
 
 // GUI parameters for gradient background
-const params = {
-    gradientTop: '#ff0000',    // Red at top
-    gradientBottom: '#0000ff', // Blue at bottom
-    gradientAlpha: 1.0         // Fully opaque
-};
 
-// Function to update the gradient background
-let bgTexture = null;
-function updateGradientBackground() {
-    const width = 512, height = 512;
-    const canvasBg = document.createElement('canvas');
-    canvasBg.width = width;
-    canvasBg.height = height;
-    const ctx = canvasBg.getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, params.gradientTop);
-    gradient.addColorStop(1, params.gradientBottom);
-    ctx.fillStyle = gradient;
-    ctx.globalAlpha = params.gradientAlpha;
-    ctx.fillRect(0, 0, width, height);
-    bgTexture = new THREE.CanvasTexture(canvasBg);
-    scene.background = bgTexture;
-    scene._originalBackgroundTexture = bgTexture;
-}
-
-// Add GUI controls for gradient
-gui.addColor(params, 'gradientTop').name('Gradient Top').onChange(updateGradientBackground);
-gui.addColor(params, 'gradientBottom').name('Gradient Bottom').onChange(updateGradientBackground);
-gui.add(params, 'gradientAlpha', 0, 1, 0.01).name('Gradient Alpha').onChange(updateGradientBackground);
-
-// Initial gradient background
-updateGradientBackground();
-
-// ---------------------------------------------
-// 3. Loaders: For textures, HDRIs, and models
-// ---------------------------------------------
-const textureLoader = new THREE.TextureLoader(); // For standard textures
-const rgbeLoader = new RGBELoader(); // For HDR environment maps
-const gltfLoader = new GLTFLoader(); // For GLTF/GLB models
-
-// ---------------------------------------------
-// 4. Environment Map (HDRI background & lighting)
-// ---------------------------------------------
-// Loads an HDR environment map and applies it to the scene for realistic lighting and reflections
-rgbeLoader.load('./textures/environmentMap/2k.hdr', (environmentMap) => {
-    environmentMap.mapping = THREE.EquirectangularReflectionMapping;
-    // Only use HDRI for lighting, not for background
-    scene.environment = environmentMap;
-    // The gradient background is handled by updateGradientBackground()
-});
-
-// ---------------------------------------------
-// 5. Lighting: Ambient and Directional
-// ---------------------------------------------
-// AmbientLight: Soft, global illumination
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
-scene.add(ambientLight);
-
-// DirectionalLight: Simulates sunlight, can cast shadows
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.43);
-directionalLight.position.set(1.35, 1.57, 0.9);
-directionalLight.castShadow = true;
-directionalLight.shadow.bias = 0;
-directionalLight.shadow.radius = 1;
-directionalLight.shadow.mapSize.width = 1024;
-directionalLight.shadow.mapSize.height = 1024;
-scene.add(directionalLight);
-
-// Spotlights: Add two spotlights with helpers
-const spotLights = [];
-const spotHelpers = [];
-const spotParams = [
-    {
-        color: '#ffcc00',
-        intensity: 1.2,
-        position: { x: 2, y: 3, z: 2 },
-        angle: Math.PI / 6,
-        penumbra: 0.2,
-        visible: true
-    },
-    {
-        color: '#00ccff',
-        intensity: 1.2,
-        position: { x: -2, y: 3, z: -2 },
-        angle: Math.PI / 6,
-        penumbra: 0.2,
-        visible: true
-    }
-];
-for (let i = 0; i < 2; i++) {
-    const p = spotParams[i];
-    const spot = new THREE.SpotLight(p.color, p.intensity);
-    spot.position.set(p.position.x, p.position.y, p.position.z);
-    spot.angle = p.angle;
-    spot.penumbra = p.penumbra;
-    spot.visible = p.visible;
-    spot.castShadow = true;
     scene.add(spot);
     spotLights.push(spot);
     // Add helper/guide
@@ -578,123 +386,6 @@ groundFolder.add(groundParams, 'visible').name('Visible').onChange((v) => {
 });
 groundFolder.open();
 
-// -----------------------------
-// Lights GUI Controls
-// -----------------------------
-const lightsFolder = gui.addFolder('Lights');
-
-// Directional Light Controls
-const dirLightParams = {
-    intensity: directionalLight.intensity,
-    color: '#' + directionalLight.color.getHexString(),
-    castShadow: directionalLight.castShadow,
-    shadowBias: directionalLight.shadow.bias,
-    shadowBlur: directionalLight.shadow.radius,
-    shadowMapWidth: directionalLight.shadow.mapSize.width,
-    shadowMapHeight: directionalLight.shadow.mapSize.height,
-    posX: directionalLight.position.x,
-    posY: directionalLight.position.y,
-    posZ: directionalLight.position.z
-};
-const dirFolder = lightsFolder.addFolder('Directional Light');
-dirFolder.add(dirLightParams, 'intensity', 0, 5, 0.01).name('Intensity').onChange(v => {
-    directionalLight.intensity = v;
-});
-dirFolder.addColor(dirLightParams, 'color').name('Color').onChange(v => {
-    directionalLight.color.set(v);
-});
-dirFolder.add(dirLightParams, 'castShadow').name('Cast Shadow').onChange(v => {
-    directionalLight.castShadow = v;
-});
-dirFolder.add(dirLightParams, 'shadowBias', -0.05, 0.05, 0.0001).name('Shadow Bias').onChange(v => {
-    directionalLight.shadow.bias = v;
-});
-dirFolder.add(dirLightParams, 'shadowBlur', 0, 10, 0.1).name('Shadow Blur').onChange(v => {
-    directionalLight.shadow.radius = v;
-});
-dirFolder.add(dirLightParams, 'shadowMapWidth', 256, 4096, 1).name('Shadow Map Width').onChange(v => {
-    directionalLight.shadow.mapSize.width = v;
-    if (directionalLight.shadow.map) directionalLight.shadow.map.dispose();
-});
-dirFolder.add(dirLightParams, 'shadowMapHeight', 256, 4096, 1).name('Shadow Map Height').onChange(v => {
-    directionalLight.shadow.mapSize.height = v;
-    if (directionalLight.shadow.map) directionalLight.shadow.map.dispose();
-});
-dirFolder.add(dirLightParams, 'posX', -10, 10, 0.01).name('Position X').onChange(v => {
-    directionalLight.position.x = v;
-});
-dirFolder.add(dirLightParams, 'posY', -10, 10, 0.01).name('Position Y').onChange(v => {
-    directionalLight.position.y = v;
-});
-dirFolder.add(dirLightParams, 'posZ', -10, 10, 0.01).name('Position Z').onChange(v => {
-    directionalLight.position.z = v;
-});
-dirFolder.open();
-
-// Ambient Light Controls
-const ambLightParams = {
-    intensity: ambientLight.intensity,
-    color: '#' + ambientLight.color.getHexString()
-};
-const ambFolder = lightsFolder.addFolder('Ambient Light');
-ambFolder.add(ambLightParams, 'intensity', 0, 2, 0.01).name('Intensity').onChange(v => {
-    ambientLight.intensity = v;
-});
-ambFolder.addColor(ambLightParams, 'color').name('Color').onChange(v => {
-    ambientLight.color.set(v);
-});
-ambFolder.open();
-
-// Spotlights Controls
-spotLights.forEach((spot, i) => {
-    const spotParams = {
-        intensity: spot.intensity,
-        color: '#' + spot.color.getHexString(),
-        castShadow: spot.castShadow,
-        posX: spot.position.x,
-        posY: spot.position.y,
-        posZ: spot.position.z,
-        angle: spot.angle,
-        penumbra: spot.penumbra,
-        visible: spot.visible
-    };
-    const spotFolder = lightsFolder.addFolder(`Spotlight ${i+1}`);
-    spotFolder.add(spotParams, 'intensity', 0, 5, 0.01).name('Intensity').onChange(v => {
-        spot.intensity = v;
-    });
-    spotFolder.addColor(spotParams, 'color').name('Color').onChange(v => {
-        spot.color.set(v);
-    });
-    spotFolder.add(spotParams, 'castShadow').name('Cast Shadow').onChange(v => {
-        spot.castShadow = v;
-    });
-    spotFolder.add(spotParams, 'posX', -10, 10, 0.01).name('Position X').onChange(v => {
-        spot.position.x = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'posY', -10, 10, 0.01).name('Position Y').onChange(v => {
-        spot.position.y = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'posZ', -10, 10, 0.01).name('Position Z').onChange(v => {
-        spot.position.z = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'angle', 0, Math.PI/2, 0.01).name('Angle').onChange(v => {
-        spot.angle = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'penumbra', 0, 1, 0.01).name('Penumbra').onChange(v => {
-        spot.penumbra = v;
-    });
-    spotFolder.add(spotParams, 'visible').name('Visible').onChange(v => {
-        spot.visible = v;
-        if (spotHelpers[i]) spotHelpers[i].visible = v;
-    });
-    spotFolder.open();
-});
-lightsFolder.open();
-
 
 
 // Keyboard event to toggle GUI visibility with 'h'
@@ -730,74 +421,7 @@ function enableAllMeshShadows(model) {
 
 // Add Copy Settings to Clipboard button to dat.GUI
 
-const copySettingsToClipboard = () => {
-    // Always read the latest values from GUI and materials
-    // Background gradient
-    const bgGradient = {
-        gradientTop: params.gradientTop,
-        gradientBottom: params.gradientBottom,
-        gradientAlpha: params.gradientAlpha
-    };
 
-    // Ground settings (read from both GUI and actual materials/mesh)
-    const mode = groundParams.mode || (ground.material === shadowGroundMaterial ? 'Infinite Canvas' : 'Solid');
-    const color = '#' + (solidGroundMaterial.color ? solidGroundMaterial.color.getHexString() : ground.material.color.getHexString());
-    const roughness = solidGroundMaterial.roughness;
-    const metalness = solidGroundMaterial.metalness;
-    const shadowOpacity = shadowGroundMaterial.opacity;
-    const receiveShadow = ground.receiveShadow;
-    const castShadow = ground.castShadow;
-    const visible = ground.visible;
-
-    const groundSettings = {
-        mode,
-        color,
-        roughness,
-        metalness,
-        shadowOpacity,
-        receiveShadow,
-        castShadow,
-        visible
-    };
-
-    // Light settings
-    const lightSettings = {
-        intensity: directionalLight.intensity,
-        color: '#' + directionalLight.color.getHexString(),
-        position: {
-            x: directionalLight.position.x,
-            y: directionalLight.position.y,
-            z: directionalLight.position.z
-        },
-        castShadow: directionalLight.castShadow,
-        shadowBias: directionalLight.shadow.bias,
-        shadowBlur: directionalLight.shadow.radius,
-        shadowMapWidth: directionalLight.shadow.mapSize.width,
-        shadowMapHeight: directionalLight.shadow.mapSize.height
-    };
-
-    // Camera settings
-    const cameraSettings = {
-        position: camera.position.toArray(),
-        rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
-        target: controls.target.toArray()
-    };
-
-    // Compose all settings
-    const settings = {
-        background: bgGradient,
-        ground: groundSettings,
-        light: lightSettings,
-        camera: cameraSettings
-    };
-
-    const settingsStr = JSON.stringify(settings, null, 2);
-    navigator.clipboard.writeText(settingsStr).then(() => {
-        alert('Settings copied to clipboard!');
-    }, () => {
-        alert('Failed to copy settings to clipboard.');
-    });
-};
 
 
 gui.add({ copySettingsToClipboard }, 'copySettingsToClipboard').name('Copy Settings to Clipboard');
@@ -924,4 +548,274 @@ if (defaultSettings.camera) {
         defaultSettings.camera.target[2]
     );
     controls.update();
+}
+
+// --- Unified Lights GUI Section ---
+const lightsFolder = gui.addFolder('Lights');
+
+// Directional Light Controls
+const dirParams = {
+    intensity: directionalLight.intensity,
+    color: '#' + directionalLight.color.getHexString(),
+    x: directionalLight.position.x,
+    y: directionalLight.position.y,
+    z: directionalLight.position.z,
+    castShadow: directionalLight.castShadow
+};
+const dirFolder = lightsFolder.addFolder('Directional');
+dirFolder.add(dirParams, 'intensity', 0, 2, 0.01).name('Intensity').onChange(v => { directionalLight.intensity = v; });
+dirFolder.addColor(dirParams, 'color').name('Color').onChange(v => { directionalLight.color.set(v); });
+dirFolder.add(dirParams, 'x', -10, 10, 0.01).name('Position X').onChange(v => { directionalLight.position.x = v; });
+dirFolder.add(dirParams, 'y', -10, 10, 0.01).name('Position Y').onChange(v => { directionalLight.position.y = v; });
+dirFolder.add(dirParams, 'z', -10, 10, 0.01).name('Position Z').onChange(v => { directionalLight.position.z = v; });
+dirFolder.add(dirParams, 'castShadow').name('Cast Shadow').onChange(v => { directionalLight.castShadow = v; });
+dirFolder.open();
+
+// Spotlights Controls
+spotLights.forEach((spot, i) => {
+    const spotFolder = lightsFolder.addFolder('Spotlight ' + (i + 1));
+    const p = spotParams[i];
+    if (p.castShadow === undefined) p.castShadow = spot.castShadow;
+    spotFolder.addColor(p, 'color').name('Color').onChange(v => { spot.color.set(v); });
+    spotFolder.add(p, 'intensity', 0, 5, 0.01).name('Intensity').onChange(v => { spot.intensity = v; });
+    spotFolder.add(spot.position, 'x', -10, 10, 0.01).name('Position X');
+    spotFolder.add(spot.position, 'y', 0, 10, 0.01).name('Position Y');
+    spotFolder.add(spot.position, 'z', -10, 10, 0.01).name('Position Z');
+    spotFolder.add(p, 'angle', 0.01, Math.PI / 2, 0.01).name('Angle').onChange(v => { spot.angle = v; });
+    spotFolder.add(p, 'penumbra', 0, 1, 0.01).name('Penumbra').onChange(v => { spot.penumbra = v; });
+    spotFolder.add(p, 'castShadow').name('Cast Shadow').onChange(v => { spot.castShadow = v; });
+    spotFolder.open();
+});
+lightsFolder.open();
+
+// --- EXPORT/IMPORT SETTINGS: Add castShadow for all lights ---
+function getLightSettings() {
+    return {
+        directional: {
+            intensity: directionalLight.intensity,
+            color: '#' + directionalLight.color.getHexString(),
+            position: {
+                x: directionalLight.position.x,
+                y: directionalLight.position.y,
+                z: directionalLight.position.z
+            },
+            castShadow: directionalLight.castShadow
+        },
+        spotlights: spotLights.map((spot, i) => ({
+            color: '#' + spot.color.getHexString(),
+            intensity: spot.intensity,
+            position: {
+                x: spot.position.x,
+                y: spot.position.y,
+                z: spot.position.z
+            },
+            angle: spot.angle,
+            penumbra: spot.penumbra,
+            castShadow: spot.castShadow
+        }))
+    };
+}
+
+function applyLightSettings(settings) {
+    if (settings.directional) {
+        directionalLight.color.set(settings.directional.color);
+        directionalLight.intensity = settings.directional.intensity;
+        directionalLight.position.set(
+            settings.directional.position.x,
+            settings.directional.position.y,
+            settings.directional.position.z
+        );
+        directionalLight.castShadow = settings.directional.castShadow;
+    }
+    if (settings.spotlights) {
+        settings.spotlights.forEach((s, i) => {
+            if (!spotLights[i]) return;
+            spotLights[i].color.set(s.color);
+            spotLights[i].intensity = s.intensity;
+            spotLights[i].position.set(s.position.x, s.position.y, s.position.z);
+            spotLights[i].angle = s.angle;
+            spotLights[i].penumbra = s.penumbra;
+            spotLights[i].castShadow = s.castShadow;
+        });
+    }
+}
+
+// --- EXPORT/IMPORT SETTINGS: Update copySettingsToClipboard and importSettingsFromClipboard ---
+
+
+function importSettingsFromClipboard() {
+    navigator.clipboard.readText()
+        .then(text => {
+            const settings = JSON.parse(text);
+
+            // Background
+            if (settings.background) {
+                params.gradientTop = settings.background.gradientTop;
+                params.gradientBottom = settings.background.gradientBottom;
+                params.gradientAlpha = settings.background.gradientAlpha;
+                updateGradientBackground();
+            }
+
+            // Ground
+            if (settings.ground) {
+                groundParams.mode = settings.ground.mode;
+                groundParams.color = settings.ground.color;
+                groundParams.roughness = settings.ground.roughness;
+                groundParams.metalness = settings.ground.metalness;
+                groundParams.shadowOpacity = settings.ground.shadowOpacity;
+                groundParams.receiveShadow = settings.ground.receiveShadow;
+                groundParams.castShadow = settings.ground.castShadow;
+                groundParams.visible = settings.ground.visible;
+
+                // Update ground geometry and material
+                if (settings.ground.mode === 'Infinite Canvas') {
+                    ground.geometry = planeGeometry;
+                    ground.material = shadowGroundMaterial;
+                } else {
+                    ground.geometry = circleGeometry;
+                    ground.material = solidGroundMaterial;
+                }
+                ground.material.needsUpdate = true;
+                ground.geometry.computeBoundingSphere();
+            }
+
+            // Lights
+            if (settings.light) {
+                applyLightSettings(settings.light);
+            }
+
+            // Camera
+            if (settings.camera) {
+                camera.position.fromArray(settings.camera.position);
+                camera.rotation.set(
+                    settings.camera.rotation[0],
+                    settings.camera.rotation[1],
+                    settings.camera.rotation[2]
+                );
+                controls.target.fromArray(settings.camera.target);
+                controls.update();
+            }
+
+            alert('Settings imported from clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to read clipboard contents: ', err);
+        });
+}
+
+// --- EXPORT/IMPORT SETTINGS: Integrate light settings into import/export functions ---
+const copySettingsToClipboard = () => {
+    // Always read the latest values from GUI and materials
+    // Background gradient
+    const bgGradient = {
+        gradientTop: params.gradientTop,
+        gradientBottom: params.gradientBottom,
+        gradientAlpha: params.gradientAlpha
+    };
+
+    // Ground settings (read from both GUI and actual materials/mesh)
+    const mode = groundParams.mode || (ground.material === shadowGroundMaterial ? 'Infinite Canvas' : 'Solid');
+    const color = '#' + (solidGroundMaterial.color ? solidGroundMaterial.color.getHexString() : ground.material.color.getHexString());
+    const roughness = solidGroundMaterial.roughness;
+    const metalness = solidGroundMaterial.metalness;
+    const shadowOpacity = shadowGroundMaterial.opacity;
+    const receiveShadow = ground.receiveShadow;
+    const castShadow = ground.castShadow;
+    const visible = ground.visible;
+
+    const groundSettings = {
+        mode,
+        color,
+        roughness,
+        metalness,
+        shadowOpacity,
+        receiveShadow,
+        castShadow,
+        visible
+    };
+
+    // Light settings
+    const lightSettings = getLightSettings();
+
+    // Camera settings
+    const cameraSettings = {
+        position: camera.position.toArray(),
+        rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
+        target: controls.target.toArray()
+    };
+
+    // Compose all settings
+    const settings = {
+        background: bgGradient,
+        ground: groundSettings,
+        light: lightSettings,
+        camera: cameraSettings
+    };
+
+    const settingsStr = JSON.stringify(settings, null, 2);
+    navigator.clipboard.writeText(settingsStr).then(() => {
+        alert('Settings copied to clipboard!');
+    }, () => {
+        alert('Failed to copy settings to clipboard.');
+    });
+};
+
+function importSettingsFromClipboard() {
+    navigator.clipboard.readText()
+        .then(text => {
+            const settings = JSON.parse(text);
+
+            // Background
+            if (settings.background) {
+                params.gradientTop = settings.background.gradientTop;
+                params.gradientBottom = settings.background.gradientBottom;
+                params.gradientAlpha = settings.background.gradientAlpha;
+                updateGradientBackground();
+            }
+
+            // Ground
+            if (settings.ground) {
+                groundParams.mode = settings.ground.mode;
+                groundParams.color = settings.ground.color;
+                groundParams.roughness = settings.ground.roughness;
+                groundParams.metalness = settings.ground.metalness;
+                groundParams.shadowOpacity = settings.ground.shadowOpacity;
+                groundParams.receiveShadow = settings.ground.receiveShadow;
+                groundParams.castShadow = settings.ground.castShadow;
+                groundParams.visible = settings.ground.visible;
+
+                // Update ground geometry and material
+                if (settings.ground.mode === 'Infinite Canvas') {
+                    ground.geometry = planeGeometry;
+                    ground.material = shadowGroundMaterial;
+                } else {
+                    ground.geometry = circleGeometry;
+                    ground.material = solidGroundMaterial;
+                }
+                ground.material.needsUpdate = true;
+                ground.geometry.computeBoundingSphere();
+            }
+
+            // Lights
+            if (settings.light) {
+                applyLightSettings(settings.light);
+            }
+
+            // Camera
+            if (settings.camera) {
+                camera.position.fromArray(settings.camera.position);
+                camera.rotation.set(
+                    settings.camera.rotation[0],
+                    settings.camera.rotation[1],
+                    settings.camera.rotation[2]
+                );
+                controls.target.fromArray(settings.camera.target);
+                controls.update();
+            }
+
+            alert('Settings imported from clipboard!');
+        })
+        .catch(err => {
+            console.error('Failed to read clipboard contents: ', err);
+        });
 }

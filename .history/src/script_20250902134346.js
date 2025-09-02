@@ -1,9 +1,31 @@
+// --- Ambient Light ---
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.2); // Default: white, low intensity
+scene.add(ambientLight);
+
+// GUI parameters for ambient light
+const ambientParams = {
+    color: '#ffffff',
+    intensity: 0.2,
+    visible: true
+};
+
+const ambientFolder = gui.addFolder('Ambient Light');
+ambientFolder.addColor(ambientParams, 'color').name('Color').onChange((value) => {
+    ambientLight.color.set(value);
+});
+ambientFolder.add(ambientParams, 'intensity', 0, 2, 0.01).name('Intensity').onChange((v) => {
+    ambientLight.intensity = v;
+});
+ambientFolder.add(ambientParams, 'visible').name('Visible').onChange((v) => {
+    ambientLight.visible = v;
+});
+ambientFolder.open();
 // --- Import Settings from Clipboard ---
 async function importSettingsFromClipboard() {
     try {
         const text = await navigator.clipboard.readText();
         const settings = JSON.parse(text);
-
+        // Background
         if (settings.background) {
             if (settings.background.gradientTop) params.gradientTop = settings.background.gradientTop;
             if (settings.background.gradientBottom) params.gradientBottom = settings.background.gradientBottom;
@@ -179,7 +201,6 @@ rgbeLoader.load('./textures/environmentMap/2k.hdr', (environmentMap) => {
 // AmbientLight: Soft, global illumination
 const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
 scene.add(ambientLight);
-
 // DirectionalLight: Simulates sunlight, can cast shadows
 const directionalLight = new THREE.DirectionalLight(0xffffff, 1.43);
 directionalLight.position.set(1.35, 1.57, 0.9);
@@ -189,43 +210,6 @@ directionalLight.shadow.radius = 1;
 directionalLight.shadow.mapSize.width = 1024;
 directionalLight.shadow.mapSize.height = 1024;
 scene.add(directionalLight);
-
-// Spotlights: Add two spotlights with helpers
-const spotLights = [];
-const spotHelpers = [];
-const spotParams = [
-    {
-        color: '#ffcc00',
-        intensity: 1.2,
-        position: { x: 2, y: 3, z: 2 },
-        angle: Math.PI / 6,
-        penumbra: 0.2,
-        visible: true
-    },
-    {
-        color: '#00ccff',
-        intensity: 1.2,
-        position: { x: -2, y: 3, z: -2 },
-        angle: Math.PI / 6,
-        penumbra: 0.2,
-        visible: true
-    }
-];
-for (let i = 0; i < 2; i++) {
-    const p = spotParams[i];
-    const spot = new THREE.SpotLight(p.color, p.intensity);
-    spot.position.set(p.position.x, p.position.y, p.position.z);
-    spot.angle = p.angle;
-    spot.penumbra = p.penumbra;
-    spot.visible = p.visible;
-    spot.castShadow = true;
-    scene.add(spot);
-    spotLights.push(spot);
-    // Add helper/guide
-    const helper = new THREE.SpotLightHelper(spot);
-    scene.add(helper);
-    spotHelpers.push(helper);
-}
 
 // ---------------------------------------------
 // 6. Materials: Default for demo objects
@@ -578,124 +562,17 @@ groundFolder.add(groundParams, 'visible').name('Visible').onChange((v) => {
 });
 groundFolder.open();
 
-// -----------------------------
-// Lights GUI Controls
-// -----------------------------
-const lightsFolder = gui.addFolder('Lights');
-
-// Directional Light Controls
-const dirLightParams = {
-    intensity: directionalLight.intensity,
-    color: '#' + directionalLight.color.getHexString(),
-    castShadow: directionalLight.castShadow,
-    shadowBias: directionalLight.shadow.bias,
-    shadowBlur: directionalLight.shadow.radius,
-    shadowMapWidth: directionalLight.shadow.mapSize.width,
-    shadowMapHeight: directionalLight.shadow.mapSize.height,
-    posX: directionalLight.position.x,
-    posY: directionalLight.position.y,
-    posZ: directionalLight.position.z
-};
-const dirFolder = lightsFolder.addFolder('Directional Light');
-dirFolder.add(dirLightParams, 'intensity', 0, 5, 0.01).name('Intensity').onChange(v => {
-    directionalLight.intensity = v;
+// dat.GUI controls for main directional light
+const lightFolder = gui.addFolder('Directional Light');
+lightFolder.add(directionalLight, 'intensity', 0, 2, 0.01).name('Intensity');
+lightFolder.addColor({ color: '#ffffff' }, 'color').name('Color').onChange((value) => {
+    directionalLight.color.set(value);
 });
-dirFolder.addColor(dirLightParams, 'color').name('Color').onChange(v => {
-    directionalLight.color.set(v);
-});
-dirFolder.add(dirLightParams, 'castShadow').name('Cast Shadow').onChange(v => {
-    directionalLight.castShadow = v;
-});
-dirFolder.add(dirLightParams, 'shadowBias', -0.05, 0.05, 0.0001).name('Shadow Bias').onChange(v => {
-    directionalLight.shadow.bias = v;
-});
-dirFolder.add(dirLightParams, 'shadowBlur', 0, 10, 0.1).name('Shadow Blur').onChange(v => {
-    directionalLight.shadow.radius = v;
-});
-dirFolder.add(dirLightParams, 'shadowMapWidth', 256, 4096, 1).name('Shadow Map Width').onChange(v => {
-    directionalLight.shadow.mapSize.width = v;
-    if (directionalLight.shadow.map) directionalLight.shadow.map.dispose();
-});
-dirFolder.add(dirLightParams, 'shadowMapHeight', 256, 4096, 1).name('Shadow Map Height').onChange(v => {
-    directionalLight.shadow.mapSize.height = v;
-    if (directionalLight.shadow.map) directionalLight.shadow.map.dispose();
-});
-dirFolder.add(dirLightParams, 'posX', -10, 10, 0.01).name('Position X').onChange(v => {
-    directionalLight.position.x = v;
-});
-dirFolder.add(dirLightParams, 'posY', -10, 10, 0.01).name('Position Y').onChange(v => {
-    directionalLight.position.y = v;
-});
-dirFolder.add(dirLightParams, 'posZ', -10, 10, 0.01).name('Position Z').onChange(v => {
-    directionalLight.position.z = v;
-});
-dirFolder.open();
-
-// Ambient Light Controls
-const ambLightParams = {
-    intensity: ambientLight.intensity,
-    color: '#' + ambientLight.color.getHexString()
-};
-const ambFolder = lightsFolder.addFolder('Ambient Light');
-ambFolder.add(ambLightParams, 'intensity', 0, 2, 0.01).name('Intensity').onChange(v => {
-    ambientLight.intensity = v;
-});
-ambFolder.addColor(ambLightParams, 'color').name('Color').onChange(v => {
-    ambientLight.color.set(v);
-});
-ambFolder.open();
-
-// Spotlights Controls
-spotLights.forEach((spot, i) => {
-    const spotParams = {
-        intensity: spot.intensity,
-        color: '#' + spot.color.getHexString(),
-        castShadow: spot.castShadow,
-        posX: spot.position.x,
-        posY: spot.position.y,
-        posZ: spot.position.z,
-        angle: spot.angle,
-        penumbra: spot.penumbra,
-        visible: spot.visible
-    };
-    const spotFolder = lightsFolder.addFolder(`Spotlight ${i+1}`);
-    spotFolder.add(spotParams, 'intensity', 0, 5, 0.01).name('Intensity').onChange(v => {
-        spot.intensity = v;
-    });
-    spotFolder.addColor(spotParams, 'color').name('Color').onChange(v => {
-        spot.color.set(v);
-    });
-    spotFolder.add(spotParams, 'castShadow').name('Cast Shadow').onChange(v => {
-        spot.castShadow = v;
-    });
-    spotFolder.add(spotParams, 'posX', -10, 10, 0.01).name('Position X').onChange(v => {
-        spot.position.x = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'posY', -10, 10, 0.01).name('Position Y').onChange(v => {
-        spot.position.y = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'posZ', -10, 10, 0.01).name('Position Z').onChange(v => {
-        spot.position.z = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'angle', 0, Math.PI/2, 0.01).name('Angle').onChange(v => {
-        spot.angle = v;
-        if (spotHelpers[i]) spotHelpers[i].update();
-    });
-    spotFolder.add(spotParams, 'penumbra', 0, 1, 0.01).name('Penumbra').onChange(v => {
-        spot.penumbra = v;
-    });
-    spotFolder.add(spotParams, 'visible').name('Visible').onChange(v => {
-        spot.visible = v;
-        if (spotHelpers[i]) spotHelpers[i].visible = v;
-    });
-    spotFolder.open();
-});
-lightsFolder.open();
-
-
+lightFolder.add(directionalLight.position, 'x', -10, 10, 0.01).name('Position X');
+lightFolder.add(directionalLight.position, 'y', -10, 10, 0.01).name('Position Y');
+lightFolder.add(directionalLight.position, 'z', -10, 10, 0.01).name('Position Z');
+lightFolder.add(directionalLight, 'castShadow').name('Cast Shadow');
+lightFolder.open();
 
 // Keyboard event to toggle GUI visibility with 'h'
 window.addEventListener('keydown', (event) => {
@@ -776,6 +653,13 @@ const copySettingsToClipboard = () => {
         shadowMapHeight: directionalLight.shadow.mapSize.height
     };
 
+    // Ambient light settings
+    const ambientSettings = {
+        color: ambientParams.color,
+        intensity: ambientLight.intensity,
+        visible: ambientLight.visible
+    };
+
     // Camera settings
     const cameraSettings = {
         position: camera.position.toArray(),
@@ -788,6 +672,7 @@ const copySettingsToClipboard = () => {
         background: bgGradient,
         ground: groundSettings,
         light: lightSettings,
+        ambient: ambientSettings,
         camera: cameraSettings
     };
 
