@@ -25,12 +25,12 @@ const saveSettingsToClipboard = () => {
             target: controls.target.toArray()
         }
     };
-    // Add model transform if model is loaded (use global model reference)
-    if (window.model) {
+    // Add model transform if model is loaded
+    if (typeof model !== 'undefined' && model) {
         settings.model = {
-            position: window.model.position.toArray(),
-            rotation: [window.model.rotation.x, window.model.rotation.y, window.model.rotation.z],
-            scale: window.model.scale.toArray()
+            position: model.position.toArray(),
+            rotation: [model.rotation.x, model.rotation.y, model.rotation.z],
+            scale: model.scale.toArray()
         };
     }
     const settingsStr = JSON.stringify(settings, null, 2);
@@ -292,8 +292,7 @@ let loose20kgGlowActive = true;
 gltfLoader.load(
     '/models/exercise.glb',
     (gltf) => {
-        window.model = gltf.scene;
-        model = window.model;
+        const model = gltf.scene;
         model.traverse((child) => {
             if (child.isMesh) {
                 allClickableMeshes.push(child);
@@ -309,19 +308,7 @@ gltfLoader.load(
                 child.receiveShadow = true;
             }
         });
-
-        // Apply default model transform if present
-        if (defaultSettings.model) {
-            if (defaultSettings.model.position) model.position.fromArray(defaultSettings.model.position);
-            if (defaultSettings.model.rotation) model.rotation.set(
-                defaultSettings.model.rotation[0],
-                defaultSettings.model.rotation[1],
-                defaultSettings.model.rotation[2]
-            );
-            if (defaultSettings.model.scale) model.scale.fromArray(defaultSettings.model.scale);
-        } else {
-            model.position.set(0, 0, 0);
-        }
+        model.position.set(0, 0, 0);
         scene.add(model);
 
         // Add dat.GUI controls for model transform
@@ -764,14 +751,14 @@ const defaultSettings = {
     },
     "camera": {
         "position": [
-            0.571641187606234,
-            0.6054805751022576,
-            -0.4710421975258844
+            0.6100309484405122,
+            0.47249795760222096,
+            -0.6024928896023419
         ],
         "rotation": [
-            -2.6821474237876726,
-            0.8865063263260724,
-            2.775502273890531
+            -2.9898665626440923,
+            0.8377734771466395,
+            3.0284486319609463
         ],
         "target": [
             -0.04078270409635462,
@@ -780,7 +767,7 @@ const defaultSettings = {
         ]
     },
     "model": {
-        "position": [0, -0.02, 0],
+        "position": [0, 0, 0],
         "rotation": [0, 0, 0],
         "scale": [1, 1, 1]
     }

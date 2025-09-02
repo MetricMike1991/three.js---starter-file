@@ -25,12 +25,12 @@ const saveSettingsToClipboard = () => {
             target: controls.target.toArray()
         }
     };
-    // Add model transform if model is loaded (use global model reference)
-    if (window.model) {
+    // Add model transform if model is loaded
+    if (typeof model !== 'undefined' && model) {
         settings.model = {
-            position: window.model.position.toArray(),
-            rotation: [window.model.rotation.x, window.model.rotation.y, window.model.rotation.z],
-            scale: window.model.scale.toArray()
+            position: model.position.toArray(),
+            rotation: [model.rotation.x, model.rotation.y, model.rotation.z],
+            scale: model.scale.toArray()
         };
     }
     const settingsStr = JSON.stringify(settings, null, 2);
@@ -125,16 +125,6 @@ async function importSettingsFromClipboard() {
             );
             if (settings.camera.target) controls.target.fromArray(settings.camera.target);
             controls.update();
-        }
-        // Model transform (if model and settings.model exist)
-        if (settings.model && typeof model !== 'undefined' && model) {
-            if (settings.model.position) model.position.fromArray(settings.model.position);
-            if (settings.model.rotation) model.rotation.set(
-                settings.model.rotation[0],
-                settings.model.rotation[1],
-                settings.model.rotation[2]
-            );
-            if (settings.model.scale) model.scale.fromArray(settings.model.scale);
         }
         alert('Settings imported from clipboard!');
     } catch (e) {
@@ -292,8 +282,7 @@ let loose20kgGlowActive = true;
 gltfLoader.load(
     '/models/exercise.glb',
     (gltf) => {
-        window.model = gltf.scene;
-        model = window.model;
+        const model = gltf.scene;
         model.traverse((child) => {
             if (child.isMesh) {
                 allClickableMeshes.push(child);
@@ -309,19 +298,7 @@ gltfLoader.load(
                 child.receiveShadow = true;
             }
         });
-
-        // Apply default model transform if present
-        if (defaultSettings.model) {
-            if (defaultSettings.model.position) model.position.fromArray(defaultSettings.model.position);
-            if (defaultSettings.model.rotation) model.rotation.set(
-                defaultSettings.model.rotation[0],
-                defaultSettings.model.rotation[1],
-                defaultSettings.model.rotation[2]
-            );
-            if (defaultSettings.model.scale) model.scale.fromArray(defaultSettings.model.scale);
-        } else {
-            model.position.set(0, 0, 0);
-        }
+        model.position.set(0, 0, 0);
         scene.add(model);
 
         // Add dat.GUI controls for model transform
@@ -764,25 +741,20 @@ const defaultSettings = {
     },
     "camera": {
         "position": [
-            0.571641187606234,
-            0.6054805751022576,
-            -0.4710421975258844
+            -0.023493666603104472,
+            0.5511471804771402,
+            -0.8380433054513718
         ],
         "rotation": [
-            -2.6821474237876726,
-            0.8865063263260724,
-            2.775502273890531
+            -2.939178045743739,
+            0.020782668677441715,
+            3.1373278612391156
         ],
         "target": [
             -0.04078270409635462,
             0.38393067967272315,
             -0.023247738115800942
         ]
-    },
-    "model": {
-        "position": [0, -0.02, 0],
-        "rotation": [0, 0, 0],
-        "scale": [1, 1, 1]
     }
 };
 

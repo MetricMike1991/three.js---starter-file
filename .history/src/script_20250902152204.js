@@ -292,8 +292,7 @@ let loose20kgGlowActive = true;
 gltfLoader.load(
     '/models/exercise.glb',
     (gltf) => {
-        window.model = gltf.scene;
-        model = window.model;
+        const model = gltf.scene;
         model.traverse((child) => {
             if (child.isMesh) {
                 allClickableMeshes.push(child);
@@ -764,14 +763,14 @@ const defaultSettings = {
     },
     "camera": {
         "position": [
-            0.571641187606234,
-            0.6054805751022576,
-            -0.4710421975258844
+            0.6012952731355714,
+            0.4161152682776046,
+            -0.5513122312589236
         ],
         "rotation": [
-            -2.6821474237876726,
-            0.8865063263260724,
-            2.775502273890531
+            -3.0807197379892224,
+            0.8816174465682357,
+            3.0945893904889235
         ],
         "target": [
             -0.04078270409635462,
@@ -780,7 +779,7 @@ const defaultSettings = {
         ]
     },
     "model": {
-        "position": [0, -0.02, 0],
+        "position": [0, 0, 0],
         "rotation": [0, 0, 0],
         "scale": [1, 1, 1]
     }
