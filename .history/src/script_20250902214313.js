@@ -166,10 +166,6 @@ const scene = new THREE.Scene();
  */
 const gui = new GUI();
 
-// Hide GUI by default
-gui.domElement.style.display = 'none';
-let guiVisible = false;
-
 // GUI parameters for gradient background
 const params = {
     gradientTop: '#ff0000',    // Red at top
@@ -902,7 +898,7 @@ scene.add(ground);
 
 let useShadowMaterial = false;
 
-// guiVisible is now set to false by default above
+let guiVisible = true;
 const groundFolder = gui.addFolder('Ground Plane');
 const groundParams = {
     mode: 'Solid', // or 'Infinite Canvas',
@@ -1115,19 +1111,19 @@ const defaultSettings = {
     },
             "camera": {
                 "position": [
-                    -0.6450775424242561,
-                    1.0270608985067986,
-                    1.3768823659363898
+                    -0.9098738473205128,
+                    0.7703823915221306,
+                    1.3981905246967228
                 ],
                 "rotation": [
-                    -0.1834766569889727,
-                    -0.4990036325009956,
-                    -0.08856930361831791
+                    -0.25025460072691486,
+                    -0.6114705633846517,
+                    -0.14570055395616555
                 ],
                 "target": [
-                    0.17131388299899059,
-                    0.7537633027898458,
-                    -0.0959151054330899
+                    0.06947360176829247,
+                    0.4244509273717727,
+                    0.04485061060434801
                 ]
             },
     "model": {

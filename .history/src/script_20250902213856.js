@@ -166,10 +166,6 @@ const scene = new THREE.Scene();
  */
 const gui = new GUI();
 
-// Hide GUI by default
-gui.domElement.style.display = 'none';
-let guiVisible = false;
-
 // GUI parameters for gradient background
 const params = {
     gradientTop: '#ff0000',    // Red at top
@@ -304,238 +300,13 @@ const modelDropdown = document.getElementById('modelDropdown');
 
 // Model loader function (refactored from previous gltfLoader.load)
 function loadModel(url) {
-    // Fade out previous model if present
+    // Remove previous model and folders
     if (window.model) {
-        fadeOutAndRemoveModel(window.model, () => {
-            removeModelAndFolders();
-            actuallyLoadModel(url);
+        scene.remove(window.model);
+        window.model.traverse(child => {
+            if (child.isMesh) child.geometry.dispose();
         });
-        return; // Don't continue, will call actuallyLoadModel after fade
-    } else {
-        removeModelAndFolders();
-        actuallyLoadModel(url);
-    }
-    return;
-    // Helper to remove model and folders
-    function removeModelAndFolders() {
-        if (window.model) {
-            scene.remove(window.model);
-            window.model.traverse(child => {
-                if (child.isMesh) child.geometry.dispose();
-            });
-            window.model = null;
-        }
-        if (modelFolder) {
-            modelFolder.destroy();
-            modelFolder = null;
-        }
-        if (gui.__folders && gui.__folders['Animation']) {
-            gui.__folders['Animation'].destroy();
-        }
-        allClickableMeshes = [];
-        loose20kgMesh = null;
-        loose20kgOriginalMaterial = null;
-        loose20kgGlowActive = true;
-        mixer = null;
-    }
-    // Helper to fade out and remove
-    function fadeOutAndRemoveModel(model, onComplete) {
-        let meshes = [];
-        model.traverse(child => {
-            if (child.isMesh) {
-                // Store original opacity and transparent
-                if (child.material) {
-                    if (child.material._origOpacity === undefined) {
-                        child.material._origOpacity = child.material.opacity;
-                    }
-                    if (child.material._origTransparent === undefined) {
-                        child.material._origTransparent = child.material.transparent;
-                    }
-                    child.material.transparent = true;
-                }
-                meshes.push(child);
-            }
-        });
-        gsap.to(meshes.map(m => m.material), {
-            opacity: 0,
-            duration: 0.5,
-            onComplete: onComplete
-        });
-    }
-    // Helper to fade in
-    function fadeInModel(model) {
-        let meshes = [];
-        model.traverse(child => {
-            if (child.isMesh) {
-                if (child.material) {
-                    // Store original if not already
-                    if (child.material._origOpacity === undefined) {
-                        child.material._origOpacity = child.material.opacity;
-                    }
-                    if (child.material._origTransparent === undefined) {
-                        child.material._origTransparent = child.material.transparent;
-                    }
-                    child.material.transparent = true;
-                    child.material.opacity = 0;
-                }
-                meshes.push(child);
-            }
-        });
-        gsap.to(meshes.map(m => m.material), {
-            opacity: function(i, target) {
-                return target._origOpacity !== undefined ? target._origOpacity : 1;
-            },
-            duration: 0.5,
-            onComplete: function() {
-                // Restore original opacity and transparent
-                meshes.forEach(child => {
-                    if (child.material) {
-                        if (child.material._origOpacity !== undefined) {
-                            child.material.opacity = child.material._origOpacity;
-                        }
-                        if (child.material._origTransparent !== undefined) {
-                            child.material.transparent = child.material._origTransparent;
-                        }
-                    }
-                });
-            }
-        });
-    }
-    // Actual model loading logic
-    function actuallyLoadModel(url) {
-        gltfLoader.load(
-            url,
-            (gltf) => {
-                window.model = gltf.scene;
-                model = window.model;
-                model.traverse((child) => {
-                    if (child.isMesh) {
-                        allClickableMeshes.push(child);
-                        if (child.name === 'button-7') {
-                            button7Mesh = child;
-                            button7OriginalMaterial = child.material.clone();
-                        }
-                        if (child.name === 'Loose_20kg013_COLOR_1_0') {
-                            loose20kgMesh = child;
-                            loose20kgOriginalMaterial = child.material.clone();
-                        }
-                        child.castShadow = true;
-                        child.receiveShadow = true;
-                    }
-                });
-
-                // Apply default model transform if present
-                if (defaultSettings.model) {
-                    if (defaultSettings.model.position) model.position.fromArray(defaultSettings.model.position);
-                    if (defaultSettings.model.rotation) model.rotation.set(
-                        defaultSettings.model.rotation[0],
-                        defaultSettings.model.rotation[1],
-                        defaultSettings.model.rotation[2]
-                    );
-                    if (defaultSettings.model.scale) model.scale.fromArray(defaultSettings.model.scale);
-                } else {
-                    model.position.set(0, 0, 0);
-                }
-                scene.add(model);
-
-                // Add dat.GUI controls for model transform
-                modelFolder = gui.addFolder('Model Transform');
-                const pos = model.position;
-                const rot = model.rotation;
-                const scl = model.scale;
-                modelFolder.add(pos, 'x', -1, 1, 0.002).name('Position X');
-                modelFolder.add(pos, 'y', -1, 1, 0.002).name('Position Y');
-                modelFolder.add(pos, 'z', -1, 1, 0.002).name('Position Z');
-                modelFolder.add(rot, 'x', -1, 1, 0.002).name('Rotation X');
-                modelFolder.add(rot, 'y', -1, 1, 0.002).name('Rotation Y');
-                modelFolder.add(rot, 'z', -1, 1, 0.002).name('Rotation Z');
-                modelFolder.add(scl, 'x', 0.01, 1, 0.001).name('Scale X');
-                modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
-                modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
-                modelFolder.open();
-
-                // Smooth, continuous pulse for Loose_20kg013_COLOR_1_0 until clicked
-                if (loose20kgMesh) {
-                    const originalEmissive = loose20kgMesh.material.emissive ? loose20kgMesh.material.emissive.clone() : new THREE.Color(0x000000);
-                    const originalEmissiveIntensity = loose20kgMesh.material.emissiveIntensity !== undefined ? loose20kgMesh.material.emissiveIntensity : 1;
-                    const flashColor = new THREE.Color(0xff0000); // bright red
-                    let startTime = null;
-                    // Pulse duration is 50% slower (original: 2000/3 ~666ms, now ~1000ms per pulse)
-                    const pulseDuration = (2000 / 3) * 1.5; // ~1000ms per pulse
-                    function animatePulse(time) {
-                        if (!loose20kgGlowActive) {
-                            // Restore original
-                            loose20kgMesh.material.emissive = originalEmissive;
-                            loose20kgMesh.material.emissiveIntensity = originalEmissiveIntensity;
-                            loose20kgMesh.material.needsUpdate = true;
-                            return;
-                        }
-                        if (!startTime) startTime = time;
-                        const elapsed = (time - startTime) % pulseDuration;
-                        // Ease in/out using sine
-                        const t = elapsed / pulseDuration;
-                        const ease = 0.2 * (0.5 - 0.5 * Math.cos(Math.PI * 2 * t)); // 0 to 0.2 smoothly
-                        loose20kgMesh.material.emissive = flashColor;
-                        loose20kgMesh.material.emissiveIntensity = ease;
-                        loose20kgMesh.material.needsUpdate = true;
-                        requestAnimationFrame(animatePulse);
-                    }
-                    requestAnimationFrame(animatePulse);
-                }
-
-                if (Array.isArray(gltf.animations) && gltf.animations.length > 0) {
-                    mixer = new THREE.AnimationMixer(model);
-                    // Use the first animation clip by default
-                    const mainClip = gltf.animations[0];
-                    let mainAction = mixer.clipAction(mainClip);
-                    mainAction.play();
-
-                    // Animation GUI controls
-                    const animFolder = gui.addFolder('Animation');
-                    let isPlaying = true;
-                    let animTime = 0;
-                    const duration = mainClip.duration;
-
-                    // Play/Pause button
-                    animFolder.add({Play_Pause: () => {
-                        isPlaying = !isPlaying;
-                        if (isPlaying) {
-                            mainAction.paused = false;
-                        } else {
-                            mainAction.paused = true;
-                        }
-                    }}, 'Play_Pause').name('Play/Pause');
-
-                    // Scrubber slider
-                    animFolder.add({Scrub: 0}, 'Scrub', 0, duration, 0.01).name('Scrub').onChange(val => {
-                        animTime = val;
-                        mainAction.time = animTime;
-                        mixer.update(0); // force update
-                        mainAction.paused = true;
-                        isPlaying = false;
-                    });
-                    animFolder.open();
-
-                    // Animation update in tick
-                    const origTick = tick;
-                    tick = function() {
-                        if (mixer && isPlaying) {
-                            const delta = clock.getDelta();
-                            mixer.update(delta);
-                        }
-                        controls.update();
-                        renderer.render(scene, camera);
-                        requestAnimationFrame(tick);
-                    };
-                }
-                // Fade in new model
-                fadeInModel(model);
-            },
-            undefined,
-            (error) => {
-                console.error('An error happened while loading the GLB model:', error);
-            }
-        );
+        window.model = null;
     }
     if (modelFolder) {
         modelFolder.destroy();
@@ -902,7 +673,7 @@ scene.add(ground);
 
 let useShadowMaterial = false;
 
-// guiVisible is now set to false by default above
+let guiVisible = true;
 const groundFolder = gui.addFolder('Ground Plane');
 const groundParams = {
     mode: 'Solid', // or 'Infinite Canvas',
@@ -1115,19 +886,19 @@ const defaultSettings = {
     },
             "camera": {
                 "position": [
-                    -0.6450775424242561,
-                    1.0270608985067986,
-                    1.3768823659363898
+                    -0.9098738473205128,
+                    0.7703823915221306,
+                    1.3981905246967228
                 ],
                 "rotation": [
-                    -0.1834766569889727,
-                    -0.4990036325009956,
-                    -0.08856930361831791
+                    -0.25025460072691486,
+                    -0.6114705633846517,
+                    -0.14570055395616555
                 ],
                 "target": [
-                    0.17131388299899059,
-                    0.7537633027898458,
-                    -0.0959151054330899
+                    0.06947360176829247,
+                    0.4244509273717727,
+                    0.04485061060434801
                 ]
             },
     "model": {

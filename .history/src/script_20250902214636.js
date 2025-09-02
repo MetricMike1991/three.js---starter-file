@@ -300,7 +300,7 @@ const modelUrls = {
 };
 
 // Reference to dropdown
-const modelDropdown = document.getElementById('modelDropdown');
+git const modelDropdown = document.getElementById('modelDropdown');
 
 // Model loader function (refactored from previous gltfLoader.load)
 function loadModel(url) {

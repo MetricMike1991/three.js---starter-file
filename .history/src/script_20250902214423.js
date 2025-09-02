@@ -166,10 +166,6 @@ const scene = new THREE.Scene();
  */
 const gui = new GUI();
 
-// Hide GUI by default
-gui.domElement.style.display = 'none';
-let guiVisible = false;
-
 // GUI parameters for gradient background
 const params = {
     gradientTop: '#ff0000',    // Red at top
@@ -902,7 +898,7 @@ scene.add(ground);
 
 let useShadowMaterial = false;
 
-// guiVisible is now set to false by default above
+let guiVisible = true;
 const groundFolder = gui.addFolder('Ground Plane');
 const groundParams = {
     mode: 'Solid', // or 'Infinite Canvas',

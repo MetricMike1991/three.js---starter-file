@@ -902,7 +902,7 @@ scene.add(ground);
 
 let useShadowMaterial = false;
 
-// guiVisible is now set to false by default above
+let guiVisible = true;
 const groundFolder = gui.addFolder('Ground Plane');
 const groundParams = {
     mode: 'Solid', // or 'Infinite Canvas',

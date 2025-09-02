@@ -166,10 +166,6 @@ const scene = new THREE.Scene();
  */
 const gui = new GUI();
 
-// Hide GUI by default
-gui.domElement.style.display = 'none';
-let guiVisible = false;
-
 // GUI parameters for gradient background
 const params = {
     gradientTop: '#ff0000',    // Red at top
@@ -343,16 +339,8 @@ function loadModel(url) {
         let meshes = [];
         model.traverse(child => {
             if (child.isMesh) {
-                // Store original opacity and transparent
-                if (child.material) {
-                    if (child.material._origOpacity === undefined) {
-                        child.material._origOpacity = child.material.opacity;
-                    }
-                    if (child.material._origTransparent === undefined) {
-                        child.material._origTransparent = child.material.transparent;
-                    }
-                    child.material.transparent = true;
-                }
+                // Ensure material is transparent
+                if (!child.material.transparent) child.material.transparent = true;
                 meshes.push(child);
             }
         });
@@ -367,38 +355,14 @@ function loadModel(url) {
         let meshes = [];
         model.traverse(child => {
             if (child.isMesh) {
-                if (child.material) {
-                    // Store original if not already
-                    if (child.material._origOpacity === undefined) {
-                        child.material._origOpacity = child.material.opacity;
-                    }
-                    if (child.material._origTransparent === undefined) {
-                        child.material._origTransparent = child.material.transparent;
-                    }
-                    child.material.transparent = true;
-                    child.material.opacity = 0;
-                }
+                if (!child.material.transparent) child.material.transparent = true;
+                child.material.opacity = 0;
                 meshes.push(child);
             }
         });
         gsap.to(meshes.map(m => m.material), {
-            opacity: function(i, target) {
-                return target._origOpacity !== undefined ? target._origOpacity : 1;
-            },
-            duration: 0.5,
-            onComplete: function() {
-                // Restore original opacity and transparent
-                meshes.forEach(child => {
-                    if (child.material) {
-                        if (child.material._origOpacity !== undefined) {
-                            child.material.opacity = child.material._origOpacity;
-                        }
-                        if (child.material._origTransparent !== undefined) {
-                            child.material.transparent = child.material._origTransparent;
-                        }
-                    }
-                });
-            }
+            opacity: 1,
+            duration: 0.5
         });
     }
     // Actual model loading logic
@@ -902,7 +866,7 @@ scene.add(ground);
 
 let useShadowMaterial = false;
 
-// guiVisible is now set to false by default above
+let guiVisible = true;
 const groundFolder = gui.addFolder('Ground Plane');
 const groundParams = {
     mode: 'Solid', // or 'Infinite Canvas',
@@ -1115,19 +1079,19 @@ const defaultSettings = {
     },
             "camera": {
                 "position": [
-                    -0.6450775424242561,
-                    1.0270608985067986,
-                    1.3768823659363898
+                    -0.9098738473205128,
+                    0.7703823915221306,
+                    1.3981905246967228
                 ],
                 "rotation": [
-                    -0.1834766569889727,
-                    -0.4990036325009956,
-                    -0.08856930361831791
+                    -0.25025460072691486,
+                    -0.6114705633846517,
+                    -0.14570055395616555
                 ],
                 "target": [
-                    0.17131388299899059,
-                    0.7537633027898458,
-                    -0.0959151054330899
+                    0.06947360176829247,
+                    0.4244509273717727,
+                    0.04485061060434801
                 ]
             },
     "model": {
