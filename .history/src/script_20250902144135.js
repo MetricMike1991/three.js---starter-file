@@ -539,11 +539,10 @@ const circleGeometry = new THREE.CircleGeometry(circleRadius, circleSegments);
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
 
 
+// Use only a solid MeshStandardMaterial for the ground for reliable shadows
+const solidGroundMaterial = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 1, metalness: 0 });
 
-// Use ShadowMaterial for a transparent ground that only shows the shadow
-const shadowGroundMaterial = new THREE.ShadowMaterial({ opacity: 0.4 });
-
-const ground = new THREE.Mesh(circleGeometry, shadowGroundMaterial);
+const ground = new THREE.Mesh(circleGeometry, solidGroundMaterial);
 ground.rotation.x = -Math.PI / 2;
 ground.position.y = -0.01;
 ground.receiveShadow = true;

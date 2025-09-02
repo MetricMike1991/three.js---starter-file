@@ -87,11 +87,17 @@ async function importSettingsFromClipboard() {
                     gui.__folders['Ground Plane'].__controllers[0].setValue(settings.ground.mode);
                 }
                 // Also update geometry/material immediately in case GUI doesn't trigger
-                // Always use solid ground and always receive shadows for reliability
-                ground.geometry = circleGeometry;
-                ground.material = solidGroundMaterial;
-                ground.receiveShadow = true;
-                ground.castShadow = false;
+                if (settings.ground.mode === 'Infinite Canvas') {
+                    ground.geometry = planeGeometry;
+                    ground.material = shadowGroundMaterial;
+                    ground.receiveShadow = true;
+                    ground.castShadow = false;
+                } else {
+                    ground.geometry = circleGeometry;
+                    ground.material = solidGroundMaterial;
+                    ground.receiveShadow = settings.ground.receiveShadow !== undefined ? settings.ground.receiveShadow : ground.receiveShadow;
+                    ground.castShadow = settings.ground.castShadow !== undefined ? settings.ground.castShadow : ground.castShadow;
+                }
                 ground.material.needsUpdate = true;
                 ground.geometry.computeBoundingSphere();
             }
@@ -111,9 +117,10 @@ async function importSettingsFromClipboard() {
                 groundParams.shadowOpacity = settings.ground.shadowOpacity;
                 shadowGroundMaterial.opacity = settings.ground.shadowOpacity;
             }
-            // Always receive shadow on ground
-            groundParams.receiveShadow = true;
-            ground.receiveShadow = true;
+            if (settings.ground.receiveShadow !== undefined) {
+                groundParams.receiveShadow = settings.ground.receiveShadow;
+                ground.receiveShadow = settings.ground.receiveShadow;
+            }
             if (settings.ground.castShadow !== undefined) {
                 groundParams.castShadow = settings.ground.castShadow;
                 ground.castShadow = settings.ground.castShadow;
@@ -538,12 +545,13 @@ const circleSegments = 64;
 const circleGeometry = new THREE.CircleGeometry(circleRadius, circleSegments);
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
 
-
-
-// Use ShadowMaterial for a transparent ground that only shows the shadow
+const solidGroundMaterial = new THREE.MeshStandardMaterial({ color: 0x222222, roughness: 1, metalness: 0 }); // Solid color, no alpha map
 const shadowGroundMaterial = new THREE.ShadowMaterial({ opacity: 0.4 });
+shadowGroundMaterial.alphaMap = fadeTexture;
+shadowGroundMaterial.transparent = true;
+shadowGroundMaterial.alphaMap.needsUpdate = true;
 
-const ground = new THREE.Mesh(circleGeometry, shadowGroundMaterial);
+const ground = new THREE.Mesh(circleGeometry, solidGroundMaterial);
 ground.rotation.x = -Math.PI / 2;
 ground.position.y = -0.01;
 ground.receiveShadow = true;
@@ -675,6 +683,54 @@ ambFolder.addColor(ambLightParams, 'color').name('Color').onChange(v => {
 });
 ambFolder.open();
 
+// Spotlights Controls
+spotLights.forEach((spot, i) => {
+    const spotParams = {
+        intensity: spot.intensity,
+        color: '#' + spot.color.getHexString(),
+        castShadow: spot.castShadow,
+        posX: spot.position.x,
+        posY: spot.position.y,
+        posZ: spot.position.z,
+        angle: spot.angle,
+        penumbra: spot.penumbra,
+        visible: spot.visible
+    };
+    const spotFolder = lightsFolder.addFolder(`Spotlight ${i+1}`);
+    spotFolder.add(spotParams, 'intensity', 0, 5, 0.01).name('Intensity').onChange(v => {
+        spot.intensity = v;
+    });
+    spotFolder.addColor(spotParams, 'color').name('Color').onChange(v => {
+        spot.color.set(v);
+    });
+    spotFolder.add(spotParams, 'castShadow').name('Cast Shadow').onChange(v => {
+        spot.castShadow = v;
+    });
+    spotFolder.add(spotParams, 'posX', -10, 10, 0.01).name('Position X').onChange(v => {
+        spot.position.x = v;
+        if (spotHelpers[i]) spotHelpers[i].update();
+    });
+    spotFolder.add(spotParams, 'posY', -10, 10, 0.01).name('Position Y').onChange(v => {
+        spot.position.y = v;
+        if (spotHelpers[i]) spotHelpers[i].update();
+    });
+    spotFolder.add(spotParams, 'posZ', -10, 10, 0.01).name('Position Z').onChange(v => {
+        spot.position.z = v;
+        if (spotHelpers[i]) spotHelpers[i].update();
+    });
+    spotFolder.add(spotParams, 'angle', 0, Math.PI/2, 0.01).name('Angle').onChange(v => {
+        spot.angle = v;
+        if (spotHelpers[i]) spotHelpers[i].update();
+    });
+    spotFolder.add(spotParams, 'penumbra', 0, 1, 0.01).name('Penumbra').onChange(v => {
+        spot.penumbra = v;
+    });
+    spotFolder.add(spotParams, 'visible').name('Visible').onChange(v => {
+        spot.visible = v;
+        if (spotHelpers[i]) spotHelpers[i].visible = v;
+    });
+    spotFolder.open();
+});
 lightsFolder.open();
 
 
