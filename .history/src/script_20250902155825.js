@@ -446,26 +446,26 @@ controls.addEventListener('change', () => {
 });
 
 // Optional: Double-click to focus camera on clicked object
+
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
-canvas.addEventListener('dblclick', (event) => {
-    mouse.x = (event.clientX / sizes.width) * 2 - 1;
-    mouse.y = -(event.clientY / sizes.height) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(scene.children, true);
-    if (intersects.length > 0) {
-        const target = intersects[0].point;
-        controls.target.copy(target);
-        controls.update();
-    }
-});
 
-// --- Smooth camera target transition on double-click ---
-let targetLerpActive = false;
-let targetLerpStart = null;
+
+// --- Smooth camera position and target transition on double-click, allow user to rotate during transition ---
+let camLerpActive = false;
+let camLerpStart = null;
+let camLerpFrom = new THREE.Vector3();
+let camLerpTo = new THREE.Vector3();
 let targetLerpFrom = new THREE.Vector3();
 let targetLerpTo = new THREE.Vector3();
-let targetLerpDuration = 1.0; // seconds
+let camLerpDuration = 1.0; // seconds
+let isUserOrbiting = false;
+
+// Track if user is orbiting (mouse/touch down)
+canvas.addEventListener('pointerdown', () => { isUserOrbiting = true; });
+canvas.addEventListener('pointerup', () => { isUserOrbiting = false; });
+canvas.addEventListener('touchstart', () => { isUserOrbiting = true; });
+canvas.addEventListener('touchend', () => { isUserOrbiting = false; });
 
 canvas.addEventListener('dblclick', (event) => {
     mouse.x = (event.clientX / sizes.width) * 2 - 1;
@@ -474,30 +474,40 @@ canvas.addEventListener('dblclick', (event) => {
     const intersects = raycaster.intersectObjects(scene.children, true);
     if (intersects.length > 0) {
         const target = intersects[0].point;
-        // Start lerp from current controls.target to new target
+        // Calculate offset from camera to current target
+        const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+        // New camera position should maintain this offset from the new target
+        camLerpFrom.copy(camera.position);
+        camLerpTo.copy(new THREE.Vector3().addVectors(target, offset));
         targetLerpFrom.copy(controls.target);
         targetLerpTo.copy(target);
-        targetLerpStart = performance.now();
-        targetLerpActive = true;
+        camLerpStart = performance.now();
+        camLerpActive = true;
     }
 });
 
-function updateTargetLerp() {
-    if (targetLerpActive) {
+function updateCameraLerp() {
+    if (camLerpActive) {
         const now = performance.now();
-        const elapsed = (now - targetLerpStart) / 1000;
-        let t = Math.min(elapsed / targetLerpDuration, 1);
+        const elapsed = (now - camLerpStart) / 1000;
+        let t = Math.min(elapsed / camLerpDuration, 1);
         // Ease in-out (smoothstep)
         t = t * t * (3 - 2 * t);
-        controls.target.lerpVectors(targetLerpFrom, targetLerpTo, t);
-        controls.update();
+        // Only update position/target if user is not orbiting (but always allow rotation)
+        if (!isUserOrbiting) {
+            camera.position.lerpVectors(camLerpFrom, camLerpTo, t);
+            controls.target.lerpVectors(targetLerpFrom, targetLerpTo, t);
+        }
+        // Do NOT call controls.update() here, so user can rotate during transition
         if (t >= 1) {
+            camera.position.copy(camLerpTo);
             controls.target.copy(targetLerpTo);
             controls.update();
-            targetLerpActive = false;
+            camLerpActive = false;
         }
     }
 }
+
 // ---------------------------------------------
 // 12. Renderer: WebGLRenderer setup
 // ---------------------------------------------
@@ -517,7 +527,7 @@ renderer.toneMappingExposure = 1.0;
 // ---------------------------------------------
 const tick = () => {
     // Update controls for smooth camera movement
-    updateTargetLerp();
+    updateCameraLerp();
     controls.update();
     // Update animation mixer if present (for model animations)
     if (mixer) {

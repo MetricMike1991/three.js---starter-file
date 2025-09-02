@@ -465,7 +465,7 @@ let targetLerpActive = false;
 let targetLerpStart = null;
 let targetLerpFrom = new THREE.Vector3();
 let targetLerpTo = new THREE.Vector3();
-let targetLerpDuration = 1.0; // seconds
+let targetLerpDuration = 0.7; // seconds
 
 canvas.addEventListener('dblclick', (event) => {
     mouse.x = (event.clientX / sizes.width) * 2 - 1;

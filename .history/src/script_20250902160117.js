@@ -460,44 +460,6 @@ canvas.addEventListener('dblclick', (event) => {
     }
 });
 
-// --- Smooth camera target transition on double-click ---
-let targetLerpActive = false;
-let targetLerpStart = null;
-let targetLerpFrom = new THREE.Vector3();
-let targetLerpTo = new THREE.Vector3();
-let targetLerpDuration = 1.0; // seconds
-
-canvas.addEventListener('dblclick', (event) => {
-    mouse.x = (event.clientX / sizes.width) * 2 - 1;
-    mouse.y = -(event.clientY / sizes.height) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(scene.children, true);
-    if (intersects.length > 0) {
-        const target = intersects[0].point;
-        // Start lerp from current controls.target to new target
-        targetLerpFrom.copy(controls.target);
-        targetLerpTo.copy(target);
-        targetLerpStart = performance.now();
-        targetLerpActive = true;
-    }
-});
-
-function updateTargetLerp() {
-    if (targetLerpActive) {
-        const now = performance.now();
-        const elapsed = (now - targetLerpStart) / 1000;
-        let t = Math.min(elapsed / targetLerpDuration, 1);
-        // Ease in-out (smoothstep)
-        t = t * t * (3 - 2 * t);
-        controls.target.lerpVectors(targetLerpFrom, targetLerpTo, t);
-        controls.update();
-        if (t >= 1) {
-            controls.target.copy(targetLerpTo);
-            controls.update();
-            targetLerpActive = false;
-        }
-    }
-}
 // ---------------------------------------------
 // 12. Renderer: WebGLRenderer setup
 // ---------------------------------------------
@@ -517,7 +479,6 @@ renderer.toneMappingExposure = 1.0;
 // ---------------------------------------------
 const tick = () => {
     // Update controls for smooth camera movement
-    updateTargetLerp();
     controls.update();
     // Update animation mixer if present (for model animations)
     if (mixer) {
@@ -803,26 +764,26 @@ const defaultSettings = {
     },
     "camera": {
         "position": [
-            0.571641187606234,
-            0.6054805751022576,
-            -0.4710421975258844
+            0.6351755213042418,
+            0.5397676556690015,
+            -0.5282672371480961
         ],
         "rotation": [
-            -2.6821474237876726,
-            0.8865063263260724,
-            2.775502273890531
+            -2.7668961402730203,
+            0.9104435827932892,
+            2.840439684862277
         ],
         "target": [
-            -0.04078270409635462,
-            0.38393067967272315,
-            -0.023247738115800942
+            -0.05646597663348499,
+            0.3431660377114001,
+            -0.028359885015936136
         ]
     },
-    "model": {
-        "position": [0, -0.02, 0],
-        "rotation": [0, 0, 0],
-        "scale": [1, 1, 1]
-    }
+            "model": {
+                "position": [1.124569359206964, 0.23984007693272844, -0.4634893277884476],
+                "rotation": [0, 0, 0],
+                "scale": [1, 1, 1]
+            }
 };
 
 

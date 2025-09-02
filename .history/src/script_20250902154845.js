@@ -460,44 +460,6 @@ canvas.addEventListener('dblclick', (event) => {
     }
 });
 
-// --- Smooth camera target transition on double-click ---
-let targetLerpActive = false;
-let targetLerpStart = null;
-let targetLerpFrom = new THREE.Vector3();
-let targetLerpTo = new THREE.Vector3();
-let targetLerpDuration = 1.0; // seconds
-
-canvas.addEventListener('dblclick', (event) => {
-    mouse.x = (event.clientX / sizes.width) * 2 - 1;
-    mouse.y = -(event.clientY / sizes.height) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(scene.children, true);
-    if (intersects.length > 0) {
-        const target = intersects[0].point;
-        // Start lerp from current controls.target to new target
-        targetLerpFrom.copy(controls.target);
-        targetLerpTo.copy(target);
-        targetLerpStart = performance.now();
-        targetLerpActive = true;
-    }
-});
-
-function updateTargetLerp() {
-    if (targetLerpActive) {
-        const now = performance.now();
-        const elapsed = (now - targetLerpStart) / 1000;
-        let t = Math.min(elapsed / targetLerpDuration, 1);
-        // Ease in-out (smoothstep)
-        t = t * t * (3 - 2 * t);
-        controls.target.lerpVectors(targetLerpFrom, targetLerpTo, t);
-        controls.update();
-        if (t >= 1) {
-            controls.target.copy(targetLerpTo);
-            controls.update();
-            targetLerpActive = false;
-        }
-    }
-}
 // ---------------------------------------------
 // 12. Renderer: WebGLRenderer setup
 // ---------------------------------------------
@@ -517,7 +479,6 @@ renderer.toneMappingExposure = 1.0;
 // ---------------------------------------------
 const tick = () => {
     // Update controls for smooth camera movement
-    updateTargetLerp();
     controls.update();
     // Update animation mixer if present (for model animations)
     if (mixer) {

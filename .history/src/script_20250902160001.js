@@ -446,26 +446,17 @@ controls.addEventListener('change', () => {
 });
 
 // Optional: Double-click to focus camera on clicked object
+
 const raycaster = new THREE.Raycaster();
 const mouse = new THREE.Vector2();
-canvas.addEventListener('dblclick', (event) => {
-    mouse.x = (event.clientX / sizes.width) * 2 - 1;
-    mouse.y = -(event.clientY / sizes.height) * 2 + 1;
-    raycaster.setFromCamera(mouse, camera);
-    const intersects = raycaster.intersectObjects(scene.children, true);
-    if (intersects.length > 0) {
-        const target = intersects[0].point;
-        controls.target.copy(target);
-        controls.update();
-    }
-});
 
-// --- Smooth camera target transition on double-click ---
-let targetLerpActive = false;
-let targetLerpStart = null;
+
+// --- Sketchfab-style smooth camera transition on double-click ---
+let camLerpActive = false;
+let camLerpStart = null;
 let targetLerpFrom = new THREE.Vector3();
 let targetLerpTo = new THREE.Vector3();
-let targetLerpDuration = 1.0; // seconds
+let camLerpDuration = 1.0; // seconds
 
 canvas.addEventListener('dblclick', (event) => {
     mouse.x = (event.clientX / sizes.width) * 2 - 1;
@@ -474,30 +465,55 @@ canvas.addEventListener('dblclick', (event) => {
     const intersects = raycaster.intersectObjects(scene.children, true);
     if (intersects.length > 0) {
         const target = intersects[0].point;
-        // Start lerp from current controls.target to new target
         targetLerpFrom.copy(controls.target);
         targetLerpTo.copy(target);
-        targetLerpStart = performance.now();
-        targetLerpActive = true;
+        camLerpStart = performance.now();
+        camLerpActive = true;
     }
 });
 
-function updateTargetLerp() {
-    if (targetLerpActive) {
+canvas.addEventListener('dblclick', (event) => {
+    mouse.x = (event.clientX / sizes.width) * 2 - 1;
+    mouse.y = -(event.clientY / sizes.height) * 2 + 1;
+    raycaster.setFromCamera(mouse, camera);
+    const intersects = raycaster.intersectObjects(scene.children, true);
+    if (intersects.length > 0) {
+        const target = intersects[0].point;
+        // Calculate offset from camera to current target
+        const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+        // New camera position should maintain this offset from the new target
+        camLerpFrom.copy(camera.position);
+        camLerpTo.copy(new THREE.Vector3().addVectors(target, offset));
+        targetLerpFrom.copy(controls.target);
+        targetLerpTo.copy(target);
+        camLerpStart = performance.now();
+        camLerpActive = true;
+    }
+});
+
+function updateCameraLerp() {
+    if (camLerpActive) {
         const now = performance.now();
-        const elapsed = (now - targetLerpStart) / 1000;
-        let t = Math.min(elapsed / targetLerpDuration, 1);
+        const elapsed = (now - camLerpStart) / 1000;
+        let t = Math.min(elapsed / camLerpDuration, 1);
         // Ease in-out (smoothstep)
         t = t * t * (3 - 2 * t);
+        // Always lerp the target
         controls.target.lerpVectors(targetLerpFrom, targetLerpTo, t);
-        controls.update();
+        // Maintain the current offset from camera to target
+        const offset = new THREE.Vector3().subVectors(camera.position, controls.target);
+        // Desired offset at the end of the transition
+        const finalOffset = new THREE.Vector3().subVectors(camera.position, controls.target);
+        // Move camera to maintain the offset as the target moves
+        camera.position.copy(controls.target).add(offset);
+        // Do NOT call controls.update() here, so user can rotate during transition
         if (t >= 1) {
             controls.target.copy(targetLerpTo);
-            controls.update();
-            targetLerpActive = false;
+            camLerpActive = false;
         }
     }
 }
+
 // ---------------------------------------------
 // 12. Renderer: WebGLRenderer setup
 // ---------------------------------------------
@@ -517,7 +533,7 @@ renderer.toneMappingExposure = 1.0;
 // ---------------------------------------------
 const tick = () => {
     // Update controls for smooth camera movement
-    updateTargetLerp();
+    updateCameraLerp();
     controls.update();
     // Update animation mixer if present (for model animations)
     if (mixer) {
