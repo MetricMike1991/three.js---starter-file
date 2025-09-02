@@ -76,304 +76,195 @@ async function importSettingsFromClipboard() {
             }
             if (settings.ground.roughness !== undefined) {
                 groundParams.roughness = settings.ground.roughness;
-                solidGroundMaterial.roughness = settings.ground.roughness;
-            }
-            if (settings.ground.metalness !== undefined) {
-                groundParams.metalness = settings.ground.metalness;
-                solidGroundMaterial.metalness = settings.ground.metalness;
-            }
-            if (settings.ground.shadowOpacity !== undefined) {
-                groundParams.shadowOpacity = settings.ground.shadowOpacity;
-                shadowGroundMaterial.opacity = settings.ground.shadowOpacity;
-            }
-            // Always receive shadow on ground
-            groundParams.receiveShadow = true;
-            ground.receiveShadow = true;
-            if (settings.ground.castShadow !== undefined) {
-                groundParams.castShadow = settings.ground.castShadow;
-                ground.castShadow = settings.ground.castShadow;
-            }
-            if (settings.ground.visible !== undefined) {
-                groundParams.visible = settings.ground.visible;
-                ground.visible = settings.ground.visible;
-            }
-        }
-        // Light
-        if (settings.light) {
-            if (settings.light.intensity !== undefined) directionalLight.intensity = settings.light.intensity;
-            if (settings.light.color) directionalLight.color.set(settings.light.color);
-            if (settings.light.position) {
-                directionalLight.position.set(
-                    settings.light.position.x,
-                    settings.light.position.y,
-                    settings.light.position.z
-                );
-            }
-            if (settings.light.castShadow !== undefined) directionalLight.castShadow = settings.light.castShadow;
-            if (settings.light.shadowBias !== undefined) directionalLight.shadow.bias = settings.light.shadowBias;
-            if (settings.light.shadowBlur !== undefined) directionalLight.shadow.radius = settings.light.shadowBlur;
-            if (settings.light.shadowMapWidth !== undefined) directionalLight.shadow.mapSize.width = settings.light.shadowMapWidth;
-            if (settings.light.shadowMapHeight !== undefined) directionalLight.shadow.mapSize.height = settings.light.shadowMapHeight;
-        }
-        // Camera
-        if (settings.camera) {
-            if (settings.camera.position) camera.position.fromArray(settings.camera.position);
-            if (settings.camera.rotation) camera.rotation.set(
-                settings.camera.rotation[0],
-                settings.camera.rotation[1],
-                settings.camera.rotation[2]
-            );
-            if (settings.camera.target) controls.target.fromArray(settings.camera.target);
-            controls.update();
-        }
-        // Model transform (if model and settings.model exist)
-        if (settings.model && typeof model !== 'undefined' && model) {
-            if (settings.model.position) model.position.fromArray(settings.model.position);
-            if (settings.model.rotation) model.rotation.set(
-                settings.model.rotation[0],
-                settings.model.rotation[1],
-                settings.model.rotation[2]
-            );
-            if (settings.model.scale) model.scale.fromArray(settings.model.scale);
-        }
-        alert('Settings imported from clipboard!');
-    } catch (e) {
-        alert('Failed to import settings: ' + e.message);
-    }
-}
-// ---------------------------------------------
-// 1. Imports: Three.js core and extensions
-// ---------------------------------------------
-import * as THREE from 'three';
-import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { RGBELoader } from 'three/examples/jsm/loaders/RGBELoader.js';
-import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
-// Removed dat.GUI import; using only lil-gui
-import GUI from 'lil-gui'; // Import lil-gui for GUI controls
 
-// ---------------------------------------------
-// 2. Canvas & Scene Setup
-// ---------------------------------------------
-// Select the canvas element from the HTML (should have class 'webgl')
-const canvas = document.querySelector('canvas.webgl');
-// Create the main Three.js scene
-const scene = new THREE.Scene();
+                // Model options for dropdown
+                const modelOptions = {
+                    'Deadlift': 'https://FlexFrame.b-cdn.net/02.%20Deadlift%20GLB%20Final.glb',
+                    'Overhead press': 'https://FlexFrame.b-cdn.net/03.%20Overhead%20press%20GLB.glb'
+                };
+                let currentModelUrl = modelOptions['Overhead press'];
 
-/**
- * GUI Controls
- *
- * Adds a GUI to control the scene background color.
- */
-const gui = new GUI();
+                let mixer = null;
+                const clock = new THREE.Clock();
+                let button7Mesh = null;
+                let button7OriginalMaterial = null;
+                let button7Action = null;
+                let sceneAction = null;
+                let allClickableMeshes = [];
+                let modelFolder;
+                let loose20kgMesh = null;
+                let loose20kgOriginalMaterial = null;
+                let loose20kgGlowActive = true;
 
-// GUI parameters for gradient background
-const params = {
-    gradientTop: '#ff0000',    // Red at top
-    gradientBottom: '#0000ff', // Blue at bottom
-    gradientAlpha: 1.0         // Fully opaque
-};
+                function loadModel(url) {
+                    // Remove previous model and folders
+                    if (window.model) {
+                        scene.remove(window.model);
+                        window.model.traverse(child => {
+                            if (child.isMesh) child.geometry.dispose();
+                        });
+                        window.model = null;
+                    }
+                    if (modelFolder) {
+                        gui.removeFolder(modelFolder);
+                        modelFolder = null;
+                    }
+                    if (gui.__folders['Animation']) {
+                        gui.removeFolder(gui.__folders['Animation']);
+                    }
+                    allClickableMeshes = [];
+                    loose20kgMesh = null;
+                    loose20kgOriginalMaterial = null;
+                    loose20kgGlowActive = true;
+                    mixer = null;
 
-// Function to update the gradient background
-let bgTexture = null;
-function updateGradientBackground() {
-    const width = 512, height = 512;
-    const canvasBg = document.createElement('canvas');
-    canvasBg.width = width;
-    canvasBg.height = height;
-    const ctx = canvasBg.getContext('2d');
-    const gradient = ctx.createLinearGradient(0, 0, 0, height);
-    gradient.addColorStop(0, params.gradientTop);
-    gradient.addColorStop(1, params.gradientBottom);
-    ctx.fillStyle = gradient;
-    ctx.globalAlpha = params.gradientAlpha;
-    ctx.fillRect(0, 0, width, height);
-    bgTexture = new THREE.CanvasTexture(canvasBg);
-    scene.background = bgTexture;
-    scene._originalBackgroundTexture = bgTexture;
-}
+                    gltfLoader.load(
+                        url,
+                        (gltf) => {
+                            window.model = gltf.scene;
+                            model = window.model;
+                            model.traverse((child) => {
+                                if (child.isMesh) {
+                                    allClickableMeshes.push(child);
+                                    if (child.name === 'button-7') {
+                                        button7Mesh = child;
+                                        button7OriginalMaterial = child.material.clone();
+                                    }
+                                    if (child.name === 'Loose_20kg013_COLOR_1_0') {
+                                        loose20kgMesh = child;
+                                        loose20kgOriginalMaterial = child.material.clone();
+                                    }
+                                    child.castShadow = true;
+                                    child.receiveShadow = true;
+                                }
+                            });
 
+                            // Apply default model transform if present
+                            if (defaultSettings.model) {
+                                if (defaultSettings.model.position) model.position.fromArray(defaultSettings.model.position);
+                                if (defaultSettings.model.rotation) model.rotation.set(
+                                    defaultSettings.model.rotation[0],
+                                    defaultSettings.model.rotation[1],
+                                    defaultSettings.model.rotation[2]
+                                );
+                                if (defaultSettings.model.scale) model.scale.fromArray(defaultSettings.model.scale);
+                            } else {
+                                model.position.set(0, 0, 0);
+                            }
+                            scene.add(model);
 
-// Add Save/Import Settings buttons at the top of the GUI
-gui.add({ saveSettingsToClipboard }, 'saveSettingsToClipboard').name('Save Settings to Clipboard');
-gui.add({ importSettingsFromClipboard }, 'importSettingsFromClipboard').name('Import Settings from Clipboard');
+                            // Add dat.GUI controls for model transform
+                            modelFolder = gui.addFolder('Model Transform');
+                            const pos = model.position;
+                            const rot = model.rotation;
+                            const scl = model.scale;
+                            modelFolder.add(pos, 'x', -1, 1, 0.002).name('Position X');
+                            modelFolder.add(pos, 'y', -1, 1, 0.002).name('Position Y');
+                            modelFolder.add(pos, 'z', -1, 1, 0.002).name('Position Z');
+                            modelFolder.add(rot, 'x', -1, 1, 0.002).name('Rotation X');
+                            modelFolder.add(rot, 'y', -1, 1, 0.002).name('Rotation Y');
+                            modelFolder.add(rot, 'z', -1, 1, 0.002).name('Rotation Z');
+                            modelFolder.add(scl, 'x', 0.01, 1, 0.001).name('Scale X');
+                            modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
+                            modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
+                            modelFolder.open();
 
-// Add GUI controls for gradient
-gui.addColor(params, 'gradientTop').name('Gradient Top').onChange(updateGradientBackground);
-gui.addColor(params, 'gradientBottom').name('Gradient Bottom').onChange(updateGradientBackground);
-gui.add(params, 'gradientAlpha', 0, 1, 0.01).name('Gradient Alpha').onChange(updateGradientBackground);
+                            // Smooth, continuous pulse for Loose_20kg013_COLOR_1_0 until clicked
+                            if (loose20kgMesh) {
+                                const originalEmissive = loose20kgMesh.material.emissive ? loose20kgMesh.material.emissive.clone() : new THREE.Color(0x000000);
+                                const originalEmissiveIntensity = loose20kgMesh.material.emissiveIntensity !== undefined ? loose20kgMesh.material.emissiveIntensity : 1;
+                                const flashColor = new THREE.Color(0xff0000); // bright red
+                                let startTime = null;
+                                // Pulse duration is 50% slower (original: 2000/3 ~666ms, now ~1000ms per pulse)
+                                const pulseDuration = (2000 / 3) * 1.5; // ~1000ms per pulse
+                                function animatePulse(time) {
+                                    if (!loose20kgGlowActive) {
+                                        // Restore original
+                                        loose20kgMesh.material.emissive = originalEmissive;
+                                        loose20kgMesh.material.emissiveIntensity = originalEmissiveIntensity;
+                                        loose20kgMesh.material.needsUpdate = true;
+                                        return;
+                                    }
+                                    if (!startTime) startTime = time;
+                                    const elapsed = (time - startTime) % pulseDuration;
+                                    // Ease in/out using sine
+                                    const t = elapsed / pulseDuration;
+                                    const ease = 0.2 * (0.5 - 0.5 * Math.cos(Math.PI * 2 * t)); // 0 to 0.2 smoothly
+                                    loose20kgMesh.material.emissive = flashColor;
+                                    loose20kgMesh.material.emissiveIntensity = ease;
+                                    loose20kgMesh.material.needsUpdate = true;
+                                    requestAnimationFrame(animatePulse);
+                                }
+                                requestAnimationFrame(animatePulse);
+                            }
 
-// Initial gradient background
-updateGradientBackground();
+                            if (Array.isArray(gltf.animations) && gltf.animations.length > 0) {
+                                mixer = new THREE.AnimationMixer(model);
+                                // Use the first animation clip by default
+                                const mainClip = gltf.animations[0];
+                                let mainAction = mixer.clipAction(mainClip);
+                                mainAction.play();
 
-// ---------------------------------------------
-// 3. Loaders: For textures, HDRIs, and models
-// ---------------------------------------------
-const textureLoader = new THREE.TextureLoader(); // For standard textures
-const rgbeLoader = new RGBELoader(); // For HDR environment maps
-const gltfLoader = new GLTFLoader(); // For GLTF/GLB models
+                                // Animation GUI controls
+                                const animFolder = gui.addFolder('Animation');
+                                let isPlaying = true;
+                                let animTime = 0;
+                                const duration = mainClip.duration;
 
-// ---------------------------------------------
-// 4. Environment Map (HDRI background & lighting)
-// ---------------------------------------------
-// Loads an HDR environment map and applies it to the scene for realistic lighting and reflections
-rgbeLoader.load('./textures/environmentMap/2k.hdr', (environmentMap) => {
-    environmentMap.mapping = THREE.EquirectangularReflectionMapping;
-    // Only use HDRI for lighting, not for background
-    scene.environment = environmentMap;
-    // The gradient background is handled by updateGradientBackground()
-});
+                                // Play/Pause button
+                                animFolder.add({Play_Pause: () => {
+                                    isPlaying = !isPlaying;
+                                    if (isPlaying) {
+                                        mainAction.paused = false;
+                                    } else {
+                                        mainAction.paused = true;
+                                    }
+                                }}, 'Play_Pause').name('Play/Pause');
 
+                                // Scrubber slider
+                                animFolder.add({Scrub: 0}, 'Scrub', 0, duration, 0.01).name('Scrub').onChange(val => {
+                                    animTime = val;
+                                    mainAction.time = animTime;
+                                    mixer.update(0); // force update
+                                    mainAction.paused = true;
+                                    isPlaying = false;
+                                });
+                                animFolder.open();
+
+                                // Animation update in tick
+                                let origTick = tick;
+                                tick = function() {
+                                    if (mixer && isPlaying) {
+                                        const delta = clock.getDelta();
+                                        mixer.update(delta);
+                                    }
+                                    controls.update();
+                                    renderer.render(scene, camera);
+                                    requestAnimationFrame(tick);
+                                };
+                            }
+                        },
+                        undefined,
+                        (error) => {
+                            console.error('An error happened while loading the GLB model:', error);
+                        }
+                    );
+                }
+
+                // Add model selector to GUI
+                const modelParams = { Model: 'Overhead press' };
+                gui.add(modelParams, 'Model', Object.keys(modelOptions)).name('Model').onChange(val => {
+                    currentModelUrl = modelOptions[val];
+                    loadModel(currentModelUrl);
+                });
+
+                // Initial model load
+                loadModel(currentModelUrl);
 // ---------------------------------------------
 // 5. Lighting: Ambient and Directional
 // ---------------------------------------------
 // AmbientLight: Soft, global illumination
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.4);
-scene.add(ambientLight);
-
-// DirectionalLight: Simulates sunlight, can cast shadows
-const directionalLight = new THREE.DirectionalLight(0xffffff, 1.43);
-directionalLight.position.set(1.35, 1.57, 0.9);
-directionalLight.castShadow = true;
-directionalLight.shadow.bias = 0;
-directionalLight.shadow.radius = 1;
-directionalLight.shadow.mapSize.width = 1024;
-directionalLight.shadow.mapSize.height = 1024;
-scene.add(directionalLight);
-
-// Directional Light Helper
-const dirLightHelper = new THREE.DirectionalLightHelper(directionalLight, 1.5, 0xff0000);
-dirLightHelper.visible = false;
-scene.add(dirLightHelper);
-
-
-// Spotlights removed as requested. Only directional light remains for main lighting and shadows.
-
-// ---------------------------------------------
-// 6. Materials: Default for demo objects
-// ---------------------------------------------
-const defaultMaterial = new THREE.MeshStandardMaterial({
-    color: 0xff0000,      // Red color
-    roughness: 0.4,      // Surface roughness
-    metalness: 0.1       // Metalness factor
-});
-
-// ---------------------------------------------
-// 7. Demo Objects: (Commented out, for reference)
-// ---------------------------------------------
-// Example: Add a cube to the scene
-// const cubeGeometry = new THREE.BoxGeometry(1, 1, 1);
-// const cube = new THREE.Mesh(cubeGeometry, defaultMaterial);
-// cube.position.set(0, 0, 0);
-// cube.castShadow = true;
-// cube.receiveShadow = true;
-// scene.add(cube);
-
-// // Example: Add axes helper for orientation
-// const axesHelper = new THREE.AxesHelper(2); // size 2 units
-// scene.add(axesHelper);
-
-// ---------------------------------------------
-// 8. Load and Animate GLB Model
-// ---------------------------------------------
-// Animation mixer and clock for model animations
-let mixer = null;
-const clock = new THREE.Clock();
-let button7Mesh = null;
-let button7OriginalMaterial = null;
-let button7Action = null;
-let sceneAction = null;
-let allClickableMeshes = [];
-
-let modelFolder; // Declare at the top level for GUI folder
-let loose20kgMesh = null;
-let loose20kgOriginalMaterial = null;
-let loose20kgGlowActive = true;
-
-gltfLoader.load(
-    'https://FlexFrame.b-cdn.net/02.%20Deadlift%20GLB%20Final.glb',
-    (gltf) => {
-        window.model = gltf.scene;
-        model = window.model;
-        model.traverse((child) => {
-            if (child.isMesh) {
-                allClickableMeshes.push(child);
-                if (child.name === 'button-7') {
-                    button7Mesh = child;
-                    button7OriginalMaterial = child.material.clone();
-                }
-                if (child.name === 'Loose_20kg013_COLOR_1_0') {
-                    loose20kgMesh = child;
-                    loose20kgOriginalMaterial = child.material.clone();
-                }
-                child.castShadow = true;
-                child.receiveShadow = true;
-            }
-        });
-
-        // Apply default model transform if present
-        if (defaultSettings.model) {
-            if (defaultSettings.model.position) model.position.fromArray(defaultSettings.model.position);
-            if (defaultSettings.model.rotation) model.rotation.set(
-                defaultSettings.model.rotation[0],
-                defaultSettings.model.rotation[1],
-                defaultSettings.model.rotation[2]
-            );
-            if (defaultSettings.model.scale) model.scale.fromArray(defaultSettings.model.scale);
-        } else {
-            model.position.set(0, 0, 0);
-        }
-        scene.add(model);
-
-        // Add dat.GUI controls for model transform
-        modelFolder = gui.addFolder('Model Transform');
-        const pos = model.position;
-        const rot = model.rotation;
-        const scl = model.scale;
-        modelFolder.add(pos, 'x', -1, 1, 0.002).name('Position X');
-        modelFolder.add(pos, 'y', -1, 1, 0.002).name('Position Y');
-        modelFolder.add(pos, 'z', -1, 1, 0.002).name('Position Z');
-        modelFolder.add(rot, 'x', -1, 1, 0.002).name('Rotation X');
-        modelFolder.add(rot, 'y', -1, 1, 0.002).name('Rotation Y');
-        modelFolder.add(rot, 'z', -1, 1, 0.002).name('Rotation Z');
-        modelFolder.add(scl, 'x', 0.01, 1, 0.001).name('Scale X');
-        modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
-        modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
-        modelFolder.open();
-
-        // Smooth, continuous pulse for Loose_20kg013_COLOR_1_0 until clicked
-        if (loose20kgMesh) {
-            const originalEmissive = loose20kgMesh.material.emissive ? loose20kgMesh.material.emissive.clone() : new THREE.Color(0x000000);
-            const originalEmissiveIntensity = loose20kgMesh.material.emissiveIntensity !== undefined ? loose20kgMesh.material.emissiveIntensity : 1;
-            const flashColor = new THREE.Color(0xff0000); // bright red
-            let startTime = null;
-            // Pulse duration is 50% slower (original: 2000/3 ~666ms, now ~1000ms per pulse)
-            const pulseDuration = (2000 / 3) * 1.5; // ~1000ms per pulse
-            function animatePulse(time) {
-                if (!loose20kgGlowActive) {
-                    // Restore original
-                    loose20kgMesh.material.emissive = originalEmissive;
-                    loose20kgMesh.material.emissiveIntensity = originalEmissiveIntensity;
-                    loose20kgMesh.material.needsUpdate = true;
-                    return;
-                }
-                if (!startTime) startTime = time;
-                const elapsed = (time - startTime) % pulseDuration;
-                // Ease in/out using sine
-                const t = elapsed / pulseDuration;
-                const ease = 0.2 * (0.5 - 0.5 * Math.cos(Math.PI * 2 * t)); // 0 to 0.2 smoothly
-                loose20kgMesh.material.emissive = flashColor;
-                loose20kgMesh.material.emissiveIntensity = ease;
-                loose20kgMesh.material.needsUpdate = true;
-                requestAnimationFrame(animatePulse);
-            }
-            requestAnimationFrame(animatePulse);
-        }
-
-        if (Array.isArray(gltf.animations) && gltf.animations.length > 0) {
-            mixer = new THREE.AnimationMixer(model);
-            // Use the first animation clip by default
-            const mainClip = gltf.animations[0];
-            let mainAction = mixer.clipAction(mainClip);
+// ...existing code...
             mainAction.play();
 
             // Animation GUI controls

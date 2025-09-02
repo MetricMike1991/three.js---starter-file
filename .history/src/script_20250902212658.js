@@ -7,22 +7,6 @@ const saveSettingsToClipboard = () => {
         },
         ground: {
             ...groundParams
-        },
-        directionalLight: {
-            ...dirLightParams,
-            position: {
-                x: directionalLight.position.x,
-                y: directionalLight.position.y,
-                z: directionalLight.position.z
-            }
-        },
-        ambientLight: {
-            ...ambLightParams
-        },
-        camera: {
-            position: camera.position.toArray(),
-            rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
-            target: controls.target.toArray()
         }
     };
     // Add model transform if model is loaded (use global model reference)
@@ -40,107 +24,170 @@ const saveSettingsToClipboard = () => {
         alert('Failed to copy settings to clipboard.');
     });
 };
+// Model dropdown and loader logic (top-level)
 
-async function importSettingsFromClipboard() {
-    try {
-        const text = await navigator.clipboard.readText();
-        const settings = JSON.parse(text);
+// Place this after GUI is initialized
+// --- Model Dropdown and Loader ---
+const modelOptions = {
+    'Overhead press': 'https://FlexFrame.b-cdn.net/03.%20Overhead%20press%20GLB.glb',
+    'Deadlift': 'https://FlexFrame.b-cdn.net/02.%20Deadlift%20GLB%20Final.glb'
+};
+let currentModelName = 'Deadlift';
+let currentModelUrl = modelOptions[currentModelName];
 
-        if (settings.background) {
-            if (settings.background.gradientTop) params.gradientTop = settings.background.gradientTop;
-            if (settings.background.gradientBottom) params.gradientBottom = settings.background.gradientBottom;
-            if (settings.background.gradientAlpha !== undefined) params.gradientAlpha = settings.background.gradientAlpha;
-            updateGradientBackground();
-        }
-        // Ground
-        if (settings.ground) {
-            // Always set mode first and trigger GUI update
-            if (settings.ground.mode) {
-                groundParams.mode = settings.ground.mode;
-                // Trigger mode change in GUI (dropdown)
-                if (gui && gui.__folders && gui.__folders['Ground Plane'] && gui.__folders['Ground Plane'].__controllers[0]) {
-                    gui.__folders['Ground Plane'].__controllers[0].setValue(settings.ground.mode);
-                }
-                // Also update geometry/material immediately in case GUI doesn't trigger
-                // Always use solid ground and always receive shadows for reliability
-                ground.geometry = circleGeometry;
-                ground.material = solidGroundMaterial;
-                ground.receiveShadow = true;
-                ground.castShadow = false;
-                ground.material.needsUpdate = true;
-                ground.geometry.computeBoundingSphere();
-            }
-            if (settings.ground.color) {
-                groundParams.color = settings.ground.color;
-                solidGroundMaterial.color.set(settings.ground.color);
-            }
-            if (settings.ground.roughness !== undefined) {
-                groundParams.roughness = settings.ground.roughness;
-                solidGroundMaterial.roughness = settings.ground.roughness;
-            }
-            if (settings.ground.metalness !== undefined) {
-                groundParams.metalness = settings.ground.metalness;
-                solidGroundMaterial.metalness = settings.ground.metalness;
-            }
-            if (settings.ground.shadowOpacity !== undefined) {
-                groundParams.shadowOpacity = settings.ground.shadowOpacity;
-                shadowGroundMaterial.opacity = settings.ground.shadowOpacity;
-            }
-            // Always receive shadow on ground
-            groundParams.receiveShadow = true;
-            ground.receiveShadow = true;
-            if (settings.ground.castShadow !== undefined) {
-                groundParams.castShadow = settings.ground.castShadow;
-                ground.castShadow = settings.ground.castShadow;
-            }
-            if (settings.ground.visible !== undefined) {
-                groundParams.visible = settings.ground.visible;
-                ground.visible = settings.ground.visible;
-            }
-        }
-        // Light
-        if (settings.light) {
-            if (settings.light.intensity !== undefined) directionalLight.intensity = settings.light.intensity;
-            if (settings.light.color) directionalLight.color.set(settings.light.color);
-            if (settings.light.position) {
-                directionalLight.position.set(
-                    settings.light.position.x,
-                    settings.light.position.y,
-                    settings.light.position.z
-                );
-            }
-            if (settings.light.castShadow !== undefined) directionalLight.castShadow = settings.light.castShadow;
-            if (settings.light.shadowBias !== undefined) directionalLight.shadow.bias = settings.light.shadowBias;
-            if (settings.light.shadowBlur !== undefined) directionalLight.shadow.radius = settings.light.shadowBlur;
-            if (settings.light.shadowMapWidth !== undefined) directionalLight.shadow.mapSize.width = settings.light.shadowMapWidth;
-            if (settings.light.shadowMapHeight !== undefined) directionalLight.shadow.mapSize.height = settings.light.shadowMapHeight;
-        }
-        // Camera
-        if (settings.camera) {
-            if (settings.camera.position) camera.position.fromArray(settings.camera.position);
-            if (settings.camera.rotation) camera.rotation.set(
-                settings.camera.rotation[0],
-                settings.camera.rotation[1],
-                settings.camera.rotation[2]
-            );
-            if (settings.camera.target) controls.target.fromArray(settings.camera.target);
-            controls.update();
-        }
-        // Model transform (if model and settings.model exist)
-        if (settings.model && typeof model !== 'undefined' && model) {
-            if (settings.model.position) model.position.fromArray(settings.model.position);
-            if (settings.model.rotation) model.rotation.set(
-                settings.model.rotation[0],
-                settings.model.rotation[1],
-                settings.model.rotation[2]
-            );
-            if (settings.model.scale) model.scale.fromArray(settings.model.scale);
-        }
-        alert('Settings imported from clipboard!');
-    } catch (e) {
-        alert('Failed to import settings: ' + e.message);
+function loadModel(url) {
+    // Remove previous model and folders
+    if (window.model) {
+        scene.remove(window.model);
+        window.model.traverse(child => {
+            if (child.isMesh) child.geometry.dispose();
+        });
+        window.model = null;
     }
+    if (modelFolder) {
+        gui.removeFolder(modelFolder);
+        modelFolder = null;
+    }
+    if (gui.__folders['Animation']) {
+        gui.removeFolder(gui.__folders['Animation']);
+    }
+    allClickableMeshes = [];
+    loose20kgMesh = null;
+    loose20kgOriginalMaterial = null;
+    loose20kgGlowActive = true;
+    mixer = null;
+
+    gltfLoader.load(
+        url,
+        (gltf) => {
+            window.model = gltf.scene;
+            model = window.model;
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    allClickableMeshes.push(child);
+                    if (child.name === 'button-7') {
+                        button7Mesh = child;
+                        button7OriginalMaterial = child.material.clone();
+                    }
+                    if (child.name === 'Loose_20kg013_COLOR_1_0') {
+                        loose20kgMesh = child;
+                        loose20kgOriginalMaterial = child.material.clone();
+                    }
+                    child.castShadow = true;
+                    child.receiveShadow = true;
+                }
+            });
+
+            // Apply default model transform if present
+            if (defaultSettings.model) {
+                if (defaultSettings.model.position) model.position.fromArray(defaultSettings.model.position);
+                if (defaultSettings.model.rotation) model.rotation.set(
+                    defaultSettings.model.rotation[0],
+                    defaultSettings.model.rotation[1],
+                    defaultSettings.model.rotation[2]
+                );
+                if (defaultSettings.model.scale) model.scale.fromArray(defaultSettings.model.scale);
+            } else {
+                model.position.set(0, 0, 0);
+            }
+            scene.add(model);
+
+            // Add dat.GUI controls for model transform
+            modelFolder = gui.addFolder('Model Transform');
+            const pos = model.position;
+            const rot = model.rotation;
+            const scl = model.scale;
+            modelFolder.add(pos, 'x', -1, 1, 0.002).name('Position X');
+            modelFolder.add(pos, 'y', -1, 1, 0.002).name('Position Y');
+            modelFolder.add(pos, 'z', -1, 1, 0.002).name('Position Z');
+            modelFolder.add(rot, 'x', -1, 1, 0.002).name('Rotation X');
+            modelFolder.add(rot, 'y', -1, 1, 0.002).name('Rotation Y');
+            modelFolder.add(rot, 'z', -1, 1, 0.002).name('Rotation Z');
+            modelFolder.add(scl, 'x', 0.01, 1, 0.001).name('Scale X');
+            modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
+            modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
+            modelFolder.open();
+
+            // Smooth, continuous pulse for Loose_20kg013_COLOR_1_0 until clicked
+            if (loose20kgMesh) {
+                const originalEmissive = loose20kgMesh.material.emissive ? loose20kgMesh.material.emissive.clone() : new THREE.Color(0x000000);
+                const originalEmissiveIntensity = loose20kgMesh.material.emissiveIntensity !== undefined ? loose20kgMesh.material.emissiveIntensity : 1;
+                const flashColor = new THREE.Color(0xff0000); // bright red
+                let startTime = null;
+                // Pulse duration is 50% slower (original: 2000/3 ~666ms, now ~1000ms per pulse)
+                const pulseDuration = (2000 / 3) * 1.5; // ~1000ms per pulse
+                function animatePulse(time) {
+                    if (!loose20kgGlowActive) {
+                        // Restore original
+                        loose20kgMesh.material.emissive = originalEmissive;
+                        loose20kgMesh.material.emissiveIntensity = originalEmissiveIntensity;
+                        loose20kgMesh.material.needsUpdate = true;
+                        return;
+                    }
+                    if (!startTime) startTime = time;
+                    const elapsed = (time - startTime) % pulseDuration;
+                    // Ease in/out using sine
+                    const t = elapsed / pulseDuration;
+                    const ease = 0.2 * (0.5 - 0.5 * Math.cos(Math.PI * 2 * t)); // 0 to 0.2 smoothly
+                    loose20kgMesh.material.emissive = flashColor;
+                    loose20kgMesh.material.emissiveIntensity = ease;
+                    loose20kgMesh.material.needsUpdate = true;
+                    requestAnimationFrame(animatePulse);
+                }
+                requestAnimationFrame(animatePulse);
+            }
+
+            if (Array.isArray(gltf.animations) && gltf.animations.length > 0) {
+                mixer = new THREE.AnimationMixer(model);
+                // Use the first animation clip by default
+                const mainClip = gltf.animations[0];
+                let mainAction = mixer.clipAction(mainClip);
+                mainAction.play();
+
+                // Animation GUI controls
+                const animFolder = gui.addFolder('Animation');
+                let isPlaying = true;
+                let animTime = 0;
+                const duration = mainClip.duration;
+
+                // Play/Pause button
+                animFolder.add({Play_Pause: () => {
+                    isPlaying = !isPlaying;
+                    if (isPlaying) {
+                        mainAction.paused = false;
+                    } else {
+                        mainAction.paused = true;
+                    }
+                }}, 'Play/Pause').name('Play/Pause');
+
+                // Scrubber slider
+                animFolder.add({Scrub: 0}, 'Scrub', 0, duration, 0.01).name('Scrub').onChange(val => {
+                    animTime = val;
+                    mainAction.time = animTime;
+                    mixer.update(0); // force update
+                    mainAction.paused = true;
+                    isPlaying = false;
+                });
+                animFolder.open();
+            }
+        },
+        undefined,
+        (error) => {
+            console.error('An error happened while loading the GLB model:', error);
+        }
+    );
 }
+
+// Add model selector to GUI
+const modelParams = { Model: currentModelName };
+gui.add(modelParams, 'Model', Object.keys(modelOptions)).name('Model').onChange(val => {
+    currentModelName = val;
+    currentModelUrl = modelOptions[val];
+    loadModel(currentModelUrl);
+});
+
+// Initial model load
+loadModel(currentModelUrl);
 // ---------------------------------------------
 // 1. Imports: Three.js core and extensions
 // ---------------------------------------------

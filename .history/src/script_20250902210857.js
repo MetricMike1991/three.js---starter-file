@@ -540,7 +540,7 @@ renderer.toneMappingExposure = 1.0;
 // ---------------------------------------------
 // 13. Animation Loop: Updates and renders the scene
 // ---------------------------------------------
-let tick = () => {
+const tick = () => {
     // Update controls for smooth camera movement
     updateTargetLerp();
     controls.update();

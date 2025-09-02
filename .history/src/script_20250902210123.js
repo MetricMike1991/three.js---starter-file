@@ -371,48 +371,23 @@ gltfLoader.load(
 
         if (Array.isArray(gltf.animations) && gltf.animations.length > 0) {
             mixer = new THREE.AnimationMixer(model);
-            // Use the first animation clip by default
-            const mainClip = gltf.animations[0];
-            let mainAction = mixer.clipAction(mainClip);
-            mainAction.play();
-
-            // Animation GUI controls
-            const animFolder = gui.addFolder('Animation');
-            let isPlaying = true;
-            let animTime = 0;
-            const duration = mainClip.duration;
-
-            // Play/Pause button
-            animFolder.add({Play_Pause: () => {
-                isPlaying = !isPlaying;
-                if (isPlaying) {
-                    mainAction.paused = false;
-                } else {
-                    mainAction.paused = true;
-                }
-            }}, 'Play_Pause').name('Play/Pause');
-
-            // Scrubber slider
-            animFolder.add({Scrub: 0}, 'Scrub', 0, duration, 0.01).name('Scrub').onChange(val => {
-                animTime = val;
-                mainAction.time = animTime;
-                mixer.update(0); // force update
-                mainAction.paused = true;
-                isPlaying = false;
-            });
-            animFolder.open();
-
-            // Animation update in tick
-            const origTick = tick;
-            tick = function() {
-                if (mixer && isPlaying) {
-                    const delta = clock.getDelta();
-                    mixer.update(delta);
-                }
-                controls.update();
-                renderer.render(scene, camera);
-                requestAnimationFrame(tick);
-            };
+            // Find the animation clip named 'Scene'
+            const sceneClip = gltf.animations.find(clip => clip.name === 'Scene');
+            if (sceneClip) {
+                sceneAction = mixer.clipAction(sceneClip);
+                sceneAction.setLoop(THREE.LoopOnce, 1);
+                sceneAction.clampWhenFinished = true;
+                sceneAction.paused = true;
+            }
+            // Use the animation clip named 'press' for button-7
+            const button7Clip = gltf.animations.find(clip => clip.name.toLowerCase() === 'press');
+            if (button7Clip) {
+                button7Action = mixer.clipAction(button7Clip);
+                button7Action.setLoop(THREE.LoopOnce, 1);
+                button7Action.setEffectiveTimeScale(5);
+                button7Action.clampWhenFinished = true;
+                button7Action.paused = true;
+            }
         }
     },
     undefined,
@@ -540,7 +515,7 @@ renderer.toneMappingExposure = 1.0;
 // ---------------------------------------------
 // 13. Animation Loop: Updates and renders the scene
 // ---------------------------------------------
-let tick = () => {
+const tick = () => {
     // Update controls for smooth camera movement
     updateTargetLerp();
     controls.update();
@@ -606,14 +581,6 @@ const circleGeometry = new THREE.CircleGeometry(circleRadius, circleSegments);
 const planeGeometry = new THREE.PlaneGeometry(30, 30);
 
 
-
-
-// Solid ground material for the ground (always needed)
-const solidGroundMaterial = new THREE.MeshStandardMaterial({
-    color: '#222222',
-    roughness: 1,
-    metalness: 0
-});
 
 // Use ShadowMaterial for a transparent ground that only shows the shadow
 const shadowGroundMaterial = new THREE.ShadowMaterial({ opacity: 0.4 });
@@ -758,16 +725,11 @@ lightsFolder.open();
 
 
 
-// Keyboard events
+// Keyboard event to toggle GUI visibility with 'h'
 window.addEventListener('keydown', (event) => {
     if (event.key === 'h' || event.key === 'H') {
         guiVisible = !guiVisible;
         gui.domElement.style.display = guiVisible ? 'block' : 'none';
-    }
-    if (event.key === 'c' || event.key === 'C') {
-        console.log('Camera position:', camera.position.toArray());
-        console.log('Camera rotation (radians):', [camera.rotation.x, camera.rotation.y, camera.rotation.z]);
-        console.log('Controls target:', controls.target.toArray());
     }
 });
 
@@ -839,23 +801,23 @@ const defaultSettings = {
         "intensity": 0.4,
         "color": "#ffffff"
     },
-            "camera": {
-                "position": [
-                    -0.9098738473205128,
-                    0.7703823915221306,
-                    1.3981905246967228
-                ],
-                "rotation": [
-                    -0.25025460072691486,
-                    -0.6114705633846517,
-                    -0.14570055395616555
-                ],
-                "target": [
-                    0.06947360176829247,
-                    0.4244509273717727,
-                    0.04485061060434801
-                ]
-            },
+    "camera": {
+        "position": [
+            0.571641187606234,
+            0.6054805751022576,
+            -0.4710421975258844
+        ],
+        "rotation": [
+            -2.6821474237876726,
+            0.8865063263260724,
+            2.775502273890531
+        ],
+        "target": [
+            -0.04078270409635462,
+            0.38393067967272315,
+            -0.023247738115800942
+        ]
+    },
     "model": {
         "position": [0, -0.02, 0],
         "rotation": [0, 0, 0],

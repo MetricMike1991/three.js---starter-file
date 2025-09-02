@@ -371,48 +371,23 @@ gltfLoader.load(
 
         if (Array.isArray(gltf.animations) && gltf.animations.length > 0) {
             mixer = new THREE.AnimationMixer(model);
-            // Use the first animation clip by default
-            const mainClip = gltf.animations[0];
-            let mainAction = mixer.clipAction(mainClip);
-            mainAction.play();
-
-            // Animation GUI controls
-            const animFolder = gui.addFolder('Animation');
-            let isPlaying = true;
-            let animTime = 0;
-            const duration = mainClip.duration;
-
-            // Play/Pause button
-            animFolder.add({Play_Pause: () => {
-                isPlaying = !isPlaying;
-                if (isPlaying) {
-                    mainAction.paused = false;
-                } else {
-                    mainAction.paused = true;
-                }
-            }}, 'Play_Pause').name('Play/Pause');
-
-            // Scrubber slider
-            animFolder.add({Scrub: 0}, 'Scrub', 0, duration, 0.01).name('Scrub').onChange(val => {
-                animTime = val;
-                mainAction.time = animTime;
-                mixer.update(0); // force update
-                mainAction.paused = true;
-                isPlaying = false;
-            });
-            animFolder.open();
-
-            // Animation update in tick
-            const origTick = tick;
-            tick = function() {
-                if (mixer && isPlaying) {
-                    const delta = clock.getDelta();
-                    mixer.update(delta);
-                }
-                controls.update();
-                renderer.render(scene, camera);
-                requestAnimationFrame(tick);
-            };
+            // Find the animation clip named 'Scene'
+            const sceneClip = gltf.animations.find(clip => clip.name === 'Scene');
+            if (sceneClip) {
+                sceneAction = mixer.clipAction(sceneClip);
+                sceneAction.setLoop(THREE.LoopOnce, 1);
+                sceneAction.clampWhenFinished = true;
+                sceneAction.paused = true;
+            }
+            // Use the animation clip named 'press' for button-7
+            const button7Clip = gltf.animations.find(clip => clip.name.toLowerCase() === 'press');
+            if (button7Clip) {
+                button7Action = mixer.clipAction(button7Clip);
+                button7Action.setLoop(THREE.LoopOnce, 1);
+                button7Action.setEffectiveTimeScale(5);
+                button7Action.clampWhenFinished = true;
+                button7Action.paused = true;
+            }
         }
     },
     undefined,
@@ -540,7 +515,7 @@ renderer.toneMappingExposure = 1.0;
 // ---------------------------------------------
 // 13. Animation Loop: Updates and renders the scene
 // ---------------------------------------------
-let tick = () => {
+const tick = () => {
     // Update controls for smooth camera movement
     updateTargetLerp();
     controls.update();
@@ -839,23 +814,23 @@ const defaultSettings = {
         "intensity": 0.4,
         "color": "#ffffff"
     },
-            "camera": {
-                "position": [
-                    -0.9098738473205128,
-                    0.7703823915221306,
-                    1.3981905246967228
-                ],
-                "rotation": [
-                    -0.25025460072691486,
-                    -0.6114705633846517,
-                    -0.14570055395616555
-                ],
-                "target": [
-                    0.06947360176829247,
-                    0.4244509273717727,
-                    0.04485061060434801
-                ]
-            },
+        "camera": {
+            "position": [
+                -0.8350183927940684,
+                0.7944416872592257,
+                1.133130405391408
+            ],
+            "rotation": [
+                -0.3277184336327184,
+                -0.6666944712626899,
+                -0.20722138965235298
+            ],
+            "target": [
+                0.06947360176829247,
+                0.4244509273717727,
+                0.04485061060434801
+            ]
+        },
     "model": {
         "position": [0, -0.02, 0],
         "rotation": [0, 0, 0],
