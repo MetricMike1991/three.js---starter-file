@@ -668,8 +668,6 @@ const defaultSettings = {
     ground: {
         mode: "Infinite Canvas",
         color: "#000000",
-        roughness: 1,
-        metalness: 0,
         shadowOpacity: 0.4,
         receiveShadow: true,
         castShadow: false,
@@ -691,14 +689,14 @@ const defaultSettings = {
     },
     camera: {
         position: [
-            0.7049065249961297,
-            0.670038162216382,
-            -0.36888765394678535
+            0.5554467036158703,
+            0.7499359928567915,
+            -0.5137290397652539
         ],
         rotation: [
-            -2.5443327693262447,
-            0.9718957662755283,
-            2.6297726915211252
+            -2.5690502051731166,
+            0.6969905863358296,
+            2.7492872842020093
         ],
         target: [
             0.0341539473754741,
@@ -733,20 +731,6 @@ if (defaultSettings.ground) {
     groundParams.castShadow = defaultSettings.ground.castShadow;
     groundParams.visible = defaultSettings.ground.visible;
     groundParams.shadowOpacity = defaultSettings.ground.shadowOpacity;
-    // Hide solid ground if Infinite Canvas is active
-    if (defaultSettings.ground.mode === 'Infinite Canvas') {
-        ground.geometry = planeGeometry;
-        ground.material = shadowGroundMaterial;
-        ground.receiveShadow = true;
-        ground.castShadow = false;
-        ground.visible = true;
-    } else {
-        ground.geometry = circleGeometry;
-        ground.material = solidGroundMaterial;
-        ground.visible = defaultSettings.ground.visible;
-    }
-    ground.material.needsUpdate = true;
-    ground.geometry.computeBoundingSphere();
 }
 if (defaultSettings.light) {
     directionalLight.intensity = defaultSettings.light.intensity;

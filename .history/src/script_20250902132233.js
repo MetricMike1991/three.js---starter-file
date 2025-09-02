@@ -1,101 +1,3 @@
-// --- Import Settings from Clipboard ---
-async function importSettingsFromClipboard() {
-    try {
-        const text = await navigator.clipboard.readText();
-        const settings = JSON.parse(text);
-        // Background
-        if (settings.background) {
-            if (settings.background.gradientTop) params.gradientTop = settings.background.gradientTop;
-            if (settings.background.gradientBottom) params.gradientBottom = settings.background.gradientBottom;
-            if (settings.background.gradientAlpha !== undefined) params.gradientAlpha = settings.background.gradientAlpha;
-            updateGradientBackground();
-        }
-        // Ground
-        if (settings.ground) {
-            // Always set mode first and trigger GUI update
-            if (settings.ground.mode) {
-                groundParams.mode = settings.ground.mode;
-                // Trigger mode change in GUI (dropdown)
-                if (gui && gui.__folders && gui.__folders['Ground Plane'] && gui.__folders['Ground Plane'].__controllers[0]) {
-                    gui.__folders['Ground Plane'].__controllers[0].setValue(settings.ground.mode);
-                }
-                // Also update geometry/material immediately in case GUI doesn't trigger
-                if (settings.ground.mode === 'Infinite Canvas') {
-                    ground.geometry = planeGeometry;
-                    ground.material = shadowGroundMaterial;
-                    ground.receiveShadow = true;
-                    ground.castShadow = false;
-                } else {
-                    ground.geometry = circleGeometry;
-                    ground.material = solidGroundMaterial;
-                    ground.receiveShadow = settings.ground.receiveShadow !== undefined ? settings.ground.receiveShadow : ground.receiveShadow;
-                    ground.castShadow = settings.ground.castShadow !== undefined ? settings.ground.castShadow : ground.castShadow;
-                }
-                ground.material.needsUpdate = true;
-                ground.geometry.computeBoundingSphere();
-            }
-            if (settings.ground.color) {
-                groundParams.color = settings.ground.color;
-                solidGroundMaterial.color.set(settings.ground.color);
-            }
-            if (settings.ground.roughness !== undefined) {
-                groundParams.roughness = settings.ground.roughness;
-                solidGroundMaterial.roughness = settings.ground.roughness;
-            }
-            if (settings.ground.metalness !== undefined) {
-                groundParams.metalness = settings.ground.metalness;
-                solidGroundMaterial.metalness = settings.ground.metalness;
-            }
-            if (settings.ground.shadowOpacity !== undefined) {
-                groundParams.shadowOpacity = settings.ground.shadowOpacity;
-                shadowGroundMaterial.opacity = settings.ground.shadowOpacity;
-            }
-            if (settings.ground.receiveShadow !== undefined) {
-                groundParams.receiveShadow = settings.ground.receiveShadow;
-                ground.receiveShadow = settings.ground.receiveShadow;
-            }
-            if (settings.ground.castShadow !== undefined) {
-                groundParams.castShadow = settings.ground.castShadow;
-                ground.castShadow = settings.ground.castShadow;
-            }
-            if (settings.ground.visible !== undefined) {
-                groundParams.visible = settings.ground.visible;
-                ground.visible = settings.ground.visible;
-            }
-        }
-        // Light
-        if (settings.light) {
-            if (settings.light.intensity !== undefined) directionalLight.intensity = settings.light.intensity;
-            if (settings.light.color) directionalLight.color.set(settings.light.color);
-            if (settings.light.position) {
-                directionalLight.position.set(
-                    settings.light.position.x,
-                    settings.light.position.y,
-                    settings.light.position.z
-                );
-            }
-            if (settings.light.castShadow !== undefined) directionalLight.castShadow = settings.light.castShadow;
-            if (settings.light.shadowBias !== undefined) directionalLight.shadow.bias = settings.light.shadowBias;
-            if (settings.light.shadowBlur !== undefined) directionalLight.shadow.radius = settings.light.shadowBlur;
-            if (settings.light.shadowMapWidth !== undefined) directionalLight.shadow.mapSize.width = settings.light.shadowMapWidth;
-            if (settings.light.shadowMapHeight !== undefined) directionalLight.shadow.mapSize.height = settings.light.shadowMapHeight;
-        }
-        // Camera
-        if (settings.camera) {
-            if (settings.camera.position) camera.position.fromArray(settings.camera.position);
-            if (settings.camera.rotation) camera.rotation.set(
-                settings.camera.rotation[0],
-                settings.camera.rotation[1],
-                settings.camera.rotation[2]
-            );
-            if (settings.camera.target) controls.target.fromArray(settings.camera.target);
-            controls.update();
-        }
-        alert('Settings imported from clipboard!');
-    } catch (e) {
-        alert('Failed to import settings: ' + e.message);
-    }
-}
 // ---------------------------------------------
 // 1. Imports: Three.js core and extensions
 // ---------------------------------------------
@@ -584,68 +486,36 @@ function enableAllMeshShadows(model) {
 }
 
 // Add Copy Settings to Clipboard button to dat.GUI
-
 const copySettingsToClipboard = () => {
-    // Always read the latest values from GUI and materials
-    // Background gradient
-    const bgGradient = {
-        gradientTop: params.gradientTop,
-        gradientBottom: params.gradientBottom,
-        gradientAlpha: params.gradientAlpha
-    };
-
-    // Ground settings (read from both GUI and actual materials/mesh)
-    const mode = groundParams.mode || (ground.material === shadowGroundMaterial ? 'Infinite Canvas' : 'Solid');
-    const color = '#' + (solidGroundMaterial.color ? solidGroundMaterial.color.getHexString() : ground.material.color.getHexString());
-    const roughness = solidGroundMaterial.roughness;
-    const metalness = solidGroundMaterial.metalness;
-    const shadowOpacity = shadowGroundMaterial.opacity;
-    const receiveShadow = ground.receiveShadow;
-    const castShadow = ground.castShadow;
-    const visible = ground.visible;
-
-    const groundSettings = {
-        mode,
-        color,
-        roughness,
-        metalness,
-        shadowOpacity,
-        receiveShadow,
-        castShadow,
-        visible
-    };
-
-    // Light settings
-    const lightSettings = {
-        intensity: directionalLight.intensity,
-        color: '#' + directionalLight.color.getHexString(),
-        position: {
-            x: directionalLight.position.x,
-            y: directionalLight.position.y,
-            z: directionalLight.position.z
-        },
-        castShadow: directionalLight.castShadow,
-        shadowBias: directionalLight.shadow.bias,
-        shadowBlur: directionalLight.shadow.radius,
-        shadowMapWidth: directionalLight.shadow.mapSize.width,
-        shadowMapHeight: directionalLight.shadow.mapSize.height
-    };
-
-    // Camera settings
-    const cameraSettings = {
-        position: camera.position.toArray(),
-        rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
-        target: controls.target.toArray()
-    };
-
-    // Compose all settings
     const settings = {
-        background: bgGradient,
-        ground: groundSettings,
-        light: lightSettings,
-        camera: cameraSettings
+        ground: {
+            color: '#' + ground.material.color.getHexString(),
+            roughness: ground.material.roughness,
+            metalness: ground.material.metalness,
+            receiveShadow: ground.receiveShadow,
+            castShadow: ground.castShadow,
+            visible: ground.visible
+        },
+        light: {
+            intensity: directionalLight.intensity,
+            color: '#' + directionalLight.color.getHexString(),
+            position: {
+                x: directionalLight.position.x,
+                y: directionalLight.position.y,
+                z: directionalLight.position.z
+            },
+            castShadow: directionalLight.castShadow,
+            shadowBias: directionalLight.shadow.bias,
+            shadowBlur: directionalLight.shadow.radius,
+            shadowMapWidth: directionalLight.shadow.mapSize.width,
+            shadowMapHeight: directionalLight.shadow.mapSize.height
+        },
+        camera: {
+            position: camera.position.toArray(),
+            rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
+            target: controls.target.toArray()
+        }
     };
-
     const settingsStr = JSON.stringify(settings, null, 2);
     navigator.clipboard.writeText(settingsStr).then(() => {
         alert('Settings copied to clipboard!');
@@ -654,129 +524,85 @@ const copySettingsToClipboard = () => {
     });
 };
 
-
 gui.add({ copySettingsToClipboard }, 'copySettingsToClipboard').name('Copy Settings to Clipboard');
-gui.add({ importSettingsFromClipboard }, 'importSettingsFromClipboard').name('Import Settings from Clipboard');
 
 // Default scene settings
 const defaultSettings = {
-    background: {
-        gradientTop: "#000000",
-        gradientBottom: "#6262cb",
-        gradientAlpha: 1
+  "ground": {
+    "color": "#222222",
+    "roughness": 1,
+    "metalness": 0,
+    "receiveShadow": true,
+    "castShadow": false,
+    "visible": true
+  },
+  "light": {
+    "intensity": 1.43,
+    "color": "#ffffff",
+    "position": {
+      "x": 1.35,
+      "y": 1.37,
+      "z": 0.9
     },
-    ground: {
-        mode: "Infinite Canvas",
-        color: "#000000",
-        roughness: 1,
-        metalness: 0,
-        shadowOpacity: 0.4,
-        receiveShadow: true,
-        castShadow: false,
-        visible: true
-    },
-    light: {
-        intensity: 1.43,
-        color: "#ffffff",
-        position: {
-            x: 1.35,
-            y: 1.37,
-            z: 0.9
-        },
-        castShadow: true,
-        shadowBias: 0,
-        shadowBlur: 1,
-        shadowMapWidth: 1024,
-        shadowMapHeight: 1024
-    },
-    camera: {
-        position: [
-            0.7049065249961297,
-            0.670038162216382,
-            -0.36888765394678535
-        ],
-        rotation: [
-            -2.5443327693262447,
-            0.9718957662755283,
-            2.6297726915211252
-        ],
-        target: [
-            0.0341539473754741,
-            0.41257846873487625,
-            0.009661783758793133
-        ]
-    }
+    "castShadow": true,
+    "shadowBias": 0,
+    "shadowBlur": 1,
+    "shadowMapWidth": 1024,
+    "shadowMapHeight": 1024
+  },
+  "camera": {
+    "position": [
+      0.6788156499992548,
+      0.6984138825135532,
+      -0.3105614037759767
+    ],
+    "rotation": [
+      -2.3525836840759395,
+      1.0075544102348435,
+      2.4361374976061887
+    ],
+    "target": [
+      -0.15992467074841032,
+      0.32254951462720255,
+      0.06259837139917368
+    ]
+  }
 };
 
-// Apply default settings to background, ground, light, and camera
-if (defaultSettings.background) {
-    params.gradientTop = defaultSettings.background.gradientTop;
-    params.gradientBottom = defaultSettings.background.gradientBottom;
-    params.gradientAlpha = defaultSettings.background.gradientAlpha;
-    updateGradientBackground();
-}
-if (defaultSettings.ground) {
-    groundParams.mode = defaultSettings.ground.mode || 'Solid';
-    // Set mode in GUI if possible
-    if (gui && gui.__folders && gui.__folders['Ground Plane'] && gui.__folders['Ground Plane'].__controllers[0]) {
-        gui.__folders['Ground Plane'].__controllers[0].setValue(defaultSettings.ground.mode || 'Solid');
-    }
-    solidGroundMaterial.color.set(defaultSettings.ground.color);
-    groundParams.color = defaultSettings.ground.color;
-    if (defaultSettings.ground.roughness !== undefined) solidGroundMaterial.roughness = defaultSettings.ground.roughness;
-    if (defaultSettings.ground.metalness !== undefined) solidGroundMaterial.metalness = defaultSettings.ground.metalness;
-    if (defaultSettings.ground.shadowOpacity !== undefined) shadowGroundMaterial.opacity = defaultSettings.ground.shadowOpacity;
-    ground.receiveShadow = defaultSettings.ground.receiveShadow;
-    ground.castShadow = defaultSettings.ground.castShadow;
-    ground.visible = defaultSettings.ground.visible;
-    groundParams.receiveShadow = defaultSettings.ground.receiveShadow;
-    groundParams.castShadow = defaultSettings.ground.castShadow;
-    groundParams.visible = defaultSettings.ground.visible;
-    groundParams.shadowOpacity = defaultSettings.ground.shadowOpacity;
-    // Hide solid ground if Infinite Canvas is active
-    if (defaultSettings.ground.mode === 'Infinite Canvas') {
-        ground.geometry = planeGeometry;
-        ground.material = shadowGroundMaterial;
-        ground.receiveShadow = true;
-        ground.castShadow = false;
-        ground.visible = true;
-    } else {
-        ground.geometry = circleGeometry;
-        ground.material = solidGroundMaterial;
-        ground.visible = defaultSettings.ground.visible;
-    }
-    ground.material.needsUpdate = true;
-    ground.geometry.computeBoundingSphere();
-}
-if (defaultSettings.light) {
-    directionalLight.intensity = defaultSettings.light.intensity;
-    directionalLight.color.set(defaultSettings.light.color);
-    directionalLight.position.set(
-        defaultSettings.light.position.x,
-        defaultSettings.light.position.y,
-        defaultSettings.light.position.z
-    );
-    directionalLight.castShadow = defaultSettings.light.castShadow;
-    directionalLight.shadow.bias = defaultSettings.light.shadowBias;
-    directionalLight.shadow.radius = defaultSettings.light.shadowBlur;
-    directionalLight.shadow.mapSize.width = defaultSettings.light.shadowMapWidth;
-    directionalLight.shadow.mapSize.height = defaultSettings.light.shadowMapHeight;
-}
-if (defaultSettings.camera) {
-    camera.position.set(
-        defaultSettings.camera.position[0],
-        defaultSettings.camera.position[1],
-        defaultSettings.camera.position[2]
-    );
-    camera.rotation.set(
-        defaultSettings.camera.rotation[0],
-        defaultSettings.camera.rotation[1],
-        defaultSettings.camera.rotation[2]
-    );
-    controls.target.set(
-        defaultSettings.camera.target[0],
-        defaultSettings.camera.target[1],
-        defaultSettings.camera.target[2]
-    );
-    controls.update();
-}
+// Apply default settings to ground, light, and camera
+ground.material.color.set(defaultSettings.ground.color);
+ground.material.roughness = defaultSettings.ground.roughness;
+ground.material.metalness = defaultSettings.ground.metalness;
+ground.receiveShadow = defaultSettings.ground.receiveShadow;
+ground.castShadow = defaultSettings.ground.castShadow;
+ground.visible = defaultSettings.ground.visible;
+
+directionalLight.intensity = defaultSettings.light.intensity;
+directionalLight.color.set(defaultSettings.light.color);
+directionalLight.position.set(
+    defaultSettings.light.position.x,
+    defaultSettings.light.position.y,
+    defaultSettings.light.position.z
+);
+directionalLight.castShadow = defaultSettings.light.castShadow;
+directionalLight.shadow.bias = defaultSettings.light.shadowBias;
+directionalLight.shadow.radius = defaultSettings.light.shadowBlur;
+directionalLight.shadow.mapSize.width = defaultSettings.light.shadowMapWidth;
+directionalLight.shadow.mapSize.height = defaultSettings.light.shadowMapHeight;
+
+camera.position.set(
+    defaultSettings.camera.position[0],
+    defaultSettings.camera.position[1],
+    defaultSettings.camera.position[2]
+);
+camera.rotation.set(
+    defaultSettings.camera.rotation[0],
+    defaultSettings.camera.rotation[1],
+    defaultSettings.camera.rotation[2]
+);
+controls.target.set(
+    defaultSettings.camera.target[0],
+    defaultSettings.camera.target[1],
+    defaultSettings.camera.target[2]
+);
+controls.update();

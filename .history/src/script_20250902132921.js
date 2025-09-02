@@ -12,27 +12,10 @@ async function importSettingsFromClipboard() {
         }
         // Ground
         if (settings.ground) {
-            // Always set mode first and trigger GUI update
             if (settings.ground.mode) {
                 groundParams.mode = settings.ground.mode;
-                // Trigger mode change in GUI (dropdown)
-                if (gui && gui.__folders && gui.__folders['Ground Plane'] && gui.__folders['Ground Plane'].__controllers[0]) {
-                    gui.__folders['Ground Plane'].__controllers[0].setValue(settings.ground.mode);
-                }
-                // Also update geometry/material immediately in case GUI doesn't trigger
-                if (settings.ground.mode === 'Infinite Canvas') {
-                    ground.geometry = planeGeometry;
-                    ground.material = shadowGroundMaterial;
-                    ground.receiveShadow = true;
-                    ground.castShadow = false;
-                } else {
-                    ground.geometry = circleGeometry;
-                    ground.material = solidGroundMaterial;
-                    ground.receiveShadow = settings.ground.receiveShadow !== undefined ? settings.ground.receiveShadow : ground.receiveShadow;
-                    ground.castShadow = settings.ground.castShadow !== undefined ? settings.ground.castShadow : ground.castShadow;
-                }
-                ground.material.needsUpdate = true;
-                ground.geometry.computeBoundingSphere();
+                // Trigger mode change
+                gui.__folders['Ground Plane'].__controllers[0].setValue(settings.ground.mode);
             }
             if (settings.ground.color) {
                 groundParams.color = settings.ground.color;
@@ -660,123 +643,79 @@ gui.add({ importSettingsFromClipboard }, 'importSettingsFromClipboard').name('Im
 
 // Default scene settings
 const defaultSettings = {
-    background: {
-        gradientTop: "#000000",
-        gradientBottom: "#6262cb",
-        gradientAlpha: 1
+    "ground": {
+        "color": "#000000",
+        "receiveShadow": true,
+        "castShadow": false,
+        "visible": true
     },
-    ground: {
-        mode: "Infinite Canvas",
-        color: "#000000",
-        roughness: 1,
-        metalness: 0,
-        shadowOpacity: 0.4,
-        receiveShadow: true,
-        castShadow: false,
-        visible: true
-    },
-    light: {
-        intensity: 1.43,
-        color: "#ffffff",
-        position: {
-            x: 1.35,
-            y: 1.37,
-            z: 0.9
+    "light": {
+        "intensity": 1.43,
+        "color": "#ffffff",
+        "position": {
+            "x": 1.35,
+            "y": 1.37,
+            "z": 0.9
         },
-        castShadow: true,
-        shadowBias: 0,
-        shadowBlur: 1,
-        shadowMapWidth: 1024,
-        shadowMapHeight: 1024
+        "castShadow": true,
+        "shadowBias": 0,
+        "shadowBlur": 1,
+        "shadowMapWidth": 1024,
+        "shadowMapHeight": 1024
     },
-    camera: {
-        position: [
-            0.7049065249961297,
-            0.670038162216382,
-            -0.36888765394678535
+    "camera": {
+        "position": [
+            0.625737818439388,
+            0.7241210283450388,
+            -0.45128152301841995
         ],
-        rotation: [
-            -2.5443327693262447,
-            0.9718957662755283,
-            2.6297726915211252
+        "rotation": [
+            -2.5855085303493848,
+            0.8274261497936801,
+            2.7124787366885714
         ],
-        target: [
-            0.0341539473754741,
-            0.41257846873487625,
-            0.009661783758793133
+        "target": [
+            0.027881915242729722,
+            0.4340056326460965,
+            0.015511329466392413
         ]
     }
 };
 
-// Apply default settings to background, ground, light, and camera
-if (defaultSettings.background) {
-    params.gradientTop = defaultSettings.background.gradientTop;
-    params.gradientBottom = defaultSettings.background.gradientBottom;
-    params.gradientAlpha = defaultSettings.background.gradientAlpha;
-    updateGradientBackground();
-}
-if (defaultSettings.ground) {
-    groundParams.mode = defaultSettings.ground.mode || 'Solid';
-    // Set mode in GUI if possible
-    if (gui && gui.__folders && gui.__folders['Ground Plane'] && gui.__folders['Ground Plane'].__controllers[0]) {
-        gui.__folders['Ground Plane'].__controllers[0].setValue(defaultSettings.ground.mode || 'Solid');
-    }
-    solidGroundMaterial.color.set(defaultSettings.ground.color);
-    groundParams.color = defaultSettings.ground.color;
-    if (defaultSettings.ground.roughness !== undefined) solidGroundMaterial.roughness = defaultSettings.ground.roughness;
-    if (defaultSettings.ground.metalness !== undefined) solidGroundMaterial.metalness = defaultSettings.ground.metalness;
-    if (defaultSettings.ground.shadowOpacity !== undefined) shadowGroundMaterial.opacity = defaultSettings.ground.shadowOpacity;
-    ground.receiveShadow = defaultSettings.ground.receiveShadow;
-    ground.castShadow = defaultSettings.ground.castShadow;
-    ground.visible = defaultSettings.ground.visible;
-    groundParams.receiveShadow = defaultSettings.ground.receiveShadow;
-    groundParams.castShadow = defaultSettings.ground.castShadow;
-    groundParams.visible = defaultSettings.ground.visible;
-    groundParams.shadowOpacity = defaultSettings.ground.shadowOpacity;
-    // Hide solid ground if Infinite Canvas is active
-    if (defaultSettings.ground.mode === 'Infinite Canvas') {
-        ground.geometry = planeGeometry;
-        ground.material = shadowGroundMaterial;
-        ground.receiveShadow = true;
-        ground.castShadow = false;
-        ground.visible = true;
-    } else {
-        ground.geometry = circleGeometry;
-        ground.material = solidGroundMaterial;
-        ground.visible = defaultSettings.ground.visible;
-    }
-    ground.material.needsUpdate = true;
-    ground.geometry.computeBoundingSphere();
-}
-if (defaultSettings.light) {
-    directionalLight.intensity = defaultSettings.light.intensity;
-    directionalLight.color.set(defaultSettings.light.color);
-    directionalLight.position.set(
-        defaultSettings.light.position.x,
-        defaultSettings.light.position.y,
-        defaultSettings.light.position.z
-    );
-    directionalLight.castShadow = defaultSettings.light.castShadow;
-    directionalLight.shadow.bias = defaultSettings.light.shadowBias;
-    directionalLight.shadow.radius = defaultSettings.light.shadowBlur;
-    directionalLight.shadow.mapSize.width = defaultSettings.light.shadowMapWidth;
-    directionalLight.shadow.mapSize.height = defaultSettings.light.shadowMapHeight;
-}
-if (defaultSettings.camera) {
-    camera.position.set(
-        defaultSettings.camera.position[0],
-        defaultSettings.camera.position[1],
-        defaultSettings.camera.position[2]
-    );
-    camera.rotation.set(
-        defaultSettings.camera.rotation[0],
-        defaultSettings.camera.rotation[1],
-        defaultSettings.camera.rotation[2]
-    );
-    controls.target.set(
-        defaultSettings.camera.target[0],
-        defaultSettings.camera.target[1],
-        defaultSettings.camera.target[2]
-    );
-    controls.update();
-}
+// Apply default settings to ground, light, and camera
+ground.material.color.set(defaultSettings.ground.color);
+ground.material.roughness = defaultSettings.ground.roughness;
+ground.material.metalness = defaultSettings.ground.metalness;
+ground.receiveShadow = defaultSettings.ground.receiveShadow;
+ground.castShadow = defaultSettings.ground.castShadow;
+ground.visible = defaultSettings.ground.visible;
+
+directionalLight.intensity = defaultSettings.light.intensity;
+directionalLight.color.set(defaultSettings.light.color);
+directionalLight.position.set(
+    defaultSettings.light.position.x,
+    defaultSettings.light.position.y,
+    defaultSettings.light.position.z
+);
+directionalLight.castShadow = defaultSettings.light.castShadow;
+directionalLight.shadow.bias = defaultSettings.light.shadowBias;
+directionalLight.shadow.radius = defaultSettings.light.shadowBlur;
+directionalLight.shadow.mapSize.width = defaultSettings.light.shadowMapWidth;
+directionalLight.shadow.mapSize.height = defaultSettings.light.shadowMapHeight;
+
+camera.position.set(
+    defaultSettings.camera.position[0],
+    defaultSettings.camera.position[1],
+    defaultSettings.camera.position[2]
+);
+camera.rotation.set(
+    defaultSettings.camera.rotation[0],
+    defaultSettings.camera.rotation[1],
+    defaultSettings.camera.rotation[2]
+);
+controls.target.set(
+    defaultSettings.camera.target[0],
+    defaultSettings.camera.target[1],
+    defaultSettings.camera.target[2]
+);
+controls.update();
