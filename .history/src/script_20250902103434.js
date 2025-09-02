@@ -22,52 +22,33 @@ const scene = new THREE.Scene();
  * Adds a GUI to control the scene background color.
  */
 const gui = new GUI();
-
-// GUI parameters for background color and transparency
-const params = {
-    backgroundColor: '#ffffff', // Default white
-    backgroundAlpha: 1.0,       // Default fully opaque
-    useColorBackground: false   // Toggle between color and texture/HDRI
+const backgroundColors = {
+    White: 0xffffff,
+    Black: 0x000000,
+    Red: 0xff0000,
+    Green: 0x00ff00,
+    Blue: 0x0000ff,
+    Yellow: 0xffff00,
+    Cyan: 0x00ffff,
+    Magenta: 0xff00ff,
+    Gray: 0x888888,npm run de
+    Orange: 0xffa500,
+    Purple: 0x800080,
+    Pink: 0xffc0cb,
+    Brown: 0x8b4513,
+    Navy: 0x000080,
+    Teal: 0x008080,
+    Olive: 0x808000
 };
-
-// Add toggle to use color background or texture/HDRI
-gui.add(params, 'useColorBackground').name('Use Color Background').onChange((useColor) => {
-    if (useColor) {
-        // Set background to color
-        const color = new THREE.Color(params.backgroundColor);
-        scene.background = new THREE.Color(color.r, color.g, color.b);
-        renderer.setClearColor(color, params.backgroundAlpha);
-    } else {
-        // Restore HDRI/gradient background if available
-        if (scene._originalBackgroundTexture) {
-            scene.background = scene._originalBackgroundTexture;
-        }
-    }
+const params = {
+    background: 'White'
+};
+gui.add(params, 'background', Object.keys(backgroundColors)).name('Background Color').onChange((value) => {
+    scene.background = new THREE.Color(backgroundColors[value]);
 });
 
-// Add RGB color picker for background
-gui.addColor(params, 'backgroundColor').name('Background Color').onChange((value) => {
-    if (params.useColorBackground) {
-        const color = new THREE.Color(value);
-        scene.background = new THREE.Color(color.r, color.g, color.b);
-        renderer.setClearColor(color, params.backgroundAlpha);
-    }
-});
-
-// Add transparency (alpha) slider
-gui.add(params, 'backgroundAlpha', 0, 1, 0.01).name('Background Alpha').onChange((value) => {
-    if (params.useColorBackground) {
-        const color = new THREE.Color(params.backgroundColor);
-        renderer.setClearColor(color, value);
-    }
-});
-
-// Set initial background color and alpha if toggled
-if (params.useColorBackground) {
-    const initialBgColor = new THREE.Color(params.backgroundColor);
-    scene.background = new THREE.Color(initialBgColor.r, initialBgColor.g, initialBgColor.b);
-    renderer.setClearColor(initialBgColor, params.backgroundAlpha);
-}
+// Set initial background color
+scene.background = new THREE.Color(backgroundColors[params.background]);
 
 // ---------------------------------------------
 // 3. Loaders: For textures, HDRIs, and models
@@ -96,7 +77,6 @@ rgbeLoader.load('./textures/environmentMap/2k.hdr', (environmentMap) => {
     ctx.fillRect(0, 0, width, height);
     const bgTexture = new THREE.CanvasTexture(canvasBg);
     scene.background = bgTexture;
-    scene._originalBackgroundTexture = bgTexture; // Save for toggling
     scene.environment = environmentMap;
 });
 
@@ -394,9 +374,8 @@ scene.add(ground);
 
 // dat.GUI controls for ground plane
 // Removed dat.GUI instance; using only lil-gui
-
-// GUI is visible by default; toggle with 'h' key
-let guiVisible = true;
+gui.domElement.style.display = 'none'; // Hide GUI by default
+let guiVisible = false;
 
 const groundFolder = gui.addFolder('Ground Plane');
 groundFolder.addColor({ color: '#222222' }, 'color').name('Color').onChange((value) => {
@@ -431,10 +410,10 @@ lightFolder.open();
 
 // Keyboard event to toggle GUI visibility with 'h'
 window.addEventListener('keydown', (event) => {
-    if (event.key === 'h' || event.key === 'H') {
-        guiVisible = !guiVisible;
-        gui.domElement.style.display = guiVisible ? 'block' : 'none';
-    }
+  if (event.key === 'h' || event.key === 'H') {
+    guiVisible = !guiVisible;
+    gui.domElement.style.display = guiVisible ? 'block' : 'none';
+  }
 });
 
 // Inject CSS to ensure dat.GUI is always visible

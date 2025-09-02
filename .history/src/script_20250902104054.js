@@ -393,7 +393,7 @@ ground.visible = true;
 scene.add(ground);
 
 // dat.GUI controls for ground plane
-// Removed dat.GUI instance; using only lil-gui
+// Removed dat.git add .  instance; using only lil-gui
 
 // GUI is visible by default; toggle with 'h' key
 let guiVisible = true;
