@@ -1,30 +1,63 @@
 // --- Save and Import Settings Functions (must be defined before GUI buttons) ---
 const saveSettingsToClipboard = () => {
-    // Gather all GUI and scene settings
-    const settings = {
-        background: {
-            ...params
-        },
-        ground: {
-            ...groundParams
-        },
-        directionalLight: {
-            ...dirLightParams,
-            position: {
-                x: directionalLight.position.x,
-                y: directionalLight.position.y,
-                z: directionalLight.position.z
-            }
-        },
-        ambientLight: {
-            ...ambLightParams
-        },
-        camera: {
-            position: camera.position.toArray(),
-            rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
-            target: controls.target.toArray()
-        }
+    // Background gradient
+    const bgGradient = {
+        gradientTop: params.gradientTop,
+        gradientBottom: params.gradientBottom,
+        gradientAlpha: params.gradientAlpha
     };
+
+    // Ground settings
+    const mode = groundParams.mode || (ground.material === shadowGroundMaterial ? 'Infinite Canvas' : 'Solid');
+    const color = '#' + (solidGroundMaterial.color ? solidGroundMaterial.color.getHexString() : ground.material.color.getHexString());
+    const roughness = solidGroundMaterial.roughness;
+    const metalness = solidGroundMaterial.metalness;
+    const shadowOpacity = shadowGroundMaterial.opacity;
+    const receiveShadow = ground.receiveShadow;
+    const castShadow = ground.castShadow;
+    const visible = ground.visible;
+    const groundSettings = {
+        mode,
+        color,
+        roughness,
+        metalness,
+        shadowOpacity,
+        receiveShadow,
+        castShadow,
+        visible
+    };
+
+    // Light settings
+    const lightSettings = {
+        intensity: directionalLight.intensity,
+        color: '#' + directionalLight.color.getHexString(),
+        position: {
+            x: directionalLight.position.x,
+            y: directionalLight.position.y,
+            z: directionalLight.position.z
+        },
+        castShadow: directionalLight.castShadow,
+        shadowBias: directionalLight.shadow.bias,
+        shadowBlur: directionalLight.shadow.radius,
+        shadowMapWidth: directionalLight.shadow.mapSize.width,
+        shadowMapHeight: directionalLight.shadow.mapSize.height
+    };
+
+    // Camera settings (position, rotation, and orbit target)
+    const cameraSettings = {
+        position: camera.position.toArray(),
+        rotation: [camera.rotation.x, camera.rotation.y, camera.rotation.z],
+        target: controls.target.toArray()
+    };
+
+    // Compose all settings
+    const settings = {
+        background: bgGradient,
+        ground: groundSettings,
+        light: lightSettings,
+        camera: cameraSettings
+    };
+
     const settingsStr = JSON.stringify(settings, null, 2);
     navigator.clipboard.writeText(settingsStr).then(() => {
         alert('Settings copied to clipboard!');
@@ -694,62 +727,53 @@ function enableAllMeshShadows(model) {
 
 // Default scene settings (updated)
 const defaultSettings = {
-    "background": {
-        "gradientTop": "#3865ad",
-        "gradientBottom": "#6262cb",
-        "gradientAlpha": 1
+    background: {
+        gradientTop: "#3865ad",
+        gradientBottom: "#6262cb",
+        gradientAlpha: 1
     },
-    "ground": {
-        "mode": "Infinite Canvas",
-        "color": "#222222",
-        "roughness": 1,
-        "metalness": 0,
-        "shadowOpacity": 0.4,
-        "receiveShadow": true,
-        "castShadow": false,
-        "visible": true
+    ground: {
+        mode: "Infinite Canvas",
+        color: "#000000",
+        roughness: 1,
+        metalness: 0,
+        shadowOpacity: 0.4,
+        receiveShadow: true,
+        castShadow: false,
+        visible: true
     },
-    "directionalLight": {
-        "intensity": 1.43,
-        "color": "#ffffff",
-        "castShadow": true,
-        "shadowBias": 0,
-        "shadowBlur": 1,
-        "shadowMapWidth": 1024,
-        "shadowMapHeight": 1024,
-        "posX": 1.35,
-        "posY": 1.57,
-        "posZ": 0.9,
-        "showHelper": false,
-        "position": {
-            "x": 1.35,
-            "y": 1.57,
-            "z": 0.9
-        }
+    light: {
+        intensity: 3.78,
+        color: "#ffffff",
+        position: {
+            x: 1.35,
+            y: 1.37,
+            z: 0.9
+        },
+        castShadow: true,
+        shadowBias: -0.0181,
+        shadowBlur: 5,
+        shadowMapWidth: 1024,
+        shadowMapHeight: 1024
     },
-    "ambientLight": {
-        "intensity": 0.4,
-        "color": "#ffffff"
-    },
-    "camera": {
-        "position": [
-            0.6497189477206844,
-            0.620065800043649,
-            -0.3267521547833202
+    camera: {
+        position: [
+            0.700082703129202,
+            0.5711921704042959,
+            -0.5069304299706541
         ],
-        "rotation": [
-            -2.480393214032852,
-            1.0626661205247725,
-            2.5446012015171644
+        rotation: [
+            -2.7414329501580204,
+            1.007064051178507,
+            2.7982234970301145
         ],
-        "target": [
-            -0.04078270409635462,
-            0.38393067967272315,
-            -0.023247738115800942
+        target: [
+            -0.03948024309278388,
+            0.38906141077780715,
+            -0.07634240862711338
         ]
     }
 };
-
 
 // Apply default settings to background, ground, light, and camera
 if (defaultSettings.background) {

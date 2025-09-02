@@ -749,7 +749,22 @@ const defaultSettings = {
         ]
     }
 };
-
+            0.700082703129202,
+            0.5711921704042959,
+            -0.5069304299706541
+        ],
+        rotation: [
+            -2.7414329501580204,
+            1.007064051178507,
+            2.7982234970301145
+        ],
+        target: [
+            -0.03948024309278388,
+            0.38906141077780715,
+            -0.07634240862711338
+        ]
+    }
+};
 
 // Apply default settings to background, ground, light, and camera
 if (defaultSettings.background) {
