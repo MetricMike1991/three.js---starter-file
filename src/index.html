@@ -9,17 +9,18 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
-    <!-- <canvas class="webgl"></canvas> -->
-    <model-viewer
+    <button id="see-in-ar" style="position: absolute; top: 20px; right: 20px; z-index: 10; padding: 12px 24px; font-size: 1.1rem; background: #fff; color: #222; border: none; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;">See in AR</button>
+    <model-viewer id="ar-launcher"
       src="/models/exercise.glb"
+      ios-src="/models/exercise.usdz"
       ar
       ar-modes="scene-viewer quick-look"
-      camera-controls
-      auto-rotate
-      style="width: 100vw; height: 100vh; background: transparent;">
-      <button slot="ar-button" style="position: absolute; top: 20px; right: 20px; z-index: 10; padding: 12px 24px; font-size: 1.1rem; background: #fff; color: #222; border: none; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); cursor: pointer;">
-        View in AR
-      </button>
+      style="display:none;">
     </model-viewer>
+    <script>
+      document.getElementById('see-in-ar').addEventListener('click', () => {
+        document.getElementById('ar-launcher').activateAR();
+      });
+    </script>
 </body>
 </html>
