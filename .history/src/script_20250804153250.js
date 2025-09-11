@@ -1,0 +1,156 @@
+import * as THREE from 'three'
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
+
+/**
+ * Base
+ */
+// Canvas
+const canvas = document.querySelector('canvas.webgl')
+
+// Scene
+const scene = new THREE.Scene()
+
+//objects
+const geometry = new THREE.BoxGeometry(1, 1, 1)
+const material = new THREE.MeshBasicMaterial({ color: 0x00ff00 })
+const cube = new THREE.Mesh(geometry, material)
+scene.add(cube)
+
+const geometry2 = new THREE.SphereGeometry(0.5, 32, 32)
+const material2 = new THREE.MeshBasicMaterial({ color: 0xff0000 })
+const sphere = new THREE.Mesh(geometry2, material2)
+sphere.position.x = 2
+scene.add(sphere)  
+
+const geometry3 = new THREE.ConeGeometry(0.5, 1, 32)
+const material3 = new THREE.MeshBasicMaterial({ color: 0x0000ff })
+const cone = new THREE.Mesh(geometry3, material3)
+cone.position.x = -2
+scene.add(cone) 
+
+
+
+/**
+ * Sizes
+ */
+const sizes = {
+    width: window.innerWidth,
+    height: window.innerHeight
+}
+
+window.addEventListener('resize', () =>
+{
+    // Update sizes
+    sizes.width = window.innerWidth
+    sizes.height = window.innerHeight
+
+    // Update camera
+    camera.aspect = sizes.width / sizes.height
+    camera.updateProjectionMatrix()
+
+    // Update renderer
+    renderer.setSize(sizes.width, sizes.height)
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+})
+
+/**
+ * Camera
+ */
+// Base camera
+const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
+camera.position.x = 1
+camera.position.y = 1
+camera.position.z = 2
+scene.add(camera)
+
+// Controls
+const controls = new OrbitControls(camera, canvas)
+controls.enableDamping = true
+controls.enablePan = true
+controls.panSpeed = 1.0
+controls.screenSpacePanning = true
+controls.mouseButtons = {
+    LEFT: THREE.MOUSE.ROTATE,
+    MIDDLE: THREE.MOUSE.PAN,
+    RIGHT: THREE.MOUSE.ROTATE
+}
+controls.touches = {
+    ONE: THREE.TOUCH.ROTATE,
+    TWO: THREE.TOUCH.DOLLY_PAN
+}
+
+// Double-click to focus functionality
+const raycaster = new THREE.Raycaster()
+const mouse = new THREE.Vector2()
+
+// Animation variables for smooth transitions
+let isAnimating = false
+const animationDuration = 1.5 // seconds
+let animationStartTime = 0
+let startTarget = new THREE.Vector3()
+let endTarget = new THREE.Vector3()
+
+// Easing function (ease out cubic)
+const easeOutCubic = (t) => {
+    return 1 - Math.pow(1 - t, 3)
+}
+
+canvas.addEventListener('dblclick', (event) => {
+    // Calculate mouse position in normalized device coordinates (-1 to +1)
+    mouse.x = (event.clientX / sizes.width) * 2 - 1
+    mouse.y = -(event.clientY / sizes.height) * 2 + 1
+
+    // Update the raycaster with the camera and mouse position
+    raycaster.setFromCamera(mouse, camera)
+
+    // Calculate objects intersecting the picking ray
+    const intersects = raycaster.intersectObjects([cube, sphere, cone])
+
+    if (intersects.length > 0) {
+        // Get the first intersection point
+        const intersectionPoint = intersects[0].point
+        
+        // Start smooth transition
+        startTarget.copy(controls.target)
+        endTarget.copy(intersectionPoint)
+        animationStartTime = Date.now()
+        isAnimating = true
+        
+        console.log('Transitioning to new focus point:', intersectionPoint)
+    }
+})
+
+/**
+ * Renderer
+ */
+const renderer = new THREE.WebGLRenderer({
+    canvas: canvas
+})
+renderer.setSize(sizes.width, sizes.height)
+renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
+
+/**
+ * Animate
+ */
+const clock = new THREE.Clock()
+
+const tick = () =>
+{
+    const elapsedTime = clock.getElapsedTime()
+
+    // Update objects
+    cube.rotation.y = elapsedTime * 0.5
+    sphere.rotation.y = elapsedTime * 0.5
+    cone.rotation.y = elapsedTime * 0.5
+
+    // Update controls
+    controls.update()
+
+    // Render
+    renderer.render(scene, camera)
+
+    // Call tick again on the next frame
+    window.requestAnimationFrame(tick)
+}
+
+tick()
