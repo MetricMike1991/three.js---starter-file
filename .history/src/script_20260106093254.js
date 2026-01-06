@@ -520,10 +520,12 @@ const tick = () => {
     updateTargetLerp();
     controls.update();
     // Update animation mixer if present (for model animations)
+    const delta = clock.getDelta();
     if (mixer) {
-        const delta = clock.getDelta();
         mixer.update(delta);
     }
+    // Update dust particles
+    updateDustParticles(delta);
     // Render the scene from the camera's perspective
     renderer.render(scene, camera);
     // Request the next frame
@@ -765,6 +767,103 @@ groundFolder.add(groundParams, 'visible').name('Visible').onChange((v) => {
     ground.visible = v;
 });
 groundFolder.open();
+
+// ---------------------------------------------
+// Dust Particles GUI Controls
+// ---------------------------------------------
+const dustFolder = gui.addFolder('Dust Particles');
+
+dustFolder.add(dustParams, 'count', 50, 2000, 10).name('Count').onChange(() => {
+    createDustParticles();
+});
+
+dustFolder.add(dustParams, 'size', 0.001, 0.02, 0.0001).name('Size').onChange((value) => {
+    dustMaterial.size = value;
+    // Update individual particle sizes
+    if (dustSizes) {
+        for (let i = 0; i < dustParams.count; i++) {
+            dustSizes[i] = value * (1 + (Math.random() - 0.5) * dustParams.sizeRandomness);
+        }
+        dustGeometry.attributes.size.needsUpdate = true;
+    }
+});
+
+dustFolder.add(dustParams, 'sizeRandomness', 0, 2, 0.1).name('Size Variation').onChange(() => {
+    createDustParticles();
+});
+
+dustFolder.addColor(dustParams, 'color').name('Color').onChange((value) => {
+    dustMaterial.color.set(value);
+});
+
+dustFolder.add(dustParams, 'opacity', 0, 1, 0.01).name('Opacity').onChange((value) => {
+    dustMaterial.opacity = value;
+});
+
+dustFolder.add(dustParams, 'speed', 0, 3, 0.1).name('Float Speed');
+
+dustFolder.add(dustParams, 'horizontalRange', 0.5, 10, 0.1).name('Horizontal Range').onChange(() => {
+    createDustParticles();
+});
+
+dustFolder.add(dustParams, 'verticalRange', 0.5, 5, 0.1).name('Vertical Range').onChange(() => {
+    createDustParticles();
+});
+
+dustFolder.add(dustParams, 'verticalOffset', -2, 3, 0.1).name('Height Offset').onChange(() => {
+    createDustParticles();
+});
+
+dustFolder.add(dustParams, 'visible').name('Visible').onChange((value) => {
+    dustParticles.visible = value;
+});
+
+// Add preset buttons for different dust effects
+const dustPresets = {
+    'Light Dust': () => {
+        dustParams.count = 300;
+        dustParams.size = 0.003;
+        dustParams.opacity = 0.2;
+        dustParams.speed = 0.3;
+        dustParams.color = '#ffffff';
+        createDustParticles();
+        dustFolder.controllersRecursive().forEach(c => c.updateDisplay());
+    },
+    'Heavy Dust': () => {
+        dustParams.count = 800;
+        dustParams.size = 0.008;
+        dustParams.opacity = 0.4;
+        dustParams.speed = 0.8;
+        dustParams.color = '#d4c4a8';
+        createDustParticles();
+        dustFolder.controllersRecursive().forEach(c => c.updateDisplay());
+    },
+    'Magical Sparkles': () => {
+        dustParams.count = 150;
+        dustParams.size = 0.01;
+        dustParams.opacity = 0.6;
+        dustParams.speed = 0.2;
+        dustParams.color = '#ffd700';
+        createDustParticles();
+        dustFolder.controllersRecursive().forEach(c => c.updateDisplay());
+    },
+    'Reset Dust': () => {
+        dustParams.count = 500;
+        dustParams.size = 0.005;
+        dustParams.opacity = 0.3;
+        dustParams.speed = 0.5;
+        dustParams.color = '#ffffff';
+        createDustParticles();
+        dustFolder.controllersRecursive().forEach(c => c.updateDisplay());
+    }
+};
+
+dustFolder.add(dustPresets, 'Light Dust').name('• Light Dust');
+dustFolder.add(dustPresets, 'Heavy Dust').name('• Heavy Dust');
+dustFolder.add(dustPresets, 'Magical Sparkles').name('• Magical Sparkles');
+dustFolder.add(dustPresets, 'Reset Dust').name('• Reset Dust');
+
+dustFolder.open();
 
 // -----------------------------
 // Lights GUI Controls
