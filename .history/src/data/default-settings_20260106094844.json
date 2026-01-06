@@ -1,0 +1,78 @@
+{
+  "background": {
+    "gradientTop": "#3865ad",
+    "gradientBottom": "#6262cb",
+    "gradientAlpha": 1
+  },
+  "ground": {
+    "mode": "Infinite Canvas",
+    "color": "#222222",
+    "roughness": 1,
+    "metalness": 0,
+    "shadowOpacity": 0.4,
+    "receiveShadow": true,
+    "castShadow": false,
+    "visible": true
+  },
+  "dustParticles": {
+    "count": 500,
+    "size": 0.005,
+    "sizeRandomness": 0.5,
+    "color": "#ffffff",
+    "opacity": 0.3,
+    "speed": 0.5,
+    "horizontalRange": 3,
+    "verticalRange": 2,
+    "verticalOffset": 1,
+    "visible": true,
+    "blur": 0,
+    "depthBlur": false,
+    "depthBlurStrength": 0.5,
+    "depthFocusDistance": 2.0,
+    "depthFocusRange": 1.0
+  },
+  "directionalLight": {
+    "intensity": 1.43,
+    "color": "#ffffff",
+    "castShadow": true,
+    "shadowBias": 0,
+    "shadowBlur": 1,
+    "shadowMapWidth": 1024,
+    "shadowMapHeight": 1024,
+    "posX": 1.35,
+    "posY": 1.57,
+    "posZ": 0.9,
+    "showHelper": false,
+    "position": {
+      "x": 1.35,
+      "y": 1.57,
+      "z": 0.9
+    }
+  },
+  "ambientLight": {
+    "intensity": 0.4,
+    "color": "#ffffff"
+  },
+  "camera": {
+    "position": [
+      0.571641187606234,
+      0.6054805751022576,
+      -0.4710421975258844
+    ],
+    "rotation": [
+      -2.6821474237876726,
+      0.8865063263260724,
+      2.775502273890531
+    ],
+    "target": [
+      -0.04078270409635462,
+      0.38393067967272315,
+      -0.023247738115800942
+    ]
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  }
+}

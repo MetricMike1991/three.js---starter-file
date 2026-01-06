@@ -302,20 +302,6 @@ class ParticleSystem {
         if (settings) {
             Object.assign(this.params, settings);
             this.createDustParticles();
-            
-            // Apply blur settings specifically
-            if (settings.blur !== undefined) {
-                this.updateBlur(settings.blur);
-            }
-            if (settings.depthBlur !== undefined) {
-                this.updateDepthBlur(settings.depthBlur);
-            }
-            if (settings.depthBlurStrength !== undefined) {
-                this.updateDepthBlurStrength(settings.depthBlurStrength);
-            }
-            if (settings.depthFocusDistance !== undefined && settings.depthFocusRange !== undefined) {
-                this.updateDepthFocus(settings.depthFocusDistance, settings.depthFocusRange);
-            }
         }
     }
 

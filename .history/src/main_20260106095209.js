@@ -78,8 +78,6 @@ class ThreeJSApp {
 
         // Make camera available globally for depth blur calculations
         window.camera = this.cameraManager.getCamera();
-        // Make app instance available globally for GUI updates
-        window.app = this;
 
         // Register managers with settings system
         this.settingsManager.registerManager('background', {
@@ -110,9 +108,6 @@ class ThreeJSApp {
         // Wait for default settings to load, then apply them
         await this.waitForDefaultSettings();
         this.settingsManager.applyDefaultSettings();
-        
-        // Update GUI to reflect default settings
-        setTimeout(() => this.updateAllGUIControls(), 500);
 
         // Start render loop
         this.animate();
@@ -167,51 +162,17 @@ class ThreeJSApp {
         this.sceneManager.getScene().add(this.ground);
     }
 
-    // Update all GUI controls to reflect current values
-    updateAllGUIControls() {
-        if (this.gui) {
-            // Update all controllers recursively
-            this.gui.controllersRecursive().forEach(controller => {
-                controller.updateDisplay();
-            });
-        }
-    }
-
     setupGUI() {
         this.gui = new GUI();
         
-        // Save/Import controls with enhanced functionality
+        // Save/Import controls
         this.gui.add({ 
-            saveSettings: async () => {
-                await this.settingsManager.saveSettingsToClipboard();
-                console.log('All settings saved:', this.settingsManager.gatherAllSettings());
-            }
-        }, 'saveSettings').name('💾 Save All Settings');
+            saveSettings: () => this.settingsManager.saveSettingsToClipboard() 
+        }, 'saveSettings').name('Save Settings to Clipboard');
         
         this.gui.add({ 
-            importSettings: async () => {
-                await this.settingsManager.importSettingsFromClipboard();
-                // Force update all GUI controls after import
-                setTimeout(() => this.updateAllGUIControls(), 100);
-            }
-        }, 'importSettings').name('📥 Import Settings');
-
-        // Additional save/load options
-        this.gui.add({
-            exportFile: () => this.settingsManager.exportAsFile('scene-settings.json')
-        }, 'exportFile').name('📁 Export to File');
-
-        this.gui.add({
-            importFile: async () => {
-                try {
-                    await this.settingsManager.importFromFile();
-                    setTimeout(() => this.updateAllGUIControls(), 100);
-                    alert('Settings imported from file!');
-                } catch (error) {
-                    alert('Failed to import file: ' + error.message);
-                }
-            }
-        }, 'importFile').name('📂 Import from File');
+            importSettings: () => this.settingsManager.importSettingsFromClipboard() 
+        }, 'importSettings').name('Import Settings from Clipboard');
 
         // Background controls
         this.setupBackgroundGUI();

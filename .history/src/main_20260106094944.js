@@ -78,8 +78,6 @@ class ThreeJSApp {
 
         // Make camera available globally for depth blur calculations
         window.camera = this.cameraManager.getCamera();
-        // Make app instance available globally for GUI updates
-        window.app = this;
 
         // Register managers with settings system
         this.settingsManager.registerManager('background', {
@@ -110,9 +108,6 @@ class ThreeJSApp {
         // Wait for default settings to load, then apply them
         await this.waitForDefaultSettings();
         this.settingsManager.applyDefaultSettings();
-        
-        // Update GUI to reflect default settings
-        setTimeout(() => this.updateAllGUIControls(), 500);
 
         // Start render loop
         this.animate();
@@ -167,51 +162,17 @@ class ThreeJSApp {
         this.sceneManager.getScene().add(this.ground);
     }
 
-    // Update all GUI controls to reflect current values
-    updateAllGUIControls() {
-        if (this.gui) {
-            // Update all controllers recursively
-            this.gui.controllersRecursive().forEach(controller => {
-                controller.updateDisplay();
-            });
-        }
-    }
-
     setupGUI() {
         this.gui = new GUI();
         
-        // Save/Import controls with enhanced functionality
+        // Save/Import controls
         this.gui.add({ 
-            saveSettings: async () => {
-                await this.settingsManager.saveSettingsToClipboard();
-                console.log('All settings saved:', this.settingsManager.gatherAllSettings());
-            }
-        }, 'saveSettings').name('💾 Save All Settings');
+            saveSettings: () => this.settingsManager.saveSettingsToClipboard() 
+        }, 'saveSettings').name('Save Settings to Clipboard');
         
         this.gui.add({ 
-            importSettings: async () => {
-                await this.settingsManager.importSettingsFromClipboard();
-                // Force update all GUI controls after import
-                setTimeout(() => this.updateAllGUIControls(), 100);
-            }
-        }, 'importSettings').name('📥 Import Settings');
-
-        // Additional save/load options
-        this.gui.add({
-            exportFile: () => this.settingsManager.exportAsFile('scene-settings.json')
-        }, 'exportFile').name('📁 Export to File');
-
-        this.gui.add({
-            importFile: async () => {
-                try {
-                    await this.settingsManager.importFromFile();
-                    setTimeout(() => this.updateAllGUIControls(), 100);
-                    alert('Settings imported from file!');
-                } catch (error) {
-                    alert('Failed to import file: ' + error.message);
-                }
-            }
-        }, 'importFile').name('📂 Import from File');
+            importSettings: () => this.settingsManager.importSettingsFromClipboard() 
+        }, 'importSettings').name('Import Settings from Clipboard');
 
         // Background controls
         this.setupBackgroundGUI();
@@ -272,7 +233,6 @@ class ThreeJSApp {
         const dustFolder = this.gui.addFolder('Dust Particles');
         const dustParams = this.particleSystem.getParams();
 
-        // Basic Particle Controls
         dustFolder.add(dustParams, 'count', 50, 2000, 10).name('Count')
             .onChange((value) => this.particleSystem.updateCount(value));
 
@@ -290,101 +250,36 @@ class ThreeJSApp {
 
         dustFolder.add(dustParams, 'speed', 0, 3, 0.1).name('Float Speed');
 
+        dustFolder.add(dustParams, 'horizontalRange', 0.5, 10, 0.1).name('Horizontal Range')
+            .onChange(() => this.particleSystem.updateRange(dustParams.horizontalRange, dustParams.verticalRange));
+
+        dustFolder.add(dustParams, 'verticalRange', 0.5, 5, 0.1).name('Vertical Range')
+            .onChange(() => this.particleSystem.updateRange(dustParams.horizontalRange, dustParams.verticalRange));
+
+        dustFolder.add(dustParams, 'verticalOffset', -2, 3, 0.1).name('Height Offset')
+            .onChange((value) => this.particleSystem.updateOffset(value));
+
         dustFolder.add(dustParams, 'visible').name('Visible')
             .onChange((value) => this.particleSystem.setVisible(value));
 
-        // Blur Effects Section
-        const blurFolder = dustFolder.addFolder('Blur Effects');
-        
-        blurFolder.add(dustParams, 'blur', 0, 1, 0.01).name('Particle Blur')
+        // Blur effects
+        dustFolder.add(dustParams, 'blur', 0, 1, 0.01).name('Particle Blur')
             .onChange((value) => this.particleSystem.updateBlur(value));
 
-        // Depth of Field Section
-        const dofFolder = dustFolder.addFolder('Depth of Field');
-        
-        dofFolder.add(dustParams, 'depthBlur').name('Enable Depth Blur')
+        dustFolder.add(dustParams, 'depthBlur').name('Depth of Field')
             .onChange((value) => this.particleSystem.updateDepthBlur(value));
 
-        dofFolder.add(dustParams, 'depthBlurStrength', 0, 1, 0.01).name('Blur Strength')
+        dustFolder.add(dustParams, 'depthBlurStrength', 0, 1, 0.01).name('Depth Blur Strength')
             .onChange((value) => this.particleSystem.updateDepthBlurStrength(value));
 
-        dofFolder.add(dustParams, 'depthFocusDistance', 0.5, 10, 0.1).name('Focus Distance')
+        dustFolder.add(dustParams, 'depthFocusDistance', 0.5, 10, 0.1).name('Focus Distance')
             .onChange((value) => this.particleSystem.updateDepthFocus(value, dustParams.depthFocusRange));
 
-        dofFolder.add(dustParams, 'depthFocusRange', 0.1, 5, 0.1).name('Focus Range')
+        dustFolder.add(dustParams, 'depthFocusRange', 0.1, 5, 0.1).name('Focus Range')
             .onChange((value) => this.particleSystem.updateDepthFocus(dustParams.depthFocusDistance, value));
 
-        // Position and Range Controls
-        const positionFolder = dustFolder.addFolder('Position & Range');
-        
-        positionFolder.add(dustParams, 'horizontalRange', 0.5, 10, 0.1).name('Horizontal Range')
-            .onChange(() => this.particleSystem.updateRange(dustParams.horizontalRange, dustParams.verticalRange));
-
-        positionFolder.add(dustParams, 'verticalRange', 0.5, 5, 0.1).name('Vertical Range')
-            .onChange(() => this.particleSystem.updateRange(dustParams.horizontalRange, dustParams.verticalRange));
-
-        positionFolder.add(dustParams, 'verticalOffset', -2, 3, 0.1).name('Height Offset')
-            .onChange((value) => this.particleSystem.updateOffset(value));
-
-        // Depth of Field Presets
-        const dofPresets = {
-            'Portrait DOF': () => {
-                dustParams.depthBlur = true;
-                dustParams.depthBlurStrength = 0.7;
-                dustParams.depthFocusDistance = 2.0;
-                dustParams.depthFocusRange = 0.5;
-                dustParams.blur = 0.2;
-                this.particleSystem.updateDepthBlur(true);
-                this.particleSystem.updateDepthBlurStrength(0.7);
-                this.particleSystem.updateDepthFocus(2.0, 0.5);
-                this.particleSystem.updateBlur(0.2);
-                dofFolder.controllersRecursive().forEach(c => c.updateDisplay());
-                blurFolder.controllersRecursive().forEach(c => c.updateDisplay());
-            },
-            'Macro DOF': () => {
-                dustParams.depthBlur = true;
-                dustParams.depthBlurStrength = 0.9;
-                dustParams.depthFocusDistance = 1.0;
-                dustParams.depthFocusRange = 0.2;
-                dustParams.blur = 0.4;
-                this.particleSystem.updateDepthBlur(true);
-                this.particleSystem.updateDepthBlurStrength(0.9);
-                this.particleSystem.updateDepthFocus(1.0, 0.2);
-                this.particleSystem.updateBlur(0.4);
-                dofFolder.controllersRecursive().forEach(c => c.updateDisplay());
-                blurFolder.controllersRecursive().forEach(c => c.updateDisplay());
-            },
-            'Cinematic DOF': () => {
-                dustParams.depthBlur = true;
-                dustParams.depthBlurStrength = 0.5;
-                dustParams.depthFocusDistance = 3.0;
-                dustParams.depthFocusRange = 1.5;
-                dustParams.blur = 0.3;
-                this.particleSystem.updateDepthBlur(true);
-                this.particleSystem.updateDepthBlurStrength(0.5);
-                this.particleSystem.updateDepthFocus(3.0, 1.5);
-                this.particleSystem.updateBlur(0.3);
-                dofFolder.controllersRecursive().forEach(c => c.updateDisplay());
-                blurFolder.controllersRecursive().forEach(c => c.updateDisplay());
-            },
-            'No DOF': () => {
-                dustParams.depthBlur = false;
-                dustParams.blur = 0;
-                this.particleSystem.updateDepthBlur(false);
-                this.particleSystem.updateBlur(0);
-                dofFolder.controllersRecursive().forEach(c => c.updateDisplay());
-                blurFolder.controllersRecursive().forEach(c => c.updateDisplay());
-            }
-        };
-
-        // DOF Preset Buttons
-        dofFolder.add(dofPresets, 'Portrait DOF').name('📷 Portrait DOF');
-        dofFolder.add(dofPresets, 'Macro DOF').name('🔍 Macro DOF');
-        dofFolder.add(dofPresets, 'Cinematic DOF').name('🎬 Cinematic DOF');
-        dofFolder.add(dofPresets, 'No DOF').name('❌ Disable DOF');
-
-        // Particle Preset Buttons (existing ones)
-        const particlePresets = {
+        // Preset buttons
+        const presets = {
             'Light Dust': () => {
                 this.particleSystem.applyPreset('Light Dust');
                 dustFolder.controllersRecursive().forEach(c => c.updateDisplay());
@@ -403,16 +298,11 @@ class ThreeJSApp {
             }
         };
 
-        // Particle Preset Buttons
-        const presetFolder = dustFolder.addFolder('Particle Presets');
-        presetFolder.add(particlePresets, 'Light Dust').name('✨ Light Dust');
-        presetFolder.add(particlePresets, 'Heavy Dust').name('🌪️ Heavy Dust');
-        presetFolder.add(particlePresets, 'Magical Sparkles').name('⭐ Magical Sparkles');
-        presetFolder.add(particlePresets, 'Reset Dust').name('🔄 Reset Dust');
+        dustFolder.add(presets, 'Light Dust').name('• Light Dust');
+        dustFolder.add(presets, 'Heavy Dust').name('• Heavy Dust');
+        dustFolder.add(presets, 'Magical Sparkles').name('• Magical Sparkles');
+        dustFolder.add(presets, 'Reset Dust').name('• Reset Dust');
 
-        // Open important folders by default
-        blurFolder.open();
-        dofFolder.open();
         dustFolder.open();
     }
 
