@@ -26,9 +26,9 @@ class ParticleSystem {
             verticalRange: 2,
             verticalOffset: 1,
             visible: true,
-            blur: 0.31,
+            blur: 0,
             depthBlur: false,
-            depthBlurStrength: 0.16,
+            depthBlurStrength: 0.5,
             depthFocusDistance: 2.0,
             depthFocusRange: 1.0
         };

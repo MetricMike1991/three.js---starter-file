@@ -140,12 +140,7 @@ class SettingsManager {
                 horizontalRange: 3,
                 verticalRange: 2,
                 verticalOffset: 1,
-                visible: true,
-                blur: 0.31,
-                depthBlur: false,
-                depthBlurStrength: 0.16,
-                depthFocusDistance: 2,
-                depthFocusRange: 1
+                visible: true
             },
             directionalLight: {
                 intensity: 1.43,
