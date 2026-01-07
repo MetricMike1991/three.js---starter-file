@@ -107,6 +107,8 @@ const takeScreenshot = async (renderer, scene, camera, options = {}) => {
 
         // Cleanup
         tempRenderer.dispose();
+        camera.aspect = originalAspect;
+        camera.updateProjectionMatrix();
 
         const fileSize = formatFileSize(blob.size);
         console.log(`📸 Screenshot saved: ${filename} (${settings.width}×${settings.height}, ${fileSize})`);
