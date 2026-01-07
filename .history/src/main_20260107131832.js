@@ -1058,15 +1058,9 @@ class ThreeJSApp {
         }
     }
 
-    updatePlayerWidth(widthPercent) {
+    updatePlayerWidth(width) {
         if (this.animationPlayer && this.animationPlayer.container) {
-            const screenWidth = window.innerWidth;
-            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
-            this.animationPlayer.container.style.width = pixelWidth + 'px';
-            // Ensure it stays centered when width changes
-            this.animationPlayer.container.style.left = '50%';
-            this.animationPlayer.container.style.transform = 'translateX(-50%)';
-            this.animationPlayer.container.style.position = 'fixed';
+            this.animationPlayer.container.style.width = width + 'px';
         }
     }
 

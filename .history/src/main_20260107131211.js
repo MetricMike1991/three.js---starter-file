@@ -70,20 +70,20 @@ class ThreeJSApp {
         // Animation Player Styling Parameters (keeping current defaults)
         this.playerStyleParams = {
             // Background
-            backgroundColor: '#404040',
+            backgroundColor: '#1a1a1a',
             backgroundOpacity: 0.9,
             // Dimensions  
             playerWidth: 40, // percentage of screen width
             // Display options
             showTimeDisplay: true,
             // Button colors
-            buttonColor: '#666666',
+            buttonColor: '#ffffff',
             buttonOpacity: 1.0,
             // Timeline scrubber
-            scrubberColor: '#808080',
+            scrubberColor: '#4a9eff',
             scrubberOpacity: 1.0,
             // Text colors
-            textColor: '#cccccc',
+            textColor: '#ffffff',
             textOpacity: 1.0
         };
 
@@ -196,44 +196,6 @@ class ThreeJSApp {
         this.updatePlayerScrubberOpacity(this.playerStyleParams.scrubberOpacity);
         this.updatePlayerTextColor(this.playerStyleParams.textColor);
         this.updatePlayerTextOpacity(this.playerStyleParams.textOpacity);
-        
-        // Initialize scrubber width styling
-        this.initializeScrubberWidth();
-    }
-
-    initializeScrubberWidth() {
-        // Add CSS to make scrubber take full available width inside the player
-        const scrubberWidthStyle = document.createElement('style');
-        scrubberWidthStyle.id = 'scrubber-width-style';
-        scrubberWidthStyle.textContent = `
-            .animation-player .player-controls {
-                display: flex !important;
-                align-items: center !important;
-                width: 100% !important;
-            }
-            .animation-player .player-center {
-                flex: 1 !important;
-                margin: 0 10px !important;
-                display: flex !important;
-                align-items: center !important;
-            }
-            .animation-player .timeline-slider {
-                width: 100% !important;
-                flex: 1 !important;
-            }
-            .animation-player .player-left,
-            .animation-player .player-right {
-                flex-shrink: 0 !important;
-            }
-        `;
-        
-        // Remove existing if it exists
-        const existing = document.getElementById('scrubber-width-style');
-        if (existing) {
-            existing.remove();
-        }
-        
-        document.head.appendChild(scrubberWidthStyle);
     }
 
     setupGround() {
@@ -992,6 +954,67 @@ class ThreeJSApp {
         
         // Dimensions
         const dimensionsFolder = this.trackFolder(playerStyleFolder.addFolder('Dimensions'));
+        dimensionsFolder.add(this.playerStyleParams, 'playerWidth', 200, 600, 10).name('Player Width')
+            .onChange((value) => {
+                this.updatePlayerWidth(value);
+            });
+        
+        // Display Options
+        const displayFolder = this.trackFolder(playerStyleFolder.addFolder('Display'));
+        displayFolder.add(this.playerStyleParams, 'showTimeDisplay').name('Show Time Display')
+            .onChange((value) => {
+                this.updatePlayerTimeDisplay(value);
+            });
+        
+        // Button Colors
+        const buttonFolder = this.trackFolder(playerStyleFolder.addFolder('Buttons'));
+        buttonFolder.addColor(this.playerStyleParams, 'buttonColor').name('Button Color')
+            .onChange((value) => {
+                this.updatePlayerButtonColor(value);
+            });
+        buttonFolder.add(this.playerStyleParams, 'buttonOpacity', 0, 1, 0.1).name('Button Opacity')
+            .onChange((value) => {
+                this.updatePlayerButtonOpacity(value);
+            });
+        
+        // Timeline Scrubber
+        const scrubberFolder = this.trackFolder(playerStyleFolder.addFolder('Timeline'));
+        scrubberFolder.addColor(this.playerStyleParams, 'scrubberColor').name('Scrubber Color')
+            .onChange((value) => {
+                this.updatePlayerScrubberColor(value);
+            });
+        scrubberFolder.add(this.playerStyleParams, 'scrubberOpacity', 0, 1, 0.1).name('Scrubber Opacity')
+            .onChange((value) => {
+                this.updatePlayerScrubberOpacity(value);
+            });
+        
+        // Text Colors
+        const textFolder = this.trackFolder(playerStyleFolder.addFolder('Text'));
+        textFolder.addColor(this.playerStyleParams, 'textColor').name('Text Color')
+            .onChange((value) => {
+                this.updatePlayerTextColor(value);
+            });
+        textFolder.add(this.playerStyleParams, 'textOpacity', 0, 1, 0.1).name('Text Opacity')
+            .onChange((value) => {
+                this.updatePlayerTextOpacity(value);
+            });
+        
+        // Player Styling Controls
+        const playerStyleFolder = this.trackFolder(animationFolder.addFolder('\ud83c\udfa8 Player Styling'));
+        
+        // Background Settings
+        const backgroundFolder = this.trackFolder(playerStyleFolder.addFolder('Background'));
+        backgroundFolder.addColor(this.playerStyleParams, 'backgroundColor').name('Background Color')
+            .onChange((value) => {
+                this.updatePlayerBackgroundColor(value);
+            });
+        backgroundFolder.add(this.playerStyleParams, 'backgroundOpacity', 0, 1, 0.1).name('Background Opacity')
+            .onChange((value) => {
+                this.updatePlayerBackgroundOpacity(value);
+            });
+        
+        // Dimensions
+        const dimensionsFolder = this.trackFolder(playerStyleFolder.addFolder('Dimensions'));
         dimensionsFolder.add(this.playerStyleParams, 'playerWidth', 20, 100, 1).name('Player Width (%)')
             .onChange((value) => {
                 this.updatePlayerWidth(value);
@@ -1058,15 +1081,9 @@ class ThreeJSApp {
         }
     }
 
-    updatePlayerWidth(widthPercent) {
+    updatePlayerWidth(width) {
         if (this.animationPlayer && this.animationPlayer.container) {
-            const screenWidth = window.innerWidth;
-            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
-            this.animationPlayer.container.style.width = pixelWidth + 'px';
-            // Ensure it stays centered when width changes
-            this.animationPlayer.container.style.left = '50%';
-            this.animationPlayer.container.style.transform = 'translateX(-50%)';
-            this.animationPlayer.container.style.position = 'fixed';
+            this.animationPlayer.container.style.width = width + 'px';
         }
     }
 
@@ -1101,36 +1118,7 @@ class ThreeJSApp {
         if (this.animationPlayer && this.animationPlayer.container) {
             const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
             if (scrubber) {
-                // Use both accent-color and direct styling for better browser support
                 scrubber.style.accentColor = color;
-                
-                // Also target the slider thumb directly with CSS
-                const style = document.createElement('style');
-                style.textContent = `
-                    .timeline-slider::-webkit-slider-thumb {
-                        background-color: ${color} !important;
-                    }
-                    .timeline-slider::-moz-range-thumb {
-                        background-color: ${color} !important;
-                    }
-                    .timeline-slider {
-                        width: 100% !important;
-                        flex: 1 !important;
-                    }
-                    .player-center {
-                        flex: 1 !important;
-                        margin: 0 10px !important;
-                    }
-                `;
-                
-                // Remove existing scrubber style if it exists
-                const existingScrubberStyle = document.getElementById('scrubber-color-style');
-                if (existingScrubberStyle) {
-                    existingScrubberStyle.remove();
-                }
-                
-                style.id = 'scrubber-color-style';
-                document.head.appendChild(style);
             }
         }
     }
@@ -1160,6 +1148,112 @@ class ThreeJSApp {
                 element.style.opacity = opacity;
             });
         }
+    }
+
+    // Animation Player Styling Methods
+    updatePlayerBackgroundColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            this.animationPlayer.container.style.backgroundColor = color;
+        }
+    }
+
+    updatePlayerBackgroundOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const currentBg = this.playerStyleParams.backgroundColor;
+            // Convert hex to rgba with opacity
+            const r = parseInt(currentBg.slice(1, 3), 16);
+            const g = parseInt(currentBg.slice(3, 5), 16);
+            const b = parseInt(currentBg.slice(5, 7), 16);
+            this.animationPlayer.container.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        }
+    }
+
+    updatePlayerWidth(widthPercent) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const screenWidth = window.innerWidth;
+            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
+            this.animationPlayer.container.style.width = pixelWidth + 'px';
+            // Ensure it stays centered when width changes
+            this.animationPlayer.container.style.left = '50%';
+            this.animationPlayer.container.style.transform = 'translateX(-50%)';
+        }
+    }
+
+    updatePlayerTimeDisplay(show) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const timeDisplay = this.animationPlayer.container.querySelector('.time-display');
+            if (timeDisplay) {
+                timeDisplay.style.display = show ? 'inline-block' : 'none';
+            }
+        }
+    }
+
+    updatePlayerButtonColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const buttons = this.animationPlayer.container.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.style.backgroundColor = color;
+            });
+        }
+    }
+
+    updatePlayerButtonOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const buttons = this.animationPlayer.container.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.style.opacity = opacity;
+            });
+        }
+    }
+
+    updatePlayerScrubberColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
+            if (scrubber) {
+                scrubber.style.accentColor = color;
+            }
+        }
+    }
+
+    updatePlayerScrubberOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
+            if (scrubber) {
+                scrubber.style.opacity = opacity;
+            }
+        }
+    }
+
+    updatePlayerTextColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const textElements = this.animationPlayer.container.querySelectorAll('.time-display, .speed-menu');
+            textElements.forEach(element => {
+                element.style.color = color;
+            });
+        }
+    }
+
+    updatePlayerTextOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const textElements = this.animationPlayer.container.querySelectorAll('.time-display, .speed-menu');
+            textElements.forEach(element => {
+                element.style.opacity = opacity;
+            });
+        }
+    }
+
+    initializePlayerStyling() {
+        // Apply all current styling parameters to maintain exact current appearance
+        this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
+        this.updatePlayerBackgroundOpacity(this.playerStyleParams.backgroundOpacity);
+        this.updatePlayerWidth(this.playerStyleParams.playerWidth);
+        this.updatePlayerTimeDisplay(this.playerStyleParams.showTimeDisplay);
+        this.updatePlayerButtonColor(this.playerStyleParams.buttonColor);
+        this.updatePlayerButtonOpacity(this.playerStyleParams.buttonOpacity);
+        this.updatePlayerScrubberColor(this.playerStyleParams.scrubberColor);
+        this.updatePlayerScrubberOpacity(this.playerStyleParams.scrubberOpacity);
+        this.updatePlayerTextColor(this.playerStyleParams.textColor);
+        this.updatePlayerTextOpacity(this.playerStyleParams.textOpacity);
     }
 
     setupGUIVisibilityToggle() {

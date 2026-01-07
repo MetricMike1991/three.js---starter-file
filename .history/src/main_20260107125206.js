@@ -67,24 +67,17 @@ class ThreeJSApp {
             visible: true
         };
 
-        // Animation Player Styling Parameters (keeping current defaults)
+        // Animation Player Styling
         this.playerStyleParams = {
-            // Background
-            backgroundColor: '#404040',
+            backgroundColor: '#1a1a1a',
             backgroundOpacity: 0.9,
-            // Dimensions  
-            playerWidth: 40, // percentage of screen width
-            // Display options
-            showTimeDisplay: true,
-            // Button colors
-            buttonColor: '#666666',
-            buttonOpacity: 1.0,
-            // Timeline scrubber
-            scrubberColor: '#808080',
-            scrubberOpacity: 1.0,
-            // Text colors
-            textColor: '#cccccc',
-            textOpacity: 1.0
+            textColor: '#ffffff',
+            buttonColor: '#4a9eff',
+            buttonHoverColor: '#6bb3ff',
+            width: 400,
+            height: 60,
+            borderRadius: 8,
+            fontSize: 14
         };
 
         this.init();
@@ -102,15 +95,8 @@ class ThreeJSApp {
         // Make animation player visible from the start
         this.animationPlayer.setVisibility(true);
         
-        // Apply initial player styling after short delay to ensure DOM is ready
-        setTimeout(() => {
-            this.initializePlayerStyling();
-        }, 100);
-        
-        // Apply initial player styling after short delay to ensure DOM is ready
-        setTimeout(() => {
-            this.initializePlayerStyling();
-        }, 100);
+        // Apply initial player styling
+        this.initializePlayerStyling();
         
         // Screenshot manager disabled for now
         this.screenshotManager = null;
@@ -185,55 +171,19 @@ class ThreeJSApp {
     }
 
     initializePlayerStyling() {
-        // Apply all current styling parameters to maintain exact current appearance
-        this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
-        this.updatePlayerBackgroundOpacity(this.playerStyleParams.backgroundOpacity);
-        this.updatePlayerWidth(this.playerStyleParams.playerWidth);
-        this.updatePlayerTimeDisplay(this.playerStyleParams.showTimeDisplay);
-        this.updatePlayerButtonColor(this.playerStyleParams.buttonColor);
-        this.updatePlayerButtonOpacity(this.playerStyleParams.buttonOpacity);
-        this.updatePlayerScrubberColor(this.playerStyleParams.scrubberColor);
-        this.updatePlayerScrubberOpacity(this.playerStyleParams.scrubberOpacity);
-        this.updatePlayerTextColor(this.playerStyleParams.textColor);
-        this.updatePlayerTextOpacity(this.playerStyleParams.textOpacity);
-        
-        // Initialize scrubber width styling
-        this.initializeScrubberWidth();
-    }
-
-    initializeScrubberWidth() {
-        // Add CSS to make scrubber take full available width inside the player
-        const scrubberWidthStyle = document.createElement('style');
-        scrubberWidthStyle.id = 'scrubber-width-style';
-        scrubberWidthStyle.textContent = `
-            .animation-player .player-controls {
-                display: flex !important;
-                align-items: center !important;
-                width: 100% !important;
-            }
-            .animation-player .player-center {
-                flex: 1 !important;
-                margin: 0 10px !important;
-                display: flex !important;
-                align-items: center !important;
-            }
-            .animation-player .timeline-slider {
-                width: 100% !important;
-                flex: 1 !important;
-            }
-            .animation-player .player-left,
-            .animation-player .player-right {
-                flex-shrink: 0 !important;
-            }
-        `;
-        
-        // Remove existing if it exists
-        const existing = document.getElementById('scrubber-width-style');
-        if (existing) {
-            existing.remove();
+        if (this.animationPlayer && this.animationPlayer.container) {
+            // Apply initial CSS custom properties
+            const container = this.animationPlayer.container;
+            container.style.setProperty('--player-bg-color', this.playerStyleParams.backgroundColor);
+            container.style.setProperty('--player-bg-opacity', this.playerStyleParams.backgroundOpacity);
+            container.style.setProperty('--player-text-color', this.playerStyleParams.textColor);
+            container.style.setProperty('--player-button-color', this.playerStyleParams.buttonColor);
+            container.style.setProperty('--player-button-hover-color', this.playerStyleParams.buttonHoverColor);
+            container.style.setProperty('--player-width', this.playerStyleParams.width + 'px');
+            container.style.setProperty('--player-height', this.playerStyleParams.height + 'px');
+            container.style.setProperty('--player-border-radius', this.playerStyleParams.borderRadius + 'px');
+            container.style.setProperty('--player-font-size', this.playerStyleParams.fontSize + 'px');
         }
-        
-        document.head.appendChild(scrubberWidthStyle);
     }
 
     setupGround() {
@@ -976,189 +926,152 @@ class ThreeJSApp {
             });
         
         
+        
         // Player Styling Controls
         const playerStyleFolder = this.trackFolder(animationFolder.addFolder('🎨 Player Styling'));
         
-        // Background Settings
+        // Background settings
         const backgroundFolder = this.trackFolder(playerStyleFolder.addFolder('Background'));
         backgroundFolder.addColor(this.playerStyleParams, 'backgroundColor').name('Background Color')
             .onChange((value) => {
-                this.updatePlayerBackgroundColor(value);
+                this.updatePlayerStyle('--player-bg-color', value);
             });
         backgroundFolder.add(this.playerStyleParams, 'backgroundOpacity', 0, 1, 0.1).name('Background Opacity')
             .onChange((value) => {
-                this.updatePlayerBackgroundOpacity(value);
+                this.updatePlayerStyle('--player-bg-opacity', value);
+            });
+        
+        // Colors
+        const colorsFolder = this.trackFolder(playerStyleFolder.addFolder('Colors'));
+        colorsFolder.addColor(this.playerStyleParams, 'textColor').name('Text Color')
+            .onChange((value) => {
+                this.updatePlayerStyle('--player-text-color', value);
+            });
+        colorsFolder.addColor(this.playerStyleParams, 'buttonColor').name('Button Color')
+            .onChange((value) => {
+                this.updatePlayerStyle('--player-button-color', value);
+            });
+        colorsFolder.addColor(this.playerStyleParams, 'buttonHoverColor').name('Button Hover Color')
+            .onChange((value) => {
+                this.updatePlayerStyle('--player-button-hover-color', value);
             });
         
         // Dimensions
         const dimensionsFolder = this.trackFolder(playerStyleFolder.addFolder('Dimensions'));
-        dimensionsFolder.add(this.playerStyleParams, 'playerWidth', 20, 100, 1).name('Player Width (%)')
+        dimensionsFolder.add(this.playerStyleParams, 'width', 200, 600, 10).name('Width (px)')
             .onChange((value) => {
-                this.updatePlayerWidth(value);
+                this.updatePlayerStyle('--player-width', value + 'px');
+            });
+        dimensionsFolder.add(this.playerStyleParams, 'height', 40, 100, 5).name('Height (px)')
+            .onChange((value) => {
+                this.updatePlayerStyle('--player-height', value + 'px');
+            });
+        dimensionsFolder.add(this.playerStyleParams, 'borderRadius', 0, 20, 1).name('Border Radius')
+            .onChange((value) => {
+                this.updatePlayerStyle('--player-border-radius', value + 'px');
+            });
+        dimensionsFolder.add(this.playerStyleParams, 'fontSize', 10, 20, 1).name('Font Size')
+            .onChange((value) => {
+                this.updatePlayerStyle('--player-font-size', value + 'px');
             });
         
-        // Display Options
-        const displayFolder = this.trackFolder(playerStyleFolder.addFolder('Display'));
-        displayFolder.add(this.playerStyleParams, 'showTimeDisplay').name('Show Time Display')
-            .onChange((value) => {
-                this.updatePlayerTimeDisplay(value);
-            });
-        
-        // Button Colors
-        const buttonFolder = this.trackFolder(playerStyleFolder.addFolder('Buttons'));
-        buttonFolder.addColor(this.playerStyleParams, 'buttonColor').name('Button Color')
-            .onChange((value) => {
-                this.updatePlayerButtonColor(value);
-            });
-        buttonFolder.add(this.playerStyleParams, 'buttonOpacity', 0, 1, 0.1).name('Button Opacity')
-            .onChange((value) => {
-                this.updatePlayerButtonOpacity(value);
-            });
-        
-        // Timeline Scrubber
-        const scrubberFolder = this.trackFolder(playerStyleFolder.addFolder('Timeline'));
-        scrubberFolder.addColor(this.playerStyleParams, 'scrubberColor').name('Scrubber Color')
-            .onChange((value) => {
-                this.updatePlayerScrubberColor(value);
-            });
-        scrubberFolder.add(this.playerStyleParams, 'scrubberOpacity', 0, 1, 0.1).name('Scrubber Opacity')
-            .onChange((value) => {
-                this.updatePlayerScrubberOpacity(value);
-            });
-        
-        // Text Colors
-        const textFolder = this.trackFolder(playerStyleFolder.addFolder('Text'));
-        textFolder.addColor(this.playerStyleParams, 'textColor').name('Text Color')
-            .onChange((value) => {
-                this.updatePlayerTextColor(value);
-            });
-        textFolder.add(this.playerStyleParams, 'textOpacity', 0, 1, 0.1).name('Text Opacity')
-            .onChange((value) => {
-                this.updatePlayerTextOpacity(value);
-            });
+        // Preset buttons
+        const presetsFolder = this.trackFolder(playerStyleFolder.addFolder('Presets'));
+        presetsFolder.add({
+            'Dark Theme': () => this.applyPlayerPreset('dark'),
+            'Light Theme': () => this.applyPlayerPreset('light'),
+            'Blue Theme': () => this.applyPlayerPreset('blue'),
+            'Compact': () => this.applyPlayerPreset('compact'),
+            'Large': () => this.applyPlayerPreset('large')
+        }, 'Dark Theme').name('Apply Preset');
         
         animationFolder.open();
     }
 
-    // Animation Player Styling Methods
-    updatePlayerBackgroundColor(color) {
+    updatePlayerStyle(property, value) {
         if (this.animationPlayer && this.animationPlayer.container) {
-            this.animationPlayer.container.style.backgroundColor = color;
+            this.animationPlayer.container.style.setProperty(property, value);
         }
     }
 
-    updatePlayerBackgroundOpacity(opacity) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const currentBg = this.playerStyleParams.backgroundColor;
-            // Convert hex to rgba with opacity
-            const r = parseInt(currentBg.slice(1, 3), 16);
-            const g = parseInt(currentBg.slice(3, 5), 16);
-            const b = parseInt(currentBg.slice(5, 7), 16);
-            this.animationPlayer.container.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
-        }
-    }
-
-    updatePlayerWidth(widthPercent) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const screenWidth = window.innerWidth;
-            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
-            this.animationPlayer.container.style.width = pixelWidth + 'px';
-            // Ensure it stays centered when width changes
-            this.animationPlayer.container.style.left = '50%';
-            this.animationPlayer.container.style.transform = 'translateX(-50%)';
-            this.animationPlayer.container.style.position = 'fixed';
-        }
-    }
-
-    updatePlayerTimeDisplay(show) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const timeDisplay = this.animationPlayer.container.querySelector('.time-display');
-            if (timeDisplay) {
-                timeDisplay.style.display = show ? 'inline-block' : 'none';
+    applyPlayerPreset(preset) {
+        const presets = {
+            dark: {
+                backgroundColor: '#1a1a1a',
+                backgroundOpacity: 0.9,
+                textColor: '#ffffff',
+                buttonColor: '#4a9eff',
+                buttonHoverColor: '#6bb3ff',
+                width: 400,
+                height: 60,
+                borderRadius: 8,
+                fontSize: 14
+            },
+            light: {
+                backgroundColor: '#f0f0f0',
+                backgroundOpacity: 0.95,
+                textColor: '#333333',
+                buttonColor: '#007acc',
+                buttonHoverColor: '#005a9e',
+                width: 400,
+                height: 60,
+                borderRadius: 8,
+                fontSize: 14
+            },
+            blue: {
+                backgroundColor: '#1e3a8a',
+                backgroundOpacity: 0.9,
+                textColor: '#e0e7ff',
+                buttonColor: '#60a5fa',
+                buttonHoverColor: '#93c5fd',
+                width: 400,
+                height: 60,
+                borderRadius: 12,
+                fontSize: 14
+            },
+            compact: {
+                backgroundColor: '#2d2d2d',
+                backgroundOpacity: 0.8,
+                textColor: '#ffffff',
+                buttonColor: '#ff6b6b',
+                buttonHoverColor: '#ff8e8e',
+                width: 300,
+                height: 45,
+                borderRadius: 6,
+                fontSize: 12
+            },
+            large: {
+                backgroundColor: '#0f0f0f',
+                backgroundOpacity: 0.95,
+                textColor: '#ffffff',
+                buttonColor: '#4caf50',
+                buttonHoverColor: '#66bb6a',
+                width: 500,
+                height: 80,
+                borderRadius: 15,
+                fontSize: 16
             }
-        }
-    }
+        };
 
-    updatePlayerButtonColor(color) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const buttons = this.animationPlayer.container.querySelectorAll('button');
-            buttons.forEach(button => {
-                button.style.color = color;
-            });
-        }
-    }
-
-    updatePlayerButtonOpacity(opacity) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const buttons = this.animationPlayer.container.querySelectorAll('button');
-            buttons.forEach(button => {
-                button.style.opacity = opacity;
-            });
-        }
-    }
-
-    updatePlayerScrubberColor(color) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
-            if (scrubber) {
-                // Use both accent-color and direct styling for better browser support
-                scrubber.style.accentColor = color;
-                
-                // Also target the slider thumb directly with CSS
-                const style = document.createElement('style');
-                style.textContent = `
-                    .timeline-slider::-webkit-slider-thumb {
-                        background-color: ${color} !important;
-                    }
-                    .timeline-slider::-moz-range-thumb {
-                        background-color: ${color} !important;
-                    }
-                    .timeline-slider {
-                        width: 100% !important;
-                        flex: 1 !important;
-                    }
-                    .player-center {
-                        flex: 1 !important;
-                        margin: 0 10px !important;
-                    }
-                `;
-                
-                // Remove existing scrubber style if it exists
-                const existingScrubberStyle = document.getElementById('scrubber-color-style');
-                if (existingScrubberStyle) {
-                    existingScrubberStyle.remove();
-                }
-                
-                style.id = 'scrubber-color-style';
-                document.head.appendChild(style);
+        const presetData = presets[preset];
+        if (presetData) {
+            Object.assign(this.playerStyleParams, presetData);
+            
+            // Apply all styles
+            this.updatePlayerStyle('--player-bg-color', presetData.backgroundColor);
+            this.updatePlayerStyle('--player-bg-opacity', presetData.backgroundOpacity);
+            this.updatePlayerStyle('--player-text-color', presetData.textColor);
+            this.updatePlayerStyle('--player-button-color', presetData.buttonColor);
+            this.updatePlayerStyle('--player-button-hover-color', presetData.buttonHoverColor);
+            this.updatePlayerStyle('--player-width', presetData.width + 'px');
+            this.updatePlayerStyle('--player-height', presetData.height + 'px');
+            this.updatePlayerStyle('--player-border-radius', presetData.borderRadius + 'px');
+            this.updatePlayerStyle('--player-font-size', presetData.fontSize + 'px');
+            
+            // Refresh GUI to show new values
+            if (this.gui) {
+                this.gui.updateDisplay();
             }
-        }
-    }
-
-    updatePlayerScrubberOpacity(opacity) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
-            if (scrubber) {
-                scrubber.style.opacity = opacity;
-            }
-        }
-    }
-
-    updatePlayerTextColor(color) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const textElements = this.animationPlayer.container.querySelectorAll('.time-display, .speed-menu');
-            textElements.forEach(element => {
-                element.style.color = color;
-            });
-        }
-    }
-
-    updatePlayerTextOpacity(opacity) {
-        if (this.animationPlayer && this.animationPlayer.container) {
-            const textElements = this.animationPlayer.container.querySelectorAll('.time-display, .speed-menu');
-            textElements.forEach(element => {
-                element.style.opacity = opacity;
-            });
         }
     }
 

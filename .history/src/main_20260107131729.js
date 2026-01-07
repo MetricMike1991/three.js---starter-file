@@ -202,15 +202,10 @@ class ThreeJSApp {
     }
 
     initializeScrubberWidth() {
-        // Add CSS to make scrubber take full available width inside the player
+        // Add CSS to make scrubber take full available width
         const scrubberWidthStyle = document.createElement('style');
         scrubberWidthStyle.id = 'scrubber-width-style';
         scrubberWidthStyle.textContent = `
-            .animation-player .player-controls {
-                display: flex !important;
-                align-items: center !important;
-                width: 100% !important;
-            }
             .animation-player .player-center {
                 flex: 1 !important;
                 margin: 0 10px !important;
@@ -220,10 +215,6 @@ class ThreeJSApp {
             .animation-player .timeline-slider {
                 width: 100% !important;
                 flex: 1 !important;
-            }
-            .animation-player .player-left,
-            .animation-player .player-right {
-                flex-shrink: 0 !important;
             }
         `;
         
@@ -1058,15 +1049,9 @@ class ThreeJSApp {
         }
     }
 
-    updatePlayerWidth(widthPercent) {
+    updatePlayerWidth(width) {
         if (this.animationPlayer && this.animationPlayer.container) {
-            const screenWidth = window.innerWidth;
-            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
-            this.animationPlayer.container.style.width = pixelWidth + 'px';
-            // Ensure it stays centered when width changes
-            this.animationPlayer.container.style.left = '50%';
-            this.animationPlayer.container.style.transform = 'translateX(-50%)';
-            this.animationPlayer.container.style.position = 'fixed';
+            this.animationPlayer.container.style.width = width + 'px';
         }
     }
 

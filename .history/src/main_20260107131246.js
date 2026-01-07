@@ -70,20 +70,20 @@ class ThreeJSApp {
         // Animation Player Styling Parameters (keeping current defaults)
         this.playerStyleParams = {
             // Background
-            backgroundColor: '#404040',
+            backgroundColor: '#1a1a1a',
             backgroundOpacity: 0.9,
             // Dimensions  
             playerWidth: 40, // percentage of screen width
             // Display options
             showTimeDisplay: true,
             // Button colors
-            buttonColor: '#666666',
+            buttonColor: '#ffffff',
             buttonOpacity: 1.0,
             // Timeline scrubber
-            scrubberColor: '#808080',
+            scrubberColor: '#4a9eff',
             scrubberOpacity: 1.0,
             // Text colors
-            textColor: '#cccccc',
+            textColor: '#ffffff',
             textOpacity: 1.0
         };
 
@@ -196,44 +196,6 @@ class ThreeJSApp {
         this.updatePlayerScrubberOpacity(this.playerStyleParams.scrubberOpacity);
         this.updatePlayerTextColor(this.playerStyleParams.textColor);
         this.updatePlayerTextOpacity(this.playerStyleParams.textOpacity);
-        
-        // Initialize scrubber width styling
-        this.initializeScrubberWidth();
-    }
-
-    initializeScrubberWidth() {
-        // Add CSS to make scrubber take full available width inside the player
-        const scrubberWidthStyle = document.createElement('style');
-        scrubberWidthStyle.id = 'scrubber-width-style';
-        scrubberWidthStyle.textContent = `
-            .animation-player .player-controls {
-                display: flex !important;
-                align-items: center !important;
-                width: 100% !important;
-            }
-            .animation-player .player-center {
-                flex: 1 !important;
-                margin: 0 10px !important;
-                display: flex !important;
-                align-items: center !important;
-            }
-            .animation-player .timeline-slider {
-                width: 100% !important;
-                flex: 1 !important;
-            }
-            .animation-player .player-left,
-            .animation-player .player-right {
-                flex-shrink: 0 !important;
-            }
-        `;
-        
-        // Remove existing if it exists
-        const existing = document.getElementById('scrubber-width-style');
-        if (existing) {
-            existing.remove();
-        }
-        
-        document.head.appendChild(scrubberWidthStyle);
     }
 
     setupGround() {
@@ -1058,15 +1020,9 @@ class ThreeJSApp {
         }
     }
 
-    updatePlayerWidth(widthPercent) {
+    updatePlayerWidth(width) {
         if (this.animationPlayer && this.animationPlayer.container) {
-            const screenWidth = window.innerWidth;
-            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
-            this.animationPlayer.container.style.width = pixelWidth + 'px';
-            // Ensure it stays centered when width changes
-            this.animationPlayer.container.style.left = '50%';
-            this.animationPlayer.container.style.transform = 'translateX(-50%)';
-            this.animationPlayer.container.style.position = 'fixed';
+            this.animationPlayer.container.style.width = width + 'px';
         }
     }
 
@@ -1101,36 +1057,7 @@ class ThreeJSApp {
         if (this.animationPlayer && this.animationPlayer.container) {
             const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
             if (scrubber) {
-                // Use both accent-color and direct styling for better browser support
                 scrubber.style.accentColor = color;
-                
-                // Also target the slider thumb directly with CSS
-                const style = document.createElement('style');
-                style.textContent = `
-                    .timeline-slider::-webkit-slider-thumb {
-                        background-color: ${color} !important;
-                    }
-                    .timeline-slider::-moz-range-thumb {
-                        background-color: ${color} !important;
-                    }
-                    .timeline-slider {
-                        width: 100% !important;
-                        flex: 1 !important;
-                    }
-                    .player-center {
-                        flex: 1 !important;
-                        margin: 0 10px !important;
-                    }
-                `;
-                
-                // Remove existing scrubber style if it exists
-                const existingScrubberStyle = document.getElementById('scrubber-color-style');
-                if (existingScrubberStyle) {
-                    existingScrubberStyle.remove();
-                }
-                
-                style.id = 'scrubber-color-style';
-                document.head.appendChild(style);
             }
         }
     }
@@ -1160,6 +1087,112 @@ class ThreeJSApp {
                 element.style.opacity = opacity;
             });
         }
+    }
+
+    // Animation Player Styling Methods
+    updatePlayerBackgroundColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            this.animationPlayer.container.style.backgroundColor = color;
+        }
+    }
+
+    updatePlayerBackgroundOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const currentBg = this.playerStyleParams.backgroundColor;
+            // Convert hex to rgba with opacity
+            const r = parseInt(currentBg.slice(1, 3), 16);
+            const g = parseInt(currentBg.slice(3, 5), 16);
+            const b = parseInt(currentBg.slice(5, 7), 16);
+            this.animationPlayer.container.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        }
+    }
+
+    updatePlayerWidth(widthPercent) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const screenWidth = window.innerWidth;
+            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
+            this.animationPlayer.container.style.width = pixelWidth + 'px';
+            // Ensure it stays centered when width changes
+            this.animationPlayer.container.style.left = '50%';
+            this.animationPlayer.container.style.transform = 'translateX(-50%)';
+        }
+    }
+
+    updatePlayerTimeDisplay(show) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const timeDisplay = this.animationPlayer.container.querySelector('.time-display');
+            if (timeDisplay) {
+                timeDisplay.style.display = show ? 'inline-block' : 'none';
+            }
+        }
+    }
+
+    updatePlayerButtonColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const buttons = this.animationPlayer.container.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.style.backgroundColor = color;
+            });
+        }
+    }
+
+    updatePlayerButtonOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const buttons = this.animationPlayer.container.querySelectorAll('button');
+            buttons.forEach(button => {
+                button.style.opacity = opacity;
+            });
+        }
+    }
+
+    updatePlayerScrubberColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
+            if (scrubber) {
+                scrubber.style.accentColor = color;
+            }
+        }
+    }
+
+    updatePlayerScrubberOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
+            if (scrubber) {
+                scrubber.style.opacity = opacity;
+            }
+        }
+    }
+
+    updatePlayerTextColor(color) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const textElements = this.animationPlayer.container.querySelectorAll('.time-display, .speed-menu');
+            textElements.forEach(element => {
+                element.style.color = color;
+            });
+        }
+    }
+
+    updatePlayerTextOpacity(opacity) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const textElements = this.animationPlayer.container.querySelectorAll('.time-display, .speed-menu');
+            textElements.forEach(element => {
+                element.style.opacity = opacity;
+            });
+        }
+    }
+
+    initializePlayerStyling() {
+        // Apply all current styling parameters to maintain exact current appearance
+        this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
+        this.updatePlayerBackgroundOpacity(this.playerStyleParams.backgroundOpacity);
+        this.updatePlayerWidth(this.playerStyleParams.playerWidth);
+        this.updatePlayerTimeDisplay(this.playerStyleParams.showTimeDisplay);
+        this.updatePlayerButtonColor(this.playerStyleParams.buttonColor);
+        this.updatePlayerButtonOpacity(this.playerStyleParams.buttonOpacity);
+        this.updatePlayerScrubberColor(this.playerStyleParams.scrubberColor);
+        this.updatePlayerScrubberOpacity(this.playerStyleParams.scrubberOpacity);
+        this.updatePlayerTextColor(this.playerStyleParams.textColor);
+        this.updatePlayerTextOpacity(this.playerStyleParams.textOpacity);
     }
 
     setupGUIVisibilityToggle() {

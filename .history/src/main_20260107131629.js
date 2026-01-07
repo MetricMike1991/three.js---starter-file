@@ -196,44 +196,6 @@ class ThreeJSApp {
         this.updatePlayerScrubberOpacity(this.playerStyleParams.scrubberOpacity);
         this.updatePlayerTextColor(this.playerStyleParams.textColor);
         this.updatePlayerTextOpacity(this.playerStyleParams.textOpacity);
-        
-        // Initialize scrubber width styling
-        this.initializeScrubberWidth();
-    }
-
-    initializeScrubberWidth() {
-        // Add CSS to make scrubber take full available width inside the player
-        const scrubberWidthStyle = document.createElement('style');
-        scrubberWidthStyle.id = 'scrubber-width-style';
-        scrubberWidthStyle.textContent = `
-            .animation-player .player-controls {
-                display: flex !important;
-                align-items: center !important;
-                width: 100% !important;
-            }
-            .animation-player .player-center {
-                flex: 1 !important;
-                margin: 0 10px !important;
-                display: flex !important;
-                align-items: center !important;
-            }
-            .animation-player .timeline-slider {
-                width: 100% !important;
-                flex: 1 !important;
-            }
-            .animation-player .player-left,
-            .animation-player .player-right {
-                flex-shrink: 0 !important;
-            }
-        `;
-        
-        // Remove existing if it exists
-        const existing = document.getElementById('scrubber-width-style');
-        if (existing) {
-            existing.remove();
-        }
-        
-        document.head.appendChild(scrubberWidthStyle);
     }
 
     setupGround() {
@@ -1058,15 +1020,9 @@ class ThreeJSApp {
         }
     }
 
-    updatePlayerWidth(widthPercent) {
+    updatePlayerWidth(width) {
         if (this.animationPlayer && this.animationPlayer.container) {
-            const screenWidth = window.innerWidth;
-            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
-            this.animationPlayer.container.style.width = pixelWidth + 'px';
-            // Ensure it stays centered when width changes
-            this.animationPlayer.container.style.left = '50%';
-            this.animationPlayer.container.style.transform = 'translateX(-50%)';
-            this.animationPlayer.container.style.position = 'fixed';
+            this.animationPlayer.container.style.width = width + 'px';
         }
     }
 
@@ -1113,14 +1069,6 @@ class ThreeJSApp {
                     .timeline-slider::-moz-range-thumb {
                         background-color: ${color} !important;
                     }
-                    .timeline-slider {
-                        width: 100% !important;
-                        flex: 1 !important;
-                    }
-                    .player-center {
-                        flex: 1 !important;
-                        margin: 0 10px !important;
-                    }
                 `;
                 
                 // Remove existing scrubber style if it exists
@@ -1131,6 +1079,8 @@ class ThreeJSApp {
                 
                 style.id = 'scrubber-color-style';
                 document.head.appendChild(style);
+            }
+        }
             }
         }
     }
