@@ -313,6 +313,7 @@ export class AnimationPlayer {
         // Update icon to match current state
         this.updatePlayPauseIcon();
     }
+    }
 
     seekTo(progress) {
         if (!this.currentAction) return;
