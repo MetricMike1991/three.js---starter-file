@@ -254,27 +254,6 @@ class ThumbnailDropdownMenu {
         });
     }
     
-    startMomentumScroll() {
-        this.isScrolling = true;
-        this.momentumScrollFrame();
-    }
-
-    momentumScrollFrame() {
-        if (Math.abs(this.scrollVelocity) < 0.1) {
-            this.isScrolling = false;
-            this.scrollVelocity = 0;
-            return;
-        }
-
-        this.scrollContainer.scrollBy({ 
-            top: this.scrollVelocity, 
-            behavior: 'auto'
-        });
-
-        this.scrollVelocity *= this.scrollDecay;
-        requestAnimationFrame(() => this.momentumScrollFrame());
-    }
-    
     startDrag(clientY) {
         this.isDragging = true;
         this.startY = clientY;
