@@ -83,7 +83,12 @@ export class AnimationPlayer {
         this.speedMenu = this.container.querySelector('#speed-menu');
         
         // Ensure correct initial icon state (should show play icon when paused)
-        this.updatePlayPauseIcon();
+        // Add small delay to ensure DOM is ready
+        setTimeout(() => {
+            if (this.playIcon && this.pauseIcon) {
+                this.updatePlayPauseIcon();
+            }
+        }, 10);
         
         // Start hidden by default
         this.setVisibility(true); // Player is enabled but hidden until hover
@@ -276,29 +281,46 @@ export class AnimationPlayer {
                 this.currentAction = this.actions[0];
                 this.duration = this.currentAction.getClip().duration;
                 this.updateTimeDisplay();
+                // Ensure icon matches the current playing state
+                this.updatePlayPauseIcon();
             }
         }
     }
 
     updatePlayPauseIcon() {
+        // Check if elements exist
+        if (!this.playIcon || !this.pauseIcon) {
+            console.warn('Animation player icons not found');
+            return;
+        }
+        
+        console.log('Updating icon - isPlaying:', this.isPlaying);
+        
         if (this.isPlaying) {
-            // Animation is playing, show pause icon
+            // Animation is playing, show pause icon (user can click to pause)
             this.playIcon.style.display = 'none';
             this.pauseIcon.style.display = 'block';
+            console.log('Showing pause icon (animation is playing)');
         } else {
-            // Animation is paused, show play icon
+            // Animation is paused, show play icon (user can click to play)  
             this.playIcon.style.display = 'block';
             this.pauseIcon.style.display = 'none';
+            console.log('Showing play icon (animation is paused)');
         }
     }
 
     togglePlayPause() {
         if (!this.currentAction) return;
 
+        console.log('Before toggle - isPlaying:', this.isPlaying);
+
         this.isPlaying = !this.isPlaying;
+        
+        console.log('After toggle - isPlaying:', this.isPlaying);
         
         if (this.isPlaying) {
             this.currentAction.play();
+            this.currentAction.paused = false;
             
             // If this is the first time play is pressed, start fade timer
             if (!this.hasPlayedOnce) {
@@ -307,7 +329,7 @@ export class AnimationPlayer {
                 this.startFirstPlayFade();
             }
         } else {
-            this.currentAction.pause();
+            this.currentAction.paused = true;
         }
         
         // Update icon to match current state
