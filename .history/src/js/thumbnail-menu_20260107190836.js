@@ -245,10 +245,7 @@ export class ThumbnailMenu {
         const g = parseInt(hex.substr(2, 2), 16);
         const b = parseInt(hex.substr(4, 2), 16);
         
-        // Calculate dropdown width based on thumbnail width + padding
-        const thumbnailWidth = Math.min(window.innerWidth * 0.25, 200); // Same as CSS min(25vw, 200px)
-        const dropdownWidth = thumbnailWidth + 40; // Thumbnail width + padding
-        this.dropdown.style.width = `${dropdownWidth}px`;
+        this.dropdown.style.width = `min(${this.settings.widthPercentage}vw, 300px)`;
         this.dropdown.style.background = `rgba(${r}, ${g}, ${b}, ${this.settings.backgroundOpacity})`;
         this.dropdown.style.borderRadius = `${this.settings.borderRadius}px`;
     }

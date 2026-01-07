@@ -197,32 +197,6 @@ export class ThumbnailMenu {
         this.isOpen = false;
     }
 
-    // Momentum scrolling implementation
-    startMomentumScroll() {
-        this.isScrolling = true;
-        this.momentumScrollFrame();
-    }
-
-    momentumScrollFrame() {
-        if (Math.abs(this.scrollVelocity) < 0.1) {
-            this.isScrolling = false;
-            this.scrollVelocity = 0;
-            return;
-        }
-
-        // Apply scroll
-        this.scrollContainer.scrollBy({ 
-            top: this.scrollVelocity, 
-            behavior: 'auto' // Use auto for smooth momentum
-        });
-
-        // Apply decay
-        this.scrollVelocity *= this.scrollDecay;
-
-        // Continue animation
-        requestAnimationFrame(() => this.momentumScrollFrame());
-    }
-
     // Method to add custom thumbnails
     addThumbnail(thumbnailData) {
         this.thumbnails.push(thumbnailData);
@@ -245,10 +219,7 @@ export class ThumbnailMenu {
         const g = parseInt(hex.substr(2, 2), 16);
         const b = parseInt(hex.substr(4, 2), 16);
         
-        // Calculate dropdown width based on thumbnail width + padding
-        const thumbnailWidth = Math.min(window.innerWidth * 0.25, 200); // Same as CSS min(25vw, 200px)
-        const dropdownWidth = thumbnailWidth + 40; // Thumbnail width + padding
-        this.dropdown.style.width = `${dropdownWidth}px`;
+        this.dropdown.style.width = `min(${this.settings.widthPercentage}vw, 300px)`;
         this.dropdown.style.background = `rgba(${r}, ${g}, ${b}, ${this.settings.backgroundOpacity})`;
         this.dropdown.style.borderRadius = `${this.settings.borderRadius}px`;
     }
