@@ -685,8 +685,7 @@ body
     text-align: center;
 }
 
-/* Mobile responsive adjustments for thumbnail menu - DISABLED for fixed width */
-/* 
+/* Mobile responsive adjustments for thumbnail menu */
 @media (max-width: 768px) {
     .thumbnail-menu-container {
         top: 10px;
@@ -731,4 +730,3 @@ body
         padding: 6px;
     }
 }
-*/

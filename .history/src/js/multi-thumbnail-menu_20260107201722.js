@@ -271,7 +271,7 @@ class ThumbnailDropdownMenu {
         const b = parseInt(hex.substr(4, 2), 16);
         
         // Fixed dropdown width to match grid container
-        this.dropdown.style.width = '250px';
+        this.dropdown.style.width = '260px';
         this.dropdown.style.background = `rgba(${r}, ${g}, ${b}, ${this.settings.backgroundOpacity})`;
         this.dropdown.style.borderRadius = `${this.settings.borderRadius}px`;
     }

@@ -536,7 +536,7 @@ body
     padding: 15px;
     backdrop-filter: blur(15px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    width: 250px;
+    width: 260px;
     max-height: 70vh;
     display: none;
     overflow: hidden;
@@ -685,8 +685,7 @@ body
     text-align: center;
 }
 
-/* Mobile responsive adjustments for thumbnail menu - DISABLED for fixed width */
-/* 
+/* Mobile responsive adjustments for thumbnail menu */
 @media (max-width: 768px) {
     .thumbnail-menu-container {
         top: 10px;
@@ -731,4 +730,3 @@ body
         padding: 6px;
     }
 }
-*/
