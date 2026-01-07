@@ -327,30 +327,3 @@ body
     background: rgba(74, 158, 255, 0.2);
     color: #4a9eff;
 }
-
-/* Screenshot GUI enhancements */
-.lil-gui .controller.disabled input {
-    color: #666 !important;
-    background: rgba(255, 255, 255, 0.05) !important;
-}
-
-.lil-gui .title.screenshot-info {
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    color: #888;
-}
-
-/* Quick screenshot button styling */
-.lil-gui button.screenshot-btn {
-    background: linear-gradient(135deg, #4a9eff 0%, #0066cc 100%);
-    border: 1px solid rgba(74, 158, 255, 0.3);
-    color: white;
-    font-weight: bold;
-    transition: all 0.2s ease;
-}
-
-.lil-gui button.screenshot-btn:hover {
-    background: linear-gradient(135deg, #5badff 0%, #0077dd 100%);
-    transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(74, 158, 255, 0.3);
-}

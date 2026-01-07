@@ -1270,13 +1270,6 @@ class ThreeJSApp {
         };
 
         // Add screenshot buttons
-        screenshotFolder.add({
-            testButton: () => {
-                alert('Test button works! GUI is connected properly.');
-                console.log('Test button clicked - GUI is working');
-            }
-        }, 'testButton').name('🔧 Test Button');
-        
         screenshotFolder.add(actions, 'quickShot').name('📷 Quick Screenshot (1920×1080)');
         screenshotFolder.add(actions, 'transparentShot').name('🫥 Transparent Background');
         screenshotFolder.add(actions, 'hdShot').name('📱 HD (1280×720)');

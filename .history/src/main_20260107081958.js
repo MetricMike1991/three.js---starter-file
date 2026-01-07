@@ -1224,9 +1224,7 @@ class ThreeJSApp {
         // Quick screenshot actions
         const actions = {
             quickShot: async () => {
-                console.log('Quick shot button clicked!');
                 const params = getScreenshotParams();
-                console.log('Screenshot params:', params);
                 const result = await ScreenshotUtils.quickScreenshot(params.renderer, params.scene, params.camera);
                 if (result.success) {
                     console.log(`✅ ${result.filename} saved (${result.size})`);
@@ -1236,7 +1234,6 @@ class ThreeJSApp {
             },
             
             transparentShot: async () => {
-                console.log('Transparent shot button clicked!');
                 const params = getScreenshotParams();
                 const result = await ScreenshotUtils.transparentScreenshot(params.renderer, params.scene, params.camera);
                 if (result.success) {
@@ -1247,7 +1244,6 @@ class ThreeJSApp {
             },
             
             hdShot: async () => {
-                console.log('HD shot button clicked!');
                 const params = getScreenshotParams();
                 const result = await ScreenshotUtils.hdScreenshot(params.renderer, params.scene, params.camera);
                 if (result.success) {
@@ -1258,7 +1254,6 @@ class ThreeJSApp {
             },
             
             uhd4kShot: async () => {
-                console.log('4K shot button clicked!');
                 const params = getScreenshotParams();
                 const result = await ScreenshotUtils.uhd4kScreenshot(params.renderer, params.scene, params.camera);
                 if (result.success) {
@@ -1270,13 +1265,6 @@ class ThreeJSApp {
         };
 
         // Add screenshot buttons
-        screenshotFolder.add({
-            testButton: () => {
-                alert('Test button works! GUI is connected properly.');
-                console.log('Test button clicked - GUI is working');
-            }
-        }, 'testButton').name('🔧 Test Button');
-        
         screenshotFolder.add(actions, 'quickShot').name('📷 Quick Screenshot (1920×1080)');
         screenshotFolder.add(actions, 'transparentShot').name('🫥 Transparent Background');
         screenshotFolder.add(actions, 'hdShot').name('📱 HD (1280×720)');

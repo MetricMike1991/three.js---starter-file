@@ -12,7 +12,7 @@ import LightingSystem from './js/lighting.js';
 import ParticleSystem from './js/particles.js';
 import SettingsManager from './js/settings.js';
 import AnimationPlayer from './js/animation-player.js';
-import { ScreenshotUtils } from './js/screenshot-utils.js';
+import ScreenshotManager from './js/screenshot.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 /**
@@ -337,9 +337,6 @@ class ThreeJSApp {
         
         // Camera controls
         this.setupCameraGUI();
-
-        // Screenshot controls
-        this.setupSimpleScreenshotGUI();
 
         // Keyboard shortcut to hide/show GUI
         this.setupGUIVisibilityToggle();
@@ -1209,109 +1206,6 @@ class ThreeJSApp {
         }
         
         return `${w}:${h}`;
-    }
-
-    setupSimpleScreenshotGUI() {
-        const screenshotFolder = this.gui.addFolder('📸 Screenshot');
-        
-        // Get renderer, scene, camera references
-        const getScreenshotParams = () => ({
-            renderer: this.sceneManager.getRenderer(),
-            scene: this.sceneManager.getScene(),
-            camera: this.cameraManager.getCamera()
-        });
-
-        // Quick screenshot actions
-        const actions = {
-            quickShot: async () => {
-                console.log('Quick shot button clicked!');
-                const params = getScreenshotParams();
-                console.log('Screenshot params:', params);
-                const result = await ScreenshotUtils.quickScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ Screenshot failed: ${result.error}`);
-                }
-            },
-            
-            transparentShot: async () => {
-                console.log('Transparent shot button clicked!');
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.transparentScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ Transparent ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ Transparent screenshot failed: ${result.error}`);
-                }
-            },
-            
-            hdShot: async () => {
-                console.log('HD shot button clicked!');
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.hdScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ HD ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ HD screenshot failed: ${result.error}`);
-                }
-            },
-            
-            uhd4kShot: async () => {
-                console.log('4K shot button clicked!');
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.uhd4kScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ 4K ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ 4K screenshot failed: ${result.error}`);
-                }
-            }
-        };
-
-        // Add screenshot buttons
-        screenshotFolder.add({
-            testButton: () => {
-                alert('Test button works! GUI is connected properly.');
-                console.log('Test button clicked - GUI is working');
-            }
-        }, 'testButton').name('🔧 Test Button');
-        
-        screenshotFolder.add(actions, 'quickShot').name('📷 Quick Screenshot (1920×1080)');
-        screenshotFolder.add(actions, 'transparentShot').name('🫥 Transparent Background');
-        screenshotFolder.add(actions, 'hdShot').name('📱 HD (1280×720)');
-        screenshotFolder.add(actions, 'uhd4kShot').name('📺 4K UHD (3840×2160)');
-
-        // Custom screenshot settings
-        const customFolder = screenshotFolder.addFolder('Custom Settings');
-        
-        const customSettings = {
-            width: 1920,
-            height: 1080,
-            transparent: false,
-            format: 'png',
-            filename: 'screenshot'
-        };
-
-        customFolder.add(customSettings, 'width', 100, 4096, 1).name('Width');
-        customFolder.add(customSettings, 'height', 100, 4096, 1).name('Height');
-        customFolder.add(customSettings, 'transparent').name('Transparent');
-        customFolder.add(customSettings, 'format', ['png', 'jpg', 'webp']).name('Format');
-        customFolder.add(customSettings, 'filename').name('Filename');
-
-        customFolder.add({
-            customShot: async () => {
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.takeScreenshot(params.renderer, params.scene, params.camera, customSettings);
-                if (result.success) {
-                    console.log(`✅ Custom ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ Custom screenshot failed: ${result.error}`);
-                }
-            }
-        }, 'customShot').name('📸 Take Custom Screenshot');
-
-        screenshotFolder.open();
     }
 }
 

@@ -9,10 +9,7 @@ import GUI from 'lil-gui';
 import SceneManager from './js/scene.js';
 import CameraManager from './js/camera.js';
 import LightingSystem from './js/lighting.js';
-import ParticleSystem from './js/particles.js';
-import SettingsManager from './js/settings.js';
-import AnimationPlayer from './js/animation-player.js';
-import { ScreenshotUtils } from './js/screenshot-utils.js';
+import ParticleSystem from './js/particles.js';import GeometryParticleSystem from './js/geometry-particles.js';import SettingsManager from './js/settings.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 /**
@@ -76,14 +73,8 @@ class ThreeJSApp {
         this.cameraManager = new CameraManager(this.sceneManager.getCanvas(), this.sizes);
         this.lightingSystem = new LightingSystem(this.sceneManager.getScene());
         this.particleSystem = new ParticleSystem(this.sceneManager.getScene());
+        this.geometrySystem = new GeometryParticleSystem(this.sceneManager.getScene());
         this.settingsManager = new SettingsManager();
-        this.animationPlayer = new AnimationPlayer();
-        
-        // Screenshot manager disabled for now
-        this.screenshotManager = null;
-        
-        // Set scene reference for camera raycasting
-        this.cameraManager.setScene(this.sceneManager.getScene());
 
         // Make camera available globally for depth blur calculations
         window.camera = this.cameraManager.getCamera();
@@ -105,7 +96,7 @@ class ThreeJSApp {
         this.settingsManager.registerManager('camera', this.cameraManager);
         this.settingsManager.registerManager('lighting', this.lightingSystem);
         this.settingsManager.registerManager('dustParticles', this.particleSystem);
-        this.settingsManager.registerManager('animationPlayer', this.animationPlayer);
+        this.settingsManager.registerManager('geometryParticles', this.geometrySystem);
 
         // Setup components
         this.setupRenderer();
@@ -125,9 +116,6 @@ class ThreeJSApp {
         setTimeout(() => this.updateAllGUIControls(), 500);
 
         // Start render loop
-        // Initialize animation player with hidden state
-        this.animationPlayer.setVisibility(false);
-        
         this.animate();
     }
 
@@ -334,12 +322,6 @@ class ThreeJSApp {
         
         // Lighting controls
         this.setupLightingGUI();
-        
-        // Camera controls
-        this.setupCameraGUI();
-
-        // Screenshot controls
-        this.setupSimpleScreenshotGUI();
 
         // Keyboard shortcut to hide/show GUI
         this.setupGUIVisibilityToggle();
@@ -529,6 +511,105 @@ class ThreeJSApp {
         // Open important folders by default
         blurFolder.open();
         dofFolder.open();
+        
+        // Connection System Controls
+        const connectionFolder = dustFolder.addFolder('🧬 Connection System');
+        
+        connectionFolder.add(dustParams, 'connectionsEnabled').name('Enable Connections')
+            .onChange((value) => this.particleSystem.toggleConnections(value));
+            
+        connectionFolder.add(dustParams, 'connectionCount', 50, 1000, 10).name('Connection Count')
+            .onChange((value) => this.particleSystem.updateConnectionCount(value));
+            
+        connectionFolder.add(dustParams, 'connectionDensity', 0, 1, 0.01).name('Connection Density')
+            .onChange((value) => this.particleSystem.updateConnectionDensity(value));
+            
+        connectionFolder.add(dustParams, 'connectionDistance', 0.5, 5, 0.1).name('Max Distance')
+            .onChange((value) => this.particleSystem.updateConnectionDistance(value));
+            
+        connectionFolder.addColor(dustParams, 'connectionColor').name('Connection Color')
+            .onChange((value) => this.particleSystem.updateConnectionColor(value));
+            
+        connectionFolder.add(dustParams, 'connectionOpacity', 0, 1, 0.01).name('Connection Opacity')
+            .onChange((value) => this.particleSystem.updateConnectionOpacity(value));
+            
+        connectionFolder.add(dustParams, 'connectionSpeed', 0, 2, 0.1).name('Animation Speed')
+            .onChange((value) => this.particleSystem.updateConnectionSpeed(value));
+            
+        connectionFolder.add(dustParams, 'connectionWidth', 1, 5, 1).name('Line Width')
+            .onChange((value) => this.particleSystem.updateConnectionWidth(value));
+            
+        connectionFolder.add(dustParams, 'connectionPattern', 
+            ['random', 'nearest', 'dna', 'chemical']).name('Pattern Type')
+            .onChange((value) => this.particleSystem.updateConnectionPattern(value));
+            
+        // Connection Pattern Presets
+        const connectionPresets = {
+            '🧬 DNA Strands': () => {
+                dustParams.connectionsEnabled = true;
+                dustParams.connectionPattern = 'dna';
+                dustParams.connectionCount = 300;
+                dustParams.connectionDensity = 0.4;
+                dustParams.connectionColor = '#00ff88';
+                dustParams.connectionOpacity = 0.25;
+                dustParams.connectionSpeed = 0.3;
+                this.particleSystem.toggleConnections(true);
+                this.particleSystem.updateConnectionPattern('dna');
+                this.particleSystem.updateConnectionCount(300);
+                this.particleSystem.updateConnectionDensity(0.4);
+                this.particleSystem.updateConnectionColor('#00ff88');
+                this.particleSystem.updateConnectionOpacity(0.25);
+                this.particleSystem.updateConnectionSpeed(0.3);
+                connectionFolder.controllersRecursive().forEach(c => c.updateDisplay());
+            },
+            '⚗️ Chemical Bonds': () => {
+                dustParams.connectionsEnabled = true;
+                dustParams.connectionPattern = 'chemical';
+                dustParams.connectionCount = 200;
+                dustParams.connectionDensity = 0.3;
+                dustParams.connectionColor = '#ffaa00';
+                dustParams.connectionOpacity = 0.3;
+                dustParams.connectionDistance = 1.2;
+                this.particleSystem.toggleConnections(true);
+                this.particleSystem.updateConnectionPattern('chemical');
+                this.particleSystem.updateConnectionCount(200);
+                this.particleSystem.updateConnectionDensity(0.3);
+                this.particleSystem.updateConnectionColor('#ffaa00');
+                this.particleSystem.updateConnectionOpacity(0.3);
+                this.particleSystem.updateConnectionDistance(1.2);
+                connectionFolder.controllersRecursive().forEach(c => c.updateDisplay());
+            },
+            '🕸️ Neural Network': () => {
+                dustParams.connectionsEnabled = true;
+                dustParams.connectionPattern = 'nearest';
+                dustParams.connectionCount = 400;
+                dustParams.connectionDensity = 0.5;
+                dustParams.connectionColor = '#00aaff';
+                dustParams.connectionOpacity = 0.2;
+                dustParams.connectionSpeed = 0.1;
+                this.particleSystem.toggleConnections(true);
+                this.particleSystem.updateConnectionPattern('nearest');
+                this.particleSystem.updateConnectionCount(400);
+                this.particleSystem.updateConnectionDensity(0.5);
+                this.particleSystem.updateConnectionColor('#00aaff');
+                this.particleSystem.updateConnectionOpacity(0.2);
+                this.particleSystem.updateConnectionSpeed(0.1);
+                connectionFolder.controllersRecursive().forEach(c => c.updateDisplay());
+            },
+            '❌ Disable Connections': () => {
+                dustParams.connectionsEnabled = false;
+                this.particleSystem.toggleConnections(false);
+                connectionFolder.controllersRecursive().forEach(c => c.updateDisplay());
+            }
+        };
+        
+        connectionFolder.add(connectionPresets, '🧬 DNA Strands').name('🧬 DNA Strands');
+        connectionFolder.add(connectionPresets, '⚗️ Chemical Bonds').name('⚗️ Chemical Bonds');
+        connectionFolder.add(connectionPresets, '🕸️ Neural Network').name('🕸️ Neural Network');
+        connectionFolder.add(connectionPresets, '❌ Disable Connections').name('❌ Disable Connections');
+        
+        connectionFolder.open();
+        
         dustFolder.open();
     }
 
@@ -594,242 +675,6 @@ class ThreeJSApp {
         
         ambFolder.open();
         lightsFolder.open();
-    }
-
-    setupCameraGUI() {
-        const cameraFolder = this.gui.addFolder('📷 Camera Controls');
-        const camera = this.cameraManager.getCamera();
-        const controls = this.cameraManager.getControls();
-        
-        // Zoom Range Controls
-        const zoomFolder = cameraFolder.addFolder('Zoom Range');
-        
-        zoomFolder.add(controls, 'minDistance', 0.001, 1, 0.001).name('Min Zoom Distance')
-            .onChange(() => console.log('Min distance:', controls.minDistance));
-        
-        zoomFolder.add(controls, 'maxDistance', 10, 500, 1).name('Max Zoom Distance')
-            .onChange(() => console.log('Max distance:', controls.maxDistance));
-        
-        zoomFolder.add(controls, 'zoomSpeed', 0.1, 2, 0.1).name('Zoom Speed')
-            .onChange(() => console.log('Zoom speed:', controls.zoomSpeed));
-        
-        // Field of View Control
-        const fovFolder = cameraFolder.addFolder('Field of View');
-        
-        fovFolder.add({ fov: camera.fov }, 'fov', 10, 150, 1).name('FOV (degrees)')
-            .onChange((value) => {
-                this.cameraManager.setFOV(value);
-            });
-        
-        // Copy camera settings button
-        fovFolder.add({
-            copyCameraSettings: () => {
-                this.cameraManager.copyCameraSettingsToClipboard();
-            }
-        }, 'copyCameraSettings').name('📋 Copy Camera Settings');
-        
-        // Copy all GUI settings button
-        fovFolder.add({
-            copyAllSettings: () => {
-                this.cameraManager.copyAllSettingsToClipboard(this.settingsManager);
-            }
-        }, 'copyAllSettings').name('📋 Copy ALL GUI Settings');
-        
-        // Zoom Momentum Controls
-        const momentumFolder = cameraFolder.addFolder('Zoom Momentum');
-        const cameraParams = this.cameraManager;
-        
-        momentumFolder.add(cameraParams, 'zoomDecay', 0.8, 0.99, 0.01).name('Momentum Decay')
-            .onChange(() => console.log('Zoom decay:', cameraParams.zoomDecay));
-        
-        momentumFolder.add(cameraParams, 'zoomMomentumThreshold', 0.001, 0.1, 0.001).name('Momentum Threshold')
-            .onChange(() => console.log('Momentum threshold:', cameraParams.zoomMomentumThreshold));
-        
-        // Add a velocity multiplier for testing
-        const velocityMultiplier = { value: 1.0 };
-        momentumFolder.add(velocityMultiplier, 'value', 0.1, 5, 0.1).name('Velocity Multiplier')
-            .onChange((value) => {
-                // Store the multiplier for use in trackZoomMomentum
-                cameraParams.velocityMultiplier = value;
-                console.log('Velocity multiplier:', value);
-            });
-        
-        // Reset button
-        cameraFolder.add({
-            resetCamera: () => {
-                this.cameraManager.resetCamera();
-                console.log('Camera fully reset to defaults');
-            }
-        }, 'resetCamera').name('🔄 Reset Camera');
-        
-        // Test momentum button
-        cameraFolder.add({
-            testMomentum: () => {
-                console.log('Testing momentum...');
-                cameraParams.zoomMomentum = 0.2; // Set positive momentum
-                cameraParams.momentumActive = true;
-                console.log('Momentum set to:', cameraParams.zoomMomentum);
-            }
-        }, 'testMomentum').name('🧪 Test Momentum');
-        
-        // Clear momentum button
-        cameraFolder.add({
-            clearMomentum: () => {
-                cameraParams.zoomMomentum = 0;
-                cameraParams.momentumActive = false;
-                console.log('Momentum cleared');
-            }
-        }, 'clearMomentum').name('❌ Clear Momentum');
-        
-        // Debug info
-        const debugFolder = cameraFolder.addFolder('Debug Info');
-        const debugInfo = {
-            currentDistance: 0,
-            momentum: 0,
-            targetX: 0,
-            targetY: 0,
-            targetZ: 0
-        };
-        
-        const distanceController = debugFolder.add(debugInfo, 'currentDistance').name('Distance').listen();
-        const momentumController = debugFolder.add(debugInfo, 'momentum').name('Momentum').listen();
-        const targetXController = debugFolder.add(debugInfo, 'targetX').name('Target X').listen();
-        const targetYController = debugFolder.add(debugInfo, 'targetY').name('Target Y').listen();
-        const targetZController = debugFolder.add(debugInfo, 'targetZ').name('Target Z').listen();
-        
-        // Update debug info in animation loop
-        const updateDebugInfo = () => {
-            debugInfo.currentDistance = camera.position.distanceTo(controls.target);
-            debugInfo.momentum = cameraParams.zoomMomentum || 0;
-            debugInfo.targetX = controls.target.x;
-            debugInfo.targetY = controls.target.y;
-            debugInfo.targetZ = controls.target.z;
-        };
-        
-        // Store update function for animation loop
-        this.updateCameraDebug = updateDebugInfo;
-        
-        // Initialize velocity multiplier with user's preferred setting
-        cameraParams.velocityMultiplier = 0.4;
-        
-        momentumFolder.open();
-        zoomFolder.open();
-        fovFolder.open();
-        
-        // Axis Helper Section
-        const axisFolder = cameraFolder.addFolder('🎯 Rotation Center Helper');
-        
-        axisFolder.add({
-            showAxis: this.cameraManager.axisHelperVisible
-        }, 'showAxis').name('Show Axis Helper')
-            .onChange((value) => {
-                this.cameraManager.toggleAxisHelper(value);
-            });
-        
-        axisFolder.add({
-            axisSize: this.cameraManager.axisHelperSize
-        }, 'axisSize', 0.1, 2, 0.1).name('Axis Size')
-            .onChange((value) => {
-                this.cameraManager.setAxisHelperSize(value);
-            });
-        
-        // Coordinates Section
-        const coordsFolder = cameraFolder.addFolder('📍 Coordinates');
-        
-        // Live coordinate display
-        const coordDisplay = {
-            x: 0,
-            y: 0, 
-            z: 0
-        };
-        
-        const xController = coordsFolder.add(coordDisplay, 'x').name('Center X').listen();
-        const yController = coordsFolder.add(coordDisplay, 'y').name('Center Y').listen();
-        const zController = coordsFolder.add(coordDisplay, 'z').name('Center Z').listen();
-        
-        // Manual control sliders
-        const manualFolder = coordsFolder.addFolder('Manual Control');
-        
-        const manualControls = {
-            x: this.cameraManager.getRotationCenter().x,
-            y: this.cameraManager.getRotationCenter().y,
-            z: this.cameraManager.getRotationCenter().z
-        };
-        
-        manualFolder.add(manualControls, 'x', -5, 5, 0.001).name('Set X Position')
-            .onChange((value) => {
-                this.cameraManager.setRotationCenterX(value);
-            })
-            .listen();
-            
-        manualFolder.add(manualControls, 'y', -5, 5, 0.001).name('Set Y Position')
-            .onChange((value) => {
-                this.cameraManager.setRotationCenterY(value);
-            })
-            .listen();
-            
-        manualFolder.add(manualControls, 'z', -5, 5, 0.001).name('Set Z Position')
-            .onChange((value) => {
-                this.cameraManager.setRotationCenterZ(value);
-            })
-            .listen();
-        
-        // Copy coordinates button
-        coordsFolder.add({
-            copyCoords: () => {
-                this.cameraManager.copyCoordinatesToClipboard();
-            }
-        }, 'copyCoords').name('📋 Copy Coordinates');
-        
-        // Update coordinate display in the debug update function
-        const originalUpdateDebugInfo = this.updateCameraDebug;
-        this.updateCameraDebug = () => {
-            // Call original debug update
-            if (originalUpdateDebugInfo) {
-                originalUpdateDebugInfo();
-            }
-            
-            // Update coordinate display and manual controls
-            const coords = this.cameraManager.getRotationCenter();
-            coordDisplay.x = parseFloat(coords.x.toFixed(6));
-            coordDisplay.y = parseFloat(coords.y.toFixed(6));
-            coordDisplay.z = parseFloat(coords.z.toFixed(6));
-            
-            // Update manual control sliders to match current position
-            manualControls.x = coords.x;
-            manualControls.y = coords.y;
-            manualControls.z = coords.z;
-        };
-        
-        axisFolder.open();
-        coordsFolder.open();
-        manualFolder.open();
-        
-        // Animation Player Controls
-        const animationFolder = cameraFolder.addFolder('🎬 Animation Player');
-        
-        const animationSettings = {
-            showPlayer: this.animationPlayer ? this.animationPlayer.isVisible : false,
-            alwaysVisible: this.animationPlayer ? this.animationPlayer.alwaysVisible : false
-        };
-        
-        animationFolder.add(animationSettings, 'showPlayer').name('Show Animation Player')
-            .onChange((value) => {
-                if (this.animationPlayer) {
-                    this.animationPlayer.setVisibility(value);
-                    animationSettings.showPlayer = value;
-                }
-            });
-            
-        animationFolder.add(animationSettings, 'alwaysVisible').name('Always Visible (No Auto-Hide)')
-            .onChange((value) => {
-                if (this.animationPlayer) {
-                    this.animationPlayer.setAlwaysVisible(value);
-                    animationSettings.alwaysVisible = value;
-                }
-            });
-        
-        animationFolder.open();
     }
 
     setupGUIVisibilityToggle() {
@@ -908,27 +753,11 @@ class ThreeJSApp {
 
                 model.position.set(0, -0.02, 0);
                 this.sceneManager.getScene().add(model);
-                
-                // Set clickable meshes for camera double-click functionality
-                this.cameraManager.setClickableMeshes(this.allClickableMeshes);
 
                 // Setup animations if available
                 if (gltf.animations && gltf.animations.length > 0) {
                     this.mixer = new THREE.AnimationMixer(model);
-                    
-                    // Setup animation player with mixer and animations
-                    this.animationPlayer.setMixer(this.mixer, gltf.animations);
-                    
-                    // Set up all animations (optionally auto-start first one)
-                    gltf.animations.forEach((clip, index) => {
-                        const action = this.mixer.clipAction(clip);
-                        action.setLoop(THREE.LoopRepeat);
-                        
-                        // Auto-start first animation if desired
-                        if (index === 0) {
-                            // action.play(); // Uncomment to auto-play
-                        }
-                    });
+                    // Setup your animations here
                 }
 
                 // Add model GUI controls
@@ -984,334 +813,20 @@ class ThreeJSApp {
         // Update camera
         this.cameraManager.update();
         
-        // Update camera debug info if available
-        if (this.updateCameraDebug) {
-            this.updateCameraDebug();
-        }
-        
         // Update particles
         this.particleSystem.update(deltaTime);
+        this.geometrySystem.update(deltaTime);
         
         // Update animations
         if (this.mixer) {
             this.mixer.update(deltaTime);
         }
         
-        // Update animation player
-        this.animationPlayer.update(deltaTime);
-        
         // Render
         this.renderer.render(this.sceneManager.getScene(), this.cameraManager.getCamera());
         
         // Continue loop
         requestAnimationFrame(() => this.animate());
-    }
-
-    setupScreenshotGUI() {
-        const screenshotFolder = this.gui.addFolder('📸 Screenshot');
-        const settings = this.screenshotManager.settings;
-        const presets = this.screenshotManager.getResolutionPresets();
-        
-        // Quick screenshot buttons
-        const quickActions = {
-            quickShot: () => {
-                this.screenshotManager.quickScreenshot().then(result => {
-                    if (result.success) {
-                        console.log(`✅ Screenshot saved: ${result.filename} (${result.size})`);
-                    } else {
-                        console.error('❌ Screenshot failed:', result.error);
-                    }
-                });
-            },
-            transparentShot: () => {
-                this.screenshotManager.transparentScreenshot().then(result => {
-                    if (result.success) {
-                        console.log(`✅ Transparent screenshot saved: ${result.filename} (${result.size})`);
-                    } else {
-                        console.error('❌ Screenshot failed:', result.error);
-                    }
-                });
-            }
-        };
-        
-        screenshotFolder.add(quickActions, 'quickShot').name('📷 Take Screenshot');
-        screenshotFolder.add(quickActions, 'transparentShot').name('🫥 Transparent Background');
-        
-        // Settings folder
-        const settingsFolder = screenshotFolder.addFolder('Settings');
-        
-        // Transparent background toggle
-        settingsFolder.add(settings, 'transparent').name('Transparent Background')
-            .onChange(value => {
-                console.log('Transparent background:', value ? 'ON' : 'OFF');
-            });
-        
-        // Format selection
-        const formatOptions = { png: 'PNG', jpg: 'JPEG', webp: 'WebP' };
-        settingsFolder.add(settings, 'format', formatOptions).name('Format')
-            .onChange(value => {
-                console.log('Format changed to:', value.toUpperCase());
-                // Update quality visibility
-                qualityController.domElement.style.display = value === 'png' ? 'none' : 'block';
-            });
-        
-        // Quality slider (hidden for PNG)
-        const qualityController = settingsFolder.add(settings, 'quality', 0.1, 1, 0.1).name('Quality (0.1-1.0)')
-            .onChange(value => {
-                console.log('Quality:', Math.round(value * 100) + '%');
-            });
-        
-        // Initially hide quality for PNG
-        if (settings.format === 'png') {
-            qualityController.domElement.style.display = 'none';
-        }
-        
-        // Filename
-        settingsFolder.add(settings, 'filename').name('Filename')
-            .onChange(value => {
-                // Clean filename
-                settings.filename = value.replace(/[^a-zA-Z0-9_-]/g, '');
-            });
-        
-        settingsFolder.add(settings, 'addTimestamp').name('Add Timestamp');
-        
-        // Resolution folder
-        const resolutionFolder = screenshotFolder.addFolder('Resolution');
-        
-        // Resolution presets dropdown
-        const resolutionOptions = {};
-        Object.keys(presets).forEach(key => {
-            resolutionOptions[key] = presets[key].name;
-        });
-        
-        resolutionFolder.add(settings, 'resolution', resolutionOptions).name('Preset')
-            .onChange(value => {
-                this.screenshotManager.setResolution(value);
-                updateResolutionDisplay();
-                
-                // Show/hide custom controls
-                const isCustom = value === 'custom';
-                customWidthController.domElement.style.display = isCustom ? 'block' : 'none';
-                customHeightController.domElement.style.display = isCustom ? 'block' : 'none';
-                
-                console.log('Resolution preset:', presets[value].name);
-            });
-        
-        // Custom dimensions
-        const customWidthController = resolutionFolder.add(settings, 'customWidth', 1, 8192, 1).name('Custom Width')
-            .onChange(value => {
-                this.screenshotManager.setCustomDimensions(value, settings.customHeight);
-                updateResolutionDisplay();
-            });
-            
-        const customHeightController = resolutionFolder.add(settings, 'customHeight', 1, 8192, 1).name('Custom Height')
-            .onChange(value => {
-                this.screenshotManager.setCustomDimensions(settings.customWidth, value);
-                updateResolutionDisplay();
-            });
-        
-        // Resolution display
-        const resolutionDisplay = { info: 'Loading...' };
-        const displayController = resolutionFolder.add(resolutionDisplay, 'info').name('Current Resolution');
-        displayController.domElement.querySelector('input').readOnly = true;
-        displayController.domElement.querySelector('input').style.color = '#888';
-        
-        // Update resolution display function
-        const updateResolutionDisplay = () => {
-            const res = this.screenshotManager.getCurrentResolution();
-            const megapixels = (res.width * res.height / 1000000).toFixed(1);
-            const aspectRatio = this.calculateAspectRatio(res.width, res.height);
-            resolutionDisplay.info = `${res.width}×${res.height} (${megapixels}MP, ${aspectRatio})`;
-        };
-        
-        // Initially hide custom controls if not using custom
-        const isCustomInitial = settings.resolution === 'custom';
-        customWidthController.domElement.style.display = isCustomInitial ? 'block' : 'none';
-        customHeightController.domElement.style.display = isCustomInitial ? 'block' : 'none';
-        
-        // Common resolution shortcuts
-        const commonFolder = resolutionFolder.addFolder('Quick Presets');
-        
-        const quickPresets = {
-            hd: () => this.setQuickResolution('1280x720'),
-            fhd: () => this.setQuickResolution('1920x1080'),
-            qhd: () => this.setQuickResolution('2560x1440'),
-            uhd: () => this.setQuickResolution('3840x2160'),
-            square: () => this.setQuickResolution('1080x1080'),
-            story: () => this.setQuickResolution('1080x1920')
-        };
-        
-        commonFolder.add(quickPresets, 'hd').name('📱 HD (720p)');
-        commonFolder.add(quickPresets, 'fhd').name('🖥️ Full HD (1080p)');
-        commonFolder.add(quickPresets, 'qhd').name('🖨️ 2K (1440p)');
-        commonFolder.add(quickPresets, 'uhd').name('📺 4K (2160p)');
-        commonFolder.add(quickPresets, 'square').name('📷 Square (1:1)');
-        commonFolder.add(quickPresets, 'story').name('📱 Story (9:16)');
-        
-        // Advanced settings
-        const advancedFolder = screenshotFolder.addFolder('Advanced');
-        
-        const advancedActions = {
-            currentViewport: () => {
-                const canvas = this.sceneManager.getCanvas();
-                this.screenshotManager.setCustomDimensions(canvas.width, canvas.height);
-                settings.resolution = 'custom';
-                updateResolutionDisplay();
-                console.log(`Set to current viewport: ${canvas.width}×${canvas.height}`);
-            },
-            copySettings: () => {
-                const screenshotSettings = this.screenshotManager.getSettings();
-                navigator.clipboard.writeText(JSON.stringify(screenshotSettings, null, 2));
-                console.log('📋 Screenshot settings copied to clipboard');
-            }
-        };
-        
-        advancedFolder.add(advancedActions, 'currentViewport').name('📐 Use Current Viewport');
-        advancedFolder.add(advancedActions, 'copySettings').name('📋 Copy Screenshot Settings');
-        
-        // Initialize display
-        updateResolutionDisplay();
-        
-        // Open important folders by default
-        settingsFolder.open();
-        resolutionFolder.open();
-        screenshotFolder.open();
-    }
-    
-    setQuickResolution(presetKey) {
-        this.screenshotManager.setResolution(presetKey);
-        this.screenshotManager.settings.resolution = presetKey;
-        console.log('Quick preset:', this.screenshotManager.getResolutionPresets()[presetKey].name);
-    }
-    
-    calculateAspectRatio(width, height) {
-        const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
-        const divisor = gcd(width, height);
-        const w = width / divisor;
-        const h = height / divisor;
-        
-        // Common aspect ratios
-        const ratios = {
-            '16:9': [16, 9],
-            '21:9': [21, 9],
-            '4:3': [4, 3],
-            '3:2': [3, 2],
-            '1:1': [1, 1],
-            '9:16': [9, 16],
-            '2:1': [2, 1],
-            '5:4': [5, 4]
-        };
-        
-        for (const [ratio, [rw, rh]] of Object.entries(ratios)) {
-            if (w === rw && h === rh) {
-                return ratio;
-            }
-        }
-        
-        return `${w}:${h}`;
-    }
-
-    setupSimpleScreenshotGUI() {
-        const screenshotFolder = this.gui.addFolder('📸 Screenshot');
-        
-        // Get renderer, scene, camera references
-        const getScreenshotParams = () => ({
-            renderer: this.sceneManager.getRenderer(),
-            scene: this.sceneManager.getScene(),
-            camera: this.cameraManager.getCamera()
-        });
-
-        // Quick screenshot actions
-        const actions = {
-            quickShot: async () => {
-                console.log('Quick shot button clicked!');
-                const params = getScreenshotParams();
-                console.log('Screenshot params:', params);
-                const result = await ScreenshotUtils.quickScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ Screenshot failed: ${result.error}`);
-                }
-            },
-            
-            transparentShot: async () => {
-                console.log('Transparent shot button clicked!');
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.transparentScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ Transparent ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ Transparent screenshot failed: ${result.error}`);
-                }
-            },
-            
-            hdShot: async () => {
-                console.log('HD shot button clicked!');
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.hdScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ HD ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ HD screenshot failed: ${result.error}`);
-                }
-            },
-            
-            uhd4kShot: async () => {
-                console.log('4K shot button clicked!');
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.uhd4kScreenshot(params.renderer, params.scene, params.camera);
-                if (result.success) {
-                    console.log(`✅ 4K ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ 4K screenshot failed: ${result.error}`);
-                }
-            }
-        };
-
-        // Add screenshot buttons
-        screenshotFolder.add({
-            testButton: () => {
-                alert('Test button works! GUI is connected properly.');
-                console.log('Test button clicked - GUI is working');
-            }
-        }, 'testButton').name('🔧 Test Button');
-        
-        screenshotFolder.add(actions, 'quickShot').name('📷 Quick Screenshot (1920×1080)');
-        screenshotFolder.add(actions, 'transparentShot').name('🫥 Transparent Background');
-        screenshotFolder.add(actions, 'hdShot').name('📱 HD (1280×720)');
-        screenshotFolder.add(actions, 'uhd4kShot').name('📺 4K UHD (3840×2160)');
-
-        // Custom screenshot settings
-        const customFolder = screenshotFolder.addFolder('Custom Settings');
-        
-        const customSettings = {
-            width: 1920,
-            height: 1080,
-            transparent: false,
-            format: 'png',
-            filename: 'screenshot'
-        };
-
-        customFolder.add(customSettings, 'width', 100, 4096, 1).name('Width');
-        customFolder.add(customSettings, 'height', 100, 4096, 1).name('Height');
-        customFolder.add(customSettings, 'transparent').name('Transparent');
-        customFolder.add(customSettings, 'format', ['png', 'jpg', 'webp']).name('Format');
-        customFolder.add(customSettings, 'filename').name('Filename');
-
-        customFolder.add({
-            customShot: async () => {
-                const params = getScreenshotParams();
-                const result = await ScreenshotUtils.takeScreenshot(params.renderer, params.scene, params.camera, customSettings);
-                if (result.success) {
-                    console.log(`✅ Custom ${result.filename} saved (${result.size})`);
-                } else {
-                    console.error(`❌ Custom screenshot failed: ${result.error}`);
-                }
-            }
-        }, 'customShot').name('📸 Take Custom Screenshot');
-
-        screenshotFolder.open();
     }
 }
 
