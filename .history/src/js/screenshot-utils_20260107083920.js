@@ -35,20 +35,6 @@ const formatFileSize = (bytes) => {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
 };
 
-// Camera flash effect
-const showCameraFlash = () => {
-    const flash = document.createElement('div');
-    flash.className = 'camera-flash';
-    document.body.appendChild(flash);
-    
-    // Remove flash element after animation completes
-    setTimeout(() => {
-        if (flash.parentNode) {
-            flash.parentNode.removeChild(flash);
-        }
-    }, 300);
-};
-
 // Main screenshot function
 const takeScreenshot = async (renderer, scene, camera, options = {}) => {
     const settings = {
@@ -64,9 +50,6 @@ const takeScreenshot = async (renderer, scene, camera, options = {}) => {
 
     try {
         console.log('Taking screenshot with settings:', settings);
-        
-        // Show camera flash effect
-        showCameraFlash();
 
         // Store original settings
         const originalSize = renderer.getSize(new THREE.Vector2());
@@ -157,14 +140,5 @@ export const ScreenshotUtils = {
     // 4K screenshot
     uhd4kScreenshot: (renderer, scene, camera) => {
         return takeScreenshot(renderer, scene, camera, { width: 3840, height: 2160 });
-    },
-
-    // Thumbnail screenshot
-    thumbnailScreenshot: (renderer, scene, camera) => {
-        return takeScreenshot(renderer, scene, camera, { 
-            width: 400, 
-            height: 300, 
-            filename: 'thumbnail' 
-        });
     }
 };
