@@ -382,7 +382,7 @@ class ThreeJSApp {
         const presetFolder = this.trackFolder(this.gui.addFolder('🎬 Scene Presets'));
         presetFolder.add(scenePresets, 'Cinematic Blue').name('🎭 Cinematic Blue');
         presetFolder.add(scenePresets, 'Reset to Default').name('🔄 Reset to Default');
-        // presetFolder.open();
+        presetFolder.open();
 
         // Background controls
         this.setupBackgroundGUI();
@@ -442,7 +442,7 @@ class ThreeJSApp {
         groundFolder.add(this.groundParams, 'visible').name('Visible')
             .onChange((v) => this.ground.visible = v);
         
-        // groundFolder.open();
+        groundFolder.open();
     }
 
     setupParticlesGUI() {
@@ -588,9 +588,9 @@ class ThreeJSApp {
         presetFolder.add(particlePresets, 'Reset Dust').name('🔄 Reset Dust');
 
         // Open important folders by default
-        // blurFolder.open();
-        // dofFolder.open();
-        // dustFolder.open();
+        blurFolder.open();
+        dofFolder.open();
+        dustFolder.open();
     }
 
     setupLightingGUI() {
@@ -641,7 +641,7 @@ class ThreeJSApp {
         dirFolder.add(dirParams, 'showHelper').name('Show Helper')
             .onChange(v => lights.directionalHelper.visible = v);
         
-        // dirFolder.open();
+        dirFolder.open();
 
         // Ambient Light
         const ambFolder = this.trackFolder(lightsFolder.addFolder('Ambient Light'));
@@ -653,8 +653,8 @@ class ThreeJSApp {
         ambFolder.addColor(ambParams, 'color').name('Color')
             .onChange(v => lights.ambient.color.set(v));
         
-        // ambFolder.open();
-        // lightsFolder.open();
+        ambFolder.open();
+        lightsFolder.open();
     }
 
     setupCameraGUI() {
@@ -773,9 +773,9 @@ class ThreeJSApp {
         // Initialize velocity multiplier with user's preferred setting
         cameraParams.velocityMultiplier = 0.4;
         
-        // momentumFolder.open();
-        // zoomFolder.open();
-        // fovFolder.open();
+        momentumFolder.open();
+        zoomFolder.open();
+        fovFolder.open();
         
         // Axis Helper Section
         const axisFolder = this.trackFolder(cameraFolder.addFolder('🎯 Rotation Center Helper'));
@@ -862,9 +862,9 @@ class ThreeJSApp {
             manualControls.z = coords.z;
         };
         
-        // axisFolder.open();
-        // coordsFolder.open();
-        // manualFolder.open();
+        axisFolder.open();
+        coordsFolder.open();
+        manualFolder.open();
         
         // Animation Player Controls
         const animationFolder = this.trackFolder(cameraFolder.addFolder('🎬 Animation Player'));
@@ -890,7 +890,7 @@ class ThreeJSApp {
                 }
             });
         
-        // animationFolder.open();
+        animationFolder.open();
     }
 
     setupGUIVisibilityToggle() {
@@ -1018,7 +1018,7 @@ class ThreeJSApp {
         modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
         modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
         
-        // modelFolder.open();
+        modelFolder.open();
     }
 
     setupEventListeners() {

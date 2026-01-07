@@ -379,10 +379,10 @@ class ThreeJSApp {
             }
         };
 
-        const presetFolder = this.trackFolder(this.gui.addFolder('🎬 Scene Presets'));
+        const presetFolder = this.gui.addFolder('🎬 Scene Presets');
         presetFolder.add(scenePresets, 'Cinematic Blue').name('🎭 Cinematic Blue');
         presetFolder.add(scenePresets, 'Reset to Default').name('🔄 Reset to Default');
-        // presetFolder.open();
+        presetFolder.open();
 
         // Background controls
         this.setupBackgroundGUI();
@@ -416,7 +416,7 @@ class ThreeJSApp {
     }
 
     setupGroundGUI() {
-        const groundFolder = this.trackFolder(this.gui.addFolder('Ground Plane'));
+        const groundFolder = this.gui.addFolder('Ground Plane');
         
         groundFolder.add(this.groundParams, 'mode', ['Solid', 'Infinite Canvas']).name('Type')
             .onChange((val) => this.updateGroundMode(val));
@@ -442,11 +442,11 @@ class ThreeJSApp {
         groundFolder.add(this.groundParams, 'visible').name('Visible')
             .onChange((v) => this.ground.visible = v);
         
-        // groundFolder.open();
+        groundFolder.open();
     }
 
     setupParticlesGUI() {
-        const dustFolder = this.trackFolder(this.gui.addFolder('Dust Particles'));
+        const dustFolder = this.gui.addFolder('Dust Particles');
         const dustParams = this.particleSystem.getParams();
 
         // Basic Particle Controls
@@ -471,13 +471,13 @@ class ThreeJSApp {
             .onChange((value) => this.particleSystem.setVisible(value));
 
         // Blur Effects Section
-        const blurFolder = this.trackFolder(dustFolder.addFolder('Blur Effects'));
+        const blurFolder = dustFolder.addFolder('Blur Effects');
         
         blurFolder.add(dustParams, 'blur', 0, 1, 0.01).name('Particle Blur')
             .onChange((value) => this.particleSystem.updateBlur(value));
 
         // Depth of Field Section
-        const dofFolder = this.trackFolder(dustFolder.addFolder('Depth of Field'));
+        const dofFolder = dustFolder.addFolder('Depth of Field');
         
         dofFolder.add(dustParams, 'depthBlur').name('Enable Depth Blur')
             .onChange((value) => this.particleSystem.updateDepthBlur(value));
@@ -492,7 +492,7 @@ class ThreeJSApp {
             .onChange((value) => this.particleSystem.updateDepthFocus(dustParams.depthFocusDistance, value));
 
         // Position and Range Controls
-        const positionFolder = this.trackFolder(dustFolder.addFolder('Position & Range'));
+        const positionFolder = dustFolder.addFolder('Position & Range');
         
         positionFolder.add(dustParams, 'horizontalRange', 0.5, 10, 0.1).name('Horizontal Range')
             .onChange(() => this.particleSystem.updateRange(dustParams.horizontalRange, dustParams.verticalRange));
@@ -581,25 +581,25 @@ class ThreeJSApp {
         };
 
         // Particle Preset Buttons
-        const presetFolder = this.trackFolder(dustFolder.addFolder('Particle Presets'));
+        const presetFolder = dustFolder.addFolder('Particle Presets');
         presetFolder.add(particlePresets, 'Light Dust').name('✨ Light Dust');
         presetFolder.add(particlePresets, 'Heavy Dust').name('🌪️ Heavy Dust');
         presetFolder.add(particlePresets, 'Magical Sparkles').name('⭐ Magical Sparkles');
         presetFolder.add(particlePresets, 'Reset Dust').name('🔄 Reset Dust');
 
         // Open important folders by default
-        // blurFolder.open();
-        // dofFolder.open();
-        // dustFolder.open();
+        blurFolder.open();
+        dofFolder.open();
+        dustFolder.open();
     }
 
     setupLightingGUI() {
-        const lightsFolder = this.trackFolder(this.gui.addFolder('Lights'));
+        const lightsFolder = this.gui.addFolder('Lights');
         const lights = this.lightingSystem.getLights();
         const lightSettings = this.lightingSystem.getSettings();
 
         // Directional Light
-        const dirFolder = this.trackFolder(lightsFolder.addFolder('Directional Light'));
+        const dirFolder = lightsFolder.addFolder('Directional Light');
         const dirParams = lightSettings.directionalLight;
 
         dirFolder.add(dirParams, 'intensity', 0, 5, 0.01).name('Intensity')
@@ -641,10 +641,10 @@ class ThreeJSApp {
         dirFolder.add(dirParams, 'showHelper').name('Show Helper')
             .onChange(v => lights.directionalHelper.visible = v);
         
-        // dirFolder.open();
+        dirFolder.open();
 
         // Ambient Light
-        const ambFolder = this.trackFolder(lightsFolder.addFolder('Ambient Light'));
+        const ambFolder = lightsFolder.addFolder('Ambient Light');
         const ambParams = lightSettings.ambientLight;
 
         ambFolder.add(ambParams, 'intensity', 0, 2, 0.01).name('Intensity')
@@ -653,17 +653,17 @@ class ThreeJSApp {
         ambFolder.addColor(ambParams, 'color').name('Color')
             .onChange(v => lights.ambient.color.set(v));
         
-        // ambFolder.open();
-        // lightsFolder.open();
+        ambFolder.open();
+        lightsFolder.open();
     }
 
     setupCameraGUI() {
-        const cameraFolder = this.trackFolder(this.gui.addFolder('📷 Camera Controls'));
+        const cameraFolder = this.gui.addFolder('📷 Camera Controls');
         const camera = this.cameraManager.getCamera();
         const controls = this.cameraManager.getControls();
         
         // Zoom Range Controls
-        const zoomFolder = this.trackFolder(cameraFolder.addFolder('Zoom Range'));
+        const zoomFolder = cameraFolder.addFolder('Zoom Range');
         
         zoomFolder.add(controls, 'minDistance', 0.001, 1, 0.001).name('Min Zoom Distance')
             .onChange(() => console.log('Min distance:', controls.minDistance));
@@ -675,7 +675,7 @@ class ThreeJSApp {
             .onChange(() => console.log('Zoom speed:', controls.zoomSpeed));
         
         // Field of View Control
-        const fovFolder = this.trackFolder(cameraFolder.addFolder('Field of View'));
+        const fovFolder = cameraFolder.addFolder('Field of View');
         
         fovFolder.add({ fov: camera.fov }, 'fov', 10, 150, 1).name('FOV (degrees)')
             .onChange((value) => {
@@ -697,7 +697,7 @@ class ThreeJSApp {
         }, 'copyAllSettings').name('📋 Copy ALL GUI Settings');
         
         // Zoom Momentum Controls
-        const momentumFolder = this.trackFolder(cameraFolder.addFolder('Zoom Momentum'));
+        const momentumFolder = cameraFolder.addFolder('Zoom Momentum');
         const cameraParams = this.cameraManager;
         
         momentumFolder.add(cameraParams, 'zoomDecay', 0.8, 0.99, 0.01).name('Momentum Decay')
@@ -743,7 +743,7 @@ class ThreeJSApp {
         }, 'clearMomentum').name('❌ Clear Momentum');
         
         // Debug info
-        const debugFolder = this.trackFolder(cameraFolder.addFolder('Debug Info'));
+        const debugFolder = cameraFolder.addFolder('Debug Info');
         const debugInfo = {
             currentDistance: 0,
             momentum: 0,
@@ -773,12 +773,12 @@ class ThreeJSApp {
         // Initialize velocity multiplier with user's preferred setting
         cameraParams.velocityMultiplier = 0.4;
         
-        // momentumFolder.open();
-        // zoomFolder.open();
-        // fovFolder.open();
+        momentumFolder.open();
+        zoomFolder.open();
+        fovFolder.open();
         
         // Axis Helper Section
-        const axisFolder = this.trackFolder(cameraFolder.addFolder('🎯 Rotation Center Helper'));
+        const axisFolder = cameraFolder.addFolder('🎯 Rotation Center Helper');
         
         axisFolder.add({
             showAxis: this.cameraManager.axisHelperVisible
@@ -795,7 +795,7 @@ class ThreeJSApp {
             });
         
         // Coordinates Section
-        const coordsFolder = this.trackFolder(cameraFolder.addFolder('📍 Coordinates'));
+        const coordsFolder = cameraFolder.addFolder('📍 Coordinates');
         
         // Live coordinate display
         const coordDisplay = {
@@ -809,7 +809,7 @@ class ThreeJSApp {
         const zController = coordsFolder.add(coordDisplay, 'z').name('Center Z').listen();
         
         // Manual control sliders
-        const manualFolder = this.trackFolder(coordsFolder.addFolder('Manual Control'));
+        const manualFolder = coordsFolder.addFolder('Manual Control');
         
         const manualControls = {
             x: this.cameraManager.getRotationCenter().x,
@@ -862,12 +862,12 @@ class ThreeJSApp {
             manualControls.z = coords.z;
         };
         
-        // axisFolder.open();
-        // coordsFolder.open();
-        // manualFolder.open();
+        axisFolder.open();
+        coordsFolder.open();
+        manualFolder.open();
         
         // Animation Player Controls
-        const animationFolder = this.trackFolder(cameraFolder.addFolder('🎬 Animation Player'));
+        const animationFolder = cameraFolder.addFolder('🎬 Animation Player');
         
         const animationSettings = {
             showPlayer: this.animationPlayer ? this.animationPlayer.isVisible : false,
@@ -890,7 +890,7 @@ class ThreeJSApp {
                 }
             });
         
-        // animationFolder.open();
+        animationFolder.open();
     }
 
     setupGUIVisibilityToggle() {
@@ -1003,7 +1003,7 @@ class ThreeJSApp {
     }
 
     setupModelGUI(model) {
-        const modelFolder = this.trackFolder(this.gui.addFolder('Model Transform'));
+        const modelFolder = this.gui.addFolder('Model Transform');
         const pos = model.position;
         const rot = model.rotation;
         const scl = model.scale;
@@ -1018,7 +1018,7 @@ class ThreeJSApp {
         modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
         modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
         
-        // modelFolder.open();
+        modelFolder.open();
     }
 
     setupEventListeners() {
