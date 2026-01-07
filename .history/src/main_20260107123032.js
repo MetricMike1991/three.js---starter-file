@@ -79,8 +79,8 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
-        // Make animation player visible from the start
-        this.animationPlayer.setVisibility(true);
+        // Make animation player visible by default
+        this.animationPlayer.setAlwaysVisible(true);
         
         // Screenshot manager disabled for now
         this.screenshotManager = null;
@@ -874,7 +874,7 @@ class ThreeJSApp {
         
         const animationSettings = {
             showPlayer: this.animationPlayer ? this.animationPlayer.isVisible : true,
-            alwaysVisible: this.animationPlayer ? this.animationPlayer.alwaysVisible : false
+            alwaysVisible: this.animationPlayer ? this.animationPlayer.alwaysVisible : true
         };
         
         animationFolder.add(animationSettings, 'showPlayer').name('Show Animation Player')

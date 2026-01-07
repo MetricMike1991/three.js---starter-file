@@ -79,9 +79,6 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
-        // Make animation player visible from the start
-        this.animationPlayer.setVisibility(true);
-        
         // Screenshot manager disabled for now
         this.screenshotManager = null;
         
@@ -128,8 +125,8 @@ class ThreeJSApp {
         setTimeout(() => this.updateAllGUIControls(), 500);
 
         // Start render loop
-        // Initialize animation player with visible state
-        this.animationPlayer.setVisibility(true);
+        // Initialize animation player with hidden state
+        this.animationPlayer.setVisibility(false);
         
         this.animate();
     }
@@ -873,7 +870,7 @@ class ThreeJSApp {
         const animationFolder = this.trackFolder(cameraFolder.addFolder('🎬 Animation Player'));
         
         const animationSettings = {
-            showPlayer: this.animationPlayer ? this.animationPlayer.isVisible : true,
+            showPlayer: this.animationPlayer ? this.animationPlayer.isVisible : false,
             alwaysVisible: this.animationPlayer ? this.animationPlayer.alwaysVisible : false
         };
         
@@ -893,8 +890,7 @@ class ThreeJSApp {
                 }
             });
         
-        
-        animationFolder.open();
+        // animationFolder.open();
     }
 
     setupGUIVisibilityToggle() {

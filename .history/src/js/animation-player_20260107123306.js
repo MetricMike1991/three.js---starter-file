@@ -182,22 +182,6 @@ export class AnimationPlayer {
     }
     
     
-    startStartupFade() {
-        // Don't fade if always visible is enabled
-        if (this.alwaysVisible) return;
-        
-        // Clear any existing timeout
-        this.clearHideTimeout();
-        
-        // Set fade timeout for 3 seconds
-        this.hideTimeout = setTimeout(() => {
-            // Only fade if not being hovered and no interaction yet
-            if (!this.container.matches(':hover') && !this.hasPlayedOnce) {
-                this.hidePlayer();
-            }
-        }, 3000);
-    }
-    
     startFirstPlayFade() {
         // Don't fade if always visible is enabled
         if (this.alwaysVisible) return;
@@ -232,12 +216,7 @@ export class AnimationPlayer {
                 this.showPlayer();
             } else {
                 this.container.classList.remove('always-visible');
-                this.showPlayer(); // Show player initially
-                
-                // Start 3-second startup fade if this is initial visibility
-                if (!this.hasPlayedOnce) {
-                    this.startStartupFade();
-                }
+                this.hidePlayer();
             }
         } else {
             this.container.style.display = 'none';
@@ -249,11 +228,6 @@ export class AnimationPlayer {
         this.alwaysVisible = alwaysVisible;
         if (this.isVisible) {
             this.setVisibility(true); // Refresh visibility state
-        }
-        
-        // If setting to not always visible and currently visible, start 3-second startup fade
-        if (!alwaysVisible && this.isVisible && !this.hasPlayedOnce) {
-            this.startStartupFade();
         }
     }
 
@@ -290,7 +264,6 @@ export class AnimationPlayer {
             // If this is the first time play is pressed, start fade timer
             if (!this.hasPlayedOnce) {
                 this.hasPlayedOnce = true;
-                this.clearHideTimeout(); // Cancel startup fade
                 this.startFirstPlayFade();
             }
         } else {

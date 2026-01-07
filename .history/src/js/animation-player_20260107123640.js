@@ -232,13 +232,11 @@ export class AnimationPlayer {
                 this.showPlayer();
             } else {
                 this.container.classList.remove('always-visible');
-                this.showPlayer(); // Show player initially
-                
+                this.hidePlayer();                
                 // Start 3-second startup fade if this is initial visibility
                 if (!this.hasPlayedOnce) {
                     this.startStartupFade();
-                }
-            }
+                }            }
         } else {
             this.container.style.display = 'none';
             this.container.classList.remove('visible', 'always-visible');

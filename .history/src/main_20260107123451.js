@@ -79,9 +79,6 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
-        // Make animation player visible from the start
-        this.animationPlayer.setVisibility(true);
-        
         // Screenshot manager disabled for now
         this.screenshotManager = null;
         

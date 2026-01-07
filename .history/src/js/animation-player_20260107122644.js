@@ -14,7 +14,8 @@ export class AnimationPlayer {
         this.playbackSpeed = 1;
         this.isVisible = true;
         this.alwaysVisible = false;
-        this.hideTimeout = null;        this.hasPlayedOnce = false; // Track if play has been pressed for the first time        
+        this.hideTimeout = null;
+        
         this.createPlayerElements();
         this.setupEventListeners();
     }
@@ -153,13 +154,12 @@ export class AnimationPlayer {
         this.container.addEventListener('mouseenter', () => {
             if (this.isVisible && !this.alwaysVisible) {
                 this.showPlayer();
-                this.clearHideTimeout(); // Cancel any pending fade including first-play fade
+                this.clearHideTimeout();
             }
         });
         
         this.container.addEventListener('mouseleave', () => {
-            if (this.isVisible && !this.alwaysVisible && this.hasPlayedOnce) {
-                // After first play, use normal hide schedule
+            if (this.isVisible && !this.alwaysVisible) {
                 this.scheduleHide();
             }
         });
@@ -181,39 +181,6 @@ export class AnimationPlayer {
         }, 500); // Wait 500ms before hiding
     }
     
-    
-    startStartupFade() {
-        // Don't fade if always visible is enabled
-        if (this.alwaysVisible) return;
-        
-        // Clear any existing timeout
-        this.clearHideTimeout();
-        
-        // Set fade timeout for 3 seconds
-        this.hideTimeout = setTimeout(() => {
-            // Only fade if not being hovered and no interaction yet
-            if (!this.container.matches(':hover') && !this.hasPlayedOnce) {
-                this.hidePlayer();
-            }
-        }, 3000);
-    }
-    
-    startFirstPlayFade() {
-        // Don't fade if always visible is enabled
-        if (this.alwaysVisible) return;
-        
-        // Clear any existing timeout
-        this.clearHideTimeout();
-        
-        // Set fade timeout for 1 second
-        this.hideTimeout = setTimeout(() => {
-            // Only fade if not being hovered
-            if (!this.container.matches(':hover')) {
-                this.hidePlayer();
-            }
-        }, 1000);
-    }
-
     clearHideTimeout() {
         if (this.hideTimeout) {
             clearTimeout(this.hideTimeout);
@@ -232,12 +199,7 @@ export class AnimationPlayer {
                 this.showPlayer();
             } else {
                 this.container.classList.remove('always-visible');
-                this.showPlayer(); // Show player initially
-                
-                // Start 3-second startup fade if this is initial visibility
-                if (!this.hasPlayedOnce) {
-                    this.startStartupFade();
-                }
+                this.hidePlayer();
             }
         } else {
             this.container.style.display = 'none';
@@ -249,11 +211,6 @@ export class AnimationPlayer {
         this.alwaysVisible = alwaysVisible;
         if (this.isVisible) {
             this.setVisibility(true); // Refresh visibility state
-        }
-        
-        // If setting to not always visible and currently visible, start 3-second startup fade
-        if (!alwaysVisible && this.isVisible && !this.hasPlayedOnce) {
-            this.startStartupFade();
         }
     }
 
@@ -273,6 +230,13 @@ export class AnimationPlayer {
                 this.currentAction = this.actions[0];
                 this.duration = this.currentAction.getClip().duration;
                 this.updateTimeDisplay();
+                this.setVisibility(true); // Show player when animation is loaded
+                
+                // Auto-play the animation
+                this.isPlaying = true;
+                this.currentAction.play();
+                this.playIcon.style.display = 'none';
+                this.pauseIcon.style.display = 'block';
             }
         }
     }
@@ -286,13 +250,6 @@ export class AnimationPlayer {
             this.currentAction.play();
             this.playIcon.style.display = 'none';
             this.pauseIcon.style.display = 'block';
-            
-            // If this is the first time play is pressed, start fade timer
-            if (!this.hasPlayedOnce) {
-                this.hasPlayedOnce = true;
-                this.clearHideTimeout(); // Cancel startup fade
-                this.startFirstPlayFade();
-            }
         } else {
             this.currentAction.pause();
             this.playIcon.style.display = 'block';
