@@ -201,7 +201,7 @@ class ThreeJSApp {
         // Apply all current styling parameters to maintain exact current appearance
         this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
         this.updatePlayerBackgroundOpacity(this.playerStyleParams.backgroundOpacity);
-        // Remove problematic width setting - let CSS handle responsive width
+        this.updatePlayerWidth(this.playerStyleParams.playerWidth);
         this.updatePlayerTimeDisplay(this.playerStyleParams.showTimeDisplay);
         this.updatePlayerButtonColor(this.playerStyleParams.buttonColor);
         this.updatePlayerButtonOpacity(this.playerStyleParams.buttonOpacity);
@@ -1007,7 +1007,7 @@ class ThreeJSApp {
         const dimensionsFolder = this.trackFolder(playerStyleFolder.addFolder('Dimensions'));
         dimensionsFolder.add(this.playerStyleParams, 'playerWidth', 20, 100, 1).name('Player Width (%)')
             .onChange((value) => {
-                // Width is now handled by CSS - this GUI control can be removed if not needed
+                this.updatePlayerWidth(value);
             });
         
         // Display Options

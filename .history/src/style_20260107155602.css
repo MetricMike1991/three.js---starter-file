@@ -7,7 +7,7 @@
 html,
 body
 {
-    overflow: hidden;
+    overflow: auto;
 }
 
 .webgl
@@ -22,13 +22,12 @@ body
 .animation-player {
     position: fixed;
     bottom: 0;
-    left: 2.5%;
-    right: 2.5%;
-    width: 95%;
+    left: 0;
+    right: 0;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 12px 20px;
+    padding: clamp(6px, 2vw, 12px) clamp(8px, 3vw, 20px);
     z-index: 1000;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
     color: white;
@@ -42,6 +41,9 @@ body
 .animation-player.visible {
     transform: translateY(0);
     opacity: 1;
+}
+
+.animation-player.visible .player-controls {
     pointer-events: all;
 }
 
@@ -61,15 +63,15 @@ body
 .player-controls {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: clamp(4px, 2vw, 15px);
     width: 100%;
 }
 
 .player-left {
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-width: 120px;
+    gap: clamp(4px, 1.5vw, 10px);
+    min-width: clamp(60px, 15vw, 120px);
 }
 
 .player-center {
@@ -81,8 +83,8 @@ body
 .player-right {
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-width: 200px;
+    gap: clamp(4px, 1.5vw, 10px);
+    min-width: clamp(80px, 20vw, 200px);
     justify-content: flex-end;
 }
 

@@ -22,9 +22,8 @@ body
 .animation-player {
     position: fixed;
     bottom: 0;
-    left: 2.5%;
-    right: 2.5%;
-    width: 95%;
+    left: 0;
+    right: 0;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);

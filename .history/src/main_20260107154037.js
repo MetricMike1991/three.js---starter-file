@@ -201,7 +201,7 @@ class ThreeJSApp {
         // Apply all current styling parameters to maintain exact current appearance
         this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
         this.updatePlayerBackgroundOpacity(this.playerStyleParams.backgroundOpacity);
-        // Remove problematic width setting - let CSS handle responsive width
+        this.updatePlayerWidth(this.playerStyleParams.playerWidth);
         this.updatePlayerTimeDisplay(this.playerStyleParams.showTimeDisplay);
         this.updatePlayerButtonColor(this.playerStyleParams.buttonColor);
         this.updatePlayerButtonOpacity(this.playerStyleParams.buttonOpacity);
@@ -1007,7 +1007,7 @@ class ThreeJSApp {
         const dimensionsFolder = this.trackFolder(playerStyleFolder.addFolder('Dimensions'));
         dimensionsFolder.add(this.playerStyleParams, 'playerWidth', 20, 100, 1).name('Player Width (%)')
             .onChange((value) => {
-                // Width is now handled by CSS - this GUI control can be removed if not needed
+                this.updatePlayerWidth(value);
             });
         
         // Display Options
@@ -1068,6 +1068,18 @@ class ThreeJSApp {
             const g = parseInt(currentBg.slice(3, 5), 16);
             const b = parseInt(currentBg.slice(5, 7), 16);
             this.animationPlayer.container.style.backgroundColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+        }
+    }
+
+    updatePlayerWidth(widthPercent) {
+        if (this.animationPlayer && this.animationPlayer.container) {
+            const screenWidth = window.innerWidth;
+            const pixelWidth = Math.round((widthPercent / 100) * screenWidth);
+            this.animationPlayer.container.style.width = pixelWidth + 'px';
+            // Ensure it stays centered when width changes
+            this.animationPlayer.container.style.left = '50%';
+            this.animationPlayer.container.style.transform = 'translateX(-50%)';
+            this.animationPlayer.container.style.position = 'fixed';
         }
     }
 
@@ -1294,14 +1306,27 @@ class ThreeJSApp {
     }
 
     setupEventListeners() {
-        // Window resize
+        // Window resize with debouncing
+        let resizeTimeout;
         window.addEventListener('resize', () => {
+            // Clear existing timeout
+            if (resizeTimeout) {
+                clearTimeout(resizeTimeout);
+            }
+            
+            // Immediate update for responsive feel
             this.sizes.width = window.innerWidth;
             this.sizes.height = window.innerHeight;
-            
-            this.cameraManager.handleResize();
             this.renderer.setSize(this.sizes.width, this.sizes.height);
-            this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            
+            // Debounced update for more expensive operations
+            resizeTimeout = setTimeout(() => {
+                requestAnimationFrame(() => {
+                    this.cameraManager.handleResize();
+                    this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+                    this.render();
+                });
+            }, 100);
         });
 
         // Click interactions

@@ -7,7 +7,7 @@
 html,
 body
 {
-    overflow: hidden;
+    overflow: auto;
 }
 
 .webgl
@@ -22,9 +22,9 @@ body
 .animation-player {
     position: fixed;
     bottom: 0;
-    left: 2.5%;
-    right: 2.5%;
-    width: 95%;
+    left: 0;
+    right: 0;
+    width: 95% !important;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -42,6 +42,9 @@ body
 .animation-player.visible {
     transform: translateY(0);
     opacity: 1;
+}
+
+.animation-player.visible .player-controls {
     pointer-events: all;
 }
 
@@ -61,15 +64,15 @@ body
 .player-controls {
     display: flex;
     align-items: center;
-    gap: 15px;
-    width: 100%;
+    gap: 10px !important;
+    width: 100% !important;
 }
 
 .player-left {
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-width: 120px;
+    gap: clamp(4px, 1.5vw, 10px);
+    min-width: clamp(60px, 15vw, 120px);
 }
 
 .player-center {
@@ -81,19 +84,15 @@ body
 .player-right {
     display: flex;
     align-items: center;
-    gap: 10px;
-    min-width: 200px;
+    gap: clamp(4px, 1.5vw, 10px);
+    min-width: clamp(80px, 20vw, 200px);
     justify-content: flex-end;
 }
 
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
-    .animation-player {
-        padding: 8px 12px;
-    }
-    
     .player-controls {
-        gap: 8px;
+        gap: 8px !important;
     }
     
     .player-left {
@@ -118,12 +117,8 @@ body
 }
 
 @media screen and (max-width: 480px) {
-    .animation-player {
-        padding: 6px 8px;
-    }
-    
     .player-controls {
-        gap: 4px;
+        gap: 4px !important;
     }
     
     .player-left {
@@ -188,9 +183,9 @@ body
 
 .time-display {
     color: white;
-    font-size: 12px;
+    font-size: clamp(9px, 1.2vw, 12px);
     font-weight: 500;
-    min-width: 35px;
+    min-width: clamp(20px, 4vw, 35px);
     text-align: center;
 }
 
@@ -301,12 +296,13 @@ body
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     color: white;
-    padding: 8px 12px;
+    padding: clamp(4px, 1vw, 8px) clamp(6px, 1.5vw, 12px);
     cursor: pointer;
     display: flex;
     align-items: center;
     gap: 6px;
     transition: all 0.2s ease;
+    font-size: clamp(10px, 1.2vw, 12px);
 }
 
 .play-pause-btn:hover, .speed-btn:hover {
