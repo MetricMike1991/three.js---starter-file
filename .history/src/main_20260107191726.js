@@ -1525,57 +1525,56 @@ class ThreeJSApp {
         // screenshotFolder.open();
     }
     
-    setupMultiThumbnailMenuGUI() {
-        const thumbnailFolder = this.trackFolder(this.gui.addFolder('🖼️ Multi-Thumbnail Menu'));
-        const settings = this.multiThumbnailMenuSystem.settings;
+    setupThumbnailMenuGUI() {
+        const thumbnailFolder = this.trackFolder(this.gui.addFolder('🖼️ Thumbnail Menu'));
+        const settings = this.thumbnailMenu.settings;
         
         // Width percentage control
         thumbnailFolder.add(settings, 'widthPercentage', 20, 100, 5)
             .name('Width %')
             .onChange(value => {
-                this.multiThumbnailMenuSystem.updateAllSettings({ widthPercentage: value });
-                console.log('Multi-thumbnail menu width:', value + '%');
+                this.thumbnailMenu.updateStyles();
+                console.log('Thumbnail menu width:', value + '%');
             });
         
         // Background color
         thumbnailFolder.addColor(settings, 'backgroundColor')
             .name('Background Color')
             .onChange(value => {
-                this.multiThumbnailMenuSystem.updateAllSettings({ backgroundColor: value });
-                console.log('Multi-thumbnail menu background color:', value);
+                this.thumbnailMenu.updateStyles();
+                console.log('Thumbnail menu background color:', value);
             });
         
         // Background opacity
         thumbnailFolder.add(settings, 'backgroundOpacity', 0, 1, 0.1)
             .name('Background Opacity')
             .onChange(value => {
-                this.multiThumbnailMenuSystem.updateAllSettings({ backgroundOpacity: value });
-                console.log('Multi-thumbnail menu opacity:', value);
+                this.thumbnailMenu.updateStyles();
+                console.log('Thumbnail menu opacity:', value);
             });
         
         // Border radius
         thumbnailFolder.add(settings, 'borderRadius', 0, 30, 1)
             .name('Corner Radius')
             .onChange(value => {
-                this.multiThumbnailMenuSystem.updateAllSettings({ borderRadius: value });
-                console.log('Multi-thumbnail menu radius:', value + 'px');
+                this.thumbnailMenu.updateStyles();
+                console.log('Thumbnail menu radius:', value + 'px');
             });
         
         // Keep menu open toggle
         thumbnailFolder.add(settings, 'keepOpen')
             .name('Keep Menu Open')
             .onChange(value => {
-                this.multiThumbnailMenuSystem.updateAllSettings({ keepOpen: value });
-                console.log('Multi-thumbnail menu keep open:', value ? 'ON' : 'OFF');
+                console.log('Thumbnail menu keep open:', value ? 'ON' : 'OFF');
             });
         
         // Copy settings button
         thumbnailFolder.add({
-            copySettings: () => this.multiThumbnailMenuSystem.copySettingsToClipboard()
+            copySettings: () => this.thumbnailMenu.copySettingsToClipboard()
         }, 'copySettings').name('📋 Copy Settings');
         
         // Apply initial styles
-        setTimeout(() => this.multiThumbnailMenuSystem.updateAllSettings(settings), 100);
+        this.thumbnailMenu.updateStyles();
     }
     
     setQuickResolution(presetKey) {
