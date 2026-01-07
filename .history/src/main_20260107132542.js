@@ -67,24 +67,24 @@ class ThreeJSApp {
             visible: true
         };
 
-        // Animation Player Styling Parameters (using custom defaults)
+        // Animation Player Styling Parameters (keeping current defaults)
         this.playerStyleParams = {
             // Background
-            backgroundColor: '#1f1f1f',
-            backgroundOpacity: 0,
+            backgroundColor: '#404040',
+            backgroundOpacity: 0.9,
             // Dimensions  
-            playerWidth: 95, // percentage of screen width
+            playerWidth: 40, // percentage of screen width
             // Display options
             showTimeDisplay: true,
             // Button colors
-            buttonColor: '#c20e1d',
-            buttonOpacity: 1,
+            buttonColor: '#666666',
+            buttonOpacity: 1.0,
             // Timeline scrubber
-            scrubberColor: '#c20e1d',
-            scrubberOpacity: 0.7,
+            scrubberColor: '#808080',
+            scrubberOpacity: 1.0,
             // Text colors
-            textColor: '#dedede',
-            textOpacity: 1
+            textColor: '#cccccc',
+            textOpacity: 1.0
         };
 
         this.init();
