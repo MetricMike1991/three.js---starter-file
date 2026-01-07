@@ -106,20 +106,8 @@ const takeScreenshot = async (renderer, scene, camera, options = {}) => {
         tempCamera.aspect = settings.width / settings.height;
         tempCamera.updateProjectionMatrix();
 
-        // Store original scene background for transparent screenshots
-        let originalBackground = null;
-        if (settings.transparent && scene.background) {
-            originalBackground = scene.background;
-            scene.background = null;
-        }
-
         // Render with the temporary camera (original camera unchanged)
         tempRenderer.render(scene, tempCamera);
-
-        // Restore original scene background
-        if (originalBackground !== null) {
-            scene.background = originalBackground;
-        }
 
         // Generate filename
         let filename = settings.filename;

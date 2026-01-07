@@ -1133,12 +1133,12 @@ class ThreeJSApp {
         const commonFolder = resolutionFolder.addFolder('Quick Presets');
         
         const quickPresets = {
-            hd: () => this.setQuickResolution('1280x720'),
-            fhd: () => this.setQuickResolution('1920x1080'),
-            qhd: () => this.setQuickResolution('2560x1440'),
-            uhd: () => this.setQuickResolution('3840x2160'),
-            square: () => this.setQuickResolution('1080x1080'),
-            story: () => this.setQuickResolution('1080x1920')
+            hd: () => this.setCustomDimensions(1280, 720),
+            fhd: () => this.setCustomDimensions(1920, 1080),
+            qhd: () => this.setCustomDimensions(2560, 1440),
+            uhd: () => this.setCustomDimensions(3840, 2160),
+            square: () => this.setCustomDimensions(1080, 1080),
+            story: () => this.setCustomDimensions(1080, 1920)
         };
         
         commonFolder.add(quickPresets, 'hd').name('📱 HD (720p)');
@@ -1184,6 +1184,23 @@ class ThreeJSApp {
         console.log('Quick preset:', this.screenshotManager.getResolutionPresets()[presetKey].name);
     }
     
+    setCustomDimensions(width, height) {
+        // Update custom dimensions in screenshot manager
+        this.screenshotManager.setCustomDimensions(width, height);
+        this.screenshotManager.settings.resolution = 'custom';
+        this.screenshotManager.settings.customWidth = width;
+        this.screenshotManager.settings.customHeight = height;
+        
+        // Update all controllers to reflect the new values
+        this.gui.controllers.forEach(controller => {
+            if (controller.property === 'customWidth' || controller.property === 'customHeight' || controller.property === 'resolution') {
+                controller.updateDisplay();
+            }
+        });
+        
+        console.log(`Template dimensions set: ${width}×${height}`);
+    }
+    
     calculateAspectRatio(width, height) {
         const gcd = (a, b) => b === 0 ? a : gcd(b, a % b);
         const divisor = gcd(width, height);
@@ -1214,15 +1231,88 @@ class ThreeJSApp {
     setupSimpleScreenshotGUI() {
         const screenshotFolder = this.gui.addFolder('📸 Screenshot');
         
-        // Custom screenshot settings
-        const customFolder = screenshotFolder.addFolder('Custom Settings');
-        
         // Get renderer, scene, camera references
         const getScreenshotParams = () => ({
             renderer: this.renderer,
             scene: this.sceneManager.getScene(),
             camera: this.cameraManager.getCamera()
         });
+
+        // Quick screenshot actions
+        const actions = {
+            quickShot: async () => {
+                console.log('Quick shot button clicked!');
+                const params = getScreenshotParams();
+                console.log('Screenshot params:', params);
+                const result = await ScreenshotUtils.quickScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ Screenshot failed: ${result.error}`);
+                }
+            },
+            
+            transparentShot: async () => {
+                console.log('Transparent shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.transparentScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ Transparent ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ Transparent screenshot failed: ${result.error}`);
+                }
+            },
+            
+            hdShot: async () => {
+                console.log('HD shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.hdScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ HD ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ HD screenshot failed: ${result.error}`);
+                }
+            },
+            
+            uhd4kShot: async () => {
+                console.log('4K shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.uhd4kScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ 4K ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ 4K screenshot failed: ${result.error}`);
+                }
+            },
+            
+            thumbnailShot: async () => {
+                console.log('Thumbnail shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.thumbnailScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ Thumbnail ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ Thumbnail screenshot failed: ${result.error}`);
+                }
+            }
+        };
+
+        // Add screenshot buttons
+        screenshotFolder.add({
+            testButton: () => {
+                alert('Test button works! GUI is connected properly.');
+                console.log('Test button clicked - GUI is working');
+            }
+        }, 'testButton').name('🔧 Test Button');
+        
+        screenshotFolder.add(actions, 'quickShot').name('📷 Quick Screenshot (1920×1080)');
+        screenshotFolder.add(actions, 'transparentShot').name('🫥 Transparent Background');
+        screenshotFolder.add(actions, 'hdShot').name('📱 HD (1280×720)');
+        screenshotFolder.add(actions, 'uhd4kShot').name('📺 4K UHD (3840×2160)');
+        screenshotFolder.add(actions, 'thumbnailShot').name('🖼️ Thumbnail (400×300)');
+
+        // Custom screenshot settings
+        const customFolder = screenshotFolder.addFolder('Custom Settings');
         
         const customSettings = {
             width: 1920,
@@ -1250,7 +1340,6 @@ class ThreeJSApp {
             }
         }, 'customShot').name('📸 Take Custom Screenshot');
 
-        customFolder.open();
         screenshotFolder.open();
     }
 }

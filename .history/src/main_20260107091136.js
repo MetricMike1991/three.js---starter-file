@@ -338,9 +338,6 @@ class ThreeJSApp {
         // Camera controls
         this.setupCameraGUI();
 
-        // Screenshot controls
-        this.setupSimpleScreenshotGUI();
-
         // Keyboard shortcut to hide/show GUI
         this.setupGUIVisibilityToggle();
     }
@@ -1023,19 +1020,30 @@ class ThreeJSApp {
                     }
                 });
             },
-            transparentShot: () => {
-                this.screenshotManager.transparentScreenshot().then(result => {
+            toggleTransparent: () => {
+                settings.transparent = !settings.transparent;
+                console.log('Transparent background:', settings.transparent ? 'ON' : 'OFF');
+                // Update all controllers to reflect the change
+                this.gui.controllers.forEach(controller => {
+                    if (controller.property === 'transparent') {
+                        controller.updateDisplay();
+                    }
+                });
+            },
+            autoFrameThumbnail: () => {
+                this.screenshotManager.autoFrameThumbnail().then(result => {
                     if (result.success) {
-                        console.log(`✅ Transparent screenshot saved: ${result.filename} (${result.size})`);
+                        console.log(`✅ Auto-framed thumbnail saved: ${result.filename} (${result.size})`);
                     } else {
-                        console.error('❌ Screenshot failed:', result.error);
+                        console.error('❌ Auto-frame thumbnail failed:', result.error);
                     }
                 });
             }
         };
         
         screenshotFolder.add(quickActions, 'quickShot').name('📷 Take Screenshot');
-        screenshotFolder.add(quickActions, 'transparentShot').name('🫥 Transparent Background');
+        screenshotFolder.add(quickActions, 'toggleTransparent').name('🫥 Toggle Transparency');
+        screenshotFolder.add(quickActions, 'autoFrameThumbnail').name('🎯 Auto-Frame Thumbnail (500x500)');
         
         // Settings folder
         const settingsFolder = screenshotFolder.addFolder('Settings');
@@ -1075,6 +1083,14 @@ class ThreeJSApp {
         
         settingsFolder.add(settings, 'addTimestamp').name('Add Timestamp');
         
+        // Screenshot overlay toggle
+        const overlaySettings = { showOverlay: false };
+        settingsFolder.add(overlaySettings, 'showOverlay').name('Show Screenshot Area')
+            .onChange(value => {
+                this.toggleScreenshotOverlay(value);
+                console.log('Screenshot overlay:', value ? 'ON' : 'OFF');
+            });
+        
         // Resolution folder
         const resolutionFolder = screenshotFolder.addFolder('Resolution');
         
@@ -1088,6 +1104,7 @@ class ThreeJSApp {
             .onChange(value => {
                 this.screenshotManager.setResolution(value);
                 updateResolutionDisplay();
+                this.updateScreenshotOverlay();
                 
                 // Show/hide custom controls
                 const isCustom = value === 'custom';
@@ -1102,13 +1119,17 @@ class ThreeJSApp {
             .onChange(value => {
                 this.screenshotManager.setCustomDimensions(value, settings.customHeight);
                 updateResolutionDisplay();
+                this.updateScreenshotOverlay();
             });
+        customWidthController.domElement.setAttribute('data-custom-dimension', 'width');
             
         const customHeightController = resolutionFolder.add(settings, 'customHeight', 1, 8192, 1).name('Custom Height')
             .onChange(value => {
                 this.screenshotManager.setCustomDimensions(settings.customWidth, value);
                 updateResolutionDisplay();
+                this.updateScreenshotOverlay();
             });
+        customHeightController.domElement.setAttribute('data-custom-dimension', 'height');
         
         // Resolution display
         const resolutionDisplay = { info: 'Loading...' };
@@ -1133,12 +1154,12 @@ class ThreeJSApp {
         const commonFolder = resolutionFolder.addFolder('Quick Presets');
         
         const quickPresets = {
-            hd: () => this.setQuickResolution('1280x720'),
-            fhd: () => this.setQuickResolution('1920x1080'),
-            qhd: () => this.setQuickResolution('2560x1440'),
-            uhd: () => this.setQuickResolution('3840x2160'),
-            square: () => this.setQuickResolution('1080x1080'),
-            story: () => this.setQuickResolution('1080x1920')
+            hd: () => this.setCustomDimensions(1280, 720),
+            fhd: () => this.setCustomDimensions(1920, 1080),
+            qhd: () => this.setCustomDimensions(2560, 1440),
+            uhd: () => this.setCustomDimensions(3840, 2160),
+            square: () => this.setCustomDimensions(1080, 1080),
+            story: () => this.setCustomDimensions(1080, 1920)
         };
         
         commonFolder.add(quickPresets, 'hd').name('📱 HD (720p)');
@@ -1172,6 +1193,13 @@ class ThreeJSApp {
         // Initialize display
         updateResolutionDisplay();
         
+        // Setup window resize listener for overlay updates
+        window.addEventListener('resize', () => {
+            if (document.getElementById('screenshot-overlay')) {
+                this.updateScreenshotOverlay();
+            }
+        });
+        
         // Open important folders by default
         settingsFolder.open();
         resolutionFolder.open();
@@ -1182,6 +1210,185 @@ class ThreeJSApp {
         this.screenshotManager.setResolution(presetKey);
         this.screenshotManager.settings.resolution = presetKey;
         console.log('Quick preset:', this.screenshotManager.getResolutionPresets()[presetKey].name);
+    }
+    
+    setCustomDimensions(width, height) {
+        // Update custom dimensions in screenshot manager
+        this.screenshotManager.setCustomDimensions(width, height);
+        this.screenshotManager.settings.resolution = 'custom';
+        this.screenshotManager.settings.customWidth = width;
+        this.screenshotManager.settings.customHeight = height;
+        
+        // Update the GUI sliders by directly updating the settings and refreshing controllers
+        const settings = this.screenshotManager.settings;
+        settings.customWidth = width;
+        settings.customHeight = height;
+        
+        // Force refresh all controllers to reflect the new values
+        this.gui.controllers.forEach(controller => {
+            if (controller.property === 'customWidth' || controller.property === 'customHeight' || controller.property === 'resolution') {
+                controller.updateDisplay();
+            }
+        });
+        
+        // Show custom controls
+        const customControls = document.querySelectorAll('[data-custom-dimension]');
+        customControls.forEach(control => control.style.display = 'block');
+        
+        // Update screenshot overlay if visible
+        this.updateScreenshotOverlay();
+        
+        console.log(`Custom dimensions set: ${width}×${height}`);
+    }
+    
+    toggleScreenshotOverlay(show) {
+        if (show) {
+            this.createScreenshotOverlay();
+            this.updateScreenshotOverlay();
+        } else {
+            this.removeScreenshotOverlay();
+        }
+    }
+    
+    createScreenshotOverlay() {
+        // Remove existing overlay if any
+        this.removeScreenshotOverlay();
+        
+        // Create overlay container
+        const overlay = document.createElement('div');
+        overlay.id = 'screenshot-overlay';
+        overlay.style.cssText = `
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        `;
+        
+        // Create the white square frame
+        const frame = document.createElement('div');
+        frame.id = 'screenshot-frame';
+        frame.style.cssText = `
+            border: 2px solid white;
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 0 9999px rgba(0, 0, 0, 0.3);
+            position: relative;
+        `;
+        
+        // Add corner markers
+        const corners = ['top-left', 'top-right', 'bottom-left', 'bottom-right'];
+        corners.forEach(corner => {
+            const marker = document.createElement('div');
+            marker.className = `corner-marker ${corner}`;
+            marker.style.cssText = `
+                position: absolute;
+                width: 20px;
+                height: 20px;
+                border: 2px solid white;
+                background: rgba(255, 255, 255, 0.8);
+            `;
+            
+            // Position corners
+            switch(corner) {
+                case 'top-left':
+                    marker.style.top = '-2px';
+                    marker.style.left = '-2px';
+                    marker.style.borderBottom = 'none';
+                    marker.style.borderRight = 'none';
+                    break;
+                case 'top-right':
+                    marker.style.top = '-2px';
+                    marker.style.right = '-2px';
+                    marker.style.borderBottom = 'none';
+                    marker.style.borderLeft = 'none';
+                    break;
+                case 'bottom-left':
+                    marker.style.bottom = '-2px';
+                    marker.style.left = '-2px';
+                    marker.style.borderTop = 'none';
+                    marker.style.borderRight = 'none';
+                    break;
+                case 'bottom-right':
+                    marker.style.bottom = '-2px';
+                    marker.style.right = '-2px';
+                    marker.style.borderTop = 'none';
+                    marker.style.borderLeft = 'none';
+                    break;
+            }
+            
+            frame.appendChild(marker);
+        });
+        
+        overlay.appendChild(frame);
+        document.body.appendChild(overlay);
+        
+        console.log('📐 Screenshot overlay created');
+    }
+    
+    updateScreenshotOverlay() {
+        const overlay = document.getElementById('screenshot-overlay');
+        const frame = document.getElementById('screenshot-frame');
+        
+        if (!overlay || !frame) return;
+        
+        // Get current screenshot dimensions
+        const res = this.screenshotManager.getCurrentResolution();
+        const canvas = this.sceneManager.getCanvas();
+        const canvasRect = canvas.getBoundingClientRect();
+        
+        // Calculate scale to fit overlay within viewport while maintaining aspect ratio
+        const viewportWidth = window.innerWidth * 0.8; // 80% of viewport
+        const viewportHeight = window.innerHeight * 0.8;
+        
+        const scaleX = viewportWidth / res.width;
+        const scaleY = viewportHeight / res.height;
+        const scale = Math.min(scaleX, scaleY, 1); // Don't scale up
+        
+        const overlayWidth = res.width * scale;
+        const overlayHeight = res.height * scale;
+        
+        // Update frame dimensions
+        frame.style.width = overlayWidth + 'px';
+        frame.style.height = overlayHeight + 'px';
+        
+        // Add dimension label
+        let label = frame.querySelector('.dimension-label');
+        if (!label) {
+            label = document.createElement('div');
+            label.className = 'dimension-label';
+            label.style.cssText = `
+                position: absolute;
+                top: -30px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(255, 255, 255, 0.9);
+                color: #333;
+                padding: 4px 8px;
+                border-radius: 4px;
+                font-size: 12px;
+                font-weight: bold;
+                white-space: nowrap;
+            `;
+            frame.appendChild(label);
+        }
+        
+        const megapixels = (res.width * res.height / 1000000).toFixed(1);
+        label.textContent = `${res.width}×${res.height} (${megapixels}MP)`;
+        
+        console.log(`📐 Overlay updated: ${res.width}×${res.height} → ${Math.round(overlayWidth)}×${Math.round(overlayHeight)}`);
+    }
+    
+    removeScreenshotOverlay() {
+        const overlay = document.getElementById('screenshot-overlay');
+        if (overlay) {
+            overlay.remove();
+            console.log('📐 Screenshot overlay removed');
+        }
     }
     
     calculateAspectRatio(width, height) {
@@ -1212,17 +1419,69 @@ class ThreeJSApp {
     }
 
     setupSimpleScreenshotGUI() {
-        const screenshotFolder = this.gui.addFolder('📸 Screenshot');
+        // Disabled - using setupScreenshotGUI instead  
+        console.log('setupSimpleScreenshotGUI is disabled');
+    }
+}
+
+// Initialize the application
+const app = new ThreeJSApp();
+                console.log('Quick shot button clicked!');
+                const params = getScreenshotParams();
+                console.log('Screenshot params:', params);
+                const result = await ScreenshotUtils.quickScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ Screenshot failed: ${result.error}`);
+                }
+            },
+            
+            transparentShot: () => {
+                console.log('Transparency toggle clicked');
+                const customSettings = this.screenshotManager.settings;
+                customSettings.transparent = !customSettings.transparent;
+                console.log('Transparent background:', customSettings.transparent ? 'ON' : 'OFF');
+                // Update all controllers to reflect the change
+                this.gui.controllers.forEach(controller => {
+                    if (controller.property === 'transparent') {
+                        controller.updateDisplay();
+                    }
+                });
+            },
+            
+            hdShot: () => {
+                console.log('HD template selected - updating dimensions');
+                this.setCustomDimensions(1280, 720);
+            },
+            
+            uhd4kShot: () => {
+                console.log('4K template selected - updating dimensions');
+                this.setCustomDimensions(3840, 2160);
+            },
+            
+            thumbnailShot: () => {
+                console.log('Thumbnail template selected - updating dimensions');
+                this.setCustomDimensions(500, 500);
+            }
+        };
+
+        // Add screenshot buttons
+        screenshotFolder.add({
+            testButton: () => {
+                alert('Test button works! GUI is connected properly.');
+                console.log('Test button clicked - GUI is working');
+            }
+        }, 'testButton').name('🔧 Test Button');
         
+        screenshotFolder.add(actions, 'quickShot').name('📷 Quick Screenshot (1920×1080)');
+        screenshotFolder.add(actions, 'transparentShot').name('🫥 Toggle Transparency');
+        screenshotFolder.add(actions, 'hdShot').name('� HD Template (1280×720)');
+        screenshotFolder.add(actions, 'uhd4kShot').name('📐 4K Template (3840×2160)');
+        screenshotFolder.add(actions, 'thumbnailShot').name('📐 Thumbnail Template (500×500)');
+
         // Custom screenshot settings
         const customFolder = screenshotFolder.addFolder('Custom Settings');
-        
-        // Get renderer, scene, camera references
-        const getScreenshotParams = () => ({
-            renderer: this.renderer,
-            scene: this.sceneManager.getScene(),
-            camera: this.cameraManager.getCamera()
-        });
         
         const customSettings = {
             width: 1920,
@@ -1250,7 +1509,6 @@ class ThreeJSApp {
             }
         }, 'customShot').name('📸 Take Custom Screenshot');
 
-        customFolder.open();
         screenshotFolder.open();
     }
 }

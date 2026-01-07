@@ -49,6 +49,53 @@ const showCameraFlash = () => {
     }, 300);
 };
 
+// Calculate bounding box of all visible meshes in scene
+const getSceneBounds = (scene) => {
+    const box = new THREE.Box3();
+    
+    scene.traverse((object) => {
+        if (object.isMesh && object.visible) {
+            const objectBox = new THREE.Box3().setFromObject(object);
+            box.union(objectBox);
+        }
+    });
+    
+    return box;
+};
+
+// Position camera to perfectly frame the model
+const frameThumbnailCamera = (camera, scene) => {
+    // Get the bounding box of all visible objects
+    const boundingBox = getSceneBounds(scene);
+    
+    if (boundingBox.isEmpty()) {
+        console.warn('No visible objects found for thumbnail framing');
+        return camera;
+    }
+    
+    // Calculate center and size
+    const center = boundingBox.getCenter(new THREE.Vector3());
+    const size = boundingBox.getSize(new THREE.Vector3());
+    
+    // Get the maximum dimension
+    const maxDim = Math.max(size.x, size.y, size.z);
+    
+    // Calculate camera distance for perfect framing
+    // Using FOV and some padding to ensure model fits perfectly
+    const fov = camera.fov * (Math.PI / 180); // Convert to radians
+    const distance = (maxDim / 2) / Math.tan(fov / 2) * 1.2; // 1.2 for small padding
+    
+    // Position camera at optimal distance, looking at center
+    const direction = new THREE.Vector3(1, 0.5, 1).normalize(); // Slight angle for better view
+    const cameraPosition = center.clone().add(direction.multiplyScalar(distance));
+    
+    camera.position.copy(cameraPosition);
+    camera.lookAt(center);
+    camera.updateMatrixWorld();
+    
+    return camera;
+};
+
 // Main screenshot function
 const takeScreenshot = async (renderer, scene, camera, options = {}) => {
     const settings = {
@@ -106,20 +153,17 @@ const takeScreenshot = async (renderer, scene, camera, options = {}) => {
         tempCamera.aspect = settings.width / settings.height;
         tempCamera.updateProjectionMatrix();
 
-        // Store original scene background for transparent screenshots
-        let originalBackground = null;
-        if (settings.transparent && scene.background) {
-            originalBackground = scene.background;
-            scene.background = null;
+        // Apply auto-framing if requested
+        if (settings.autoFrame) {
+            const bounds = getModelBounds(scene);
+            const optimalPosition = calculateOptimalCameraPosition(bounds, tempCamera);
+            tempCamera.position.copy(optimalPosition.position);
+            tempCamera.lookAt(optimalPosition.target);
+            tempCamera.updateMatrixWorld();
         }
 
         // Render with the temporary camera (original camera unchanged)
         tempRenderer.render(scene, tempCamera);
-
-        // Restore original scene background
-        if (originalBackground !== null) {
-            scene.background = originalBackground;
-        }
 
         // Generate filename
         let filename = settings.filename;
@@ -171,12 +215,23 @@ export const ScreenshotUtils = {
         return takeScreenshot(renderer, scene, camera, { width: 3840, height: 2160 });
     },
 
-    // Thumbnail screenshot
+    // Thumbnail screenshot with perfect centering
     thumbnailScreenshot: (renderer, scene, camera) => {
         return takeScreenshot(renderer, scene, camera, { 
-            width: 400, 
-            height: 300, 
-            filename: 'thumbnail' 
+            width: 500, 
+            height: 500, 
+            filename: 'thumbnail',
+            autoFrame: true // Enable auto-framing for thumbnail
+        });
+    },
+
+    // Auto-frame thumbnail (alias for thumbnailScreenshot)
+    autoFrameThumbnail: (renderer, scene, camera) => {
+        return takeScreenshot(renderer, scene, camera, { 
+            width: 500, 
+            height: 500, 
+            filename: 'auto_frame_thumbnail',
+            autoFrame: true // Enable auto-framing for thumbnail
         });
     }
 };

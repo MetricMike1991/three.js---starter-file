@@ -1031,11 +1031,21 @@ class ThreeJSApp {
                         console.error('❌ Screenshot failed:', result.error);
                     }
                 });
+            },
+            autoFrameThumbnail: () => {
+                this.screenshotManager.autoFrameThumbnail().then(result => {
+                    if (result.success) {
+                        console.log(`✅ Auto-framed thumbnail saved: ${result.filename} (${result.size})`);
+                    } else {
+                        console.error('❌ Auto-frame thumbnail failed:', result.error);
+                    }
+                });
             }
         };
         
         screenshotFolder.add(quickActions, 'quickShot').name('📷 Take Screenshot');
         screenshotFolder.add(quickActions, 'transparentShot').name('🫥 Transparent Background');
+        screenshotFolder.add(quickActions, 'autoFrameThumbnail').name('🎯 Auto-Frame Thumbnail (500x500)');
         
         // Settings folder
         const settingsFolder = screenshotFolder.addFolder('Settings');
@@ -1214,15 +1224,88 @@ class ThreeJSApp {
     setupSimpleScreenshotGUI() {
         const screenshotFolder = this.gui.addFolder('📸 Screenshot');
         
-        // Custom screenshot settings
-        const customFolder = screenshotFolder.addFolder('Custom Settings');
-        
         // Get renderer, scene, camera references
         const getScreenshotParams = () => ({
             renderer: this.renderer,
             scene: this.sceneManager.getScene(),
             camera: this.cameraManager.getCamera()
         });
+
+        // Quick screenshot actions
+        const actions = {
+            quickShot: async () => {
+                console.log('Quick shot button clicked!');
+                const params = getScreenshotParams();
+                console.log('Screenshot params:', params);
+                const result = await ScreenshotUtils.quickScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ Screenshot failed: ${result.error}`);
+                }
+            },
+            
+            transparentShot: async () => {
+                console.log('Transparent shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.transparentScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ Transparent ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ Transparent screenshot failed: ${result.error}`);
+                }
+            },
+            
+            hdShot: async () => {
+                console.log('HD shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.hdScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ HD ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ HD screenshot failed: ${result.error}`);
+                }
+            },
+            
+            uhd4kShot: async () => {
+                console.log('4K shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.uhd4kScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ 4K ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ 4K screenshot failed: ${result.error}`);
+                }
+            },
+            
+            thumbnailShot: async () => {
+                console.log('Thumbnail shot button clicked!');
+                const params = getScreenshotParams();
+                const result = await ScreenshotUtils.thumbnailScreenshot(params.renderer, params.scene, params.camera);
+                if (result.success) {
+                    console.log(`✅ Thumbnail ${result.filename} saved (${result.size})`);
+                } else {
+                    console.error(`❌ Thumbnail screenshot failed: ${result.error}`);
+                }
+            }
+        };
+
+        // Add screenshot buttons
+        screenshotFolder.add({
+            testButton: () => {
+                alert('Test button works! GUI is connected properly.');
+                console.log('Test button clicked - GUI is working');
+            }
+        }, 'testButton').name('🔧 Test Button');
+        
+        screenshotFolder.add(actions, 'quickShot').name('📷 Quick Screenshot (1920×1080)');
+        screenshotFolder.add(actions, 'transparentShot').name('🫥 Transparent Background');
+        screenshotFolder.add(actions, 'hdShot').name('📱 HD (1280×720)');
+        screenshotFolder.add(actions, 'uhd4kShot').name('📺 4K UHD (3840×2160)');
+        screenshotFolder.add(actions, 'thumbnailShot').name('🖼️ Auto-Framed Thumbnail (500×500)');
+
+        // Custom screenshot settings
+        const customFolder = screenshotFolder.addFolder('Custom Settings');
         
         const customSettings = {
             width: 1920,
@@ -1250,7 +1333,6 @@ class ThreeJSApp {
             }
         }, 'customShot').name('📸 Take Custom Screenshot');
 
-        customFolder.open();
         screenshotFolder.open();
     }
 }
