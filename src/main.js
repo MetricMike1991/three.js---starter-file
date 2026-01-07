@@ -11,6 +11,7 @@ import CameraManager from './js/camera.js';
 import LightingSystem from './js/lighting.js';
 import ParticleSystem from './js/particles.js';
 import SettingsManager from './js/settings.js';
+import AnimationPlayer from './js/animation-player.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 /**
@@ -75,6 +76,10 @@ class ThreeJSApp {
         this.lightingSystem = new LightingSystem(this.sceneManager.getScene());
         this.particleSystem = new ParticleSystem(this.sceneManager.getScene());
         this.settingsManager = new SettingsManager();
+        this.animationPlayer = new AnimationPlayer();
+        
+        // Set scene reference for camera raycasting
+        this.cameraManager.setScene(this.sceneManager.getScene());
 
         // Make camera available globally for depth blur calculations
         window.camera = this.cameraManager.getCamera();
@@ -96,6 +101,7 @@ class ThreeJSApp {
         this.settingsManager.registerManager('camera', this.cameraManager);
         this.settingsManager.registerManager('lighting', this.lightingSystem);
         this.settingsManager.registerManager('dustParticles', this.particleSystem);
+        this.settingsManager.registerManager('animationPlayer', this.animationPlayer);
 
         // Setup components
         this.setupRenderer();
@@ -115,6 +121,9 @@ class ThreeJSApp {
         setTimeout(() => this.updateAllGUIControls(), 500);
 
         // Start render loop
+        // Initialize animation player with hidden state
+        this.animationPlayer.setVisibility(false);
+        
         this.animate();
     }
 
@@ -321,6 +330,9 @@ class ThreeJSApp {
         
         // Lighting controls
         this.setupLightingGUI();
+        
+        // Camera controls
+        this.setupCameraGUI();
 
         // Keyboard shortcut to hide/show GUI
         this.setupGUIVisibilityToggle();
@@ -577,6 +589,242 @@ class ThreeJSApp {
         lightsFolder.open();
     }
 
+    setupCameraGUI() {
+        const cameraFolder = this.gui.addFolder('📷 Camera Controls');
+        const camera = this.cameraManager.getCamera();
+        const controls = this.cameraManager.getControls();
+        
+        // Zoom Range Controls
+        const zoomFolder = cameraFolder.addFolder('Zoom Range');
+        
+        zoomFolder.add(controls, 'minDistance', 0.001, 1, 0.001).name('Min Zoom Distance')
+            .onChange(() => console.log('Min distance:', controls.minDistance));
+        
+        zoomFolder.add(controls, 'maxDistance', 10, 500, 1).name('Max Zoom Distance')
+            .onChange(() => console.log('Max distance:', controls.maxDistance));
+        
+        zoomFolder.add(controls, 'zoomSpeed', 0.1, 2, 0.1).name('Zoom Speed')
+            .onChange(() => console.log('Zoom speed:', controls.zoomSpeed));
+        
+        // Field of View Control
+        const fovFolder = cameraFolder.addFolder('Field of View');
+        
+        fovFolder.add({ fov: camera.fov }, 'fov', 10, 150, 1).name('FOV (degrees)')
+            .onChange((value) => {
+                this.cameraManager.setFOV(value);
+            });
+        
+        // Copy camera settings button
+        fovFolder.add({
+            copyCameraSettings: () => {
+                this.cameraManager.copyCameraSettingsToClipboard();
+            }
+        }, 'copyCameraSettings').name('📋 Copy Camera Settings');
+        
+        // Copy all GUI settings button
+        fovFolder.add({
+            copyAllSettings: () => {
+                this.cameraManager.copyAllSettingsToClipboard(this.settingsManager);
+            }
+        }, 'copyAllSettings').name('📋 Copy ALL GUI Settings');
+        
+        // Zoom Momentum Controls
+        const momentumFolder = cameraFolder.addFolder('Zoom Momentum');
+        const cameraParams = this.cameraManager;
+        
+        momentumFolder.add(cameraParams, 'zoomDecay', 0.8, 0.99, 0.01).name('Momentum Decay')
+            .onChange(() => console.log('Zoom decay:', cameraParams.zoomDecay));
+        
+        momentumFolder.add(cameraParams, 'zoomMomentumThreshold', 0.001, 0.1, 0.001).name('Momentum Threshold')
+            .onChange(() => console.log('Momentum threshold:', cameraParams.zoomMomentumThreshold));
+        
+        // Add a velocity multiplier for testing
+        const velocityMultiplier = { value: 1.0 };
+        momentumFolder.add(velocityMultiplier, 'value', 0.1, 5, 0.1).name('Velocity Multiplier')
+            .onChange((value) => {
+                // Store the multiplier for use in trackZoomMomentum
+                cameraParams.velocityMultiplier = value;
+                console.log('Velocity multiplier:', value);
+            });
+        
+        // Reset button
+        cameraFolder.add({
+            resetCamera: () => {
+                this.cameraManager.resetCamera();
+                console.log('Camera fully reset to defaults');
+            }
+        }, 'resetCamera').name('🔄 Reset Camera');
+        
+        // Test momentum button
+        cameraFolder.add({
+            testMomentum: () => {
+                console.log('Testing momentum...');
+                cameraParams.zoomMomentum = 0.2; // Set positive momentum
+                cameraParams.momentumActive = true;
+                console.log('Momentum set to:', cameraParams.zoomMomentum);
+            }
+        }, 'testMomentum').name('🧪 Test Momentum');
+        
+        // Clear momentum button
+        cameraFolder.add({
+            clearMomentum: () => {
+                cameraParams.zoomMomentum = 0;
+                cameraParams.momentumActive = false;
+                console.log('Momentum cleared');
+            }
+        }, 'clearMomentum').name('❌ Clear Momentum');
+        
+        // Debug info
+        const debugFolder = cameraFolder.addFolder('Debug Info');
+        const debugInfo = {
+            currentDistance: 0,
+            momentum: 0,
+            targetX: 0,
+            targetY: 0,
+            targetZ: 0
+        };
+        
+        const distanceController = debugFolder.add(debugInfo, 'currentDistance').name('Distance').listen();
+        const momentumController = debugFolder.add(debugInfo, 'momentum').name('Momentum').listen();
+        const targetXController = debugFolder.add(debugInfo, 'targetX').name('Target X').listen();
+        const targetYController = debugFolder.add(debugInfo, 'targetY').name('Target Y').listen();
+        const targetZController = debugFolder.add(debugInfo, 'targetZ').name('Target Z').listen();
+        
+        // Update debug info in animation loop
+        const updateDebugInfo = () => {
+            debugInfo.currentDistance = camera.position.distanceTo(controls.target);
+            debugInfo.momentum = cameraParams.zoomMomentum || 0;
+            debugInfo.targetX = controls.target.x;
+            debugInfo.targetY = controls.target.y;
+            debugInfo.targetZ = controls.target.z;
+        };
+        
+        // Store update function for animation loop
+        this.updateCameraDebug = updateDebugInfo;
+        
+        // Initialize velocity multiplier with user's preferred setting
+        cameraParams.velocityMultiplier = 0.4;
+        
+        momentumFolder.open();
+        zoomFolder.open();
+        fovFolder.open();
+        
+        // Axis Helper Section
+        const axisFolder = cameraFolder.addFolder('🎯 Rotation Center Helper');
+        
+        axisFolder.add({
+            showAxis: this.cameraManager.axisHelperVisible
+        }, 'showAxis').name('Show Axis Helper')
+            .onChange((value) => {
+                this.cameraManager.toggleAxisHelper(value);
+            });
+        
+        axisFolder.add({
+            axisSize: this.cameraManager.axisHelperSize
+        }, 'axisSize', 0.1, 2, 0.1).name('Axis Size')
+            .onChange((value) => {
+                this.cameraManager.setAxisHelperSize(value);
+            });
+        
+        // Coordinates Section
+        const coordsFolder = cameraFolder.addFolder('📍 Coordinates');
+        
+        // Live coordinate display
+        const coordDisplay = {
+            x: 0,
+            y: 0, 
+            z: 0
+        };
+        
+        const xController = coordsFolder.add(coordDisplay, 'x').name('Center X').listen();
+        const yController = coordsFolder.add(coordDisplay, 'y').name('Center Y').listen();
+        const zController = coordsFolder.add(coordDisplay, 'z').name('Center Z').listen();
+        
+        // Manual control sliders
+        const manualFolder = coordsFolder.addFolder('Manual Control');
+        
+        const manualControls = {
+            x: this.cameraManager.getRotationCenter().x,
+            y: this.cameraManager.getRotationCenter().y,
+            z: this.cameraManager.getRotationCenter().z
+        };
+        
+        manualFolder.add(manualControls, 'x', -5, 5, 0.001).name('Set X Position')
+            .onChange((value) => {
+                this.cameraManager.setRotationCenterX(value);
+            })
+            .listen();
+            
+        manualFolder.add(manualControls, 'y', -5, 5, 0.001).name('Set Y Position')
+            .onChange((value) => {
+                this.cameraManager.setRotationCenterY(value);
+            })
+            .listen();
+            
+        manualFolder.add(manualControls, 'z', -5, 5, 0.001).name('Set Z Position')
+            .onChange((value) => {
+                this.cameraManager.setRotationCenterZ(value);
+            })
+            .listen();
+        
+        // Copy coordinates button
+        coordsFolder.add({
+            copyCoords: () => {
+                this.cameraManager.copyCoordinatesToClipboard();
+            }
+        }, 'copyCoords').name('📋 Copy Coordinates');
+        
+        // Update coordinate display in the debug update function
+        const originalUpdateDebugInfo = this.updateCameraDebug;
+        this.updateCameraDebug = () => {
+            // Call original debug update
+            if (originalUpdateDebugInfo) {
+                originalUpdateDebugInfo();
+            }
+            
+            // Update coordinate display and manual controls
+            const coords = this.cameraManager.getRotationCenter();
+            coordDisplay.x = parseFloat(coords.x.toFixed(6));
+            coordDisplay.y = parseFloat(coords.y.toFixed(6));
+            coordDisplay.z = parseFloat(coords.z.toFixed(6));
+            
+            // Update manual control sliders to match current position
+            manualControls.x = coords.x;
+            manualControls.y = coords.y;
+            manualControls.z = coords.z;
+        };
+        
+        axisFolder.open();
+        coordsFolder.open();
+        manualFolder.open();
+        
+        // Animation Player Controls
+        const animationFolder = cameraFolder.addFolder('🎬 Animation Player');
+        
+        const animationSettings = {
+            showPlayer: this.animationPlayer ? this.animationPlayer.isVisible : false,
+            alwaysVisible: this.animationPlayer ? this.animationPlayer.alwaysVisible : false
+        };
+        
+        animationFolder.add(animationSettings, 'showPlayer').name('Show Animation Player')
+            .onChange((value) => {
+                if (this.animationPlayer) {
+                    this.animationPlayer.setVisibility(value);
+                    animationSettings.showPlayer = value;
+                }
+            });
+            
+        animationFolder.add(animationSettings, 'alwaysVisible').name('Always Visible (No Auto-Hide)')
+            .onChange((value) => {
+                if (this.animationPlayer) {
+                    this.animationPlayer.setAlwaysVisible(value);
+                    animationSettings.alwaysVisible = value;
+                }
+            });
+        
+        animationFolder.open();
+    }
+
     setupGUIVisibilityToggle() {
         let guiVisible = true;
         window.addEventListener('keydown', (event) => {
@@ -653,11 +901,27 @@ class ThreeJSApp {
 
                 model.position.set(0, -0.02, 0);
                 this.sceneManager.getScene().add(model);
+                
+                // Set clickable meshes for camera double-click functionality
+                this.cameraManager.setClickableMeshes(this.allClickableMeshes);
 
                 // Setup animations if available
                 if (gltf.animations && gltf.animations.length > 0) {
                     this.mixer = new THREE.AnimationMixer(model);
-                    // Setup your animations here
+                    
+                    // Setup animation player with mixer and animations
+                    this.animationPlayer.setMixer(this.mixer, gltf.animations);
+                    
+                    // Set up all animations (optionally auto-start first one)
+                    gltf.animations.forEach((clip, index) => {
+                        const action = this.mixer.clipAction(clip);
+                        action.setLoop(THREE.LoopRepeat);
+                        
+                        // Auto-start first animation if desired
+                        if (index === 0) {
+                            // action.play(); // Uncomment to auto-play
+                        }
+                    });
                 }
 
                 // Add model GUI controls
@@ -713,6 +977,11 @@ class ThreeJSApp {
         // Update camera
         this.cameraManager.update();
         
+        // Update camera debug info if available
+        if (this.updateCameraDebug) {
+            this.updateCameraDebug();
+        }
+        
         // Update particles
         this.particleSystem.update(deltaTime);
         
@@ -720,6 +989,9 @@ class ThreeJSApp {
         if (this.mixer) {
             this.mixer.update(deltaTime);
         }
+        
+        // Update animation player
+        this.animationPlayer.update(deltaTime);
         
         // Render
         this.renderer.render(this.sceneManager.getScene(), this.cameraManager.getCamera());
