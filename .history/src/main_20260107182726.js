@@ -1561,13 +1561,6 @@ class ThreeJSApp {
                 console.log('Thumbnail menu radius:', value + 'px');
             });
         
-        // Keep menu open toggle
-        thumbnailFolder.add(settings, 'keepOpen')
-            .name('Keep Menu Open')
-            .onChange(value => {
-                console.log('Thumbnail menu keep open:', value ? 'ON' : 'OFF');
-            });
-        
         // Copy settings button
         thumbnailFolder.add({
             copySettings: () => this.thumbnailMenu.copySettingsToClipboard()

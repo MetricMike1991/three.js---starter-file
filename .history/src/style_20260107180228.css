@@ -480,8 +480,8 @@ body
     box-shadow: 0 4px 8px rgba(74, 158, 255, 0.3);
 }
 
-/* Thumbnail Dropdown Menu Styles */
-.thumbnail-menu-container {
+/* Exercise Dropdown Menu Styles */
+.exercise-menu-container {
     position: fixed;
     top: 20px;
     left: 20px;
@@ -489,7 +489,7 @@ body
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Arial, sans-serif;
 }
 
-.thumbnail-menu-toggle {
+.exercise-menu-toggle {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -505,13 +505,13 @@ body
     font-weight: 500;
 }
 
-.thumbnail-menu-toggle:hover {
+.exercise-menu-toggle:hover {
     background: rgba(0, 0, 0, 0.9);
     border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-1px);
 }
 
-.thumbnail-dropdown {
+.exercise-dropdown {
     position: absolute;
     top: 100%;
     left: 0;
@@ -522,13 +522,13 @@ body
     padding: 15px;
     backdrop-filter: blur(15px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    width: min(90vw, 240px);
+    width: 240px;
     max-height: 70vh;
     display: none;
     overflow: hidden;
 }
 
-.thumbnail-dropdown.show {
+.exercise-dropdown.show {
     display: block;
     animation: dropdownShow 0.3s ease;
 }
@@ -544,7 +544,7 @@ body
     }
 }
 
-.thumbnail-scroll-controls {
+.exercise-scroll-controls {
     display: flex;
     justify-content: space-between;
     margin-bottom: 10px;
@@ -575,7 +575,7 @@ body
 }
 
 .thumbnail-scroll-container {
-    max-height: 60vh;
+    max-height: 50vh;
     overflow-y: auto;
     scrollbar-width: thin;
     scrollbar-color: rgba(255, 255, 255, 0.3) rgba(0, 0, 0, 0.1);
@@ -607,8 +607,8 @@ body
 }
 
 .thumbnail-item {
-    width: min(25vw, 200px);
-    height: min(25vw, 200px);
+    width: 200px;
+    height: 200px;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
@@ -657,7 +657,7 @@ body
     z-index: 1;
 }
 
-.thumbnail-label {
+.exercise-label {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -668,50 +668,4 @@ body
     font-size: 12px;
     font-weight: 500;
     text-align: center;
-}
-
-/* Mobile responsive adjustments for thumbnail menu */
-@media (max-width: 768px) {
-    .thumbnail-menu-container {
-        top: 10px;
-        left: 10px;
-    }
-    
-    .thumbnail-dropdown {
-        width: min(95vw, 300px);
-        max-height: 80vh;
-        padding: 12px;
-    }
-    
-    .thumbnail-item {
-        width: min(35vw, 180px);
-        height: min(35vw, 180px);
-    }
-    
-    .thumbnail-grid {
-        gap: 20px;
-        padding: 8px;
-    }
-}
-
-@media (max-width: 480px) {
-    .thumbnail-dropdown {
-        width: 95vw;
-        max-height: 85vh;
-        padding: 10px;
-    }
-    
-    .thumbnail-item {
-        width: min(40vw, 160px);
-        height: min(40vw, 160px);
-    }
-    
-    .thumbnail-grid {
-        gap: 15px;
-        padding: 5px;
-    }
-    
-    .scroll-btn {
-        padding: 6px;
-    }
 }

@@ -100,15 +100,6 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
-        // Initialize thumbnail menu
-        this.thumbnailMenu = new ThumbnailMenu();
-        
-        // Listen for thumbnail selection events
-        document.addEventListener('thumbnailSelected', (e) => {
-            console.log('Thumbnail selected:', e.detail.thumbnail);
-            // Add your thumbnail selection logic here
-        });
-        
         // Make animation player visible from the start
         this.animationPlayer.setVisibility(true);
         
@@ -149,7 +140,6 @@ class ThreeJSApp {
         this.settingsManager.registerManager('lighting', this.lightingSystem);
         this.settingsManager.registerManager('dustParticles', this.particleSystem);
         this.settingsManager.registerManager('animationPlayer', this.animationPlayer);
-        this.settingsManager.registerManager('thumbnailMenu', this.thumbnailMenu);
         this.settingsManager.registerManager('playerStyling', {
             getSettings: () => this.playerStyleParams,
             applySettings: (settings) => {
@@ -510,9 +500,6 @@ class ThreeJSApp {
 
         // Screenshot controls
         this.setupSimpleScreenshotGUI();
-
-        // Thumbnail menu controls
-        this.setupThumbnailMenuGUI();
 
         // Keyboard shortcut to hide/show GUI
         this.setupGUIVisibilityToggle();
@@ -1523,58 +1510,6 @@ class ThreeJSApp {
         // settingsFolder.open();
         // resolutionFolder.open();
         // screenshotFolder.open();
-    }
-    
-    setupThumbnailMenuGUI() {
-        const thumbnailFolder = this.trackFolder(this.gui.addFolder('🖼️ Thumbnail Menu'));
-        const settings = this.thumbnailMenu.settings;
-        
-        // Width percentage control
-        thumbnailFolder.add(settings, 'widthPercentage', 20, 100, 5)
-            .name('Width %')
-            .onChange(value => {
-                this.thumbnailMenu.updateStyles();
-                console.log('Thumbnail menu width:', value + '%');
-            });
-        
-        // Background color
-        thumbnailFolder.addColor(settings, 'backgroundColor')
-            .name('Background Color')
-            .onChange(value => {
-                this.thumbnailMenu.updateStyles();
-                console.log('Thumbnail menu background color:', value);
-            });
-        
-        // Background opacity
-        thumbnailFolder.add(settings, 'backgroundOpacity', 0, 1, 0.1)
-            .name('Background Opacity')
-            .onChange(value => {
-                this.thumbnailMenu.updateStyles();
-                console.log('Thumbnail menu opacity:', value);
-            });
-        
-        // Border radius
-        thumbnailFolder.add(settings, 'borderRadius', 0, 30, 1)
-            .name('Corner Radius')
-            .onChange(value => {
-                this.thumbnailMenu.updateStyles();
-                console.log('Thumbnail menu radius:', value + 'px');
-            });
-        
-        // Keep menu open toggle
-        thumbnailFolder.add(settings, 'keepOpen')
-            .name('Keep Menu Open')
-            .onChange(value => {
-                console.log('Thumbnail menu keep open:', value ? 'ON' : 'OFF');
-            });
-        
-        // Copy settings button
-        thumbnailFolder.add({
-            copySettings: () => this.thumbnailMenu.copySettingsToClipboard()
-        }, 'copySettings').name('📋 Copy Settings');
-        
-        // Apply initial styles
-        this.thumbnailMenu.updateStyles();
     }
     
     setQuickResolution(presetKey) {

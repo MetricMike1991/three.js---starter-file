@@ -1525,8 +1525,7 @@ class ThreeJSApp {
         // screenshotFolder.open();
     }
     
-    setupThumbnailMenuGUI() {
-        const thumbnailFolder = this.trackFolder(this.gui.addFolder('🖼️ Thumbnail Menu'));
+    setupThumbnailMenuGUI() {\n        const thumbnailFolder = this.trackFolder(this.gui.addFolder('🖼️ Thumbnail Menu'));
         const settings = this.thumbnailMenu.settings;
         
         // Width percentage control
@@ -1559,13 +1558,6 @@ class ThreeJSApp {
             .onChange(value => {
                 this.thumbnailMenu.updateStyles();
                 console.log('Thumbnail menu radius:', value + 'px');
-            });
-        
-        // Keep menu open toggle
-        thumbnailFolder.add(settings, 'keepOpen')
-            .name('Keep Menu Open')
-            .onChange(value => {
-                console.log('Thumbnail menu keep open:', value ? 'ON' : 'OFF');
             });
         
         // Copy settings button
