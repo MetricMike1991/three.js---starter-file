@@ -82,9 +82,6 @@ export class AnimationPlayer {
         this.speedText = this.container.querySelector('#speed-text');
         this.speedMenu = this.container.querySelector('#speed-menu');
         
-        // Ensure correct initial icon state (should show play icon when paused)
-        this.updatePlayPauseIcon();
-        
         // Start hidden by default
         this.setVisibility(true); // Player is enabled but hidden until hover
     }

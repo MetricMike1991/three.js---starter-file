@@ -82,9 +82,6 @@ export class AnimationPlayer {
         this.speedText = this.container.querySelector('#speed-text');
         this.speedMenu = this.container.querySelector('#speed-menu');
         
-        // Ensure correct initial icon state (should show play icon when paused)
-        this.updatePlayPauseIcon();
-        
         // Start hidden by default
         this.setVisibility(true); // Player is enabled but hidden until hover
     }
@@ -404,14 +401,8 @@ export class AnimationPlayer {
         if (settings.alwaysVisible !== undefined) {
             this.setAlwaysVisible(settings.alwaysVisible);
         }
-        if (settings.isPlaying !== undefined && this.currentAction) {
-            // Only toggle if the state is different
-            if (settings.isPlaying !== this.isPlaying) {
-                this.togglePlayPause();
-            } else {
-                // Ensure icon matches current state
-                this.updatePlayPauseIcon();
-            }
+        if (settings.isPlaying && this.currentAction) {
+            this.togglePlayPause();
         }
     }
 }
