@@ -85,6 +85,76 @@ body
     justify-content: flex-end;
 }
 
+/* Responsive design for smaller screens */
+@media screen and (max-width: 768px) {
+    .animation-player {
+        padding: 8px 12px;
+    }
+    
+    .player-controls {
+        gap: 8px;
+    }
+    
+    .player-left {
+        min-width: 80px;
+        gap: 6px;
+    }
+    
+    .player-right {
+        min-width: 120px;
+        gap: 6px;
+    }
+    
+    .play-pause-btn, .speed-btn {
+        padding: 6px 8px;
+        font-size: 11px;
+    }
+    
+    .time-display {
+        font-size: 10px;
+        min-width: 25px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .animation-player {
+        padding: 6px 8px;
+    }
+    
+    .player-controls {
+        gap: 4px;
+    }
+    
+    .player-left {
+        min-width: 60px;
+        gap: 4px;
+    }
+    
+    .player-right {
+        min-width: 80px;
+        gap: 4px;
+    }
+    
+    .play-pause-btn, .speed-btn {
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+    
+    .play-pause-btn svg, .speed-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .time-display {
+        font-size: 9px;
+        min-width: 20px;
+    }
+    
+    .timeline-container {
+        margin: 0 6px;
+    }
+}
+
 .control-btn {
     background: transparent;
     border: none;
