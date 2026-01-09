@@ -31,10 +31,7 @@ class ThumbnailDropdownMenu {
             backgroundColor: '#000000',
             backgroundOpacity: 0.9,
             borderRadius: 12,
-            keepOpen: false,
-            glowColor: '#4a9eff',
-            glowIntensity: 0.6,
-            glowSize: 20
+            keepOpen: false
         };
         
         this.initializeElements();
@@ -425,38 +422,6 @@ class ThumbnailDropdownMenu {
         this.dropdown.style.borderRadius = `${this.settings.borderRadius}px`;
     }
     
-    updateGlowStyles() {
-        if (!this.toggleBtn) return;
-        
-        const hex = this.settings.glowColor.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
-        
-        const glowColor = `rgba(${r}, ${g}, ${b}, ${this.settings.glowIntensity})`;
-        const outerGlow = `rgba(${r}, ${g}, ${b}, ${this.settings.glowIntensity * 0.5})`;
-        
-        // Create dynamic CSS rule for this menu's glow
-        const styleId = `glow-${this.menuType}`;
-        let styleElement = document.getElementById(styleId);
-        
-        if (!styleElement) {
-            styleElement = document.createElement('style');
-            styleElement.id = styleId;
-            document.head.appendChild(styleElement);
-        }
-        
-        styleElement.textContent = `
-            #${this.menuType}Toggle.active {
-                border-color: ${this.settings.glowColor};
-                box-shadow: 0 0 ${this.settings.glowSize}px ${glowColor}, 0 0 ${this.settings.glowSize * 2}px ${outerGlow};
-            }
-            #${this.menuType}Toggle.active:hover {
-                box-shadow: 0 0 ${this.settings.glowSize * 1.25}px ${glowColor.replace(this.settings.glowIntensity, this.settings.glowIntensity + 0.2)}, 0 0 ${this.settings.glowSize * 2.5}px ${outerGlow.replace(this.settings.glowIntensity * 0.5, this.settings.glowIntensity * 0.7)};
-            }
-        `;
-    }
-    
     // Settings management methods
     getSettings() {
         return { ...this.settings };
@@ -465,7 +430,6 @@ class ThumbnailDropdownMenu {
     applySettings(settings) {
         this.settings = { ...this.settings, ...settings };
         this.updateStyles();
-        this.updateGlowStyles();
     }
 }
 
@@ -477,10 +441,7 @@ export class MultiThumbnailMenuSystem {
             backgroundColor: '#000000',
             backgroundOpacity: 0.9,
             borderRadius: 12,
-            keepOpen: false,
-            glowColor: '#4a9eff',
-            glowIntensity: 0.6,
-            glowSize: 20
+            keepOpen: false
         };
         
         this.initializeMenus();
@@ -512,7 +473,6 @@ export class MultiThumbnailMenuSystem {
         this.settings = { ...this.settings, ...newSettings };
         Object.values(this.menus).forEach(menu => {
             menu.applySettings(this.settings);
-            menu.updateGlowStyles();
         });
     }
     

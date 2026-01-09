@@ -477,10 +477,7 @@ export class MultiThumbnailMenuSystem {
             backgroundColor: '#000000',
             backgroundOpacity: 0.9,
             borderRadius: 12,
-            keepOpen: false,
-            glowColor: '#4a9eff',
-            glowIntensity: 0.6,
-            glowSize: 20
+            keepOpen: false
         };
         
         this.initializeMenus();

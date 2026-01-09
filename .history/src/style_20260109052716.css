@@ -527,13 +527,13 @@ body
 
 .thumbnail-menu-toggle.active {
     background: rgba(0, 0, 0, 0.95);
-    border-color: #4a9eff;
-    box-shadow: 0 0 20px rgba(74, 158, 255, 0.6), 0 0 40px rgba(74, 158, 255, 0.3);
+    border-color: #4fc3f7;
+    box-shadow: 0 0 20px rgba(79, 195, 247, 0.6), 0 0 40px rgba(79, 195, 247, 0.3);
     transform: scale(1.02);
 }
 
 .thumbnail-menu-toggle.active:hover {
-    box-shadow: 0 0 25px rgba(74, 158, 255, 0.8), 0 0 50px rgba(74, 158, 255, 0.4);
+    box-shadow: 0 0 25px rgba(79, 195, 247, 0.8), 0 0 50px rgba(79, 195, 247, 0.4);
 }
 
 .thumbnail-dropdown {
