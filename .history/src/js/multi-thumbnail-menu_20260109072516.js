@@ -325,9 +325,11 @@ class ThumbnailDropdownMenu {
             }
         });
 
-        // Update virtualized content on scroll (always update for smooth experience)
+        // Update virtualized content on scroll (throttled)
         this.scrollContainer.addEventListener('scroll', () => {
-            this.updateVirtualizedContent();
+            if (!this.isDragging) {
+                this.updateVirtualizedContent();
+            }
             this.updateScrollButtons();
         });
 
@@ -443,8 +445,10 @@ class ThumbnailDropdownMenu {
             behavior: 'auto'
         });
 
-        // Update virtualized content during momentum scrolling
-        this.updateVirtualizedContent();
+        // Update virtualized content during momentum scrolling (but not during drag)
+        if (!this.isDragging) {
+            this.updateVirtualizedContent();
+        }
 
         this.scrollVelocity *= this.scrollDecay;
         requestAnimationFrame(() => this.momentumScrollFrame());

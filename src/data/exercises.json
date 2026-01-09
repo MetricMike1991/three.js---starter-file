@@ -1,0 +1,295 @@
+[
+  {
+    "id": "barbell_back_squat",
+    "name": "Barbell Back Squat",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=1",
+    "muscleGroup": [
+      "Quadriceps",
+      "Glutes",
+      "Hamstrings"
+    ],
+    "equipment": [
+      "Barbell",
+      "Rack"
+    ],
+    "information": {
+      "difficulty": "Intermediate",
+      "movementType": "Compound",
+      "planeOfMotion": "Sagittal",
+      "description": "A compound lower-body exercise focusing on knee and hip extension.",
+      "primaryMuscle": "Quadriceps",
+      "secondaryMuscles": ["Glutes", "Hamstrings"],
+      "tips": [
+        "Maintain a neutral spine throughout the movement.",
+        "Drive through mid-foot and heel."
+      ]
+    }
+  },
+  {
+    "id": "seated_lat_pulldown",
+    "name": "Seated Lat Pulldown",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=2",
+    "muscleGroup": [
+      "Latissimus Dorsi",
+      "Biceps"
+    ],
+    "equipment": [
+      "Cable Machine"
+    ],
+    "information": {
+      "difficulty": "Beginner",
+      "movementType": "Compound",
+      "planeOfMotion": "Frontal",
+      "description": "A vertical pulling exercise targeting the lats using a cable machine.",
+      "primaryMuscle": "Latissimus Dorsi",
+      "secondaryMuscles": ["Biceps", "Rear Deltoids"],
+      "tips": [
+        "Pull elbows down and back.",
+        "Avoid excessive lean-back."
+      ]
+    }
+  },
+  {
+    "id": "deadlift",
+    "name": "Conventional Deadlift",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=3",
+    "muscleGroup": [
+      "Hamstrings",
+      "Glutes",
+      "Erector Spinae"
+    ],
+    "equipment": [
+      "Barbell"
+    ],
+    "information": {
+      "difficulty": "Advanced",
+      "movementType": "Compound",
+      "planeOfMotion": "Sagittal",
+      "description": "A hip-hinge movement targeting posterior chain muscles.",
+      "primaryMuscle": "Hamstrings",
+      "secondaryMuscles": ["Glutes", "Erector Spinae", "Traps"],
+      "tips": [
+        "Keep bar close to body throughout movement.",
+        "Engage lats to maintain bar path."
+      ]
+    }
+  },
+  {
+    "id": "bench_press",
+    "name": "Barbell Bench Press",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=4",
+    "muscleGroup": [
+      "Chest",
+      "Triceps",
+      "Anterior Deltoids"
+    ],
+    "equipment": [
+      "Barbell",
+      "Bench"
+    ],
+    "information": {
+      "difficulty": "Intermediate",
+      "movementType": "Compound",
+      "planeOfMotion": "Sagittal",
+      "description": "A horizontal pushing exercise targeting chest and triceps.",
+      "primaryMuscle": "Chest",
+      "secondaryMuscles": ["Triceps", "Anterior Deltoids"],
+      "tips": [
+        "Maintain shoulder blade retraction.",
+        "Control the descent and drive through legs."
+      ]
+    }
+  },
+  {
+    "id": "pull_up",
+    "name": "Pull-up",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=5",
+    "muscleGroup": [
+      "Latissimus Dorsi",
+      "Biceps",
+      "Rhomboids"
+    ],
+    "equipment": [
+      "Pull-up Bar"
+    ],
+    "information": {
+      "difficulty": "Intermediate",
+      "movementType": "Compound",
+      "planeOfMotion": "Frontal",
+      "description": "A vertical pulling bodyweight exercise.",
+      "primaryMuscle": "Latissimus Dorsi",
+      "secondaryMuscles": ["Biceps", "Rhomboids", "Middle Traps"],
+      "tips": [
+        "Start from dead hang position.",
+        "Pull elbows down and back."
+      ]
+    }
+  },
+  {
+    "id": "overhead_press",
+    "name": "Overhead Press",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=6",
+    "muscleGroup": [
+      "Shoulders",
+      "Triceps"
+    ],
+    "equipment": [
+      "Barbell"
+    ],
+    "information": {
+      "difficulty": "Intermediate",
+      "movementType": "Compound",
+      "planeOfMotion": "Frontal",
+      "description": "A vertical pushing exercise for shoulders and triceps.",
+      "primaryMuscle": "Shoulders",
+      "secondaryMuscles": ["Triceps", "Upper Chest"],
+      "tips": [
+        "Keep core tight throughout movement.",
+        "Press bar in straight line overhead."
+      ]
+    }
+  },
+  {
+    "id": "dumbbell_row",
+    "name": "Dumbbell Row",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=7",
+    "muscleGroup": [
+      "Latissimus Dorsi",
+      "Rhomboids",
+      "Biceps"
+    ],
+    "equipment": [
+      "Dumbbells",
+      "Bench"
+    ],
+    "information": {
+      "difficulty": "Beginner",
+      "movementType": "Compound",
+      "planeOfMotion": "Sagittal",
+      "description": "A unilateral horizontal pulling exercise.",
+      "primaryMuscle": "Latissimus Dorsi",
+      "secondaryMuscles": ["Rhomboids", "Middle Traps", "Biceps"],
+      "tips": [
+        "Keep elbow close to body.",
+        "Squeeze shoulder blades together at top."
+      ]
+    }
+  },
+  {
+    "id": "leg_press",
+    "name": "Leg Press",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=8",
+    "muscleGroup": [
+      "Quadriceps",
+      "Glutes"
+    ],
+    "equipment": [
+      "Leg Press Machine"
+    ],
+    "information": {
+      "difficulty": "Beginner",
+      "movementType": "Compound",
+      "planeOfMotion": "Sagittal",
+      "description": "A seated leg extension exercise using a machine.",
+      "primaryMuscle": "Quadriceps",
+      "secondaryMuscles": ["Glutes", "Hamstrings"],
+      "tips": [
+        "Keep knees aligned with toes.",
+        "Control the descent and avoid locking knees."
+      ]
+    }
+  },
+  {
+    "id": "bicep_curls",
+    "name": "Bicep Curls",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=9",
+    "muscleGroup": [
+      "Biceps"
+    ],
+    "equipment": [
+      "Dumbbells"
+    ],
+    "information": {
+      "difficulty": "Beginner",
+      "movementType": "Isolation",
+      "planeOfMotion": "Sagittal",
+      "description": "An isolation exercise targeting the biceps.",
+      "primaryMuscle": "Biceps",
+      "secondaryMuscles": ["Forearms"],
+      "tips": [
+        "Keep elbows stationary.",
+        "Control both up and down phases."
+      ]
+    }
+  },
+  {
+    "id": "tricep_dips",
+    "name": "Tricep Dips",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=10",
+    "muscleGroup": [
+      "Triceps"
+    ],
+    "equipment": [
+      "Parallel Bars"
+    ],
+    "information": {
+      "difficulty": "Intermediate",
+      "movementType": "Compound",
+      "planeOfMotion": "Sagittal",
+      "description": "A bodyweight exercise targeting triceps and chest.",
+      "primaryMuscle": "Triceps",
+      "secondaryMuscles": ["Chest", "Anterior Deltoids"],
+      "tips": [
+        "Keep body upright.",
+        "Lower until arms are parallel to ground."
+      ]
+    }
+  },
+  {
+    "id": "plank",
+    "name": "Plank",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=11",
+    "muscleGroup": [
+      "Core"
+    ],
+    "equipment": [
+      "Bodyweight"
+    ],
+    "information": {
+      "difficulty": "Beginner",
+      "movementType": "Isometric",
+      "planeOfMotion": "Static",
+      "description": "A core stability exercise performed in prone position.",
+      "primaryMuscle": "Core",
+      "secondaryMuscles": ["Shoulders", "Glutes"],
+      "tips": [
+        "Maintain straight line from head to heels.",
+        "Engage core and glutes throughout hold."
+      ]
+    }
+  },
+  {
+    "id": "lunges",
+    "name": "Walking Lunges",
+    "thumbnailUrl": "https://picsum.photos/200/200?random=12",
+    "muscleGroup": [
+      "Quadriceps",
+      "Glutes"
+    ],
+    "equipment": [
+      "Bodyweight"
+    ],
+    "information": {
+      "difficulty": "Beginner",
+      "movementType": "Compound",
+      "planeOfMotion": "Sagittal",
+      "description": "A unilateral leg exercise emphasizing balance and coordination.",
+      "primaryMuscle": "Quadriceps",
+      "secondaryMuscles": ["Glutes", "Hamstrings", "Calves"],
+      "tips": [
+        "Step forward with control.",
+        "Keep front knee over ankle."
+      ]
+    }
+  }
+]

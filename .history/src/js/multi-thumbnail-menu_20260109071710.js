@@ -12,16 +12,11 @@ class ThumbnailDropdownMenu {
         this.scrollAmount = 200;
         
         // Virtualized scrolling properties
-        this.itemHeight = 230; // Height of each thumbnail item (200px + 30px margin)
+        this.itemHeight = 240; // Height of each thumbnail item (200px + margins)
         this.containerHeight = 400; // Height of visible container
-        this.visibleItems = Math.ceil(this.containerHeight / this.itemHeight) + 4; // More buffer items
+        this.visibleItems = Math.ceil(this.containerHeight / this.itemHeight) + 2; // Buffer items
         this.startIndex = 0;
         this.endIndex = this.visibleItems;
-        
-        // Smooth rendering
-        this.renderBuffer = 2; // Extra items above/below visible area
-        this.lastRenderedStart = -1;
-        this.lastRenderedEnd = -1;
         
         // Momentum scrolling properties
         this.scrollVelocity = 0;
@@ -187,22 +182,11 @@ class ThumbnailDropdownMenu {
         if (!this.visibleContainer || !this.filteredData.length) return;
 
         const scrollTop = this.scrollContainer.scrollTop;
-        const bufferStart = Math.max(0, Math.floor(scrollTop / this.itemHeight) - this.renderBuffer);
-        const bufferEnd = Math.min(
-            bufferStart + this.visibleItems + (this.renderBuffer * 2),
+        this.startIndex = Math.floor(scrollTop / this.itemHeight);
+        this.endIndex = Math.min(
+            this.startIndex + this.visibleItems,
             this.filteredData.length
         );
-
-        // Only re-render if the range has significantly changed
-        if (Math.abs(bufferStart - this.lastRenderedStart) < 2 && 
-            Math.abs(bufferEnd - this.lastRenderedEnd) < 2) {
-            return;
-        }
-
-        this.startIndex = bufferStart;
-        this.endIndex = bufferEnd;
-        this.lastRenderedStart = bufferStart;
-        this.lastRenderedEnd = bufferEnd;
 
         // Update spacer heights
         this.topSpacer.style.height = `${this.startIndex * this.itemHeight}px`;
@@ -210,57 +194,34 @@ class ThumbnailDropdownMenu {
             (this.filteredData.length - this.endIndex) * this.itemHeight
         }px`;
 
-        // Render visible items with smooth transitions
-        const currentItems = new Set();
-        const fragment = document.createDocumentFragment();
+        // Render visible items
+        this.visibleContainer.innerHTML = '';
         
         for (let i = this.startIndex; i < this.endIndex; i++) {
             const item = this.filteredData[i];
             if (!item) continue;
 
-            currentItems.add(item.id);
+            const thumbnailElement = document.createElement('div');
+            thumbnailElement.className = 'thumbnail-item';
+            thumbnailElement.dataset.id = item.id;
             
-            // Check if item already exists
-            let thumbnailElement = this.visibleContainer.querySelector(`[data-id="${item.id}"]`);
+            thumbnailElement.innerHTML = `
+                <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
+                <div class="thumbnail-label">${item.name}</div>
+            `;
             
-            if (!thumbnailElement) {
-                // Create new element
-                thumbnailElement = document.createElement('div');
-                thumbnailElement.className = 'thumbnail-item';
-                thumbnailElement.dataset.id = item.id;
-                
-                thumbnailElement.innerHTML = `
-                    <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
-                    <div class="thumbnail-label">${item.name}</div>
-                `;
-                
-                // Add click event listener
-                thumbnailElement.addEventListener('click', (e) => {
-                    if (this.recentlyDragged && this.hasDragged) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return;
-                    }
-                    this.selectThumbnail(item);
-                });
+            thumbnailElement.addEventListener('click', (e) => {
+                // Prevent click only if we actually dragged (not just mouse down/up)
+                if (this.recentlyDragged && this.hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                this.selectThumbnail(item);
+            });
 
-                fragment.appendChild(thumbnailElement);
-            }
+            this.visibleContainer.appendChild(thumbnailElement);
         }
-
-        // Add new items
-        if (fragment.children.length > 0) {
-            this.visibleContainer.appendChild(fragment);
-        }
-
-        // Remove items that are no longer visible
-        const existingItems = this.visibleContainer.querySelectorAll('.thumbnail-item');
-        existingItems.forEach(el => {
-            const id = el.dataset.id;
-            if (!currentItems.has(id)) {
-                el.remove();
-            }
-        });
 
         // Apply thumbnail radius styling to newly rendered thumbnails
         setTimeout(() => {
@@ -325,7 +286,7 @@ class ThumbnailDropdownMenu {
             }
         });
 
-        // Update virtualized content on scroll (always update for smooth experience)
+        // Update virtualized content on scroll
         this.scrollContainer.addEventListener('scroll', () => {
             this.updateVirtualizedContent();
             this.updateScrollButtons();

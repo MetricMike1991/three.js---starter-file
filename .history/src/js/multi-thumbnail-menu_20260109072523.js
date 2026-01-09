@@ -443,8 +443,10 @@ class ThumbnailDropdownMenu {
             behavior: 'auto'
         });
 
-        // Update virtualized content during momentum scrolling
-        this.updateVirtualizedContent();
+        // Update virtualized content during momentum scrolling (but not during drag)
+        if (!this.isDragging) {
+            this.updateVirtualizedContent();
+        }
 
         this.scrollVelocity *= this.scrollDecay;
         requestAnimationFrame(() => this.momentumScrollFrame());

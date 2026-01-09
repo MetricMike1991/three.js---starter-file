@@ -210,57 +210,34 @@ class ThumbnailDropdownMenu {
             (this.filteredData.length - this.endIndex) * this.itemHeight
         }px`;
 
-        // Render visible items with smooth transitions
-        const currentItems = new Set();
-        const fragment = document.createDocumentFragment();
+        // Render visible items
+        this.visibleContainer.innerHTML = '';
         
         for (let i = this.startIndex; i < this.endIndex; i++) {
             const item = this.filteredData[i];
             if (!item) continue;
 
-            currentItems.add(item.id);
+            const thumbnailElement = document.createElement('div');
+            thumbnailElement.className = 'thumbnail-item';
+            thumbnailElement.dataset.id = item.id;
             
-            // Check if item already exists
-            let thumbnailElement = this.visibleContainer.querySelector(`[data-id="${item.id}"]`);
+            thumbnailElement.innerHTML = `
+                <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
+                <div class="thumbnail-label">${item.name}</div>
+            `;
             
-            if (!thumbnailElement) {
-                // Create new element
-                thumbnailElement = document.createElement('div');
-                thumbnailElement.className = 'thumbnail-item';
-                thumbnailElement.dataset.id = item.id;
-                
-                thumbnailElement.innerHTML = `
-                    <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
-                    <div class="thumbnail-label">${item.name}</div>
-                `;
-                
-                // Add click event listener
-                thumbnailElement.addEventListener('click', (e) => {
-                    if (this.recentlyDragged && this.hasDragged) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return;
-                    }
-                    this.selectThumbnail(item);
-                });
+            thumbnailElement.addEventListener('click', (e) => {
+                // Prevent click only if we actually dragged (not just mouse down/up)
+                if (this.recentlyDragged && this.hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                this.selectThumbnail(item);
+            });
 
-                fragment.appendChild(thumbnailElement);
-            }
+            this.visibleContainer.appendChild(thumbnailElement);
         }
-
-        // Add new items
-        if (fragment.children.length > 0) {
-            this.visibleContainer.appendChild(fragment);
-        }
-
-        // Remove items that are no longer visible
-        const existingItems = this.visibleContainer.querySelectorAll('.thumbnail-item');
-        existingItems.forEach(el => {
-            const id = el.dataset.id;
-            if (!currentItems.has(id)) {
-                el.remove();
-            }
-        });
 
         // Apply thumbnail radius styling to newly rendered thumbnails
         setTimeout(() => {
@@ -325,9 +302,11 @@ class ThumbnailDropdownMenu {
             }
         });
 
-        // Update virtualized content on scroll (always update for smooth experience)
+        // Update virtualized content on scroll (throttled)
         this.scrollContainer.addEventListener('scroll', () => {
-            this.updateVirtualizedContent();
+            if (!this.isDragging) {
+                this.updateVirtualizedContent();
+            }
             this.updateScrollButtons();
         });
 
@@ -443,8 +422,10 @@ class ThumbnailDropdownMenu {
             behavior: 'auto'
         });
 
-        // Update virtualized content during momentum scrolling
-        this.updateVirtualizedContent();
+        // Update virtualized content during momentum scrolling (but not during drag)
+        if (!this.isDragging) {
+            this.updateVirtualizedContent();
+        }
 
         this.scrollVelocity *= this.scrollDecay;
         requestAnimationFrame(() => this.momentumScrollFrame());

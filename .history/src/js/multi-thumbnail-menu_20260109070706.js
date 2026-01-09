@@ -12,16 +12,11 @@ class ThumbnailDropdownMenu {
         this.scrollAmount = 200;
         
         // Virtualized scrolling properties
-        this.itemHeight = 230; // Height of each thumbnail item (200px + 30px margin)
+        this.itemHeight = 240; // Height of each thumbnail item (200px + margins)
         this.containerHeight = 400; // Height of visible container
-        this.visibleItems = Math.ceil(this.containerHeight / this.itemHeight) + 4; // More buffer items
+        this.visibleItems = Math.ceil(this.containerHeight / this.itemHeight) + 2; // Buffer items
         this.startIndex = 0;
         this.endIndex = this.visibleItems;
-        
-        // Smooth rendering
-        this.renderBuffer = 2; // Extra items above/below visible area
-        this.lastRenderedStart = -1;
-        this.lastRenderedEnd = -1;
         
         // Momentum scrolling properties
         this.scrollVelocity = 0;
@@ -57,6 +52,7 @@ class ThumbnailDropdownMenu {
         
         this.initializeElements();
         this.loadExerciseData();
+    }
     }
     
     initializeElements() {
@@ -164,104 +160,46 @@ class ThumbnailDropdownMenu {
         }));
         this.renderVirtualizedGrid();
     }
-
-    renderVirtualizedGrid() {
+                    this.thumbnails.push({
+                        id: i + 1,
+                        name: item,
+                        image: `https://picsum.photos/200/200?random=${i + 300}`
+                    });
+                });
+                break;
+        }
+        
+        this.renderThumbnails();
+    }
+    
+    renderThumbnails() {
         if (!this.thumbnailGrid) return;
-
-        // Create container for virtualized content
+        
         this.thumbnailGrid.innerHTML = '';
         
-        // Create spacer divs for virtualization
-        this.topSpacer = document.createElement('div');
-        this.bottomSpacer = document.createElement('div');
-        this.visibleContainer = document.createElement('div');
-        
-        this.thumbnailGrid.appendChild(this.topSpacer);
-        this.thumbnailGrid.appendChild(this.visibleContainer);
-        this.thumbnailGrid.appendChild(this.bottomSpacer);
-        
-        this.updateVirtualizedContent();
-    }
-
-    updateVirtualizedContent() {
-        if (!this.visibleContainer || !this.filteredData.length) return;
-
-        const scrollTop = this.scrollContainer.scrollTop;
-        const bufferStart = Math.max(0, Math.floor(scrollTop / this.itemHeight) - this.renderBuffer);
-        const bufferEnd = Math.min(
-            bufferStart + this.visibleItems + (this.renderBuffer * 2),
-            this.filteredData.length
-        );
-
-        // Only re-render if the range has significantly changed
-        if (Math.abs(bufferStart - this.lastRenderedStart) < 2 && 
-            Math.abs(bufferEnd - this.lastRenderedEnd) < 2) {
-            return;
-        }
-
-        this.startIndex = bufferStart;
-        this.endIndex = bufferEnd;
-        this.lastRenderedStart = bufferStart;
-        this.lastRenderedEnd = bufferEnd;
-
-        // Update spacer heights
-        this.topSpacer.style.height = `${this.startIndex * this.itemHeight}px`;
-        this.bottomSpacer.style.height = `${
-            (this.filteredData.length - this.endIndex) * this.itemHeight
-        }px`;
-
-        // Render visible items with smooth transitions
-        const currentItems = new Set();
-        const fragment = document.createDocumentFragment();
-        
-        for (let i = this.startIndex; i < this.endIndex; i++) {
-            const item = this.filteredData[i];
-            if (!item) continue;
-
-            currentItems.add(item.id);
+        this.thumbnails.forEach((thumbnail) => {
+            const thumbnailElement = document.createElement('div');
+            thumbnailElement.className = 'thumbnail-item';
+            thumbnailElement.dataset.id = thumbnail.id;
             
-            // Check if item already exists
-            let thumbnailElement = this.visibleContainer.querySelector(`[data-id="${item.id}"]`);
+            thumbnailElement.innerHTML = `
+                <img src="${thumbnail.image}" alt="${thumbnail.name}" loading="lazy">
+                <div class="thumbnail-label">${thumbnail.name}</div>
+            `;
             
-            if (!thumbnailElement) {
-                // Create new element
-                thumbnailElement = document.createElement('div');
-                thumbnailElement.className = 'thumbnail-item';
-                thumbnailElement.dataset.id = item.id;
-                
-                thumbnailElement.innerHTML = `
-                    <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
-                    <div class="thumbnail-label">${item.name}</div>
-                `;
-                
-                // Add click event listener
-                thumbnailElement.addEventListener('click', (e) => {
-                    if (this.recentlyDragged && this.hasDragged) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return;
-                    }
-                    this.selectThumbnail(item);
-                });
-
-                fragment.appendChild(thumbnailElement);
-            }
-        }
-
-        // Add new items
-        if (fragment.children.length > 0) {
-            this.visibleContainer.appendChild(fragment);
-        }
-
-        // Remove items that are no longer visible
-        const existingItems = this.visibleContainer.querySelectorAll('.thumbnail-item');
-        existingItems.forEach(el => {
-            const id = el.dataset.id;
-            if (!currentItems.has(id)) {
-                el.remove();
-            }
+            thumbnailElement.addEventListener('click', (e) => {
+                // Prevent click only if we actually dragged (not just mouse down/up)
+                if (this.recentlyDragged && this.hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
+                }
+                this.selectThumbnail(thumbnail);
+            });
+            
+            this.thumbnailGrid.appendChild(thumbnailElement);
         });
-
+        
         // Apply thumbnail radius styling to newly rendered thumbnails
         setTimeout(() => {
             this.updateStyles();
@@ -269,14 +207,14 @@ class ThumbnailDropdownMenu {
         }, 50);
     }
     
-    selectThumbnail(item) {
-        console.log(`Selected ${this.menuType}:`, item.name, item);
+    selectThumbnail(thumbnail) {
+        console.log(`Selected ${this.menuType}:`, thumbnail.name, thumbnail);
         
         // Add visual feedback for selection
-        const thumbnailElements = this.visibleContainer.querySelectorAll('.thumbnail-item');
+        const thumbnailElements = this.thumbnailGrid.querySelectorAll('.thumbnail-item');
         thumbnailElements.forEach(el => el.classList.remove('selected'));
         
-        const selectedElement = this.visibleContainer.querySelector(`[data-id="${item.id}"]`);
+        const selectedElement = this.thumbnailGrid.querySelector(`[data-id="${thumbnail.id}"]`);
         if (selectedElement) {
             selectedElement.classList.add('selected');
         }
@@ -285,7 +223,7 @@ class ThumbnailDropdownMenu {
         
         // Emit custom event for other components to listen to
         const event = new CustomEvent(`${this.menuType}Selected`, { 
-            detail: { item, menuType: this.menuType } 
+            detail: { thumbnail, menuType: this.menuType } 
         });
         document.dispatchEvent(event);
     }
@@ -323,12 +261,6 @@ class ThumbnailDropdownMenu {
             if (!this.isScrolling) {
                 this.startMomentumScroll();
             }
-        });
-
-        // Update virtualized content on scroll (always update for smooth experience)
-        this.scrollContainer.addEventListener('scroll', () => {
-            this.updateVirtualizedContent();
-            this.updateScrollButtons();
         });
 
         // Touch and mouse drag scrolling
@@ -443,9 +375,6 @@ class ThumbnailDropdownMenu {
             behavior: 'auto'
         });
 
-        // Update virtualized content during momentum scrolling
-        this.updateVirtualizedContent();
-
         this.scrollVelocity *= this.scrollDecay;
         requestAnimationFrame(() => this.momentumScrollFrame());
     }
@@ -557,9 +486,8 @@ class ThumbnailDropdownMenu {
 
     updateScrollButtons() {
         const container = this.scrollContainer;
-        const totalHeight = this.filteredData.length * this.itemHeight;
         const isAtTop = container.scrollTop <= 10;
-        const isAtBottom = container.scrollTop >= totalHeight - container.clientHeight - 10;
+        const isAtBottom = container.scrollTop >= container.scrollHeight - container.clientHeight - 10;
         
         this.scrollUpBtn.style.opacity = isAtTop ? '0.5' : '1';
         this.scrollDownBtn.style.opacity = isAtBottom ? '0.5' : '1';
