@@ -405,11 +405,6 @@ class ThumbnailDropdownMenu {
         this.velocityTracker = [];
     }
 
-    // Check if menu should remain visible due to recent scroll interaction
-    hasRecentScrollInteraction() {
-        return Date.now() - this.lastScrollInteraction < this.scrollInteractionDelay;
-    }
-
     momentumScrollFrame() {
         if (Math.abs(this.scrollVelocity) < 0.1) {
             this.isScrolling = false;
@@ -623,16 +618,6 @@ export class MultiThumbnailMenuSystem {
         // Close menus when clicking outside the menu area
         document.addEventListener('click', (e) => {
             if (menuContainer && !menuContainer.contains(e.target)) {
-                // Check if any menu has recent scroll interaction
-                const hasRecentScroll = Object.values(this.menus).some(menu => 
-                    menu.hasRecentScrollInteraction && menu.hasRecentScrollInteraction()
-                );
-                
-                // Don't close if there's recent scroll interaction
-                if (hasRecentScroll) {
-                    return;
-                }
-                
                 // Remove menu visibility and close all open menus
                 menuContainer.classList.remove('menu-visible');
                 
