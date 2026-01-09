@@ -157,7 +157,8 @@ class ThumbnailDropdownMenu {
             selectedElement.classList.add('selected');
         }
         
-        // Menu stays open after thumbnail selection - only closes when clicking outside
+        // Close menu after selection and slide it back in
+        this.closeMenu();
         
         // Emit custom event for other components to listen to
         const event = new CustomEvent(`${this.menuType}Selected`, { 
@@ -596,34 +597,6 @@ export class MultiThumbnailMenuSystem {
                     menu.closeMenu();
                 }
             });
-        });
-        
-        // Handle menu slide-out visibility
-        const menuContainer = document.querySelector('.thumbnail-grid-container');
-        if (menuContainer) {
-            // Show menu on hover and keep it visible
-            menuContainer.addEventListener('mouseenter', () => {
-                menuContainer.classList.add('menu-visible');
-            });
-        }
-        
-        // Close menus when clicking outside the menu area
-        document.addEventListener('click', (e) => {
-            if (menuContainer && !menuContainer.contains(e.target)) {
-                // Remove menu visibility and close all open menus
-                menuContainer.classList.remove('menu-visible');
-                
-                // Check if any menu is currently open
-                const anyMenuOpen = Object.values(this.menus).some(menu => menu.isOpen);
-                if (anyMenuOpen) {
-                    // Close all open menus
-                    Object.values(this.menus).forEach(menu => {
-                        if (menu.isOpen) {
-                            menu.closeMenu();
-                        }
-                    });
-                }
-            }
         });
     }
     

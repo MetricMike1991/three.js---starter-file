@@ -508,9 +508,8 @@ body
     z-index: -1;
 }
 
-/* Show menu on hover or when active */
-.thumbnail-grid-container:hover,
-.thumbnail-grid-container.menu-visible {
+/* Show menu on hover */
+.thumbnail-grid-container:hover {
     left: 20px;
 }
 
