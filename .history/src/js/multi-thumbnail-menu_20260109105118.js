@@ -172,7 +172,6 @@ class ThumbnailDropdownMenu {
                     const found = this.allExercises.find(ex => ex.id === window.menuManager.selectedExercise.id);
                     if (found) selectedExercise = found;
                 }
-                console.log('Information menu: filterDataForMenu using exercise:', selectedExercise?.name);
                 if (selectedExercise && selectedExercise.information) {
                     this.filteredData = [
                         { id: 'step1', name: 'Step 1', text: selectedExercise.information.step1 },
