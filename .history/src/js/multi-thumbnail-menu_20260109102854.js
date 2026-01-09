@@ -168,38 +168,21 @@ class ThumbnailDropdownMenu {
         if (!this.thumbnailGrid) return;
 
         // Special rendering for information tab: show steps as text, not thumbnails
-            if (this.menuType === 'information') {
-                this.thumbnailGrid.innerHTML = '';
-                if (this.filteredData.length) {
-                    this.filteredData.forEach(step => {
-                        const stepDiv = document.createElement('div');
-                        stepDiv.className = 'info-step-item';
-                        stepDiv.innerHTML = `<div class="info-step-title">${step.name}</div><div class="info-step-text">${step.text || ''}</div>`;
-                        this.thumbnailGrid.appendChild(stepDiv);
-                    });
-                } else {
-                    this.thumbnailGrid.innerHTML = '<div class="info-step-empty">No steps available.</div>';
-                }
-                return;
-            }
-
-            // Default thumbnail grid rendering for all other tabs
+        if (this.menuType === 'information') {
             this.thumbnailGrid.innerHTML = '';
-            // Create spacer divs for virtualization
-            this.topSpacer = document.createElement('div');
-            this.bottomSpacer = document.createElement('div');
-            this.visibleContainer = document.createElement('div');
-            this.thumbnailGrid.appendChild(this.topSpacer);
-            this.thumbnailGrid.appendChild(this.visibleContainer);
-            this.thumbnailGrid.appendChild(this.bottomSpacer);
-            // Set up total virtual height for infinite scroll
-            const totalVirtualHeight = this.filteredData.length * this.itemHeight * this.loopMultiplier;
-            this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
-            // Start in the middle section for infinite scroll
-            setTimeout(() => {
-                this.scrollContainer.scrollTop = this.filteredData.length * this.itemHeight;
-                this.updateVirtualizedContent();
-            }, 50);
+            if (this.filteredData.length) {
+                this.filteredData.forEach(step => {
+                    const stepDiv = document.createElement('div');
+                    stepDiv.className = 'info-step-item';
+                    stepDiv.innerHTML = `<div class="info-step-title">${step.name}</div><div class="info-step-text">${step.text || ''}</div>`;
+                    this.thumbnailGrid.appendChild(stepDiv);
+                });
+            } else {
+                this.thumbnailGrid.innerHTML = '<div class="info-step-empty">No steps available.</div>';
+            }
+            return;
+        }
+        // ...existing code...
     }
 
     updateVirtualizedContent() {
