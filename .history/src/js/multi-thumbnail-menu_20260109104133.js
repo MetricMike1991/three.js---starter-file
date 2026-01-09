@@ -13,9 +13,11 @@ class ThumbnailDropdownMenu {
                     const selectedId = e.detail.item.id;
                     window.menuManager.selectedExercise = this.allExercises.find(ex => ex.id === selectedId);
                 }
-                // Always update steps, even if tab is not open (so next open is correct)
-                this.filterDataForMenu();
-                this.renderVirtualizedGrid();
+                // If the tab is open, update steps immediately
+                if (this.isOpen) {
+                    this.filterDataForMenu();
+                    this.renderVirtualizedGrid();
+                }
             });
             // Also refresh when Information tab is opened, even if already open
             if (this.toggleBtn) {

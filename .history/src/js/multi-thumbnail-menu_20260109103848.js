@@ -7,25 +7,15 @@ class ThumbnailDropdownMenu {
         // Listen for exercise selection if this is the information menu
         setupExerciseSelectionListener() {
             if (this.menuType !== 'information') return;
-            // Always update steps when an exercise is selected, even if tab is open
             document.addEventListener('exercisesSelected', (e) => {
                 if (window.menuManager) {
+                    // Always use the exercise id to find the latest info from allExercises
                     const selectedId = e.detail.item.id;
                     window.menuManager.selectedExercise = this.allExercises.find(ex => ex.id === selectedId);
                 }
-                // Always update steps, even if tab is not open (so next open is correct)
                 this.filterDataForMenu();
                 this.renderVirtualizedGrid();
             });
-            // Also refresh when Information tab is opened, even if already open
-            if (this.toggleBtn) {
-                this.toggleBtn.addEventListener('click', () => {
-                    if (this.menuType === 'information') {
-                        this.filterDataForMenu();
-                        this.renderVirtualizedGrid();
-                    }
-                });
-            }
         }
     constructor(menuType) {
         this.menuType = menuType;
@@ -637,23 +627,17 @@ class ThumbnailDropdownMenu {
         document.dispatchEvent(new CustomEvent('closeAllThumbnailMenus', { 
             detail: { except: this.menuType } 
         }));
-
-        // For information tab, always refresh steps for latest selected exercise
-        if (this.menuType === 'information') {
-            this.filterDataForMenu();
-            this.renderVirtualizedGrid();
-        }
-
+        
         this.dropdown.classList.add('show');
         this.toggleBtn.classList.add('active');
         this.isOpen = true;
-
+        
         // Keep menu container visible when dropdown is open
         const gridContainer = document.querySelector('.thumbnail-grid-container');
         if (gridContainer) {
             gridContainer.classList.add('menu-active');
         }
-
+        
         setTimeout(() => {
             this.updateScrollButtons();
         }, 100);

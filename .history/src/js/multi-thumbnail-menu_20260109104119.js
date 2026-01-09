@@ -7,13 +7,12 @@ class ThumbnailDropdownMenu {
         // Listen for exercise selection if this is the information menu
         setupExerciseSelectionListener() {
             if (this.menuType !== 'information') return;
-            // Always update steps when an exercise is selected, even if tab is open
             document.addEventListener('exercisesSelected', (e) => {
                 if (window.menuManager) {
+                    // Always use the exercise id to find the latest info from allExercises
                     const selectedId = e.detail.item.id;
                     window.menuManager.selectedExercise = this.allExercises.find(ex => ex.id === selectedId);
                 }
-                // Always update steps, even if tab is not open (so next open is correct)
                 this.filterDataForMenu();
                 this.renderVirtualizedGrid();
             });
