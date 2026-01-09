@@ -157,8 +157,10 @@ class ThumbnailDropdownMenu {
             selectedElement.classList.add('selected');
         }
         
-        // Menu stays open after selection (consistent with new menu behavior)
-        // Removed auto-close to match the persistent menu design
+        // Close menu after selection (unless keepOpen is enabled)
+        if (!this.settings.keepOpen) {
+            this.closeMenu();
+        }
         
         // Emit custom event for other components to listen to
         const event = new CustomEvent(`${this.menuType}Selected`, { 

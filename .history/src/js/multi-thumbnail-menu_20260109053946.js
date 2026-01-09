@@ -24,7 +24,6 @@ class ThumbnailDropdownMenu {
         this.lastTime = 0;
         this.velocityTracker = [];
         this.recentlyDragged = false;
-        this.hasDragged = false;
         
         // Style settings (shared across all menus)
         this.settings = {
@@ -126,8 +125,8 @@ class ThumbnailDropdownMenu {
             `;
             
             thumbnailElement.addEventListener('click', (e) => {
-                // Prevent click only if we actually dragged (not just mouse down/up)
-                if (this.recentlyDragged && this.hasDragged) {
+                // Prevent click if we just finished dragging
+                if (this.recentlyDragged) {
                     e.preventDefault();
                     e.stopPropagation();
                     return;
@@ -157,8 +156,10 @@ class ThumbnailDropdownMenu {
             selectedElement.classList.add('selected');
         }
         
-        // Menu stays open after selection (consistent with new menu behavior)
-        // Removed auto-close to match the persistent menu design
+        // Close menu after selection (unless keepOpen is enabled)
+        if (!this.settings.keepOpen) {
+            this.closeMenu();
+        }
         
         // Emit custom event for other components to listen to
         const event = new CustomEvent(`${this.menuType}Selected`, { 
@@ -264,36 +265,8 @@ class ThumbnailDropdownMenu {
         this.scrollContainer.addEventListener('scroll', () => {
             this.updateScrollButtons();
         });
-    }    
-    updateThumbnailGlowStyles() {
-        const hex = this.settings.glowColor.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
-        
-        const glowColor = `rgba(${r}, ${g}, ${b}, ${this.settings.glowIntensity * 0.8})`;
-        
-        // Create dynamic CSS rule for selected thumbnails
-        const styleId = `thumbnail-glow-${this.menuType}`;
-        let styleElement = document.getElementById(styleId);
-        
-        if (!styleElement) {
-            styleElement = document.createElement('style');
-            styleElement.id = styleId;
-            document.head.appendChild(styleElement);
-        }
-        
-        styleElement.textContent = `
-            #${this.menuType}Grid .thumbnail-item.selected {
-                border-color: ${this.settings.glowColor};
-                box-shadow: 0 0 ${this.settings.glowSize}px ${glowColor};
-            }
-            #${this.menuType}Grid .thumbnail-item.selected::before {
-                background: ${this.settings.glowColor};
-                box-shadow: 0 0 ${Math.floor(this.settings.glowSize * 0.5)}px ${glowColor};
-            }
-        `;
-    }    
+    }
+    
     startMomentumScroll() {
         this.isScrolling = true;
         this.momentumScrollFrame();
@@ -322,7 +295,6 @@ class ThumbnailDropdownMenu {
         this.lastY = clientY;
         this.lastTime = Date.now();
         this.velocityTracker = [];
-        this.hasDragged = false;
         
         // Stop any existing momentum
         this.isScrolling = false;
@@ -336,12 +308,6 @@ class ThumbnailDropdownMenu {
         if (!this.isDragging) return;
         
         const deltaY = this.startY - clientY;
-        
-        // Only consider it dragging if moved more than 5px
-        if (Math.abs(deltaY) > 5) {
-            this.hasDragged = true;
-        }
-        
         const newScrollTop = this.startScrollTop + deltaY;
         
         this.scrollContainer.scrollTop = newScrollTop;
@@ -371,14 +337,11 @@ class ThumbnailDropdownMenu {
         this.isDragging = false;
         this.scrollContainer.style.cursor = 'grab';
         
-        // Set flag to prevent immediate clicks only if we actually dragged
-        if (this.hasDragged) {
-            this.recentlyDragged = true;
-            setTimeout(() => {
-                this.recentlyDragged = false;
-                this.hasDragged = false;
-            }, 100);
-        }
+        // Set flag to prevent immediate clicks after dragging
+        this.recentlyDragged = true;
+        setTimeout(() => {
+            this.recentlyDragged = false;
+        }, 100);
         
         // Calculate momentum from recent velocity data
         if (this.velocityTracker.length > 0) {
@@ -589,7 +552,6 @@ export class MultiThumbnailMenuSystem {
         Object.values(this.menus).forEach(menu => {
             menu.applySettings(this.settings);
             menu.updateGlowStyles();
-            menu.updateThumbnailGlowStyles();
         });
     }
     
