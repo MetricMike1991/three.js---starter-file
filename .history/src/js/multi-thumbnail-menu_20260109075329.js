@@ -205,18 +205,18 @@ class ThumbnailDropdownMenu {
         const dataLength = this.filteredData.length;
         const totalVirtualHeight = dataLength * this.itemHeight * this.loopMultiplier;
         
-        // Handle infinite loop by wrapping scroll position
+        // Handle infinite loop by wrapping scroll position - simplified approach
         let adjustedScrollTop = scrollTop;
         const sectionHeight = dataLength * this.itemHeight;
         
-        // If we're near the boundaries, handle infinite wrapping
-        if (scrollTop < sectionHeight * 0.1) {
-            // Near top - jump to second copy
-            this.scrollContainer.scrollTop = scrollTop + sectionHeight;
+        // Only handle wrapping at the very edges to prevent interference
+        if (scrollTop < 0) {
+            // Below zero - wrap to bottom
+            this.scrollContainer.scrollTop = totalVirtualHeight + scrollTop;
             adjustedScrollTop = this.scrollContainer.scrollTop;
-        } else if (scrollTop > sectionHeight * 2.9) {
-            // Near bottom - jump to second copy
-            this.scrollContainer.scrollTop = scrollTop - sectionHeight;
+        } else if (scrollTop >= totalVirtualHeight) {
+            // Above total height - wrap to top
+            this.scrollContainer.scrollTop = scrollTop - totalVirtualHeight;
             adjustedScrollTop = this.scrollContainer.scrollTop;
         }
         
@@ -230,35 +230,44 @@ class ThumbnailDropdownMenu {
         // Create spacer heights for infinite scroll
         const currentScrollTop = this.scrollContainer.scrollTop;
         const currentSectionHeight = this.filteredData.length * this.itemHeight;
-        const virtualTopHeight = Math.floor(currentScrollTop / this.itemHeight) * this.itemHeight;
+        const virtualTopHeight = Math.max(0, Math.floor(currentScrollTop / this.itemHeight) * this.itemHeight);
         
         this.topSpacer.style.height = `${virtualTopHeight}px`;
-        this.bottomSpacer.style.height = `${
+        this.bottomSpacer.style.height = `${Math.max(0, 
             (currentSectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
-        }px`;
+        )}px`;;
 
         // Render visible items with infinite wrapping
         const currentItems = new Set();
-        let prevNode = null;
+        const fragment = document.createDocumentFragment();
+        
+        // Render items using virtual index range
         for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
-            const dataLength = this.filteredData.length;
-            const dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
+            // Properly handle negative indices for upward scrolling
+            const dataIndex = ((virtualIndex % this.filteredData.length) + this.filteredData.length) % this.filteredData.length;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
+            // Use position-based ID to handle wrapping
             const positionId = `${item.id}_pos_${virtualIndex}`;
             currentItems.add(positionId);
-
+            
+            // Check if item already exists
             let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
+            
             if (!thumbnailElement) {
+                // Create new element
                 thumbnailElement = document.createElement('div');
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
                 thumbnailElement.dataset.positionId = positionId;
+                
                 thumbnailElement.innerHTML = `
                     <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
                     <div class="thumbnail-label">${item.name}</div>
                 `;
+                
+                // Add click event listener
                 thumbnailElement.addEventListener('click', (e) => {
                     if (this.recentlyDragged && this.hasDragged) {
                         e.preventDefault();
@@ -267,24 +276,24 @@ class ThumbnailDropdownMenu {
                     }
                     this.selectThumbnail(item);
                 });
-                if (prevNode && prevNode.nextSibling) {
-                    this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
-                } else if (!prevNode && this.visibleContainer.firstChild) {
-                    this.visibleContainer.insertBefore(thumbnailElement, this.visibleContainer.firstChild);
-                } else {
-                    this.visibleContainer.appendChild(thumbnailElement);
-                }
+
+                fragment.appendChild(thumbnailElement);
             }
-            prevNode = thumbnailElement;
         }
-        // Remove only items that are truly out of the visible range
-        const existingItems = Array.from(this.visibleContainer.querySelectorAll('.thumbnail-item'));
-        for (const el of existingItems) {
+
+        // Add new items
+        if (fragment.children.length > 0) {
+            this.visibleContainer.appendChild(fragment);
+        }
+
+        // Remove items that are no longer visible
+        const existingItems = this.visibleContainer.querySelectorAll('.thumbnail-item');
+        existingItems.forEach(el => {
             const positionId = el.dataset.positionId;
             if (!currentItems.has(positionId)) {
-                this.visibleContainer.removeChild(el);
+                el.remove();
             }
-        }
+        });
 
         // Apply thumbnail radius styling to newly rendered thumbnails
         setTimeout(() => {

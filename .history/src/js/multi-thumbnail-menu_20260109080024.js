@@ -184,13 +184,18 @@ class ThumbnailDropdownMenu {
         this.thumbnailGrid.appendChild(this.visibleContainer);
         this.thumbnailGrid.appendChild(this.bottomSpacer);
         
-        // Set up total virtual height for infinite scroll
-        const totalVirtualHeight = this.filteredData.length * this.itemHeight * this.loopMultiplier;
+        // Set up total virtual height for infinite scroll - extend upward and downward
+        const sectionHeight = this.filteredData.length * this.itemHeight;
+        const totalVirtualHeight = sectionHeight * this.loopMultiplier;
+        
+        // Set up spacers to create scrollable area
+        this.topSpacer.style.height = `0px`;
         this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
         
-        // Start in the middle section for infinite scroll
+        // Start in the middle section for infinite scroll (section 1 of 3)
         setTimeout(() => {
-            this.scrollContainer.scrollTop = this.filteredData.length * this.itemHeight;
+            // Position in middle with extra buffer for upward scrolling
+            this.scrollContainer.scrollTop = sectionHeight + (this.itemHeight * 3);
             this.updateVirtualizedContent();
         }, 50);
     }
@@ -203,62 +208,71 @@ class ThumbnailDropdownMenu {
 
         const scrollTop = this.scrollContainer.scrollTop;
         const dataLength = this.filteredData.length;
-        const totalVirtualHeight = dataLength * this.itemHeight * this.loopMultiplier;
-        
-        // Handle infinite loop by wrapping scroll position
-        let adjustedScrollTop = scrollTop;
         const sectionHeight = dataLength * this.itemHeight;
+        const totalVirtualHeight = sectionHeight * this.loopMultiplier;
         
-        // If we're near the boundaries, handle infinite wrapping
+        // Handle infinite loop by wrapping scroll position - seamless wrapping
+        let adjustedScrollTop = scrollTop;
+        
+        // Wrap at boundaries to maintain infinite scroll
         if (scrollTop < sectionHeight * 0.1) {
-            // Near top - jump to second copy
+            // Near top of virtual area - jump to equivalent position in second section
             this.scrollContainer.scrollTop = scrollTop + sectionHeight;
             adjustedScrollTop = this.scrollContainer.scrollTop;
         } else if (scrollTop > sectionHeight * 2.9) {
-            // Near bottom - jump to second copy
+            // Near bottom of virtual area - jump to equivalent position in first section  
             this.scrollContainer.scrollTop = scrollTop - sectionHeight;
             adjustedScrollTop = this.scrollContainer.scrollTop;
         }
         
         // Calculate which items to show with infinite wrapping
-        const virtualStartIndex = Math.floor(adjustedScrollTop / this.itemHeight);
-        const itemsToShow = this.visibleItems + (this.renderBuffer * 2);
+        // Map scroll position to virtual indices (can be negative for upward scrolling)
+        const virtualStartIndex = Math.floor(adjustedScrollTop / this.itemHeight) - dataLength - this.renderBuffer;
+        const itemsToShow = this.visibleItems + (this.renderBuffer * 4); // Extra buffer for upward scrolling
         
         this.startIndex = virtualStartIndex;
         this.endIndex = virtualStartIndex + itemsToShow;
 
         // Create spacer heights for infinite scroll
         const currentScrollTop = this.scrollContainer.scrollTop;
-        const currentSectionHeight = this.filteredData.length * this.itemHeight;
-        const virtualTopHeight = Math.floor(currentScrollTop / this.itemHeight) * this.itemHeight;
+        const virtualTopHeight = Math.max(0, (this.startIndex + dataLength) * this.itemHeight);
         
         this.topSpacer.style.height = `${virtualTopHeight}px`;
-        this.bottomSpacer.style.height = `${
-            (currentSectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
-        }px`;
+        this.bottomSpacer.style.height = `${Math.max(0, 
+            totalVirtualHeight - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
+        )}px`;;
 
         // Render visible items with infinite wrapping
         const currentItems = new Set();
-        let prevNode = null;
+        const fragment = document.createDocumentFragment();
+        
+        // Render items using virtual index range
         for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
-            const dataLength = this.filteredData.length;
-            const dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
+            // Properly handle negative indices for upward scrolling
+            const dataIndex = ((virtualIndex % this.filteredData.length) + this.filteredData.length) % this.filteredData.length;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
+            // Use position-based ID to handle wrapping
             const positionId = `${item.id}_pos_${virtualIndex}`;
             currentItems.add(positionId);
-
+            
+            // Check if item already exists
             let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
+            
             if (!thumbnailElement) {
+                // Create new element
                 thumbnailElement = document.createElement('div');
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
                 thumbnailElement.dataset.positionId = positionId;
+                
                 thumbnailElement.innerHTML = `
                     <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
                     <div class="thumbnail-label">${item.name}</div>
                 `;
+                
+                // Add click event listener
                 thumbnailElement.addEventListener('click', (e) => {
                     if (this.recentlyDragged && this.hasDragged) {
                         e.preventDefault();
@@ -267,24 +281,24 @@ class ThumbnailDropdownMenu {
                     }
                     this.selectThumbnail(item);
                 });
-                if (prevNode && prevNode.nextSibling) {
-                    this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
-                } else if (!prevNode && this.visibleContainer.firstChild) {
-                    this.visibleContainer.insertBefore(thumbnailElement, this.visibleContainer.firstChild);
-                } else {
-                    this.visibleContainer.appendChild(thumbnailElement);
-                }
+
+                fragment.appendChild(thumbnailElement);
             }
-            prevNode = thumbnailElement;
         }
-        // Remove only items that are truly out of the visible range
-        const existingItems = Array.from(this.visibleContainer.querySelectorAll('.thumbnail-item'));
-        for (const el of existingItems) {
+
+        // Add new items
+        if (fragment.children.length > 0) {
+            this.visibleContainer.appendChild(fragment);
+        }
+
+        // Remove items that are no longer visible
+        const existingItems = this.visibleContainer.querySelectorAll('.thumbnail-item');
+        existingItems.forEach(el => {
             const positionId = el.dataset.positionId;
             if (!currentItems.has(positionId)) {
-                this.visibleContainer.removeChild(el);
+                el.remove();
             }
-        }
+        });
 
         // Apply thumbnail radius styling to newly rendered thumbnails
         setTimeout(() => {

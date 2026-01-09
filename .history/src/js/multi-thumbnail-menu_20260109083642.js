@@ -238,8 +238,7 @@ class ThumbnailDropdownMenu {
         }px`;
 
         // Render visible items with infinite wrapping
-        const currentItems = new Set();
-        let prevNode = null;
+        const fragment = document.createDocumentFragment();
         for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
             const dataLength = this.filteredData.length;
             const dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
@@ -247,44 +246,27 @@ class ThumbnailDropdownMenu {
             if (!item) continue;
 
             const positionId = `${item.id}_pos_${virtualIndex}`;
-            currentItems.add(positionId);
-
-            let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
-            if (!thumbnailElement) {
-                thumbnailElement = document.createElement('div');
-                thumbnailElement.className = 'thumbnail-item';
-                thumbnailElement.dataset.id = item.id;
-                thumbnailElement.dataset.positionId = positionId;
-                thumbnailElement.innerHTML = `
-                    <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
-                    <div class="thumbnail-label">${item.name}</div>
-                `;
-                thumbnailElement.addEventListener('click', (e) => {
-                    if (this.recentlyDragged && this.hasDragged) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        return;
-                    }
-                    this.selectThumbnail(item);
-                });
-                if (prevNode && prevNode.nextSibling) {
-                    this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
-                } else if (!prevNode && this.visibleContainer.firstChild) {
-                    this.visibleContainer.insertBefore(thumbnailElement, this.visibleContainer.firstChild);
-                } else {
-                    this.visibleContainer.appendChild(thumbnailElement);
+            const thumbnailElement = document.createElement('div');
+            thumbnailElement.className = 'thumbnail-item';
+            thumbnailElement.dataset.id = item.id;
+            thumbnailElement.dataset.positionId = positionId;
+            thumbnailElement.innerHTML = `
+                <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
+                <div class="thumbnail-label">${item.name}</div>
+            `;
+            thumbnailElement.addEventListener('click', (e) => {
+                if (this.recentlyDragged && this.hasDragged) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    return;
                 }
-            }
-            prevNode = thumbnailElement;
+                this.selectThumbnail(item);
+            });
+            fragment.appendChild(thumbnailElement);
         }
-        // Remove only items that are truly out of the visible range
-        const existingItems = Array.from(this.visibleContainer.querySelectorAll('.thumbnail-item'));
-        for (const el of existingItems) {
-            const positionId = el.dataset.positionId;
-            if (!currentItems.has(positionId)) {
-                this.visibleContainer.removeChild(el);
-            }
-        }
+        // Clear and re-render the visible range in a single batch
+        this.visibleContainer.innerHTML = '';
+        this.visibleContainer.appendChild(fragment);
 
         // Apply thumbnail radius styling to newly rendered thumbnails
         setTimeout(() => {

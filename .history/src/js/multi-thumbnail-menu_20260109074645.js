@@ -239,26 +239,35 @@ class ThumbnailDropdownMenu {
 
         // Render visible items with infinite wrapping
         const currentItems = new Set();
-        let prevNode = null;
+        const fragment = document.createDocumentFragment();
+        
+        // Render items using virtual index range
         for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
-            const dataLength = this.filteredData.length;
-            const dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
+            // Properly handle negative indices for upward scrolling
+            const dataIndex = ((virtualIndex % this.filteredData.length) + this.filteredData.length) % this.filteredData.length;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
+            // Use position-based ID to handle wrapping
             const positionId = `${item.id}_pos_${virtualIndex}`;
             currentItems.add(positionId);
-
+            
+            // Check if item already exists
             let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
+            
             if (!thumbnailElement) {
+                // Create new element
                 thumbnailElement = document.createElement('div');
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
                 thumbnailElement.dataset.positionId = positionId;
+                
                 thumbnailElement.innerHTML = `
                     <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
                     <div class="thumbnail-label">${item.name}</div>
                 `;
+                
+                // Add click event listener
                 thumbnailElement.addEventListener('click', (e) => {
                     if (this.recentlyDragged && this.hasDragged) {
                         e.preventDefault();
@@ -267,24 +276,24 @@ class ThumbnailDropdownMenu {
                     }
                     this.selectThumbnail(item);
                 });
-                if (prevNode && prevNode.nextSibling) {
-                    this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
-                } else if (!prevNode && this.visibleContainer.firstChild) {
-                    this.visibleContainer.insertBefore(thumbnailElement, this.visibleContainer.firstChild);
-                } else {
-                    this.visibleContainer.appendChild(thumbnailElement);
-                }
+
+                fragment.appendChild(thumbnailElement);
             }
-            prevNode = thumbnailElement;
         }
-        // Remove only items that are truly out of the visible range
-        const existingItems = Array.from(this.visibleContainer.querySelectorAll('.thumbnail-item'));
-        for (const el of existingItems) {
+
+        // Add new items
+        if (fragment.children.length > 0) {
+            this.visibleContainer.appendChild(fragment);
+        }
+
+        // Remove items that are no longer visible
+        const existingItems = this.visibleContainer.querySelectorAll('.thumbnail-item');
+        existingItems.forEach(el => {
             const positionId = el.dataset.positionId;
             if (!currentItems.has(positionId)) {
-                this.visibleContainer.removeChild(el);
+                el.remove();
             }
-        }
+        });
 
         // Apply thumbnail radius styling to newly rendered thumbnails
         setTimeout(() => {
