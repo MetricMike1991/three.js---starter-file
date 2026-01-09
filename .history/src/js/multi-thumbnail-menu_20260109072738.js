@@ -184,82 +184,78 @@ class ThumbnailDropdownMenu {
         this.thumbnailGrid.appendChild(this.visibleContainer);
         this.thumbnailGrid.appendChild(this.bottomSpacer);
         
-        // Set up total virtual height for infinite scroll
-        const totalVirtualHeight = this.filteredData.length * this.itemHeight * this.loopMultiplier;
-        this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
+        // Set up infinite scroll height (multiply content by loopMultiplier)
+        const totalHeight = this.filteredData.length * this.itemHeight * this.loopMultiplier;
+        this.scrollContainer.style.height = `${this.containerHeight}px`;
         
-        // Start in the middle section for infinite scroll
-        setTimeout(() => {
-            this.scrollContainer.scrollTop = this.filteredData.length * this.itemHeight;
-            this.updateVirtualizedContent();
-        }, 50);
+        // Start at the middle section to allow scrolling up and down
+        this.scrollContainer.scrollTop = this.filteredData.length * this.itemHeight;
+        
+        this.updateVirtualizedContent();
     }
 
     updateVirtualizedContent() {
-        if (!this.visibleContainer || !this.filteredData.length) return;
-
-        // Skip updates during active dragging to prevent jitter
-        if (this.isDragging) return;
+        if (!this.visibleContainer || !this.filteredData.length || this.isLooping) return;
 
         const scrollTop = this.scrollContainer.scrollTop;
         const dataLength = this.filteredData.length;
-        const totalVirtualHeight = dataLength * this.itemHeight * this.loopMultiplier;
-        
-        // Handle infinite loop by wrapping scroll position
-        let adjustedScrollTop = scrollTop;
         const sectionHeight = dataLength * this.itemHeight;
         
-        // If we're near the boundaries, handle infinite wrapping
-        if (scrollTop < sectionHeight * 0.1) {
-            // Near top - jump to second copy
+        // Handle infinite loop boundaries
+        if (scrollTop < sectionHeight * 0.5) {
+            // Near top - jump to middle section
+            this.isLooping = true;
             this.scrollContainer.scrollTop = scrollTop + sectionHeight;
-            adjustedScrollTop = this.scrollContainer.scrollTop;
-        } else if (scrollTop > sectionHeight * 2.9) {
-            // Near bottom - jump to second copy
+            setTimeout(() => this.isLooping = false, 50);
+            return;
+        } else if (scrollTop > sectionHeight * 2.5) {
+            // Near bottom - jump to middle section  
+            this.isLooping = true;
             this.scrollContainer.scrollTop = scrollTop - sectionHeight;
-            adjustedScrollTop = this.scrollContainer.scrollTop;
+            setTimeout(() => this.isLooping = false, 50);
+            return;
         }
-        
-        // Calculate which items to show with infinite wrapping
-        const virtualStartIndex = Math.floor(adjustedScrollTop / this.itemHeight);
-        const itemsToShow = this.visibleItems + (this.renderBuffer * 2);
-        
-        this.startIndex = virtualStartIndex;
-        this.endIndex = virtualStartIndex + itemsToShow;
 
-        // Create spacer heights for infinite scroll
-        const currentScrollTop = this.scrollContainer.scrollTop;
-        const currentSectionHeight = this.filteredData.length * this.itemHeight;
-        const virtualTopHeight = Math.floor(currentScrollTop / this.itemHeight) * this.itemHeight;
-        
-        this.topSpacer.style.height = `${virtualTopHeight}px`;
+        // Calculate which items to show (with infinite wrapping)
+        const virtualIndex = Math.floor(scrollTop / this.itemHeight) % dataLength;
+        const bufferStart = Math.max(0, virtualIndex - this.renderBuffer);
+        const bufferEnd = Math.min(bufferStart + this.visibleItems + (this.renderBuffer * 2), dataLength);
+
+        // Only re-render if the range has significantly changed
+        if (Math.abs(bufferStart - this.lastRenderedStart) < 2 && 
+            Math.abs(bufferEnd - this.lastRenderedEnd) < 2) {
+            return;
+        }
+
+        this.startIndex = bufferStart;
+        this.endIndex = bufferEnd;
+        this.lastRenderedStart = bufferStart;
+        this.lastRenderedEnd = bufferEnd;
+
+        // Update spacer heights
+        this.topSpacer.style.height = `${this.startIndex * this.itemHeight}px`;
         this.bottomSpacer.style.height = `${
-            (currentSectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
+            (this.filteredData.length - this.endIndex) * this.itemHeight
         }px`;
 
-        // Render visible items with infinite wrapping
+        // Render visible items with smooth transitions
         const currentItems = new Set();
         const fragment = document.createDocumentFragment();
         
-        // Render items using virtual index range
-        for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
-            const dataIndex = virtualIndex % this.filteredData.length;
-            const item = this.filteredData[dataIndex];
+        for (let i = this.startIndex; i < this.endIndex; i++) {
+            const item = this.filteredData[i];
             if (!item) continue;
 
-            // Use position-based ID to handle wrapping
-            const positionId = `${item.id}_pos_${virtualIndex}`;
-            currentItems.add(positionId);
+            currentItems.add(item.id);
             
             // Check if item already exists
-            let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
+            let thumbnailElement = this.visibleContainer.querySelector(`[data-id="${item.id}"]`);
             
             if (!thumbnailElement) {
                 // Create new element
                 thumbnailElement = document.createElement('div');
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
-                thumbnailElement.dataset.positionId = positionId;
                 
                 thumbnailElement.innerHTML = `
                     <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
@@ -288,8 +284,8 @@ class ThumbnailDropdownMenu {
         // Remove items that are no longer visible
         const existingItems = this.visibleContainer.querySelectorAll('.thumbnail-item');
         existingItems.forEach(el => {
-            const positionId = el.dataset.positionId;
-            if (!currentItems.has(positionId)) {
+            const id = el.dataset.id;
+            if (!currentItems.has(id)) {
                 el.remove();
             }
         });
@@ -564,11 +560,6 @@ class ThumbnailDropdownMenu {
         }
         
         this.velocityTracker = [];
-        
-        // Update virtualized content after drag ends to catch up
-        setTimeout(() => {
-            this.updateVirtualizedContent();
-        }, 50);
     }
 
     // Check if menu should remain visible due to recent scroll interaction
@@ -593,12 +584,16 @@ class ThumbnailDropdownMenu {
     }
 
     updateScrollButtons() {
-        // For infinite scroll, buttons are never disabled
-        this.scrollUpBtn.style.opacity = '1';
-        this.scrollDownBtn.style.opacity = '1';
+        const container = this.scrollContainer;
+        const totalHeight = this.filteredData.length * this.itemHeight;
+        const isAtTop = container.scrollTop <= 10;
+        const isAtBottom = container.scrollTop >= totalHeight - container.clientHeight - 10;
         
-        this.scrollUpBtn.disabled = false;
-        this.scrollDownBtn.disabled = false;
+        this.scrollUpBtn.style.opacity = isAtTop ? '0.5' : '1';
+        this.scrollDownBtn.style.opacity = isAtBottom ? '0.5' : '1';
+        
+        this.scrollUpBtn.disabled = isAtTop;
+        this.scrollDownBtn.disabled = isAtBottom;
     }
 
     toggleMenu() {

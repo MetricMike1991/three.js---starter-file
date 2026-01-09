@@ -184,15 +184,7 @@ class ThumbnailDropdownMenu {
         this.thumbnailGrid.appendChild(this.visibleContainer);
         this.thumbnailGrid.appendChild(this.bottomSpacer);
         
-        // Set up total virtual height for infinite scroll
-        const totalVirtualHeight = this.filteredData.length * this.itemHeight * this.loopMultiplier;
-        this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
-        
-        // Start in the middle section for infinite scroll
-        setTimeout(() => {
-            this.scrollContainer.scrollTop = this.filteredData.length * this.itemHeight;
-            this.updateVirtualizedContent();
-        }, 50);
+        this.updateVirtualizedContent();
     }
 
     updateVirtualizedContent() {
@@ -222,33 +214,36 @@ class ThumbnailDropdownMenu {
         
         // Calculate which items to show with infinite wrapping
         const virtualStartIndex = Math.floor(adjustedScrollTop / this.itemHeight);
+        const startIndex = virtualStartIndex % dataLength;
         const itemsToShow = this.visibleItems + (this.renderBuffer * 2);
         
-        this.startIndex = virtualStartIndex;
-        this.endIndex = virtualStartIndex + itemsToShow;
+        this.startIndex = startIndex;
+        this.endIndex = Math.min(startIndex + itemsToShow, dataLength);
 
         // Create spacer heights for infinite scroll
-        const currentScrollTop = this.scrollContainer.scrollTop;
-        const currentSectionHeight = this.filteredData.length * this.itemHeight;
-        const virtualTopHeight = Math.floor(currentScrollTop / this.itemHeight) * this.itemHeight;
+        const scrollTop = this.scrollContainer.scrollTop;
+        const sectionHeight = this.filteredData.length * this.itemHeight;
+        const virtualTopHeight = Math.floor(scrollTop / this.itemHeight) * this.itemHeight;
         
         this.topSpacer.style.height = `${virtualTopHeight}px`;
         this.bottomSpacer.style.height = `${
-            (currentSectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
+            (sectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
         }px`;
 
         // Render visible items with infinite wrapping
         const currentItems = new Set();
         const fragment = document.createDocumentFragment();
         
-        // Render items using virtual index range
-        for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
-            const dataIndex = virtualIndex % this.filteredData.length;
+        // Calculate how many items we need to show with wrapping
+        const visibleRange = this.visibleItems + (this.renderBuffer * 2);
+        
+        for (let i = 0; i < visibleRange; i++) {
+            const dataIndex = (this.startIndex + i) % this.filteredData.length;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
             // Use position-based ID to handle wrapping
-            const positionId = `${item.id}_pos_${virtualIndex}`;
+            const positionId = `${item.id}_pos_${this.startIndex + i}`;
             currentItems.add(positionId);
             
             // Check if item already exists
@@ -564,11 +559,6 @@ class ThumbnailDropdownMenu {
         }
         
         this.velocityTracker = [];
-        
-        // Update virtualized content after drag ends to catch up
-        setTimeout(() => {
-            this.updateVirtualizedContent();
-        }, 50);
     }
 
     // Check if menu should remain visible due to recent scroll interaction
@@ -593,12 +583,16 @@ class ThumbnailDropdownMenu {
     }
 
     updateScrollButtons() {
-        // For infinite scroll, buttons are never disabled
-        this.scrollUpBtn.style.opacity = '1';
-        this.scrollDownBtn.style.opacity = '1';
+        const container = this.scrollContainer;
+        const totalHeight = this.filteredData.length * this.itemHeight;
+        const isAtTop = container.scrollTop <= 10;
+        const isAtBottom = container.scrollTop >= totalHeight - container.clientHeight - 10;
         
-        this.scrollUpBtn.disabled = false;
-        this.scrollDownBtn.disabled = false;
+        this.scrollUpBtn.style.opacity = isAtTop ? '0.5' : '1';
+        this.scrollDownBtn.style.opacity = isAtBottom ? '0.5' : '1';
+        
+        this.scrollUpBtn.disabled = isAtTop;
+        this.scrollDownBtn.disabled = isAtBottom;
     }
 
     toggleMenu() {

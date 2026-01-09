@@ -241,14 +241,16 @@ class ThumbnailDropdownMenu {
         const currentItems = new Set();
         const fragment = document.createDocumentFragment();
         
-        // Render items using virtual index range
-        for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
-            const dataIndex = virtualIndex % this.filteredData.length;
+        // Calculate how many items we need to show with wrapping
+        const visibleRange = this.visibleItems + (this.renderBuffer * 2);
+        
+        for (let i = 0; i < visibleRange; i++) {
+            const dataIndex = (this.startIndex + i) % this.filteredData.length;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
             // Use position-based ID to handle wrapping
-            const positionId = `${item.id}_pos_${virtualIndex}`;
+            const positionId = `${item.id}_pos_${this.startIndex + i}`;
             currentItems.add(positionId);
             
             // Check if item already exists

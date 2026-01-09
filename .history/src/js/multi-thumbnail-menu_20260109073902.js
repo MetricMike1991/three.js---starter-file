@@ -222,33 +222,36 @@ class ThumbnailDropdownMenu {
         
         // Calculate which items to show with infinite wrapping
         const virtualStartIndex = Math.floor(adjustedScrollTop / this.itemHeight);
+        const startIndex = virtualStartIndex % dataLength;
         const itemsToShow = this.visibleItems + (this.renderBuffer * 2);
         
-        this.startIndex = virtualStartIndex;
-        this.endIndex = virtualStartIndex + itemsToShow;
+        this.startIndex = startIndex;
+        this.endIndex = Math.min(startIndex + itemsToShow, dataLength);
 
         // Create spacer heights for infinite scroll
-        const currentScrollTop = this.scrollContainer.scrollTop;
-        const currentSectionHeight = this.filteredData.length * this.itemHeight;
-        const virtualTopHeight = Math.floor(currentScrollTop / this.itemHeight) * this.itemHeight;
+        const scrollTop = this.scrollContainer.scrollTop;
+        const sectionHeight = this.filteredData.length * this.itemHeight;
+        const virtualTopHeight = Math.floor(scrollTop / this.itemHeight) * this.itemHeight;
         
         this.topSpacer.style.height = `${virtualTopHeight}px`;
         this.bottomSpacer.style.height = `${
-            (currentSectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
+            (sectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
         }px`;
 
         // Render visible items with infinite wrapping
         const currentItems = new Set();
         const fragment = document.createDocumentFragment();
         
-        // Render items using virtual index range
-        for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
-            const dataIndex = virtualIndex % this.filteredData.length;
+        // Calculate how many items we need to show with wrapping
+        const visibleRange = this.visibleItems + (this.renderBuffer * 2);
+        
+        for (let i = 0; i < visibleRange; i++) {
+            const dataIndex = (this.startIndex + i) % this.filteredData.length;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
             // Use position-based ID to handle wrapping
-            const positionId = `${item.id}_pos_${virtualIndex}`;
+            const positionId = `${item.id}_pos_${this.startIndex + i}`;
             currentItems.add(positionId);
             
             // Check if item already exists
