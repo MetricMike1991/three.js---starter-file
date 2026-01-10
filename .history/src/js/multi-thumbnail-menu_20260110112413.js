@@ -327,24 +327,9 @@ class ThumbnailDropdownMenu {
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
                 thumbnailElement.dataset.positionId = positionId;
-                
-                // Build muscle info text for exercises
-                let muscleInfoHTML = '';
-                if (this.menuType === 'exercises' && item.information) {
-                    const primaryMuscle = item.information.primaryMuscle || '';
-                    const secondaryMuscles = item.information.secondaryMuscles || [];
-                    muscleInfoHTML = `
-                        <div class="thumbnail-muscle-info">
-                            ${primaryMuscle ? `<div class="primary-muscle"><strong>Primary:</strong> ${primaryMuscle}</div>` : ''}
-                            ${secondaryMuscles.length > 0 ? `<div class="secondary-muscles"><strong>Secondary:</strong> ${secondaryMuscles.join(', ')}</div>` : ''}
-                        </div>
-                    `;
-                }
-                
                 thumbnailElement.innerHTML = `
                     <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
                     <div class="thumbnail-label">${item.name}</div>
-                    ${muscleInfoHTML}
                 `;
                 thumbnailElement.addEventListener('click', (e) => {
                     if (this.recentlyDragged && this.hasDragged) {

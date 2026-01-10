@@ -130,23 +130,10 @@ class ThumbnailDropdownMenu {
             case 'exercises':
                 // Filter by selected muscle group if one is selected
                 if (window.menuManager && window.menuManager.selectedMuscle) {
-                    const selectedMuscle = window.menuManager.selectedMuscle;
-                    this.filteredData = this.allExercises.filter(exercise => {
-                        const isPrimary = exercise.information?.primaryMuscle === selectedMuscle;
-                        const isSecondary = exercise.information?.secondaryMuscles?.includes(selectedMuscle);
-                        return isPrimary || isSecondary;
-                    });
-                    
-                    // Sort so primary muscle matches come first
-                    this.filteredData.sort((a, b) => {
-                        const aIsPrimary = a.information?.primaryMuscle === selectedMuscle;
-                        const bIsPrimary = b.information?.primaryMuscle === selectedMuscle;
-                        if (aIsPrimary && !bIsPrimary) return -1;
-                        if (!aIsPrimary && bIsPrimary) return 1;
-                        return 0;
-                    });
-                    
-                    console.log(`Filtering exercises by muscle: ${selectedMuscle}, found ${this.filteredData.length} exercises`);
+                    this.filteredData = this.allExercises.filter(exercise => 
+                        exercise.muscleGroup.includes(window.menuManager.selectedMuscle)
+                    );
+                    console.log(`Filtering exercises by muscle: ${window.menuManager.selectedMuscle}, found ${this.filteredData.length} exercises`);
                 }
                 // Filter by selected equipment if one is selected
                 else if (window.menuManager && window.menuManager.selectedEquipment) {
@@ -327,24 +314,9 @@ class ThumbnailDropdownMenu {
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
                 thumbnailElement.dataset.positionId = positionId;
-                
-                // Build muscle info text for exercises
-                let muscleInfoHTML = '';
-                if (this.menuType === 'exercises' && item.information) {
-                    const primaryMuscle = item.information.primaryMuscle || '';
-                    const secondaryMuscles = item.information.secondaryMuscles || [];
-                    muscleInfoHTML = `
-                        <div class="thumbnail-muscle-info">
-                            ${primaryMuscle ? `<div class="primary-muscle"><strong>Primary:</strong> ${primaryMuscle}</div>` : ''}
-                            ${secondaryMuscles.length > 0 ? `<div class="secondary-muscles"><strong>Secondary:</strong> ${secondaryMuscles.join(', ')}</div>` : ''}
-                        </div>
-                    `;
-                }
-                
                 thumbnailElement.innerHTML = `
                     <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
                     <div class="thumbnail-label">${item.name}</div>
-                    ${muscleInfoHTML}
                 `;
                 thumbnailElement.addEventListener('click', (e) => {
                     if (this.recentlyDragged && this.hasDragged) {
