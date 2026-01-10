@@ -1618,15 +1618,10 @@ class ThreeJSApp {
             .onChange(value => {
                 const rightMenu = document.querySelector('.thumbnail-grid-container-right');
                 if (rightMenu) {
-                    rightMenu.style.display = value ? 'none' : 'grid';
+                    rightMenu.style.display = value ? 'none' : 'flex';
                     console.log('Right info menu:', value ? 'HIDDEN' : 'VISIBLE');
                 }
             });
-        
-        // Copy right menu settings button
-        thumbnailFolder.add({
-            copyRightMenuSettings: () => this.rightMenuSystem.copySettingsToClipboard()
-        }, 'copyRightMenuSettings').name('📋 Copy Right Menu Settings');
         
         // Apply initial styles
         setTimeout(() => this.multiThumbnailMenuSystem.updateAllSettings(settings), 100);
