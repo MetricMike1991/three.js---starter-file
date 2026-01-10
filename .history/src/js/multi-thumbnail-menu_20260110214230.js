@@ -18,10 +18,11 @@ class ThumbnailDropdownMenu {
                     const selectedId = e.detail.item.id;
                     const selectedExercise = this.allExercises.find(ex => ex.id === selectedId);
                     window.menuManager.selectedExercise = selectedExercise;
+                    this.selectedExerciseForTitle = selectedExercise;
                     console.log('Information menu: Set selected exercise to', selectedExercise);
                     
-                    // Update the title header with the exercise name
-                    this.updateTitle(selectedExercise.name);
+                    // Update title
+                    this.updateTitle();
                 }
                 
                 // Always update steps, even if tab is not open (so next open is correct)
@@ -40,6 +41,18 @@ class ThumbnailDropdownMenu {
                 });
             }
         }
+    
+    updateTitle() {
+        // Only update title for information menu
+        if (this.menuType === 'information' && this.titleElement) {
+            if (this.selectedExerciseForTitle) {
+                this.titleElement.textContent = this.selectedExerciseForTitle.name;
+            } else {
+                this.titleElement.textContent = 'Select an Exercise';
+            }
+        }
+    }
+
     constructor(menuType) {
         this.menuType = menuType;
         this.isOpen = false;
@@ -79,6 +92,12 @@ class ThumbnailDropdownMenu {
         this.recentlyDragged = false;
         this.hasDragged = false;
         
+        // Track selected item
+        this.selectedItemId = null;
+        
+        // Track selected exercise for title display
+        this.selectedExercise = null;
+        
         // Scroll interaction delay
         this.scrollInteractionDelay = 1500; // 1.5 second delay after scrolling
         this.lastScrollInteraction = 0;
@@ -98,19 +117,15 @@ class ThumbnailDropdownMenu {
         this.initializeElements();
         this.loadExerciseData();
     }
-        updateTitle(title) {
-        const titleHeader = document.getElementById(`${this.menuType}TitleHeader`);
-        if (titleHeader) {
-            titleHeader.textContent = title;
-        }
-    }
-        initializeElements() {
+    
+    initializeElements() {
         this.toggleBtn = document.getElementById(`${this.menuType}Toggle`);
         this.dropdown = document.getElementById(`${this.menuType}Dropdown`);
         this.scrollContainer = document.getElementById(`${this.menuType}Container`);
         this.thumbnailGrid = document.getElementById(`${this.menuType}Grid`);
         this.scrollUpBtn = document.getElementById(`${this.menuType}ScrollUp`);
         this.scrollDownBtn = document.getElementById(`${this.menuType}ScrollDown`);
+        this.titleElement = document.getElementById(`${this.menuType}Title`);
     }
     
     async loadExerciseData() {
@@ -362,6 +377,8 @@ class ThumbnailDropdownMenu {
                     }
                     this.selectThumbnail(item);
                 });
+                
+                // Insert new element into the DOM
                 if (prevNode && prevNode.nextSibling) {
                     this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
                 } else if (!prevNode && this.visibleContainer.firstChild) {
@@ -370,6 +387,14 @@ class ThumbnailDropdownMenu {
                     this.visibleContainer.appendChild(thumbnailElement);
                 }
             }
+            
+            // Re-apply selected class if this is the selected item (for both new and existing elements)
+            if (this.selectedItemId === item.id) {
+                thumbnailElement.classList.add('selected');
+            } else {
+                thumbnailElement.classList.remove('selected');
+            }
+            
             prevNode = thumbnailElement;
         }
         // Remove only items that are truly out of the visible range
@@ -388,8 +413,22 @@ class ThumbnailDropdownMenu {
         }, 50);
     }
     
+    updateTitle() {
+        // Only update title for information menu
+        if (this.menuType === 'information' && this.titleElement) {
+            if (this.selectedExerciseForTitle) {
+                this.titleElement.textContent = this.selectedExerciseForTitle.name;
+            } else {
+                this.titleElement.textContent = 'Select an Exercise';
+            }
+        }
+    }
+    
     selectThumbnail(item) {
         console.log(`Selected ${this.menuType}:`, item.name, item);
+        
+        // Track selected item ID
+        this.selectedItemId = item.id;
         
         // Add visual feedback for selection
         const thumbnailElements = this.visibleContainer.querySelectorAll('.thumbnail-item');
@@ -744,9 +783,9 @@ class ThumbnailDropdownMenu {
         if (!this.dropdown) return;
         
         const hex = this.settings.backgroundColor.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
         
         // Fixed dropdown width to match grid container
         this.dropdown.style.width = '250px';
@@ -758,9 +797,9 @@ class ThumbnailDropdownMenu {
         if (!this.toggleBtn) return;
         
         const hex = this.settings.glowColor.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
         
         const glowColor = `rgba(${r}, ${g}, ${b}, ${this.settings.glowIntensity})`;
         const outerGlow = `rgba(${r}, ${g}, ${b}, ${this.settings.glowIntensity * 0.5})`;
@@ -788,9 +827,9 @@ class ThumbnailDropdownMenu {
     
     updateThumbnailGlowStyles() {
         const hex = this.settings.glowColor.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
         
         const glowColor = `rgba(${r}, ${g}, ${b}, ${this.settings.glowIntensity})`;
         const innerGlow = `rgba(${r}, ${g}, ${b}, ${this.settings.glowIntensity * 0.5})`;

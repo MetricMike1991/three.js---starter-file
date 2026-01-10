@@ -19,9 +19,6 @@ class ThumbnailDropdownMenu {
                     const selectedExercise = this.allExercises.find(ex => ex.id === selectedId);
                     window.menuManager.selectedExercise = selectedExercise;
                     console.log('Information menu: Set selected exercise to', selectedExercise);
-                    
-                    // Update the title header with the exercise name
-                    this.updateTitle(selectedExercise.name);
                 }
                 
                 // Always update steps, even if tab is not open (so next open is correct)
@@ -79,6 +76,9 @@ class ThumbnailDropdownMenu {
         this.recentlyDragged = false;
         this.hasDragged = false;
         
+        // Track selected item
+        this.selectedItemId = null;
+        
         // Scroll interaction delay
         this.scrollInteractionDelay = 1500; // 1.5 second delay after scrolling
         this.lastScrollInteraction = 0;
@@ -98,13 +98,8 @@ class ThumbnailDropdownMenu {
         this.initializeElements();
         this.loadExerciseData();
     }
-        updateTitle(title) {
-        const titleHeader = document.getElementById(`${this.menuType}TitleHeader`);
-        if (titleHeader) {
-            titleHeader.textContent = title;
-        }
-    }
-        initializeElements() {
+    
+    initializeElements() {
         this.toggleBtn = document.getElementById(`${this.menuType}Toggle`);
         this.dropdown = document.getElementById(`${this.menuType}Dropdown`);
         this.scrollContainer = document.getElementById(`${this.menuType}Container`);

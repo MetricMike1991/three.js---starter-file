@@ -19,9 +19,6 @@ class ThumbnailDropdownMenu {
                     const selectedExercise = this.allExercises.find(ex => ex.id === selectedId);
                     window.menuManager.selectedExercise = selectedExercise;
                     console.log('Information menu: Set selected exercise to', selectedExercise);
-                    
-                    // Update the title header with the exercise name
-                    this.updateTitle(selectedExercise.name);
                 }
                 
                 // Always update steps, even if tab is not open (so next open is correct)
@@ -79,6 +76,9 @@ class ThumbnailDropdownMenu {
         this.recentlyDragged = false;
         this.hasDragged = false;
         
+        // Track selected item
+        this.selectedItemId = null;
+        
         // Scroll interaction delay
         this.scrollInteractionDelay = 1500; // 1.5 second delay after scrolling
         this.lastScrollInteraction = 0;
@@ -98,13 +98,8 @@ class ThumbnailDropdownMenu {
         this.initializeElements();
         this.loadExerciseData();
     }
-        updateTitle(title) {
-        const titleHeader = document.getElementById(`${this.menuType}TitleHeader`);
-        if (titleHeader) {
-            titleHeader.textContent = title;
-        }
-    }
-        initializeElements() {
+    
+    initializeElements() {
         this.toggleBtn = document.getElementById(`${this.menuType}Toggle`);
         this.dropdown = document.getElementById(`${this.menuType}Dropdown`);
         this.scrollContainer = document.getElementById(`${this.menuType}Container`);
@@ -362,6 +357,8 @@ class ThumbnailDropdownMenu {
                     }
                     this.selectThumbnail(item);
                 });
+                
+                // Insert new element into the DOM
                 if (prevNode && prevNode.nextSibling) {
                     this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
                 } else if (!prevNode && this.visibleContainer.firstChild) {
@@ -370,6 +367,14 @@ class ThumbnailDropdownMenu {
                     this.visibleContainer.appendChild(thumbnailElement);
                 }
             }
+            
+            // Re-apply selected class if this is the selected item (for both new and existing elements)
+            if (this.selectedItemId === item.id) {
+                thumbnailElement.classList.add('selected');
+            } else {
+                thumbnailElement.classList.remove('selected');
+            }
+            
             prevNode = thumbnailElement;
         }
         // Remove only items that are truly out of the visible range
@@ -390,6 +395,9 @@ class ThumbnailDropdownMenu {
     
     selectThumbnail(item) {
         console.log(`Selected ${this.menuType}:`, item.name, item);
+        
+        // Track selected item ID
+        this.selectedItemId = item.id;
         
         // Add visual feedback for selection
         const thumbnailElements = this.visibleContainer.querySelectorAll('.thumbnail-item');
