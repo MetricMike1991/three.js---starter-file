@@ -436,28 +436,22 @@ class ThumbnailDropdownMenu {
         if (!this.thumbnailGrid) return;
 
         // Default thumbnail grid rendering for all tabs
-        this.thumbnailGrid.innerHTML = '';
-        // Create spacer divs for virtualization
-        this.topSpacer = document.createElement('div');
-        this.bottomSpacer = document.createElement('div');
-        this.visibleContainer = document.createElement('div');
-        this.thumbnailGrid.appendChild(this.topSpacer);
-        this.thumbnailGrid.appendChild(this.visibleContainer);
-        this.thumbnailGrid.appendChild(this.bottomSpacer);
-        
-        // For search menu, don't use infinite scroll - show each result once
-        const useInfiniteScroll = this.menuType !== 'search';
-        const multiplier = useInfiniteScroll ? this.loopMultiplier : 1;
-        
-        // Set up total virtual height
-        const totalVirtualHeight = this.filteredData.length * this.itemHeight * multiplier;
-        this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
-        
-        // Start in the middle section for infinite scroll, or at top for search
-        setTimeout(() => {
-            this.scrollContainer.scrollTop = useInfiniteScroll ? this.filteredData.length * this.itemHeight : 0;
-            this.updateVirtualizedContent();
-        }, 50);
+            this.thumbnailGrid.innerHTML = '';
+            // Create spacer divs for virtualization
+            this.topSpacer = document.createElement('div');
+            this.bottomSpacer = document.createElement('div');
+            this.visibleContainer = document.createElement('div');
+            this.thumbnailGrid.appendChild(this.topSpacer);
+            this.thumbnailGrid.appendChild(this.visibleContainer);
+            this.thumbnailGrid.appendChild(this.bottomSpacer);
+            // Set up total virtual height for infinite scroll
+            const totalVirtualHeight = this.filteredData.length * this.itemHeight * this.loopMultiplier;
+            this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
+            // Start in the middle section for infinite scroll
+            setTimeout(() => {
+                this.scrollContainer.scrollTop = this.filteredData.length * this.itemHeight;
+                this.updateVirtualizedContent();
+            }, 50);
     }
 
     updateVirtualizedContent() {
@@ -468,22 +462,18 @@ class ThumbnailDropdownMenu {
 
         const scrollTop = this.scrollContainer.scrollTop;
         const dataLength = this.filteredData.length;
+        const totalVirtualHeight = dataLength * this.itemHeight * this.loopMultiplier;
         
-        // For search menu, don't use infinite scroll
-        const useInfiniteScroll = this.menuType !== 'search';
-        const loopMultiplier = useInfiniteScroll ? this.loopMultiplier : 1;
-        const totalVirtualHeight = dataLength * this.itemHeight * loopMultiplier;
-        
-        // Handle infinite loop by wrapping scroll position (only for non-search menus)
+        // Handle infinite loop by wrapping scroll position
         let adjustedScrollTop = scrollTop;
         const sectionHeight = dataLength * this.itemHeight;
         
-        // If we're near the boundaries, handle infinite wrapping (only for infinite scroll menus)
-        if (useInfiniteScroll && scrollTop < sectionHeight * 0.1) {
+        // If we're near the boundaries, handle infinite wrapping
+        if (scrollTop < sectionHeight * 0.1) {
             // Near top - jump to second copy
             this.scrollContainer.scrollTop = scrollTop + sectionHeight;
             adjustedScrollTop = this.scrollContainer.scrollTop;
-        } else if (useInfiniteScroll && scrollTop > sectionHeight * 2.9) {
+        } else if (scrollTop > sectionHeight * 2.9) {
             // Near bottom - jump to second copy
             this.scrollContainer.scrollTop = scrollTop - sectionHeight;
             adjustedScrollTop = this.scrollContainer.scrollTop;
@@ -503,24 +493,15 @@ class ThumbnailDropdownMenu {
         
         this.topSpacer.style.height = `${virtualTopHeight}px`;
         this.bottomSpacer.style.height = `${
-            (currentSectionHeight * loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
+            (currentSectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
         }px`;
 
-        // Render visible items
+        // Render visible items with infinite wrapping
         const currentItems = new Set();
         let prevNode = null;
         for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
             const dataLength = this.filteredData.length;
-            
-            // For search menu, don't wrap - just show each item once
-            let dataIndex;
-            if (useInfiniteScroll) {
-                dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
-            } else {
-                dataIndex = virtualIndex;
-                if (dataIndex >= dataLength) continue; // Don't render beyond the data
-            }
-            
+            const dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
@@ -533,22 +514,6 @@ class ThumbnailDropdownMenu {
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
                 thumbnailElement.dataset.positionId = positionId;
-                
-                // Build search match info for search menu
-                let searchMatchHTML = '';
-                if (this.menuType === 'search' && item.searchMatch && this.searchQuery) {
-                    const highlightText = (text) => {
-                        const regex = new RegExp(`(${this.searchQuery})`, 'gi');
-                        return text.replace(regex, '<mark>$1</mark>');
-                    };
-                    
-                    searchMatchHTML = `
-                        <div class="thumbnail-search-match">
-                            <div class="search-match-type">${item.searchMatch.type}</div>
-                            <div class="search-match-text">${highlightText(item.searchMatch.text)}</div>
-                        </div>
-                    `;
-                }
                 
                 // Build muscle info text for exercises
                 let muscleInfoHTML = '';
@@ -566,7 +531,6 @@ class ThumbnailDropdownMenu {
                 thumbnailElement.innerHTML = `
                     <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
                     <div class="thumbnail-label">${item.name}</div>
-                    ${searchMatchHTML}
                     ${muscleInfoHTML}
                 `;
                 thumbnailElement.addEventListener('click', (e) => {

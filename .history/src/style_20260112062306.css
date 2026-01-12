@@ -775,6 +775,7 @@ body
     padding: 8px 10px;
     background: rgba(74, 158, 255, 0.12);
     border-top: 1px solid rgba(74, 158, 255, 0.3);
+    margin-top: 8px;
 }
 
 .search-match-type {

@@ -503,24 +503,15 @@ class ThumbnailDropdownMenu {
         
         this.topSpacer.style.height = `${virtualTopHeight}px`;
         this.bottomSpacer.style.height = `${
-            (currentSectionHeight * loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
+            (currentSectionHeight * this.loopMultiplier) - virtualTopHeight - (this.endIndex - this.startIndex) * this.itemHeight
         }px`;
 
-        // Render visible items
+        // Render visible items with infinite wrapping
         const currentItems = new Set();
         let prevNode = null;
         for (let virtualIndex = this.startIndex; virtualIndex < this.endIndex; virtualIndex++) {
             const dataLength = this.filteredData.length;
-            
-            // For search menu, don't wrap - just show each item once
-            let dataIndex;
-            if (useInfiniteScroll) {
-                dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
-            } else {
-                dataIndex = virtualIndex;
-                if (dataIndex >= dataLength) continue; // Don't render beyond the data
-            }
-            
+            const dataIndex = ((virtualIndex % dataLength) + dataLength) % dataLength;
             const item = this.filteredData[dataIndex];
             if (!item) continue;
 
@@ -528,7 +519,13 @@ class ThumbnailDropdownMenu {
             currentItems.add(positionId);
 
             let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
-            if (!thumbnailElement) {
+            // Force recreation for search items to ensure searchMatch info is displayed
+            if (!thumbnailElement || (this.menuType === 'search' && this.searchQuery)) {
+                // Remove existing element if it exists (for search updates)
+                if (thumbnailElement && this.menuType === 'search') {
+                    thumbnailElement.remove();
+                }
+                
                 thumbnailElement = document.createElement('div');
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
@@ -537,6 +534,7 @@ class ThumbnailDropdownMenu {
                 // Build search match info for search menu
                 let searchMatchHTML = '';
                 if (this.menuType === 'search' && item.searchMatch && this.searchQuery) {
+                    console.log('Creating search match for:', item.name, 'Match:', item.searchMatch);
                     const highlightText = (text) => {
                         const regex = new RegExp(`(${this.searchQuery})`, 'gi');
                         return text.replace(regex, '<mark>$1</mark>');
@@ -548,6 +546,8 @@ class ThumbnailDropdownMenu {
                             <div class="search-match-text">${highlightText(item.searchMatch.text)}</div>
                         </div>
                     `;
+                } else if (this.menuType === 'search') {
+                    console.log('No search match for:', item.name, 'searchMatch:', item.searchMatch, 'searchQuery:', this.searchQuery);
                 }
                 
                 // Build muscle info text for exercises

@@ -496,7 +496,7 @@ class ThumbnailDropdownMenu {
         this.startIndex = virtualStartIndex;
         this.endIndex = virtualStartIndex + itemsToShow;
 
-        // Create spacer heights for infinite scroll
+        // Create spacer heights
         const currentScrollTop = this.scrollContainer.scrollTop;
         const currentSectionHeight = this.filteredData.length * this.itemHeight;
         const virtualTopHeight = Math.floor(currentScrollTop / this.itemHeight) * this.itemHeight;
@@ -528,7 +528,13 @@ class ThumbnailDropdownMenu {
             currentItems.add(positionId);
 
             let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
-            if (!thumbnailElement) {
+            // Force recreation for search items to ensure searchMatch info is displayed
+            if (!thumbnailElement || (this.menuType === 'search' && this.searchQuery)) {
+                // Remove existing element if it exists (for search updates)
+                if (thumbnailElement && this.menuType === 'search') {
+                    thumbnailElement.remove();
+                }
+                
                 thumbnailElement = document.createElement('div');
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
@@ -537,6 +543,7 @@ class ThumbnailDropdownMenu {
                 // Build search match info for search menu
                 let searchMatchHTML = '';
                 if (this.menuType === 'search' && item.searchMatch && this.searchQuery) {
+                    console.log('Creating search match for:', item.name, 'Match:', item.searchMatch);
                     const highlightText = (text) => {
                         const regex = new RegExp(`(${this.searchQuery})`, 'gi');
                         return text.replace(regex, '<mark>$1</mark>');
@@ -548,6 +555,8 @@ class ThumbnailDropdownMenu {
                             <div class="search-match-text">${highlightText(item.searchMatch.text)}</div>
                         </div>
                     `;
+                } else if (this.menuType === 'search') {
+                    console.log('No search match for:', item.name, 'searchMatch:', item.searchMatch, 'searchQuery:', this.searchQuery);
                 }
                 
                 // Build muscle info text for exercises

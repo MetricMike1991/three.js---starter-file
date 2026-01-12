@@ -436,28 +436,22 @@ class ThumbnailDropdownMenu {
         if (!this.thumbnailGrid) return;
 
         // Default thumbnail grid rendering for all tabs
-        this.thumbnailGrid.innerHTML = '';
-        // Create spacer divs for virtualization
-        this.topSpacer = document.createElement('div');
-        this.bottomSpacer = document.createElement('div');
-        this.visibleContainer = document.createElement('div');
-        this.thumbnailGrid.appendChild(this.topSpacer);
-        this.thumbnailGrid.appendChild(this.visibleContainer);
-        this.thumbnailGrid.appendChild(this.bottomSpacer);
-        
-        // For search menu, don't use infinite scroll - show each result once
-        const useInfiniteScroll = this.menuType !== 'search';
-        const multiplier = useInfiniteScroll ? this.loopMultiplier : 1;
-        
-        // Set up total virtual height
-        const totalVirtualHeight = this.filteredData.length * this.itemHeight * multiplier;
-        this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
-        
-        // Start in the middle section for infinite scroll, or at top for search
-        setTimeout(() => {
-            this.scrollContainer.scrollTop = useInfiniteScroll ? this.filteredData.length * this.itemHeight : 0;
-            this.updateVirtualizedContent();
-        }, 50);
+            this.thumbnailGrid.innerHTML = '';
+            // Create spacer divs for virtualization
+            this.topSpacer = document.createElement('div');
+            this.bottomSpacer = document.createElement('div');
+            this.visibleContainer = document.createElement('div');
+            this.thumbnailGrid.appendChild(this.topSpacer);
+            this.thumbnailGrid.appendChild(this.visibleContainer);
+            this.thumbnailGrid.appendChild(this.bottomSpacer);
+            // Set up total virtual height for infinite scroll
+            const totalVirtualHeight = this.filteredData.length * this.itemHeight * this.loopMultiplier;
+            this.bottomSpacer.style.height = `${totalVirtualHeight}px`;
+            // Start in the middle section for infinite scroll
+            setTimeout(() => {
+                this.scrollContainer.scrollTop = this.filteredData.length * this.itemHeight;
+                this.updateVirtualizedContent();
+            }, 50);
     }
 
     updateVirtualizedContent() {
