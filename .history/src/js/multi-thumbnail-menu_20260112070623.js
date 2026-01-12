@@ -546,7 +546,6 @@ class ThumbnailDropdownMenu {
                         <div class="search-match-text">${highlightText(item.searchMatch.text)}</div>
                     </div>
                 `;
-                console.log(`Generated searchMatchHTML for ${item.name}:`, searchMatchHTML);
             }
             
             // Build muscle info text for exercises

@@ -531,9 +531,6 @@ class ThumbnailDropdownMenu {
             
             // Build search match info for search menu
             let searchMatchHTML = '';
-            if (this.menuType === 'search') {
-                console.log(`Item: ${item.name}, hasSearchMatch: ${!!item.searchMatch}, searchQuery: "${this.searchQuery}", filteredDataLength: ${this.filteredData.length}`);
-            }
             if (this.menuType === 'search' && item.searchMatch && this.searchQuery) {
                 const highlightText = (text) => {
                     const regex = new RegExp(`(${this.searchQuery})`, 'gi');
@@ -546,7 +543,6 @@ class ThumbnailDropdownMenu {
                         <div class="search-match-text">${highlightText(item.searchMatch.text)}</div>
                     </div>
                 `;
-                console.log(`Generated searchMatchHTML for ${item.name}:`, searchMatchHTML);
             }
             
             // Build muscle info text for exercises

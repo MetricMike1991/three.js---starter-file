@@ -528,54 +528,50 @@ class ThumbnailDropdownMenu {
             currentItems.add(positionId);
 
             let thumbnailElement = this.visibleContainer.querySelector(`[data-position-id="${positionId}"]`);
-            
-            // Build search match info for search menu
-            let searchMatchHTML = '';
-            if (this.menuType === 'search') {
-                console.log(`Item: ${item.name}, hasSearchMatch: ${!!item.searchMatch}, searchQuery: "${this.searchQuery}", filteredDataLength: ${this.filteredData.length}`);
-            }
-            if (this.menuType === 'search' && item.searchMatch && this.searchQuery) {
-                const highlightText = (text) => {
-                    const regex = new RegExp(`(${this.searchQuery})`, 'gi');
-                    return text.replace(regex, '<mark>$1</mark>');
-                };
-                
-                searchMatchHTML = `
-                    <div class="thumbnail-search-match">
-                        <div class="search-match-type">${item.searchMatch.type}</div>
-                        <div class="search-match-text">${highlightText(item.searchMatch.text)}</div>
-                    </div>
-                `;
-                console.log(`Generated searchMatchHTML for ${item.name}:`, searchMatchHTML);
-            }
-            
-            // Build muscle info text for exercises
-            let muscleInfoHTML = '';
-            if (this.menuType === 'exercises' && item.information) {
-                const primaryMuscle = item.information.primaryMuscle || '';
-                const secondaryMuscles = item.information.secondaryMuscles || [];
-                muscleInfoHTML = `
-                    <div class="thumbnail-muscle-info">
-                        ${primaryMuscle ? `<div class="primary-muscle"><strong>Primary:</strong> ${primaryMuscle}</div>` : ''}
-                        ${secondaryMuscles.length > 0 ? `<div class="secondary-muscles"><strong>Secondary:</strong> ${secondaryMuscles.join(', ')}</div>` : ''}
-                    </div>
-                `;
-            }
-            
-            const thumbnailHTML = `
-                <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
-                <div class="thumbnail-label">${item.name}</div>
-                ${searchMatchHTML}
-                ${muscleInfoHTML}
-            `;
-            
             if (!thumbnailElement) {
                 thumbnailElement = document.createElement('div');
                 thumbnailElement.className = 'thumbnail-item';
                 thumbnailElement.dataset.id = item.id;
                 thumbnailElement.dataset.positionId = positionId;
-                thumbnailElement.innerHTML = thumbnailHTML;
                 
+                // Build search match info for search menu
+                let searchMatchHTML = '';
+                if (this.menuType === 'search' && item.searchMatch && this.searchQuery) {
+                    console.log('Building search match HTML for:', item.name, 'Match:', item.searchMatch);
+                    const highlightText = (text) => {
+                        const regex = new RegExp(`(${this.searchQuery})`, 'gi');
+                        return text.replace(regex, '<mark>$1</mark>');
+                    };
+                    
+                    searchMatchHTML = `
+                        <div class="thumbnail-search-match">
+                            <div class="search-match-type">${item.searchMatch.type}</div>
+                            <div class="search-match-text">${highlightText(item.searchMatch.text)}</div>
+                        </div>
+                    `;
+                } else if (this.menuType === 'search') {
+                    console.log('NO search match HTML for:', item.name, 'searchMatch:', item.searchMatch, 'searchQuery:', this.searchQuery);
+                }
+                
+                // Build muscle info text for exercises
+                let muscleInfoHTML = '';
+                if (this.menuType === 'exercises' && item.information) {
+                    const primaryMuscle = item.information.primaryMuscle || '';
+                    const secondaryMuscles = item.information.secondaryMuscles || [];
+                    muscleInfoHTML = `
+                        <div class="thumbnail-muscle-info">
+                            ${primaryMuscle ? `<div class="primary-muscle"><strong>Primary:</strong> ${primaryMuscle}</div>` : ''}
+                            ${secondaryMuscles.length > 0 ? `<div class="secondary-muscles"><strong>Secondary:</strong> ${secondaryMuscles.join(', ')}</div>` : ''}
+                        </div>
+                    `;
+                }
+                
+                thumbnailElement.innerHTML = `
+                    <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
+                    <div class="thumbnail-label">${item.name}</div>
+                    ${searchMatchHTML}
+                    ${muscleInfoHTML}
+                `;
                 thumbnailElement.addEventListener('click', (e) => {
                     if (this.recentlyDragged && this.hasDragged) {
                         e.preventDefault();
@@ -591,9 +587,6 @@ class ThumbnailDropdownMenu {
                 } else {
                     this.visibleContainer.appendChild(thumbnailElement);
                 }
-            } else {
-                // Update existing element's HTML to reflect current data (e.g., search matches)
-                thumbnailElement.innerHTML = thumbnailHTML;
             }
             prevNode = thumbnailElement;
         }
