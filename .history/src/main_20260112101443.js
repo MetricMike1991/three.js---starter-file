@@ -445,9 +445,6 @@ class ThreeJSApp {
         this.setupGUIStyles();
         this.setupGUIControls();
         
-        // Screenshot controls - at the top
-        this.setupSimpleScreenshotGUI();
-        
         // Save/Import controls with enhanced functionality
         this.gui.add({ 
             saveSettings: async () => {
@@ -607,6 +604,9 @@ class ThreeJSApp {
         
         // Camera controls
         this.setupCameraGUI();
+
+        // Screenshot controls
+        this.setupSimpleScreenshotGUI();
 
         // Thumbnail menu controls
         this.setupMultiThumbnailMenuGUI();
