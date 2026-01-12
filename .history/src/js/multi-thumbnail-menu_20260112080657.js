@@ -211,7 +211,6 @@ class ThumbnailDropdownMenu {
         this.filteredData = []; // Filtered data for current menu
         this.searchQuery = ''; // For search menu
         this.scrollAmount = 200;
-        this.selectedId = null; // Track selected item in this menu
         
         // Virtualized scrolling properties
         this.itemHeight = 230; // Height of each thumbnail item (200px + 30px margin)
@@ -594,12 +593,7 @@ class ThumbnailDropdownMenu {
                 }
             } else {
                 // Update existing element's HTML to reflect current data (e.g., search matches)
-                const wasSelected = thumbnailElement.classList.contains('selected');
                 thumbnailElement.innerHTML = thumbnailHTML;
-                // Restore selected class if it was selected
-                if (wasSelected) {
-                    thumbnailElement.classList.add('selected');
-                }
             }
             prevNode = thumbnailElement;
         }
@@ -616,21 +610,11 @@ class ThumbnailDropdownMenu {
         setTimeout(() => {
             this.updateStyles();
             this.updateThumbnailGlowStyles();
-            // Restore selection if item was selected
-            if (this.selectedId) {
-                const selectedElement = this.visibleContainer.querySelector(`[data-id="${this.selectedId}"]`);
-                if (selectedElement) {
-                    selectedElement.classList.add('selected');
-                }
-            }
         }, 50);
     }
     
     selectThumbnail(item) {
         console.log(`Selected ${this.menuType}:`, item.name, item);
-        
-        // Track selected item ID
-        this.selectedId = item.id;
         
         // Add visual feedback for selection
         const thumbnailElements = this.visibleContainer.querySelectorAll('.thumbnail-item');
@@ -1127,13 +1111,6 @@ export class MultiThumbnailMenuSystem {
             console.log('Search selection made, clearing all other selections');
             this.selectedExerciseId = null; // Clear tracked exercise
             
-            // Clear selectedId in all menus
-            ['exercises', 'muscles', 'equipment'].forEach(menuType => {
-                if (this.menus[menuType]) {
-                    this.menus[menuType].selectedId = null;
-                }
-            });
-            
             // Clear visual selections in all menus
             ['exercises', 'muscles', 'equipment'].forEach(menuType => {
                 if (this.menus[menuType] && this.menus[menuType].visibleContainer) {
@@ -1150,9 +1127,8 @@ export class MultiThumbnailMenuSystem {
             // Refresh exercises menu to show filtered results
             if (this.menus.exercises) {
                 this.menus.exercises.filterDataForMenu();
-                // Restore exercise selection after re-render (multiple attempts to ensure it sticks)
-                setTimeout(() => this.restoreExerciseSelection(), 200);
-                setTimeout(() => this.restoreExerciseSelection(), 400);
+                // Restore exercise selection after re-render
+                setTimeout(() => this.restoreExerciseSelection(), 150);
             }
         });
         
@@ -1163,9 +1139,8 @@ export class MultiThumbnailMenuSystem {
             // Refresh exercises menu to show filtered results
             if (this.menus.exercises) {
                 this.menus.exercises.filterDataForMenu();
-                // Restore exercise selection after re-render (multiple attempts to ensure it sticks)
-                setTimeout(() => this.restoreExerciseSelection(), 200);
-                setTimeout(() => this.restoreExerciseSelection(), 400);
+                // Restore exercise selection after re-render
+                setTimeout(() => this.restoreExerciseSelection(), 150);
             }
         });
         
@@ -1239,19 +1214,6 @@ export class MultiThumbnailMenuSystem {
                 }
             }
         });
-    }
-    
-    restoreExerciseSelection() {
-        // Restore the selected exercise after re-rendering
-        if (this.selectedExerciseId && this.menus.exercises && this.menus.exercises.visibleContainer) {
-            const selectedElement = this.menus.exercises.visibleContainer.querySelector(`[data-id="${this.selectedExerciseId}"]`);
-            if (selectedElement) {
-                selectedElement.classList.add('selected');
-                console.log('Restored exercise selection:', this.selectedExerciseId);
-            } else {
-                console.log('Could not restore - element not found:', this.selectedExerciseId);
-            }
-        }
     }
     
     // Global settings management

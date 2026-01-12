@@ -1127,13 +1127,6 @@ export class MultiThumbnailMenuSystem {
             console.log('Search selection made, clearing all other selections');
             this.selectedExerciseId = null; // Clear tracked exercise
             
-            // Clear selectedId in all menus
-            ['exercises', 'muscles', 'equipment'].forEach(menuType => {
-                if (this.menus[menuType]) {
-                    this.menus[menuType].selectedId = null;
-                }
-            });
-            
             // Clear visual selections in all menus
             ['exercises', 'muscles', 'equipment'].forEach(menuType => {
                 if (this.menus[menuType] && this.menus[menuType].visibleContainer) {
