@@ -1,0 +1,182 @@
+{
+  "info1": {
+    "title": "Exercise Information",
+    "items": [
+      {
+        "id": "benefit1",
+        "name": "Strength Building",
+        "text": "Progressive resistance training increases muscle strength and power output over time."
+      },
+      {
+        "id": "benefit2",
+        "name": "Muscle Growth",
+        "text": "Mechanical tension and metabolic stress from training stimulate muscle hypertrophy."
+      },
+      {
+        "id": "benefit3",
+        "name": "Bone Density",
+        "text": "Weight-bearing exercises increase bone mineral density and reduce osteoporosis risk."
+      },
+      {
+        "id": "benefit4",
+        "name": "Metabolic Health",
+        "text": "Regular training improves insulin sensitivity and glucose metabolism."
+      },
+      {
+        "id": "benefit5",
+        "name": "Cardiovascular Health",
+        "text": "Exercise strengthens the heart and improves circulation throughout the body."
+      },
+      {
+        "id": "benefit6",
+        "name": "Mental Health",
+        "text": "Physical activity reduces stress, anxiety, and improves overall mood."
+      },
+      {
+        "id": "benefit7",
+        "name": "Joint Health",
+        "text": "Proper exercise strengthens connective tissue and improves joint stability."
+      },
+      {
+        "id": "benefit8",
+        "name": "Posture Improvement",
+        "text": "Balanced training corrects muscular imbalances and improves body alignment."
+      }
+    ]
+  },
+  "info2": {
+    "title": "How To Guide",
+    "items": [
+      {
+        "id": "principle1",
+        "name": "Progressive Overload",
+        "text": "Gradually increase weight, reps, or volume over time to continue making progress."
+      },
+      {
+        "id": "principle2",
+        "name": "Specificity",
+        "text": "Training adaptations are specific to the type of stimulus applied."
+      },
+      {
+        "id": "principle3",
+        "name": "Variation",
+        "text": "Periodically change exercises, intensity, or volume to prevent plateaus."
+      },
+      {
+        "id": "principle4",
+        "name": "Recovery",
+        "text": "Adequate rest between sessions allows for muscle repair and growth."
+      },
+      {
+        "id": "principle5",
+        "name": "Individualization",
+        "text": "Programs should be tailored to individual goals, experience, and recovery capacity."
+      },
+      {
+        "id": "principle6",
+        "name": "Consistency",
+        "text": "Regular training over time is more important than perfect individual sessions."
+      },
+      {
+        "id": "principle7",
+        "name": "Mind-Muscle Connection",
+        "text": "Focus on feeling the target muscle work during each repetition."
+      },
+      {
+        "id": "principle8",
+        "name": "Full Range of Motion",
+        "text": "Use complete ROM for maximum muscle activation and joint health."
+      }
+    ]
+  },
+  "info3": {
+    "title": "Set Up Guide",
+    "items": [
+      {
+        "id": "safety1",
+        "name": "Proper Warm-Up",
+        "text": "Begin with 5-10 minutes of light cardio and dynamic stretching before training."
+      },
+      {
+        "id": "safety2",
+        "name": "Form Before Weight",
+        "text": "Master proper technique with lighter loads before increasing resistance."
+      },
+      {
+        "id": "safety3",
+        "name": "Breathing Technique",
+        "text": "Exhale during exertion, inhale during the easier phase of the movement."
+      },
+      {
+        "id": "safety4",
+        "name": "Listen to Your Body",
+        "text": "Distinguish between productive discomfort and pain that signals injury."
+      },
+      {
+        "id": "safety5",
+        "name": "Use a Spotter",
+        "text": "Have assistance for heavy compound lifts, especially near failure."
+      },
+      {
+        "id": "safety6",
+        "name": "Equipment Check",
+        "text": "Inspect equipment before use and ensure proper setup and adjustments."
+      },
+      {
+        "id": "safety7",
+        "name": "Stay Hydrated",
+        "text": "Drink water before, during, and after training to maintain performance."
+      },
+      {
+        "id": "safety8",
+        "name": "Cool Down",
+        "text": "End sessions with light activity and static stretching to aid recovery."
+      }
+    ]
+  },
+  "info4": {
+    "title": "Alternative Exercises",
+    "items": [
+      {
+        "id": "nutrition1",
+        "name": "Protein Intake",
+        "text": "Consume 1.6-2.2g of protein per kg of bodyweight daily for muscle growth."
+      },
+      {
+        "id": "nutrition2",
+        "name": "Pre-Workout Nutrition",
+        "text": "Eat a balanced meal 2-3 hours before training for optimal energy."
+      },
+      {
+        "id": "nutrition3",
+        "name": "Post-Workout Recovery",
+        "text": "Consume protein and carbohydrates within 2 hours after training."
+      },
+      {
+        "id": "nutrition4",
+        "name": "Carbohydrate Timing",
+        "text": "Focus carb intake around training sessions to fuel performance and recovery."
+      },
+      {
+        "id": "nutrition5",
+        "name": "Healthy Fats",
+        "text": "Include sources like nuts, avocados, and fish for hormone production."
+      },
+      {
+        "id": "nutrition6",
+        "name": "Micronutrients",
+        "text": "Eat a variety of fruits and vegetables for vitamins and minerals."
+      },
+      {
+        "id": "nutrition7",
+        "name": "Meal Frequency",
+        "text": "Distribute protein intake across 3-5 meals throughout the day."
+      },
+      {
+        "id": "nutrition8",
+        "name": "Sleep and Recovery",
+        "text": "Aim for 7-9 hours of quality sleep nightly for optimal muscle recovery."
+      }
+    ]
+  }
+}

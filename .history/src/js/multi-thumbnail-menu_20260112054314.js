@@ -714,22 +714,13 @@ class ThumbnailDropdownMenu {
         this.dropdown.classList.add('show');
         this.toggleBtn.classList.add('active');
 
-        // Set cursor to grab for scroll container (except for information menu)
-        if (this.scrollContainer && this.menuType !== 'information') {
-            this.scrollContainer.style.cursor = 'grab';
-        }
-
         // Keep menu container visible when dropdown is open
         const gridContainer = document.querySelector('.thumbnail-grid-container');
         if (gridContainer) {
             gridContainer.classList.add('menu-active');
         }
 
-        // Ensure content is rendered when menu opens (especially for first open)
         setTimeout(() => {
-            if (this.visibleContainer && this.menuType !== 'information') {
-                this.updateVirtualizedContent();
-            }
             this.updateScrollButtons();
         }, 100);
     }

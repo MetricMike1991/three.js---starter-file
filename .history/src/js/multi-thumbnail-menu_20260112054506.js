@@ -725,11 +725,7 @@ class ThumbnailDropdownMenu {
             gridContainer.classList.add('menu-active');
         }
 
-        // Ensure content is rendered when menu opens (especially for first open)
         setTimeout(() => {
-            if (this.visibleContainer && this.menuType !== 'information') {
-                this.updateVirtualizedContent();
-            }
             this.updateScrollButtons();
         }, 100);
     }
