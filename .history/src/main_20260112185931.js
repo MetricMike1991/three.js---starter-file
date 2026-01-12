@@ -1365,21 +1365,6 @@ class ThreeJSApp {
                 });
 
                 model.position.set(0, -0.02, 0);
-                
-                // Apply pending model config if available
-                if (this.pendingModelConfig) {
-                    if (this.pendingModelConfig.position) {
-                        model.position.set(...this.pendingModelConfig.position);
-                    }
-                    if (this.pendingModelConfig.rotation) {
-                        model.rotation.set(...this.pendingModelConfig.rotation);
-                    }
-                    if (this.pendingModelConfig.scale) {
-                        model.scale.set(...this.pendingModelConfig.scale);
-                    }
-                    this.pendingModelConfig = null; // Clear after applying
-                }
-                
                 this.sceneManager.getScene().add(model);
                 
                 // Set clickable meshes for camera double-click functionality
