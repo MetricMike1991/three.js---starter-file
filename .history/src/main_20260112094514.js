@@ -334,22 +334,6 @@ class ThreeJSApp {
             });
         }
     }
-    
-    gatherModelSpecificSettings() {
-        // Gather only settings relevant to the model presentation
-        return {
-            model: window.model ? {
-                position: window.model.position.toArray(),
-                rotation: [window.model.rotation.x, window.model.rotation.y, window.model.rotation.z],
-                scale: window.model.scale.toArray()
-            } : { position: [0, -0.02, 0], rotation: [0, 0, 0], scale: [1, 1, 1] },
-            camera: this.cameraManager.getSettings(),
-            lighting: this.lightingSystem.getSettings(),
-            ground: this.groundParams,
-            background: this.backgroundParams,
-            dustParticles: this.particleSystem.getSettings()
-        };
-    }
 
     setupGUIStyles() {
         // Add custom styles for GUI folders
@@ -422,21 +406,6 @@ class ThreeJSApp {
                 console.log('All settings saved:', this.settingsManager.gatherAllSettings());
             }
         }, 'saveSettings').name('💾 Save All Settings');
-        
-        this.gui.add({ 
-            saveModelSettings: async () => {
-                const modelSettings = this.gatherModelSpecificSettings();
-                const settingsStr = JSON.stringify(modelSettings, null, 2);
-                try {
-                    await navigator.clipboard.writeText(settingsStr);
-                    alert('Model-specific settings copied to clipboard!');
-                    console.log('Model settings saved:', modelSettings);
-                } catch (error) {
-                    console.error('Failed to copy to clipboard:', error);
-                    alert('Failed to copy settings to clipboard.');
-                }
-            }
-        }, 'saveModelSettings').name('🎯 Save Model Settings');
         
         this.gui.add({ 
             importSettings: async () => {

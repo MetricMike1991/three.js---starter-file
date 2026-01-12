@@ -334,22 +334,6 @@ class ThreeJSApp {
             });
         }
     }
-    
-    gatherModelSpecificSettings() {
-        // Gather only settings relevant to the model presentation
-        return {
-            model: window.model ? {
-                position: window.model.position.toArray(),
-                rotation: [window.model.rotation.x, window.model.rotation.y, window.model.rotation.z],
-                scale: window.model.scale.toArray()
-            } : { position: [0, -0.02, 0], rotation: [0, 0, 0], scale: [1, 1, 1] },
-            camera: this.cameraManager.getSettings(),
-            lighting: this.lightingSystem.getSettings(),
-            ground: this.groundParams,
-            background: this.backgroundParams,
-            dustParticles: this.particleSystem.getSettings()
-        };
-    }
 
     setupGUIStyles() {
         // Add custom styles for GUI folders
