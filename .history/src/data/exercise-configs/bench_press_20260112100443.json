@@ -1,7 +1,6 @@
 {
   "exerciseId": "bench_press",
   "modelUrl": "https://FlexFrame.b-cdn.net/barbell_bench_press.glb.glb",
-  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Bench%20Press_2026-01-12T10-06-52.webp",
   "model": {
     "position": [
       0,

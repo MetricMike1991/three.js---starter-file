@@ -163,9 +163,41 @@ class ThreeJSApp {
                         this.cameraManager.getControls().update();
                     }
                     
+                    // Apply lighting settings
+                    if (config.lighting) {
+                        if (config.lighting.directionalLight) {
+                            this.lightingSystem.applySettings({ directionalLight: config.lighting.directionalLight });
+                        }
+                        if (config.lighting.ambientLight) {
+                            this.lightingSystem.applySettings({ ambientLight: config.lighting.ambientLight });
+                        }
+                    }
+                    
+                    // Apply ground settings
+                    if (config.ground) {
+                        Object.assign(this.groundParams, config.ground);
+                        this.updateGroundMode();
+                    }
+                    
+                    // Apply background settings
+                    if (config.background) {
+                        Object.assign(this.backgroundParams, config.background);
+                        this.sceneManager.updateGradientBackground(this.backgroundParams);
+                    }
+                    
+                    // Apply dust particles settings
+                    if (config.dustParticles) {
+                        this.particleSystem.applySettings(config.dustParticles);
+                    }
+                    
                     // Update right menu tabs with config data
                     if (config.rightMenuTabs && window.rightMenuManager) {
                         window.rightMenuManager.updateFromConfig(config.rightMenuTabs);
+                    }
+                    
+                    // Update GUI to reflect loaded settings
+                    if (this.gui) {
+                        this.gui.controllersRecursive().forEach(controller => controller.updateDisplay());
                     }
                 } catch (error) {
                     console.error('Failed to load exercise config:', error);

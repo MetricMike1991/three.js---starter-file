@@ -131,36 +131,7 @@ class ThreeJSApp {
                     // Load the 3D model if URL is provided
                     if (config.modelUrl) {
                         console.log('Loading model from config:', config.modelUrl);
-                        await this.loadModel(config.modelUrl);
-                        
-                        // Apply model transform if provided
-                        if (config.model && this.currentModel) {
-                            if (config.model.position) {
-                                this.currentModel.position.set(...config.model.position);
-                            }
-                            if (config.model.rotation) {
-                                this.currentModel.rotation.set(...config.model.rotation);
-                            }
-                            if (config.model.scale) {
-                                this.currentModel.scale.set(...config.model.scale);
-                            }
-                        }
-                    }
-                    
-                    // Apply camera settings
-                    if (config.camera) {
-                        const camera = this.cameraManager.getCamera();
-                        if (config.camera.position) {
-                            camera.position.set(...config.camera.position);
-                        }
-                        if (config.camera.rotation) {
-                            camera.rotation.set(...config.camera.rotation);
-                        }
-                        // Update controls target if provided
-                        if (config.camera.target) {
-                            this.cameraManager.getControls().target.set(...config.camera.target);
-                        }
-                        this.cameraManager.getControls().update();
+                        this.loadModel(config.modelUrl);
                     }
                     
                     // Update right menu tabs with config data
