@@ -1099,17 +1099,15 @@ export class MultiThumbnailMenuSystem {
     }
     
     setupGlobalListeners() {
-        // Listen for search selection to clear all other selections
+        // Listen for search selection to clear other menu selections
         document.addEventListener('searchSelected', (e) => {
-            console.log('Search selection made, clearing all other selections');
-            
-            // Clear visual selections in all menus
-            ['exercises', 'muscles', 'equipment'].forEach(menuType => {
-                if (this.menus[menuType] && this.menus[menuType].visibleContainer) {
-                    const thumbnails = this.menus[menuType].visibleContainer.querySelectorAll('.thumbnail-item');
-                    thumbnails.forEach(el => el.classList.remove('selected'));
-                }
-            });
+            console.log('Search selection made, clearing other menu selections');
+            this.selectedMuscle = null;
+            this.selectedEquipment = null;
+            // Refresh exercises menu to remove any filters
+            if (this.menus.exercises) {
+                this.menus.exercises.filterDataForMenu();
+            }
         });
         
         // Listen for muscle selection to filter exercises

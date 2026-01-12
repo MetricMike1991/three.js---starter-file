@@ -1099,17 +1099,26 @@ export class MultiThumbnailMenuSystem {
     }
     
     setupGlobalListeners() {
-        // Listen for search selection to clear all other selections
+        // Listen for search selection to clear other menu selections
         document.addEventListener('searchSelected', (e) => {
-            console.log('Search selection made, clearing all other selections');
+            console.log('Search selection made, clearing other menu selections');
+            this.selectedMuscle = null;
+            this.selectedEquipment = null;
             
-            // Clear visual selections in all menus
-            ['exercises', 'muscles', 'equipment'].forEach(menuType => {
-                if (this.menus[menuType] && this.menus[menuType].visibleContainer) {
-                    const thumbnails = this.menus[menuType].visibleContainer.querySelectorAll('.thumbnail-item');
-                    thumbnails.forEach(el => el.classList.remove('selected'));
-                }
-            });
+            // Clear visual selections in muscles and equipment menus
+            if (this.menus.muscles && this.menus.muscles.visibleContainer) {
+                const muscleThumbnails = this.menus.muscles.visibleContainer.querySelectorAll('.thumbnail-item');
+                muscleThumbnails.forEach(el => el.classList.remove('selected'));
+            }
+            if (this.menus.equipment && this.menus.equipment.visibleContainer) {
+                const equipmentThumbnails = this.menus.equipment.visibleContainer.querySelectorAll('.thumbnail-item');
+                equipmentThumbnails.forEach(el => el.classList.remove('selected'));
+            }
+            
+            // Refresh exercises menu to remove any filters
+            if (this.menus.exercises) {
+                this.menus.exercises.filterDataForMenu();
+            }
         });
         
         // Listen for muscle selection to filter exercises

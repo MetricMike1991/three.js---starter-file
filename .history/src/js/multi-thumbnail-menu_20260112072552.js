@@ -593,7 +593,12 @@ class ThumbnailDropdownMenu {
                 }
             } else {
                 // Update existing element's HTML to reflect current data (e.g., search matches)
+                const wasSelected = thumbnailElement.classList.contains('selected');
                 thumbnailElement.innerHTML = thumbnailHTML;
+                // Restore selected state if it was selected
+                if (wasSelected) {
+                    thumbnailElement.classList.add('selected');
+                }
             }
             prevNode = thumbnailElement;
         }
@@ -1075,6 +1080,7 @@ export class MultiThumbnailMenuSystem {
         this.menus = {};
         this.selectedMuscle = null; // Track selected muscle for filtering
         this.selectedEquipment = null; // Track selected equipment for filtering
+        this.selectedExerciseId = null; // Track selected exercise to preserve during re-filtering
         this.settings = {
             widthPercentage: 90,
             backgroundColor: '#000000',
@@ -1099,26 +1105,32 @@ export class MultiThumbnailMenuSystem {
     }
     
     setupGlobalListeners() {
-        // Listen for search selection to clear all other selections
+        // Listen for exercise selection to track it
+        document.addEventListener('exercisesSelected', (e) => {
+            this.selectedExerciseId = e.detail.item.id;
+            console.log('Exercise selected:', e.detail.item.name, 'ID:', this.selectedExerciseId);
+        });
+        
+        // Listen for search selection to clear exercise tab selection only
         document.addEventListener('searchSelected', (e) => {
-            console.log('Search selection made, clearing all other selections');
+            console.log('Search selection made, clearing exercise tab selection');
+            this.selectedExerciseId = null; // Clear tracked exercise
             
-            // Clear visual selections in all menus
-            ['exercises', 'muscles', 'equipment'].forEach(menuType => {
-                if (this.menus[menuType] && this.menus[menuType].visibleContainer) {
-                    const thumbnails = this.menus[menuType].visibleContainer.querySelectorAll('.thumbnail-item');
-                    thumbnails.forEach(el => el.classList.remove('selected'));
-                }
-            });
+            // Clear visual selection in exercises menu only
+            if (this.menus.exercises && this.menus.exercises.visibleContainer) {
+                const exerciseThumbnails = this.menus.exercises.visibleContainer.querySelectorAll('.thumbnail-item');
+                exerciseThumbnails.forEach(el => el.classList.remove('selected'));
+            }
         });
         
         // Listen for muscle selection to filter exercises
         document.addEventListener('musclesSelected', (e) => {
             this.selectedMuscle = e.detail.item.name;
             console.log('Muscle selected:', this.selectedMuscle);
-            // Refresh exercises menu to show filtered results
+            // Refresh exercises menu to show filtered results, preserving selection
             if (this.menus.exercises) {
                 this.menus.exercises.filterDataForMenu();
+                this.restoreExerciseSelection();
             }
         });
         
@@ -1126,9 +1138,10 @@ export class MultiThumbnailMenuSystem {
         document.addEventListener('equipmentSelected', (e) => {
             this.selectedEquipment = e.detail.item.name;
             console.log('Equipment selected:', this.selectedEquipment);
-            // Refresh exercises menu to show filtered results
+            // Refresh exercises menu to show filtered results, preserving selection
             if (this.menus.exercises) {
                 this.menus.exercises.filterDataForMenu();
+                this.restoreExerciseSelection();
             }
         });
         
@@ -1202,6 +1215,19 @@ export class MultiThumbnailMenuSystem {
                 }
             }
         });
+    }
+    
+    restoreExerciseSelection() {
+        // Restore the selected exercise after re-rendering
+        if (this.selectedExerciseId && this.menus.exercises && this.menus.exercises.visibleContainer) {
+            setTimeout(() => {
+                const selectedElement = this.menus.exercises.visibleContainer.querySelector(`[data-id="${this.selectedExerciseId}"]`);
+                if (selectedElement) {
+                    selectedElement.classList.add('selected');
+                    console.log('Restored exercise selection:', this.selectedExerciseId);
+                }
+            }, 100);
+        }
     }
     
     // Global settings management
