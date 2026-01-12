@@ -1209,6 +1209,8 @@ export class MultiThumbnailMenuSystem {
                     }
                 }
             }, 300);
+                }
+            }
         });
         
         // Listen for muscle selection to filter exercises

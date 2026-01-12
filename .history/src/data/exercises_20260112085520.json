@@ -34,7 +34,6 @@
     "id": "seated_lat_pulldown",
     "name": "Seated Lat Pulldown",
     "thumbnailUrl": "https://picsum.photos/200/200?random=2",
-    "configUrl": "./data/exercise-configs/seated_lat_pulldown.json",
     "muscleGroup": [
       "Latissimus Dorsi",
       "Biceps"
@@ -63,7 +62,6 @@
     "id": "deadlift",
     "name": "Conventional Deadlift",
     "thumbnailUrl": "https://picsum.photos/200/200?random=3",
-    "configUrl": "./data/exercise-configs/deadlift.json",
     "muscleGroup": [
       "Hamstrings",
       "Glutes",
@@ -93,7 +91,6 @@
     "id": "bench_press",
     "name": "Barbell Bench Press",
     "thumbnailUrl": "https://picsum.photos/200/200?random=4",
-    "configUrl": "./data/exercise-configs/bench_press.json",
     "muscleGroup": [
       "Chest",
       "Triceps",

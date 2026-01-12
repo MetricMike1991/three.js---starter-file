@@ -93,7 +93,6 @@
     "id": "bench_press",
     "name": "Barbell Bench Press",
     "thumbnailUrl": "https://picsum.photos/200/200?random=4",
-    "configUrl": "./data/exercise-configs/bench_press.json",
     "muscleGroup": [
       "Chest",
       "Triceps",

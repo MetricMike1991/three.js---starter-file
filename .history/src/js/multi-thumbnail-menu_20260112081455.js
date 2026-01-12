@@ -1126,89 +1126,69 @@ export class MultiThumbnailMenuSystem {
         document.addEventListener('searchSelected', (e) => {
             console.log('Search selection made, selecting corresponding items in other tabs');
             const selectedExercise = e.detail.item;
-            console.log('Selected exercise data:', selectedExercise);
             
-            // Select the primary muscle in the muscles tab FIRST
-            if (this.menus.muscles && selectedExercise.information?.primaryMuscle) {
-                const primaryMuscle = selectedExercise.information.primaryMuscle;
-                this.selectedMuscle = primaryMuscle;
-                console.log('Setting muscle:', primaryMuscle);
-                
-                // Find the muscle ID from the filtered data
-                const muscleItem = this.menus.muscles.filteredData.find(m => m.name === primaryMuscle);
-                console.log('Found muscle item:', muscleItem);
-                if (muscleItem) {
-                    this.menus.muscles.selectedId = muscleItem.id;
-                }
-            }
-            
-            // Select the first equipment in the equipment tab SECOND
-            if (this.menus.equipment && selectedExercise.equipment && selectedExercise.equipment.length > 0) {
-                const equipmentName = selectedExercise.equipment[0];
-                this.selectedEquipment = equipmentName;
-                console.log('Setting equipment:', equipmentName);
-                
-                // Find the equipment ID from the filtered data
-                const equipmentItem = this.menus.equipment.filteredData.find(eq => eq.name === equipmentName);
-                console.log('Found equipment item:', equipmentItem);
-                if (equipmentItem) {
-                    this.menus.equipment.selectedId = equipmentItem.id;
-                }
-            }
-            
-            // Now filter exercises menu based on muscle/equipment selections
-            if (this.menus.exercises) {
-                this.menus.exercises.filterDataForMenu();
-            }
-            
-            // Select the exercise in the exercises tab LAST (after filtering)
+            // Select the exercise in the exercises tab
             if (this.menus.exercises && selectedExercise.id) {
                 this.menus.exercises.selectedId = selectedExercise.id;
                 this.selectedExerciseId = selectedExercise.id;
-                console.log('Set exercise selection:', selectedExercise.id);
+                
+                setTimeout(() => {
+                    if (this.menus.exercises.visibleContainer) {
+                        const exerciseThumbnails = this.menus.exercises.visibleContainer.querySelectorAll('.thumbnail-item');
+                        exerciseThumbnails.forEach(el => el.classList.remove('selected'));
+                        const exerciseElement = this.menus.exercises.visibleContainer.querySelector(`[data-id="${selectedExercise.id}"]`);
+                        if (exerciseElement) {
+                            exerciseElement.classList.add('selected');
+                        }
+                    }
+                }, 100);
             }
             
-            // Apply visual selections after a delay to ensure rendering is complete
-            setTimeout(() => {
-                // Apply exercise selection
-                if (this.menus.exercises?.visibleContainer && selectedExercise.id) {
-                    const exerciseThumbnails = this.menus.exercises.visibleContainer.querySelectorAll('.thumbnail-item');
-                    exerciseThumbnails.forEach(el => el.classList.remove('selected'));
-                    const exerciseElement = this.menus.exercises.visibleContainer.querySelector(`[data-id="${selectedExercise.id}"]`);
-                    if (exerciseElement) {
-                        exerciseElement.classList.add('selected');
-                        console.log('Applied visual selection to exercise');
-                    } else {
-                        console.log('Exercise element not found in DOM');
-                    }
-                }
+            // Select the primary muscle in the muscles tab
+            if (this.menus.muscles && selectedExercise.information?.primaryMuscle) {
+                const primaryMuscle = selectedExercise.information.primaryMuscle;
+                this.selectedMuscle = primaryMuscle;
                 
-                // Apply muscle selection
-                if (this.menus.muscles?.visibleContainer && this.menus.muscles.selectedId) {
-                    const muscleThumbnails = this.menus.muscles.visibleContainer.querySelectorAll('.thumbnail-item');
-                    muscleThumbnails.forEach(el => el.classList.remove('selected'));
-                    const muscleElement = this.menus.muscles.visibleContainer.querySelector(`[data-id="${this.menus.muscles.selectedId}"]`);
-                    if (muscleElement) {
-                        muscleElement.classList.add('selected');
-                        console.log('Applied visual selection to muscle');
-                    } else {
-                        console.log('Muscle element not found in DOM');
-                    }
+                // Find the muscle ID from the filtered data
+                const muscleItem = this.menus.muscles.filteredData.find(m => m.name === primaryMuscle);
+                if (muscleItem) {
+                    this.menus.muscles.selectedId = muscleItem.id;
+                    
+                    setTimeout(() => {
+                        if (this.menus.muscles.visibleContainer) {
+                            const muscleThumbnails = this.menus.muscles.visibleContainer.querySelectorAll('.thumbnail-item');
+                            muscleThumbnails.forEach(el => el.classList.remove('selected'));
+                            const muscleElement = this.menus.muscles.visibleContainer.querySelector(`[data-id="${muscleItem.id}"]`);
+                            if (muscleElement) {
+                                muscleElement.classList.add('selected');
+                            }
+                        }
+                    }, 100);
                 }
+            }
+            
+            // Select the first equipment in the equipment tab
+            if (this.menus.equipment && selectedExercise.equipment && selectedExercise.equipment.length > 0) {
+                const equipmentName = selectedExercise.equipment[0];
+                this.selectedEquipment = equipmentName;
                 
-                // Apply equipment selection
-                if (this.menus.equipment?.visibleContainer && this.menus.equipment.selectedId) {
-                    const equipmentThumbnails = this.menus.equipment.visibleContainer.querySelectorAll('.thumbnail-item');
-                    equipmentThumbnails.forEach(el => el.classList.remove('selected'));
-                    const equipmentElement = this.menus.equipment.visibleContainer.querySelector(`[data-id="${this.menus.equipment.selectedId}"]`);
-                    if (equipmentElement) {
-                        equipmentElement.classList.add('selected');
-                        console.log('Applied visual selection to equipment');
-                    } else {
-                        console.log('Equipment element not found in DOM');
-                    }
+                // Find the equipment ID from the filtered data
+                const equipmentItem = this.menus.equipment.filteredData.find(eq => eq.name === equipmentName);
+                if (equipmentItem) {
+                    this.menus.equipment.selectedId = equipmentItem.id;
+                    
+                    setTimeout(() => {
+                        if (this.menus.equipment.visibleContainer) {
+                            const equipmentThumbnails = this.menus.equipment.visibleContainer.querySelectorAll('.thumbnail-item');
+                            equipmentThumbnails.forEach(el => el.classList.remove('selected'));
+                            const equipmentElement = this.menus.equipment.visibleContainer.querySelector(`[data-id="${equipmentItem.id}"]`);
+                            if (equipmentElement) {
+                                equipmentElement.classList.add('selected');
+                            }
+                        }
+                    }, 100);
                 }
-            }, 300);
+            }
         });
         
         // Listen for muscle selection to filter exercises

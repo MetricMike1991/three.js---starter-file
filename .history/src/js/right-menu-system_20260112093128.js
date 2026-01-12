@@ -163,35 +163,6 @@ class RightMenuDropdown {
         this.settings = { ...this.settings, ...settings };
         this.updateStyles();
     }
-    
-    updateTitle(newTitle) {
-        // Update the toggle button text
-        if (this.toggleBtn) {
-            this.toggleBtn.textContent = newTitle;
-        }
-    }
-    
-    updateContent(sections) {
-        // Update grid with new content sections
-        if (!this.grid) return;
-        
-        this.grid.innerHTML = '';
-        
-        if (!sections || sections.length === 0) {
-            this.grid.innerHTML = '<div class="info-step-empty">No information available.</div>';
-            return;
-        }
-        
-        sections.forEach(section => {
-            const itemDiv = document.createElement('div');
-            itemDiv.className = 'info-step-item';
-            itemDiv.innerHTML = `
-                <div class="info-step-title">${section.heading || ''}</div>
-                <div class="info-step-text">${section.content || ''}</div>
-            `;
-            this.grid.appendChild(itemDiv);
-        });
-    }
 }
 
 export class RightMenuSystem {
