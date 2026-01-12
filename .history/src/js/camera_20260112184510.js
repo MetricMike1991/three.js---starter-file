@@ -72,13 +72,6 @@ class CameraManager {
         this.controls.minDistance = 0.146;  // User's preferred close zoom
         this.controls.maxDistance = 19;     // User's preferred far zoom
         
-        // Set mouse buttons: left = rotate, right/middle = pan
-        this.controls.mouseButtons = {
-            LEFT: THREE.MOUSE.ROTATE,
-            MIDDLE: THREE.MOUSE.PAN,
-            RIGHT: THREE.MOUSE.PAN
-        };
-        
         this.controls.target.set(-0.018058106108908126, 0.34892644576978554, 0.08865572603297185);
         this.controls.update();
     }
