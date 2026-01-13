@@ -22,22 +22,22 @@ class ThumbnailDropdownMenu {
                 
                 const suggestions = [];
                 
-                // Get unique muscle groups (limit to 5)
+                // Get unique muscle groups (limit to 3)
                 const muscleSet = new Set();
                 this.allExercises.forEach(ex => {
                     ex.muscleGroup.forEach(m => muscleSet.add(m));
                 });
-                const muscles = Array.from(muscleSet).slice(0, 5);
+                const muscles = Array.from(muscleSet).slice(0, 3);
                 
-                // Get unique equipment (limit to 4)
+                // Get unique equipment (limit to 3)
                 const equipmentSet = new Set();
                 this.allExercises.forEach(ex => {
                     ex.equipment.forEach(e => equipmentSet.add(e));
                 });
-                const equipment = Array.from(equipmentSet).slice(0, 4);
+                const equipment = Array.from(equipmentSet).slice(0, 3);
                 
-                // Get some popular exercises (first 6)
-                const popularExercises = this.allExercises.slice(0, 6);
+                // Get some popular exercises (first 3)
+                const popularExercises = this.allExercises.slice(0, 3);
                 
                 return { muscles, equipment, popularExercises };
             };

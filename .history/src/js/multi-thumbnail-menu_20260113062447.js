@@ -1070,23 +1070,20 @@ class ThumbnailDropdownMenu {
         if (this.scrollContainer) {
             this.scrollContainer.style.cursor = 'grab';
             
-            // Animate scroll to show it's scrollable (only on first open)
-            if (!this.hasBeenOpened) {
+            // Animate scroll to show it's scrollable
+            setTimeout(() => {
+                const initialScroll = this.scrollContainer.scrollTop;
+                this.scrollContainer.scrollTo({
+                    top: initialScroll + 30,
+                    behavior: 'smooth'
+                });
                 setTimeout(() => {
-                    const initialScroll = this.scrollContainer.scrollTop;
                     this.scrollContainer.scrollTo({
-                        top: initialScroll + 30,
+                        top: initialScroll,
                         behavior: 'smooth'
                     });
-                    setTimeout(() => {
-                        this.scrollContainer.scrollTo({
-                            top: initialScroll,
-                            behavior: 'smooth'
-                        });
-                    }, 400);
-                }, 300);
-                this.hasBeenOpened = true;
-            }
+                }, 400);
+            }, 300);
         }
 
         // Keep menu container visible when dropdown is open

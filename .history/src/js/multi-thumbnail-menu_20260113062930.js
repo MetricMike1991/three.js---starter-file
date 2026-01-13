@@ -44,12 +44,9 @@ class ThumbnailDropdownMenu {
             
             // Show suggestions
             const showSuggestions = () => {
-                if (!suggestionsBox || this.searchQuery.length > 0) return;
-                
-                const data = generateSuggestions();
-                if (!data) return;
-                
-                let html = '';
+                // Don't show any suggestions
+                return;
+            };
                 
                 // Popular Exercises
                 if (data.popularExercises.length > 0) {
