@@ -101,10 +101,8 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
-        // Setup quality toggle button after DOM is ready
-        setTimeout(() => {
-            this.setupQualityToggle();
-        }, 100);
+        // Setup quality toggle button
+        this.setupQualityToggle();
         
         // Initialize thumbnail menu
         this.multiThumbnailMenuSystem = new MultiThumbnailMenuSystem();
@@ -1357,6 +1355,13 @@ class ThreeJSApp {
     updateQualityButtonVisibility() {
         const qualityBtn = document.getElementById('quality-toggle-btn');
         const qualityText = document.getElementById('quality-text');
+        const animationPlayer = document.getElementById('animation-player');
+        
+        console.log('Quality button check:', {
+            btn: qualityBtn,
+            modelUrlSQ: this.modelUrlSQ,
+            modelUrlHQ: this.modelUrlHQ
+        });
         
         if (qualityBtn) {
             // Show button only if both SQ and HQ models exist
@@ -1365,9 +1370,19 @@ class ThreeJSApp {
                 if (qualityText) {
                     qualityText.textContent = this.currentModelQuality;
                 }
+                
+                // Show animation player if quality button is needed
+                if (animationPlayer && this.animationPlayer) {
+                    this.animationPlayer.setVisibility(true);
+                }
+                
+                console.log('Quality button shown');
             } else {
                 qualityBtn.style.display = 'none';
+                console.log('Quality button hidden - missing URLs');
             }
+        } else {
+            console.log('Quality button element not found');
         }
     }
     

@@ -378,7 +378,7 @@ body
 /* Standalone Quality Button */
 .standalone-quality-btn {
     position: fixed;
-    bottom: 90px;
+    bottom: 20px;
     right: 20px;
     background: rgba(0, 0, 0, 0.85);
     border: 2px solid rgba(74, 158, 255, 0.6);

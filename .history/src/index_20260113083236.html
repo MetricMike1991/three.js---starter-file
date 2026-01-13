@@ -247,14 +247,6 @@
 
     <canvas class="webgl"></canvas>
     
-    <!-- Model Quality Toggle Button -->
-    <button id="quality-toggle-btn" class="standalone-quality-btn" title="Switch Model Quality" style="display: none;">
-        <svg viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-        </svg>
-        <span id="quality-text">SQ</span>
-    </button>
-    
     <!-- Animation Player -->
     <div id="animation-player" class="animation-player" style="display: none;">
         <div class="player-controls">
@@ -280,13 +272,6 @@
                 <span id="total-time">0:00</span>
             </div>
             
-            <button id="quality-toggle-btn" class="control-btn quality-btn" title="Switch Model Quality" style="display: none;">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-                <span id="quality-text">SQ</span>
-            </button>
-            
             <div class="speed-controls">
                 <button id="speed-btn" class="control-btn speed-btn" title="Playback Speed">
                     <span id="speed-text">1x</span>
@@ -301,6 +286,14 @@
             </div>
         </div>
     </div>
+    
+    <!-- Model Quality Toggle (Independent of Animation Player) -->
+    <button id="quality-toggle-btn" class="quality-toggle-btn" title="Switch Model Quality" style="display: none;">
+        <svg viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        </svg>
+        <span id="quality-text">SQ</span>
+    </button>
     
     <script type="module" src="./main.js"></script>
 </body>

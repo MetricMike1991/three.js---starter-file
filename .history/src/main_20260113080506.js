@@ -101,10 +101,8 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
-        // Setup quality toggle button after DOM is ready
-        setTimeout(() => {
-            this.setupQualityToggle();
-        }, 100);
+        // Setup quality toggle button
+        this.setupQualityToggle();
         
         // Initialize thumbnail menu
         this.multiThumbnailMenuSystem = new MultiThumbnailMenuSystem();
@@ -1362,9 +1360,7 @@ class ThreeJSApp {
             // Show button only if both SQ and HQ models exist
             if (this.modelUrlSQ && this.modelUrlHQ) {
                 qualityBtn.style.display = 'flex';
-                if (qualityText) {
-                    qualityText.textContent = this.currentModelQuality;
-                }
+                qualityText.textContent = this.currentModelQuality;
             } else {
                 qualityBtn.style.display = 'none';
             }

@@ -49,6 +49,12 @@ export class AnimationPlayer {
                 </div>
                 
                 <div class="player-right">
+                    <button class="quality-toggle-btn" id="quality-toggle-btn" style="display: none;">
+                        <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <span id="quality-text">SQ</span>
+                    </button>
                     <button class="speed-btn" id="speed-btn">
                         <span id="speed-text">1x</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
