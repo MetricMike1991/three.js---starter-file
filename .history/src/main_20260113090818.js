@@ -645,9 +645,6 @@ class ThreeJSApp {
         // Dust particles controls
         this.setupParticlesGUI();
         
-        // Loading spinner controls
-        this.setupLoaderGUI();
-        
         // Lighting controls
         this.setupLightingGUI();
         

@@ -300,21 +300,6 @@ class ThreeJSApp {
         this.renderer.toneMappingExposure = 1.0;
     }
 
-    updateLoaderSpinner() {
-        const loader = document.getElementById('model-loader');
-        if (!loader) return;
-
-        // Hide all spinners
-        const allSpinners = loader.querySelectorAll('.spinner-box');
-        allSpinners.forEach(spinner => spinner.style.display = 'none');
-
-        // Show selected spinner
-        const selectedSpinner = loader.querySelector(`[data-spinner="${this.loaderParams.spinnerStyle}"]`);
-        if (selectedSpinner) {
-            selectedSpinner.style.display = 'flex';
-        }
-    }
-
     initializePlayerStyling() {
         // Apply all current styling parameters to maintain exact current appearance
         this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
@@ -645,9 +630,6 @@ class ThreeJSApp {
         // Dust particles controls
         this.setupParticlesGUI();
         
-        // Loading spinner controls
-        this.setupLoaderGUI();
-        
         // Lighting controls
         this.setupLightingGUI();
         
@@ -698,24 +680,6 @@ class ThreeJSApp {
             .onChange((v) => this.ground.visible = v);
         
         // groundFolder.open();
-    }
-
-    setupLoaderGUI() {
-        const loaderFolder = this.trackFolder(this.gui.addFolder('Loading Spinner'));
-        
-        const spinnerOptions = {
-            'Cool Gradient': 'cool',
-            'Simple Gradient': 'gradient',
-            '3D Orbits': 'orbits',
-            'Gradient Planes': 'planes',
-            'Spinning Squares': 'squares',
-            'Pulse Dots': 'dots',
-            'Solar System': 'solar',
-            'Three Quarter': 'quarter'
-        };
-        
-        loaderFolder.add(this.loaderParams, 'spinnerStyle', spinnerOptions).name('Spinner Style')
-            .onChange(() => this.updateLoaderSpinner());
     }
 
     setupParticlesGUI() {

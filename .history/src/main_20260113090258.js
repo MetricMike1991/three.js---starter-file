@@ -89,11 +89,6 @@ class ThreeJSApp {
             textOpacity: 1
         };
 
-        // Loader parameters
-        this.loaderParams = {
-            spinnerStyle: 'cool'
-        };
-
         this.init();
     }
 
@@ -248,14 +243,6 @@ class ThreeJSApp {
             }
         });
 
-        this.settingsManager.registerManager('loader', {
-            getSettings: () => this.loaderParams,
-            applySettings: (settings) => {
-                Object.assign(this.loaderParams, settings);
-                this.updateLoaderSpinner();
-            }
-        });
-
         // Setup components
         this.setupRenderer();
         this.setupGround();
@@ -298,21 +285,6 @@ class ThreeJSApp {
         this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
         this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
         this.renderer.toneMappingExposure = 1.0;
-    }
-
-    updateLoaderSpinner() {
-        const loader = document.getElementById('model-loader');
-        if (!loader) return;
-
-        // Hide all spinners
-        const allSpinners = loader.querySelectorAll('.spinner-box');
-        allSpinners.forEach(spinner => spinner.style.display = 'none');
-
-        // Show selected spinner
-        const selectedSpinner = loader.querySelector(`[data-spinner="${this.loaderParams.spinnerStyle}"]`);
-        if (selectedSpinner) {
-            selectedSpinner.style.display = 'flex';
-        }
     }
 
     initializePlayerStyling() {
@@ -418,9 +390,7 @@ class ThreeJSApp {
             lighting: this.lightingSystem.getSettings(),
             ground: this.groundParams,
             background: this.backgroundParams,
-            dustParticles: this.particleSystem.getSettings(),
-            playerStyling: this.playerStyleParams,
-            loader: this.loaderParams
+            dustParticles: this.particleSystem.getSettings()
         };
     }
 
@@ -645,9 +615,6 @@ class ThreeJSApp {
         // Dust particles controls
         this.setupParticlesGUI();
         
-        // Loading spinner controls
-        this.setupLoaderGUI();
-        
         // Lighting controls
         this.setupLightingGUI();
         
@@ -698,24 +665,6 @@ class ThreeJSApp {
             .onChange((v) => this.ground.visible = v);
         
         // groundFolder.open();
-    }
-
-    setupLoaderGUI() {
-        const loaderFolder = this.trackFolder(this.gui.addFolder('Loading Spinner'));
-        
-        const spinnerOptions = {
-            'Cool Gradient': 'cool',
-            'Simple Gradient': 'gradient',
-            '3D Orbits': 'orbits',
-            'Gradient Planes': 'planes',
-            'Spinning Squares': 'squares',
-            'Pulse Dots': 'dots',
-            'Solar System': 'solar',
-            'Three Quarter': 'quarter'
-        };
-        
-        loaderFolder.add(this.loaderParams, 'spinnerStyle', spinnerOptions).name('Spinner Style')
-            .onChange(() => this.updateLoaderSpinner());
     }
 
     setupParticlesGUI() {
@@ -1558,7 +1507,6 @@ class ThreeJSApp {
         // Show loading spinner
         const loader = document.getElementById('model-loader');
         if (loader) {
-            this.updateLoaderSpinner();
             loader.style.display = 'flex';
         }
         

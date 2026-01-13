@@ -645,9 +645,6 @@ class ThreeJSApp {
         // Dust particles controls
         this.setupParticlesGUI();
         
-        // Loading spinner controls
-        this.setupLoaderGUI();
-        
         // Lighting controls
         this.setupLightingGUI();
         
@@ -698,24 +695,6 @@ class ThreeJSApp {
             .onChange((v) => this.ground.visible = v);
         
         // groundFolder.open();
-    }
-
-    setupLoaderGUI() {
-        const loaderFolder = this.trackFolder(this.gui.addFolder('Loading Spinner'));
-        
-        const spinnerOptions = {
-            'Cool Gradient': 'cool',
-            'Simple Gradient': 'gradient',
-            '3D Orbits': 'orbits',
-            'Gradient Planes': 'planes',
-            'Spinning Squares': 'squares',
-            'Pulse Dots': 'dots',
-            'Solar System': 'solar',
-            'Three Quarter': 'quarter'
-        };
-        
-        loaderFolder.add(this.loaderParams, 'spinnerStyle', spinnerOptions).name('Spinner Style')
-            .onChange(() => this.updateLoaderSpinner());
     }
 
     setupParticlesGUI() {
