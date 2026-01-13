@@ -1395,7 +1395,7 @@ class ThreeJSApp {
                 // Remove class after animation completes (2 seconds)
                 setTimeout(() => {
                     qualityBtn.classList.remove('pulsate');
-                }, 5000);
+                }, 2000);
             }
         };
         

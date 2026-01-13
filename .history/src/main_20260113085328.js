@@ -1366,55 +1366,11 @@ class ThreeJSApp {
             if (this.modelUrlSQ && this.modelUrlHQ) {
                 qualityBtn.style.display = 'flex';
                 if (qualityText) {
-                    // Show the quality you'll switch TO, not what's currently loaded
-                    const nextQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
-                    qualityText.textContent = nextQuality;
+                    qualityText.textContent = this.currentModelQuality;
                 }
-                
-                // Start pulsate animation only when HQ is available to switch to
-                this.startQualityButtonPulsate();
             } else {
                 qualityBtn.style.display = 'none';
-                this.stopQualityButtonPulsate();
             }
-        }
-    }
-    
-    startQualityButtonPulsate() {
-        // Clear existing interval if any
-        this.stopQualityButtonPulsate();
-        
-        const qualityBtn = document.getElementById('quality-toggle-btn');
-        const qualityText = document.getElementById('quality-text');
-        
-        // Function to trigger pulsate
-        const triggerPulsate = () => {
-            // Only pulsate when showing HQ (meaning SQ is currently loaded)
-            if (qualityBtn && qualityText && qualityText.textContent === 'HQ') {
-                qualityBtn.classList.add('pulsate');
-                // Remove class after animation completes (2 seconds)
-                setTimeout(() => {
-                    qualityBtn.classList.remove('pulsate');
-                }, 5000);
-            }
-        };
-        
-        // Trigger immediately
-        triggerPulsate();
-        
-        // Then repeat every 10 seconds
-        this.qualityPulsateInterval = setInterval(triggerPulsate, 10000);
-    }
-    
-    stopQualityButtonPulsate() {
-        if (this.qualityPulsateInterval) {
-            clearInterval(this.qualityPulsateInterval);
-            this.qualityPulsateInterval = null;
-        }
-        
-        const qualityBtn = document.getElementById('quality-toggle-btn');
-        if (qualityBtn) {
-            qualityBtn.classList.remove('pulsate');
         }
     }
     
@@ -1427,15 +1383,11 @@ class ThreeJSApp {
         
         console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
         
-        // Update button text to show the NEXT quality you can switch to
+        // Update button text
         const qualityText = document.getElementById('quality-text');
         if (qualityText) {
-            const nextQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
-            qualityText.textContent = nextQuality;
+            qualityText.textContent = this.currentModelQuality;
         }
-        
-        // Restart pulsate animation with new quality
-        this.startQualityButtonPulsate();
         
         // Get quality-specific settings if available
         if (this.currentModelQuality === 'HQ' && this.currentConfig?.modelHQ) {

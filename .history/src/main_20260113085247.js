@@ -1366,55 +1366,11 @@ class ThreeJSApp {
             if (this.modelUrlSQ && this.modelUrlHQ) {
                 qualityBtn.style.display = 'flex';
                 if (qualityText) {
-                    // Show the quality you'll switch TO, not what's currently loaded
-                    const nextQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
-                    qualityText.textContent = nextQuality;
+                    qualityText.textContent = this.currentModelQuality;
                 }
-                
-                // Start pulsate animation only when HQ is available to switch to
-                this.startQualityButtonPulsate();
             } else {
                 qualityBtn.style.display = 'none';
-                this.stopQualityButtonPulsate();
             }
-        }
-    }
-    
-    startQualityButtonPulsate() {
-        // Clear existing interval if any
-        this.stopQualityButtonPulsate();
-        
-        const qualityBtn = document.getElementById('quality-toggle-btn');
-        const qualityText = document.getElementById('quality-text');
-        
-        // Function to trigger pulsate
-        const triggerPulsate = () => {
-            // Only pulsate when showing HQ (meaning SQ is currently loaded)
-            if (qualityBtn && qualityText && qualityText.textContent === 'HQ') {
-                qualityBtn.classList.add('pulsate');
-                // Remove class after animation completes (2 seconds)
-                setTimeout(() => {
-                    qualityBtn.classList.remove('pulsate');
-                }, 5000);
-            }
-        };
-        
-        // Trigger immediately
-        triggerPulsate();
-        
-        // Then repeat every 10 seconds
-        this.qualityPulsateInterval = setInterval(triggerPulsate, 10000);
-    }
-    
-    stopQualityButtonPulsate() {
-        if (this.qualityPulsateInterval) {
-            clearInterval(this.qualityPulsateInterval);
-            this.qualityPulsateInterval = null;
-        }
-        
-        const qualityBtn = document.getElementById('quality-toggle-btn');
-        if (qualityBtn) {
-            qualityBtn.classList.remove('pulsate');
         }
     }
     
@@ -1427,80 +1383,14 @@ class ThreeJSApp {
         
         console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
         
-        // Update button text to show the NEXT quality you can switch to
+        // Update button text
         const qualityText = document.getElementById('quality-text');
         if (qualityText) {
-            const nextQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
-            qualityText.textContent = nextQuality;
+            qualityText.textContent = this.currentModelQuality;
         }
         
-        // Restart pulsate animation with new quality
-        this.startQualityButtonPulsate();
-        
-        // Get quality-specific settings if available
-        if (this.currentModelQuality === 'HQ' && this.currentConfig?.modelHQ) {
-            const hqSettings = this.currentConfig.modelHQ;
-            
-            // Set pending model config for HQ
-            if (hqSettings.model) {
-                this.pendingModelConfig = hqSettings.model;
-            }
-            
-            // Reload model with HQ settings
-            await this.loadModel(modelUrl);
-            
-            // Apply HQ camera settings
-            if (hqSettings.camera) {
-                const camera = this.cameraManager.getCamera();
-                if (hqSettings.camera.position) {
-                    camera.position.set(...hqSettings.camera.position);
-                }
-                if (hqSettings.camera.rotation) {
-                    camera.rotation.set(...hqSettings.camera.rotation);
-                }
-                if (hqSettings.camera.target) {
-                    this.cameraManager.getControls().target.set(...hqSettings.camera.target);
-                }
-                this.cameraManager.getControls().update();
-                
-                // Update original state for spacebar reset
-                this.cameraManager.updateOriginalState(
-                    hqSettings.camera.position,
-                    hqSettings.camera.rotation,
-                    hqSettings.camera.target
-                );
-            }
-        } else {
-            // Use default/SQ settings
-            if (this.currentConfig?.model) {
-                this.pendingModelConfig = this.currentConfig.model;
-            }
-            
-            // Reload model
-            await this.loadModel(modelUrl);
-            
-            // Apply default camera settings
-            if (this.currentConfig?.camera) {
-                const camera = this.cameraManager.getCamera();
-                if (this.currentConfig.camera.position) {
-                    camera.position.set(...this.currentConfig.camera.position);
-                }
-                if (this.currentConfig.camera.rotation) {
-                    camera.rotation.set(...this.currentConfig.camera.rotation);
-                }
-                if (this.currentConfig.camera.target) {
-                    this.cameraManager.getControls().target.set(...this.currentConfig.camera.target);
-                }
-                this.cameraManager.getControls().update();
-                
-                // Update original state for spacebar reset
-                this.cameraManager.updateOriginalState(
-                    this.currentConfig.camera.position,
-                    this.currentConfig.camera.rotation,
-                    this.currentConfig.camera.target
-                );
-            }
-        }
+        // Reload model
+        await this.loadModel(modelUrl);
     }
     
     loadModel(modelUrl = './models/exercise.glb') {
