@@ -467,81 +467,9 @@ class ThumbnailDropdownMenu {
         // Default thumbnail grid rendering for all tabs
         this.thumbnailGrid.innerHTML = '';
         
-        // Add filter status display ABOVE scroll container for exercises menu
+        // Update global filter box if this is the exercises menu
         if (this.menuType === 'exercises') {
-            const selectedMuscle = window.menuManager?.selectedMuscle;
-            const selectedEquipment = window.menuManager?.selectedEquipment;
-            
-            // Remove existing filter box if present
-            const existingFilterBox = this.dropdown.querySelector('.filter-status-box');
-            if (existingFilterBox) {
-                existingFilterBox.remove();
-            }
-            
-            // Only show if at least one filter is active
-            if (selectedMuscle || selectedEquipment) {
-                const filterBox = document.createElement('div');
-                filterBox.className = 'filter-status-box';
-                
-                let filterHTML = '<div class="filter-status-title">Active Filters:</div>';
-                
-                if (selectedMuscle) {
-                    filterHTML += `
-                        <div class="filter-tag">
-                            <span class="filter-label">Muscle:</span>
-                            <span class="filter-value">${selectedMuscle}</span>
-                            <button class="filter-clear" data-filter="muscle" title="Clear muscle filter">✕</button>
-                        </div>
-                    `;
-                }
-                
-                if (selectedEquipment) {
-                    filterHTML += `
-                        <div class="filter-tag">
-                            <span class="filter-label">Equipment:</span>
-                            <span class="filter-value">${selectedEquipment}</span>
-                            <button class="filter-clear" data-filter="equipment" title="Clear equipment filter">✕</button>
-                        </div>
-                    `;
-                }
-                
-                filterBox.innerHTML = filterHTML;
-                
-                // Add click handlers for clear buttons
-                filterBox.querySelectorAll('.filter-clear').forEach(btn => {
-                    btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        const filterType = e.target.dataset.filter;
-                        if (filterType === 'muscle') {
-                            window.menuManager.selectedMuscle = null;
-                            // Clear selection in muscles menu
-                            if (window.menuManager.menus.muscles) {
-                                window.menuManager.menus.muscles.selectedId = null;
-                                // Re-render to clear visual selection
-                                window.menuManager.menus.muscles.updateVirtualizedContent();
-                            }
-                        } else if (filterType === 'equipment') {
-                            window.menuManager.selectedEquipment = null;
-                            // Clear selection in equipment menu
-                            if (window.menuManager.menus.equipment) {
-                                window.menuManager.menus.equipment.selectedId = null;
-                                // Re-render to clear visual selection
-                                window.menuManager.menus.equipment.updateVirtualizedContent();
-                            }
-                        }
-                        // Refresh the exercises menu
-                        this.filterDataForMenu();
-                    });
-                });
-                
-                // Insert after scroll controls but before scroll container
-                const scrollControls = this.dropdown.querySelector('.thumbnail-scroll-controls');
-                if (scrollControls) {
-                    scrollControls.after(filterBox);
-                }
-            }
+            this.updateGlobalFilterBox();
         }
         
         // Create spacer divs for virtualization
@@ -1068,21 +996,6 @@ class ThumbnailDropdownMenu {
         // Set cursor to grab for scroll container
         if (this.scrollContainer) {
             this.scrollContainer.style.cursor = 'grab';
-            
-            // Animate scroll to show it's scrollable
-            setTimeout(() => {
-                const initialScroll = this.scrollContainer.scrollTop;
-                this.scrollContainer.scrollTo({
-                    top: initialScroll + 30,
-                    behavior: 'smooth'
-                });
-                setTimeout(() => {
-                    this.scrollContainer.scrollTo({
-                        top: initialScroll,
-                        behavior: 'smooth'
-                    });
-                }, 400);
-            }, 300);
         }
 
         // Keep menu container visible when dropdown is open

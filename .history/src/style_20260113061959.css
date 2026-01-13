@@ -860,17 +860,6 @@ body
     /* Hide scrollbar */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
-    position: relative;
-    mask-image: linear-gradient(to bottom, 
-        transparent 0%, 
-        black 40px, 
-        black calc(100% - 40px), 
-        transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, 
-        transparent 0%, 
-        black 40px, 
-        black calc(100% - 40px), 
-        transparent 100%);
 }
 
 .thumbnail-scroll-container::-webkit-scrollbar {

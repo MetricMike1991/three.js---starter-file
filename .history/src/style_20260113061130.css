@@ -842,7 +842,17 @@ body
 }
 
 .scroll-btn {
-    display: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 6px;
+    padding: 8px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .scroll-btn:hover {
@@ -860,17 +870,6 @@ body
     /* Hide scrollbar */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
-    position: relative;
-    mask-image: linear-gradient(to bottom, 
-        transparent 0%, 
-        black 40px, 
-        black calc(100% - 40px), 
-        transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, 
-        transparent 0%, 
-        black 40px, 
-        black calc(100% - 40px), 
-        transparent 100%);
 }
 
 .thumbnail-scroll-container::-webkit-scrollbar {
