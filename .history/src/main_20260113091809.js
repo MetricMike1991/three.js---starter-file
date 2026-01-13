@@ -315,32 +315,6 @@ class ThreeJSApp {
         }
     }
 
-    showOrbitHint() {
-        const orbitHint = document.getElementById('orbit-hint');
-        if (!orbitHint) return;
-
-        // Show the hint
-        orbitHint.classList.add('visible');
-
-        // Hide after 5 seconds
-        setTimeout(() => {
-            orbitHint.classList.add('fade-out');
-            setTimeout(() => {
-                orbitHint.classList.remove('visible', 'fade-out');
-            }, 500);
-        }, 5000);
-
-        // Also hide on first user interaction
-        const hideOnInteraction = () => {
-            orbitHint.classList.add('fade-out');
-            setTimeout(() => {
-                orbitHint.classList.remove('visible', 'fade-out');
-            }, 500);
-            this.cameraManager.getControls().removeEventListener('start', hideOnInteraction);
-        };
-        this.cameraManager.getControls().addEventListener('start', hideOnInteraction);
-    }
-
     initializePlayerStyling() {
         // Apply all current styling parameters to maintain exact current appearance
         this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
@@ -1642,9 +1616,6 @@ class ThreeJSApp {
                 if (loader) {
                     loader.style.display = 'none';
                 }
-
-                // Show orbit hint after a brief delay
-                setTimeout(() => this.showOrbitHint(), 500);
                 
                 // Set clickable meshes for camera double-click functionality
                 this.cameraManager.setClickableMeshes(this.allClickableMeshes);
@@ -1656,12 +1627,16 @@ class ThreeJSApp {
                     // Setup animation player with mixer and animations
                     this.animationPlayer.setMixer(this.mixer, gltf.animations);
                     
-                    // Auto-play first animation
-                    if (this.animationPlayer.actions && this.animationPlayer.actions.length > 0) {
-                        this.animationPlayer.actions[0].play();
-                        this.animationPlayer.isPlaying = true;
-                        this.animationPlayer.updatePlayPauseIcon();
-                    }
+                    // Set up all animations and auto-play first one
+                    gltf.animations.forEach((clip, index) => {
+                        const action = this.mixer.clipAction(clip);
+                        action.setLoop(THREE.LoopRepeat);
+                        
+                        // Auto-start first animation
+                        if (index === 0) {
+                            action.play();
+                        }
+                    });
                 }
 
                 // Add model GUI controls
