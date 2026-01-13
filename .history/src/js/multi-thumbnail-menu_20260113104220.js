@@ -765,9 +765,7 @@ class ThumbnailDropdownMenu {
         // Menu stays open after thumbnail selection - only closes when clicking outside
         
         // Emit custom event for other components to listen to
-        // For search menu selecting exercises, dispatch as exercisesSelected
-        const eventType = (this.menuType === 'search') ? 'exercisesSelected' : `${this.menuType}Selected`;
-        const event = new CustomEvent(eventType, { 
+        const event = new CustomEvent(`${this.menuType}Selected`, { 
             detail: { item, menuType: this.menuType } 
         });
         document.dispatchEvent(event);

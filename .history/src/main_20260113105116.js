@@ -1562,16 +1562,6 @@ class ThreeJSApp {
             loader.style.display = 'flex';
         }
         
-        // Clean up existing GUI folders
-        if (this.modelFolder) {
-            this.modelFolder.destroy();
-            this.modelFolder = null;
-        }
-        if (this.materialsFolder) {
-            this.materialsFolder.destroy();
-            this.materialsFolder = null;
-        }
-        
         // Remove existing model if present
         if (window.model) {
             this.sceneManager.getScene().remove(window.model);
@@ -1665,6 +1655,11 @@ class ThreeJSApp {
     }
 
     setupModelGUI(model) {
+        // Remove existing model folder if it exists
+        if (this.modelFolder) {
+            this.gui.removeFolder(this.modelFolder);
+        }
+        
         this.modelFolder = this.trackFolder(this.gui.addFolder('Model Transform'));
         const pos = model.position;
         const rot = model.rotation;
@@ -1684,6 +1679,11 @@ class ThreeJSApp {
     }
 
     setupMaterialsGUI(model) {
+        // Remove existing materials folder if it exists
+        if (this.materialsFolder) {
+            this.gui.removeFolder(this.materialsFolder);
+        }
+        
         // Collect all unique materials from the model
         const materials = new Map();
         

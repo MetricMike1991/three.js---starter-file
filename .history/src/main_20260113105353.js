@@ -1665,6 +1665,11 @@ class ThreeJSApp {
     }
 
     setupModelGUI(model) {
+        // Remove existing model folder if it exists
+        if (this.modelFolder) {
+            this.gui.removeFolder(this.modelFolder);
+        }
+        
         this.modelFolder = this.trackFolder(this.gui.addFolder('Model Transform'));
         const pos = model.position;
         const rot = model.rotation;
@@ -1684,6 +1689,11 @@ class ThreeJSApp {
     }
 
     setupMaterialsGUI(model) {
+        // Remove existing materials folder if it exists
+        if (this.materialsFolder) {
+            this.gui.removeFolder(this.materialsFolder);
+        }
+        
         // Collect all unique materials from the model
         const materials = new Map();
         

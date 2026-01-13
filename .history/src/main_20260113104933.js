@@ -1562,16 +1562,6 @@ class ThreeJSApp {
             loader.style.display = 'flex';
         }
         
-        // Clean up existing GUI folders
-        if (this.modelFolder) {
-            this.modelFolder.destroy();
-            this.modelFolder = null;
-        }
-        if (this.materialsFolder) {
-            this.materialsFolder.destroy();
-            this.materialsFolder = null;
-        }
-        
         // Remove existing model if present
         if (window.model) {
             this.sceneManager.getScene().remove(window.model);
@@ -1665,67 +1655,22 @@ class ThreeJSApp {
     }
 
     setupModelGUI(model) {
-        this.modelFolder = this.trackFolder(this.gui.addFolder('Model Transform'));
+        const modelFolder = this.trackFolder(this.gui.addFolder('Model Transform'));
         const pos = model.position;
         const rot = model.rotation;
         const scl = model.scale;
         
-        this.modelFolder.add(pos, 'x', -1, 1, 0.002).name('Position X');
-        this.modelFolder.add(pos, 'y', -1, 1, 0.002).name('Position Y');
-        this.modelFolder.add(pos, 'z', -1, 1, 0.002).name('Position Z');
-        this.modelFolder.add(rot, 'x', -1, 1, 0.002).name('Rotation X');
-        this.modelFolder.add(rot, 'y', -1, 1, 0.002).name('Rotation Y');
-        this.modelFolder.add(rot, 'z', -1, 1, 0.002).name('Rotation Z');
-        this.modelFolder.add(scl, 'x', 0.01, 1, 0.001).name('Scale X');
-        this.modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
-        this.modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
+        modelFolder.add(pos, 'x', -1, 1, 0.002).name('Position X');
+        modelFolder.add(pos, 'y', -1, 1, 0.002).name('Position Y');
+        modelFolder.add(pos, 'z', -1, 1, 0.002).name('Position Z');
+        modelFolder.add(rot, 'x', -1, 1, 0.002).name('Rotation X');
+        modelFolder.add(rot, 'y', -1, 1, 0.002).name('Rotation Y');
+        modelFolder.add(rot, 'z', -1, 1, 0.002).name('Rotation Z');
+        modelFolder.add(scl, 'x', 0.01, 1, 0.001).name('Scale X');
+        modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
+        modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
         
-        // this.modelFolder.open();
-    }
-
-    setupMaterialsGUI(model) {
-        // Collect all unique materials from the model
-        const materials = new Map();
-        
-        model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                // Handle both single material and array of materials
-                const mats = Array.isArray(child.material) ? child.material : [child.material];
-                
-                mats.forEach((mat) => {
-                    if (mat && mat.name && !materials.has(mat.name)) {
-                        materials.set(mat.name, mat);
-                    } else if (mat && !mat.name) {
-                        // If material has no name, use a unique identifier
-                        const uniqueName = `Material_${materials.size}`;
-                        mat.name = uniqueName;
-                        materials.set(uniqueName, mat);
-                    }
-                });
-            }
-        });
-        
-        // Only create folder if there are materials
-        if (materials.size > 0) {
-            this.materialsFolder = this.trackFolder(this.gui.addFolder('🎨 Material Colors'));
-            
-            materials.forEach((material, name) => {
-                // Only add color picker if material has a color property
-                if (material.color) {
-                    const materialParams = {
-                        color: material.color.getHex()
-                    };
-                    
-                    this.materialsFolder.addColor(materialParams, 'color')
-                        .name(name)
-                        .onChange((value) => {
-                            material.color.setHex(value);
-                        });
-                }
-            });
-            
-            // this.materialsFolder.open();
-        }
+        // modelFolder.open();
     }
 
     setupEventListeners() {
