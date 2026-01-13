@@ -510,25 +510,18 @@ class ThumbnailDropdownMenu {
                 // Add click handlers for clear buttons
                 filterBox.querySelectorAll('.filter-clear').forEach(btn => {
                     btn.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
                         const filterType = e.target.dataset.filter;
                         if (filterType === 'muscle') {
                             window.menuManager.selectedMuscle = null;
                             // Clear selection in muscles menu
                             if (window.menuManager.menus.muscles) {
                                 window.menuManager.menus.muscles.selectedId = null;
-                                // Re-render to clear visual selection
-                                window.menuManager.menus.muscles.updateVirtualizedContent();
                             }
                         } else if (filterType === 'equipment') {
                             window.menuManager.selectedEquipment = null;
                             // Clear selection in equipment menu
                             if (window.menuManager.menus.equipment) {
                                 window.menuManager.menus.equipment.selectedId = null;
-                                // Re-render to clear visual selection
-                                window.menuManager.menus.equipment.updateVirtualizedContent();
                             }
                         }
                         // Refresh the exercises menu

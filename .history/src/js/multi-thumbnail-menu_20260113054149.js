@@ -519,16 +519,12 @@ class ThumbnailDropdownMenu {
                             // Clear selection in muscles menu
                             if (window.menuManager.menus.muscles) {
                                 window.menuManager.menus.muscles.selectedId = null;
-                                // Re-render to clear visual selection
-                                window.menuManager.menus.muscles.updateVirtualizedContent();
                             }
                         } else if (filterType === 'equipment') {
                             window.menuManager.selectedEquipment = null;
                             // Clear selection in equipment menu
                             if (window.menuManager.menus.equipment) {
                                 window.menuManager.menus.equipment.selectedId = null;
-                                // Re-render to clear visual selection
-                                window.menuManager.menus.equipment.updateVirtualizedContent();
                             }
                         }
                         // Refresh the exercises menu
