@@ -944,16 +944,15 @@ body
 
 /* Filter Status Box */
 .filter-status-box {
-    background: transparent;
-    border: none;
-    padding: 10px 14px 20px 14px;
-    margin: 0 20px 0 20px;
+    background: rgba(74, 158, 255, 0.08);
+    border: 1px solid rgba(74, 158, 255, 0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 0 20px 12px 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     gap: 8px;
-    position: relative;
 }
 
 .filter-status-title {

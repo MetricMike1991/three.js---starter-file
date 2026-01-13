@@ -956,6 +956,18 @@ body
     position: relative;
 }
 
+.filter-status-box::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: -20px;
+    right: -20px;
+    height: 30px;
+    background: linear-gradient(to bottom, rgba(31, 31, 31, 1), transparent);
+    pointer-events: none;
+    z-index: 1;
+}
+
 .filter-status-title {
     color: rgba(74, 158, 255, 0.9);
     font-weight: 600;

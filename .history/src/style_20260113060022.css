@@ -946,13 +946,13 @@ body
 .filter-status-box {
     background: transparent;
     border: none;
-    padding: 10px 14px 20px 14px;
+    padding: 8px 14px 12px 14px;
     margin: 0 20px 0 20px;
     display: flex;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     justify-content: center;
     align-items: center;
-    gap: 8px;
+    gap: 10px;
     position: relative;
 }
 

@@ -867,9 +867,22 @@ body
 .thumbnail-scroll-container {
     max-height: 60vh;
     overflow-y: auto;
+    position: relative;
     /* Hide scrollbar */
     scrollbar-width: none; /* Firefox */
     -ms-overflow-style: none; /* IE and Edge */
+}
+
+.thumbnail-scroll-container::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80px;
+    background: linear-gradient(to bottom, transparent, rgba(31, 31, 31, 0.95));
+    pointer-events: none;
+    z-index: 10;
 }
 
 .thumbnail-scroll-container::-webkit-scrollbar {
@@ -944,16 +957,15 @@ body
 
 /* Filter Status Box */
 .filter-status-box {
-    background: transparent;
-    border: none;
-    padding: 10px 14px 20px 14px;
-    margin: 0 20px 0 20px;
+    background: rgba(74, 158, 255, 0.08);
+    border: 1px solid rgba(74, 158, 255, 0.25);
+    border-radius: 10px;
+    padding: 10px 14px;
+    margin: 0 20px 12px 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     gap: 8px;
-    position: relative;
 }
 
 .filter-status-title {

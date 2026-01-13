@@ -950,7 +950,6 @@ body
     margin: 0 20px 0 20px;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
     align-items: center;
     gap: 8px;
     position: relative;
