@@ -1,0 +1,164 @@
+{
+  "exerciseId": "barbell_deadlift",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Testing/scene%20(9).glb",
+  "model": {
+    "position": [
+      0,
+      -0.02,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "camera": {
+    "position": [
+      1.5,
+      0.8,
+      1.5
+    ],
+    "rotation": [
+      -0.5,
+      0.8,
+      0.4
+    ],
+    "target": [
+      0,
+      0.5,
+      0
+    ]
+  },
+  "lighting": {
+    "directionalLight": {
+      "intensity": 1.43,
+      "color": "#ffffff",
+      "castShadow": true,
+      "shadowBias": 0,
+      "shadowBlur": 1,
+      "shadowMapWidth": 1024,
+      "shadowMapHeight": 1024,
+      "posX": 1.35,
+      "posY": 1.57,
+      "posZ": 0.9,
+      "showHelper": false,
+      "position": {
+        "x": 1.35,
+        "y": 1.57,
+        "z": 0.9
+      }
+    },
+    "ambientLight": {
+      "intensity": 0.4,
+      "color": "#ffffff"
+    }
+  },
+  "ground": {
+    "mode": "Infinite Canvas",
+    "color": "#222222",
+    "roughness": 1,
+    "metalness": 0,
+    "shadowOpacity": 0.4,
+    "receiveShadow": true,
+    "castShadow": false,
+    "visible": true
+  },
+  "background": {
+    "gradientTop": "#3865ad",
+    "gradientBottom": "#0101bc",
+    "gradientAlpha": 1
+  },
+  "dustParticles": {
+    "count": 1150,
+    "size": 0.0095,
+    "sizeRandomness": 1.4,
+    "color": "#0d529c",
+    "opacity": 1,
+    "speed": 0.5,
+    "horizontalRange": 3,
+    "verticalRange": 2,
+    "verticalOffset": 1,
+    "visible": true,
+    "blur": 0.31,
+    "depthBlur": false,
+    "depthBlurStrength": 0.16,
+    "depthFocusDistance": 2,
+    "depthFocusRange": 1
+  },
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Deadlift is one of the most fundamental compound exercises in strength training. It involves lifting a loaded barbell from the ground to a standing position, engaging nearly every major muscle group in the body. Known as the king of lifts, the deadlift builds total body strength, power, and muscle mass."
+        },
+        {
+          "heading": "Benefits",
+          "content": "Builds total body strength and power. Develops posterior chain muscles (hamstrings, glutes, lower back). Improves grip strength and core stability. Increases bone density and connective tissue strength. Enhances athletic performance and functional strength. Burns significant calories due to multiple muscle engagement. Improves posture and spinal stability."
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Erector Spinae, Glutes, Hamstrings, Quadriceps. Secondary: Trapezius, Latissimus Dorsi, Rhomboids, Core, Forearms and Grip, Calves."
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with feet hip-width apart, barbell over mid-foot.\n2. Barbell should be about 1 inch from shins.\n3. Bend at hips and knees to grip the bar.\n4. Use overhand grip (or mixed grip for heavier loads), hands just outside legs.\n5. Shoulders should be slightly in front of the bar.\n6. Back should be neutral (flat), not rounded.\n7. Chest up, shoulders down and back.\n8. Eyes looking forward or slightly down."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Pull the slack out of the bar before lifting.\n3. Drive through your heels and mid-foot.\n4. Extend your hips and knees simultaneously.\n5. Keep the bar close to your body throughout the lift.\n6. As bar passes knees, drive hips forward.\n7. Stand fully upright with shoulders back.\n8. Reverse the movement to lower the bar with control.\n9. Maintain neutral spine throughout entire movement."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back (major injury risk)\n- Starting with hips too high or too low\n- Bar drifting away from body\n- Jerking or yanking the weight off the floor\n- Not fully extending at the top\n- Looking up excessively (hyperextending neck)\n- Dropping the bar on the way down\n- Not bracing core properly\n- Improper grip width"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates (bumper plates or iron plates)\n- Lifting Platform or Suitable Floor Surface\n- Optional: Lifting Belt (for heavy loads)\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Optional: Deadlift Slippers or Flat Shoes"
+        },
+        {
+          "heading": "Bar Setup",
+          "content": "1. Load equal weight on both sides of the barbell.\n2. Use collars to secure plates.\n3. Standard starting height: 45 lb plates (9 inches off ground).\n4. For lighter weights, use blocks or rack pulls to maintain proper height.\n5. Ensure bar is on flat, stable surface.\n6. Bar should be straight and not bent.\n7. Check that weights are secure before lifting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, slight toe-out angle.\n2. Bar Position: Over mid-foot (shoelaces area).\n3. Grip: Just outside legs, arms straight.\n4. Grip Options: Double overhand, mixed grip, or hook grip.\n5. Hip Height: Should allow shoulders to be slightly over bar.\n6. Back Angle: Flat/neutral spine, NOT rounded.\n7. Shoulder Position: Directly over or slightly in front of bar.\n8. Head Position: Neutral, in line with spine."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Trap Bar Deadlift: Easier on lower back, more quad emphasis\n- Romanian Deadlift (RDL): Focuses on hamstrings and glutes\n- Sumo Deadlift: Wide stance variation, more hip-dominant\n- Rack Pulls: Partial range deadlift from elevated position\n- Hex Bar Deadlift: Similar to trap bar, neutral grip\n- Deficit Deadlift: Standing on platform for increased range\n- Stiff-Leg Deadlift: Minimal knee bend, hamstring focus"
+        },
+        {
+          "heading": "Deadlift Variations",
+          "content": "Conventional Deadlift: Standard hip-width stance\nSumo Deadlift: Wide stance, toes pointed out\nTrap/Hex Bar Deadlift: Easier to learn, less technical\nSnatch Grip Deadlift: Wide grip, increased range of motion\nRomanian Deadlift: Top-down movement, hamstring focus\nSingle-Leg Deadlift: Unilateral variation for balance"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Issues: Try trap bar deadlift or rack pulls\nGrip Strength: Use lifting straps or work on grip training\nMobility Issues: Start with rack pulls or Romanian deadlifts\nNo Barbell: Use dumbbells, kettlebells, or resistance bands\nForm Concerns: Work with lighter weight, focus on technique\nFloor Space: Use hex bar or smaller plates"
+        }
+      ]
+    }
+  }
+}

@@ -3,7 +3,7 @@
     "id": "barbell_deadlift",
     "name": "Barbell Deadlift",
     "thumbnailUrl": "https://picsum.photos/200/200?random=99",
-    "configUrl": "https://FlexFrame.b-cdn.net/Testing/barbell_deadlift.json",
+    "configUrl": "./data/exercise-configs/barbell_deadlift.json",
     "muscleGroup": [
       "Hamstrings",
       "Glutes",
