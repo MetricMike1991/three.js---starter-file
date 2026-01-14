@@ -2204,21 +2204,6 @@ class ThreeJSApp {
                     matFolder.add(shadowParams, 'castShadow')
                         .name('☀️ Cast Shadows')
                         .onChange((value) => shadowParams.setCastShadow(value));
-                    
-                    // Shadow blur control (affects global directional light shadow softness)
-                    const shadowBlurParams = {
-                        shadowBlur: this.lighting?.directionalLight?.shadow?.radius || 1,
-                        setShadowBlur: (value) => {
-                            if (this.lighting?.directionalLight?.shadow) {
-                                this.lighting.directionalLight.shadow.radius = value;
-                                console.log(`Shadow blur set to: ${value}`);
-                            }
-                        }
-                    };
-                    
-                    matFolder.add(shadowBlurParams, 'shadowBlur', 0, 10, 0.1)
-                        .name('☀️ Shadow Blur')
-                        .onChange((value) => shadowBlurParams.setShadowBlur(value));
                 }
                 
                 // Add "Copy Settings" button at the bottom of each material folder
