@@ -1787,20 +1787,23 @@ class ThreeJSApp {
                                         }
                                     }
                                     // Convert CHROME materials to MeshPhysicalMaterial
-                                    else if (mat.name.includes('CHROME')) {
+                                    else if (mat.name.includes('CHROME') && mat.type !== 'MeshPhysicalMaterial') {
                                         // Check if we already converted this material
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial with chrome settings`);
                                             
-                                            // Create new MeshPhysicalMaterial with chrome settings (no texture maps for pure chrome)
+                                            // Create new MeshPhysicalMaterial with chrome settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
+                                                map: mat.map,
+                                                normalMap: mat.normalMap,
                                                 roughness: 0.07,
                                                 metalness: 0.82,
                                                 emissive: new THREE.Color(0x000000),
                                                 emissiveIntensity: 1,
+                                                emissiveMap: mat.emissiveMap,
                                                 opacity: 1,
                                                 transparent: false,
                                                 side: THREE.DoubleSide,
@@ -1820,55 +1823,11 @@ class ThreeJSApp {
                                             // Copy the name
                                             physicalMat.name = mat.name;
                                             
-                                            // Log the applied settings
-                                            console.log(`✅ ${mat.name} Material Settings Applied (pure chrome - no textures):`, {
-                                                color: '#' + physicalMat.color.getHexString(),
-                                                opacity: physicalMat.opacity,
-                                                transparent: physicalMat.transparent,
-                                                roughness: physicalMat.roughness,
-                                                metalness: physicalMat.metalness,
-                                                envMapIntensity: physicalMat.envMapIntensity,
-                                                side: physicalMat.side === THREE.DoubleSide ? 'DoubleSide' : physicalMat.side === THREE.FrontSide ? 'FrontSide' : 'BackSide'
-                                            });
-                                            
-                                            // Store the converted material
-                                            convertedMaterials.set(mat.name, physicalMat);
-                                            newMats.push(physicalMat);
-                                        }
-                                    }
-                                    // Convert COLOR_1 materials to MeshPhysicalMaterial
-                                    else if (mat.name.includes('COLOR_1')) {
-                                        // Check if we already converted this material
-                                        if (convertedMaterials.has(mat.name)) {
-                                            newMats.push(convertedMaterials.get(mat.name));
-                                        } else {
-                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial with custom settings`);
-                                            
-                                            // Create new MeshPhysicalMaterial with COLOR_1 settings (no texture maps)
-                                            const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xff0000),
-                                                roughness: 0.2152357035754776,
-                                                metalness: 0,
-                                                emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 1,
-                                                opacity: 1,
-                                                transparent: false,
-                                                side: THREE.DoubleSide,
-                                                depthWrite: true,
-                                                depthTest: true,
-                                                blending: THREE.NormalBlending,
-                                                alphaTest: 0,
-                                                envMapIntensity: 1,
-                                                sheen: 0,
-                                                sheenRoughness: 1,
-                                                sheenColor: new THREE.Color(0x000000),
-                                                transmission: 0,
-                                                thickness: 0,
-                                                ior: 1.5
-                                            });
-                                            
-                                            // Copy the name
-                                            physicalMat.name = mat.name;
+                                            // Apply bump map from color texture
+                                            if (mat.map) {
+                                                physicalMat.bumpMap = mat.map;
+                                                physicalMat.bumpScale = 1;
+                                            }
                                             
                                             // Log the applied settings
                                             console.log(`✅ ${mat.name} Material Settings Applied:`, {
@@ -1877,7 +1836,17 @@ class ThreeJSApp {
                                                 transparent: physicalMat.transparent,
                                                 roughness: physicalMat.roughness,
                                                 metalness: physicalMat.metalness,
-                                                side: physicalMat.side === THREE.DoubleSide ? 'DoubleSide' : physicalMat.side === THREE.FrontSide ? 'FrontSide' : 'BackSide'
+                                                envMapIntensity: physicalMat.envMapIntensity,
+                                                side: physicalMat.side === THREE.DoubleSide ? 'DoubleSide' : physicalMat.side === THREE.FrontSide ? 'FrontSide' : 'BackSide',
+                                                blending: physicalMat.blending,
+                                                depthWrite: physicalMat.depthWrite,
+                                                depthTest: physicalMat.depthTest,
+                                                sheen: physicalMat.sheen,
+                                                sheenRoughness: physicalMat.sheenRoughness,
+                                                transmission: physicalMat.transmission,
+                                                thickness: physicalMat.thickness,
+                                                ior: physicalMat.ior,
+                                                bumpScale: physicalMat.bumpScale
                                             });
                                             
                                             // Store the converted material
@@ -2330,18 +2299,8 @@ class ThreeJSApp {
                 // Add "Copy Settings" button at the bottom of each material folder
                 const copyParams = {
                     copySettings: () => {
-                        // Check if material has any texture maps
-                        const hasTextures = material.map || material.normalMap || material.emissiveMap || material.bumpMap;
-                        
-                        // Build the settings string with template format
-                        let settingsText = `Can you please use these material settings as the default material settings whenever a model loads in with this specific material name.`;
-                        
-                        if (hasTextures) {
-                            settingsText += ` Do NOT preserve any texture maps - use pure material properties only:\n\n`;
-                        } else {
-                            settingsText += `\n\n`;
-                        }
-                        
+                        // Build the settings string
+                        let settingsText = `Can you please use these material settings as the default material settings whenever a model loads in with this specific material name:\n\n`;
                         settingsText += `Material Name: "${name}"\n\n`;
                         settingsText += `Settings:\n`;
                         
@@ -2393,9 +2352,10 @@ class ThreeJSApp {
                         }
                         if (material.depthTest !== undefined) settingsText += `- Depth Test: ${material.depthTest}\n`;
                         
-                        // Add note about texture maps if they exist
-                        if (hasTextures) {
-                            settingsText += `\nNote: Remove all texture maps (map, normalMap, emissiveMap, bumpMap) for a pure material appearance.`;
+                        // Shadow casting (for meshes using this material)
+                        if (name.includes('SKIN')) {
+                            settingsText += `- Cast Shadows: true/false (adjust as needed)\n`;
+                            settingsText += `- Shadow Opacity: 1.0 (adjust as needed)\n`;
                         }
                         
                         // Copy to clipboard

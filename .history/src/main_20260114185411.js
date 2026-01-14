@@ -1835,55 +1835,6 @@ class ThreeJSApp {
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
-                                    }
-                                    // Convert COLOR_1 materials to MeshPhysicalMaterial
-                                    else if (mat.name.includes('COLOR_1')) {
-                                        // Check if we already converted this material
-                                        if (convertedMaterials.has(mat.name)) {
-                                            newMats.push(convertedMaterials.get(mat.name));
-                                        } else {
-                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial with custom settings`);
-                                            
-                                            // Create new MeshPhysicalMaterial with COLOR_1 settings (no texture maps)
-                                            const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xff0000),
-                                                roughness: 0.2152357035754776,
-                                                metalness: 0,
-                                                emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 1,
-                                                opacity: 1,
-                                                transparent: false,
-                                                side: THREE.DoubleSide,
-                                                depthWrite: true,
-                                                depthTest: true,
-                                                blending: THREE.NormalBlending,
-                                                alphaTest: 0,
-                                                envMapIntensity: 1,
-                                                sheen: 0,
-                                                sheenRoughness: 1,
-                                                sheenColor: new THREE.Color(0x000000),
-                                                transmission: 0,
-                                                thickness: 0,
-                                                ior: 1.5
-                                            });
-                                            
-                                            // Copy the name
-                                            physicalMat.name = mat.name;
-                                            
-                                            // Log the applied settings
-                                            console.log(`✅ ${mat.name} Material Settings Applied:`, {
-                                                color: '#' + physicalMat.color.getHexString(),
-                                                opacity: physicalMat.opacity,
-                                                transparent: physicalMat.transparent,
-                                                roughness: physicalMat.roughness,
-                                                metalness: physicalMat.metalness,
-                                                side: physicalMat.side === THREE.DoubleSide ? 'DoubleSide' : physicalMat.side === THREE.FrontSide ? 'FrontSide' : 'BackSide'
-                                            });
-                                            
-                                            // Store the converted material
-                                            convertedMaterials.set(mat.name, physicalMat);
-                                            newMats.push(physicalMat);
-                                        }
                                     } else {
                                         newMats.push(mat);
                                     }
