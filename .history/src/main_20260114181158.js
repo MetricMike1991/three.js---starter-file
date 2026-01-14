@@ -1679,27 +1679,27 @@ class ThreeJSApp {
                                             newMats.push(physicalMat);
                                         }
                                     }
-                                    // Convert/Update SKIN materials to MeshPhysicalMaterial for advanced transparency
-                                    else if (mat.name.includes('SKIN')) {
+                                    // Convert SKIN materials to MeshPhysicalMaterial for advanced transparency
+                                    else if (mat.name.includes('SKIN') && mat.type !== 'MeshPhysicalMaterial') {
                                         // Check if we already converted this material
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
-                                            console.log(`Converting/Updating ${mat.name} to MeshPhysicalMaterial for advanced transparency`);
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial for advanced transparency`);
                                             
                                             // Create new MeshPhysicalMaterial with custom refraction settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0x006eff),
                                                 map: mat.map,
                                                 normalMap: mat.normalMap,
-                                                roughness: 0.51,
+                                                roughness: 1,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
                                                 emissiveIntensity: 1,
                                                 emissiveMap: mat.emissiveMap,
-                                                opacity: 0.53,
+                                                opacity: 0.63,
                                                 transparent: true,
-                                                side: THREE.FrontSide,
+                                                side: THREE.DoubleSide,
                                                 depthWrite: false,
                                                 depthTest: true,
                                                 blending: THREE.CustomBlending,
@@ -1707,7 +1707,7 @@ class ThreeJSApp {
                                                 // Refraction/transmission properties
                                                 transmission: 0.8,
                                                 thickness: 0,
-                                                ior: 1.45,
+                                                ior: 1.32,
                                                 envMapIntensity: 2.29
                                             });
                                             

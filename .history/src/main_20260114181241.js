@@ -1692,14 +1692,14 @@ class ThreeJSApp {
                                                 color: new THREE.Color(0x006eff),
                                                 map: mat.map,
                                                 normalMap: mat.normalMap,
-                                                roughness: 0.51,
+                                                roughness: 1,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
                                                 emissiveIntensity: 1,
                                                 emissiveMap: mat.emissiveMap,
-                                                opacity: 0.53,
+                                                opacity: 0.63,
                                                 transparent: true,
-                                                side: THREE.FrontSide,
+                                                side: THREE.DoubleSide,
                                                 depthWrite: false,
                                                 depthTest: true,
                                                 blending: THREE.CustomBlending,
@@ -1707,7 +1707,7 @@ class ThreeJSApp {
                                                 // Refraction/transmission properties
                                                 transmission: 0.8,
                                                 thickness: 0,
-                                                ior: 1.45,
+                                                ior: 1.32,
                                                 envMapIntensity: 2.29
                                             });
                                             

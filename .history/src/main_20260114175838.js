@@ -1679,25 +1679,25 @@ class ThreeJSApp {
                                             newMats.push(physicalMat);
                                         }
                                     }
-                                    // Convert/Update SKIN materials to MeshPhysicalMaterial for advanced transparency
-                                    else if (mat.name.includes('SKIN')) {
+                                    // Convert SKIN materials to MeshPhysicalMaterial for advanced transparency
+                                    else if (mat.name.includes('SKIN') && mat.type !== 'MeshPhysicalMaterial') {
                                         // Check if we already converted this material
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
-                                            console.log(`Converting/Updating ${mat.name} to MeshPhysicalMaterial for advanced transparency`);
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial for advanced transparency`);
                                             
                                             // Create new MeshPhysicalMaterial with custom refraction settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0x006eff),
+                                                color: new THREE.Color(0x0091ff),
                                                 map: mat.map,
                                                 normalMap: mat.normalMap,
-                                                roughness: 0.51,
+                                                roughness: 0.82,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 1,
+                                                emissiveIntensity: 1.08,
                                                 emissiveMap: mat.emissiveMap,
-                                                opacity: 0.53,
+                                                opacity: 0.65,
                                                 transparent: true,
                                                 side: THREE.FrontSide,
                                                 depthWrite: false,
@@ -1705,10 +1705,10 @@ class ThreeJSApp {
                                                 blending: THREE.CustomBlending,
                                                 alphaTest: 0,
                                                 // Refraction/transmission properties
-                                                transmission: 0.8,
+                                                transmission: 0.83,
                                                 thickness: 0,
-                                                ior: 1.45,
-                                                envMapIntensity: 2.29
+                                                ior: 1.49,
+                                                envMapIntensity: 0
                                             });
                                             
                                             // Copy the name
@@ -1719,23 +1719,6 @@ class ThreeJSApp {
                                                 physicalMat.bumpMap = mat.map;
                                                 physicalMat.bumpScale = 1;
                                             }
-                                            
-                                            // Log the applied settings
-                                            console.log(`✅ ${mat.name} Material Settings Applied:`, {
-                                                color: '#' + physicalMat.color.getHexString(),
-                                                opacity: physicalMat.opacity,
-                                                transmission: physicalMat.transmission,
-                                                ior: physicalMat.ior,
-                                                roughness: physicalMat.roughness,
-                                                metalness: physicalMat.metalness,
-                                                envMapIntensity: physicalMat.envMapIntensity,
-                                                side: physicalMat.side === THREE.DoubleSide ? 'DoubleSide' : physicalMat.side === THREE.FrontSide ? 'FrontSide' : 'BackSide',
-                                                blending: physicalMat.blending,
-                                                depthWrite: physicalMat.depthWrite,
-                                                depthTest: physicalMat.depthTest,
-                                                thickness: physicalMat.thickness,
-                                                bumpScale: physicalMat.bumpScale
-                                            });
                                             
                                             // Store the converted material
                                             convertedMaterials.set(mat.name, physicalMat);
@@ -2182,43 +2165,6 @@ class ThreeJSApp {
                             .name('🌍 Env Map Intensity')
                             .onChange(() => material.needsUpdate = true);
                     }
-                    
-                    // Cast shadows control (affects all meshes with this material)
-                    const shadowParams = {
-                        castShadow: true,
-                        setCastShadow: (value) => {
-                            // Update all meshes using this material
-                            if (window.model) {
-                                window.model.traverse((child) => {
-                                    if (child.isMesh && child.material) {
-                                        const mats = Array.isArray(child.material) ? child.material : [child.material];
-                                        if (mats.some(m => m.name === name)) {
-                                            child.castShadow = value;
-                                        }
-                                    }
-                                });
-                            }
-                        }
-                    };
-                    
-                    matFolder.add(shadowParams, 'castShadow')
-                        .name('☀️ Cast Shadows')
-                        .onChange((value) => shadowParams.setCastShadow(value));
-                    
-                    // Shadow opacity control
-                    const shadowOpacityParams = {
-                        shadowOpacity: 1.0,
-                        setShadowOpacity: (value) => {
-                            // This controls how dark the shadows are from this material
-                            // Note: Three.js doesn't have per-material shadow opacity,
-                            // but we can store it for reference and manual implementation
-                            shadowOpacityParams.shadowOpacity = value;
-                        }
-                    };
-                    
-                    matFolder.add(shadowOpacityParams, 'shadowOpacity', 0, 1, 0.01)
-                        .name('☀️ Shadow Opacity')
-                        .onChange((value) => shadowOpacityParams.setShadowOpacity(value));
                 }
                 
                 // Add "Copy Settings" button at the bottom of each material folder
@@ -2276,12 +2222,6 @@ class ThreeJSApp {
                             settingsText += `- Blending: ${blendingNames[material.blending] || material.blending}\n`;
                         }
                         if (material.depthTest !== undefined) settingsText += `- Depth Test: ${material.depthTest}\n`;
-                        
-                        // Shadow casting (for meshes using this material)
-                        if (name.includes('SKIN')) {
-                            settingsText += `- Cast Shadows: true/false (adjust as needed)\n`;
-                            settingsText += `- Shadow Opacity: 1.0 (adjust as needed)\n`;
-                        }
                         
                         // Copy to clipboard
                         navigator.clipboard.writeText(settingsText).then(() => {
