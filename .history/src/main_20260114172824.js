@@ -1645,33 +1645,32 @@ class ThreeJSApp {
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
                                             
-                                            // Create new MeshPhysicalMaterial with default MUSCLE settings
+                                            // Create new MeshPhysicalMaterial with existing properties
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xffffff),
+                                                color: mat.color,
                                                 map: mat.map,
                                                 normalMap: mat.normalMap,
-                                                roughness: 0,
-                                                metalness: 0,
-                                                emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 1.14,
+                                                roughness: mat.roughness !== undefined ? mat.roughness : 0.5,
+                                                metalness: mat.metalness !== undefined ? mat.metalness : 0,
+                                                emissive: mat.emissive,
+                                                emissiveIntensity: mat.emissiveIntensity,
                                                 emissiveMap: mat.emissiveMap,
-                                                opacity: 1,
-                                                transparent: true,
-                                                side: THREE.DoubleSide,
-                                                depthWrite: true,
-                                                // Sheen settings for realistic muscle appearance
-                                                sheen: 0.3,
-                                                sheenRoughness: 0.45,
-                                                sheenColor: new THREE.Color(0xeb0a0a)
+                                                opacity: mat.opacity,
+                                                transparent: mat.transparent,
+                                                side: mat.side,
+                                                // Enable sheen for realistic muscle appearance
+                                                sheen: 0.5,
+                                                sheenRoughness: 0.5,
+                                                sheenColor: new THREE.Color(0xffffff)
                                             });
                                             
                                             // Copy the name
                                             physicalMat.name = mat.name;
                                             
-                                            // Apply bump map from color texture with default scale
+                                            // Apply bump map from color texture
                                             if (mat.map) {
                                                 physicalMat.bumpMap = mat.map;
-                                                physicalMat.bumpScale = 10.2;
+                                                physicalMat.bumpScale = 0.05;
                                             }
                                             
                                             // Store the converted material

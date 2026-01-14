@@ -1619,9 +1619,6 @@ class ThreeJSApp {
                 window.model = gltf.scene;
                 const model = window.model;
                 
-                // Track converted materials to ensure all meshes share the same material instance
-                const convertedMaterials = new Map();
-                
                 model.traverse((child) => {
                     if (child.isMesh) {
                         this.allClickableMeshes.push(child);
@@ -1631,67 +1628,52 @@ class ThreeJSApp {
                         // Log material names for debugging
                         if (child.material) {
                             const mats = Array.isArray(child.material) ? child.material : [child.material];
-                            const newMats = [];
-                            
                             mats.forEach(mat => {
                                 if (mat.name) {
                                     console.log('Found material:', mat.name);
                                     
                                     // Convert MUSCLE materials to MeshPhysicalMaterial for sheen support
                                     if (mat.name.includes('MUSCLE') && mat.type !== 'MeshPhysicalMaterial') {
-                                        // Check if we already converted this material
-                                        if (convertedMaterials.has(mat.name)) {
-                                            newMats.push(convertedMaterials.get(mat.name));
-                                        } else {
-                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
-                                            
-                                            // Create new MeshPhysicalMaterial with default MUSCLE settings
-                                            const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xffffff),
-                                                map: mat.map,
-                                                normalMap: mat.normalMap,
-                                                roughness: 0,
-                                                metalness: 0,
-                                                emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 1.14,
-                                                emissiveMap: mat.emissiveMap,
-                                                opacity: 1,
-                                                transparent: true,
-                                                side: THREE.DoubleSide,
-                                                depthWrite: true,
-                                                // Sheen settings for realistic muscle appearance
-                                                sheen: 0.3,
-                                                sheenRoughness: 0.45,
-                                                sheenColor: new THREE.Color(0xeb0a0a)
-                                            });
-                                            
-                                            // Copy the name
-                                            physicalMat.name = mat.name;
-                                            
-                                            // Apply bump map from color texture with default scale
-                                            if (mat.map) {
-                                                physicalMat.bumpMap = mat.map;
-                                                physicalMat.bumpScale = 10.2;
-                                            }
-                                            
-                                            // Store the converted material
-                                            convertedMaterials.set(mat.name, physicalMat);
-                                            newMats.push(physicalMat);
+                                        console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
+                                        
+                                        // Create new MeshPhysicalMaterial with existing properties
+                                        const physicalMat = new THREE.MeshPhysicalMaterial({
+                                            color: mat.color,
+                                            map: mat.map,
+                                            normalMap: mat.normalMap,
+                                            roughness: mat.roughness !== undefined ? mat.roughness : 0.5,
+                                            metalness: mat.metalness !== undefined ? mat.metalness : 0,
+                                            emissive: mat.emissive,
+                                            emissiveIntensity: mat.emissiveIntensity,
+                                            emissiveMap: mat.emissiveMap,
+                                            opacity: mat.opacity,
+                                            transparent: mat.transparent,
+                                            side: mat.side,
+                                            // Enable sheen for realistic muscle appearance
+                                            sheen: 0.5,
+                                            sheenRoughness: 0.5,
+                                            sheenColor: new THREE.Color(0xffffff)
+                                        });
+                                        
+                                        // Copy the name
+                                        physicalMat.name = mat.name;
+                                        
+                                        // Apply bump map from color texture
+                                        if (mat.map) {
+                                            physicalMat.bumpMap = mat.map;
+                                            physicalMat.bumpScale = 0.05;
                                         }
-                                    } else {
-                                        newMats.push(mat);
+                                        
+                                        // Replace the material
+                                        if (Array.isArray(child.material)) {
+                                            const index = child.material.indexOf(mat);
+                                            child.material[index] = physicalMat;
+                                        } else {
+                                            child.material = physicalMat;
+                                        }
                                     }
                                 }
                             });
-                            
-                            // Apply the converted materials back to the mesh
-                            if (newMats.length > 0) {
-                                if (Array.isArray(child.material)) {
-                                    child.material = newMats;
-                                } else {
-                                    child.material = newMats[0];
-                                }
-                            }
                         }
                     }
                 });
@@ -1940,128 +1922,38 @@ class ThreeJSApp {
                         .onChange(() => material.needsUpdate = true);
                 }
                 
-                // Sheen and Bump Map controls for MUSCLE materials
+                // Clearcoat and Bump Map controls for MUSCLE materials
                 if (name.includes('MUSCLE')) {
-                    // Sheen controls (velvet/skin-like appearance)
-                    if (material.sheen !== undefined) {
-                        matFolder.add(material, 'sheen', 0, 1, 0.01)
-                            .name('✨ Sheen Intensity')
-                            .onChange(() => material.needsUpdate = true);
-                        
-                        matFolder.add(material, 'sheenRoughness', 0, 1, 0.01)
-                            .name('✨ Sheen Roughness')
-                            .onChange(() => material.needsUpdate = true);
-                        
-                        // Sheen color control
-                        const sheenParams = {
-                            sheenColor: material.sheenColor ? material.sheenColor.getHex() : 0xffffff
-                        };
-                        matFolder.addColor(sheenParams, 'sheenColor')
-                            .name('✨ Sheen Color')
-                            .onChange((value) => {
-                                if (!material.sheenColor) {
-                                    material.sheenColor = new THREE.Color();
-                                }
-                                material.sheenColor.setHex(value);
-                                material.needsUpdate = true;
-                            });
+                    // Initialize clearcoat properties if they don't exist
+                    if (material.clearcoat === undefined) {
+                        material.clearcoat = 0;
+                    }
+                    if (material.clearcoatRoughness === undefined) {
+                        material.clearcoatRoughness = 0;
                     }
                     
-                    // Bump map controls and preview
-                    if (material.bumpScale !== undefined && material.bumpMap) {
-                        // Add bump map thumbnail
-                        setTimeout(() => {
-                            const folderElement = matFolder.domElement;
-                            if (folderElement) {
-                                const bumpThumbnailDiv = document.createElement('div');
-                                bumpThumbnailDiv.className = 'material-texture-thumbnail';
-                                
-                                const label = document.createElement('div');
-                                label.textContent = 'Bump Map Texture:';
-                                label.style.fontSize = '11px';
-                                label.style.marginBottom = '4px';
-                                label.style.color = '#aaa';
-                                
-                                const img = document.createElement('img');
-                                // If the bump map has an image source, show it
-                                if (material.bumpMap.image && material.bumpMap.image.src) {
-                                    img.src = material.bumpMap.image.src;
-                                } else if (material.bumpMap.source && material.bumpMap.source.data) {
-                                    // For data textures, create a temporary canvas
-                                    const canvas = document.createElement('canvas');
-                                    canvas.width = 64;
-                                    canvas.height = 64;
-                                    const ctx = canvas.getContext('2d');
-                                    if (material.bumpMap.image) {
-                                        ctx.drawImage(material.bumpMap.image, 0, 0, 64, 64);
-                                    }
-                                    img.src = canvas.toDataURL();
-                                }
-                                img.alt = 'Bump map texture';
-                                
-                                bumpThumbnailDiv.appendChild(label);
-                                bumpThumbnailDiv.appendChild(img);
-                                folderElement.appendChild(bumpThumbnailDiv);
-                            }
-                        }, 100);
-                        
-                        matFolder.add(material, 'bumpScale', -20, 20, 0.1)
+                    // Apply the material's own texture as bump map for surface detail
+                    if (material.map && !material.bumpMap) {
+                        material.bumpMap = material.map;
+                        material.bumpScale = 0.05; // Start with subtle bump
+                    }
+                    
+                    // Clearcoat controls (glossy layer effect)
+                    matFolder.add(material, 'clearcoat', 0, 1, 0.01)
+                        .name('💎 Clearcoat')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'clearcoatRoughness', 0, 1, 0.01)
+                        .name('💎 Clearcoat Roughness')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Bump map controls
+                    if (material.bumpScale !== undefined) {
+                        matFolder.add(material, 'bumpScale', -1, 1, 0.01)
                             .name('🏔️ Bump Scale')
                             .onChange(() => material.needsUpdate = true);
                     }
                 }
-                
-                // Add "Copy Settings" button at the bottom of each material folder
-                const copyParams = {
-                    copySettings: () => {
-                        // Build the settings string
-                        let settingsText = `Can you please use these material settings as the default material settings whenever a model loads in with this specific material name:\n\n`;
-                        settingsText += `Material Name: "${name}"\n\n`;
-                        settingsText += `Settings:\n`;
-                        
-                        // Color
-                        if (material.color) {
-                            settingsText += `- Color: #${material.color.getHexString()}\n`;
-                        }
-                        
-                        // Basic properties
-                        if (material.opacity !== undefined) settingsText += `- Opacity: ${material.opacity}\n`;
-                        if (material.transparent !== undefined) settingsText += `- Transparent: ${material.transparent}\n`;
-                        if (material.alphaTest !== undefined) settingsText += `- Alpha Test: ${material.alphaTest}\n`;
-                        if (material.side !== undefined) {
-                            const sideNames = { 0: 'FrontSide', 1: 'BackSide', 2: 'DoubleSide' };
-                            settingsText += `- Side: ${sideNames[material.side] || material.side}\n`;
-                        }
-                        if (material.depthWrite !== undefined) settingsText += `- Depth Write: ${material.depthWrite}\n`;
-                        
-                        // PBR properties
-                        if (material.metalness !== undefined) settingsText += `- Metalness: ${material.metalness}\n`;
-                        if (material.roughness !== undefined) settingsText += `- Roughness: ${material.roughness}\n`;
-                        
-                        // Emissive
-                        if (material.emissive) {
-                            settingsText += `- Emissive: #${material.emissive.getHexString()}\n`;
-                        }
-                        if (material.emissiveIntensity !== undefined) settingsText += `- Emissive Intensity: ${material.emissiveIntensity}\n`;
-                        
-                        // Sheen (for MUSCLE materials)
-                        if (material.sheen !== undefined) settingsText += `- Sheen: ${material.sheen}\n`;
-                        if (material.sheenRoughness !== undefined) settingsText += `- Sheen Roughness: ${material.sheenRoughness}\n`;
-                        if (material.sheenColor) {
-                            settingsText += `- Sheen Color: #${material.sheenColor.getHexString()}\n`;
-                        }
-                        
-                        // Bump
-                        if (material.bumpScale !== undefined) settingsText += `- Bump Scale: ${material.bumpScale}\n`;
-                        
-                        // Copy to clipboard
-                        navigator.clipboard.writeText(settingsText).then(() => {
-                            console.log('Material settings copied to clipboard for:', name);
-                        });
-                    }
-                };
-                
-                matFolder.add(copyParams, 'copySettings').name('📋 Copy Settings');
             });
             
             // this.materialsFolder.open();
