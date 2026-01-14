@@ -105,7 +105,7 @@
   },
   "loader": {
     "spinnerStyle": "cool"
-  },
+  }
   "customTextures": {
     "LOGO": "https://FlexFrame.b-cdn.net/Testing/Fish%20Logo.png"
   },

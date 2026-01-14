@@ -1927,8 +1927,8 @@ class ThreeJSApp {
                                 // Enable transparency (PNG alpha channel will work automatically)
                                 mat.transparent = true;
                                 
-                                // Higher alphaTest removes white fringe better (default: 0.95)
-                                mat.alphaTest = 0.95;
+                                // Higher alphaTest removes white fringe better
+                                mat.alphaTest = 0.5;
                                 
                                 // Ensure proper depth writing for transparency
                                 mat.depthWrite = false;

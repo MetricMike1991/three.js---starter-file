@@ -107,7 +107,7 @@
     "spinnerStyle": "cool"
   },
   "customTextures": {
-    "LOGO": "https://FlexFrame.b-cdn.net/Testing/Fish%20Logo.png"
+    "logo": "https://FlexFrame.b-cdn.net/Testing/Your%20Logo%20Here%20Testing.png"
   },
   "rightMenuTabs": {
     "exerciseInformation": {

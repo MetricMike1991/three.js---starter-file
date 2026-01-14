@@ -1833,12 +1833,10 @@ class ThreeJSApp {
                     .name('Transparent')
                     .onChange(() => material.needsUpdate = true);
                 
-                // Alpha test (useful for alpha maps) - only show for non-custom textures
-                if (!this.currentConfig?.customTextures || !this.currentConfig.customTextures[name]) {
-                    matFolder.add(material, 'alphaTest', 0, 1, 0.01)
-                        .name('Alpha Test')
-                        .onChange(() => material.needsUpdate = true);
-                }
+                // Alpha test (useful for alpha maps)
+                matFolder.add(material, 'alphaTest', 0, 1, 0.01)
+                    .name('Alpha Test')
+                    .onChange(() => material.needsUpdate = true);
                 
                 // Side rendering
                 const sideOptions = { 'Front': THREE.FrontSide, 'Back': THREE.BackSide, 'Double': THREE.DoubleSide };
@@ -1927,8 +1925,8 @@ class ThreeJSApp {
                                 // Enable transparency (PNG alpha channel will work automatically)
                                 mat.transparent = true;
                                 
-                                // Higher alphaTest removes white fringe better (default: 0.95)
-                                mat.alphaTest = 0.95;
+                                // Higher alphaTest removes white fringe better
+                                mat.alphaTest = 0.5;
                                 
                                 // Ensure proper depth writing for transparency
                                 mat.depthWrite = false;

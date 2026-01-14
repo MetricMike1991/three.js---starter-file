@@ -141,7 +141,6 @@ class ThreeJSApp {
                     const response = await fetch(configUrlWithCache);
                     const config = await response.json();
                     console.log('Exercise config loaded:', config);
-                    console.log('📋 Config customTextures:', config.customTextures);
                     
                     // Store full config for quality switching
                     this.currentConfig = config;
@@ -444,23 +443,6 @@ class ThreeJSApp {
                 color: #dc3545 !important;
                 font-weight: 700 !important;
             }
-            
-            /* Material Colors main folder - Blue theme */
-            .materials-folder-main > .title {
-                background: rgba(74, 158, 255, 0.25) !important;
-                border-bottom: 1px solid rgba(74, 158, 255, 0.5) !important;
-                color: #4a9eff !important;
-                font-weight: 700 !important;
-            }
-            
-            /* Material sub-folders - Lighter blue */
-            .materials-folder-main .lil-gui .title {
-                background: rgba(74, 158, 255, 0.15) !important;
-                border-bottom: 1px solid rgba(74, 158, 255, 0.3) !important;
-                color: #6bb3ff !important;
-                font-weight: 600 !important;
-            }
-            
             .gui-controls {
                 margin-bottom: 10px;
                 padding: 5px;
@@ -1608,9 +1590,6 @@ class ThreeJSApp {
         // Clear clickable meshes
         this.allClickableMeshes = [];
         
-        // Clear Three.js cache to force fresh texture loads
-        THREE.Cache.clear();
-        
         console.log('Loading model from:', modelUrl);
         
         this.gltfLoader.load(
@@ -1748,137 +1727,18 @@ class ThreeJSApp {
         if (materials.size > 0) {
             this.materialsFolder = this.trackFolder(this.gui.addFolder('🎨 Material Colors'));
             
-            // Add class to materials folder for CSS targeting
-            setTimeout(() => {
-                const folderElement = this.materialsFolder.domElement;
-                if (folderElement) {
-                    folderElement.classList.add('materials-folder-main');
-                }
-            }, 0);
-            
             materials.forEach((material, name) => {
-                const matFolder = this.trackFolder(this.materialsFolder.addFolder(name));
-                // Ensure sub-folders are closed by default
-                matFolder.close();
-                
-                // Add texture thumbnail and URL if custom texture exists for this material
-                if (this.currentConfig?.customTextures && this.currentConfig.customTextures[name]) {
-                    const textureUrl = this.currentConfig.customTextures[name];
-                    
-                    // Add clickable URL display in GUI with copy functionality
-                    const urlParams = { textureUrl: textureUrl };
-                    const urlController = matFolder.add(urlParams, 'textureUrl').name('Texture URL (click to copy)');
-                    
-                    // Make URL copyable on click
-                    setTimeout(() => {
-                        const urlInput = urlController.domElement.querySelector('input');
-                        if (urlInput) {
-                            urlInput.style.cursor = 'pointer';
-                            urlInput.readOnly = true;
-                            urlInput.addEventListener('click', () => {
-                                navigator.clipboard.writeText(textureUrl).then(() => {
-                                    console.log('Texture URL copied to clipboard:', textureUrl);
-                                    // Briefly highlight the input
-                                    urlInput.style.background = 'rgba(74, 158, 255, 0.3)';
-                                    setTimeout(() => {
-                                        urlInput.style.background = '';
-                                    }, 300);
-                                });
-                            });
-                        }
-                    }, 0);
-                    
-                    setTimeout(() => {
-                        const folderElement = matFolder.domElement;
-                        if (folderElement) {
-                            const thumbnailDiv = document.createElement('div');
-                            thumbnailDiv.className = 'material-texture-thumbnail';
-                            
-                            const img = document.createElement('img');
-                            img.src = textureUrl + (textureUrl.includes('?') ? '&' : '?') + `t=${Date.now()}`;
-                            img.alt = `${name} texture`;
-                            
-                            thumbnailDiv.appendChild(img);
-                            folderElement.appendChild(thumbnailDiv);
-                        }
-                    }, 0);
-                }
-                
-                // PNG Edge Control - only show for materials with custom textures
-                if (this.currentConfig?.customTextures && this.currentConfig.customTextures[name]) {
-                    matFolder.add(material, 'alphaTest', 0, 1, 0.01)
-                        .name('🎯 Edge Threshold (Fix Fringe)')
-                        .onChange(() => material.needsUpdate = true);
-                }
-                
-                // Color control
+                // Only add color picker if material has a color property
                 if (material.color) {
                     const materialParams = {
                         color: material.color.getHex()
                     };
                     
-                    matFolder.addColor(materialParams, 'color')
-                        .name('Color')
+                    this.materialsFolder.addColor(materialParams, 'color')
+                        .name(name)
                         .onChange((value) => {
                             material.color.setHex(value);
                         });
-                }
-                
-                // Opacity controls
-                matFolder.add(material, 'opacity', 0, 1, 0.01)
-                    .name('Opacity')
-                    .onChange(() => material.needsUpdate = true);
-                
-                matFolder.add(material, 'transparent')
-                    .name('Transparent')
-                    .onChange(() => material.needsUpdate = true);
-                
-                // Alpha test (useful for alpha maps) - only show for non-custom textures
-                if (!this.currentConfig?.customTextures || !this.currentConfig.customTextures[name]) {
-                    matFolder.add(material, 'alphaTest', 0, 1, 0.01)
-                        .name('Alpha Test')
-                        .onChange(() => material.needsUpdate = true);
-                }
-                
-                // Side rendering
-                const sideOptions = { 'Front': THREE.FrontSide, 'Back': THREE.BackSide, 'Double': THREE.DoubleSide };
-                matFolder.add(material, 'side', sideOptions)
-                    .name('Side')
-                    .onChange(() => material.needsUpdate = true);
-                
-                // Depth write (important for transparency)
-                matFolder.add(material, 'depthWrite')
-                    .name('Depth Write')
-                    .onChange(() => material.needsUpdate = true);
-                
-                // Other common properties
-                if (material.metalness !== undefined) {
-                    matFolder.add(material, 'metalness', 0, 1, 0.01)
-                        .name('Metalness')
-                        .onChange(() => material.needsUpdate = true);
-                }
-                
-                if (material.roughness !== undefined) {
-                    matFolder.add(material, 'roughness', 0, 1, 0.01)
-                        .name('Roughness')
-                        .onChange(() => material.needsUpdate = true);
-                }
-                
-                if (material.emissive) {
-                    const emissiveParams = {
-                        emissive: material.emissive.getHex()
-                    };
-                    matFolder.addColor(emissiveParams, 'emissive')
-                        .name('Emissive')
-                        .onChange((value) => {
-                            material.emissive.setHex(value);
-                        });
-                }
-                
-                if (material.emissiveIntensity !== undefined) {
-                    matFolder.add(material, 'emissiveIntensity', 0, 2, 0.01)
-                        .name('Emissive Intensity')
-                        .onChange(() => material.needsUpdate = true);
                 }
             });
             
@@ -1891,53 +1751,23 @@ class ThreeJSApp {
         Object.keys(customTextures).forEach(materialName => {
             const textureUrl = customTextures[materialName];
             
-            // Add cache-busting to texture URL
-            const cacheBustedUrl = textureUrl + (textureUrl.includes('?') ? '&' : '?') + `t=${Date.now()}`;
-            
-            console.log(`🎨 Custom texture for ${materialName}: ${textureUrl}`);
-            console.log(`🔄 Cache-busted URL: ${cacheBustedUrl}`);
-            
             model.traverse((child) => {
                 if (child.isMesh && child.material) {
                     const mats = Array.isArray(child.material) ? child.material : [child.material];
                     
                     mats.forEach((mat) => {
                         if (mat.name === materialName) {
-                            console.log(`✅ Found material "${materialName}" - applying texture...`);
+                            console.log(`Applying texture to material: ${materialName}`);
                             
-                            // Dispose old texture if exists
-                            if (mat.map) {
-                                mat.map.dispose();
-                            }
-                            
-                            // Load the texture with cache-busting
-                            this.textureLoader.load(cacheBustedUrl, (texture) => {
-                                // Fix white fringe by setting proper color space and filtering
-                                texture.colorSpace = THREE.SRGBColorSpace;
-                                texture.premultiplyAlpha = false;
-                                
-                                // Use better filtering for transparent edges
-                                texture.minFilter = THREE.LinearFilter;
-                                texture.magFilter = THREE.LinearFilter;
-                                texture.generateMipmaps = false;
-                                
-                                // Apply the texture as the main color map
+                            // Load the texture
+                            this.textureLoader.load(textureUrl, (texture) => {
                                 mat.map = texture;
-                                
-                                // Enable transparency (PNG alpha channel will work automatically)
+                                mat.alphaMap = texture;
                                 mat.transparent = true;
-                                
-                                // Higher alphaTest removes white fringe better (default: 0.95)
-                                mat.alphaTest = 0.95;
-                                
-                                // Ensure proper depth writing for transparency
-                                mat.depthWrite = false;
-                                
                                 mat.needsUpdate = true;
-                                console.log(`✅ PNG texture with transparency applied to ${materialName}`);
-                                console.log(`📷 Texture loaded from: ${cacheBustedUrl}`);
+                                console.log(`Texture and alpha map applied to ${materialName}`);
                             }, undefined, (error) => {
-                                console.error(`❌ Error loading texture for ${materialName}:`, error);
+                                console.error(`Error loading texture for ${materialName}:`, error);
                             });
                         }
                     });

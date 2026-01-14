@@ -141,7 +141,6 @@ class ThreeJSApp {
                     const response = await fetch(configUrlWithCache);
                     const config = await response.json();
                     console.log('Exercise config loaded:', config);
-                    console.log('📋 Config customTextures:', config.customTextures);
                     
                     // Store full config for quality switching
                     this.currentConfig = config;
@@ -1608,9 +1607,6 @@ class ThreeJSApp {
         // Clear clickable meshes
         this.allClickableMeshes = [];
         
-        // Clear Three.js cache to force fresh texture loads
-        THREE.Cache.clear();
-        
         console.log('Loading model from:', modelUrl);
         
         this.gltfLoader.load(
@@ -1765,28 +1761,9 @@ class ThreeJSApp {
                 if (this.currentConfig?.customTextures && this.currentConfig.customTextures[name]) {
                     const textureUrl = this.currentConfig.customTextures[name];
                     
-                    // Add clickable URL display in GUI with copy functionality
+                    // Add read-only URL display in GUI
                     const urlParams = { textureUrl: textureUrl };
-                    const urlController = matFolder.add(urlParams, 'textureUrl').name('Texture URL (click to copy)');
-                    
-                    // Make URL copyable on click
-                    setTimeout(() => {
-                        const urlInput = urlController.domElement.querySelector('input');
-                        if (urlInput) {
-                            urlInput.style.cursor = 'pointer';
-                            urlInput.readOnly = true;
-                            urlInput.addEventListener('click', () => {
-                                navigator.clipboard.writeText(textureUrl).then(() => {
-                                    console.log('Texture URL copied to clipboard:', textureUrl);
-                                    // Briefly highlight the input
-                                    urlInput.style.background = 'rgba(74, 158, 255, 0.3)';
-                                    setTimeout(() => {
-                                        urlInput.style.background = '';
-                                    }, 300);
-                                });
-                            });
-                        }
-                    }, 0);
+                    matFolder.add(urlParams, 'textureUrl').name('Texture URL').disable();
                     
                     setTimeout(() => {
                         const folderElement = matFolder.domElement;
@@ -1802,13 +1779,6 @@ class ThreeJSApp {
                             folderElement.appendChild(thumbnailDiv);
                         }
                     }, 0);
-                }
-                
-                // PNG Edge Control - only show for materials with custom textures
-                if (this.currentConfig?.customTextures && this.currentConfig.customTextures[name]) {
-                    matFolder.add(material, 'alphaTest', 0, 1, 0.01)
-                        .name('🎯 Edge Threshold (Fix Fringe)')
-                        .onChange(() => material.needsUpdate = true);
                 }
                 
                 // Color control
@@ -1833,12 +1803,10 @@ class ThreeJSApp {
                     .name('Transparent')
                     .onChange(() => material.needsUpdate = true);
                 
-                // Alpha test (useful for alpha maps) - only show for non-custom textures
-                if (!this.currentConfig?.customTextures || !this.currentConfig.customTextures[name]) {
-                    matFolder.add(material, 'alphaTest', 0, 1, 0.01)
-                        .name('Alpha Test')
-                        .onChange(() => material.needsUpdate = true);
-                }
+                // Alpha test (useful for alpha maps)
+                matFolder.add(material, 'alphaTest', 0, 1, 0.01)
+                    .name('Alpha Test')
+                    .onChange(() => material.needsUpdate = true);
                 
                 // Side rendering
                 const sideOptions = { 'Front': THREE.FrontSide, 'Back': THREE.BackSide, 'Double': THREE.DoubleSide };
@@ -1894,50 +1862,32 @@ class ThreeJSApp {
             // Add cache-busting to texture URL
             const cacheBustedUrl = textureUrl + (textureUrl.includes('?') ? '&' : '?') + `t=${Date.now()}`;
             
-            console.log(`🎨 Custom texture for ${materialName}: ${textureUrl}`);
-            console.log(`🔄 Cache-busted URL: ${cacheBustedUrl}`);
-            
             model.traverse((child) => {
                 if (child.isMesh && child.material) {
                     const mats = Array.isArray(child.material) ? child.material : [child.material];
                     
                     mats.forEach((mat) => {
                         if (mat.name === materialName) {
-                            console.log(`✅ Found material "${materialName}" - applying texture...`);
-                            
-                            // Dispose old texture if exists
-                            if (mat.map) {
-                                mat.map.dispose();
-                            }
+                            console.log(`Applying texture to material: ${materialName}`);
                             
                             // Load the texture with cache-busting
                             this.textureLoader.load(cacheBustedUrl, (texture) => {
-                                // Fix white fringe by setting proper color space and filtering
-                                texture.colorSpace = THREE.SRGBColorSpace;
-                                texture.premultiplyAlpha = false;
-                                
-                                // Use better filtering for transparent edges
-                                texture.minFilter = THREE.LinearFilter;
-                                texture.magFilter = THREE.LinearFilter;
-                                texture.generateMipmaps = false;
-                                
                                 // Apply the texture as the main color map
                                 mat.map = texture;
                                 
                                 // Enable transparency (PNG alpha channel will work automatically)
                                 mat.transparent = true;
                                 
-                                // Higher alphaTest removes white fringe better (default: 0.95)
-                                mat.alphaTest = 0.95;
+                                // Optional: helps with edge quality for transparent textures
+                                mat.alphaTest = 0.1;
                                 
                                 // Ensure proper depth writing for transparency
                                 mat.depthWrite = false;
                                 
                                 mat.needsUpdate = true;
-                                console.log(`✅ PNG texture with transparency applied to ${materialName}`);
-                                console.log(`📷 Texture loaded from: ${cacheBustedUrl}`);
+                                console.log(`PNG texture with transparency applied to ${materialName}`);
                             }, undefined, (error) => {
-                                console.error(`❌ Error loading texture for ${materialName}:`, error);
+                                console.error(`Error loading texture for ${materialName}:`, error);
                             });
                         }
                     });
