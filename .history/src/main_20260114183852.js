@@ -39,6 +39,7 @@ class ThreeJSApp {
         this.gltfLoader = new GLTFLoader();
         this.raycaster = new THREE.Raycaster();
         this.mouse = new THREE.Vector2();
+        this.materialFolders = new Map(); // Store references to material folders
         
         // Model and animation
         this.mixer = null;
@@ -1930,6 +1931,8 @@ class ThreeJSApp {
             
             materials.forEach((material, name) => {
                 const matFolder = this.trackFolder(this.materialsFolder.addFolder(name));
+                // Store reference to material folder for click interaction
+                this.materialFolders.set(name, matFolder);
                 // Ensure sub-folders are closed by default
                 matFolder.close();
                 
@@ -2392,10 +2395,21 @@ class ThreeJSApp {
                             ? clickedObject.material 
                             : [clickedObject.material];
                         
-                        // Log all material names
-                        materials.forEach(mat => {
-                            console.log('🎨 Material:', mat.name || 'Unnamed Material');
-                        });
+                        // Open the first material's folder
+                        if (materials.length > 0 && materials[0].name) {
+                            const matName = materials[0].name;
+                            const matFolder = this.materialFolders.get(matName);
+                            
+                            if (matFolder) {
+                                // Open the materials parent folder if closed
+                                if (this.materialsFolder && !this.materialsFolder._closed) {
+                                    this.materialsFolder.open();
+                                }
+                                // Open the specific material folder
+                                matFolder.open();
+                                console.log(`📦 Clicked material: ${matName}`);
+                            }
+                        }
                     }
                 }
             }

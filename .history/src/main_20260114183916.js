@@ -37,8 +37,6 @@ class ThreeJSApp {
         this.clock = new THREE.Clock();
         this.textureLoader = new THREE.TextureLoader();
         this.gltfLoader = new GLTFLoader();
-        this.raycaster = new THREE.Raycaster();
-        this.mouse = new THREE.Vector2();
         
         // Model and animation
         this.mixer = null;
@@ -2372,33 +2370,8 @@ class ThreeJSApp {
 
         // Click interactions
         this.sceneManager.getCanvas().addEventListener('pointerdown', (event) => {
-            // Calculate mouse position in normalized device coordinates
-            this.mouse.x = (event.clientX / window.innerWidth) * 2 - 1;
-            this.mouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
-
-            // Update raycaster
-            this.raycaster.setFromCamera(this.mouse, this.cameraManager.getCamera());
-
-            // Check for intersections with the model
-            if (window.model) {
-                const intersects = this.raycaster.intersectObject(window.model, true);
-                
-                if (intersects.length > 0) {
-                    const clickedObject = intersects[0].object;
-                    
-                    if (clickedObject.isMesh && clickedObject.material) {
-                        // Get material name(s)
-                        const materials = Array.isArray(clickedObject.material) 
-                            ? clickedObject.material 
-                            : [clickedObject.material];
-                        
-                        // Log all material names
-                        materials.forEach(mat => {
-                            console.log('🎨 Material:', mat.name || 'Unnamed Material');
-                        });
-                    }
-                }
-            }
+            // Add your click interaction logic here
+            console.log('Canvas clicked');
         });
     }
 
