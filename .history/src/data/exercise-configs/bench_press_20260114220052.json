@@ -1,0 +1,165 @@
+{
+  "exerciseId": "bench_press",
+  "modelUrl": "https://FlexFrame.b-cdn.net/Testing/barbell_bench_press.glb",
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Bench%20Press_2026-01-12T10-06-52.webp",
+  "model": {
+    "position": [
+      0,
+      -0.07,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "camera": {
+    "position": [
+      0.6704062882882112,
+      1.1186219554050907,
+      1.4892842290356554
+    ],
+    "rotation": [
+      -0.4708504022732781,
+      0.3857267374789797,
+      0.18922471579524391
+    ],
+    "target": [
+      0.011508181725947262,
+      0.38252572205492275,
+      0.043225487624060865
+    ]
+  },
+  "lighting": {
+    "directionalLight": {
+      "intensity": 1.43,
+      "color": "#ffffff",
+      "castShadow": true,
+      "shadowBias": 0,
+      "shadowBlur": 1,
+      "shadowMapWidth": 1024,
+      "shadowMapHeight": 1024,
+      "posX": 1.35,
+      "posY": 1.57,
+      "posZ": 0.9,
+      "showHelper": false,
+      "position": {
+        "x": 1.35,
+        "y": 1.57,
+        "z": 0.9
+      }
+    },
+    "ambientLight": {
+      "intensity": 0.4,
+      "color": "#ffffff"
+    }
+  },
+  "ground": {
+    "mode": "Infinite Canvas",
+    "color": "#222222",
+    "roughness": 1,
+    "metalness": 0,
+    "shadowOpacity": 0.4,
+    "receiveShadow": true,
+    "castShadow": false,
+    "visible": true
+  },
+  "background": {
+    "gradientTop": "#3865ad",
+    "gradientBottom": "#0101bc",
+    "gradientAlpha": 1
+  },
+  "dustParticles": {
+    "count": 1150,
+    "size": 0.0095,
+    "sizeRandomness": 1.4,
+    "color": "#0d529c",
+    "opacity": 1,
+    "speed": 0.5,
+    "horizontalRange": 3,
+    "verticalRange": 2,
+    "verticalOffset": 1,
+    "visible": true,
+    "blur": 0.31,
+    "depthBlur": false,
+    "depthBlurStrength": 0.16,
+    "depthFocusDistance": 2,
+    "depthFocusRange": 1
+  },
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Bench Press is one of the most popular upper body exercises, primarily targeting the chest muscles (pectoralis major), along with the triceps and anterior deltoids. It's a fundamental movement for building upper body strength and size."
+        },
+        {
+          "heading": "Benefits",
+          "content": "Builds chest, shoulder, and tricep strength. Increases upper body muscle mass. Improves pushing power for sports. Enhances shoulder stability. Great for overall upper body development."
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest). Secondary: Triceps, Anterior Deltoids, Serratus Anterior."
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie flat on the bench with feet firmly on the floor.\n2. Position yourself so eyes are directly under the barbell.\n3. Grip the bar slightly wider than shoulder-width.\n4. Retract and depress your shoulder blades.\n5. Create a slight arch in your lower back."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Unrack the bar and position it over your chest with arms extended.\n2. Take a deep breath and brace your core.\n3. Lower the bar in a controlled manner to your mid-chest.\n4. Keep elbows at approximately 45-degree angle from body.\n5. Touch the bar lightly to your chest (don't bounce).\n6. Drive the bar back up explosively, pushing through the bar.\n7. Lock out at the top and exhale."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing the bar off the chest\n- Flaring elbows out too wide (90 degrees)\n- Lifting hips off the bench\n- Not using full range of motion\n- Improper bar path (should be slightly diagonal)\n- Not keeping shoulder blades retracted"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Flat Bench\n- Barbell\n- Weight Plates\n- Collars\n- Bench Press Rack or Power Rack\n- Spotter (highly recommended)\n- Safety Bars/Spotter Arms"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Position bench centered under the barbell.\n2. Set the J-hooks so bar is at arm's length when lying down.\n3. Set safety bars just below chest level.\n4. Ensure bench is stable and not wobbly.\n5. Load barbell evenly and secure with collars.\n6. Clear the area around the bench."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Lie Position: Eyes under bar, head/shoulders/hips on bench.\n2. Feet: Flat on floor, creating leg drive.\n3. Grip: Slightly wider than shoulders, thumbs around bar.\n4. Shoulders: Retracted and down (squeeze shoulder blades).\n5. Back: Slight arch in lower back, upper back tight.\n6. Core: Braced and tight throughout movement."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Incline Bench Press: Targets upper chest\n- Decline Bench Press: Targets lower chest\n- Dumbbell Bench Press: More range of motion, unilateral\n- Floor Press: Reduced range, shoulder-friendly\n- Close-Grip Bench Press: More tricep emphasis"
+        },
+        {
+          "heading": "Progression/Regression",
+          "content": "Easier: Push-ups, Dumbbell Press, Machine Chest Press\nHarder: Pause Bench Press, Tempo Bench Press, Board Press"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Issues: Floor press, neutral grip dumbbell press\nWrist Issues: Use wrist wraps, neutral grip dumbbells\nNo Spotter: Use safety bars, or smith machine\nNo Barbell: Dumbbell bench press, push-ups with weight vest"
+        }
+      ]
+    }
+  }
+}
