@@ -976,14 +976,14 @@ class ThreeJSApp {
         // Zoom Range Controls
         const zoomFolder = this.trackFolder(cameraFolder.addFolder('Zoom Range'));
         
-        zoomFolder.add(controls, 'minDistance', 0.001, 1, 0.001).name('Min Zoom Distance');
-            // .onChange(() => console.log('Min distance:', controls.minDistance));
+        zoomFolder.add(controls, 'minDistance', 0.001, 1, 0.001).name('Min Zoom Distance')
+            .onChange(() => console.log('Min distance:', controls.minDistance));
         
-        zoomFolder.add(controls, 'maxDistance', 10, 500, 1).name('Max Zoom Distance');
-            // .onChange(() => console.log('Max distance:', controls.maxDistance));
+        zoomFolder.add(controls, 'maxDistance', 10, 500, 1).name('Max Zoom Distance')
+            .onChange(() => console.log('Max distance:', controls.maxDistance));
         
-        zoomFolder.add(controls, 'zoomSpeed', 0.1, 2, 0.1).name('Zoom Speed');
-            // .onChange(() => console.log('Zoom speed:', controls.zoomSpeed));
+        zoomFolder.add(controls, 'zoomSpeed', 0.1, 2, 0.1).name('Zoom Speed')
+            .onChange(() => console.log('Zoom speed:', controls.zoomSpeed));
         
         // Field of View Control
         const fovFolder = this.trackFolder(cameraFolder.addFolder('Field of View'));

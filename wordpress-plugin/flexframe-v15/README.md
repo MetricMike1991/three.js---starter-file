@@ -1,0 +1,116 @@
+# FlexFrame Exercise Viewer - WordPress Plugin
+
+A 3D interactive exercise viewer plugin for WordPress with customizable logo and materials.
+
+## Installation
+
+### Method 1: WordPress Admin
+1. Build the JavaScript bundle: `npm run build`
+2. Copy the compiled `main.bundle.js` from `dist/` to `wordpress-plugin/assets/js/`
+3. Copy `style.css` from `src/` to `wordpress-plugin/assets/css/`
+4. Zip the `wordpress-plugin` folder
+5. Upload via WordPress admin: Plugins → Add New → Upload Plugin
+
+### Method 2: FTP
+1. Build the JavaScript bundle: `npm run build`
+2. Copy the compiled files as above
+3. Upload the `wordpress-plugin` folder to `wp-content/plugins/`
+4. Rename folder to `flexframe-exercise-viewer`
+5. Activate in WordPress admin
+
+## Plugin Structure
+
+```
+flexframe-exercise-viewer/
+├── flexframe-exercise-viewer.php  (Main plugin file)
+├── admin/
+│   ├── settings-page.php         (Settings page)
+│   ├── admin-script.js           (Admin JavaScript)
+│   └── admin-style.css           (Admin styles)
+├── assets/
+│   ├── js/
+│   │   └── main.bundle.js        (Compiled Three.js app - ADD THIS)
+│   └── css/
+│       └── style.css             (App styles - ADD THIS)
+└── README.md
+```
+
+## Required Files to Add
+
+Before zipping the plugin, you MUST add:
+
+1. **main.bundle.js**: 
+   - Run `npm run build` in your project
+   - Copy `dist/main.bundle.js` to `wordpress-plugin/assets/js/`
+
+2. **style.css**:
+   - Copy `src/style.css` to `wordpress-plugin/assets/css/`
+
+## Usage
+
+### Settings Page
+1. Go to WordPress admin → FlexFrame
+2. Upload your logo (PNG with transparency recommended)
+3. Adjust edge threshold if needed (default: 0.95)
+4. Save settings
+
+### Display the Viewer
+Add this shortcode to any page or post:
+
+```
+[flexframe_viewer]
+```
+
+With custom dimensions:
+```
+[flexframe_viewer height="600px" width="100%"]
+```
+
+## How It Works
+
+### Logo Priority
+1. **WordPress Upload** (highest priority) - Logo from settings page
+2. **Config JSON** (fallback) - Logo from exercise config file
+3. **No logo** (default) - Material uses default appearance
+
+### Data Flow
+- WordPress stores logo URL in `wp_options` table
+- PHP passes settings to JavaScript via `wp_localize_script`
+- JavaScript checks `flexframeSettings.logoUrl` before applying textures
+- WordPress logo overrides any config-specified logos
+
+## Settings
+
+### WordPress Options Stored
+- `flexframe_logo_url` - URL of uploaded logo
+- `flexframe_logo_threshold` - Alpha test value (0-1) for edge quality
+
+### JavaScript Global Variable
+```javascript
+flexframeSettings = {
+    logoUrl: 'https://yoursite.com/wp-content/uploads/logo.png',
+    logoThreshold: 0.95,
+    pluginUrl: 'https://yoursite.com/wp-content/plugins/flexframe-exercise-viewer/'
+}
+```
+
+## Development
+
+### Building for Production
+```bash
+npm run build
+```
+
+### Testing Locally
+1. Set up local WordPress (XAMPP, Local, etc.)
+2. Build the bundle
+3. Copy files to plugin folder
+4. Install and activate
+
+## Support
+- Plugin Version: 1.0.0
+- Requires WordPress: 5.0+
+- Requires PHP: 7.4+
+
+## License
+GPL v2 or later
