@@ -484,13 +484,6 @@ class ThreeJSApp {
                 background: rgba(0,0,0,0.1);
                 border-radius: 3px;
             }
-            
-            /* Hide any emoji/icon pseudo-elements */
-            .lil-gui .title::before,
-            .lil-gui .title::after {
-                display: none !important;
-                content: '' !important;
-            }
         `;
         
         if (!document.head.querySelector('style[data-gui-styles]')) {
@@ -902,7 +895,7 @@ class ThreeJSApp {
         const presetFolder = this.trackFolder(dustFolder.addFolder('Particle Presets'));
         presetFolder.add(particlePresets, 'Light Dust').name('Light Dust');
         presetFolder.add(particlePresets, 'Heavy Dust').name('Heavy Dust');
-        presetFolder.add(particlePresets, 'Magical Sparkles').name('Magical Sparkles');
+        presetFolder.add(particlePresets, 'Magical Sparkles').name('⭐ Magical Sparkles');
         presetFolder.add(particlePresets, 'Reset Dust').name('Reset Dust');
 
         // Open important folders by default
@@ -1096,7 +1089,7 @@ class ThreeJSApp {
         // fovFolder.open();
         
         // Axis Helper Section
-        const axisFolder = this.trackFolder(cameraFolder.addFolder('Rotation Center Helper'));
+        const axisFolder = this.trackFolder(cameraFolder.addFolder('🎯 Rotation Center Helper'));
         
         axisFolder.add({
             showAxis: this.cameraManager.axisHelperVisible
@@ -1113,7 +1106,7 @@ class ThreeJSApp {
             });
         
         // Coordinates Section
-        const coordsFolder = this.trackFolder(cameraFolder.addFolder('Coordinates'));
+        const coordsFolder = this.trackFolder(cameraFolder.addFolder('📍 Coordinates'));
         
         // Live coordinate display
         const coordDisplay = {
@@ -1158,7 +1151,7 @@ class ThreeJSApp {
             copyCoords: () => {
                 this.cameraManager.copyCoordinatesToClipboard();
             }
-        }, 'copyCoords').name('Copy Coordinates');
+        }, 'copyCoords').name('📋 Copy Coordinates');
         
         // Update coordinate display in the debug update function
         const originalUpdateDebugInfo = this.updateCameraDebug;
@@ -1185,7 +1178,7 @@ class ThreeJSApp {
         // manualFolder.open();
         
         // Animation Player Controls
-        const animationFolder = this.trackFolder(cameraFolder.addFolder('Animation Player'));
+        const animationFolder = this.trackFolder(cameraFolder.addFolder('🎬 Animation Player'));
         
         const animationSettings = {
             showPlayer: this.animationPlayer ? this.animationPlayer.isVisible : true,
@@ -1210,7 +1203,7 @@ class ThreeJSApp {
         
         
         // Player Styling Controls
-        const playerStyleFolder = this.trackFolder(animationFolder.addFolder('Player Styling'));
+        const playerStyleFolder = this.trackFolder(animationFolder.addFolder('🎨 Player Styling'));
         
         // Background Settings
         const backgroundFolder = this.trackFolder(playerStyleFolder.addFolder('Background'));
@@ -2035,7 +2028,7 @@ class ThreeJSApp {
         if (materials.size > 0) {
             // Insert materials folder at the top by creating it with a wrapper
             const tempDiv = document.createElement('div');
-            this.materialsFolder = this.trackFolder(this.gui.addFolder('Material Colors'));
+            this.materialsFolder = this.trackFolder(this.gui.addFolder('🎨 Material Colors'));
             
             // Move materials folder to the top of the GUI
             setTimeout(() => {
@@ -2100,7 +2093,7 @@ class ThreeJSApp {
                 // PNG Edge Control - only show for materials with custom textures
                 if (this.currentConfig?.customTextures && this.currentConfig.customTextures[name]) {
                     matFolder.add(material, 'alphaTest', 0, 1, 0.01)
-                        .name('Edge Threshold (Fix Fringe)')
+                        .name('🎯 Edge Threshold (Fix Fringe)')
                         .onChange(() => material.needsUpdate = true);
                 }
                 
@@ -2184,11 +2177,11 @@ class ThreeJSApp {
                     // Sheen controls (velvet/skin-like appearance)
                     if (material.sheen !== undefined) {
                         matFolder.add(material, 'sheen', 0, 1, 0.01)
-                            .name('Sheen Intensity')
+                            .name('✨ Sheen Intensity')
                             .onChange(() => material.needsUpdate = true);
                         
                         matFolder.add(material, 'sheenRoughness', 0, 1, 0.01)
-                            .name('Sheen Roughness')
+                            .name('✨ Sheen Roughness')
                             .onChange(() => material.needsUpdate = true);
                         
                         // Sheen color control
@@ -2196,7 +2189,7 @@ class ThreeJSApp {
                             sheenColor: material.sheenColor ? material.sheenColor.getHex() : 0xffffff
                         };
                         matFolder.addColor(sheenParams, 'sheenColor')
-                            .name('Sheen Color')
+                            .name('✨ Sheen Color')
                             .onChange((value) => {
                                 if (!material.sheenColor) {
                                     material.sheenColor = new THREE.Color();
@@ -2245,7 +2238,7 @@ class ThreeJSApp {
                         }, 100);
                         
                         matFolder.add(material, 'bumpScale', -20, 20, 0.1)
-                            .name('Bump Scale')
+                            .name('🏔️ Bump Scale')
                             .onChange(() => material.needsUpdate = true);
                     }
                 }
@@ -2267,29 +2260,29 @@ class ThreeJSApp {
                         'Custom': THREE.CustomBlending
                     };
                     matFolder.add(material, 'blending', blendingOptions)
-                        .name('Blending Mode')
+                        .name('🎨 Blending Mode')
                         .onChange(() => material.needsUpdate = true);
                     
                     // Depth controls (critical for transparency)
                     matFolder.add(material, 'depthWrite')
-                        .name('Depth Write')
+                        .name('✍️ Depth Write')
                         .onChange(() => material.needsUpdate = true);
                     
                     matFolder.add(material, 'depthTest')
-                        .name('Depth Test')
+                        .name('👁️ Depth Test')
                         .onChange(() => material.needsUpdate = true);
                     
                     // Transparency controls
                     matFolder.add(material, 'opacity', 0, 1, 0.01)
-                        .name('Opacity')
+                        .name('👻 Opacity')
                         .onChange(() => material.needsUpdate = true);
                     
                     matFolder.add(material, 'transparent')
-                        .name('Transparent')
+                        .name('🌫️ Transparent')
                         .onChange(() => material.needsUpdate = true);
                     
                     matFolder.add(material, 'alphaTest', 0, 1, 0.01)
-                        .name('Alpha Test')
+                        .name('🔍 Alpha Test')
                         .onChange(() => material.needsUpdate = true);
                     
                     // Glass-like transmission (if MeshPhysicalMaterial)
@@ -2299,15 +2292,15 @@ class ThreeJSApp {
                             .onChange(() => material.needsUpdate = true);
                         
                         matFolder.add(material, 'thickness', 0, 5, 0.01)
-                            .name('Thickness')
+                            .name('📏 Thickness')
                             .onChange(() => material.needsUpdate = true);
                         
                         matFolder.add(material, 'ior', 1, 2.333, 0.01)
-                            .name('IOR (Refraction)')
+                            .name('💎 IOR (Refraction)')
                             .onChange(() => material.needsUpdate = true);
                         
                         matFolder.add(material, 'envMapIntensity', 0, 3, 0.01)
-                            .name('Env Map Intensity')
+                            .name('🌍 Env Map Intensity')
                             .onChange(() => material.needsUpdate = true);
                     }
                     
@@ -2330,7 +2323,7 @@ class ThreeJSApp {
                     };
                     
                     matFolder.add(shadowParams, 'castShadow')
-                        .name('Cast Shadows')
+                        .name('☀️ Cast Shadows')
                         .onChange((value) => shadowParams.setCastShadow(value));
                     
                     // Shadow blur control (affects global directional light shadow softness)
@@ -2345,7 +2338,7 @@ class ThreeJSApp {
                     };
                     
                     matFolder.add(shadowBlurParams, 'shadowBlur', 0, 10, 0.1)
-                        .name('Shadow Blur')
+                        .name('☀️ Shadow Blur')
                         .onChange((value) => shadowBlurParams.setShadowBlur(value));
                 }
                 
@@ -2427,7 +2420,7 @@ class ThreeJSApp {
                     }
                 };
                 
-                matFolder.add(copyParams, 'copySettings').name('Copy Settings');
+                matFolder.add(copyParams, 'copySettings').name('📋 Copy Settings');
             });
             
             // this.materialsFolder.open();
@@ -2567,7 +2560,7 @@ class ThreeJSApp {
     }
 
     setupScreenshotGUI() {
-        const screenshotFolder = this.trackFolder(this.gui.addFolder('Screenshot'));
+        const screenshotFolder = this.trackFolder(this.gui.addFolder('📸 Screenshot'));
         const settings = this.screenshotManager.settings;
         const presets = this.screenshotManager.getResolutionPresets();
         
@@ -2593,7 +2586,7 @@ class ThreeJSApp {
             }
         };
         
-        screenshotFolder.add(quickActions, 'quickShot').name('Take Screenshot');
+        screenshotFolder.add(quickActions, 'quickShot').name('📷 Take Screenshot');
         screenshotFolder.add(quickActions, 'transparentShot').name('🫥 Transparent Background');
         
         // Settings folder
@@ -2700,12 +2693,12 @@ class ThreeJSApp {
             story: () => this.setQuickResolution('1080x1920')
         };
         
-        commonFolder.add(quickPresets, 'hd').name('HD (720p)');
-        commonFolder.add(quickPresets, 'fhd').name('Full HD (1080p)');
-        commonFolder.add(quickPresets, 'qhd').name('2K (1440p)');
-        commonFolder.add(quickPresets, 'uhd').name('4K (2160p)');
-        commonFolder.add(quickPresets, 'square').name('Square (1:1)');
-        commonFolder.add(quickPresets, 'story').name('Story (9:16)');
+        commonFolder.add(quickPresets, 'hd').name('📱 HD (720p)');
+        commonFolder.add(quickPresets, 'fhd').name('🖥️ Full HD (1080p)');
+        commonFolder.add(quickPresets, 'qhd').name('🖨️ 2K (1440p)');
+        commonFolder.add(quickPresets, 'uhd').name('📺 4K (2160p)');
+        commonFolder.add(quickPresets, 'square').name('📷 Square (1:1)');
+        commonFolder.add(quickPresets, 'story').name('📱 Story (9:16)');
         
         // Advanced settings
         const advancedFolder = this.trackFolder(screenshotFolder.addFolder('Advanced'));
@@ -2725,8 +2718,8 @@ class ThreeJSApp {
             }
         };
         
-        advancedFolder.add(advancedActions, 'currentViewport').name('Use Current Viewport');
-        advancedFolder.add(advancedActions, 'copySettings').name('Copy Screenshot Settings');
+        advancedFolder.add(advancedActions, 'currentViewport').name('📐 Use Current Viewport');
+        advancedFolder.add(advancedActions, 'copySettings').name('📋 Copy Screenshot Settings');
         
         // Initialize display
         updateResolutionDisplay();
@@ -2738,7 +2731,7 @@ class ThreeJSApp {
     }
     
     setupMultiThumbnailMenuGUI() {
-        const thumbnailFolder = this.trackFolder(this.gui.addFolder('Multi-Thumbnail Menu'));
+        const thumbnailFolder = this.trackFolder(this.gui.addFolder('🖼️ Multi-Thumbnail Menu'));
         const settings = this.multiThumbnailMenuSystem.settings;
         
         // Width percentage control
@@ -2782,7 +2775,7 @@ class ThreeJSApp {
             });
 
         // Glow controls folder
-        const glowFolder = thumbnailFolder.addFolder('Active Button Glow');
+        const glowFolder = thumbnailFolder.addFolder('✨ Active Button Glow');
         
         // Glow color
         glowFolder.addColor(settings, 'glowColor')
@@ -2811,7 +2804,7 @@ class ThreeJSApp {
         // Copy settings button
         thumbnailFolder.add({
             copySettings: () => this.multiThumbnailMenuSystem.copySettingsToClipboard()
-        }, 'copySettings').name('Copy Settings');
+        }, 'copySettings').name('📋 Copy Settings');
         
         // Right menu visibility toggle
         const rightMenuToggle = {
@@ -2830,7 +2823,7 @@ class ThreeJSApp {
         // Copy right menu settings button
         thumbnailFolder.add({
             copyRightMenuSettings: () => this.rightMenuSystem.copySettingsToClipboard()
-        }, 'copyRightMenuSettings').name('Copy Right Menu Settings');
+        }, 'copyRightMenuSettings').name('📋 Copy Right Menu Settings');
         
         // Apply initial styles
         setTimeout(() => this.multiThumbnailMenuSystem.updateAllSettings(settings), 100);
@@ -2999,7 +2992,7 @@ class ThreeJSApp {
     }
 
     setupSimpleScreenshotGUI() {
-        const screenshotFolder = this.trackFolder(this.gui.addFolder('Screenshot'));
+        const screenshotFolder = this.trackFolder(this.gui.addFolder('📸 Screenshot'));
         
         // Custom screenshot settings
         const customFolder = this.trackFolder(screenshotFolder.addFolder('Custom Settings'));
@@ -3043,7 +3036,7 @@ class ThreeJSApp {
                     this.updateScreenshotFrame(customSettings.width, value);
                 }
             });
-        customFolder.add(customSettings, 'showFrame').name('Show Frame Preview')
+        customFolder.add(customSettings, 'showFrame').name('📐 Show Frame Preview')
             .onChange(value => {
                 this.toggleScreenshotFrame(value);
                 if (value) {
@@ -3070,7 +3063,7 @@ class ThreeJSApp {
                     console.error(`❌ Custom screenshot failed: ${result.error}`);
                 }
             }
-        }, 'customShot').name('Take Custom Screenshot');
+        }, 'customShot').name('📸 Take Custom Screenshot');
 
         // Start collapsed
         // customFolder.open();
