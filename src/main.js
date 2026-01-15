@@ -129,13 +129,16 @@ class ThreeJSApp {
         }, 100);
         
         // Initialize thumbnail menu
+        console.log('🚀 CREATING MultiThumbnailMenuSystem...');
         this.multiThumbnailMenuSystem = new MultiThumbnailMenuSystem();
+        console.log('✅ MultiThumbnailMenuSystem created:', this.multiThumbnailMenuSystem);
         
         // Initialize right side menu
         this.rightMenuSystem = new RightMenuSystem();
         
         // Make it globally accessible for information tab updates
         window.menuManager = this.multiThumbnailMenuSystem;
+        console.log('✅ window.menuManager set:', window.menuManager);
         window.rightMenuManager = this.rightMenuSystem;
         
         // Listen for thumbnail selection events

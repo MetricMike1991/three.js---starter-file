@@ -288,12 +288,17 @@ class ThumbnailDropdownMenu {
         }
     }
         initializeElements() {
+        console.log(`🔍 initializeElements for ${this.menuType}`);
         this.toggleBtn = document.getElementById(`${this.menuType}Toggle`);
         this.dropdown = document.getElementById(`${this.menuType}Dropdown`);
         this.scrollContainer = document.getElementById(`${this.menuType}Container`);
         this.thumbnailGrid = document.getElementById(`${this.menuType}Grid`);
         this.scrollUpBtn = document.getElementById(`${this.menuType}ScrollUp`);
         this.scrollDownBtn = document.getElementById(`${this.menuType}ScrollDown`);
+        console.log(`🔍 Elements found - toggleBtn:`, this.toggleBtn, `dropdown:`, this.dropdown);
+        if (!this.toggleBtn) {
+            console.error(`❌ BUTTON NOT FOUND: ${this.menuType}Toggle`);
+        }
     }
     
     async loadExerciseData() {
@@ -777,10 +782,23 @@ class ThumbnailDropdownMenu {
     
     setupEventListeners() {
         // Toggle menu
-        this.toggleBtn.addEventListener('click', (e) => {
+        console.log(`🎯 Setting up click listener for ${this.menuType}, button:`, this.toggleBtn);
+        console.log(`🎯 Button parent:`, this.toggleBtn?.parentElement);
+        console.log(`🎯 Button is in flexframe container:`, this.toggleBtn?.closest('#flexframe-viewer-container') !== null);
+        
+        // Use only onclick handler (addEventListener was causing double-toggle)
+        this.toggleBtn.onclick = (e) => {
+            console.log(`💥 CLICK HANDLER FIRED for ${this.menuType}!`);
             e.stopPropagation();
             this.toggleMenu();
-        });
+        };
+        
+        // Add global click detector for debugging
+        document.addEventListener('click', (e) => {
+            if (e.target === this.toggleBtn || this.toggleBtn.contains(e.target)) {
+                console.log(`🌍 DOCUMENT CLICK detected on ${this.menuType} button, target:`, e.target);
+            }
+        }, true); // Use capture phase
 
         // Menus stay open until another button is pressed (no click outside to close)
         // Removed click outside listener to prevent accidental closing during drag operations
@@ -1055,6 +1073,7 @@ class ThumbnailDropdownMenu {
     }
 
     toggleMenu() {
+        console.log(`🔄 toggleMenu called for ${this.menuType}, isOpen:`, this.isOpen);
         if (this.isOpen) {
             this.closeMenu();
         } else {
@@ -1063,6 +1082,7 @@ class ThumbnailDropdownMenu {
     }
 
     openMenu() {
+        console.log(`🟢 openMenu called for ${this.menuType}`);
         // Set isOpen flag first to prevent this menu from being closed by the closeAll event
         this.isOpen = true;
         
@@ -1082,6 +1102,7 @@ class ThumbnailDropdownMenu {
         }
 
         this.dropdown.classList.add('show');
+        console.log(`✅ Added .show class to ${this.menuType} dropdown, classes:`, this.dropdown.className);
         this.toggleBtn.classList.add('active');
 
         // Set cursor to grab for scroll container
@@ -1231,6 +1252,7 @@ class ThumbnailDropdownMenu {
 
 export class MultiThumbnailMenuSystem {
     constructor() {
+        console.log('🎬 MultiThumbnailMenuSystem constructor started');
         this.menus = {};
         this.selectedMuscle = null; // Track selected muscle for filtering
         this.selectedEquipment = null; // Track selected equipment for filtering
@@ -1246,16 +1268,25 @@ export class MultiThumbnailMenuSystem {
             glowSize: 20
         };
         
+        console.log('📋 Calling initializeMenus...');
         this.initializeMenus();
+        console.log('🎧 Calling setupGlobalListeners...');
         this.setupGlobalListeners();
+        console.log('✅ MultiThumbnailMenuSystem constructor complete');
     }
     
     initializeMenus() {
+        console.log('🏗️ initializeMenus started');
         // Create all menu instances
+        console.log('Creating exercises menu...');
         this.menus.exercises = new ThumbnailDropdownMenu('exercises');
+        console.log('Creating muscles menu...');
         this.menus.muscles = new ThumbnailDropdownMenu('muscles');
+        console.log('Creating equipment menu...');
         this.menus.equipment = new ThumbnailDropdownMenu('equipment');
+        console.log('Creating search menu...');
         this.menus.search = new ThumbnailDropdownMenu('search');
+        console.log('✅ All 4 menus created:', this.menus);
     }
     
     setupGlobalListeners() {
