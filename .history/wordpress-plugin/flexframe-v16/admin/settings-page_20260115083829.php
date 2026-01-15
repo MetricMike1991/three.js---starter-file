@@ -30,11 +30,7 @@ add_action('admin_menu', 'flexframe_add_admin_menu');
 function flexframe_register_settings() {
     register_setting('flexframe_settings_group', 'flexframe_logo_url');
     register_setting('flexframe_settings_group', 'flexframe_logo_threshold');
-    register_setting('flexframe_settings_group', 'flexframe_wp_skin_preset', array(
-        'type' => 'boolean',
-        'sanitize_callback' => 'rest_sanitize_boolean',
-        'default' => false
-    ));
+    register_setting('flexframe_settings_group', 'flexframe_wp_skin_preset');
 }
 add_action('admin_init', 'flexframe_register_settings');
 
@@ -165,7 +161,7 @@ function flexframe_settings_page() {
                                     id="flexframe_wp_skin_preset" 
                                     name="flexframe_wp_skin_preset" 
                                     value="1"
-                                    <?php checked($wp_skin_preset, true); ?>
+                                    <?php checked($wp_skin_preset, '1'); ?>
                                 />
                                 <?php _e('Automatically apply WP preset to SKIN material on load', 'flexframe-viewer'); ?>
                             </label>

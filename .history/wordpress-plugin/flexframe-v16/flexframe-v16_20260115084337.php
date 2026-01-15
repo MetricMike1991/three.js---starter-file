@@ -42,7 +42,6 @@ function flexframe_enqueue_assets() {
         
         // Add inline CSS for WordPress theme isolation
         $isolation_css = '
-            /* FlexFrame CSS Isolation from WordPress Theme */
             #flexframe-viewer-container * {
                 box-sizing: border-box;
                 -webkit-font-smoothing: antialiased;
@@ -51,40 +50,6 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container button,
             #flexframe-viewer-container input {
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
-            }
-            
-            /* Prevent WordPress from breaking lil-gui elements */
-            .lil-gui input[type="range"] {
-                -webkit-appearance: slider-horizontal !important;
-                height: auto !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                border: none !important;
-                background: transparent !important;
-            }
-            .lil-gui select {
-                height: auto !important;
-                padding: 0 0 0 4px !important;
-                margin: 0 !important;
-                line-height: normal !important;
-            }
-            .lil-gui input[type="text"],
-            .lil-gui input[type="number"] {
-                height: auto !important;
-                padding: 4px !important;
-                margin: 0 !important;
-                line-height: normal !important;
-                border-radius: 0 !important;
-            }
-            .lil-gui button {
-                height: auto !important;
-                padding: 4px !important;
-                margin: 0 !important;
-                line-height: normal !important;
-                border: 0 !important;
-                border-radius: 0 !important;
-                text-transform: none !important;
-                letter-spacing: normal !important;
             }
         ';
         wp_add_inline_style('flexframe-viewer-style', $isolation_css);

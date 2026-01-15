@@ -53,38 +53,42 @@ function flexframe_enqueue_assets() {
                 font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
             }
             
-            /* Prevent WordPress from breaking lil-gui elements */
+            /* Isolate lil-gui from WordPress CSS */
+            .lil-gui, .lil-gui * {
+                all: revert !important;
+                box-sizing: border-box !important;
+            }
+            .lil-gui {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif !important;
+                font-size: 11px !important;
+                line-height: 1.5 !important;
+            }
             .lil-gui input[type="range"] {
-                -webkit-appearance: slider-horizontal !important;
-                height: auto !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                border: none !important;
+                -webkit-appearance: none !important;
+                appearance: none !important;
                 background: transparent !important;
+                width: 100% !important;
             }
             .lil-gui select {
-                height: auto !important;
-                padding: 0 0 0 4px !important;
-                margin: 0 !important;
-                line-height: normal !important;
-            }
-            .lil-gui input[type="text"],
-            .lil-gui input[type="number"] {
-                height: auto !important;
-                padding: 4px !important;
-                margin: 0 !important;
-                line-height: normal !important;
-                border-radius: 0 !important;
-            }
-            .lil-gui button {
-                height: auto !important;
-                padding: 4px !important;
-                margin: 0 !important;
-                line-height: normal !important;
+                -webkit-appearance: none !important;
+                -moz-appearance: none !important;
+                appearance: none !important;
+                background: var(--widget-color) !important;
                 border: 0 !important;
                 border-radius: 0 !important;
-                text-transform: none !important;
-                letter-spacing: normal !important;
+                padding: 4px !important;
+                color: var(--text-color) !important;
+                cursor: pointer !important;
+            }
+            .lil-gui button {
+                border: 0 !important;
+                background: var(--widget-color) !important;
+                color: var(--text-color) !important;
+                cursor: pointer !important;
+                padding: 4px !important;
+            }
+            .lil-gui button:hover {
+                background: var(--focus-color) !important;
             }
         ';
         wp_add_inline_style('flexframe-viewer-style', $isolation_css);

@@ -30,11 +30,7 @@ add_action('admin_menu', 'flexframe_add_admin_menu');
 function flexframe_register_settings() {
     register_setting('flexframe_settings_group', 'flexframe_logo_url');
     register_setting('flexframe_settings_group', 'flexframe_logo_threshold');
-    register_setting('flexframe_settings_group', 'flexframe_wp_skin_preset', array(
-        'type' => 'boolean',
-        'sanitize_callback' => 'rest_sanitize_boolean',
-        'default' => false
-    ));
+    register_setting('flexframe_settings_group', 'flexframe_wp_skin_preset');
 }
 add_action('admin_init', 'flexframe_register_settings');
 
@@ -80,7 +76,6 @@ function flexframe_settings_page() {
     // Get current values
     $logo_url = get_option('flexframe_logo_url', '');
     $logo_threshold = get_option('flexframe_logo_threshold', 0.95);
-    $wp_skin_preset = get_option('flexframe_wp_skin_preset', false);
     
     ?>
     <div class="wrap">
@@ -149,28 +144,6 @@ function flexframe_settings_page() {
                             />
                             <p class="description">
                                 <?php _e('Adjust this value (0-1) to fix white fringe around transparent logo edges. Default: 0.95', 'flexframe-viewer'); ?>
-                            </p>
-                        </td>
-                    </tr>
-                    
-                    <!-- WP Skin Preset Section -->
-                    <tr>
-                        <th scope="row">
-                            <label for="flexframe_wp_skin_preset"><?php _e('Auto-Apply WP Skin Preset', 'flexframe-viewer'); ?></label>
-                        </th>
-                        <td>
-                            <label>
-                                <input 
-                                    type="checkbox" 
-                                    id="flexframe_wp_skin_preset" 
-                                    name="flexframe_wp_skin_preset" 
-                                    value="1"
-                                    <?php checked($wp_skin_preset, true); ?>
-                                />
-                                <?php _e('Automatically apply WP preset to SKIN material on load', 'flexframe-viewer'); ?>
-                            </label>
-                            <p class="description">
-                                <?php _e('When enabled, the WP skin preset (translucent blue material) will be automatically applied to all SKIN materials when models load.', 'flexframe-viewer'); ?>
                             </p>
                         </td>
                     </tr>

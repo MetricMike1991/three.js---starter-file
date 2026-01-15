@@ -1711,35 +1711,28 @@ class ThreeJSApp {
                                         } else {
                                             console.log(`Converting/Updating ${mat.name} to MeshPhysicalMaterial for advanced transparency`);
                                             
-                                            // Check if WP Preset should be applied
-                                            const useWPPreset = window.flexframeSettings && window.flexframeSettings.wpSkinPreset;
-                                            console.log('WP Preset enabled:', useWPPreset);
-                                            
                                             // Create new MeshPhysicalMaterial with custom refraction settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: useWPPreset ? new THREE.Color(0xd3e3f8) : new THREE.Color(0x006eff),
+                                                color: new THREE.Color(0x006eff),
                                                 map: mat.map,
                                                 normalMap: mat.normalMap,
-                                                roughness: useWPPreset ? 0.54 : 0.51,
+                                                roughness: 0.51,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: useWPPreset ? 1.51 : 1,
+                                                emissiveIntensity: 1,
                                                 emissiveMap: mat.emissiveMap,
-                                                opacity: useWPPreset ? 0.57 : 0.53,
+                                                opacity: 0.53,
                                                 transparent: true,
-                                                side: useWPPreset ? THREE.DoubleSide : THREE.FrontSide,
+                                                side: THREE.FrontSide,
                                                 depthWrite: false,
                                                 depthTest: true,
-                                                blending: useWPPreset ? THREE.NormalBlending : THREE.CustomBlending,
+                                                blending: THREE.CustomBlending,
                                                 alphaTest: 0,
                                                 // Refraction/transmission properties
-                                                transmission: useWPPreset ? 1 : 0.8,
-                                                thickness: useWPPreset ? 1.25 : 0,
-                                                ior: useWPPreset ? 1 : 1.45,
-                                                envMapIntensity: useWPPreset ? 1.58 : 2.29,
-                                                sheen: 0,
-                                                sheenRoughness: 1,
-                                                sheenColor: new THREE.Color(0x000000)
+                                                transmission: 0.8,
+                                                thickness: 0,
+                                                ior: 1.45,
+                                                envMapIntensity: 2.29
                                             });
                                             
                                             // Copy the name
@@ -1752,7 +1745,7 @@ class ThreeJSApp {
                                             }
                                             
                                             // Log the applied settings
-                                            console.log(`✅ ${mat.name} Material Settings Applied${useWPPreset ? ' (WP Preset)' : ''}:`, {
+                                            console.log(`✅ ${mat.name} Material Settings Applied:`, {
                                                 color: '#' + physicalMat.color.getHexString(),
                                                 opacity: physicalMat.opacity,
                                                 transmission: physicalMat.transmission,
@@ -2061,58 +2054,44 @@ class ThreeJSApp {
                 // Ensure sub-folders are closed by default
                 matFolder.close();
                 
-                // Add material presets for SKIN material (case-insensitive check)
-                if (name.toUpperCase() === 'SKIN') {
-                    console.log('WP Preset: Found SKIN material, checking settings...');
-                    console.log('flexframeSettings:', window.flexframeSettings);
-                    
-                    const applyWPPreset = () => {
-                        console.log('Applying WP Preset to SKIN material');
-                        material.color.set('#d3e3f8');
-                        material.opacity = 0.57;
-                        material.transparent = true;
-                        material.alphaTest = 0;
-                        material.side = THREE.DoubleSide;
-                        material.depthWrite = false;
-                        material.metalness = 0;
-                        material.roughness = 0.54;
-                        material.emissive.set('#000000');
-                        material.emissiveIntensity = 1.51;
-                        material.sheen = 0;
-                        material.sheenRoughness = 1;
-                        material.sheenColor.set('#000000');
-                        material.bumpScale = 1;
-                        material.transmission = 1;
-                        material.thickness = 1.25;
-                        material.ior = 1;
-                        material.envMapIntensity = 1.58;
-                        material.blending = THREE.NormalBlending;
-                        material.depthTest = true;
-                        material.needsUpdate = true;
-                        
-                        // Update GUI to reflect changes
-                        if (this.gui) {
-                            setTimeout(() => {
-                                this.gui.controllersRecursive().forEach(controller => {
-                                    controller.updateDisplay();
-                                });
-                            }, 100);
+                // Add material presets for SKIN material
+                if (name === 'SKIN') {
+                    const presets = {
+                        'WP': () => {
+                            material.color.set('#d3e3f8');
+                            material.opacity = 0.57;
+                            material.transparent = true;
+                            material.alphaTest = 0;
+                            material.side = THREE.DoubleSide;
+                            material.depthWrite = false;
+                            material.metalness = 0;
+                            material.roughness = 0.54;
+                            material.emissive.set('#000000');
+                            material.emissiveIntensity = 1.51;
+                            material.sheen = 0;
+                            material.sheenRoughness = 1;
+                            material.sheenColor.set('#000000');
+                            material.bumpScale = 1;
+                            material.transmission = 1;
+                            material.thickness = 1.25;
+                            material.ior = 1;
+                            material.envMapIntensity = 1.58;
+                            material.blending = THREE.NormalBlending;
+                            material.depthTest = true;
+                            material.needsUpdate = true;
+                            
+                            // Update GUI to reflect changes
+                            if (this.gui) {
+                                setTimeout(() => {
+                                    this.gui.controllersRecursive().forEach(controller => {
+                                        controller.updateDisplay();
+                                    });
+                                }, 100);
+                            }
                         }
                     };
                     
-                    const presets = {
-                        'WP': applyWPPreset
-                    };
-                    
                     matFolder.add(presets, 'WP').name('Apply WP Preset');
-                    
-                    // Auto-apply if WordPress setting is enabled
-                    if (window.flexframeSettings && window.flexframeSettings.wpSkinPreset) {
-                        console.log('WP Preset setting is enabled, applying...');
-                        applyWPPreset();
-                    } else {
-                        console.log('WP Preset setting is disabled or not found');
-                    }
                 }
                 
                 // Add texture thumbnail and URL if custom texture exists for this material

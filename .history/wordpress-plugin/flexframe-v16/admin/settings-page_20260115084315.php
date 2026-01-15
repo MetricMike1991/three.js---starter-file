@@ -165,7 +165,7 @@ function flexframe_settings_page() {
                                     id="flexframe_wp_skin_preset" 
                                     name="flexframe_wp_skin_preset" 
                                     value="1"
-                                    <?php checked($wp_skin_preset, true); ?>
+                                    <?php checked($wp_skin_preset, '1'); ?>
                                 />
                                 <?php _e('Automatically apply WP preset to SKIN material on load', 'flexframe-viewer'); ?>
                             </label>
