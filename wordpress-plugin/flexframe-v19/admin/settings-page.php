@@ -30,10 +30,10 @@ add_action('admin_menu', 'flexframe_add_admin_menu');
 function flexframe_register_settings() {
     register_setting('flexframe_settings_group', 'flexframe_logo_url');
     register_setting('flexframe_settings_group', 'flexframe_logo_threshold');
-    register_setting('flexframe_settings_group', 'flexframe_wp_skin_preset', array(
-        'type' => 'boolean',
-        'sanitize_callback' => 'rest_sanitize_boolean',
-        'default' => false
+    register_setting('flexframe_settings_group', 'flexframe_material_preset', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'none'
     ));
 }
 add_action('admin_init', 'flexframe_register_settings');
@@ -80,7 +80,7 @@ function flexframe_settings_page() {
     // Get current values
     $logo_url = get_option('flexframe_logo_url', '');
     $logo_threshold = get_option('flexframe_logo_threshold', 0.95);
-    $wp_skin_preset = get_option('flexframe_wp_skin_preset', false);
+    $material_preset = get_option('flexframe_material_preset', 'none');
     
     ?>
     <div class="wrap">
@@ -153,24 +153,29 @@ function flexframe_settings_page() {
                         </td>
                     </tr>
                     
-                    <!-- WP Skin Preset Section -->
+                    <!-- Material Preset Section -->
                     <tr>
                         <th scope="row">
-                            <label for="flexframe_wp_skin_preset"><?php _e('Auto-Apply WP Skin Preset', 'flexframe-viewer'); ?></label>
+                            <label for="flexframe_material_preset"><?php _e('Auto-Apply Material Preset', 'flexframe-viewer'); ?></label>
                         </th>
                         <td>
-                            <label>
-                                <input 
-                                    type="checkbox" 
-                                    id="flexframe_wp_skin_preset" 
-                                    name="flexframe_wp_skin_preset" 
-                                    value="1"
-                                    <?php checked($wp_skin_preset, true); ?>
-                                />
-                                <?php _e('Automatically apply WP preset to SKIN material on load', 'flexframe-viewer'); ?>
-                            </label>
+                            <select 
+                                id="flexframe_material_preset" 
+                                name="flexframe_material_preset"
+                                class="regular-text"
+                            >
+                                <option value="none" <?php selected($material_preset, 'none'); ?>>
+                                    <?php _e('None - Use model defaults', 'flexframe-viewer'); ?>
+                                </option>
+                                <option value="preset1" <?php selected($material_preset, 'preset1'); ?>>
+                                    <?php _e('Preset 1 - Refraction Skin', 'flexframe-viewer'); ?>
+                                </option>
+                                <option value="wp_preset" <?php selected($material_preset, 'wp_preset'); ?>>
+                                    <?php _e('WP Preset - Translucent Blue', 'flexframe-viewer'); ?>
+                                </option>
+                            </select>
                             <p class="description">
-                                <?php _e('When enabled, the WP skin preset (translucent blue material) will be automatically applied to all SKIN materials when models load.', 'flexframe-viewer'); ?>
+                                <?php _e('Select a material preset to automatically apply to SKIN materials when models load.', 'flexframe-viewer'); ?>
                             </p>
                         </td>
                     </tr>

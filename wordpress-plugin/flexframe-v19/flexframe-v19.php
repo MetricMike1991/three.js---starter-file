@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame Exercise Viewer
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.12.0
+ * Version: 1.21.0
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.12.0');
+define('FLEXFRAME_VERSION', '1.21.0');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -194,12 +194,12 @@ function flexframe_enqueue_assets() {
         // Pass WordPress settings to JavaScript (must be after register, before enqueue)
         $logo_url = get_option('flexframe_logo_url', '');
         $logo_threshold = get_option('flexframe_logo_threshold', 0.95);
-        $wp_skin_preset = get_option('flexframe_wp_skin_preset', false);
+        $material_preset = get_option('flexframe_material_preset', 'none');
         
         $settings_data = array(
             'logoUrl' => $logo_url,
             'logoThreshold' => $logo_threshold,
-            'wpSkinPreset' => (bool) $wp_skin_preset,
+            'materialPreset' => $material_preset,
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'debug' => FLEXFRAME_DEBUG,
             'version' => FLEXFRAME_VERSION
