@@ -126,7 +126,7 @@
     "id": "bench_press",
     "name": "Barbell Bench Press",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Bench%20Press_2026-01-12T10-06-52.webp",
-    "configUrl": "https://FlexFrame.b-cdn.net/Testing/bench_press.json",
+    "configUrl": "./data/exercise-configs/bench_press.json",
     "muscleGroup": [
       "Chest",
       "Triceps",

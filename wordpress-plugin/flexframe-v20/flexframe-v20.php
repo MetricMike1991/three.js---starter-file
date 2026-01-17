@@ -1,9 +1,9 @@
 <?php
 /**
- * Plugin Name: FlexFrame Exercise Viewer
+ * Plugin Name: FlexFrame v24
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.22.1
+ * Version: 1.24.0
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.22.1');
+define('FLEXFRAME_VERSION', '1.24.0');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -185,7 +185,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/js/main.bundle.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-BPba1a6Q.js',
             array(),
             FLEXFRAME_VERSION,
             true
