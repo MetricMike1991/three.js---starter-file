@@ -303,8 +303,11 @@ class ThumbnailDropdownMenu {
     
     async loadExerciseData() {
         try {
-            const response = await fetch(getAssetUrl('data/exercises.json'));
+            const cdnUrl = 'https://FlexFrame.b-cdn.net/Exercise%20Catalogue%20For%20Menus%20%26%20Thumbnails/exercises.json';
+            const cacheBuster = `?t=${Date.now()}`;
+            const response = await fetch(cdnUrl + cacheBuster);
             this.allExercises = await response.json();
+            console.log('✅ Loaded exercises from CDN:', cdnUrl);
             this.filterDataForMenu();
             this.setupEventListeners();
             

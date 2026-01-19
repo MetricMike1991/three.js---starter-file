@@ -431,21 +431,48 @@ class ThreeJSApp {
     }
     
     gatherModelSpecificSettings() {
-        // Gather only settings relevant to the model presentation
-        return {
-            model: window.model ? {
-                position: window.model.position.toArray(),
-                rotation: [window.model.rotation.x, window.model.rotation.y, window.model.rotation.z],
-                scale: window.model.scale.toArray()
-            } : { position: [0, -0.02, 0], rotation: [0, 0, 0], scale: [1, 1, 1] },
-            camera: this.cameraManager.getSettings(),
-            lighting: this.lightingSystem.getSettings(),
-            ground: this.groundParams,
-            background: this.backgroundParams,
-            dustParticles: this.particleSystem.getSettings(),
-            playerStyling: this.playerStyleParams,
-            loader: this.loaderParams
-        };
+        // Gather simplified config file data for the current model
+        const config = {};
+        
+        // Add exerciseId if available from current config
+        if (this.currentConfig && this.currentConfig.exerciseId) {
+            config.exerciseId = this.currentConfig.exerciseId;
+        }
+        
+        // Add model URL if available
+        if (this.currentConfig) {
+            if (this.currentConfig.modelUrlSQ) {
+                config.modelUrlSQ = this.currentConfig.modelUrlSQ;
+            }
+            if (this.currentConfig.modelUrlHQ) {
+                config.modelUrlHQ = this.currentConfig.modelUrlHQ;
+            }
+            if (this.currentConfig.modelUrl && !config.modelUrlSQ) {
+                config.modelUrl = this.currentConfig.modelUrl;
+            }
+        }
+        
+        // Model transform
+        config.model = window.model ? {
+            position: window.model.position.toArray(),
+            rotation: [window.model.rotation.x, window.model.rotation.y, window.model.rotation.z],
+            scale: window.model.scale.toArray()
+        } : { position: [0, -0.02, 0], rotation: [0, 0, 0], scale: [1, 1, 1] };
+        
+        // Camera settings (model-specific viewing angle)
+        config.camera = this.cameraManager.getSettings();
+        
+        // Custom textures if available
+        if (this.currentConfig && this.currentConfig.customTextures) {
+            config.customTextures = this.currentConfig.customTextures;
+        }
+        
+        // Right menu tabs if available
+        if (this.currentConfig && this.currentConfig.rightMenuTabs) {
+            config.rightMenuTabs = this.currentConfig.rightMenuTabs;
+        }
+        
+        return config;
     }
 
     setupGUIStyles() {
@@ -1097,23 +1124,7 @@ class ThreeJSApp {
         // momentumFolder.open();
         // zoomFolder.open();
         // fovFolder.open();
-        
-        // Axis Helper Section
-        const axisFolder = this.trackFolder(cameraFolder.addFolder('Rotation Center Helper'));
-        
-        axisFolder.add({
-            showAxis: this.cameraManager.axisHelperVisible
-        }, 'showAxis').name('Show Axis Helper')
-            .onChange((value) => {
-                this.cameraManager.toggleAxisHelper(value);
-            });
-        
-        axisFolder.add({
-            axisSize: this.cameraManager.axisHelperSize
-        }, 'axisSize', 0.1, 2, 0.1).name('Axis Size')
-            .onChange((value) => {
-                this.cameraManager.setAxisHelperSize(value);
-            });
+
         
         // Coordinates Section
         const coordsFolder = this.trackFolder(cameraFolder.addFolder('Coordinates'));
@@ -1939,6 +1950,12 @@ class ThreeJSApp {
                     this.applyCustomTextures(model, this.currentConfig.customTextures);
                 }
 
+                // Apply LOGO texture from WordPress settings if available
+                if (window.flexframeSettings && window.flexframeSettings.logoUrl) {
+                    console.log('🎨 Applying LOGO texture from WordPress settings:', window.flexframeSettings.logoUrl);
+                    this.applyLogoTexture(model, window.flexframeSettings.logoUrl, window.flexframeSettings.logoThreshold);
+                }
+
                 model.position.set(0, -0.02, 0);
                 
                 // Apply pending model config if available
@@ -1953,6 +1970,27 @@ class ThreeJSApp {
                         model.scale.set(...this.pendingModelConfig.scale);
                     }
                     this.pendingModelConfig = null; // Clear after applying
+                }
+                
+                // Apply material presets BEFORE adding to scene to prevent flash
+                if (window.flexframeSettings) {
+                    const mode = window.flexframeSettings.materialMode || 'preset';
+                    
+                    if (mode === 'custom' && window.flexframeSettings.skinSettings) {
+                        console.log('Pre-applying Custom SKIN settings...');
+                        this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
+                    } else if (mode === 'preset' && window.flexframeSettings.materialPreset) {
+                        const preset = window.flexframeSettings.materialPreset;
+                        console.log('Material Preset setting:', preset);
+                        
+                        if (preset === 'preset1') {
+                            console.log('Pre-applying Preset 1 (Refraction)...');
+                            this.applyMaterialPreset1();
+                        } else if (preset === 'wp_preset') {
+                            console.log('Pre-applying WP Preset...');
+                            this.applyWPPreset();
+                        }
+                    }
                 }
                 
                 this.sceneManager.getScene().add(model);
@@ -2016,6 +2054,37 @@ class ThreeJSApp {
         this.modelFolder.add(scl, 'y', 0.01, 1, 0.001).name('Scale Y');
         this.modelFolder.add(scl, 'z', 0.01, 1, 0.001).name('Scale Z');
         
+        // Axis Helper Controls
+        this.modelFolder.add({
+            showAxis: this.cameraManager.axisHelperVisible
+        }, 'showAxis').name('Show Axis Helper')
+            .onChange((value) => {
+                this.cameraManager.toggleAxisHelper(value);
+            });
+        
+        this.modelFolder.add({
+            axisSize: this.cameraManager.axisHelperSize
+        }, 'axisSize', 0.1, 2, 0.1).name('Axis Size')
+            .onChange((value) => {
+                this.cameraManager.setAxisHelperSize(value);
+            });
+        
+        // Save Model Config Button
+        this.modelFolder.add({
+            saveModelSettings: async () => {
+                const modelSettings = this.gatherModelSpecificSettings();
+                const settingsStr = JSON.stringify(modelSettings, null, 2);
+                try {
+                    await navigator.clipboard.writeText(settingsStr);
+                    alert('Model config copied to clipboard!');
+                    console.log('Model config saved:', modelSettings);
+                } catch (error) {
+                    console.error('Failed to copy to clipboard:', error);
+                    alert('Failed to copy config to clipboard.');
+                }
+            }
+        }, 'saveModelSettings').name('Save Model Config');
+        
         // this.modelFolder.open();
     }
 
@@ -2064,59 +2133,8 @@ class ThreeJSApp {
                 // Ensure sub-folders are closed by default
                 matFolder.close();
                 
-                // Add material presets for SKIN material (case-insensitive check)
-                if (name.toUpperCase() === 'SKIN') {
-                    console.log('WP Preset: Found SKIN material, checking settings...');
-                    console.log('flexframeSettings:', window.flexframeSettings);
-                    
-                    const applyWPPreset = () => {
-                        console.log('Applying WP Preset to SKIN material');
-                        material.color.set('#d3e3f8');
-                        material.opacity = 0.57;
-                        material.transparent = true;
-                        material.alphaTest = 0;
-                        material.side = THREE.DoubleSide;
-                        material.depthWrite = false;
-                        material.metalness = 0;
-                        material.roughness = 0.54;
-                        material.emissive.set('#000000');
-                        material.emissiveIntensity = 1.51;
-                        material.sheen = 0;
-                        material.sheenRoughness = 1;
-                        material.sheenColor.set('#000000');
-                        material.bumpScale = 1;
-                        material.transmission = 1;
-                        material.thickness = 1.25;
-                        material.ior = 1;
-                        material.envMapIntensity = 1.58;
-                        material.blending = THREE.NormalBlending;
-                        material.depthTest = true;
-                        material.needsUpdate = true;
-                        
-                        // Update GUI to reflect changes
-                        if (this.gui) {
-                            setTimeout(() => {
-                                this.gui.controllersRecursive().forEach(controller => {
-                                    controller.updateDisplay();
-                                });
-                            }, 100);
-                        }
-                    };
-                    
-                    const presets = {
-                        'WP': applyWPPreset
-                    };
-                    
-                    matFolder.add(presets, 'WP').name('Apply WP Preset');
-                    
-                    // Auto-apply if WordPress setting is enabled
-                    if (window.flexframeSettings && window.flexframeSettings.wpSkinPreset) {
-                        console.log('WP Preset setting is enabled, applying...');
-                        applyWPPreset();
-                    } else {
-                        console.log('WP Preset setting is disabled or not found');
-                    }
-                }
+                // Material presets are now pre-applied before adding to scene
+                // No need to apply again here
                 
                 // Add texture thumbnail and URL if custom texture exists for this material
                 if (this.currentConfig?.customTextures && this.currentConfig.customTextures[name]) {
@@ -2178,10 +2196,6 @@ class ThreeJSApp {
                         .name('Color')
                         .onChange((value) => {
                             material.color.set(value);
-                            // If material has a map texture, remove it so pure color shows
-                            if (material.map) {
-                                material.map = null;
-                            }
                             material.needsUpdate = true;
                         });
                 }
@@ -2556,6 +2570,221 @@ class ThreeJSApp {
                 }
             });
         });
+    }
+
+    applyLogoTexture(model, logoUrl, threshold = 0.95) {
+        // Apply LOGO texture to material named "LOGO"
+        const cacheBustedUrl = logoUrl + (logoUrl.includes('?') ? '&' : '?') + `t=${Date.now()}`;
+        
+        model.traverse((child) => {
+            if (child.isMesh && child.material) {
+                const mats = Array.isArray(child.material) ? child.material : [child.material];
+                
+                mats.forEach((mat) => {
+                    if (mat.name === 'LOGO') {
+                        console.log('✅ Found LOGO material - applying texture...');
+                        
+                        // Dispose old texture if exists
+                        if (mat.map) {
+                            mat.map.dispose();
+                        }
+                        
+                        // Load the texture
+                        this.textureLoader.load(cacheBustedUrl, (texture) => {
+                            // Fix white fringe by setting proper color space and filtering
+                            texture.colorSpace = THREE.SRGBColorSpace;
+                            texture.premultiplyAlpha = false;
+                            
+                            // Use better filtering for transparent edges
+                            texture.minFilter = THREE.LinearFilter;
+                            texture.magFilter = THREE.LinearFilter;
+                            texture.generateMipmaps = false;
+                            
+                            // Apply the texture as the main color map
+                            mat.map = texture;
+                            
+                            // Enable transparency
+                            mat.transparent = true;
+                            mat.alphaTest = parseFloat(threshold) || 0.95;
+                            mat.depthWrite = false;
+                            
+                            mat.needsUpdate = true;
+                            console.log('✅ LOGO texture applied successfully');
+                        }, undefined, (error) => {
+                            console.error('❌ Error loading LOGO texture:', error);
+                        });
+                    }
+                });
+            }
+        });
+    }
+    
+    applyMaterialPreset1() {
+        if (!window.model) {
+            console.log('No model loaded');
+            return;
+        }
+        
+        const presets = {
+            'SKELETON': {
+                color: '#ffffff',
+                opacity: 1,
+                transparent: true,
+                metalness: 0,
+                roughness: 0.99,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'SKIN': {
+                color: '#ccdef5',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0,
+                transmission: 1,
+                thickness: 0,
+                ior: 1,
+                attenuationDistance: Infinity,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: false,
+                depthTest: true,
+                envMapIntensity: 2.29
+            },
+            'MUSCLE': {
+                color: '#ffffff',
+                opacity: 1,
+                transparent: true,
+                metalness: 0,
+                roughness: 0,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'CHROME': {
+                color: '#ffffff',
+                opacity: 1,
+                transparent: false,
+                metalness: 0.82,
+                roughness: 0.07,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'METAL': {
+                color: '#151515',
+                opacity: 1,
+                transparent: false,
+                metalness: 0.85,
+                roughness: 0.36,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'PLASTIC': {
+                color: '#ffffff',
+                opacity: 0.8,
+                transparent: true,
+                metalness: 0,
+                roughness: 0.82,
+                transmission: 0.2,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: false,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'COLOR_1': {
+                color: '#ff0000',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.215,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            }
+        };
+        
+        let appliedCount = 0;
+        
+        window.model.traverse((child) => {
+            if (child.isMesh && child.material) {
+                const mats = Array.isArray(child.material) ? child.material : [child.material];
+                
+                mats.forEach(mat => {
+                    if (mat.name && presets[mat.name.toUpperCase()]) {
+                        const preset = presets[mat.name.toUpperCase()];
+                        
+                        // Apply preset values
+                        if (preset.color) mat.color.set(preset.color);
+                        mat.opacity = preset.opacity;
+                        mat.transparent = preset.transparent;
+                        mat.metalness = preset.metalness;
+                        mat.roughness = preset.roughness;
+                        mat.transmission = preset.transmission;
+                        mat.thickness = preset.thickness;
+                        mat.ior = preset.ior;
+                        mat.side = preset.side;
+                        mat.blending = preset.blending;
+                        mat.depthWrite = preset.depthWrite;
+                        mat.depthTest = preset.depthTest;
+                        mat.envMapIntensity = preset.envMapIntensity;
+                        
+                        // Remove color map for SKIN material on LQ/SQ models only
+                        if (mat.name.toUpperCase() === 'SKIN' && this.currentModelQuality === 'SQ') {
+                            mat.map = null;
+                        }
+                        
+                        if (preset.attenuationDistance) {
+                            mat.attenuationDistance = preset.attenuationDistance;
+                        }
+                        
+                        mat.needsUpdate = true;
+                        appliedCount++;
+                    }
+                });
+            }
+        });
+        
+        console.log(`✅ Applied Material Preset 1 to ${appliedCount} materials`);
+        
+        // Update GUI
+        if (this.gui) {
+            setTimeout(() => {
+                this.gui.controllersRecursive().forEach(controller => {
+                    controller.updateDisplay();
+                });
+            }, 100);
+        }
     }
 
     setupEventListeners() {

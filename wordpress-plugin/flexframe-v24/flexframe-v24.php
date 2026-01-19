@@ -167,7 +167,42 @@ function flexframe_enqueue_assets() {
                 opacity: 1 !important;
                 height: auto !important;
                 overflow: visible !important;
-                position: absolute !important;
+                position: fixed !important;
+                top: 150px !important;
+                left: 20px !important;
+                z-index: 10001 !important;
+            }
+            
+            /* Right side menu system */
+            #flexframe-viewer-container .thumbnail-grid-container-right {
+                position: fixed !important;
+                right: -260px !important;
+                z-index: 9999 !important;
+                pointer-events: auto !important;
+                transition: right 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) !important;
+            }
+            #flexframe-viewer-container .thumbnail-grid-container-right:hover,
+            #flexframe-viewer-container .thumbnail-grid-container-right.menu-visible,
+            #flexframe-viewer-container .thumbnail-grid-container-right.menu-active {
+                right: 20px !important;
+            }
+            #flexframe-viewer-container .thumbnail-dropdown-right {
+                pointer-events: auto !important;
+                display: none !important;
+            }
+            /* Force right dropdown visibility when .show class is present */
+            #flexframe-viewer-container .thumbnail-dropdown-right.show,
+            #flexframe-viewer-container .thumbnail-menu-wrapper .thumbnail-dropdown-right.show,
+            .thumbnail-grid-container-right .thumbnail-dropdown-right.show,
+            div.thumbnail-dropdown-right.show {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+                height: auto !important;
+                overflow: visible !important;
+                position: fixed !important;
+                top: 150px !important;
+                right: 20px !important;
                 z-index: 10001 !important;
             }
             
@@ -175,8 +210,14 @@ function flexframe_enqueue_assets() {
             .thumbnail-grid-container {
                 display: none !important;
             }
-            /* Only show the one inside our container */
+            .thumbnail-grid-container-right {
+                display: none !important;
+            }
+            /* Only show the ones inside our container */
             #flexframe-viewer-container .thumbnail-grid-container {
+                display: grid !important;
+            }
+            #flexframe-viewer-container .thumbnail-grid-container-right {
                 display: grid !important;
             }
         ';

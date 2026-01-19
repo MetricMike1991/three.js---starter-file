@@ -1,0 +1,1402 @@
+[
+  {
+    "id": "barbell_back_squat",
+    "name": "Barbell Back Squat",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Stand with your feet shoulder-width apart, holding a barbell across your upper back.",
+      "step2": "Keeping your chest up and core engaged, bend at the knees and lower your body until your thighs are parallel to the ground.",
+      "step3": "Push through your heels to stand back up, keeping the barbell steady on your upper back.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "conventional_deadlift",
+    "name": "Conventional Deadlift",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Stand with your feet hip-width apart, shins close to the barbell, and hands gripping the bar just outside your legs.",
+      "step2": "Keeping your chest up and core engaged, drive through your heels and lift the bar up off the ground, straightening your legs and standing up tall.",
+      "step3": "Lower the bar back down to the ground, keeping it close to your body and hinging at the hips.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "barbell_overhead_press",
+    "name": "Barbell Overhead Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Delts"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Position a barbell on a squat rack at shoulder height. Brace your core throughout the movement.",
+      "step2": "Step underneath the barbell and grab onto it with shoulder-width hand placement.",
+      "step3": "Step back with the barbell.",
+      "step4": "Slowly, push the barbell overhead, focusing the tension in the shoulders. Do not fully lock out the elbows. Pause then slowly bring the barbell back to the starting position."
+    }
+  },
+  {
+    "id": "romanian_deadlift_rdl",
+    "name": "Romanian Deadlift RDL",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Standing tall with a tight core and flat back, hold a barbell or a pair of dumbbells in front of you. Hands should be slightly wider than shoulder-width.",
+      "step2": "Maintaining a tight core and flat back, bend your knees slightly and push your hips back.",
+      "step3": "Keep your arms extended and the weight close to the body. Once you feel the contraction in the back of your legs, slowly return to the starting position.",
+      "step4": ""
+    }
+  },
+  {
+    "id": "barbell_bicep_curl",
+    "name": "Barbell Bicep Curl",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Stand straight holding a barbell with an underhand grip, your hands shoulder width apart and your arms fully extended towards the floor.",
+      "step2": "Keep your elbows close to your sides. Your palms should be facing away from you. This is the start position.",
+      "step3": "Keeping your upper arms stationary, curl the barbell forward and up in a smooth arcing motion while exhaling. Only your forearms should move.",
+      "step4": "Continue upwards until the bar is at shoulder level with your biceps fully contracted. Hold for a count of one while squeezing your biceps. Inhale as you return to the starting position. Repeat."
+    }
+  },
+  {
+    "id": "sumo_deadlift",
+    "name": "The Sumo Deadlift",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Place a loaded barbell in front of you. Position your feet wider than shoulder width. Have your toes pointing out away from the body. Tighten the core and straighten the lower back.",
+      "step2": "Bend at the knees, lowering your hips down above parallel. Take hold of the barbell with an overhand grip at shoulder width.",
+      "step3": "Focusing the tension in your hamstrings, pull the barbell up. Be sure to keep the barbell close to your body.",
+      "step4": "Drive your hips forward at the top of the movement. Slowly reverse the movement and lower the barbell while maintaining a flat back."
+    }
+  },
+  {
+    "id": "dumbbell_lateral_raise",
+    "name": "Dumbbell Lateral Raise",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Delts"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Stand with your back straight, feet shoulder width apart, while holding a dumbbell in each hand with a neutral grip.",
+      "step2": "Hold your arms fully extended by your side, with your palms facing in to your body.",
+      "step3": "Keep your elbows close to your sides. This is the start position.",
+      "step4": "Keeping your arms fully extended and your torso stationary, lift the dumbbells out to your sides and up until they are at shoulder level. Hold for a count of one while squeezing your shoulder muscles. Return to the start position."
+    }
+  },
+  {
+    "id": "dumbbell_bicep_curls",
+    "name": "Dumbbell Bicep Curls",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Holding a dumbbell in each hand, stand with your feet shoulder width apart.",
+      "step2": "Let your arms hang by your side with your palms facing in to the side of your body.",
+      "step3": "Keep your elbows close to your sides.",
+      "step4": "Curl the dumbbells up towards your shoulders. Do not swing your hips to get the weight moving. Continue raising the dumbbells until they are level with your shoulders. Squeeze or flex your bicep and hold for a count of one. Slowly lower the dumbbells to the starting position. Repeat."
+    }
+  },
+  {
+    "id": "alternating_dumbbell_bicep_curl",
+    "name": "Alternating Dumbbell Bicep Curl",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Holding a dumbbell in each hand, stand with your feet shoulder width apart.",
+      "step2": "Let your arms hang by your side with your palms facing in to the side of your body.",
+      "step3": "Keep your elbows close to your sides.",
+      "step4": "Curl the dumbbells up towards your shoulders. Do not swing your hips to get the weight moving. Continue raising the dumbbells until they are level with your shoulders. Squeeze or flex your bicep and hold for a count of one. Slowly lower the dumbbells to the starting position. Repeat. Tip: You can also perform this exercise by alternating between left and right arms."
+    }
+  },
+  {
+    "id": "alternating_hammer_curls",
+    "name": "Alternating Hammer Curls",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Stand straight holding a dumbbell in each hand with a neutral grip.",
+      "step2": "Keep your arms fully extended with your palms facing in to your sides.",
+      "step3": "Keep your elbows tucked in to your sides. This is the start position.",
+      "step4": "Keeping your upper arm stationary, exhale and curl one of the dumbbells up towards your shoulders. Continue raising the dumbbell until your bicep is fully contracted. Hold for a count of one and squeeze your biceps. Return to the start position in a smooth movement. Repeat with the other arm."
+    }
+  },
+  {
+    "id": "dumbbell_goblet_squat",
+    "name": "Dumbbell Goblet Squat",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Stand with your feet shoulder width apart while holding a light dumbbell to your chest. You should hold the dumbbell by one end between your hands, with the other end extending down your torso. This is the start position.",
+      "step2": "Squat down keeping your slightly arched and pushing your hips back.",
+      "step3": "Continue down until your thighs are parallel to the floor.",
+      "step4": "Hold for a count of one. Return to the start position. Repeat."
+    }
+  },
+  {
+    "id": "dumbbell_walking_lunges",
+    "name": "Dumbbell Walking Lunges",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Stand with your feet hip-width apart, holding a dumbbell in each hand.",
+      "step2": "Take a big step forward with one foot, lowering your body until your back knee is hovering above the ground while keeping your chest up and core engaged.",
+      "step3": "Push through your front foot and step forward with the other foot, repeating the lunge motion.",
+      "step4": "Continue alternating legs and walking forward for the desired number of reps."
+    }
+  },
+  {
+    "id": "walking_lunges",
+    "name": "Walking Lunges",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Stand tall with your feet hip-width apart.",
+      "step2": "Take a big step forward with your right foot, lowering your body into a lunge position. Keep your front knee directly above your ankle and your back knee hovering just above the ground.",
+      "step3": "Push through your front heel and bring your back foot forward, stepping into a lunge position with your left foot.",
+      "step4": "Continue alternating lunges, walking forward with each step. Maintain a steady rhythm and focus on proper form."
+    }
+  },
+  {
+    "id": "bodyweight_squat",
+    "name": "Bodyweight Squat",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Stand with your feet shoulder-width apart, hands at your sides, or in front of your chest.",
+      "step2": "Keeping your chest up and core engaged, bend at the knees and lower your body until your thighs are parallel to the ground.",
+      "step3": "Push through your heels to stand back up to the starting position.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "bulgarian_split_squat",
+    "name": "Bulgarian Split Squat",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Stand a few feet in front of a bench or elevated platform, facing away from it.",
+      "step2": "Place one foot behind you on the bench, laces down, and one foot in front of you.",
+      "step3": "Lower your body until your back knee is hovering above the ground while keeping your chest up and core engaged.",
+      "step4": "Push through your front foot to return to the starting position and repeat the movement on the other leg for the desired number of reps."
+    }
+  },
+  {
+    "id": "tricep_skull_crusher",
+    "name": "Tricep Skull Crusher",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Lie flat on your back on a bench and position your feet flat on the floor on either side of the bench.",
+      "step2": "With a dumbbell in each hand, extend your arms over head until fully extended. Your palms should face one another and your hands should be close together.",
+      "step3": "Bend the elbows and lower the weights to either side of your head.",
+      "step4": "Extend your arms to return to the starting position."
+    }
+  },
+  {
+    "id": "flat_dumbbell_chest_press",
+    "name": "Flat Dumbbell Chest Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Lie flat on a bench with a dumbbell in each hand, palms facing forward and elbows bent.",
+      "step2": "Push the dumbbells upward until your arms are fully extended while keeping your shoulder blades down and back.",
+      "step3": "Slowly lower the dumbbells back down to the starting position, keeping control of the weight throughout the movement.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "incline_dumbbell_chest_press",
+    "name": "Incline Dumbbell Chest Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Set an incline bench to a comfortable angle, typically between 30 to 45 degrees.",
+      "step2": "Sit on the bench with a dumbbell in each hand, resting them on your thighs. Slowly lie back on the bench, maintaining a tight core and a neutral spine.",
+      "step3": "Lift the dumbbells to shoulder level, palms facing forward. This will be your starting position.",
+      "step4": "Exhale as you push the dumbbells upward, extending your arms fully. Pause for a moment at the top, then slowly lower the dumbbells back to the start."
+    }
+  },
+  {
+    "id": "seated_dumbbell_shoulder_press",
+    "name": "Seated Dumbbell Shoulder Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Delts"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Sit on a bench with a dumbbell in each hand, palms facing forward and elbows bent at 90 degrees.",
+      "step2": "Push the dumbbells upward until your arms are fully extended while keeping your shoulder blades down and back.",
+      "step3": "Slowly lower the dumbbells back down to the starting position, keeping control of the weight throughout the movement.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "barbell_bench_press",
+    "name": "Barbell Bench Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Lie flat on a bench with a barbell in your hands, hands slightly wider than shoulder-width apart and elbows bent.",
+      "step2": "Push the barbell upward until your arms are fully extended while keeping your shoulder blades down and back.",
+      "step3": "Slowly lower the barbell back down to the starting position, keeping control of the weight throughout the movement.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "pivot_leg_press",
+    "name": "Pivot Leg Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Sit into the machine with your back pressed fully against the back pad and your feet positioned just outside shoulder width and pointed slightly out.",
+      "step2": "Press the push plate away from you with your legs and undo the safety bar using the handles. You should fully extend your legs without locking out at your knees.",
+      "step3": "Return the weight back to the starting position while making sure to keep your knees pressed out in line with your feet through the entire movement.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "incline_barbell_bench_press",
+    "name": "Incline Barbell Bench Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Set incline bench, lie back with feet grounded and back, shoulders, and head in contact with the bench.",
+      "step2": "Grip barbell with wider-than-shoulder-width grip, palms forward, unrack and hold above chest as starting position.",
+      "step3": "Lower barbell towards upper chest while keeping elbows slightly tucked.",
+      "step4": "Press barbell back up, fully extending arms. Repeat for desired reps, focusing on form and engaging chest muscles."
+    }
+  },
+  {
+    "id": "decline_barbell_bench_press",
+    "name": "Decline Barbell Bench Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Lie flat on a decline bench with a barbell in your hands, hands slightly wider than shoulder-width apart and elbows bent.",
+      "step2": "Push the barbell upward until your arms are fully extended while keeping your shoulder blades down and back.",
+      "step3": "Slowly lower the barbell back down to the starting position, keeping control of the weight throughout the movement.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "bodyweight_pull_up",
+    "name": "Bodyweight Pull Up",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Hang from a pull-up bar with your palms facing away from you, hands slightly wider than shoulder-width apart.",
+      "step2": "Engage your shoulder blades and pull your body up until your chin clears the bar.",
+      "step3": "Lower your body back down to the starting position, maintaining control.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "barbell_seated_shoulder_press",
+    "name": "Barbell Seated Shoulder Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Sit on a bench with a barbell in front of you, hands slightly wider than shoulder-width apart, and palms facing forward.",
+      "step2": "Lift the barbell up to shoulder level, while keeping your core engaged and your elbows directly beneath your wrists.",
+      "step3": "Push the barbell upward until your arms are fully extended while keeping your shoulder blades down and back.",
+      "step4": "Slowly lower the barbell back down to the starting position, keeping control of the weight throughout the movement, and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "glute_kickback_machine",
+    "name": "Glute Kickback Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Position your hips against the front of the largest pad.",
+      "step2": "Grip the handles and position one leg on the foot plate.",
+      "step3": "Extend your leg as far as you can while keeping your hips square and pressed into the front pad.",
+      "step4": "Contract the glute hard at the end of the range. Return to the starting position. Repeat for reps before changing legs."
+    }
+  },
+  {
+    "id": "plate_loaded_chest_press",
+    "name": "Plate Loaded Chest Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Sit on the seat with your upper chest just above the horizontal handles.",
+      "step2": "Grasp the handles using a wide overhand grip and place your elbows out to the sides just below your shoulders.",
+      "step3": "Return the weight until your chest muscles are slightly stretched.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "plate_loaded_low_row",
+    "name": "Plate Loaded Low Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Sit at a low-row machine with your feet firmly planted on the platform, knees slightly bent, and grasp the handles with both hands.",
+      "step2": "Keep your back straight, chest up, and shoulder blades down and back as you pull the handles toward your body, squeezing your shoulder blades together.",
+      "step3": "Slowly release the handles back to the starting position, maintaining control of the weight.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "plate_loaded_lat_pull_down",
+    "name": "Plate Loaded Lat Pull Down",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Adjust the height of the seat so that your thighs are touching the provided pads and your body is locked in place.",
+      "step2": "Grasp each handle with an overhand grip so that your palms are facing away from your body.",
+      "step3": "Begin the exercise by contracting your back muscles and pulling the bars down until your shoulder blades are pinched together.",
+      "step4": "Slowly let the weight back up until your arms are extended. Repeat as necessary."
+    }
+  },
+  {
+    "id": "plate_loaded_shoulder_press_machine",
+    "name": "Plate Loaded Shoulder Press Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Adjust the seat to the starting position so your hands are just above shoulder height.",
+      "step2": "Brace your core and press your hands above your head while pressing your back into the back support.",
+      "step3": "Go right to the top of the motion until your arms are fully straight.",
+      "step4": "Return to the starting position making sure to control the weights on your way back down. Repeat for reps."
+    }
+  },
+  {
+    "id": "plate_loaded_preacher_curl_machine",
+    "name": "Plate Loaded Preacher Curl Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Adjust the seat position so you can place the back of your upper arm (Tricep area) flat against the pad.",
+      "step2": "Grip the Handles.",
+      "step3": "Full contract the bicep and lift the handles towards your face while keeping your arm pressed against the pad.",
+      "step4": "Return to the starting position. Repeat for reps."
+    }
+  },
+  {
+    "id": "plate_loaded_45_degree_leg_press",
+    "name": "Plate Loaded 45 Degree Leg Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Sit into position.",
+      "step2": "Position your feet on the platform. Higher up emphasizes more glutes while a lower foot position will emphasize your quads.",
+      "step3": "Press the foot plate away from you and then release the safety mechanism. (This will vary from machine to machine so ask an instructor for help).",
+      "step4": "Press to foot plate until your legs are nearly fully straight. Stop before your knees fully lock out. Begin to lower the weight plate towards your body by bending at the knees and hips while keeping your feet fully planted on the foot plate."
+    }
+  },
+  {
+    "id": "tricep_dip_machine",
+    "name": "Tricep Dip Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Adjust the seat position so you can fit underneath the leg pads.",
+      "step2": "Grip the handles while maintain a neutral spine position and shoulders pinned back. (Do not round the shoulders forward).",
+      "step3": "Press Down the handles until the arms are full straight.",
+      "step4": "Return the handles to the start position by bending again at the elbow joint. Your goal is to close this elbow angle as much as possible without allowing your shoulders to round forward."
+    }
+  },
+  {
+    "id": "single_leg_hamstring_curl",
+    "name": "Single Leg Hamstring Curl",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Hamstrings"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Adjust the foot plate position so the roller pad is positioned just above the ankle on the calf muscle.",
+      "step2": "Grip the handles on the side you are standing on the foot plate. Position your thigh so that it is flat against the leg pad. This will have your leg angled slightly forward so that your leg can reach its full range of motion and hamstring length in each rep.",
+      "step3": "Fully contract the hamstring by curling your leg and moving to roller pad upwards.",
+      "step4": "Squeeze the hamstring at the top of the range while still keeping your leg planted against the leg pad. Return to the starting position. Repeat for reps."
+    }
+  },
+  {
+    "id": "plate_loaded_row",
+    "name": "The Plate Loaded Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Sit at a low-row machine with your feet firmly planted on the platform, knees slightly bent, and grasp the handles with both hands.",
+      "step2": "Keep your back straight, chest up, and shoulder blades down and back as you pull the handles toward your body, squeezing your shoulder blades together.",
+      "step3": "Slowly release the handles back to the starting position, maintaining control of the weight.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "hip_hyperextension",
+    "name": "The Hip Hyperextension",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Adjust the foot plate (Or Pad Position) so that your hip crease is at the top of the pad.",
+      "step2": "You should be able to bend at the hips.",
+      "step3": "Bend at the hips while maintaining a straight back and consistent knee angle.",
+      "step4": "Go as low as you can by closing the angle at the hips and maintaining a straight back position. Return to the start position. Repeat for reps."
+    }
+  },
+  {
+    "id": "preacher_curl_station",
+    "name": "Preacher Curl Station",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Sit at a preacher curl bench with an EZ bar in your hands, palms facing upward and hands shoulder-width apart.",
+      "step2": "Place the back of your arms on the pad and keep your chest up, core engaged, and shoulder blades down and back.",
+      "step3": "Curl the EZ bar toward your shoulders, keeping your elbows close to your sides and your wrists straight.",
+      "step4": "Slowly lower the EZ bar back down to the starting position, keeping control of the weight throughout the movement, and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "plate_loaded_leg_extension",
+    "name": "The Plate Loaded Leg Extension",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Adjust the back pad of the seat so your knees are just in front of the bottom seat pad.",
+      "step2": "Position the roller pad so it is on the shin just above the ankles.",
+      "step3": "Grip the handles and extend your legs to a straight position while holding yourself firmly into the seat.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "bodyweight_push_up",
+    "name": "The Bodyweight Push Up",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Start in a plank position with your hands placed slightly wider than shoulder-width apart and your feet together.",
+      "step2": "Lower your body by bending your elbows and keeping them close to your sides until your chest nearly touches the ground.",
+      "step3": "Push yourself back up to the starting position by straightening your arms, keeping your core engaged and your body in a straight line.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "adapted_push_up_from_knees",
+    "name": "The Adapted Push Up From the Knees",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Position your hands just outside your chest in line with your nipple line.",
+      "step2": "From the floor, press yourself up until your arms are fully extended. Maintain a straight back position from your shoulders down through your knees.",
+      "step3": "While maintaining this straight back position lower yourself back down until your chest touches the floor.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "incline_push_up",
+    "name": "The Incline Push Up",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Place your hands on an elevated surface, such as a bench, with your hands slightly wider than shoulder-width apart and your feet together.",
+      "step2": "Lower your body by bending your elbows and keeping them close to your sides until your chest nearly touches the bench.",
+      "step3": "Push yourself back up to the starting position by straightening your arms, keeping your core engaged and your body in a straight line.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "close_grip_bodyweight_push_up",
+    "name": "The Close Grip Bodyweight Push Up",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Start with your hands in line with chest. Keep them close into your body.",
+      "step2": "With a straight back, plank like, position press yourself up until your arms are fully extended.",
+      "step3": "Lower your body back down until your chest touches the floor while keeping your elbows tucked in and with neutral spine.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "medicine_ball_push_up",
+    "name": "The Medicine Ball Push Up",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Place both hands on the medicine ball directly under your chest.",
+      "step2": "Press yourself up until your arms are fully extended while maintaining a neutral spine, straight back position.",
+      "step3": "Lower yourself back down until your chest touches the back of your hands on the medicine ball.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "high_box_step_up",
+    "name": "The High Box Step Up",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Stand in front of a high box or bench with your feet shoulder-width apart.",
+      "step2": "Place one foot on top of the box or bench, keeping your knee in line with your toes.",
+      "step3": "Push through your heel to stand on top of the box, keeping your core engaged and your knee in line with your toes.",
+      "step4": "Step down from the box and repeat the movement with the opposite leg, alternating legs for the desired number of reps."
+    }
+  },
+  {
+    "id": "single_arm_kettlebell_press",
+    "name": "The Single Arm Kettlebell Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Start with holding the kettlebell handle and hugging the kettlebell into your chest in the \"Front Rack\" Position.",
+      "step2": "With your elbow under the KB you should begin to move the Kettlebell out to the side around your shoulder and then begin to press the KB.",
+      "step3": "The KB should be fully pressed above the head until the arm is full extended. The body of the bell will rest against the back of your forearm.",
+      "step4": "Return the weight back to the starting position in the same manner. Down and rotate in. This is like a corkscrew motion."
+    }
+  },
+  {
+    "id": "kettlebell_rdl",
+    "name": "Kettlebell RDL",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Grip the handle of the kettlebell with both hands. Stand straight with the KB between your legs around hip height. Your arms will remain fully extended for the duration of the movement.",
+      "step2": "Hinge at the hips and allow your hips to drift backward as the kettlebell goes lower to the floor. Maintain a neutral spine and pelvic position.",
+      "step3": "Once you reach a full stretch in your hamstrings or glutes, return back to the starting position.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "single_leg_kettlebell_stiff_leg_deadlift",
+    "name": "Single Leg Kettlebell Stiff Leg Deadlift",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Hamstrings"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Stand with your feet hip-width apart, holding a kettlebell in one hand with an overhand grip.",
+      "step2": "Lift one leg off the ground behind you and hinge forward at the hips, keeping your back straight and the kettlebell close to your body.",
+      "step3": "Lower the kettlebell toward the ground while keeping your lifted leg straight and your balance centered over your standing foot.",
+      "step4": "Return to the starting position by contracting your hamstring and glute muscles, and repeat the movement for the desired number of reps before switching to the other leg."
+    }
+  },
+  {
+    "id": "kettlebell_row",
+    "name": "The Kettlebell Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Stand with your feet shoulder-width apart, holding two kettlebells in front of your body with an overhand grip.",
+      "step2": "Hinge forward at the hips, keeping your back straight and the kettlebells hanging toward the ground.",
+      "step3": "Pull the kettlebells up toward your ribcage, keeping your elbows close to your sides and squeezing your shoulder blades toward your spine.",
+      "step4": "Slowly lower the kettlebells back down to the starting position, keeping control of the weight throughout the movement, and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "dumbbell_rows",
+    "name": "Dumbbell Rows",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Stand with your feet shoulder-width apart, holding two dumbbells in front of your body with an overhand grip.",
+      "step2": "Hinge forward at the hips, keeping your back straight and the dumbbells hanging toward the ground.",
+      "step3": "Pull the dumbbells up toward your ribcage, keeping your elbows close to your sides and squeezing your shoulder blades toward your spine.",
+      "step4": "Slowly lower the dumbbells back down to the starting position, keeping control of the weight throughout the movement, and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "kettlebell_swing",
+    "name": "The Kettlebell Swing (Hip Hinge)",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Stand with your feet shoulder-width apart, holding a kettlebell with both hands in front of your body.",
+      "step2": "Hinge forward at the hips, pushing your glutes back and keeping your back straight.",
+      "step3": "Swing the kettlebell back between your legs, keeping your arms straight and your core engaged.",
+      "step4": "Drive your hips forward to swing the kettlebell up to shoulder height, and allow it to swing back down between your legs, repeating the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "kettlebell_hip_thrust",
+    "name": "Kettlebell Hip Thrust",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Position your feet just outside shoulder width. Your back should be positioned on the edge of a bench around your shoulder blade height.",
+      "step2": "Maintaining a neutral spine and with the Kettlebell resting on your hips you should hinge at the hips. Your hips and Kettlebell will drop closer to the floor.",
+      "step3": "Your back should remain straight throughout the movement and you should only bend at the hips. Using your hips press the kettlebell back up towards the original start position.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "dumbbell_hip_thrust",
+    "name": "Dumbbell Hip Thrust",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Sit on the ground with your back against a bench, holding a dumbbell on your hips with your hands.",
+      "step2": "Place your feet flat on the ground with your knees bent at a 90-degree angle.",
+      "step3": "Drive through your heels to lift your hips off the ground, squeezing your glutes at the top of the movement.",
+      "step4": "Slowly lower your hips back down to the starting position, and repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "bodyweight_hip_thrust",
+    "name": "Bodyweight Hip Thrust",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Sit on the ground with your back against a bench, with your hands on your hips or out to the sides.",
+      "step2": "Place your feet flat on the ground with your knees bent at a 90-degree angle.",
+      "step3": "Drive through your heels to lift your hips off the ground, squeezing your glutes at the top of the movement.",
+      "step4": "Slowly lower your hips back down to the starting position, and repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "single_leg_hip_thrust",
+    "name": "Single Leg Hip Thrust",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Sit on the ground with your back against a bench, with one foot flat on the ground and the other leg extended straight out.",
+      "step2": "Hold a dumbbell on your hip or keep your hands on your hips.",
+      "step3": "Drive through the heel of your foot on the ground to lift your hips off the ground, squeezing your glutes at the top of the movement.",
+      "step4": "Slowly lower your hips back down to the starting position, and repeat the movement for the desired number of reps before switching sides."
+    }
+  },
+  {
+    "id": "barbell_hip_thrust",
+    "name": "The Barbell Hip Thrust",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Sit on the ground with your upper back against a bench and a barbell placed over your hips.",
+      "step2": "Roll the barbell up onto your lap and lean back against the bench, holding the barbell with both hands.",
+      "step3": "Place your feet flat on the ground with your knees bent at a 90-degree angle.",
+      "step4": "Drive through your heels to lift your hips off the ground, squeezing your glutes at the top of the movement. Slowly lower your hips back down to the starting position, and repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "tricep_cable_extension",
+    "name": "Tricep Cable Extension",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Stand facing the cable machine with a rope attachment attached to the high pulley.",
+      "step2": "Grasp each end of the rope with an overhand grip and bring your hands to the sides of your head.",
+      "step3": "Keeping your upper arms stationary, slowly extend your arms down by contracting your triceps.",
+      "step4": "Pause briefly, then use your triceps to bring your hands back to the starting position. Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "bicep_cable_curl_facing_in",
+    "name": "Bicep Cable Curl Facing In",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the pulley to the bottom position. Using the straight bar or EZ bar attachment and an underhand grip, face into the machine.",
+      "step2": "Take a step back so the weight stack is not touching. Your arms should be fully straight.",
+      "step3": "With your body position stiff, curl at the elbow so the bar moves upwards towards your face. Squeeze at the top. Only your elbow joint should be moving.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "bicep_cable_curl_facing_away",
+    "name": "Bicep Cable Curl Facing Away",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Stand facing away from the cable machine with an EZ bar attachment attached to the low pulley.",
+      "step2": "Grasp the EZ bar with an underhand grip and extend your arms straight down.",
+      "step3": "Keeping your upper arms stationary, curl the EZ bar up towards your chest by contracting your biceps.",
+      "step4": "Pause briefly, then use your biceps to lower the EZ bar back down to the starting position. Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "overhead_tricep_cable_extensions",
+    "name": "Overhead Tricep Cable Extensions",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Attach a rope or straight bar to the low pulley of a cable machine.",
+      "step2": "Stand facing away from the machine and grasp the rope or bar with both hands, palms facing up.",
+      "step3": "Raise the rope or bar overhead with your arms fully extended, and keep your elbows close to your head.",
+      "step4": "Slowly bend your elbows and lower the rope or bar behind your head until your forearms are parallel to the ground. Pause briefly, then extend your arms and return the rope or bar to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_crossovers",
+    "name": "Cable Crossovers",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Set the pulleys on a cable machine to the highest position and attach a handle to each one.",
+      "step2": "Stand with one foot in front of the other and grasp a handle in each hand.",
+      "step3": "Lean forward slightly and bring your hands together in front of your chest, crossing them over each other.",
+      "step4": "Pause briefly, then slowly return your hands to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_kickback_glutes",
+    "name": "Cable Kickback Glutes",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Attach an ankle cuff to a cable machine and set the pulley to the lowest position.",
+      "step2": "Strap the cuff around one ankle and stand facing the machine.",
+      "step3": "Lean forward and grasp the cable machine with both hands for support.",
+      "step4": "Kick your leg back behind you, keeping your knee straight, until your glutes are fully contracted. Pause briefly, then return your leg to the starting position. Repeat for the desired number of reps, then switch legs."
+    }
+  },
+  {
+    "id": "dumbbell_flys",
+    "name": "Dumbbell Flys",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Using two dumbbells and a flat bench lay down flat with your arms extended in the air directly above your shoulders.",
+      "step2": "In an arching motion, with a constant slight bend in the elbow, lower the dumbbells down by your sides.",
+      "step3": "Moving your shoulder joint only you should keep lowering the dumbbells until you reach a full stretch in your chest.",
+      "step4": "Return back to the starting position in a slow and controlled manner using the same arch movement on the way back up."
+    }
+  },
+  {
+    "id": "tricep_kickbacks_dumbbell",
+    "name": "Tricep Kickbacks Dumbbell",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Dumbbell"],
+    "information": {
+      "step1": "Place one hand and one knee on the edge of a flat bench. Hold a dumbbell in the opposite hand. Keep a straight back position.",
+      "step2": "With your upper arm parallel to the floor and elbow at a 90 degree angle you should start to extend your arm holding the dumbbell.",
+      "step3": "Make sure to keep your upper arm position parallel to the floor as you extend your elbow joint.",
+      "step4": "Once the arm is fully straight. Return the dumbbell slowly to the 90 degree starting position."
+    }
+  },
+  {
+    "id": "single_arm_row",
+    "name": "The Single Arm Row (SAR)",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Place one hand and one knee on the edge of a flat bench. Hold a dumbbell in the opposite hand. Keep a straight back position.",
+      "step2": "Start with the dumbbell hanging directly under your shoulder.",
+      "step3": "Drive your elbow backwards while maintaining a straight back position.",
+      "step4": "Return the weight, under control, to the dead hang starting position."
+    }
+  },
+  {
+    "id": "hack_squat",
+    "name": "Hack Squat",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Place your back flat against the pad and your shoulders under the upper pads. Place your feet about shoulder width apart and pointed slightly outwards.",
+      "step2": "Grip the safety catch handles and then press up into a full standing position. Bring the handles together.",
+      "step3": "Slowly allow your knees to bend as you squat down between your legs. Keep your knees pointed out in line with your feet.",
+      "step4": "Go as low as you can keep your lower back on the pad and your feet fully flat."
+    }
+  },
+  {
+    "id": "hip_drive_plate_loaded",
+    "name": "Hip Drive Plate Loaded",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Load a plate onto a hip drive machine and position yourself facing the machine with your back against the pad.",
+      "step2": "Place your feet shoulder-width apart and firmly on the platform in front of you.",
+      "step3": "Grasp the handles on either side of the pad and push through your heels to extend your hips, driving the plate upward.",
+      "step4": "Pause briefly at the top of the movement, then lower the plate back down to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "glute_ham_raise",
+    "name": "Glute Ham Raise",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Hamstrings"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Position yourself face down on a glute ham raise machine with your feet firmly secured under the footpads and your thighs resting on the thigh pads.",
+      "step2": "Cross your arms over your chest and engage your glutes and hamstrings to lift your torso upward until your body forms a straight line from head to heels.",
+      "step3": "Lower your body back down to the starting position, controlling the movement with your glutes and hamstrings.",
+      "step4": "Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_loaded_leg_extension_machine",
+    "name": "Cable Loaded Leg Extension Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the back pad of the seat so your knees are just in front of the bottom seat pad.",
+      "step2": "Position the roller pad so it is on the shin just above the ankles. Select your weight using the pin.",
+      "step3": "Grip the handles and extend your legs to a straight position while holding yourself firmly into the seat.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "kettlebell_walking_lunges",
+    "name": "Kettlebell Walking Lunges",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Begin by holding a kettlebell in each hand at your sides, with your feet hip-width apart.",
+      "step2": "Take a step forward with your right leg, lowering your body into a lunge position.",
+      "step3": "As you push off with your right foot to stand back up, take a step forward with your left foot and lower into a lunge position.",
+      "step4": "Continue alternating legs and taking steps until you complete the desired number of lunges."
+    }
+  },
+  {
+    "id": "cable_loaded_leg_press_machine",
+    "name": "Cable Loaded Leg Press Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quads"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Sit on the machine with your back pressed flat against the seat. Position your feet slightly outside shoulder width and point your feet slightly outwards.",
+      "step2": "Use the lever to slide the seat into a lower position.",
+      "step3": "When the seat is locked into place you can begin pressing your feet into the platform which will drive your body and seat backward.",
+      "step4": "Keep pressing until your legs are almost straight. Don't lock out your knees."
+    }
+  },
+  {
+    "id": "cable_loaded_upright_row",
+    "name": "Cable Loaded Upright Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Attach a straight bar or rope to the high pulley of a cable machine.",
+      "step2": "Stand facing the machine and grasp the bar or rope with an overhand grip, hands shoulder-width apart.",
+      "step3": "Pull the bar or rope towards your chin, keeping it close to your body and your elbows pointing out to the sides.",
+      "step4": "Pause briefly, then lower the bar or rope back to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_loaded_shoulder_press",
+    "name": "Cable Loaded Shoulder Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the seat of the cable-loaded seated shoulder press machine to your height and select the appropriate weight.",
+      "step2": "Sit down and grasp the handles of the machine with an overhand grip, hands shoulder-width apart.",
+      "step3": "Press the handles overhead until your arms are fully extended.",
+      "step4": "Pause briefly, then lower the handles back to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "close_cable_row",
+    "name": "Close Cable Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the seat of the seated close cable row machine to your height and select the appropriate weight.",
+      "step2": "Sit down and grasp the handles with a neutral grip (palms facing each other).",
+      "step3": "Pull the handles towards your torso, squeezing your shoulder blades together.",
+      "step4": "Pause briefly, then slowly release the handles back to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_lat_pull_down_station",
+    "name": "Cable Lat Pull Down Station",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the roller pads so you can fully sit down on the seat pad with your legs tucked comfortably under the rollers.",
+      "step2": "Grip the handles wider than shoulder width before taking a seat with your arms stretched overhead.",
+      "step3": "Begin pulling the handle down towards your body. Lean back slightly so the bar can keep moving down towards the top of your chest.",
+      "step4": "Return to the original starting position in a slow and controlled manner."
+    }
+  },
+  {
+    "id": "ez_barbell_curls",
+    "name": "Ez Barbell Curls",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Stand with feet shoulder-width apart, and grasp the EZ barbell with an underhand grip, hands slightly wider than shoulder-width apart.",
+      "step2": "Keep your elbows close to your sides, and curl the barbell up towards your shoulders, contracting your biceps.",
+      "step3": "Pause briefly, then slowly lower the barbell back to the starting position.",
+      "step4": "Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "hip_thrust_bench",
+    "name": "Hip Thrust Bench",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Your back should be positioned on the edge of the pad around your shoulder blade height. You are starting with a loaded barbell across your hips in a hip hinge position.",
+      "step2": "Maintaining a neutral spine and with your hands gripping the barbell press the barbell up using your hips.",
+      "step3": "Your back should remain straight throughout the movement and you should only bend at the hips. Lower the weight back into the hip hinged position.",
+      "step4": "Repeat for reps."
+    }
+  },
+  {
+    "id": "cable_loaded_chest_press",
+    "name": "Cable Loaded Chest Press",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Chest"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the seat position so the handles are in line with your nipple line.",
+      "step2": "Grip the handles even on both sides and position your elbows back and in line with the same height as the handles of the machine.",
+      "step3": "With your back pressed flat, push the handles out away from your body while keeping your elbows in line with the handles.",
+      "step4": "Fully straighten your arms before returning back to the starting position."
+    }
+  },
+  {
+    "id": "cable_seated_hamstring_curls",
+    "name": "Cable Seated Hamstring Curls",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Hamstrings"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Sit on the machine with your back against the pad and your legs straight out in front of you.",
+      "step2": "Hook your heels under the ankle pads and grasp the handles on either side of the seat for stability.",
+      "step3": "Contract your hamstrings and curl your heels up towards your glutes, keeping your thighs and hips firmly pressed into the seat.",
+      "step4": "Slowly lower your heels back to the starting position and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_assisted_pull_ups",
+    "name": "Cable Assisted Pull Ups",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Adjust the weight of the machine and kneel on the knee pad.",
+      "step2": "Grip the pull-up bar with your hands about shoulder-width apart and hang down with your arms fully extended.",
+      "step3": "Engage your back muscles and pull your body up towards the bar until your chin is above the bar.",
+      "step4": "Lower yourself down slowly to the starting position and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "assisted_dips",
+    "name": "Assisted Dips",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Adjust the weight on the machine and stand on the footrests or kneel on the knee pad.",
+      "step2": "Place your hands on the handles and push yourself up until your arms are fully extended.",
+      "step3": "Lower yourself down slowly until your elbows reach a 90-degree angle.",
+      "step4": "Push yourself back up to the starting position and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_loaded_abductors",
+    "name": "Cable Loaded Abductors",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the weight on the machine and sit on the seat with your legs on the pads.",
+      "step2": "Grasp the handles on either side of the seat for support.",
+      "step3": "Slowly push your legs outwards, away from each other, against the resistance of the weight stack.",
+      "step4": "Hold the position briefly, then return your legs to the starting position and repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "cable_loaded_adductors",
+    "name": "Cable Loaded Adductors",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Adductors"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the machine to your desired weight and sit on the seat with your back pressed against the pad and feet flat on the platform.",
+      "step2": "Slowly squeeze your thighs together, bringing your legs towards the center, pause for a moment, and then slowly release to return to the starting position.",
+      "step3": "Repeat for the desired number of reps, keeping your back straight and core engaged throughout the movement.",
+      "step4": "Remember to breathe steadily and not lock out your knees at the top of the movement to maintain tension on the muscles."
+    }
+  },
+  {
+    "id": "cable_loaded_tricep_dip",
+    "name": "Cable Loaded Tricep Dip",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Sit into position with your back firmly against the back pad. Adjust the seat height so your elbow is fully bent when you grip the handles.",
+      "step2": "Keep your shoulders pulled back as you grip the handles.",
+      "step3": "Drive your back into the pad and press the handles down towards the floor by straightening your arms.",
+      "step4": "Once your arms are fully extended you should return to the original starting position."
+    }
+  },
+  {
+    "id": "bicep_curl_machine_cable_loaded",
+    "name": "Bicep Curl Machine Cable Loaded",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the seat height so the back of your arms are flush with the upper pad.",
+      "step2": "Grip the handles with your arms fully straight. Use an underhand grip position.",
+      "step3": "Begin the movement by curling your hands and handles up towards your face.",
+      "step4": "Fully squeeze your biceps at the top of the movement before returning to your original starting position."
+    }
+  },
+  {
+    "id": "row_rear_delt_machine_row",
+    "name": "Row / Rear Delt Machine - Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Sit on the seat with your feet firmly planted on the footrests, and adjust the chest pad so that it is snug against your chest.",
+      "step2": "Reach forward and grasp the narrow grip handle with an overhand grip.",
+      "step3": "Keep your back straight and pull the handle towards your chest, squeezing your shoulder blades together.",
+      "step4": "Pause for a moment at the end of the movement and then slowly release back to the starting position."
+    }
+  },
+  {
+    "id": "rear_delt_row_variation",
+    "name": "Rear Delt Row Variation",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Adjust the seat of the rear delt row machine to your height and select the appropriate weight.",
+      "step2": "Sit down and place your chest against the pad, with your feet flat on the footrests and your hands on the handles.",
+      "step3": "Squeeze your shoulder blades together and pull the handles towards your chest, keeping your elbows close to your body.",
+      "step4": "Pause briefly, then slowly release the handles back to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "back_extension_cable_machine",
+    "name": "Back Extension Cable Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Adjust the upper roller pad so that it is in line with your shoulder blades.",
+      "step2": "Sit into position and press your lower back against the lower pad position and put your feet on the foot rest. Grip the handles or cross your arms.",
+      "step3": "Push your upper back into the roller and arch your lower back around the lower pad.",
+      "step4": "Return back to the starting crunched position in a slow and controlled manner."
+    }
+  },
+  {
+    "id": "cable_loaded_bicep_curl",
+    "name": "Cable Loaded Bicep Curl",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Biceps"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Sit into position and adjust the seat so that you can reach the handles with a straight arm in the starting position.",
+      "step2": "Bending only at the elbow joint curl the weight up towards your face following the motion of the machine.",
+      "step3": "Squeeze your biceps at the top of the range of motion. Your elbows might not stay in contact with the arm pads through the entire range. Which is fine.",
+      "step4": "Slowly return the handles and weight back to the original starting position."
+    }
+  },
+  {
+    "id": "chest_supported_t_bar_row",
+    "name": "Chest Supported T-Bar Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Position yourself on the chest-supported T-bar row machine with your chest against the pad and your feet securely planted on the ground.",
+      "step2": "Grip the handles with an overhand grip and pull the weight towards your chest, keeping your elbows close to your body.",
+      "step3": "Pause briefly at the top of the movement, then slowly lower the weight back down to the starting position.",
+      "step4": "Repeat for the desired number of reps, making sure to maintain proper form throughout the exercise."
+    }
+  },
+  {
+    "id": "bodyweight_crunch",
+    "name": "Bodyweight Crunch",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Abs"],
+    "equipment": ["Body Weight"],
+    "information": {
+      "step1": "Lie down on your back with your knees bent and feet flat on the ground.",
+      "step2": "Place your hands behind your head, keeping your elbows out to the side.",
+      "step3": "Contract your abs to lift your shoulders and upper back off the ground, exhaling as you do so.",
+      "step4": "Slowly lower back down to the starting position, inhaling as you do so. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "abdominal_crunch_machine",
+    "name": "Abdominal Crunch Machine",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Abs"],
+    "equipment": ["Machine"],
+    "information": {
+      "step1": "Adjust the seat and foot pads of the abdominal crunch machine to fit your body.",
+      "step2": "Grasp the handles or place your hands on the designated hand grips.",
+      "step3": "Exhale as you contract your abs and bring your torso forward, towards your thighs.",
+      "step4": "Inhale as you slowly release the contraction and return to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "hanging_leg_raises",
+    "name": "Hanging Leg Raises",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Abs"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Deadhang from a pull up bar leaving enough space to swing your legs to the front of your body.",
+      "step2": "Crunch to the front of your body by raising your legs and rotating your pelvis upward. A posterior pelvic tilt.",
+      "step3": "The more straight you keep your legs the harder the exercise will feel.",
+      "step4": "Raise your legs, rotate your pelvis and crunch your abs in a slow and controlled manner. Pause for a second at the bottom to account for any swinging."
+    }
+  },
+  {
+    "id": "reverse_hyper_ghr",
+    "name": "Reverse Hyper GHR",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Glutes"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Position the front of your hips at the front of the Glute Ham Raise machine.",
+      "step2": "Lay over the round pad and grip onto the part of the GHR machine that would usually support your legs.",
+      "step3": "In a slow and controlled manner you can raise both legs up from the floor allowing the roller pad to support your body weight at the hips.",
+      "step4": "You should end this movement when your legs are slightly higher than parallel."
+    }
+  },
+  {
+    "id": "close_grip_bench_press_barbell",
+    "name": "Close Grip Bench Press Barbell",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Triceps"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Assume the regular bench press set up. You will need less load than your regular bench press weight.",
+      "step2": "Position your hands on the barbell more narrow than your regular width. Shoulder width or slightly more narrow.",
+      "step3": "Lower the bar down towards your sternum in an arch like motion keeping your elbows tucked to your sides.",
+      "step4": "Decrease the angle of the elbow as much as possible before pressing the barbell back up to the start position."
+    }
+  },
+  {
+    "id": "kettlebell_goblet_squat",
+    "name": "Kettlebell Goblet Squat",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Quad"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Hold a kettlebell by the horns at chest level with your elbows pointing down.",
+      "step2": "Stand with your feet shoulder-width apart and your toes pointing slightly outwards.",
+      "step3": "Keeping your chest up and core engaged, lower your hips down and back as if you're sitting in a chair.",
+      "step4": "Pause briefly at the bottom before driving through your heels to return to the starting position. Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "kettlebell_upright_row",
+    "name": "Kettlebell Upright Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Kettlebell"],
+    "information": {
+      "step1": "Begin by standing with your feet shoulder-width apart and holding a kettlebell in both hands in front of your thighs.",
+      "step2": "Keeping your elbows close to your body, lift the kettlebell up towards your chin, leading with your elbows.",
+      "step3": "Pause briefly at the top of the movement and then slowly lower the kettlebell back down to starting position.",
+      "step4": "Repeat for the desired number of reps."
+    }
+  },
+  {
+    "id": "ez_barbell_upright_row",
+    "name": "Ez Barbell Upright Row",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Shoulder"],
+    "equipment": ["Barbell"],
+    "information": {
+      "step1": "Stand with your feet shoulder-width apart and hold the EZ bar with an overhand grip, hands slightly closer than shoulder-width apart.",
+      "step2": "Keep your elbows close to your body and lift the barbell straight up towards your chin, leading with your elbows.",
+      "step3": "Pause briefly at the top of the movement and then lower the bar back down to starting position.",
+      "step4": "Repeat for desired reps."
+    }
+  },
+  {
+    "id": "stability_ball_back_extensions",
+    "name": "Stability Ball Back Extensions",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Lie face down on a stability ball with your feet on the ground and hands behind your head.",
+      "step2": "Squeeze your glutes and lift your upper body off the ball until your body forms a straight line.",
+      "step3": "Hold for a second and slowly lower your upper body back down to the starting position.",
+      "step4": "Repeat for desired reps."
+    }
+  },
+  {
+    "id": "cable_loaded_row_machine_v2",
+    "name": "Cable Loaded Row Machine V2",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Back"],
+    "equipment": ["Cable Machine"],
+    "information": {
+      "step1": "Sit on the machine with your feet flat on the footrests and grasp the handles with an overhand grip.",
+      "step2": "Sit with your back straight and shoulders down and back.",
+      "step3": "Keep your arms extended in front of you and pull the handles towards your torso by squeezing your shoulder blades together.",
+      "step4": "Pause briefly, then slowly release the handles back to the starting position. Repeat the movement for the desired number of reps."
+    }
+  },
+  {
+    "id": "roman_chair_ab_crunch",
+    "name": "Roman Chair Ab Crunch",
+    "thumbnailUrl": "",
+    "configUrl": "",
+    "muscleGroup": ["Core"],
+    "equipment": ["Free Weight"],
+    "information": {
+      "step1": "Sit on the Roman chair with your forearms resting on the armrests and your back against the pad.",
+      "step2": "Engage your core muscles and lift your knees towards your chest, exhaling as you contract your abs.",
+      "step3": "Pause briefly, then inhale as you slowly lower your legs back down to the starting position.",
+      "step4": "Repeat the movement for the desired number of reps."
+    }
+  }
+]
