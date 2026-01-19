@@ -303,6 +303,11 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'sanitize_hex_color',
         'default' => '#4a9eff'
     ));
+    register_setting('flexframe_settings_group', 'flexframe_hide_right_menu', array(
+        'type' => 'boolean',
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'default' => false
+    ));
 }
 add_action('admin_init', 'flexframe_register_settings');
 
@@ -390,6 +395,7 @@ function flexframe_settings_page() {
     $menu_bg_opacity = get_option('flexframe_menu_bg_opacity', 0.9);
     $menu_text_color = get_option('flexframe_menu_text_color', '#ffffff');
     $menu_accent_color = get_option('flexframe_menu_accent_color', '#4a9eff');
+    $hide_right_menu = get_option('flexframe_hide_right_menu', false);
     
     ?>
     <div class="wrap">
@@ -882,6 +888,18 @@ function flexframe_settings_page() {
                                         <input type="color" id="flexframe_menu_accent_color" name="flexframe_menu_accent_color" value="<?php echo esc_attr($menu_accent_color); ?>" class="color-picker" />
                                         <span class="color-value"><?php echo esc_html($menu_accent_color); ?></span>
                                         <p class="description"><?php _e('Accent color for selected items and hover states.', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_hide_right_menu"><?php _e('Hide Info Panel', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <label class="toggle-switch">
+                                            <input type="checkbox" id="flexframe_hide_right_menu" name="flexframe_hide_right_menu" value="1" <?php checked($hide_right_menu, true); ?> />
+                                            <span class="toggle-slider"></span>
+                                        </label>
+                                        <p class="description"><?php _e('Hide the information panel (Hints, Tips, Steps, Errors) on the right side of the viewer.', 'flexframe-viewer'); ?></p>
                                     </td>
                                 </tr>
                             </table>
@@ -1790,6 +1808,48 @@ function flexframe_settings_page() {
             margin-left: 10px;
             font-weight: 500;
             min-width: 50px;
+        }
+        
+        /* Toggle Switch */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 26px;
+            vertical-align: middle;
+        }
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.3s;
+            border-radius: 26px;
+        }
+        .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        .toggle-switch input:checked + .toggle-slider {
+            background-color: #2271b1;
+        }
+        .toggle-switch input:checked + .toggle-slider:before {
+            transform: translateX(24px);
         }
     </style>
     

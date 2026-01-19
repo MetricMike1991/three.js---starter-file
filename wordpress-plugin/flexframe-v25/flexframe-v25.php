@@ -466,6 +466,7 @@ function flexframe_enqueue_assets() {
         $menu_bg_opacity = floatval(get_option('flexframe_menu_bg_opacity', 0.9));
         $menu_text_color = esc_attr(get_option('flexframe_menu_text_color', '#ffffff'));
         $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#4a9eff'));
+        $hide_right_menu = get_option('flexframe_hide_right_menu', false);
         
         // Convert hex to RGB for rgba usage
         $player_bg_rgb = sscanf($player_bg_color, "#%02x%02x%02x");
@@ -979,7 +980,167 @@ function flexframe_enqueue_assets() {
             .thumbnail-dropdown [style*="color:#4a9eff"] {
                 color: ' . $menu_accent_color . ' !important;
             }
+            
+            /* ===== RIGHT SIDE MENU SYSTEM ===== */
+            /* Right menu container */
+            #flexframe-viewer-container .thumbnail-grid-container-right,
+            .thumbnail-grid-container-right {
+                background-color: transparent !important;
+            }
+            /* Right menu toggle buttons - background color (button only) */
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+            }
+            /* Right menu toggle buttons - text color (button and children) */
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle,
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle *,
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle span,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle *,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle span {
+                color: ' . $menu_text_color . ' !important;
+                background-color: transparent !important;
+            }
+            /* Re-apply background to button itself */
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+            }
+            /* Right menu toggle button icons */
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle svg,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle svg {
+                fill: ' . $menu_text_color . ' !important;
+            }
+            /* Right menu toggle button hover and active states */
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle:hover,
+            #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle.active,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle:hover,
+            .thumbnail-grid-container-right .thumbnail-menu-toggle.active {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            /* Right menu dropdowns */
+            #flexframe-viewer-container .thumbnail-dropdown-right,
+            #flexframe-viewer-container #hintsDropdown,
+            #flexframe-viewer-container #tipsDropdown,
+            #flexframe-viewer-container #stepsDropdown,
+            #flexframe-viewer-container #errorsDropdown,
+            .thumbnail-dropdown-right,
+            #hintsDropdown,
+            #tipsDropdown,
+            #stepsDropdown,
+            #errorsDropdown {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
+            }
+            /* Right menu text color */
+            #flexframe-viewer-container .thumbnail-dropdown-right *,
+            .thumbnail-dropdown-right * {
+                color: ' . $menu_text_color . ' !important;
+            }
+            /* Right menu hint tab */
+            #flexframe-viewer-container .menu-hint-tab-right,
+            .thumbnail-grid-container-right .menu-hint-tab-right,
+            .menu-hint-tab-right {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .menu-hint-tab-right:hover,
+            .menu-hint-tab-right:hover {
+                background-color: ' . $menu_accent_color . 'cc !important;
+            }
+            /* Right menu info items */
+            #flexframe-viewer-container .info-step-item,
+            .thumbnail-dropdown-right .info-step-item,
+            .info-step-item {
+                border-color: ' . $menu_accent_color . '44 !important;
+            }
+            #flexframe-viewer-container .info-step-item:hover,
+            .thumbnail-dropdown-right .info-step-item:hover,
+            .info-step-item:hover {
+                background-color: ' . $menu_accent_color . '22 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            /* Right menu info titles - use text color */
+            #flexframe-viewer-container .info-step-title,
+            .thumbnail-dropdown-right .info-step-title,
+            .info-step-title {
+                color: ' . $menu_text_color . ' !important;
+                font-weight: 600 !important;
+            }
+            /* Right menu scroll buttons */
+            #flexframe-viewer-container .thumbnail-dropdown-right .scroll-btn:hover,
+            .thumbnail-dropdown-right .scroll-btn:hover {
+                background-color: ' . $menu_accent_color . '33 !important;
+            }
+            #flexframe-viewer-container .thumbnail-dropdown-right .scroll-btn:hover svg,
+            .thumbnail-dropdown-right .scroll-btn:hover svg {
+                fill: ' . $menu_accent_color . ' !important;
+            }
+            /* Right menu scrollbar */
+            #flexframe-viewer-container .thumbnail-dropdown-right::-webkit-scrollbar-thumb,
+            .thumbnail-dropdown-right::-webkit-scrollbar-thumb,
+            #hintsDropdown::-webkit-scrollbar-thumb,
+            #tipsDropdown::-webkit-scrollbar-thumb,
+            #stepsDropdown::-webkit-scrollbar-thumb,
+            #errorsDropdown::-webkit-scrollbar-thumb,
+            #hintsContainer::-webkit-scrollbar-thumb,
+            #tipsContainer::-webkit-scrollbar-thumb,
+            #stepsContainer::-webkit-scrollbar-thumb,
+            #errorsContainer::-webkit-scrollbar-thumb {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .thumbnail-dropdown-right::-webkit-scrollbar-thumb:hover,
+            .thumbnail-dropdown-right::-webkit-scrollbar-thumb:hover {
+                background-color: ' . $menu_accent_color . 'cc !important;
+            }
+            /* Firefox scrollbar for right menu */
+            #flexframe-viewer-container .thumbnail-dropdown-right,
+            .thumbnail-dropdown-right,
+            #hintsContainer,
+            #tipsContainer,
+            #stepsContainer,
+            #errorsContainer {
+                scrollbar-color: ' . $menu_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+            }
+            /* Right menu glow effect override */
+            #flexframe-viewer-container .thumbnail-dropdown-right.show,
+            .thumbnail-dropdown-right.show {
+                box-shadow: 0 0 20px ' . $menu_accent_color . '66 !important;
+            }
+            /* Right menu settings panel */
+            #flexframe-viewer-container .right-menu-settings-panel,
+            .right-menu-settings-panel {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
+            }
+            /* Right menu sliders */
+            #flexframe-viewer-container .thumbnail-dropdown-right input[type="range"]::-webkit-slider-thumb,
+            .thumbnail-dropdown-right input[type="range"]::-webkit-slider-thumb,
+            .right-menu-settings-panel input[type="range"]::-webkit-slider-thumb {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .thumbnail-dropdown-right input[type="range"]::-moz-range-thumb,
+            .thumbnail-dropdown-right input[type="range"]::-moz-range-thumb,
+            .right-menu-settings-panel input[type="range"]::-moz-range-thumb {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .thumbnail-dropdown-right input[type="range"],
+            .thumbnail-dropdown-right input[type="range"],
+            .right-menu-settings-panel input[type="range"] {
+                accent-color: ' . $menu_accent_color . ' !important;
+            }
         ';
+        
+        // Hide right menu if setting is enabled
+        if ($hide_right_menu) {
+            $ui_css .= '
+                /* Hide Right Info Panel */
+                #flexframe-viewer-container .thumbnail-grid-container-right,
+                .thumbnail-grid-container-right {
+                    display: none !important;
+                }
+            ';
+        }
         
         wp_add_inline_style('flexframe-viewer-style', $ui_css);
         
