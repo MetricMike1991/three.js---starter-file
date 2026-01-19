@@ -64,6 +64,9 @@ function flexframe_enqueue_assets() {
             FLEXFRAME_VERSION
         );
         
+        // Check if this is a dedicated FlexFrame viewer page (hide all WP elements)
+        $is_viewer_page = get_post_meta($post->ID, '_flexframe_viewer_page', true);
+        
         // Add inline CSS for WordPress theme isolation
         $isolation_css = '
             /* FlexFrame CSS Isolation from WordPress Theme */
@@ -345,6 +348,62 @@ function flexframe_enqueue_assets() {
                 display: grid !important;
             }
         ';
+        
+        // If this is a dedicated FlexFrame viewer page, hide all WordPress theme elements
+        if ($is_viewer_page) {
+            $isolation_css .= '
+            /* Full-screen FlexFrame viewer - hide all WordPress elements */
+            body.page {
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+            }
+            /* Hide WordPress header, footer, sidebar, navigation, admin bar */
+            header, footer, aside, nav,
+            .site-header, .site-footer, .site-sidebar, .site-navigation,
+            .wp-site-header, .wp-site-footer, .wp-site-navigation,
+            #masthead, #colophon, #secondary, #site-navigation,
+            .main-navigation, .footer-navigation,
+            .widget-area, .sidebar, .site-info,
+            .entry-header, .entry-footer, .entry-meta,
+            .post-navigation, .comments-area,
+            .page-header, .page-title, .entry-title,
+            .wp-block-post-title, .wp-block-latest-posts,
+            .wp-block-query, .wp-block-template-part,
+            .has-global-padding > .wp-block-template-part,
+            #wpadminbar,
+            .breadcrumb, .breadcrumbs,
+            .skip-link {
+                display: none !important;
+            }
+            /* Make content area full screen */
+            html, body {
+                width: 100vw !important;
+                height: 100vh !important;
+                overflow: hidden !important;
+            }
+            main, .site-main, .site-content, .content-area,
+            .entry-content, article, .page, .type-page,
+            .wp-block-group, .wp-site-blocks,
+            .is-layout-constrained, .is-layout-flow {
+                width: 100vw !important;
+                max-width: 100vw !important;
+                height: 100vh !important;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+            /* Ensure FlexFrame container is full screen */
+            #flexframe-viewer-container {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100vw !important;
+                height: 100vh !important;
+                z-index: 9999 !important;
+            }
+            ';
+        }
+        
         wp_add_inline_style('flexframe-viewer-style', $isolation_css);
         
         // Register JavaScript bundle (must register before localizing)

@@ -25,6 +25,112 @@ function flexframe_add_admin_menu() {
 add_action('admin_menu', 'flexframe_add_admin_menu');
 
 /**
+ * AJAX handler to create the Exercise Viewer page
+ */
+function flexframe_create_viewer_page() {
+    // Security check
+    check_ajax_referer('flexframe_create_page', 'nonce');
+    
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error(array('message' => 'Permission denied'));
+    }
+    
+    // Check if page already exists
+    $existing_page = get_page_by_path('exercise-viewer');
+    if ($existing_page) {
+        // Update the existing page to use blank template
+        flexframe_set_blank_template($existing_page->ID);
+        
+        $page_url = get_permalink($existing_page->ID);
+        update_option('flexframe_viewer_page_url', $page_url);
+        wp_send_json_success(array(
+            'message' => 'Page already exists! Template updated.',
+            'url' => $page_url,
+            'page_id' => $existing_page->ID,
+            'edit_url' => get_edit_post_link($existing_page->ID, 'raw')
+        ));
+    }
+    
+    // Create the page with minimal content (shortcode only)
+    $page_data = array(
+        'post_title'    => 'Exercise Viewer',
+        'post_name'     => 'exercise-viewer',
+        'post_content'  => '[flexframe_viewer]',
+        'post_status'   => 'publish',
+        'post_type'     => 'page',
+        'post_author'   => get_current_user_id(),
+    );
+    
+    $page_id = wp_insert_post($page_data);
+    
+    if (is_wp_error($page_id)) {
+        wp_send_json_error(array('message' => $page_id->get_error_message()));
+    }
+    
+    // Set blank/canvas template for the page
+    flexframe_set_blank_template($page_id);
+    
+    // Save the page URL to settings
+    $page_url = get_permalink($page_id);
+    update_option('flexframe_viewer_page_url', $page_url);
+    
+    wp_send_json_success(array(
+        'message' => 'Exercise Viewer page created successfully!',
+        'url' => $page_url,
+        'page_id' => $page_id,
+        'edit_url' => get_edit_post_link($page_id, 'raw')
+    ));
+}
+add_action('wp_ajax_flexframe_create_viewer_page', 'flexframe_create_viewer_page');
+
+/**
+ * Set a blank/canvas template for the page
+ */
+function flexframe_set_blank_template($page_id) {
+    // Always mark this page as a FlexFrame viewer page for our custom CSS
+    update_post_meta($page_id, '_flexframe_viewer_page', '1');
+    
+    // Try common blank template names used by popular themes
+    $blank_templates = array(
+        'blank',
+        'canvas', 
+        'blank-canvas',
+        'template-blank.php',
+        'template-canvas.php',
+        'page-templates/blank.php',
+        'page-templates/canvas.php',
+        'templates/blank.php',
+        'templates/canvas.php',
+        'elementor_canvas',
+        'elementor-canvas',
+    );
+    
+    // Get available page templates
+    $available_templates = get_page_templates();
+    
+    // Try to find a blank template
+    foreach ($blank_templates as $template) {
+        if (in_array($template, $available_templates) || array_key_exists($template, $available_templates)) {
+            update_post_meta($page_id, '_wp_page_template', $template);
+            return;
+        }
+        // Check values (some themes use different keys/values)
+        foreach ($available_templates as $name => $file) {
+            if (stripos($name, 'blank') !== false || stripos($name, 'canvas') !== false || 
+                stripos($file, 'blank') !== false || stripos($file, 'canvas') !== false) {
+                update_post_meta($page_id, '_wp_page_template', $file);
+                return;
+            }
+        }
+    }
+    
+    // For block themes, try to use the blank template
+    if (wp_is_block_theme()) {
+        update_post_meta($page_id, '_wp_page_template', 'blank');
+    }
+}
+
+/**
  * Register settings
  */
 function flexframe_register_settings() {
@@ -428,6 +534,17 @@ function flexframe_settings_page() {
                         </p>
                         
                         <div class="flexframe-viewer-url-setting">
+                            <div class="flexframe-create-page-row">
+                                <button type="button" id="flexframe-create-viewer-page" class="button button-primary">
+                                    <span class="dashicons dashicons-plus-alt" style="margin-top: 3px;"></span>
+                                    <?php _e('Create Exercise Viewer Page', 'flexframe-viewer'); ?>
+                                </button>
+                                <span id="flexframe-create-page-status" style="margin-left: 10px; line-height: 30px;"></span>
+                            </div>
+                            <p class="description" style="margin-top: 8px; margin-bottom: 16px;">
+                                <?php _e('Click to automatically create a new page with the FlexFrame viewer shortcode.', 'flexframe-viewer'); ?>
+                            </p>
+                            
                             <label for="flexframe_viewer_page_url"><?php _e('Viewer Page URL:', 'flexframe-viewer'); ?></label>
                             <input type="url" id="flexframe_viewer_page_url" name="flexframe_viewer_page_url" 
                                    value="<?php echo esc_attr($viewer_page_url); ?>" 
@@ -435,11 +552,11 @@ function flexframe_settings_page() {
                                    placeholder="https://yoursite.com/exercise-viewer/" />
                             <p class="description">
                                 <?php if (!empty($viewer_page_url)): ?>
-                                    <span style="color: #00a32a;">✓ <?php _e('Auto-detected from the page where your [flexframe_viewer] shortcode is embedded.', 'flexframe-viewer'); ?></span><br>
+                                    <span style="color: #00a32a;">✓ <?php _e('Viewer page URL is set.', 'flexframe-viewer'); ?></span>
+                                    <a href="<?php echo esc_url($viewer_page_url); ?>" target="_blank" style="margin-left: 8px;"><?php _e('View Page →', 'flexframe-viewer'); ?></a>
                                 <?php else: ?>
-                                    <span style="color: #d63638;">⚠ <?php _e('Not yet detected. Visit the page with your [flexframe_viewer] shortcode to auto-detect.', 'flexframe-viewer'); ?></span><br>
+                                    <span style="color: #d63638;">⚠ <?php _e('No viewer page set. Click the button above to create one automatically.', 'flexframe-viewer'); ?></span>
                                 <?php endif; ?>
-                                <?php _e('You can override this URL if needed.', 'flexframe-viewer'); ?>
                             </p>
                         </div>
                         
@@ -810,6 +927,16 @@ function flexframe_settings_page() {
             background: #f9f9f9;
             border-radius: 6px;
         }
+        .flexframe-create-page-row {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+        .flexframe-create-page-row .button-primary {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
         .flexframe-viewer-url-setting label {
             display: block;
             font-weight: 600;
@@ -1008,6 +1135,50 @@ function flexframe_settings_page() {
         $('input[type="color"]').on('input', function() {
             $(this).siblings('.color-hex').text($(this).val());
             $(this).siblings('.color-hex-display').text($(this).val());
+        });
+        
+        // Create Viewer Page button handler
+        $('#flexframe-create-viewer-page').on('click', function() {
+            var $btn = $(this);
+            var $status = $('#flexframe-create-page-status');
+            
+            $btn.prop('disabled', true).text('Creating...');
+            $status.html('<span style="color: #666;">Please wait...</span>');
+            
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_create_viewer_page',
+                    nonce: '<?php echo wp_create_nonce('flexframe_create_page'); ?>'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $status.html('<span style="color: #00a32a;">✓ ' + response.data.message + '</span>');
+                        $('#flexframe_viewer_page_url').val(response.data.url);
+                        
+                        // Update the viewerPageUrl variable for exercise URLs
+                        viewerPageUrl = response.data.url;
+                        renderExerciseList();
+                        
+                        // Show links to view/edit the page
+                        setTimeout(function() {
+                            $status.html(
+                                '<span style="color: #00a32a;">✓ Page created!</span> ' +
+                                '<a href="' + response.data.url + '" target="_blank">View Page</a> | ' +
+                                '<a href="' + response.data.edit_url + '" target="_blank">Edit Page</a>'
+                            );
+                        }, 1500);
+                    } else {
+                        $status.html('<span style="color: #d63638;">✗ ' + response.data.message + '</span>');
+                    }
+                    $btn.prop('disabled', false).html('<span class="dashicons dashicons-plus-alt" style="margin-top: 3px;"></span> Create Exercise Viewer Page');
+                },
+                error: function() {
+                    $status.html('<span style="color: #d63638;">✗ An error occurred. Please try again.</span>');
+                    $btn.prop('disabled', false).html('<span class="dashicons dashicons-plus-alt" style="margin-top: 3px;"></span> Create Exercise Viewer Page');
+                }
+            });
         });
         
         // Exercise Library functionality
