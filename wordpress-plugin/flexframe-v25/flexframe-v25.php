@@ -579,13 +579,38 @@ function flexframe_enqueue_assets() {
         
         $ui_css .= '
             /* FlexFrame UI Settings - Menus */
-            .thumbnail-grid-container,
+            /* Keep the main container transparent */
+            .thumbnail-grid-container {
+                background-color: transparent !important;
+            }
+            /* Apply background to dropdowns */
+            .thumbnail-dropdown,
             .exercise-menu,
             .menu-panel,
             .side-menu,
-            .thumbnail-dropdown,
             .right-menu {
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+            }
+            /* Menu title buttons - use menu background color */
+            #flexframe-viewer-container .thumbnail-menu-toggle,
+            .thumbnail-grid-container .thumbnail-menu-toggle,
+            button.thumbnail-menu-toggle,
+            .thumbnail-menu-toggle {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+            }
+            /* ALL DROPDOWN BORDERS - use accent color */
+            #flexframe-viewer-container .thumbnail-dropdown,
+            #flexframe-viewer-container #searchDropdown,
+            #flexframe-viewer-container #exercisesDropdown,
+            #flexframe-viewer-container #musclesDropdown,
+            #flexframe-viewer-container #equipmentDropdown,
+            .thumbnail-dropdown,
+            #searchDropdown,
+            #exercisesDropdown,
+            #musclesDropdown,
+            #equipmentDropdown {
+                border: 2px solid ' . $menu_accent_color . ' !important;
+                outline: none !important;
             }
             .thumbnail-grid-container *,
             .exercise-menu *,
@@ -595,6 +620,287 @@ function flexframe_enqueue_assets() {
             .right-menu * {
                 color: ' . $menu_text_color . ' !important;
             }
+            
+            /* ===== MENU TITLE BUTTONS (Exercises, Muscles, Equipment, Search) ===== */
+            #flexframe-viewer-container .thumbnail-menu-toggle:hover,
+            #flexframe-viewer-container .thumbnail-menu-toggle.active,
+            #flexframe-viewer-container .thumbnail-menu-toggle:focus,
+            .thumbnail-grid-container .thumbnail-menu-toggle:hover,
+            .thumbnail-grid-container .thumbnail-menu-toggle.active,
+            .thumbnail-grid-container .thumbnail-menu-toggle:focus,
+            button.thumbnail-menu-toggle:hover,
+            button.thumbnail-menu-toggle.active {
+                background-color: ' . $menu_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== SLIDE IN/OUT TAB BUTTON ===== */
+            #flexframe-viewer-container .menu-hint-tab,
+            .thumbnail-grid-container .menu-hint-tab,
+            .menu-hint-tab {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .menu-hint-tab:hover,
+            .thumbnail-grid-container .menu-hint-tab:hover,
+            .menu-hint-tab:hover {
+                background-color: ' . $menu_accent_color . 'cc !important;
+            }
+            
+            /* ===== SCROLL BUTTONS ===== */
+            .scroll-btn:hover,
+            .thumbnail-scroll-controls button:hover {
+                background-color: ' . $menu_accent_color . '33 !important;
+                color: ' . $menu_accent_color . ' !important;
+            }
+            .scroll-btn:hover svg,
+            .thumbnail-scroll-controls button:hover svg {
+                fill: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== SEARCH BUTTON/ICON ===== */
+            #flexframe-viewer-container .search-action-btn,
+            #flexframe-viewer-container .search-btn,
+            #flexframe-viewer-container #searchActionBtn,
+            .thumbnail-dropdown .search-action-btn,
+            .search-action-btn,
+            .search-btn,
+            #searchActionBtn,
+            .search-input-wrapper button,
+            .search-header button {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .search-action-btn:hover,
+            #flexframe-viewer-container .search-btn:hover,
+            #flexframe-viewer-container #searchActionBtn:hover,
+            .search-action-btn:hover,
+            .search-btn:hover,
+            #searchActionBtn:hover,
+            .search-input-wrapper button:hover,
+            .search-header button:hover {
+                background-color: ' . $menu_accent_color . 'cc !important;
+            }
+            
+            /* ===== SEARCH INPUT - ALL STATES ===== */
+            #flexframe-viewer-container .search-input,
+            #flexframe-viewer-container #searchInput,
+            #flexframe-viewer-container .search-input-wrapper input,
+            #flexframe-viewer-container input.search-input,
+            #searchDropdown .search-input,
+            #searchDropdown #searchInput,
+            #searchDropdown input,
+            .thumbnail-dropdown .search-input,
+            .thumbnail-dropdown #searchInput,
+            .search-header .search-input,
+            .search-header input,
+            .search-input-wrapper .search-input,
+            .search-input,
+            #searchInput,
+            input.search-input {
+                border-color: ' . $menu_accent_color . ' !important;
+                outline: none !important;
+            }
+            #flexframe-viewer-container .search-input:focus,
+            #flexframe-viewer-container #searchInput:focus,
+            #flexframe-viewer-container .search-input-wrapper input:focus,
+            #flexframe-viewer-container input.search-input:focus,
+            #searchDropdown .search-input:focus,
+            #searchDropdown #searchInput:focus,
+            #searchDropdown input:focus,
+            .thumbnail-dropdown .search-input:focus,
+            .thumbnail-dropdown #searchInput:focus,
+            .search-header .search-input:focus,
+            .search-header input:focus,
+            .search-input-wrapper .search-input:focus,
+            .search-input:focus,
+            #searchInput:focus,
+            input.search-input:focus {
+                border-color: ' . $menu_accent_color . ' !important;
+                outline: 2px solid ' . $menu_accent_color . ' !important;
+                outline-offset: -2px !important;
+                box-shadow: 0 0 0 3px ' . $menu_accent_color . '33 !important;
+            }
+            
+            /* ===== SEARCH DROPDOWN CONTAINER & SUGGESTIONS ===== */
+            #flexframe-viewer-container #searchDropdown,
+            #flexframe-viewer-container .search-dropdown,
+            #searchDropdown,
+            .search-dropdown {
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container #searchDropdown.show,
+            #flexframe-viewer-container .search-dropdown.show,
+            #searchDropdown.show,
+            .search-dropdown.show {
+                border-color: ' . $menu_accent_color . ' !important;
+                outline: 2px solid ' . $menu_accent_color . ' !important;
+            }
+            /* Search suggestions dropdown */
+            #flexframe-viewer-container .search-suggestions,
+            #flexframe-viewer-container #searchSuggestions,
+            #flexframe-viewer-container .autocomplete-suggestions,
+            #searchSuggestions,
+            .search-suggestions,
+            .autocomplete-suggestions {
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            /* Search suggestions hover - all possible item classes */
+            #flexframe-viewer-container .search-suggestions .suggestion-item:hover,
+            #flexframe-viewer-container .search-suggestions .search-suggestion-item:hover,
+            #flexframe-viewer-container .search-suggestions > div:hover,
+            #flexframe-viewer-container #searchSuggestions .suggestion-item:hover,
+            #flexframe-viewer-container #searchSuggestions .search-suggestion-item:hover,
+            #flexframe-viewer-container #searchSuggestions > div:hover,
+            #searchSuggestions .suggestion-item:hover,
+            #searchSuggestions .search-suggestion-item:hover,
+            #searchSuggestions > div:not(.search-suggestion-category):hover,
+            .search-suggestions .suggestion-item:hover,
+            .search-suggestions .search-suggestion-item:hover,
+            .search-suggestions > div:not(.search-suggestion-category):hover,
+            .autocomplete-suggestions .suggestion-item:hover,
+            .autocomplete-suggestions > div:hover {
+                background-color: ' . $menu_accent_color . '33 !important;
+            }
+            /* Search suggestions scrollbar - webkit */
+            #flexframe-viewer-container .search-suggestions::-webkit-scrollbar-thumb,
+            #flexframe-viewer-container #searchSuggestions::-webkit-scrollbar-thumb,
+            #searchSuggestions::-webkit-scrollbar-thumb,
+            .search-suggestions::-webkit-scrollbar-thumb,
+            .autocomplete-suggestions::-webkit-scrollbar-thumb {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .search-suggestions::-webkit-scrollbar-thumb:hover,
+            #flexframe-viewer-container #searchSuggestions::-webkit-scrollbar-thumb:hover,
+            #searchSuggestions::-webkit-scrollbar-thumb:hover,
+            .search-suggestions::-webkit-scrollbar-thumb:hover,
+            .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
+                background-color: ' . $menu_accent_color . 'cc !important;
+            }
+            #flexframe-viewer-container .search-suggestions::-webkit-scrollbar-track,
+            #flexframe-viewer-container #searchSuggestions::-webkit-scrollbar-track,
+            #searchSuggestions::-webkit-scrollbar-track,
+            .search-suggestions::-webkit-scrollbar-track,
+            .autocomplete-suggestions::-webkit-scrollbar-track {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+            }
+            /* Search suggestions scrollbar - Firefox */
+            #flexframe-viewer-container .search-suggestions,
+            #flexframe-viewer-container #searchSuggestions,
+            #searchSuggestions,
+            .search-suggestions,
+            .autocomplete-suggestions {
+                scrollbar-color: ' . $menu_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+            }
+            /* Search input wrapper */
+            #flexframe-viewer-container .search-input-wrapper,
+            #flexframe-viewer-container .search-header,
+            .search-input-wrapper,
+            .search-header {
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            /* Focused search area highlight */
+            #flexframe-viewer-container .search-input-wrapper:focus-within,
+            #flexframe-viewer-container .search-header:focus-within,
+            .search-input-wrapper:focus-within,
+            .search-header:focus-within {
+                border-color: ' . $menu_accent_color . ' !important;
+                box-shadow: 0 0 0 2px ' . $menu_accent_color . '33 !important;
+            }
+            
+            /* ===== SECTION HEADERS (Menus - not search suggestions) ===== */
+            #flexframe-viewer-container .section-header,
+            #flexframe-viewer-container .menu-section-header,
+            #flexframe-viewer-container .category-header,
+            #flexframe-viewer-container .group-header,
+            #flexframe-viewer-container .exercise-category,
+            #flexframe-viewer-container .muscle-group-header,
+            .thumbnail-dropdown .section-header,
+            .thumbnail-dropdown .menu-section-header,
+            .thumbnail-dropdown .category-header,
+            .thumbnail-dropdown [class*="header"]:not(.search-header):not(.search-suggestion-category),
+            .thumbnail-dropdown [class*="category"]:not(.search-suggestion-category),
+            .thumbnail-dropdown [class*="group-title"],
+            .section-header,
+            .menu-section-header,
+            .category-header,
+            .group-header,
+            .exercise-category,
+            .muscle-group-header {
+                color: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== SEARCH SUGGESTION CATEGORY HEADERS (POPULAR EXERCISES, MUSCLE GROUPS) ===== */
+            /* Background = accent color, Font = white */
+            #flexframe-viewer-container .search-suggestion-category,
+            #flexframe-viewer-container #searchSuggestions .search-suggestion-category,
+            #searchDropdown .search-suggestion-category,
+            #searchSuggestions .search-suggestion-category,
+            .search-suggestions .search-suggestion-category,
+            .search-suggestion-category {
+                background-color: ' . $menu_accent_color . ' !important;
+                color: #ffffff !important;
+                padding: 6px 10px !important;
+                margin: 0 !important;
+                font-weight: 600 !important;
+            }
+            
+            /* ===== SCROLLBAR STYLING ===== */
+            #flexframe-viewer-container .thumbnail-dropdown::-webkit-scrollbar-thumb,
+            #flexframe-viewer-container .thumbnail-scroll-container::-webkit-scrollbar-thumb,
+            #flexframe-viewer-container .thumbnail-grid::-webkit-scrollbar-thumb,
+            #searchDropdown::-webkit-scrollbar-thumb,
+            #exercisesDropdown::-webkit-scrollbar-thumb,
+            #musclesDropdown::-webkit-scrollbar-thumb,
+            #equipmentDropdown::-webkit-scrollbar-thumb,
+            .thumbnail-dropdown::-webkit-scrollbar-thumb,
+            .thumbnail-scroll-container::-webkit-scrollbar-thumb,
+            .thumbnail-grid::-webkit-scrollbar-thumb {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .thumbnail-dropdown::-webkit-scrollbar-thumb:hover,
+            #flexframe-viewer-container .thumbnail-scroll-container::-webkit-scrollbar-thumb:hover,
+            .thumbnail-dropdown::-webkit-scrollbar-thumb:hover,
+            .thumbnail-scroll-container::-webkit-scrollbar-thumb:hover {
+                background-color: ' . $menu_accent_color . 'cc !important;
+            }
+            #flexframe-viewer-container .thumbnail-dropdown::-webkit-scrollbar-track,
+            #flexframe-viewer-container .thumbnail-scroll-container::-webkit-scrollbar-track,
+            .thumbnail-dropdown::-webkit-scrollbar-track,
+            .thumbnail-scroll-container::-webkit-scrollbar-track {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+            }
+            /* Firefox scrollbar */
+            #flexframe-viewer-container .thumbnail-dropdown,
+            #flexframe-viewer-container .thumbnail-scroll-container,
+            .thumbnail-dropdown,
+            .thumbnail-scroll-container {
+                scrollbar-color: ' . $menu_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+            }
+            
+            /* ===== EXERCISE LIST ITEM ICONS ===== */
+            #flexframe-viewer-container .exercise-item::before,
+            #flexframe-viewer-container .menu-item::before,
+            #flexframe-viewer-container .exercise-list-item::before,
+            .exercise-item::before,
+            .menu-item::before,
+            .exercise-list-item::before {
+                color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .exercise-icon,
+            #flexframe-viewer-container .item-icon,
+            #flexframe-viewer-container .exercise-item svg,
+            #flexframe-viewer-container .menu-item svg,
+            .thumbnail-dropdown .exercise-icon,
+            .thumbnail-dropdown .item-icon,
+            .thumbnail-dropdown svg.exercise-icon,
+            .exercise-icon,
+            .item-icon,
+            .exercise-item svg,
+            .menu-item svg {
+                fill: ' . $menu_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== THUMBNAIL ITEMS HOVER/ACTIVE ===== */
             .thumbnail-item.active,
             .thumbnail-item:hover,
             .menu-item.active,
@@ -606,6 +912,71 @@ function flexframe_enqueue_assets() {
             }
             .thumbnail-item.active *,
             .menu-item.active * {
+                color: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== SELECTED EXERCISE ITEM & CHECKMARK ===== */
+            #flexframe-viewer-container .thumbnail-item.selected,
+            #flexframe-viewer-container .exercise-item.selected,
+            #flexframe-viewer-container .menu-item.selected,
+            .thumbnail-item.selected,
+            .exercise-item.selected,
+            .menu-item.selected {
+                background-color: ' . $menu_accent_color . '44 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            /* Selected checkmark icon */
+            #flexframe-viewer-container .thumbnail-item.selected .selected-icon,
+            #flexframe-viewer-container .thumbnail-item.selected .check-icon,
+            #flexframe-viewer-container .thumbnail-item.selected .checkmark,
+            #flexframe-viewer-container .thumbnail-item .selected-indicator,
+            #flexframe-viewer-container .selected-icon,
+            #flexframe-viewer-container .check-icon,
+            #flexframe-viewer-container .checkmark,
+            .thumbnail-item.selected .selected-icon,
+            .thumbnail-item.selected .check-icon,
+            .thumbnail-item.selected .checkmark,
+            .thumbnail-item .selected-indicator,
+            .selected-icon,
+            .check-icon,
+            .checkmark {
+                background-color: ' . $menu_accent_color . ' !important;
+                color: #ffffff !important;
+            }
+            #flexframe-viewer-container .thumbnail-item.selected .selected-icon svg,
+            #flexframe-viewer-container .thumbnail-item.selected .check-icon svg,
+            #flexframe-viewer-container .thumbnail-item.selected .checkmark svg,
+            #flexframe-viewer-container .selected-icon svg,
+            #flexframe-viewer-container .check-icon svg,
+            .thumbnail-item.selected .selected-icon svg,
+            .thumbnail-item.selected .check-icon svg,
+            .thumbnail-item .selected-indicator svg,
+            .selected-icon svg,
+            .check-icon svg,
+            .checkmark svg {
+                fill: #ffffff !important;
+            }
+            
+            /* ===== LINKS HOVER ===== */
+            .thumbnail-grid-container a:hover,
+            .thumbnail-dropdown a:hover,
+            .menu-panel a:hover {
+                color: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== OVERRIDE ANY HARDCODED BLUE (#4a9eff) ===== */
+            #flexframe-viewer-container [style*="background-color: #4a9eff"],
+            #flexframe-viewer-container [style*="background-color: rgb(74, 158, 255)"],
+            #flexframe-viewer-container [style*="background:#4a9eff"],
+            .thumbnail-dropdown [style*="background-color: #4a9eff"],
+            .thumbnail-dropdown [style*="background:#4a9eff"] {
+                background-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container [style*="color: #4a9eff"],
+            #flexframe-viewer-container [style*="color: rgb(74, 158, 255)"],
+            #flexframe-viewer-container [style*="color:#4a9eff"],
+            .thumbnail-dropdown [style*="color: #4a9eff"],
+            .thumbnail-dropdown [style*="color:#4a9eff"] {
                 color: ' . $menu_accent_color . ' !important;
             }
         ';
