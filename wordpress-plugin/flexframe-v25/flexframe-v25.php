@@ -350,7 +350,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-17CYydFo.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-DB7h1gp6.js',
             array(),
             FLEXFRAME_VERSION,
             true

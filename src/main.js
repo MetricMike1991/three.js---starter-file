@@ -157,7 +157,9 @@ class ThreeJSApp {
                 try {
                     // Add cache busting to force fresh config fetch
                     const cacheBuster = `?t=${Date.now()}`;
-                    const configUrlWithCache = exercise.configUrl + cacheBuster;
+                    // Use getAssetUrl to resolve the config path correctly for WordPress
+                    const resolvedConfigUrl = getAssetUrl(exercise.configUrl.replace('./', ''));
+                    const configUrlWithCache = resolvedConfigUrl + cacheBuster;
                     const response = await fetch(configUrlWithCache);
                     const config = await response.json();
                     // console.log('Exercise config loaded:', config);
@@ -431,7 +433,8 @@ class ThreeJSApp {
     }
     
     gatherModelSpecificSettings() {
-        // Gather simplified config file data for the current model
+        // Gather simplified config - ONLY model orientation, scale, position and camera data
+        // This is used to copy position/camera settings to clipboard for config files
         const config = {};
         
         // Add exerciseId if available from current config
@@ -452,25 +455,18 @@ class ThreeJSApp {
             }
         }
         
-        // Model transform
+        // Model transform (position, rotation, scale)
         config.model = window.model ? {
             position: window.model.position.toArray(),
             rotation: [window.model.rotation.x, window.model.rotation.y, window.model.rotation.z],
             scale: window.model.scale.toArray()
         } : { position: [0, -0.02, 0], rotation: [0, 0, 0], scale: [1, 1, 1] };
         
-        // Camera settings (model-specific viewing angle)
+        // Camera settings (position, rotation, target for viewing angle)
         config.camera = this.cameraManager.getSettings();
         
-        // Custom textures if available
-        if (this.currentConfig && this.currentConfig.customTextures) {
-            config.customTextures = this.currentConfig.customTextures;
-        }
-        
-        // Right menu tabs if available
-        if (this.currentConfig && this.currentConfig.rightMenuTabs) {
-            config.rightMenuTabs = this.currentConfig.rightMenuTabs;
-        }
+        // NOTE: customTextures and rightMenuTabs are intentionally NOT included
+        // This config is meant only for model positioning and camera data
         
         return config;
     }
@@ -2330,6 +2326,34 @@ class ThreeJSApp {
                 
                 // Extensive transparency controls for SKIN materials
                 if (name.includes('SKIN')) {
+                    // Store original color map reference
+                    if (!material._originalColorMap) {
+                        material._originalColorMap = material.map;
+                    }
+                    
+                    // Color Map Toggle - check if custom mode and remove by default
+                    const isCustomMode = window.flexframeSettings && window.flexframeSettings.materialMode === 'custom';
+                    const colorMapParams = {
+                        useColorMap: isCustomMode ? false : !!material.map
+                    };
+                    
+                    // Apply default state (remove color map if custom mode)
+                    if (isCustomMode && material.map) {
+                        material.map = null;
+                        material.needsUpdate = true;
+                    }
+                    
+                    matFolder.add(colorMapParams, 'useColorMap')
+                        .name('🎨 Use Color Map')
+                        .onChange((value) => {
+                            if (value && material._originalColorMap) {
+                                material.map = material._originalColorMap;
+                            } else {
+                                material.map = null;
+                            }
+                            material.needsUpdate = true;
+                        });
+                    
                     // Side rendering options
                     const sideOptions = { 'Front (Single)': THREE.FrontSide, 'Back': THREE.BackSide, 'Double': THREE.DoubleSide };
                     matFolder.add(material, 'side', sideOptions)
@@ -2777,6 +2801,64 @@ class ThreeJSApp {
         
         console.log(`✅ Applied Material Preset 1 to ${appliedCount} materials`);
         
+        // Update GUI
+        if (this.gui) {
+            setTimeout(() => {
+                this.gui.controllersRecursive().forEach(controller => {
+                    controller.updateDisplay();
+                });
+            }, 100);
+        }
+    }
+
+    applyCustomSkinSettings(skinSettings) {
+        if (!window.model) {
+            console.log('No model loaded for custom skin settings');
+            return;
+        }
+
+        console.log('Applying custom SKIN settings:', skinSettings);
+
+        window.model.traverse((child) => {
+            if (child.isMesh && child.material) {
+                const materials = Array.isArray(child.material) ? child.material : [child.material];
+                
+                materials.forEach(mat => {
+                    if (mat.name && mat.name.toUpperCase() === 'SKIN') {
+                        // Apply custom settings from WordPress
+                        if (skinSettings.color) {
+                            mat.color.set(skinSettings.color);
+                        }
+                        if (skinSettings.opacity !== undefined) {
+                            mat.opacity = skinSettings.opacity;
+                            mat.transparent = skinSettings.opacity < 1;
+                        }
+                        if (skinSettings.roughness !== undefined) {
+                            mat.roughness = skinSettings.roughness;
+                        }
+                        if (skinSettings.metalness !== undefined) {
+                            mat.metalness = skinSettings.metalness;
+                        }
+                        if (skinSettings.transmission !== undefined) {
+                            mat.transmission = skinSettings.transmission;
+                        }
+                        if (skinSettings.thickness !== undefined) {
+                            mat.thickness = skinSettings.thickness;
+                        }
+                        if (skinSettings.ior !== undefined) {
+                            mat.ior = skinSettings.ior;
+                        }
+                        if (skinSettings.envMapIntensity !== undefined) {
+                            mat.envMapIntensity = skinSettings.envMapIntensity;
+                        }
+                        
+                        mat.needsUpdate = true;
+                        console.log('✅ Custom SKIN settings applied to material:', mat.name);
+                    }
+                });
+            }
+        });
+
         // Update GUI
         if (this.gui) {
             setTimeout(() => {
