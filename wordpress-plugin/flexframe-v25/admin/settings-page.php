@@ -241,7 +241,17 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'floatval',
         'default' => 0.8
     ));
-    register_setting('flexframe_settings_group', 'flexframe_player_button_color', array(
+    register_setting('flexframe_settings_group', 'flexframe_player_button_bg_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#ffffff'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_player_button_bg_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.1
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_player_icon_color', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_hex_color',
         'default' => '#ffffff'
@@ -353,7 +363,9 @@ function flexframe_settings_page() {
     $spinner_color = get_option('flexframe_spinner_color', '#4a9eff');
     $player_bg_color = get_option('flexframe_player_bg_color', '#000000');
     $player_bg_opacity = get_option('flexframe_player_bg_opacity', 0.8);
-    $player_button_color = get_option('flexframe_player_button_color', '#ffffff');
+    $player_button_bg_color = get_option('flexframe_player_button_bg_color', '#ffffff');
+    $player_button_bg_opacity = get_option('flexframe_player_button_bg_opacity', 0.1);
+    $player_icon_color = get_option('flexframe_player_icon_color', '#ffffff');
     $player_accent_color = get_option('flexframe_player_accent_color', '#00bcd4');
     $player_always_visible = get_option('flexframe_player_always_visible', 'no');
     $menu_bg_color = get_option('flexframe_menu_bg_color', '#000000');
@@ -692,16 +704,17 @@ function flexframe_settings_page() {
                             <table class="form-table ui-settings-table">
                                 <tr>
                                     <th scope="row">
-                                        <label for="flexframe_player_bg_color"><?php _e('Background Color', 'flexframe-viewer'); ?></label>
+                                        <label for="flexframe_player_bg_color"><?php _e('Player Background', 'flexframe-viewer'); ?></label>
                                     </th>
                                     <td>
                                         <input type="color" id="flexframe_player_bg_color" name="flexframe_player_bg_color" value="<?php echo esc_attr($player_bg_color); ?>" class="color-picker" />
                                         <span class="color-value"><?php echo esc_html($player_bg_color); ?></span>
+                                        <p class="description"><?php _e('Background color of the entire player bar.', 'flexframe-viewer'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="flexframe_player_bg_opacity"><?php _e('Background Opacity', 'flexframe-viewer'); ?></label>
+                                        <label for="flexframe_player_bg_opacity"><?php _e('Player Background Opacity', 'flexframe-viewer'); ?></label>
                                     </th>
                                     <td>
                                         <input type="range" id="flexframe_player_bg_opacity" name="flexframe_player_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($player_bg_opacity); ?>" class="opacity-slider" />
@@ -711,12 +724,32 @@ function flexframe_settings_page() {
                                 </tr>
                                 <tr>
                                     <th scope="row">
-                                        <label for="flexframe_player_button_color"><?php _e('Button Color', 'flexframe-viewer'); ?></label>
+                                        <label for="flexframe_player_button_bg_color"><?php _e('Button Background', 'flexframe-viewer'); ?></label>
                                     </th>
                                     <td>
-                                        <input type="color" id="flexframe_player_button_color" name="flexframe_player_button_color" value="<?php echo esc_attr($player_button_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($player_button_color); ?></span>
-                                        <p class="description"><?php _e('Color of play/pause and other control buttons.', 'flexframe-viewer'); ?></p>
+                                        <input type="color" id="flexframe_player_button_bg_color" name="flexframe_player_button_bg_color" value="<?php echo esc_attr($player_button_bg_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($player_button_bg_color); ?></span>
+                                        <p class="description"><?php _e('Background color of the Play/Pause and Speed buttons.', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_player_button_bg_opacity"><?php _e('Button Background Opacity', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="range" id="flexframe_player_button_bg_opacity" name="flexframe_player_button_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($player_button_bg_opacity); ?>" class="opacity-slider" />
+                                        <span class="opacity-value"><?php echo esc_html($player_button_bg_opacity); ?></span>
+                                        <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_player_icon_color"><?php _e('Icon & Text Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_player_icon_color" name="flexframe_player_icon_color" value="<?php echo esc_attr($player_icon_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($player_icon_color); ?></span>
+                                        <p class="description"><?php _e('Color of Play/Pause icons, speed text, and time display.', 'flexframe-viewer'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -726,7 +759,7 @@ function flexframe_settings_page() {
                                     <td>
                                         <input type="color" id="flexframe_player_accent_color" name="flexframe_player_accent_color" value="<?php echo esc_attr($player_accent_color); ?>" class="color-picker" />
                                         <span class="color-value"><?php echo esc_html($player_accent_color); ?></span>
-                                        <p class="description"><?php _e('Accent color for progress bar and highlights.', 'flexframe-viewer'); ?></p>
+                                        <p class="description"><?php _e('Accent color for progress bar/scrubber.', 'flexframe-viewer'); ?></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -1907,7 +1940,9 @@ function flexframe_settings_page() {
             var spinnerColor = $('#flexframe_spinner_color').val();
             var playerBgColor = $('#flexframe_player_bg_color').val();
             var playerBgOpacity = parseFloat($('#flexframe_player_bg_opacity').val());
-            var playerButtonColor = $('#flexframe_player_button_color').val();
+            var playerButtonBgColor = $('#flexframe_player_button_bg_color').val();
+            var playerButtonBgOpacity = parseFloat($('#flexframe_player_button_bg_opacity').val());
+            var playerIconColor = $('#flexframe_player_icon_color').val();
             var playerAccentColor = $('#flexframe_player_accent_color').val();
             var menuBgColor = $('#flexframe_menu_bg_color').val();
             var menuBgOpacity = parseFloat($('#flexframe_menu_bg_opacity').val());
@@ -1926,11 +1961,11 @@ function flexframe_settings_page() {
             var $player = $('#preview-player');
             $player.css('background-color', hexToRgba(playerBgColor, playerBgOpacity));
             $player.find('.preview-btn').css({
-                'background-color': playerButtonColor,
-                'color': playerBgColor
+                'background-color': hexToRgba(playerButtonBgColor, playerButtonBgOpacity),
+                'color': playerIconColor
             });
             $player.find('.preview-progress-fill').css('background-color', playerAccentColor);
-            $player.find('.preview-time').css('color', playerButtonColor);
+            $player.find('.preview-time').css('color', playerIconColor);
             
             // Update preview menu
             var $menu = $('#preview-menu');

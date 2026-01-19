@@ -409,7 +409,7 @@ function flexframe_enqueue_assets() {
                 z-index: 9999 !important;
                 overflow: visible !important;
             }
-            /* Animation player is appended to body, not container - force visibility */
+            /* Animation player is appended to body, not container - ensure proper positioning */
             body > .animation-player,
             .animation-player {
                 position: fixed !important;
@@ -418,11 +418,28 @@ function flexframe_enqueue_assets() {
                 right: 2.5% !important;
                 width: 95% !important;
                 z-index: 100000 !important;
+                visibility: visible !important;
+                display: block !important;
+                /* Default hidden state - let JS control visibility via .visible class */
+                transform: translateY(100%);
+                opacity: 0;
+                pointer-events: none;
+                transition: all 0.3s ease-in-out !important;
+            }
+            /* Visible state - controlled by JavaScript */
+            body > .animation-player.visible,
+            .animation-player.visible {
                 transform: translateY(0) !important;
                 opacity: 1 !important;
                 pointer-events: all !important;
-                visibility: visible !important;
-                display: block !important;
+            }
+            /* Always visible mode - overrides auto-hide */
+            body > .animation-player.always-visible,
+            .animation-player.always-visible {
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+                pointer-events: all !important;
+                transition: none !important;
             }
             body > .animation-player-trigger,
             .animation-player-trigger {
@@ -437,7 +454,9 @@ function flexframe_enqueue_assets() {
         $spinner_color = esc_attr(get_option('flexframe_spinner_color', '#4a9eff'));
         $player_bg_color = esc_attr(get_option('flexframe_player_bg_color', '#000000'));
         $player_bg_opacity = floatval(get_option('flexframe_player_bg_opacity', 0.8));
-        $player_button_color = esc_attr(get_option('flexframe_player_button_color', '#ffffff'));
+        $player_button_bg_color = esc_attr(get_option('flexframe_player_button_bg_color', '#ffffff'));
+        $player_button_bg_opacity = floatval(get_option('flexframe_player_button_bg_opacity', 0.1));
+        $player_icon_color = esc_attr(get_option('flexframe_player_icon_color', '#ffffff'));
         $player_accent_color = esc_attr(get_option('flexframe_player_accent_color', '#00bcd4'));
         $player_always_visible = get_option('flexframe_player_always_visible', 'no') === 'yes';
         $menu_bg_color = esc_attr(get_option('flexframe_menu_bg_color', '#000000'));
@@ -447,6 +466,7 @@ function flexframe_enqueue_assets() {
         
         // Convert hex to RGB for rgba usage
         $player_bg_rgb = sscanf($player_bg_color, "#%02x%02x%02x");
+        $player_button_bg_rgb = sscanf($player_button_bg_color, "#%02x%02x%02x");
         $menu_bg_rgb = sscanf($menu_bg_color, "#%02x%02x%02x");
         
         $ui_css = '
@@ -462,38 +482,57 @@ function flexframe_enqueue_assets() {
                 border-color: ' . $spinner_color . ' transparent transparent transparent !important;
             }
             
-            /* FlexFrame UI Settings - Animation Player */
+            /* FlexFrame UI Settings - Animation Player Background */
             .animation-player {
                 background-color: rgba(' . $player_bg_rgb[0] . ', ' . $player_bg_rgb[1] . ', ' . $player_bg_rgb[2] . ', ' . $player_bg_opacity . ') !important;
             }
+            
+            /* Button Background Color */
             .animation-player button,
             .animation-player .player-btn,
-            .animation-player .play-pause-btn {
-                color: ' . $player_button_color . ' !important;
+            .animation-player .play-pause-btn,
+            .animation-player .speed-btn {
+                background-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . $player_button_bg_opacity . ') !important;
             }
+            
+            /* Icon & Text Color */
+            .animation-player button,
+            .animation-player .player-btn,
+            .animation-player .play-pause-btn,
+            .animation-player .speed-btn {
+                color: ' . $player_icon_color . ' !important;
+            }
+            .animation-player button svg,
+            .animation-player .play-pause-btn svg,
+            .animation-player .speed-btn svg {
+                fill: ' . $player_icon_color . ' !important;
+            }
+            .animation-player .speed-btn span,
+            .animation-player #speed-text {
+                color: ' . $player_icon_color . ' !important;
+            }
+            .animation-player .current-time,
+            .animation-player .duration,
+            .animation-player .time-display {
+                color: ' . $player_icon_color . ' !important;
+            }
+            
+            /* Progress bar / scrubber accent color */
             .animation-player .progress-bar,
             .animation-player .timeline-fill,
             .animation-player input[type="range"]::-webkit-slider-thumb {
                 background-color: ' . $player_accent_color . ' !important;
             }
-            .animation-player .current-time,
-            .animation-player .duration,
-            .animation-player .time-display {
-                color: ' . $player_button_color . ' !important;
+            .animation-player input[type="range"]::-moz-range-thumb {
+                background-color: ' . $player_accent_color . ' !important;
+            }
+            .animation-player .timeline-slider {
+                accent-color: ' . $player_accent_color . ' !important;
             }
         ';
         
-        // Add always-visible player styles if enabled
-        if ($player_always_visible) {
-            $ui_css .= '
-            /* Always Visible Player Mode */
-            .animation-player {
-                opacity: 1 !important;
-                transform: translateY(0) !important;
-                pointer-events: auto !important;
-            }
-            ';
-        }
+        // Note: Always-visible mode is controlled by JavaScript adding the .always-visible class
+        // The CSS for that class is already defined in the isolation CSS above
         
         $ui_css .= '
             /* FlexFrame UI Settings - Menus */
@@ -533,7 +572,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-r2SzHQiu.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-C1y8x1_3.js',
             array(),
             FLEXFRAME_VERSION,
             true

@@ -5,6 +5,7 @@
 
 export class AnimationPlayer {
     constructor() {
+        console.log('[AnimationPlayer] Constructor started');
         this.mixer = null;
         this.actions = [];
         this.currentAction = null;
@@ -12,11 +13,13 @@ export class AnimationPlayer {
         this.currentTime = 0;
         this.duration = 0;
         this.playbackSpeed = 1;
-        this.isVisible = true;
+        this.isVisible = false; // Start as not visible
         this.alwaysVisible = false;
-        this.hideTimeout = null;        this.hasPlayedOnce = false; // Track if play has been pressed for the first time        
+        this.hideTimeout = null;
+        this.hasPlayedOnce = false; // Track if play has been pressed for the first time        
         this.createPlayerElements();
         this.setupEventListeners();
+        console.log('[AnimationPlayer] Constructor complete, alwaysVisible:', this.alwaysVisible);
     }
 
     createPlayerElements() {
@@ -160,14 +163,16 @@ export class AnimationPlayer {
         
         this.container.addEventListener('mouseenter', () => {
             if (this.isVisible && !this.alwaysVisible) {
-                this.showPlayer();
-                this.clearHideTimeout(); // Cancel any pending fade including first-play fade
+                this.clearHideTimeout(); // Cancel any pending hide
+                this.container.classList.add('visible'); // Keep visible while hovering
+                console.log('[AnimationPlayer] mouseenter - cleared hide timeout');
             }
         });
         
         this.container.addEventListener('mouseleave', () => {
-            if (this.isVisible && !this.alwaysVisible && this.hasPlayedOnce) {
-                // After first play, use normal hide schedule
+            if (this.isVisible && !this.alwaysVisible) {
+                // Schedule hide after leaving the player
+                console.log('[AnimationPlayer] mouseleave - scheduling hide');
                 this.scheduleHide();
             }
         });
@@ -176,50 +181,47 @@ export class AnimationPlayer {
     showPlayer() {
         this.clearHideTimeout();
         this.container.classList.add('visible');
+        console.log('[AnimationPlayer] showPlayer called, alwaysVisible:', this.alwaysVisible);
+        
+        // Schedule hide after 2 seconds of no interaction (unless always visible)
+        if (!this.alwaysVisible) {
+            console.log('[AnimationPlayer] Scheduling auto-hide in 2 seconds');
+            this.scheduleHide();
+        }
     }
     
     hidePlayer() {
+        if (this.alwaysVisible) {
+            console.log('[AnimationPlayer] hidePlayer blocked - alwaysVisible is true');
+            return; // Don't hide if always visible
+        }
         this.container.classList.remove('visible');
+        console.log('[AnimationPlayer] hidePlayer - player hidden');
     }
     
     scheduleHide() {
+        if (this.alwaysVisible) {
+            console.log('[AnimationPlayer] scheduleHide blocked - alwaysVisible is true');
+            return; // Don't schedule hide if always visible
+        }
+        
         this.clearHideTimeout();
+        console.log('[AnimationPlayer] scheduleHide - will hide in 2 seconds');
         this.hideTimeout = setTimeout(() => {
-            this.hidePlayer();
-        }, 500); // Wait 500ms before hiding
+            // Only hide if not being hovered and not always visible
+            if (!this.container.matches(':hover') && !this.alwaysVisible) {
+                this.hidePlayer();
+            } else if (this.container.matches(':hover')) {
+                console.log('[AnimationPlayer] Not hiding - mouse is hovering, will retry on mouseleave');
+            }
+        }, 2000); // Wait 2 seconds before hiding
     }
     
-    
-    startStartupFade() {
-        // Don't fade if always visible is enabled
-        if (this.alwaysVisible) return;
-        
-        // Clear any existing timeout
-        this.clearHideTimeout();
-        
-        // Set fade timeout for 3 seconds
-        this.hideTimeout = setTimeout(() => {
-            // Only fade if not being hovered and no interaction yet
-            if (!this.container.matches(':hover') && !this.hasPlayedOnce) {
-                this.hidePlayer();
-            }
-        }, 3000);
-    }
-    
-    startFirstPlayFade() {
-        // Don't fade if always visible is enabled
-        if (this.alwaysVisible) return;
-        
-        // Clear any existing timeout
-        this.clearHideTimeout();
-        
-        // Set fade timeout for 1 second
-        this.hideTimeout = setTimeout(() => {
-            // Only fade if not being hovered
-            if (!this.container.matches(':hover')) {
-                this.hidePlayer();
-            }
-        }, 1000);
+    // Called when user clicks on the 3D canvas/model
+    onCanvasInteraction() {
+        if (this.isVisible && !this.alwaysVisible) {
+            this.showPlayer();
+        }
     }
 
     clearHideTimeout() {
@@ -230,41 +232,46 @@ export class AnimationPlayer {
     }
     
     setVisibility(visible) {
-        // console.log('AnimationPlayer.setVisibility called with:', visible);
+        console.log('[AnimationPlayer] setVisibility called with:', visible, 'alwaysVisible:', this.alwaysVisible);
         this.isVisible = visible;
         this.triggerArea.classList.toggle('active', visible);
         
         if (visible) {
             this.container.style.display = 'block';
-            // console.log('Container display set to block');
+            
             if (this.alwaysVisible) {
-                this.container.classList.add('always-visible');
-                this.showPlayer();
-                // console.log('Added always-visible class and called showPlayer');
+                this.container.classList.add('always-visible', 'visible');
+                this.clearHideTimeout();
+                console.log('[AnimationPlayer] setVisibility - always visible mode, no auto-hide');
             } else {
                 this.container.classList.remove('always-visible');
-                this.showPlayer(); // Show player initially
-                
-                // Start 3-second startup fade if this is initial visibility
-                if (!this.hasPlayedOnce) {
-                    this.startStartupFade();
-                }
+                // Show player and schedule auto-hide
+                this.showPlayer();
+                console.log('[AnimationPlayer] setVisibility - auto-hide mode, will hide in 2 seconds');
             }
         } else {
             this.container.style.display = 'none';
             this.container.classList.remove('visible', 'always-visible');
+            this.clearHideTimeout();
         }
     }
     
     setAlwaysVisible(alwaysVisible) {
+        console.log('[AnimationPlayer] setAlwaysVisible called with:', alwaysVisible);
+        const wasAlwaysVisible = this.alwaysVisible;
         this.alwaysVisible = alwaysVisible;
-        if (this.isVisible) {
-            this.setVisibility(true); // Refresh visibility state
-        }
         
-        // If setting to not always visible and currently visible, start 3-second startup fade
-        if (!alwaysVisible && this.isVisible && !this.hasPlayedOnce) {
-            this.startStartupFade();
+        if (alwaysVisible) {
+            this.container.classList.add('always-visible', 'visible');
+            this.clearHideTimeout();
+            console.log('[AnimationPlayer] setAlwaysVisible - enabled, cleared timeouts');
+        } else {
+            this.container.classList.remove('always-visible');
+            // If switching from always-visible to auto-hide, start the countdown
+            if (wasAlwaysVisible && this.isVisible) {
+                console.log('[AnimationPlayer] setAlwaysVisible - disabled, scheduling hide');
+                this.scheduleHide();
+            }
         }
     }
 

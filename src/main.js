@@ -221,15 +221,16 @@ class ThreeJSApp {
         // Make animation player visible from the start
         this.animationPlayer.setVisibility(true);
         
-        // Apply initial player styling after short delay to ensure DOM is ready
-        setTimeout(() => {
-            this.initializePlayerStyling();
-        }, 100);
+        // Apply WordPress UI settings if available
+        this.applyWordPressUISettings();
         
         // Apply initial player styling after short delay to ensure DOM is ready
         setTimeout(() => {
             this.initializePlayerStyling();
         }, 100);
+        
+        // Setup canvas click listener for showing animation player
+        this.setupCanvasInteraction();
         
         // Screenshot manager disabled for now
         this.screenshotManager = null;
@@ -428,7 +429,113 @@ class ThreeJSApp {
         }
     }
 
+    applyWordPressUISettings() {
+        // Check if WordPress UI settings are available
+        if (!window.flexframeSettings || !window.flexframeSettings.uiSettings) {
+            console.log('[FlexFrame UI] No WordPress UI settings found, using defaults');
+            return;
+        }
+        
+        const uiSettings = window.flexframeSettings.uiSettings;
+        console.log('[FlexFrame UI] Applying WordPress UI settings:', uiSettings);
+        
+        // Apply player settings
+        if (uiSettings.player) {
+            // Apply always visible setting
+            const alwaysVisible = uiSettings.player.alwaysVisible === true;
+            console.log('[FlexFrame UI] Player always visible setting:', alwaysVisible);
+            
+            if (this.animationPlayer) {
+                this.animationPlayer.setAlwaysVisible(alwaysVisible);
+                console.log('[FlexFrame UI] Applied alwaysVisible to animation player');
+            }
+            
+            // Override player style params with WordPress settings
+            if (uiSettings.player.bgColor) {
+                this.playerStyleParams.backgroundColor = uiSettings.player.bgColor;
+            }
+            if (uiSettings.player.bgOpacity !== undefined) {
+                this.playerStyleParams.backgroundOpacity = uiSettings.player.bgOpacity;
+            }
+            if (uiSettings.player.buttonColor) {
+                this.playerStyleParams.buttonColor = uiSettings.player.buttonColor;
+            }
+            if (uiSettings.player.accentColor) {
+                this.playerStyleParams.scrubberColor = uiSettings.player.accentColor;
+            }
+        }
+        
+        // Apply spinner color if available
+        if (uiSettings.spinnerColor) {
+            this.updateSpinnerColor(uiSettings.spinnerColor);
+        }
+    }
+    
+    updateSpinnerColor(color) {
+        // Update CSS for all spinner types
+        const style = document.createElement('style');
+        style.id = 'flexframe-spinner-color';
+        style.textContent = `
+            .loading-overlay .spinner-box .spinner-circle {
+                border-top-color: ${color} !important;
+            }
+            .loading-overlay .spinner-box .spinner-dots span {
+                background-color: ${color} !important;
+            }
+            .loading-overlay .spinner-box .spinner-bars span {
+                background-color: ${color} !important;
+            }
+            .loading-overlay .spinner-box .spinner-pulse {
+                background-color: ${color} !important;
+            }
+            .loading-overlay .spinner-box .spinner-ripple span {
+                border-color: ${color} !important;
+            }
+            .loading-overlay .spinner-box .cool-loader .loading-spinner {
+                border-top-color: ${color} !important;
+            }
+        `;
+        
+        // Remove existing style if present
+        const existing = document.getElementById('flexframe-spinner-color');
+        if (existing) existing.remove();
+        
+        document.head.appendChild(style);
+    }
+    
+    setupCanvasInteraction() {
+        // Get the canvas element
+        const canvas = this.sceneManager.getCanvas();
+        if (!canvas) {
+            console.warn('[FlexFrame] Canvas not found for interaction setup');
+            return;
+        }
+        
+        // Show animation player when canvas is clicked
+        canvas.addEventListener('click', () => {
+            if (this.animationPlayer) {
+                this.animationPlayer.onCanvasInteraction();
+            }
+        });
+        
+        // Also show on mouse movement over canvas (optional - for better UX)
+        let moveTimeout = null;
+        canvas.addEventListener('mousemove', () => {
+            // Debounce to avoid excessive calls
+            if (moveTimeout) return;
+            
+            moveTimeout = setTimeout(() => {
+                moveTimeout = null;
+            }, 100);
+            
+            if (this.animationPlayer) {
+                this.animationPlayer.onCanvasInteraction();
+            }
+        });
+    }
+
     initializePlayerStyling() {
+        console.log('[FlexFrame UI] initializePlayerStyling called with params:', this.playerStyleParams);
         // Apply all current styling parameters to maintain exact current appearance
         this.updatePlayerBackgroundColor(this.playerStyleParams.backgroundColor);
         this.updatePlayerBackgroundOpacity(this.playerStyleParams.backgroundOpacity);
@@ -1372,12 +1479,20 @@ class ThreeJSApp {
 
     // Animation Player Styling Methods
     updatePlayerBackgroundColor(color) {
+        // Skip if WordPress is handling styling via CSS
+        if (window.flexframeSettings && window.flexframeSettings.uiSettings) {
+            return;
+        }
         if (this.animationPlayer && this.animationPlayer.container) {
             this.animationPlayer.container.style.backgroundColor = color;
         }
     }
 
     updatePlayerBackgroundOpacity(opacity) {
+        // Skip if WordPress is handling styling via CSS
+        if (window.flexframeSettings && window.flexframeSettings.uiSettings) {
+            return;
+        }
         if (this.animationPlayer && this.animationPlayer.container) {
             const currentBg = this.playerStyleParams.backgroundColor;
             // Convert hex to rgba with opacity
@@ -1398,11 +1513,26 @@ class ThreeJSApp {
     }
 
     updatePlayerButtonColor(color) {
+        console.log('[FlexFrame UI] updatePlayerButtonColor called with:', color);
+        
+        // Skip if WordPress is handling styling via CSS (to avoid conflicts with !important rules)
+        if (window.flexframeSettings && window.flexframeSettings.uiSettings) {
+            console.log('[FlexFrame UI] Skipping JS button color - WordPress CSS will handle it');
+            return;
+        }
+        
         if (this.animationPlayer && this.animationPlayer.container) {
             const buttons = this.animationPlayer.container.querySelectorAll('button');
             buttons.forEach(button => {
-                button.style.backgroundColor = color;
+                // Set text/icon color (for SVG icons that use currentColor)
+                button.style.color = color;
+                // Also set fill for any direct SVG children
+                const svgs = button.querySelectorAll('svg');
+                svgs.forEach(svg => {
+                    svg.style.fill = color;
+                });
             });
+            console.log('[FlexFrame UI] Applied button color to', buttons.length, 'buttons');
         }
     }
 
@@ -1416,6 +1546,10 @@ class ThreeJSApp {
     }
 
     updatePlayerScrubberColor(color) {
+        // Skip if WordPress is handling styling via CSS
+        if (window.flexframeSettings && window.flexframeSettings.uiSettings) {
+            return;
+        }
         if (this.animationPlayer && this.animationPlayer.container) {
             const scrubber = this.animationPlayer.container.querySelector('.timeline-slider');
             if (scrubber) {
