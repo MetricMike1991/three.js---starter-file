@@ -306,7 +306,20 @@ class ThumbnailDropdownMenu {
             const cdnUrl = 'https://FlexFrame.b-cdn.net/Exercise%20Catalogue%20For%20Menus%20%26%20Thumbnails/exercises.json';
             const cacheBuster = `?t=${Date.now()}`;
             const response = await fetch(cdnUrl + cacheBuster);
-            this.allExercises = await response.json();
+            let exercises = await response.json();
+            
+            // Filter out hidden exercises if running in WordPress context
+            if (typeof window.flexframeSettings !== 'undefined' && 
+                window.flexframeSettings.hiddenExercises && 
+                Array.isArray(window.flexframeSettings.hiddenExercises) &&
+                window.flexframeSettings.hiddenExercises.length > 0) {
+                const hiddenIds = window.flexframeSettings.hiddenExercises;
+                const originalCount = exercises.length;
+                exercises = exercises.filter(ex => !hiddenIds.includes(ex.id));
+                console.log(`🔒 Filtered ${originalCount - exercises.length} hidden exercises (${exercises.length} remaining)`);
+            }
+            
+            this.allExercises = exercises;
             console.log('✅ Loaded exercises from CDN:', cdnUrl);
             this.filterDataForMenu();
             this.setupEventListeners();

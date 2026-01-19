@@ -350,7 +350,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-Cd_HhleC.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-Dy1IiNj2.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -376,6 +376,13 @@ function flexframe_enqueue_assets() {
             'envMapIntensity' => floatval(get_option('flexframe_skin_env_intensity', 2.29))
         );
         
+        // Get hidden exercises
+        $hidden_exercises_json = get_option('flexframe_hidden_exercises', '[]');
+        $hidden_exercises = json_decode($hidden_exercises_json, true);
+        if (!is_array($hidden_exercises)) {
+            $hidden_exercises = array();
+        }
+        
         $settings_data = array(
             'primaryColorMode' => $primary_color_mode,
             'primaryColor' => $primary_color,
@@ -384,6 +391,7 @@ function flexframe_enqueue_assets() {
             'materialMode' => $material_mode,
             'materialPreset' => $material_preset,
             'skinSettings' => $skin_settings,
+            'hiddenExercises' => $hidden_exercises,
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'debug' => FLEXFRAME_DEBUG,
             'version' => FLEXFRAME_VERSION

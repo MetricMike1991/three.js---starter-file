@@ -100,6 +100,20 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'floatval',
         'default' => 2.29
     ));
+    
+    // Hidden exercises - stored as JSON array of exercise IDs
+    register_setting('flexframe_settings_group', 'flexframe_hidden_exercises', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => '[]'
+    ));
+    
+    // Viewer page URL for generating exercise deep links
+    register_setting('flexframe_settings_group', 'flexframe_viewer_page_url', array(
+        'type' => 'string',
+        'sanitize_callback' => 'esc_url_raw',
+        'default' => ''
+    ));
 }
 add_action('admin_init', 'flexframe_register_settings');
 
@@ -159,6 +173,17 @@ function flexframe_settings_page() {
     $skin_thickness = get_option('flexframe_skin_thickness', 0);
     $skin_ior = get_option('flexframe_skin_ior', 1);
     $skin_env_intensity = get_option('flexframe_skin_env_intensity', 2.29);
+    
+    // Hidden exercises
+    $hidden_exercises = get_option('flexframe_hidden_exercises', '[]');
+    
+    // Get current page URL for exercise deep links
+    $current_page_url = home_url($_SERVER['REQUEST_URI']);
+    // Try to get the page where shortcode is used (if set)
+    $viewer_page_url = get_option('flexframe_viewer_page_url', '');
+    if (empty($viewer_page_url)) {
+        $viewer_page_url = home_url('/');
+    }
     
     ?>
     <div class="wrap">
@@ -389,6 +414,55 @@ function flexframe_settings_page() {
                                 </p>
                             </div>
                         </div>
+                    </div>
+                </div>
+                
+                <div class="flexframe-step-section">
+                    <div class="flexframe-step-header">
+                        <span class="step-number">4</span>
+                        <h2><?php _e('Exercise Library', 'flexframe-viewer'); ?></h2>
+                    </div>
+                    <div class="flexframe-step-content">
+                        <p class="step-description">
+                            <?php _e('Manage which exercises are visible in your viewer. Copy direct links to share specific exercises, or hide exercises you don\'t want your users to see.', 'flexframe-viewer'); ?>
+                        </p>
+                        
+                        <div class="flexframe-viewer-url-setting">
+                            <label for="flexframe_viewer_page_url"><?php _e('Viewer Page URL:', 'flexframe-viewer'); ?></label>
+                            <input type="url" id="flexframe_viewer_page_url" name="flexframe_viewer_page_url" 
+                                   value="<?php echo esc_attr($viewer_page_url); ?>" 
+                                   class="regular-text"
+                                   placeholder="https://yoursite.com/exercise-viewer/" />
+                            <p class="description"><?php _e('Enter the URL of the page where you\'ve added the [flexframe_viewer] shortcode. This is used to generate exercise deep links.', 'flexframe-viewer'); ?></p>
+                        </div>
+                        
+                        <div class="flexframe-exercise-library">
+                            <div class="exercise-library-header">
+                                <div class="exercise-search-box">
+                                    <input type="text" id="exercise-search" placeholder="<?php _e('Search exercises...', 'flexframe-viewer'); ?>" />
+                                </div>
+                                <div class="exercise-bulk-actions">
+                                    <button type="button" class="button" id="show-all-exercises"><?php _e('Show All', 'flexframe-viewer'); ?></button>
+                                    <button type="button" class="button" id="hide-all-exercises"><?php _e('Hide All', 'flexframe-viewer'); ?></button>
+                                </div>
+                            </div>
+                            
+                            <div class="exercise-list-container">
+                                <div id="exercise-list" class="exercise-list">
+                                    <div class="exercise-loading">
+                                        <span class="spinner is-active"></span>
+                                        <?php _e('Loading exercises...', 'flexframe-viewer'); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Hidden input to store the JSON array of hidden exercises -->
+                            <input type="hidden" id="flexframe_hidden_exercises" name="flexframe_hidden_exercises" value="<?php echo esc_attr($hidden_exercises); ?>" />
+                        </div>
+                        
+                        <p class="description" style="margin-top: 16px;">
+                            <?php _e('💡 Tip: Use the direct links to share specific exercises on social media or in emails. Hidden exercises won\'t appear in the exercise menu for your users.', 'flexframe-viewer'); ?>
+                        </p>
                     </div>
                 </div>
                 
@@ -721,6 +795,153 @@ function flexframe_settings_page() {
             border-radius: 4px;
             font-size: 13px;
         }
+        
+        /* Exercise Library Styles */
+        .flexframe-viewer-url-setting {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f9f9f9;
+            border-radius: 6px;
+        }
+        .flexframe-viewer-url-setting label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        .flexframe-viewer-url-setting input {
+            width: 100%;
+            max-width: 500px;
+        }
+        .flexframe-exercise-library {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .exercise-library-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 16px;
+            background: #f6f7f7;
+            border-bottom: 1px solid #ddd;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .exercise-search-box {
+            flex: 1;
+            min-width: 200px;
+        }
+        .exercise-search-box input {
+            width: 100%;
+            max-width: 300px;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .exercise-bulk-actions {
+            display: flex;
+            gap: 8px;
+        }
+        .exercise-list-container {
+            max-height: 500px;
+            overflow-y: auto;
+        }
+        .exercise-list {
+            padding: 0;
+        }
+        .exercise-loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            color: #666;
+        }
+        .exercise-loading .spinner {
+            margin-right: 10px;
+        }
+        .exercise-item {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+            transition: background 0.2s;
+        }
+        .exercise-item:last-child {
+            border-bottom: none;
+        }
+        .exercise-item:hover {
+            background: #f9f9f9;
+        }
+        .exercise-item.hidden-exercise {
+            background: #fff5f5;
+        }
+        .exercise-item.hidden-exercise .exercise-name {
+            color: #999;
+            text-decoration: line-through;
+        }
+        .exercise-visibility-toggle {
+            margin-right: 12px;
+        }
+        .exercise-visibility-toggle input {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+        }
+        .exercise-info {
+            flex: 1;
+            min-width: 0;
+        }
+        .exercise-name {
+            font-weight: 500;
+            color: #1d2327;
+            margin-bottom: 4px;
+        }
+        .exercise-meta {
+            display: flex;
+            gap: 12px;
+            font-size: 12px;
+            color: #666;
+        }
+        .exercise-meta span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .exercise-actions {
+            display: flex;
+            gap: 8px;
+            margin-left: 12px;
+        }
+        .exercise-url-input {
+            width: 280px;
+            padding: 6px 10px;
+            font-size: 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background: #f9f9f9;
+            color: #666;
+        }
+        .copy-url-btn {
+            padding: 6px 12px;
+            font-size: 12px;
+            cursor: pointer;
+            background: #2271b1;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            transition: background 0.2s;
+        }
+        .copy-url-btn:hover {
+            background: #135e96;
+        }
+        .copy-url-btn.copied {
+            background: #00a32a;
+        }
+        .no-exercises-found {
+            padding: 40px;
+            text-align: center;
+            color: #666;
+        }
     </style>
     
     <script>
@@ -781,6 +1002,166 @@ function flexframe_settings_page() {
             $(this).siblings('.color-hex').text($(this).val());
             $(this).siblings('.color-hex-display').text($(this).val());
         });
+        
+        // Exercise Library functionality
+        var exercises = [];
+        var hiddenExercises = [];
+        var viewerPageUrl = $('#flexframe_viewer_page_url').val() || '<?php echo esc_js(home_url('/')); ?>';
+        
+        // Load hidden exercises from the hidden input
+        try {
+            hiddenExercises = JSON.parse($('#flexframe_hidden_exercises').val() || '[]');
+        } catch (e) {
+            hiddenExercises = [];
+        }
+        
+        // Fetch exercises from CDN
+        function loadExercises() {
+            var cdnUrl = 'https://FlexFrame.b-cdn.net/Exercise%20Catalogue%20For%20Menus%20%26%20Thumbnails/exercises.json';
+            
+            $.ajax({
+                url: cdnUrl + '?t=' + Date.now(),
+                dataType: 'json',
+                success: function(data) {
+                    exercises = data;
+                    renderExerciseList();
+                },
+                error: function() {
+                    $('#exercise-list').html('<div class="no-exercises-found">Failed to load exercises. Please try refreshing the page.</div>');
+                }
+            });
+        }
+        
+        // Render exercise list
+        function renderExerciseList(filter) {
+            var $list = $('#exercise-list');
+            var filteredExercises = exercises;
+            
+            // Apply search filter
+            if (filter && filter.trim()) {
+                var searchTerm = filter.toLowerCase();
+                filteredExercises = exercises.filter(function(ex) {
+                    return ex.name.toLowerCase().indexOf(searchTerm) !== -1 ||
+                           (ex.muscleGroup && ex.muscleGroup.join(' ').toLowerCase().indexOf(searchTerm) !== -1) ||
+                           (ex.equipment && ex.equipment.join(' ').toLowerCase().indexOf(searchTerm) !== -1);
+                });
+            }
+            
+            if (filteredExercises.length === 0) {
+                $list.html('<div class="no-exercises-found">No exercises found matching your search.</div>');
+                return;
+            }
+            
+            var html = '';
+            filteredExercises.forEach(function(exercise) {
+                var isHidden = hiddenExercises.indexOf(exercise.id) !== -1;
+                var exerciseUrl = generateExerciseUrl(exercise.id);
+                var muscleGroups = exercise.muscleGroup ? exercise.muscleGroup.join(', ') : '';
+                var equipment = exercise.equipment ? exercise.equipment.join(', ') : '';
+                
+                html += '<div class="exercise-item' + (isHidden ? ' hidden-exercise' : '') + '" data-id="' + exercise.id + '">';
+                html += '    <div class="exercise-visibility-toggle">';
+                html += '        <input type="checkbox" ' + (isHidden ? '' : 'checked') + ' title="' + (isHidden ? 'Click to show' : 'Click to hide') + '" />';
+                html += '    </div>';
+                html += '    <div class="exercise-info">';
+                html += '        <div class="exercise-name">' + exercise.name + '</div>';
+                html += '        <div class="exercise-meta">';
+                if (muscleGroups) {
+                    html += '            <span>💪 ' + muscleGroups + '</span>';
+                }
+                if (equipment) {
+                    html += '            <span>🏋️ ' + equipment + '</span>';
+                }
+                html += '        </div>';
+                html += '    </div>';
+                html += '    <div class="exercise-actions">';
+                html += '        <input type="text" class="exercise-url-input" value="' + exerciseUrl + '" readonly />';
+                html += '        <button type="button" class="copy-url-btn" data-url="' + exerciseUrl + '">Copy</button>';
+                html += '    </div>';
+                html += '</div>';
+            });
+            
+            $list.html(html);
+        }
+        
+        // Generate exercise URL
+        function generateExerciseUrl(exerciseId) {
+            var baseUrl = viewerPageUrl.replace(/\/$/, '');
+            var separator = baseUrl.indexOf('?') !== -1 ? '&' : '?';
+            return baseUrl + separator + 'exercise=' + exerciseId;
+        }
+        
+        // Update viewer URL when input changes
+        $('#flexframe_viewer_page_url').on('input', function() {
+            viewerPageUrl = $(this).val() || '<?php echo esc_js(home_url('/')); ?>';
+            renderExerciseList($('#exercise-search').val());
+        });
+        
+        // Search functionality
+        $('#exercise-search').on('input', function() {
+            renderExerciseList($(this).val());
+        });
+        
+        // Toggle exercise visibility
+        $(document).on('change', '.exercise-visibility-toggle input', function() {
+            var $item = $(this).closest('.exercise-item');
+            var exerciseId = $item.data('id');
+            var isVisible = $(this).is(':checked');
+            
+            if (isVisible) {
+                // Remove from hidden list
+                hiddenExercises = hiddenExercises.filter(function(id) { return id !== exerciseId; });
+                $item.removeClass('hidden-exercise');
+            } else {
+                // Add to hidden list
+                if (hiddenExercises.indexOf(exerciseId) === -1) {
+                    hiddenExercises.push(exerciseId);
+                }
+                $item.addClass('hidden-exercise');
+            }
+            
+            // Update the hidden input
+            $('#flexframe_hidden_exercises').val(JSON.stringify(hiddenExercises));
+        });
+        
+        // Copy URL functionality
+        $(document).on('click', '.copy-url-btn', function() {
+            var $btn = $(this);
+            var url = $btn.data('url');
+            
+            navigator.clipboard.writeText(url).then(function() {
+                $btn.text('Copied!').addClass('copied');
+                setTimeout(function() {
+                    $btn.text('Copy').removeClass('copied');
+                }, 2000);
+            }).catch(function() {
+                // Fallback for older browsers
+                var $input = $btn.siblings('.exercise-url-input');
+                $input.select();
+                document.execCommand('copy');
+                $btn.text('Copied!').addClass('copied');
+                setTimeout(function() {
+                    $btn.text('Copy').removeClass('copied');
+                }, 2000);
+            });
+        });
+        
+        // Show all exercises
+        $('#show-all-exercises').on('click', function() {
+            hiddenExercises = [];
+            $('#flexframe_hidden_exercises').val('[]');
+            renderExerciseList($('#exercise-search').val());
+        });
+        
+        // Hide all exercises
+        $('#hide-all-exercises').on('click', function() {
+            hiddenExercises = exercises.map(function(ex) { return ex.id; });
+            $('#flexframe_hidden_exercises').val(JSON.stringify(hiddenExercises));
+            renderExerciseList($('#exercise-search').val());
+        });
+        
+        // Load exercises on page load
+        loadExercises();
     });
     </script>
     <?php

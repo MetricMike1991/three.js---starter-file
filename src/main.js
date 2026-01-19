@@ -303,7 +303,93 @@ class ThreeJSApp {
         // Initialize animation player with visible state
         this.animationPlayer.setVisibility(true);
         
+        // Check for exercise in URL and auto-select it
+        this.checkUrlForExercise();
+        
         this.animate();
+    }
+    
+    /**
+     * Check URL for exercise parameter and auto-select it
+     * Supports multiple formats:
+     * - Query param: ?exercise=sumo_deadlift or ?exercise=Sumo%20Deadlift
+     * - Hash: #sumo_deadlift or #sumo-deadlift
+     */
+    checkUrlForExercise() {
+        // Get exercise from URL query parameter
+        const urlParams = new URLSearchParams(window.location.search);
+        let exerciseSlug = urlParams.get('exercise');
+        
+        // If not in query, check hash
+        if (!exerciseSlug && window.location.hash) {
+            exerciseSlug = window.location.hash.substring(1); // Remove the #
+        }
+        
+        if (!exerciseSlug) return;
+        
+        console.log('🔗 URL exercise parameter found:', exerciseSlug);
+        
+        // Normalize the slug for matching (handle both underscores and hyphens)
+        const normalizedSlug = exerciseSlug.toLowerCase()
+            .replace(/-/g, '_')  // Convert hyphens to underscores
+            .replace(/%20/g, '_') // Convert URL-encoded spaces to underscores
+            .replace(/ /g, '_');  // Convert spaces to underscores
+        
+        // Wait for menu system to load exercises, then select
+        this.waitForExercisesAndSelect(normalizedSlug, exerciseSlug);
+    }
+    
+    async waitForExercisesAndSelect(normalizedSlug, originalSlug) {
+        // Wait for menu manager to be available
+        let attempts = 0;
+        const maxAttempts = 50; // 5 seconds max
+        
+        while (attempts < maxAttempts) {
+            const menuManager = window.menuManager;
+            
+            // Check if search menu has exercises loaded
+            if (menuManager?.menus?.search?.allExercises?.length > 0) {
+                const exercises = menuManager.menus.search.allExercises;
+                
+                // Find exercise by ID, name, or normalized name
+                const exercise = exercises.find(ex => {
+                    const exIdNorm = ex.id?.toLowerCase().replace(/-/g, '_');
+                    const exNameNorm = ex.name?.toLowerCase().replace(/ /g, '_').replace(/-/g, '_');
+                    
+                    return exIdNorm === normalizedSlug || 
+                           exNameNorm === normalizedSlug ||
+                           ex.id?.toLowerCase() === originalSlug.toLowerCase() ||
+                           ex.name?.toLowerCase() === originalSlug.toLowerCase().replace(/_/g, ' ').replace(/-/g, ' ');
+                });
+                
+                if (exercise) {
+                    console.log('✅ Found exercise from URL:', exercise.name);
+                    
+                    // Dispatch the exercise selection event (same as clicking a thumbnail)
+                    const event = new CustomEvent('exercisesSelected', { 
+                        detail: { item: exercise, menuType: 'url-preload' } 
+                    });
+                    document.dispatchEvent(event);
+                    
+                    // Also update the search menu's selected state if possible
+                    if (menuManager.menus.search) {
+                        menuManager.menus.search.selectedId = exercise.id;
+                    }
+                    
+                    return;
+                } else {
+                    console.warn('⚠️ Exercise not found for URL slug:', originalSlug);
+                    console.log('Available exercise IDs:', exercises.map(ex => ex.id).slice(0, 10));
+                    return;
+                }
+            }
+            
+            // Wait 100ms before trying again
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+        
+        console.warn('⚠️ Timed out waiting for exercises to load for URL preload');
     }
 
     async waitForDefaultSettings() {
