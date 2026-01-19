@@ -350,7 +350,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-Dy1IiNj2.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-r2SzHQiu.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -438,6 +438,19 @@ function flexframe_viewer_shortcode($atts) {
     $flexframe_rendered = true;
     
     flexframe_log('Shortcode render started (first and only render)', $atts);
+    
+    // Auto-detect and save the viewer page URL (the page where shortcode is embedded)
+    $current_url = home_url(add_query_arg(array(), $GLOBALS['wp']->request));
+    // Clean URL - remove any query params, just get the base page URL
+    $current_url = strtok($current_url, '?');
+    // Ensure trailing slash for consistency
+    $current_url = trailingslashit($current_url);
+    
+    $saved_url = get_option('flexframe_viewer_page_url', '');
+    if (empty($saved_url) || $saved_url !== $current_url) {
+        update_option('flexframe_viewer_page_url', $current_url);
+        flexframe_log('Auto-saved viewer page URL', $current_url);
+    }
     
     // Parse shortcode attributes
     $atts = shortcode_atts(array(

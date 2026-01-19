@@ -286,7 +286,8 @@ class ThreeJSApp {
         this.setupRenderer();
         this.setupGround();
         this.setupGUI();
-        this.loadModel();
+        // Don't load a default model - wait for user to select an exercise
+        // this.loadModel();
         this.setupEventListeners();
 
         // Apply initial background

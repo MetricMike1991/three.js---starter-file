@@ -433,7 +433,14 @@ function flexframe_settings_page() {
                                    value="<?php echo esc_attr($viewer_page_url); ?>" 
                                    class="regular-text"
                                    placeholder="https://yoursite.com/exercise-viewer/" />
-                            <p class="description"><?php _e('Enter the URL of the page where you\'ve added the [flexframe_viewer] shortcode. This is used to generate exercise deep links.', 'flexframe-viewer'); ?></p>
+                            <p class="description">
+                                <?php if (!empty($viewer_page_url)): ?>
+                                    <span style="color: #00a32a;">✓ <?php _e('Auto-detected from the page where your [flexframe_viewer] shortcode is embedded.', 'flexframe-viewer'); ?></span><br>
+                                <?php else: ?>
+                                    <span style="color: #d63638;">⚠ <?php _e('Not yet detected. Visit the page with your [flexframe_viewer] shortcode to auto-detect.', 'flexframe-viewer'); ?></span><br>
+                                <?php endif; ?>
+                                <?php _e('You can override this URL if needed.', 'flexframe-viewer'); ?>
+                            </p>
                         </div>
                         
                         <div class="flexframe-exercise-library">
