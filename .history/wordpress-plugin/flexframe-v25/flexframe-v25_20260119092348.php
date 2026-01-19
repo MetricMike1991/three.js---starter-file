@@ -532,46 +532,6 @@ function flexframe_enqueue_assets() {
             .animation-player .timeline-slider {
                 accent-color: ' . $player_accent_color . ' !important;
             }
-            
-            /* FlexFrame Logo Loader Animations */
-            .logo-loader-container {
-                display: flex;
-                align-items: center;
-                justify-content: center;
-            }
-            .logo-loader-img {
-                max-width: 100%;
-                max-height: 100%;
-                object-fit: contain;
-            }
-            .logo-loader-img.pulse {
-                animation: flexframePulse 1.5s ease-in-out infinite;
-            }
-            .logo-loader-img.spin {
-                animation: flexframeSpin 2s linear infinite;
-            }
-            .logo-loader-img.fade {
-                animation: flexframeFade 1.5s ease-in-out infinite;
-            }
-            .logo-loader-img.bounce {
-                animation: flexframeBounce 1s ease-in-out infinite;
-            }
-            @keyframes flexframePulse {
-                0%, 100% { transform: scale(1); opacity: 1; }
-                50% { transform: scale(1.1); opacity: 0.8; }
-            }
-            @keyframes flexframeSpin {
-                0% { transform: rotate(0deg); }
-                100% { transform: rotate(360deg); }
-            }
-            @keyframes flexframeFade {
-                0%, 100% { opacity: 1; }
-                50% { opacity: 0.3; }
-            }
-            @keyframes flexframeBounce {
-                0%, 100% { transform: translateY(0); }
-                50% { transform: translateY(-10px); }
-            }
         ';
         
         // Note: Always-visible mode is controlled by JavaScript adding the .always-visible class
@@ -745,27 +705,13 @@ function flexframe_viewer_shortcode($atts) {
     flexframe_log('Shortcode attributes parsed', $atts);
     
     ob_start();
-    // Get logo loader settings for shortcode
-    $use_logo_loader = get_option('flexframe_use_logo_loader', false);
-    $logo_loader_animation = esc_attr(get_option('flexframe_logo_loader_animation', 'pulse'));
-    $logo_loader_size = absint(get_option('flexframe_logo_loader_size', 80));
-    $logo_url = get_option('flexframe_logo_url', '');
-    
     ?>
     <div id="flexframe-viewer-container" style="width: <?php echo esc_attr($atts['width']); ?>; height: <?php echo esc_attr($atts['height']); ?>; position: relative;">
-        <!-- Model Loader -->
+        <!-- Model Loader Spinner -->
         <div id="model-loader" class="model-loader" style="display: none;">
-            <?php if ($use_logo_loader && !empty($logo_url)) : ?>
-                <!-- Logo Loader -->
-                <div class="logo-loader-container" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: <?php echo esc_attr($logo_loader_size); ?>px;">
-                    <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
-                </div>
-            <?php else : ?>
-                <!-- Default Spinner -->
-                <div class="spinner-box" data-spinner="cool">
-                    <div class="loader-spinner"></div>
-                </div>
-            <?php endif; ?>
+            <div class="spinner-box" data-spinner="cool">
+                <div class="loader-spinner"></div>
+            </div>
             <div class="loader-text">Loading Model...</div>
         </div>
         
@@ -984,11 +930,6 @@ function flexframe_activate() {
     // Set default options
     add_option('flexframe_logo_url', '');
     add_option('flexframe_logo_threshold', 0.95);
-    
-    // Logo loader options
-    add_option('flexframe_use_logo_loader', false);
-    add_option('flexframe_logo_loader_animation', 'pulse');
-    add_option('flexframe_logo_loader_size', 80);
 }
 register_activation_hook(__FILE__, 'flexframe_activate');
 

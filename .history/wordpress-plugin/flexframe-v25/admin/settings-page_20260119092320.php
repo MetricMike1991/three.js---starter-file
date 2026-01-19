@@ -1795,42 +1795,6 @@ function flexframe_settings_page() {
     
     <script>
     jQuery(document).ready(function($) {
-        // Toggle loader type (spinner vs logo)
-        $('input[name="flexframe_use_logo_loader"]').on('change', function() {
-            var useLogo = $(this).val() === '1';
-            
-            // Update card selection
-            $('.loader-type-option').removeClass('selected');
-            $(this).closest('.loader-type-option').addClass('selected');
-            
-            // Toggle options visibility
-            if (useLogo) {
-                $('.spinner-options').slideUp(200);
-                $('.logo-loader-options').slideDown(200);
-                $('#preview-spinner').hide();
-                $('#preview-logo-loader').show();
-            } else {
-                $('.spinner-options').slideDown(200);
-                $('.logo-loader-options').slideUp(200);
-                $('#preview-spinner').show();
-                $('#preview-logo-loader').hide();
-            }
-        });
-        
-        // Update logo loader animation preview
-        $('#flexframe_logo_loader_animation').on('change', function() {
-            var animation = $(this).val();
-            var img = $('#preview-logo-loader .logo-loader-img');
-            img.removeClass('pulse spin fade bounce').addClass(animation);
-        });
-        
-        // Update logo loader size preview
-        $('#flexframe_logo_loader_size').on('input', function() {
-            var size = $(this).val();
-            $(this).siblings('.size-value').text(size + 'px');
-            $('#preview-logo-loader .logo-loader-img').css('width', size + 'px');
-        });
-        
         // Toggle primary color mode (default vs custom)
         $('input[name="flexframe_primary_color_mode"]').on('change', function() {
             var mode = $(this).val();

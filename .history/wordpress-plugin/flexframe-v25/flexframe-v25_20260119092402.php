@@ -745,27 +745,13 @@ function flexframe_viewer_shortcode($atts) {
     flexframe_log('Shortcode attributes parsed', $atts);
     
     ob_start();
-    // Get logo loader settings for shortcode
-    $use_logo_loader = get_option('flexframe_use_logo_loader', false);
-    $logo_loader_animation = esc_attr(get_option('flexframe_logo_loader_animation', 'pulse'));
-    $logo_loader_size = absint(get_option('flexframe_logo_loader_size', 80));
-    $logo_url = get_option('flexframe_logo_url', '');
-    
     ?>
     <div id="flexframe-viewer-container" style="width: <?php echo esc_attr($atts['width']); ?>; height: <?php echo esc_attr($atts['height']); ?>; position: relative;">
-        <!-- Model Loader -->
+        <!-- Model Loader Spinner -->
         <div id="model-loader" class="model-loader" style="display: none;">
-            <?php if ($use_logo_loader && !empty($logo_url)) : ?>
-                <!-- Logo Loader -->
-                <div class="logo-loader-container" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: <?php echo esc_attr($logo_loader_size); ?>px;">
-                    <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
-                </div>
-            <?php else : ?>
-                <!-- Default Spinner -->
-                <div class="spinner-box" data-spinner="cool">
-                    <div class="loader-spinner"></div>
-                </div>
-            <?php endif; ?>
+            <div class="spinner-box" data-spinner="cool">
+                <div class="loader-spinner"></div>
+            </div>
             <div class="loader-text">Loading Model...</div>
         </div>
         
@@ -984,11 +970,6 @@ function flexframe_activate() {
     // Set default options
     add_option('flexframe_logo_url', '');
     add_option('flexframe_logo_threshold', 0.95);
-    
-    // Logo loader options
-    add_option('flexframe_use_logo_loader', false);
-    add_option('flexframe_logo_loader_animation', 'pulse');
-    add_option('flexframe_logo_loader_size', 80);
 }
 register_activation_hook(__FILE__, 'flexframe_activate');
 

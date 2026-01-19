@@ -984,11 +984,6 @@ function flexframe_activate() {
     // Set default options
     add_option('flexframe_logo_url', '');
     add_option('flexframe_logo_threshold', 0.95);
-    
-    // Logo loader options
-    add_option('flexframe_use_logo_loader', false);
-    add_option('flexframe_logo_loader_animation', 'pulse');
-    add_option('flexframe_logo_loader_size', 80);
 }
 register_activation_hook(__FILE__, 'flexframe_activate');
 

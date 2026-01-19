@@ -701,63 +701,16 @@ function flexframe_settings_page() {
                         
                         <!-- Loading Spinner Settings -->
                         <div class="ui-settings-section">
-                            <h3><span class="dashicons dashicons-update"></span> <?php _e('Loading Indicator', 'flexframe-viewer'); ?></h3>
+                            <h3><span class="dashicons dashicons-update"></span> <?php _e('Loading Spinner', 'flexframe-viewer'); ?></h3>
                             <table class="form-table ui-settings-table">
                                 <tr>
-                                    <th scope="row">
-                                        <label><?php _e('Loader Type', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <div class="loader-type-options">
-                                            <label class="loader-type-option <?php echo !$use_logo_loader ? 'selected' : ''; ?>">
-                                                <input type="radio" name="flexframe_use_logo_loader" value="0" <?php checked($use_logo_loader, false); ?> />
-                                                <span class="loader-type-card">
-                                                    <span class="loader-type-icon"><span class="dashicons dashicons-update"></span></span>
-                                                    <span class="loader-type-label"><?php _e('Spinner', 'flexframe-viewer'); ?></span>
-                                                </span>
-                                            </label>
-                                            <label class="loader-type-option <?php echo $use_logo_loader ? 'selected' : ''; ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?>">
-                                                <input type="radio" name="flexframe_use_logo_loader" value="1" <?php checked($use_logo_loader, true); ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?> />
-                                                <span class="loader-type-card">
-                                                    <span class="loader-type-icon"><span class="dashicons dashicons-format-image"></span></span>
-                                                    <span class="loader-type-label"><?php _e('Your Logo', 'flexframe-viewer'); ?></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <?php if (empty($logo_url)) : ?>
-                                            <p class="description logo-warning"><span class="dashicons dashicons-warning"></span> <?php _e('Upload a logo in Step 1 to use it as a loading indicator.', 'flexframe-viewer'); ?></p>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                                <tr class="spinner-options" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
                                     <th scope="row">
                                         <label for="flexframe_spinner_color"><?php _e('Spinner Color', 'flexframe-viewer'); ?></label>
                                     </th>
                                     <td>
                                         <input type="color" id="flexframe_spinner_color" name="flexframe_spinner_color" value="<?php echo esc_attr($spinner_color); ?>" class="color-picker" />
                                         <span class="color-value"><?php echo esc_html($spinner_color); ?></span>
-                                    </td>
-                                </tr>
-                                <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <th scope="row">
-                                        <label for="flexframe_logo_loader_animation"><?php _e('Animation Style', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <select id="flexframe_logo_loader_animation" name="flexframe_logo_loader_animation">
-                                            <option value="pulse" <?php selected($logo_loader_animation, 'pulse'); ?>><?php _e('Pulse (Grow & Shrink)', 'flexframe-viewer'); ?></option>
-                                            <option value="spin" <?php selected($logo_loader_animation, 'spin'); ?>><?php _e('Spin (Rotate)', 'flexframe-viewer'); ?></option>
-                                            <option value="fade" <?php selected($logo_loader_animation, 'fade'); ?>><?php _e('Fade (Opacity)', 'flexframe-viewer'); ?></option>
-                                            <option value="bounce" <?php selected($logo_loader_animation, 'bounce'); ?>><?php _e('Bounce (Up & Down)', 'flexframe-viewer'); ?></option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <th scope="row">
-                                        <label for="flexframe_logo_loader_size"><?php _e('Logo Size', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="range" id="flexframe_logo_loader_size" name="flexframe_logo_loader_size" min="40" max="150" step="10" value="<?php echo esc_attr($logo_loader_size); ?>" />
-                                        <span class="size-value"><?php echo esc_html($logo_loader_size); ?>px</span>
+                                        <p class="description"><?php _e('Color of the loading spinner shown while exercises load.', 'flexframe-viewer'); ?></p>
                                     </td>
                                 </tr>
                             </table>
@@ -905,15 +858,8 @@ function flexframe_settings_page() {
                                     <div class="preview-menu-item"><?php _e('Exercise 2', 'flexframe-viewer'); ?></div>
                                     <div class="preview-menu-item"><?php _e('Exercise 3', 'flexframe-viewer'); ?></div>
                                 </div>
-                                <div class="preview-spinner" id="preview-spinner" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                <div class="preview-spinner" id="preview-spinner">
                                     <div class="spinner-circle"></div>
-                                </div>
-                                <div class="preview-logo-loader" id="preview-logo-loader" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <?php if (!empty($logo_url)) : ?>
-                                        <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
-                                    <?php else : ?>
-                                        <div class="logo-placeholder"><span class="dashicons dashicons-format-image"></span></div>
-                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
@@ -1669,168 +1615,10 @@ function flexframe_settings_page() {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
-        
-        /* Loader Type Options */
-        .loader-type-options {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 8px;
-        }
-        .loader-type-option {
-            cursor: pointer;
-        }
-        .loader-type-option.disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-        .loader-type-option input[type="radio"] {
-            display: none;
-        }
-        .loader-type-card {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 12px 20px;
-            border: 2px solid #c3c4c7;
-            border-radius: 8px;
-            background: #f6f7f7;
-            transition: all 0.2s ease;
-        }
-        .loader-type-option:hover:not(.disabled) .loader-type-card {
-            border-color: #2271b1;
-            background: #f0f6fc;
-        }
-        .loader-type-option.selected .loader-type-card {
-            border-color: #2271b1;
-            background: #f0f6fc;
-            box-shadow: 0 0 0 1px #2271b1;
-        }
-        .loader-type-icon {
-            font-size: 24px;
-            margin-bottom: 4px;
-        }
-        .loader-type-icon .dashicons {
-            font-size: 24px;
-            width: 24px;
-            height: 24px;
-        }
-        .loader-type-label {
-            font-size: 12px;
-            font-weight: 500;
-        }
-        .logo-warning {
-            color: #d63638;
-            margin-top: 8px;
-        }
-        .logo-warning .dashicons {
-            font-size: 16px;
-            width: 16px;
-            height: 16px;
-            vertical-align: text-bottom;
-        }
-        
-        /* Preview Logo Loader */
-        .preview-logo-loader {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 80px;
-            height: 80px;
-        }
-        .logo-loader-img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-        }
-        .logo-loader-img.pulse {
-            animation: logoPulse 1.5s ease-in-out infinite;
-        }
-        .logo-loader-img.spin {
-            animation: logoSpin 2s linear infinite;
-        }
-        .logo-loader-img.fade {
-            animation: logoFade 1.5s ease-in-out infinite;
-        }
-        .logo-loader-img.bounce {
-            animation: logoBounce 1s ease-in-out infinite;
-        }
-        @keyframes logoPulse {
-            0%, 100% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-        }
-        @keyframes logoSpin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        @keyframes logoFade {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
-        @keyframes logoBounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-        .logo-placeholder {
-            width: 60px;
-            height: 60px;
-            border: 2px dashed rgba(255,255,255,0.3);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .logo-placeholder .dashicons {
-            font-size: 24px;
-            color: rgba(255,255,255,0.4);
-        }
-        
-        /* Size value display */
-        .size-value {
-            display: inline-block;
-            margin-left: 10px;
-            font-weight: 500;
-            min-width: 50px;
-        }
     </style>
     
     <script>
     jQuery(document).ready(function($) {
-        // Toggle loader type (spinner vs logo)
-        $('input[name="flexframe_use_logo_loader"]').on('change', function() {
-            var useLogo = $(this).val() === '1';
-            
-            // Update card selection
-            $('.loader-type-option').removeClass('selected');
-            $(this).closest('.loader-type-option').addClass('selected');
-            
-            // Toggle options visibility
-            if (useLogo) {
-                $('.spinner-options').slideUp(200);
-                $('.logo-loader-options').slideDown(200);
-                $('#preview-spinner').hide();
-                $('#preview-logo-loader').show();
-            } else {
-                $('.spinner-options').slideDown(200);
-                $('.logo-loader-options').slideUp(200);
-                $('#preview-spinner').show();
-                $('#preview-logo-loader').hide();
-            }
-        });
-        
-        // Update logo loader animation preview
-        $('#flexframe_logo_loader_animation').on('change', function() {
-            var animation = $(this).val();
-            var img = $('#preview-logo-loader .logo-loader-img');
-            img.removeClass('pulse spin fade bounce').addClass(animation);
-        });
-        
-        // Update logo loader size preview
-        $('#flexframe_logo_loader_size').on('input', function() {
-            var size = $(this).val();
-            $(this).siblings('.size-value').text(size + 'px');
-            $('#preview-logo-loader .logo-loader-img').css('width', size + 'px');
-        });
-        
         // Toggle primary color mode (default vs custom)
         $('input[name="flexframe_primary_color_mode"]').on('change', function() {
             var mode = $(this).val();
