@@ -350,13 +350,15 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-DB7h1gp6.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-Cd_HhleC.js',
             array(),
             FLEXFRAME_VERSION,
             true
         );
         
         // Pass WordPress settings to JavaScript (must be after register, before enqueue)
+        $primary_color_mode = get_option('flexframe_primary_color_mode', 'default');
+        $primary_color = get_option('flexframe_primary_color', '#ff0000');
         $logo_url = get_option('flexframe_logo_url', '');
         $logo_threshold = get_option('flexframe_logo_threshold', 0.95);
         $material_mode = get_option('flexframe_material_mode', 'preset');
@@ -375,6 +377,8 @@ function flexframe_enqueue_assets() {
         );
         
         $settings_data = array(
+            'primaryColorMode' => $primary_color_mode,
+            'primaryColor' => $primary_color,
             'logoUrl' => $logo_url,
             'logoThreshold' => $logo_threshold,
             'materialMode' => $material_mode,

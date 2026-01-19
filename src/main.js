@@ -1883,9 +1883,15 @@ class ThreeJSApp {
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial with custom settings`);
                                             
+                                            // Get primary color - only use custom if mode is 'custom', otherwise use default red
+                                            const useCustomColor = window.flexframeSettings?.primaryColorMode === 'custom';
+                                            const primaryColor = useCustomColor && window.flexframeSettings?.primaryColor 
+                                                ? window.flexframeSettings.primaryColor 
+                                                : '#ff0000';
+                                            
                                             // Create new MeshPhysicalMaterial with COLOR_1 settings (no texture maps)
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xff0000),
+                                                color: new THREE.Color(primaryColor),
                                                 roughness: 0.2152357035754776,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
@@ -2742,7 +2748,9 @@ class ThreeJSApp {
                 envMapIntensity: 1
             },
             'COLOR_1': {
-                color: '#ff0000',
+                color: (window.flexframeSettings?.primaryColorMode === 'custom' && window.flexframeSettings?.primaryColor) 
+                    ? window.flexframeSettings.primaryColor 
+                    : '#ff0000',
                 opacity: 1,
                 transparent: false,
                 metalness: 0,
