@@ -639,13 +639,9 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab,
             .thumbnail-grid-container .menu-hint-tab,
             .menu-hint-tab {
-                position: absolute !important;
-                top: 50% !important;
-                right: -50px !important;
                 width: 44px !important;
                 height: 44px !important;
                 border-radius: 50% !important;
-                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 border: 2px solid ' . $menu_accent_color . ' !important;
                 display: flex !important;
@@ -654,13 +650,11 @@ function flexframe_enqueue_assets() {
                 box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px ' . $menu_accent_color . '33 !important;
                 backdrop-filter: blur(10px) !important;
                 -webkit-backdrop-filter: blur(10px) !important;
-                transform: translateY(-50%) !important;
             }
             #flexframe-viewer-container .menu-hint-tab::before,
             .thumbnail-grid-container .menu-hint-tab::before,
             .menu-hint-tab::before {
                 content: none !important;
-                display: none !important;
             }
             #flexframe-viewer-container .menu-hint-tab svg,
             .thumbnail-grid-container .menu-hint-tab svg,
@@ -672,7 +666,6 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab:hover,
             .thumbnail-grid-container .menu-hint-tab:hover,
             .menu-hint-tab:hover {
-                background: ' . $menu_accent_color . ' !important;
                 background-color: ' . $menu_accent_color . ' !important;
                 transform: translateY(-50%) scale(1.1) !important;
             }
@@ -1077,13 +1070,9 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab-right,
             .thumbnail-grid-container-right .menu-hint-tab-right,
             .menu-hint-tab-right {
-                position: absolute !important;
-                top: 50% !important;
-                left: -50px !important;
                 width: 44px !important;
                 height: 44px !important;
                 border-radius: 50% !important;
-                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 border: 2px solid ' . $menu_accent_color . ' !important;
                 display: flex !important;
@@ -1092,13 +1081,11 @@ function flexframe_enqueue_assets() {
                 box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px ' . $menu_accent_color . '33 !important;
                 backdrop-filter: blur(10px) !important;
                 -webkit-backdrop-filter: blur(10px) !important;
-                transform: translateY(-50%) !important;
             }
             #flexframe-viewer-container .menu-hint-tab-right::before,
             .thumbnail-grid-container-right .menu-hint-tab-right::before,
             .menu-hint-tab-right::before {
                 content: none !important;
-                display: none !important;
             }
             #flexframe-viewer-container .menu-hint-tab-right svg,
             .thumbnail-grid-container-right .menu-hint-tab-right svg,
@@ -1110,7 +1097,6 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab-right:hover,
             .thumbnail-grid-container-right .menu-hint-tab-right:hover,
             .menu-hint-tab-right:hover {
-                background: ' . $menu_accent_color . ' !important;
                 background-color: ' . $menu_accent_color . ' !important;
                 transform: translateY(-50%) scale(1.1) !important;
             }
