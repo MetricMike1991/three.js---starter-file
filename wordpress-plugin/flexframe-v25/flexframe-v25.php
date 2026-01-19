@@ -353,10 +353,19 @@ function flexframe_enqueue_assets() {
         if ($is_viewer_page) {
             $isolation_css .= '
             /* Full-screen FlexFrame viewer - hide all WordPress elements */
-            body.page {
+            html {
+                overflow: hidden !important;
+                height: 100vh !important;
+                width: 100vw !important;
+            }
+            body, body.page {
                 margin: 0 !important;
                 padding: 0 !important;
-                overflow: hidden !important;
+                overflow: visible !important;
+                height: 100vh !important;
+                width: 100vw !important;
+                min-height: 100vh !important;
+                max-height: 100vh !important;
             }
             /* Hide WordPress header, footer, sidebar, navigation, admin bar */
             header, footer, aside, nav,
@@ -377,11 +386,6 @@ function flexframe_enqueue_assets() {
                 display: none !important;
             }
             /* Make content area full screen */
-            html, body {
-                width: 100vw !important;
-                height: 100vh !important;
-                overflow: hidden !important;
-            }
             main, .site-main, .site-content, .content-area,
             .entry-content, article, .page, .type-page,
             .wp-block-group, .wp-site-blocks,
@@ -389,8 +393,11 @@ function flexframe_enqueue_assets() {
                 width: 100vw !important;
                 max-width: 100vw !important;
                 height: 100vh !important;
+                max-height: 100vh !important;
                 margin: 0 !important;
                 padding: 0 !important;
+                overflow: visible !important;
+                position: relative !important;
             }
             /* Ensure FlexFrame container is full screen */
             #flexframe-viewer-container {
@@ -400,11 +407,128 @@ function flexframe_enqueue_assets() {
                 width: 100vw !important;
                 height: 100vh !important;
                 z-index: 9999 !important;
+                overflow: visible !important;
+            }
+            /* Animation player is appended to body, not container - force visibility */
+            body > .animation-player,
+            .animation-player {
+                position: fixed !important;
+                bottom: 0 !important;
+                left: 2.5% !important;
+                right: 2.5% !important;
+                width: 95% !important;
+                z-index: 100000 !important;
+                transform: translateY(0) !important;
+                opacity: 1 !important;
+                pointer-events: all !important;
+                visibility: visible !important;
+                display: block !important;
+            }
+            body > .animation-player-trigger,
+            .animation-player-trigger {
+                z-index: 99999 !important;
             }
             ';
         }
         
         wp_add_inline_style('flexframe-viewer-style', $isolation_css);
+        
+        // Add UI settings dynamic CSS
+        $spinner_color = esc_attr(get_option('flexframe_spinner_color', '#4a9eff'));
+        $player_bg_color = esc_attr(get_option('flexframe_player_bg_color', '#000000'));
+        $player_bg_opacity = floatval(get_option('flexframe_player_bg_opacity', 0.8));
+        $player_button_color = esc_attr(get_option('flexframe_player_button_color', '#ffffff'));
+        $player_accent_color = esc_attr(get_option('flexframe_player_accent_color', '#00bcd4'));
+        $player_always_visible = get_option('flexframe_player_always_visible', 'no') === 'yes';
+        $menu_bg_color = esc_attr(get_option('flexframe_menu_bg_color', '#000000'));
+        $menu_bg_opacity = floatval(get_option('flexframe_menu_bg_opacity', 0.9));
+        $menu_text_color = esc_attr(get_option('flexframe_menu_text_color', '#ffffff'));
+        $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#4a9eff'));
+        
+        // Convert hex to RGB for rgba usage
+        $player_bg_rgb = sscanf($player_bg_color, "#%02x%02x%02x");
+        $menu_bg_rgb = sscanf($menu_bg_color, "#%02x%02x%02x");
+        
+        $ui_css = '
+            /* FlexFrame UI Settings - Loading Spinner */
+            .flexframe-loading-spinner,
+            .loading-spinner,
+            .spinner,
+            #flexframe-viewer-container .loading-indicator {
+                border-top-color: ' . $spinner_color . ' !important;
+            }
+            .flexframe-loading-spinner::after,
+            .loading-spinner::after {
+                border-color: ' . $spinner_color . ' transparent transparent transparent !important;
+            }
+            
+            /* FlexFrame UI Settings - Animation Player */
+            .animation-player {
+                background-color: rgba(' . $player_bg_rgb[0] . ', ' . $player_bg_rgb[1] . ', ' . $player_bg_rgb[2] . ', ' . $player_bg_opacity . ') !important;
+            }
+            .animation-player button,
+            .animation-player .player-btn,
+            .animation-player .play-pause-btn {
+                color: ' . $player_button_color . ' !important;
+            }
+            .animation-player .progress-bar,
+            .animation-player .timeline-fill,
+            .animation-player input[type="range"]::-webkit-slider-thumb {
+                background-color: ' . $player_accent_color . ' !important;
+            }
+            .animation-player .current-time,
+            .animation-player .duration,
+            .animation-player .time-display {
+                color: ' . $player_button_color . ' !important;
+            }
+        ';
+        
+        // Add always-visible player styles if enabled
+        if ($player_always_visible) {
+            $ui_css .= '
+            /* Always Visible Player Mode */
+            .animation-player {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+                pointer-events: auto !important;
+            }
+            ';
+        }
+        
+        $ui_css .= '
+            /* FlexFrame UI Settings - Menus */
+            .thumbnail-grid-container,
+            .exercise-menu,
+            .menu-panel,
+            .side-menu,
+            .thumbnail-dropdown,
+            .right-menu {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+            }
+            .thumbnail-grid-container *,
+            .exercise-menu *,
+            .menu-panel *,
+            .side-menu *,
+            .thumbnail-dropdown *,
+            .right-menu * {
+                color: ' . $menu_text_color . ' !important;
+            }
+            .thumbnail-item.active,
+            .thumbnail-item:hover,
+            .menu-item.active,
+            .menu-item:hover,
+            .exercise-item.active,
+            .exercise-item:hover {
+                background-color: ' . $menu_accent_color . '33 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            .thumbnail-item.active *,
+            .menu-item.active * {
+                color: ' . $menu_accent_color . ' !important;
+            }
+        ';
+        
+        wp_add_inline_style('flexframe-viewer-style', $ui_css);
         
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
@@ -442,6 +566,24 @@ function flexframe_enqueue_assets() {
             $hidden_exercises = array();
         }
         
+        // Get UI settings
+        $ui_settings = array(
+            'spinnerColor' => get_option('flexframe_spinner_color', '#4a9eff'),
+            'player' => array(
+                'bgColor' => get_option('flexframe_player_bg_color', '#000000'),
+                'bgOpacity' => floatval(get_option('flexframe_player_bg_opacity', 0.8)),
+                'buttonColor' => get_option('flexframe_player_button_color', '#ffffff'),
+                'accentColor' => get_option('flexframe_player_accent_color', '#00bcd4'),
+                'alwaysVisible' => get_option('flexframe_player_always_visible', 'no') === 'yes'
+            ),
+            'menu' => array(
+                'bgColor' => get_option('flexframe_menu_bg_color', '#000000'),
+                'bgOpacity' => floatval(get_option('flexframe_menu_bg_opacity', 0.9)),
+                'textColor' => get_option('flexframe_menu_text_color', '#ffffff'),
+                'accentColor' => get_option('flexframe_menu_accent_color', '#4a9eff')
+            )
+        );
+        
         $settings_data = array(
             'primaryColorMode' => $primary_color_mode,
             'primaryColor' => $primary_color,
@@ -451,6 +593,7 @@ function flexframe_enqueue_assets() {
             'materialPreset' => $material_preset,
             'skinSettings' => $skin_settings,
             'hiddenExercises' => $hidden_exercises,
+            'uiSettings' => $ui_settings,
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'debug' => FLEXFRAME_DEBUG,
             'version' => FLEXFRAME_VERSION

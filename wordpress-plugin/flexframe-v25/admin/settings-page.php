@@ -220,6 +220,64 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'esc_url_raw',
         'default' => ''
     ));
+    
+    // ========== UI Settings (Step 5) ==========
+    
+    // Loading Spinner
+    register_setting('flexframe_settings_group', 'flexframe_spinner_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#4a9eff'
+    ));
+    
+    // Animation Player Settings
+    register_setting('flexframe_settings_group', 'flexframe_player_bg_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#000000'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_player_bg_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.8
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_player_button_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#ffffff'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_player_accent_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#00bcd4'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_player_always_visible', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'no'
+    ));
+    
+    // Menu Settings
+    register_setting('flexframe_settings_group', 'flexframe_menu_bg_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#000000'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_menu_bg_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.9
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_menu_text_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#ffffff'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_menu_accent_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#4a9eff'
+    ));
 }
 add_action('admin_init', 'flexframe_register_settings');
 
@@ -290,6 +348,18 @@ function flexframe_settings_page() {
     if (empty($viewer_page_url)) {
         $viewer_page_url = home_url('/');
     }
+    
+    // UI Settings
+    $spinner_color = get_option('flexframe_spinner_color', '#4a9eff');
+    $player_bg_color = get_option('flexframe_player_bg_color', '#000000');
+    $player_bg_opacity = get_option('flexframe_player_bg_opacity', 0.8);
+    $player_button_color = get_option('flexframe_player_button_color', '#ffffff');
+    $player_accent_color = get_option('flexframe_player_accent_color', '#00bcd4');
+    $player_always_visible = get_option('flexframe_player_always_visible', 'no');
+    $menu_bg_color = get_option('flexframe_menu_bg_color', '#000000');
+    $menu_bg_opacity = get_option('flexframe_menu_bg_opacity', 0.9);
+    $menu_text_color = get_option('flexframe_menu_text_color', '#ffffff');
+    $menu_accent_color = get_option('flexframe_menu_accent_color', '#4a9eff');
     
     ?>
     <div class="wrap">
@@ -587,6 +657,161 @@ function flexframe_settings_page() {
                         <p class="description" style="margin-top: 16px;">
                             <?php _e('💡 Tip: Use the direct links to share specific exercises on social media or in emails. Hidden exercises won\'t appear in the exercise menu for your users.', 'flexframe-viewer'); ?>
                         </p>
+                    </div>
+                </div>
+                
+                <!-- Step 5: UI Settings -->
+                <div class="settings-step" id="step-5">
+                    <div class="step-header">
+                        <span class="step-number">5</span>
+                        <h2><?php _e('UI Settings', 'flexframe-viewer'); ?></h2>
+                    </div>
+                    <div class="step-content">
+                        <p class="step-description"><?php _e('Customize the appearance of the loading spinner, animation player controls, and menus.', 'flexframe-viewer'); ?></p>
+                        
+                        <!-- Loading Spinner Settings -->
+                        <div class="ui-settings-section">
+                            <h3><span class="dashicons dashicons-update"></span> <?php _e('Loading Spinner', 'flexframe-viewer'); ?></h3>
+                            <table class="form-table ui-settings-table">
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_spinner_color"><?php _e('Spinner Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_spinner_color" name="flexframe_spinner_color" value="<?php echo esc_attr($spinner_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($spinner_color); ?></span>
+                                        <p class="description"><?php _e('Color of the loading spinner shown while exercises load.', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <!-- Animation Player Settings -->
+                        <div class="ui-settings-section">
+                            <h3><span class="dashicons dashicons-controls-play"></span> <?php _e('Animation Player', 'flexframe-viewer'); ?></h3>
+                            <table class="form-table ui-settings-table">
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_player_bg_color"><?php _e('Background Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_player_bg_color" name="flexframe_player_bg_color" value="<?php echo esc_attr($player_bg_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($player_bg_color); ?></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_player_bg_opacity"><?php _e('Background Opacity', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="range" id="flexframe_player_bg_opacity" name="flexframe_player_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($player_bg_opacity); ?>" class="opacity-slider" />
+                                        <span class="opacity-value"><?php echo esc_html($player_bg_opacity); ?></span>
+                                        <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_player_button_color"><?php _e('Button Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_player_button_color" name="flexframe_player_button_color" value="<?php echo esc_attr($player_button_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($player_button_color); ?></span>
+                                        <p class="description"><?php _e('Color of play/pause and other control buttons.', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_player_accent_color"><?php _e('Accent Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_player_accent_color" name="flexframe_player_accent_color" value="<?php echo esc_attr($player_accent_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($player_accent_color); ?></span>
+                                        <p class="description"><?php _e('Accent color for progress bar and highlights.', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_player_always_visible"><?php _e('Visibility Mode', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <select id="flexframe_player_always_visible" name="flexframe_player_always_visible">
+                                            <option value="no" <?php selected($player_always_visible, 'no'); ?>><?php _e('Auto-hide (shows on hover/interaction)', 'flexframe-viewer'); ?></option>
+                                            <option value="yes" <?php selected($player_always_visible, 'yes'); ?>><?php _e('Always Visible', 'flexframe-viewer'); ?></option>
+                                        </select>
+                                        <p class="description"><?php _e('Choose whether the player controls stay visible or hide automatically.', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <!-- Menu Settings -->
+                        <div class="ui-settings-section">
+                            <h3><span class="dashicons dashicons-menu"></span> <?php _e('Menus & Panels', 'flexframe-viewer'); ?></h3>
+                            <table class="form-table ui-settings-table">
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_menu_bg_color"><?php _e('Background Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_menu_bg_color" name="flexframe_menu_bg_color" value="<?php echo esc_attr($menu_bg_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($menu_bg_color); ?></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_menu_bg_opacity"><?php _e('Background Opacity', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="range" id="flexframe_menu_bg_opacity" name="flexframe_menu_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($menu_bg_opacity); ?>" class="opacity-slider" />
+                                        <span class="opacity-value"><?php echo esc_html($menu_bg_opacity); ?></span>
+                                        <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_menu_text_color"><?php _e('Text Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_menu_text_color" name="flexframe_menu_text_color" value="<?php echo esc_attr($menu_text_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($menu_text_color); ?></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">
+                                        <label for="flexframe_menu_accent_color"><?php _e('Accent Color', 'flexframe-viewer'); ?></label>
+                                    </th>
+                                    <td>
+                                        <input type="color" id="flexframe_menu_accent_color" name="flexframe_menu_accent_color" value="<?php echo esc_attr($menu_accent_color); ?>" class="color-picker" />
+                                        <span class="color-value"><?php echo esc_html($menu_accent_color); ?></span>
+                                        <p class="description"><?php _e('Accent color for selected items and hover states.', 'flexframe-viewer'); ?></p>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        
+                        <!-- Preview Section -->
+                        <div class="ui-preview-section">
+                            <h4><?php _e('Preview', 'flexframe-viewer'); ?></h4>
+                            <div class="ui-preview-container">
+                                <div class="preview-player" id="preview-player">
+                                    <div class="preview-controls">
+                                        <button type="button" class="preview-btn">▶</button>
+                                        <div class="preview-progress">
+                                            <div class="preview-progress-fill"></div>
+                                        </div>
+                                        <span class="preview-time">0:00 / 1:00</span>
+                                    </div>
+                                </div>
+                                <div class="preview-menu" id="preview-menu">
+                                    <div class="preview-menu-item active"><?php _e('Exercise 1', 'flexframe-viewer'); ?></div>
+                                    <div class="preview-menu-item"><?php _e('Exercise 2', 'flexframe-viewer'); ?></div>
+                                    <div class="preview-menu-item"><?php _e('Exercise 3', 'flexframe-viewer'); ?></div>
+                                </div>
+                                <div class="preview-spinner" id="preview-spinner">
+                                    <div class="spinner-circle"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 
@@ -1171,6 +1396,174 @@ function flexframe_settings_page() {
         .qr-copy-btn:hover {
             background: #008a20;
         }
+        
+        /* Step 5: UI Settings Styles */
+        .ui-settings-section {
+            margin-bottom: 24px;
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 8px;
+            border: 1px solid #e2e4e7;
+        }
+        .ui-settings-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 16px 0;
+            font-size: 16px;
+            color: #1d2327;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e2e4e7;
+        }
+        .ui-settings-section h3 .dashicons {
+            color: #2271b1;
+        }
+        .ui-settings-table {
+            margin: 0;
+        }
+        .ui-settings-table th {
+            width: 160px;
+            padding: 12px 10px 12px 0;
+            vertical-align: middle;
+            font-weight: 500;
+        }
+        .ui-settings-table td {
+            padding: 12px 0;
+        }
+        .color-picker {
+            width: 50px;
+            height: 36px;
+            padding: 2px;
+            border: 2px solid #ddd;
+            border-radius: 6px;
+            cursor: pointer;
+            vertical-align: middle;
+        }
+        .color-picker:hover {
+            border-color: #2271b1;
+        }
+        .color-value {
+            display: inline-block;
+            margin-left: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #666;
+            vertical-align: middle;
+        }
+        .opacity-slider {
+            width: 200px;
+            vertical-align: middle;
+        }
+        .opacity-value {
+            display: inline-block;
+            margin-left: 10px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #666;
+            vertical-align: middle;
+            min-width: 30px;
+        }
+        .ui-settings-table select {
+            min-width: 280px;
+        }
+        
+        /* UI Preview Section */
+        .ui-preview-section {
+            margin-top: 24px;
+            padding: 20px;
+            background: #1a1a2e;
+            border-radius: 8px;
+        }
+        .ui-preview-section h4 {
+            margin: 0 0 16px 0;
+            font-size: 14px;
+            color: #fff;
+        }
+        .ui-preview-container {
+            display: flex;
+            gap: 20px;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+        
+        /* Preview Player */
+        .preview-player {
+            padding: 12px 16px;
+            border-radius: 8px;
+            min-width: 280px;
+        }
+        .preview-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .preview-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .preview-progress {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .preview-progress-fill {
+            width: 40%;
+            height: 100%;
+            border-radius: 3px;
+        }
+        .preview-time {
+            font-size: 12px;
+            font-family: monospace;
+        }
+        
+        /* Preview Menu */
+        .preview-menu {
+            padding: 12px;
+            border-radius: 8px;
+            min-width: 150px;
+        }
+        .preview-menu-item {
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+            margin-bottom: 4px;
+            cursor: pointer;
+        }
+        .preview-menu-item:last-child {
+            margin-bottom: 0;
+        }
+        .preview-menu-item.active {
+            font-weight: 500;
+        }
+        
+        /* Preview Spinner */
+        .preview-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 80px;
+            height: 80px;
+        }
+        .spinner-circle {
+            width: 40px;
+            height: 40px;
+            border: 4px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
     
     <script>
@@ -1504,6 +1897,73 @@ function flexframe_settings_page() {
         
         // Load exercises on page load
         loadExercises();
+        
+        // ============================================
+        // Step 5: UI Settings - Live Preview
+        // ============================================
+        
+        function updateUIPreview() {
+            // Get current values
+            var spinnerColor = $('#flexframe_spinner_color').val();
+            var playerBgColor = $('#flexframe_player_bg_color').val();
+            var playerBgOpacity = parseFloat($('#flexframe_player_bg_opacity').val());
+            var playerButtonColor = $('#flexframe_player_button_color').val();
+            var playerAccentColor = $('#flexframe_player_accent_color').val();
+            var menuBgColor = $('#flexframe_menu_bg_color').val();
+            var menuBgOpacity = parseFloat($('#flexframe_menu_bg_opacity').val());
+            var menuTextColor = $('#flexframe_menu_text_color').val();
+            var menuAccentColor = $('#flexframe_menu_accent_color').val();
+            
+            // Convert hex to rgba
+            function hexToRgba(hex, alpha) {
+                var r = parseInt(hex.slice(1, 3), 16);
+                var g = parseInt(hex.slice(3, 5), 16);
+                var b = parseInt(hex.slice(5, 7), 16);
+                return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+            }
+            
+            // Update preview player
+            var $player = $('#preview-player');
+            $player.css('background-color', hexToRgba(playerBgColor, playerBgOpacity));
+            $player.find('.preview-btn').css({
+                'background-color': playerButtonColor,
+                'color': playerBgColor
+            });
+            $player.find('.preview-progress-fill').css('background-color', playerAccentColor);
+            $player.find('.preview-time').css('color', playerButtonColor);
+            
+            // Update preview menu
+            var $menu = $('#preview-menu');
+            $menu.css('background-color', hexToRgba(menuBgColor, menuBgOpacity));
+            $menu.find('.preview-menu-item').css('color', menuTextColor);
+            $menu.find('.preview-menu-item.active').css({
+                'background-color': hexToRgba(menuAccentColor, 0.2),
+                'color': menuAccentColor
+            });
+            
+            // Update preview spinner
+            var $spinner = $('#preview-spinner .spinner-circle');
+            $spinner.css('border-top-color', spinnerColor);
+        }
+        
+        // Color picker change handlers
+        $('.color-picker').on('input change', function() {
+            var $this = $(this);
+            $this.siblings('.color-value').text($this.val());
+            updateUIPreview();
+        });
+        
+        // Opacity slider change handlers
+        $('.opacity-slider').on('input change', function() {
+            var $this = $(this);
+            $this.siblings('.opacity-value').text($this.val());
+            updateUIPreview();
+        });
+        
+        // Initial preview update
+        if ($('#preview-player').length) {
+            updateUIPreview();
+        }
     });
     </script>
     <?php
