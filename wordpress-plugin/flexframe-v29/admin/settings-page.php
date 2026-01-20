@@ -527,28 +527,14 @@ function flexframe_settings_page() {
                             </label>
                         </div>
                         
-                        <!-- Preset Dropdown (shown when mode = preset) -->
+                        <!-- Preset Info (shown when mode = preset) -->
                         <div class="flexframe-preset-panel" <?php echo $material_mode !== 'preset' ? 'style="display:none;"' : ''; ?>>
-                            <label for="flexframe_material_preset"><?php _e('Select Preset:', 'flexframe-viewer'); ?></label>
-                            <select 
-                                id="flexframe_material_preset" 
-                                name="flexframe_material_preset"
-                                class="regular-text"
-                            >
-                                <option value="preset1" <?php selected($material_preset, 'preset1'); ?>>
-                                    <?php _e('1. Default Settings', 'flexframe-viewer'); ?>
-                                </option>
-                                <option value="none" <?php selected($material_preset, 'none'); ?>>
-                                    <?php _e('2. None - Use model defaults', 'flexframe-viewer'); ?>
-                                </option>
-                                <option value="wp_preset" <?php selected($material_preset, 'wp_preset'); ?>>
-                                    <?php _e('3. Translucent Blue - Soft anatomical view', 'flexframe-viewer'); ?>
-                                </option>
-                            </select>
+                            <p class="preset-info"><span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span> <?php _e('Using Default Settings - Your brand colors and optimized defaults are applied.', 'flexframe-viewer'); ?></p>
+                            <input type="hidden" name="flexframe_material_preset" value="preset1" />
                         </div>
                         
-                        <!-- Custom Settings Panel (shown when mode = custom) -->
-                        <div class="flexframe-custom-panel" <?php echo $material_mode !== 'custom' ? 'style="display:none;"' : ''; ?>>
+                        <!-- Custom Settings Panel (always visible, disabled when preset selected) -->
+                        <div class="flexframe-custom-panel <?php echo $material_mode !== 'custom' ? 'panel-disabled' : ''; ?>">
                             
                             <!-- UI Settings Section -->
                             <div class="custom-panel-section">
@@ -1218,6 +1204,14 @@ function flexframe_settings_page() {
             border-radius: 6px;
             margin-top: 8px;
         }
+        .flexframe-preset-panel .preset-info {
+            margin: 0;
+            font-size: 14px;
+            color: #1d2327;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         .flexframe-preset-panel label {
             font-weight: 500;
             margin-right: 12px;
@@ -1226,6 +1220,27 @@ function flexframe_settings_page() {
             margin: 0 0 16px 0;
             font-size: 14px;
             color: #1d2327;
+        }
+        
+        /* Disabled panel state */
+        .flexframe-custom-panel.panel-disabled {
+            position: relative;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+        .flexframe-custom-panel.panel-disabled::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.3);
+            z-index: 10;
+            border-radius: 6px;
+        }
+        .flexframe-custom-panel.panel-disabled .custom-panel-header {
+            cursor: default;
         }
         
         /* Collapsible panel sections */
@@ -2041,10 +2056,10 @@ function flexframe_settings_page() {
             
             if (mode === 'preset') {
                 $('.flexframe-preset-panel').slideDown(200);
-                $('.flexframe-custom-panel').slideUp(200);
+                $('.flexframe-custom-panel').addClass('panel-disabled');
             } else {
                 $('.flexframe-preset-panel').slideUp(200);
-                $('.flexframe-custom-panel').slideDown(200);
+                $('.flexframe-custom-panel').removeClass('panel-disabled');
             }
         });
         
