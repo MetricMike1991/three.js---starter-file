@@ -550,9 +550,16 @@ class ThreeJSApp {
             if (particleSettings.size !== undefined) {
                 this.particleSystem.params.size = particleSettings.size;
             }
-            if (particleSettings.color) {
+            
+            // Use primary color for particles
+            const primaryColor = window.flexframeSettings?.primaryColor;
+            if (primaryColor) {
+                this.particleSystem.params.color = primaryColor;
+                console.log('[FlexFrame Scene] Using primary color for particles:', primaryColor);
+            } else if (particleSettings.color) {
                 this.particleSystem.params.color = particleSettings.color;
             }
+            
             if (particleSettings.opacity !== undefined) {
                 this.particleSystem.params.opacity = particleSettings.opacity;
             }

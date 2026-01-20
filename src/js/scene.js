@@ -22,7 +22,8 @@ class SceneManager {
 
     // Background gradient management
     updateGradientBackground(params) {
-        const width = 512, height = 512;
+        // Use higher resolution for smoother gradients
+        const width = 2, height = 2048;
         const canvasBg = document.createElement('canvas');
         canvasBg.width = width;
         canvasBg.height = height;
@@ -35,6 +36,9 @@ class SceneManager {
         ctx.fillRect(0, 0, width, height);
         
         this.bgTexture = new THREE.CanvasTexture(canvasBg);
+        // Enable linear filtering for smoother interpolation
+        this.bgTexture.minFilter = THREE.LinearFilter;
+        this.bgTexture.magFilter = THREE.LinearFilter;
         this.scene.background = this.bgTexture;
         this.scene._originalBackgroundTexture = this.bgTexture;
     }

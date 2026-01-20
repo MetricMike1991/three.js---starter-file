@@ -2953,8 +2953,8 @@ function flexframe_settings_page() {
             $('#flexframe_bg_gradient_top').siblings('.color-value').text(settings.bgGradientTop);
             $('#flexframe_bg_gradient_bottom').val(settings.bgGradientBottom).trigger('input');
             $('#flexframe_bg_gradient_bottom').siblings('.color-value').text(settings.bgGradientBottom);
-            $('#flexframe_bg_gradient_opacity').val(settings.bgGradientOpacity).trigger('input');
-            $('#flexframe_bg_gradient_opacity').siblings('.opacity-value').text(settings.bgGradientOpacity);
+            $('#flexframe_bg_opacity').val(settings.bgGradientOpacity).trigger('input');
+            $('#flexframe_bg_opacity').siblings('.opacity-value').text(settings.bgGradientOpacity);
             
             // Apply Lighting Settings
             $('#flexframe_ambient_intensity').val(settings.ambientIntensity).trigger('input');
@@ -3082,7 +3082,7 @@ function flexframe_settings_page() {
                 // Scene Background Settings
                 bg_gradient_top: $('#flexframe_bg_gradient_top').val(),
                 bg_gradient_bottom: $('#flexframe_bg_gradient_bottom').val(),
-                bg_gradient_opacity: $('#flexframe_bg_gradient_opacity').val(),
+                bg_gradient_opacity: $('#flexframe_bg_opacity').val(),
                 // Lighting Settings
                 ambient_intensity: $('#flexframe_ambient_intensity').val(),
                 ambient_color: $('#flexframe_ambient_color').val(),
@@ -3172,8 +3172,8 @@ function flexframe_settings_page() {
                 $('#flexframe_bg_gradient_bottom').siblings('.color-value').text(settings.bg_gradient_bottom);
             }
             if (settings.bg_gradient_opacity !== undefined) {
-                $('#flexframe_bg_gradient_opacity').val(settings.bg_gradient_opacity).trigger('input');
-                $('#flexframe_bg_gradient_opacity').siblings('.opacity-value').text(settings.bg_gradient_opacity);
+                $('#flexframe_bg_opacity').val(settings.bg_gradient_opacity).trigger('input');
+                $('#flexframe_bg_opacity').siblings('.opacity-value').text(settings.bg_gradient_opacity);
             }
             
             // Lighting Settings (if present)
