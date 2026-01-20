@@ -1,0 +1,91 @@
+{
+  "exerciseId": "sumo_deadlift",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.%20Sumo%20Deadlift.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.Sumo-New%20glb.glb",
+  "model": {
+    "position": [0, 0.01, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-0.13157891513416622, 1.2240865544691428, -3.658688975430664],
+    "rotation": [3.134670972506836, -0.03121336720793304, 3.1413766362501483],
+    "target": [-0.00797516964968582, 1.2514870271099408, 0.2998920005608233]
+  },
+  "cameraHQ": {
+    "position": [0.4487140235318777, 0.8114202881215138, 1.329178791075513],
+    "rotation": [-0.21789421060373085, 0.3262874105828699, 0.0708492369641386],
+    "target": [-0.008224080864822013, 0.5195070076161097, 0.010746410020612615]
+  },
+  "customTextures": {},
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Sumo Deadlift is a variation of the conventional deadlift that uses a wide stance with toes pointed outward. This stance shifts emphasis to the hips, inner thighs, and glutes while reducing stress on the lower back. Named after the wide stance of sumo wrestlers, this lift is popular among powerlifters and those seeking a more hip-dominant pulling pattern."
+        },
+        {
+          "heading": "Benefits",
+          "content": "Reduced stress on the lower back compared to conventional deadlift. Greater emphasis on hip adductors and glutes. Shorter range of motion allows for heavier loads. Better starting position for those with long torsos. Improved hip mobility and flexibility. Excellent for developing hip strength and power. More upright torso position reduces shear forces on spine."
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes, Hip Adductors, Quadriceps, Hamstrings. Secondary: Erector Spinae, Trapezius, Latissimus Dorsi, Core, Forearms and Grip."
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with feet significantly wider than shoulder-width (1.5-2x hip width).\n2. Point toes outward at 30-45 degree angle.\n3. Position barbell over mid-foot.\n4. Bend at hips and knees, pushing knees out over toes.\n5. Grip the bar with hands inside your legs, shoulder-width apart.\n6. Keep chest up and back flat.\n7. Shoulders should be directly over or slightly behind the bar.\n8. Arms should hang straight down from shoulders."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Pull the slack out of the bar.\n3. Drive through the floor by pushing your feet apart (like spreading the floor).\n4. Extend hips and knees simultaneously.\n5. Keep the bar close to your body throughout the lift.\n6. Push your knees out as the bar rises.\n7. Drive hips forward as bar passes knees.\n8. Stand fully upright with shoulders back and hips locked.\n9. Reverse the movement with control, pushing hips back first."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Knees caving inward during the lift\n- Stance too wide or too narrow for your anatomy\n- Hips rising faster than shoulders (hips shooting up)\n- Not pushing knees out over toes\n- Rounding the lower or upper back\n- Bar drifting away from body\n- Not getting hips close enough to the bar\n- Poor hip mobility limiting depth\n- Rushing the setup"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates (bumper plates or iron plates)\n- Lifting Platform or Suitable Floor Surface\n- Optional: Lifting Belt (for heavy loads)\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Recommended: Flat-soled shoes or deadlift slippers"
+        },
+        {
+          "heading": "Finding Your Stance",
+          "content": "1. Start with feet about 1.5x hip width.\n2. Toes pointed out 30-45 degrees.\n3. When you grip the bar, shins should be vertical.\n4. Knees should track over toes without caving.\n5. Adjust stance width based on hip anatomy.\n6. Wider isn't always better - find what's comfortable.\n7. Hip mobility determines your optimal stance.\n8. Test different widths to find your strongest position."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Wide, toes pointed out significantly.\n2. Bar Position: Over mid-foot, touching shins.\n3. Grip: Inside legs, about shoulder-width.\n4. Hip Position: As close to bar as possible.\n5. Torso: More upright than conventional deadlift.\n6. Knees: Pushed out over toes, tracking with feet.\n7. Shoulders: Over or slightly behind the bar.\n8. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Conventional Deadlift: Narrower stance, more back involvement\n- Trap Bar Deadlift: Easier to learn, neutral grip position\n- Romanian Deadlift: Hip hinge focus, hamstring emphasis\n- Sumo Rack Pulls: Partial range for lockout strength\n- Sumo Deficit Deadlift: Increased range of motion\n- Wide Stance Leg Press: Machine alternative for quad/hip focus"
+        },
+        {
+          "heading": "Sumo Variations",
+          "content": "Sumo Deadlift: Standard wide stance pull from floor\nSumo Block Pull: Elevated bar for lockout work\nSumo Deficit Deadlift: Standing on platform for extra range\nPaused Sumo Deadlift: Pause off floor for strength development\nBanded Sumo Deadlift: Accommodating resistance at top\nTempo Sumo Deadlift: Controlled eccentric for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Hip Mobility Issues: Work on hip stretches, start with narrower stance\nKnee Pain: Try conventional stance or trap bar\nGroin Tightness: Warm up thoroughly, consider adductor stretches\nGrip Issues: Use chalk, straps, or hook grip\nNo Barbell: Use kettlebell sumo deadlift or dumbbell sumo squat\nLearning Stage: Start with light weight, focus on knee tracking"
+        }
+      ]
+    }
+  }
+}

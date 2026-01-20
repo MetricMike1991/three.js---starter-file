@@ -1765,36 +1765,45 @@ class ThreeJSApp {
         this.startQualityButtonPulsate();
         
         // Get quality-specific settings if available
-        if (this.currentModelQuality === 'HQ' && this.currentConfig?.modelHQ) {
-            const hqSettings = this.currentConfig.modelHQ;
+        console.log('[HQ Debug] currentConfig:', this.currentConfig);
+        console.log('[HQ Debug] Has cameraHQ?', !!this.currentConfig?.cameraHQ);
+        console.log('[HQ Debug] cameraHQ value:', this.currentConfig?.cameraHQ);
+        
+        if (this.currentModelQuality === 'HQ' && (this.currentConfig?.modelHQ || this.currentConfig?.cameraHQ)) {
+            console.log('[HQ Debug] ✅ Entering HQ branch');
+            const hqModelSettings = this.currentConfig.modelHQ;
+            const hqCameraSettings = this.currentConfig.cameraHQ || hqModelSettings?.camera;
+            console.log('[HQ Debug] hqCameraSettings:', hqCameraSettings);
             
             // Set pending model config for HQ
-            if (hqSettings.model) {
-                this.pendingModelConfig = hqSettings.model;
+            if (hqModelSettings?.model) {
+                this.pendingModelConfig = hqModelSettings.model;
             }
             
             // Reload model with HQ settings
             await this.loadModel(modelUrl);
+            console.log('[HQ Debug] Model loaded, now applying camera settings');
             
-            // Apply HQ camera settings
-            if (hqSettings.camera) {
+            // Apply HQ camera settings (from cameraHQ or modelHQ.camera)
+            if (hqCameraSettings) {
+                console.log('[HQ Debug] Applying HQ camera position:', hqCameraSettings.position);
                 const camera = this.cameraManager.getCamera();
-                if (hqSettings.camera.position) {
-                    camera.position.set(...hqSettings.camera.position);
+                if (hqCameraSettings.position) {
+                    camera.position.set(...hqCameraSettings.position);
                 }
-                if (hqSettings.camera.rotation) {
-                    camera.rotation.set(...hqSettings.camera.rotation);
+                if (hqCameraSettings.rotation) {
+                    camera.rotation.set(...hqCameraSettings.rotation);
                 }
-                if (hqSettings.camera.target) {
-                    this.cameraManager.getControls().target.set(...hqSettings.camera.target);
+                if (hqCameraSettings.target) {
+                    this.cameraManager.getControls().target.set(...hqCameraSettings.target);
                 }
                 this.cameraManager.getControls().update();
                 
                 // Update original state for spacebar reset
                 this.cameraManager.updateOriginalState(
-                    hqSettings.camera.position,
-                    hqSettings.camera.rotation,
-                    hqSettings.camera.target
+                    hqCameraSettings.position,
+                    hqCameraSettings.rotation,
+                    hqCameraSettings.target
                 );
             }
         } else {
@@ -1831,6 +1840,7 @@ class ThreeJSApp {
     }
     
     loadModel(modelUrl = getAssetUrl('models/exercise.glb')) {
+        return new Promise((resolve, reject) => {
         // Show loading spinner
         const loader = document.getElementById('model-loader');
         if (loader) {
@@ -2247,6 +2257,9 @@ class ThreeJSApp {
                 
                 // Add materials GUI controls
                 this.setupMaterialsGUI(model);
+                
+                // Resolve the promise when model is fully loaded
+                resolve(model);
             },
             undefined,
             (error) => {
@@ -2257,8 +2270,10 @@ class ThreeJSApp {
                 if (loader) {
                     loader.style.display = 'none';
                 }
+                reject(error);
             }
         );
+        }); // Close the Promise
     }
 
     setupModelGUI(model) {
