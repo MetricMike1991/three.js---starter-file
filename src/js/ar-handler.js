@@ -252,8 +252,8 @@ export class ARHandler {
                         font-size: 12px;
                         margin-bottom: 24px;
                     ">
-                        <p style="margin: 0 0 8px 0;">📱 <strong style="color: white;">iOS:</strong> Open Camera app and point at QR code</p>
-                        <p style="margin: 0;">🤖 <strong style="color: white;">Android:</strong> Use Google Lens or QR scanner</p>
+                        <p style="margin: 0 0 8px 0;"><strong style="color: white;">iOS:</strong> Open Camera app and point at QR code</p>
+                        <p style="margin: 0;"><strong style="color: white;">Android:</strong> Use Google Lens or QR scanner</p>
                     </div>
                     
                     <button id="ar-qr-close" style="
