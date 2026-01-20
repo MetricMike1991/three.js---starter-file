@@ -1240,7 +1240,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-wZFzlDGw.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-XfGhWm-a.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -1296,6 +1296,40 @@ function flexframe_enqueue_assets() {
             )
         );
         
+        // Scene/Background settings
+        $background_settings = array(
+            'gradientTop' => get_option('flexframe_bg_gradient_top', '#3865ad'),
+            'gradientBottom' => get_option('flexframe_bg_gradient_bottom', '#0101bc'),
+            'gradientAlpha' => floatval(get_option('flexframe_bg_opacity', 1))
+        );
+        
+        // Lighting settings
+        $lighting_settings = array(
+            'ambientLight' => array(
+                'intensity' => floatval(get_option('flexframe_ambient_intensity', 0.4)),
+                'color' => get_option('flexframe_ambient_color', '#ffffff')
+            ),
+            'directionalLight' => array(
+                'intensity' => floatval(get_option('flexframe_directional_intensity', 1.43)),
+                'color' => get_option('flexframe_directional_color', '#ffffff'),
+                'position' => array(
+                    'x' => floatval(get_option('flexframe_directional_pos_x', 1.35)),
+                    'y' => floatval(get_option('flexframe_directional_pos_y', 1.57)),
+                    'z' => floatval(get_option('flexframe_directional_pos_z', 0.9))
+                )
+            )
+        );
+        
+        // Particle settings
+        $particle_settings = array(
+            'visible' => (bool) get_option('flexframe_particles_enabled', true),
+            'count' => absint(get_option('flexframe_particles_count', 1150)),
+            'size' => floatval(get_option('flexframe_particles_size', 0.0095)),
+            'color' => get_option('flexframe_particles_color', '#0d529c'),
+            'opacity' => floatval(get_option('flexframe_particles_opacity', 1)),
+            'speed' => floatval(get_option('flexframe_particles_speed', 0.5))
+        );
+        
         $settings_data = array(
             'primaryColorMode' => $primary_color_mode,
             'primaryColor' => $primary_color,
@@ -1306,6 +1340,9 @@ function flexframe_enqueue_assets() {
             'skinSettings' => $skin_settings,
             'hiddenExercises' => $hidden_exercises,
             'uiSettings' => $ui_settings,
+            'backgroundSettings' => $background_settings,
+            'lightingSettings' => $lighting_settings,
+            'particleSettings' => $particle_settings,
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'debug' => FLEXFRAME_DEBUG,
             'version' => FLEXFRAME_VERSION

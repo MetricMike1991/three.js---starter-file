@@ -141,6 +141,25 @@ function flexframe_save_custom_preset() {
             'skin_thickness' => floatval($preset_data['skin_thickness'] ?? 0),
             'skin_ior' => floatval($preset_data['skin_ior'] ?? 1.5),
             'skin_env_intensity' => floatval($preset_data['skin_env_intensity'] ?? 1),
+            // Scene Background Settings
+            'bg_gradient_top' => sanitize_hex_color($preset_data['bg_gradient_top'] ?? '#3865ad'),
+            'bg_gradient_bottom' => sanitize_hex_color($preset_data['bg_gradient_bottom'] ?? '#0101bc'),
+            'bg_gradient_opacity' => floatval($preset_data['bg_gradient_opacity'] ?? 1),
+            // Lighting Settings
+            'ambient_intensity' => floatval($preset_data['ambient_intensity'] ?? 0.4),
+            'ambient_color' => sanitize_hex_color($preset_data['ambient_color'] ?? '#ffffff'),
+            'directional_intensity' => floatval($preset_data['directional_intensity'] ?? 1.43),
+            'directional_color' => sanitize_hex_color($preset_data['directional_color'] ?? '#ffffff'),
+            'directional_pos_x' => floatval($preset_data['directional_pos_x'] ?? 1.35),
+            'directional_pos_y' => floatval($preset_data['directional_pos_y'] ?? 1.57),
+            'directional_pos_z' => floatval($preset_data['directional_pos_z'] ?? 0.9),
+            // Particle Settings
+            'particles_enabled' => (bool)($preset_data['particles_enabled'] ?? true),
+            'particle_count' => intval($preset_data['particle_count'] ?? 1150),
+            'particle_size' => floatval($preset_data['particle_size'] ?? 0.0095),
+            'particle_color' => sanitize_hex_color($preset_data['particle_color'] ?? '#0d529c'),
+            'particle_opacity' => floatval($preset_data['particle_opacity'] ?? 1),
+            'particle_speed' => floatval($preset_data['particle_speed'] ?? 0.5),
         )
     );
     
@@ -445,6 +464,92 @@ function flexframe_register_settings() {
         'type' => 'boolean',
         'sanitize_callback' => 'rest_sanitize_boolean',
         'default' => false
+    ));
+    
+    // ========== Scene/Background Settings ==========
+    register_setting('flexframe_settings_group', 'flexframe_bg_gradient_top', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#3865ad'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_bg_gradient_bottom', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#0101bc'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_bg_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 1
+    ));
+    
+    // ========== Lighting Settings ==========
+    register_setting('flexframe_settings_group', 'flexframe_ambient_intensity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.4
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_ambient_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#ffffff'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_directional_intensity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 1.43
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_directional_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#ffffff'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_directional_pos_x', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 1.35
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_directional_pos_y', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 1.57
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_directional_pos_z', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.9
+    ));
+    
+    // ========== Dust Particle Settings ==========
+    register_setting('flexframe_settings_group', 'flexframe_particles_enabled', array(
+        'type' => 'boolean',
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'default' => true
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_particles_count', array(
+        'type' => 'number',
+        'sanitize_callback' => 'absint',
+        'default' => 1150
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_particles_size', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.0095
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_particles_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#0d529c'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_particles_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 1
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_particles_speed', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.5
     ));
 }
 add_action('admin_init', 'flexframe_register_settings');
@@ -1036,6 +1141,181 @@ function flexframe_settings_page() {
                                 <p class="description">
                                     <?php _e('💡 Tip: Set Transmission to 1 for a glass-like refraction effect that lets you see the muscles beneath.', 'flexframe-viewer'); ?>
                                 </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Scene Background Settings Section -->
+                            <div class="custom-panel-section">
+                                <div class="custom-panel-header" data-target="background-settings-content">
+                                    <h4><span class="dashicons dashicons-admin-appearance"></span> <?php _e('Scene Background', 'flexframe-viewer'); ?></h4>
+                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                                </div>
+                                <div class="custom-panel-content" id="background-settings-content">
+                                    <div class="flexframe-custom-settings">
+                                        <?php
+                                        // Get background settings with defaults
+                                        $bg_gradient_top = get_option('flexframe_bg_gradient_top', '#3865ad');
+                                        $bg_gradient_bottom = get_option('flexframe_bg_gradient_bottom', '#0101bc');
+                                        $bg_opacity = get_option('flexframe_bg_opacity', 1);
+                                        ?>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_bg_gradient_top"><?php _e('Gradient Top Color', 'flexframe-viewer'); ?></label>
+                                            <input type="color" id="flexframe_bg_gradient_top" name="flexframe_bg_gradient_top" value="<?php echo esc_attr($bg_gradient_top); ?>" />
+                                            <span class="color-hex"><?php echo esc_html($bg_gradient_top); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_bg_gradient_bottom"><?php _e('Gradient Bottom Color', 'flexframe-viewer'); ?></label>
+                                            <input type="color" id="flexframe_bg_gradient_bottom" name="flexframe_bg_gradient_bottom" value="<?php echo esc_attr($bg_gradient_bottom); ?>" />
+                                            <span class="color-hex"><?php echo esc_html($bg_gradient_bottom); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_bg_opacity"><?php _e('Background Opacity', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_bg_opacity" name="flexframe_bg_opacity" value="<?php echo esc_attr($bg_opacity); ?>" min="0" max="1" step="0.01" />
+                                            <span class="range-value"><?php echo esc_html($bg_opacity); ?></span>
+                                        </div>
+                                        
+                                        <p class="description">
+                                            <?php _e('💡 Customize the gradient background of the 3D scene.', 'flexframe-viewer'); ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Lighting Settings Section -->
+                            <div class="custom-panel-section">
+                                <div class="custom-panel-header" data-target="lighting-settings-content">
+                                    <h4><span class="dashicons dashicons-lightbulb"></span> <?php _e('Lighting', 'flexframe-viewer'); ?></h4>
+                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                                </div>
+                                <div class="custom-panel-content" id="lighting-settings-content">
+                                    <div class="flexframe-custom-settings">
+                                        <?php
+                                        // Get lighting settings with defaults
+                                        $ambient_intensity = get_option('flexframe_ambient_intensity', 0.4);
+                                        $ambient_color = get_option('flexframe_ambient_color', '#ffffff');
+                                        $directional_intensity = get_option('flexframe_directional_intensity', 1.43);
+                                        $directional_color = get_option('flexframe_directional_color', '#ffffff');
+                                        $directional_pos_x = get_option('flexframe_directional_pos_x', 1.35);
+                                        $directional_pos_y = get_option('flexframe_directional_pos_y', 1.57);
+                                        $directional_pos_z = get_option('flexframe_directional_pos_z', 0.9);
+                                        ?>
+                                        
+                                        <h5 style="margin: 0 0 12px; color: #4a9eff;"><?php _e('Ambient Light', 'flexframe-viewer'); ?></h5>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_ambient_intensity"><?php _e('Intensity', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_ambient_intensity" name="flexframe_ambient_intensity" value="<?php echo esc_attr($ambient_intensity); ?>" min="0" max="2" step="0.01" />
+                                            <span class="range-value"><?php echo esc_html($ambient_intensity); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_ambient_color"><?php _e('Color', 'flexframe-viewer'); ?></label>
+                                            <input type="color" id="flexframe_ambient_color" name="flexframe_ambient_color" value="<?php echo esc_attr($ambient_color); ?>" />
+                                            <span class="color-hex"><?php echo esc_html($ambient_color); ?></span>
+                                        </div>
+                                        
+                                        <h5 style="margin: 20px 0 12px; color: #4a9eff;"><?php _e('Directional Light', 'flexframe-viewer'); ?></h5>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_directional_intensity"><?php _e('Intensity', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_directional_intensity" name="flexframe_directional_intensity" value="<?php echo esc_attr($directional_intensity); ?>" min="0" max="5" step="0.01" />
+                                            <span class="range-value"><?php echo esc_html($directional_intensity); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_directional_color"><?php _e('Color', 'flexframe-viewer'); ?></label>
+                                            <input type="color" id="flexframe_directional_color" name="flexframe_directional_color" value="<?php echo esc_attr($directional_color); ?>" />
+                                            <span class="color-hex"><?php echo esc_html($directional_color); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_directional_pos_x"><?php _e('Position X', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_directional_pos_x" name="flexframe_directional_pos_x" value="<?php echo esc_attr($directional_pos_x); ?>" min="-5" max="5" step="0.01" />
+                                            <span class="range-value"><?php echo esc_html($directional_pos_x); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_directional_pos_y"><?php _e('Position Y', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_directional_pos_y" name="flexframe_directional_pos_y" value="<?php echo esc_attr($directional_pos_y); ?>" min="-5" max="5" step="0.01" />
+                                            <span class="range-value"><?php echo esc_html($directional_pos_y); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_directional_pos_z"><?php _e('Position Z', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_directional_pos_z" name="flexframe_directional_pos_z" value="<?php echo esc_attr($directional_pos_z); ?>" min="-5" max="5" step="0.01" />
+                                            <span class="range-value"><?php echo esc_html($directional_pos_z); ?></span>
+                                        </div>
+                                        
+                                        <p class="description">
+                                            <?php _e('💡 Adjust lighting to highlight muscle definition and create dramatic effects.', 'flexframe-viewer'); ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Dust Particles Settings Section -->
+                            <div class="custom-panel-section">
+                                <div class="custom-panel-header" data-target="particles-settings-content">
+                                    <h4><span class="dashicons dashicons-star-filled"></span> <?php _e('Dust Particles', 'flexframe-viewer'); ?></h4>
+                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                                </div>
+                                <div class="custom-panel-content" id="particles-settings-content">
+                                    <div class="flexframe-custom-settings">
+                                        <?php
+                                        // Get particle settings with defaults
+                                        $particles_enabled = get_option('flexframe_particles_enabled', true);
+                                        $particles_count = get_option('flexframe_particles_count', 1150);
+                                        $particles_size = get_option('flexframe_particles_size', 0.0095);
+                                        $particles_color = get_option('flexframe_particles_color', '#0d529c');
+                                        $particles_opacity = get_option('flexframe_particles_opacity', 1);
+                                        $particles_speed = get_option('flexframe_particles_speed', 0.5);
+                                        ?>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_particles_enabled"><?php _e('Enable Particles', 'flexframe-viewer'); ?></label>
+                                            <label class="toggle-switch">
+                                                <input type="checkbox" id="flexframe_particles_enabled" name="flexframe_particles_enabled" value="1" <?php checked($particles_enabled, true); ?> />
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_particles_count"><?php _e('Particle Count', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_particles_count" name="flexframe_particles_count" value="<?php echo esc_attr($particles_count); ?>" min="0" max="5000" step="50" />
+                                            <span class="range-value"><?php echo esc_html($particles_count); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_particles_size"><?php _e('Particle Size', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_particles_size" name="flexframe_particles_size" value="<?php echo esc_attr($particles_size); ?>" min="0.001" max="0.05" step="0.001" />
+                                            <span class="range-value"><?php echo esc_html($particles_size); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_particles_color"><?php _e('Particle Color', 'flexframe-viewer'); ?></label>
+                                            <input type="color" id="flexframe_particles_color" name="flexframe_particles_color" value="<?php echo esc_attr($particles_color); ?>" />
+                                            <span class="color-hex"><?php echo esc_html($particles_color); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_particles_opacity"><?php _e('Opacity', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_particles_opacity" name="flexframe_particles_opacity" value="<?php echo esc_attr($particles_opacity); ?>" min="0" max="1" step="0.01" />
+                                            <span class="range-value"><?php echo esc_html($particles_opacity); ?></span>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label for="flexframe_particles_speed"><?php _e('Animation Speed', 'flexframe-viewer'); ?></label>
+                                            <input type="range" id="flexframe_particles_speed" name="flexframe_particles_speed" value="<?php echo esc_attr($particles_speed); ?>" min="0" max="2" step="0.1" />
+                                            <span class="range-value"><?php echo esc_html($particles_speed); ?></span>
+                                        </div>
+                                        
+                                        <p class="description">
+                                            <?php _e('💡 Floating dust particles add atmosphere and depth to the scene.', 'flexframe-viewer'); ?>
+                                        </p>
                                     </div>
                                 </div>
                             </div>
@@ -2448,7 +2728,26 @@ function flexframe_settings_page() {
                     skinTransmission: 1,
                     skinThickness: 0,
                     skinIor: 1,
-                    skinEnvIntensity: 2.29
+                    skinEnvIntensity: 2.29,
+                    // Scene Background settings
+                    bgGradientTop: '#3865ad',
+                    bgGradientBottom: '#0101bc',
+                    bgGradientOpacity: 1,
+                    // Lighting settings
+                    ambientIntensity: 0.4,
+                    ambientColor: '#ffffff',
+                    directionalIntensity: 1.43,
+                    directionalColor: '#ffffff',
+                    directionalPosX: 1.35,
+                    directionalPosY: 1.57,
+                    directionalPosZ: 0.9,
+                    // Particle settings
+                    particlesEnabled: true,
+                    particleCount: 1150,
+                    particleSize: 0.0095,
+                    particleColor: '#0d529c',
+                    particleOpacity: 1,
+                    particleSpeed: 0.5
                 }
             },
             'dark': {
@@ -2479,7 +2778,26 @@ function flexframe_settings_page() {
                     skinTransmission: 1,
                     skinThickness: 0,
                     skinIor: 1,
-                    skinEnvIntensity: 2.29
+                    skinEnvIntensity: 2.29,
+                    // Scene Background settings - darker gradient for dark theme
+                    bgGradientTop: '#1a1a2e',
+                    bgGradientBottom: '#16213e',
+                    bgGradientOpacity: 1,
+                    // Lighting settings
+                    ambientIntensity: 0.4,
+                    ambientColor: '#ffffff',
+                    directionalIntensity: 1.43,
+                    directionalColor: '#ffffff',
+                    directionalPosX: 1.35,
+                    directionalPosY: 1.57,
+                    directionalPosZ: 0.9,
+                    // Particle settings
+                    particlesEnabled: true,
+                    particleCount: 1150,
+                    particleSize: 0.0095,
+                    particleColor: '#4a69bd',
+                    particleOpacity: 1,
+                    particleSpeed: 0.5
                 }
             },
             'light': {
@@ -2510,7 +2828,26 @@ function flexframe_settings_page() {
                     skinTransmission: 1,
                     skinThickness: 0,
                     skinIor: 1,
-                    skinEnvIntensity: 2.29
+                    skinEnvIntensity: 2.29,
+                    // Scene Background settings - lighter gradient for light theme
+                    bgGradientTop: '#87ceeb',
+                    bgGradientBottom: '#e0f6ff',
+                    bgGradientOpacity: 1,
+                    // Lighting settings
+                    ambientIntensity: 0.5,
+                    ambientColor: '#ffffff',
+                    directionalIntensity: 1.5,
+                    directionalColor: '#ffffff',
+                    directionalPosX: 1.35,
+                    directionalPosY: 1.57,
+                    directionalPosZ: 0.9,
+                    // Particle settings
+                    particlesEnabled: true,
+                    particleCount: 1150,
+                    particleSize: 0.0095,
+                    particleColor: '#6eb5ff',
+                    particleOpacity: 0.8,
+                    particleSpeed: 0.5
                 }
             }
         };
@@ -2611,6 +2948,49 @@ function flexframe_settings_page() {
                 envIntensity: settings.skinEnvIntensity
             });
             
+            // Apply Scene Background Settings
+            $('#flexframe_bg_gradient_top').val(settings.bgGradientTop).trigger('input');
+            $('#flexframe_bg_gradient_top').siblings('.color-value').text(settings.bgGradientTop);
+            $('#flexframe_bg_gradient_bottom').val(settings.bgGradientBottom).trigger('input');
+            $('#flexframe_bg_gradient_bottom').siblings('.color-value').text(settings.bgGradientBottom);
+            $('#flexframe_bg_gradient_opacity').val(settings.bgGradientOpacity).trigger('input');
+            $('#flexframe_bg_gradient_opacity').siblings('.opacity-value').text(settings.bgGradientOpacity);
+            
+            // Apply Lighting Settings
+            $('#flexframe_ambient_intensity').val(settings.ambientIntensity).trigger('input');
+            $('#flexframe_ambient_intensity').siblings('.range-value').text(settings.ambientIntensity);
+            $('#flexframe_ambient_color').val(settings.ambientColor).trigger('input');
+            $('#flexframe_ambient_color').siblings('.color-value').text(settings.ambientColor);
+            $('#flexframe_directional_intensity').val(settings.directionalIntensity).trigger('input');
+            $('#flexframe_directional_intensity').siblings('.range-value').text(settings.directionalIntensity);
+            $('#flexframe_directional_color').val(settings.directionalColor).trigger('input');
+            $('#flexframe_directional_color').siblings('.color-value').text(settings.directionalColor);
+            $('#flexframe_directional_pos_x').val(settings.directionalPosX).trigger('input');
+            $('#flexframe_directional_pos_x').siblings('.range-value').text(settings.directionalPosX);
+            $('#flexframe_directional_pos_y').val(settings.directionalPosY).trigger('input');
+            $('#flexframe_directional_pos_y').siblings('.range-value').text(settings.directionalPosY);
+            $('#flexframe_directional_pos_z').val(settings.directionalPosZ).trigger('input');
+            $('#flexframe_directional_pos_z').siblings('.range-value').text(settings.directionalPosZ);
+            
+            // Apply Particle Settings
+            $('input[name="flexframe_particles_enabled"][value="' + (settings.particlesEnabled ? '1' : '0') + '"]').prop('checked', true).trigger('change');
+            $('#flexframe_particle_count').val(settings.particleCount).trigger('input');
+            $('#flexframe_particle_count').siblings('.range-value').text(settings.particleCount);
+            $('#flexframe_particle_size').val(settings.particleSize).trigger('input');
+            $('#flexframe_particle_size').siblings('.range-value').text(settings.particleSize);
+            $('#flexframe_particle_color').val(settings.particleColor).trigger('input');
+            $('#flexframe_particle_color').siblings('.color-value').text(settings.particleColor);
+            $('#flexframe_particle_opacity').val(settings.particleOpacity).trigger('input');
+            $('#flexframe_particle_opacity').siblings('.range-value').text(settings.particleOpacity);
+            $('#flexframe_particle_speed').val(settings.particleSpeed).trigger('input');
+            $('#flexframe_particle_speed').siblings('.range-value').text(settings.particleSpeed);
+            
+            console.log('Applied scene settings:', {
+                background: { top: settings.bgGradientTop, bottom: settings.bgGradientBottom, opacity: settings.bgGradientOpacity },
+                lighting: { ambient: settings.ambientIntensity, directional: settings.directionalIntensity },
+                particles: { enabled: settings.particlesEnabled, count: settings.particleCount }
+            });
+            
             // Update UI preview if available
             if (typeof updateUIPreview === 'function') {
                 updateUIPreview();
@@ -2698,7 +3078,26 @@ function flexframe_settings_page() {
                 skin_transmission: $('#flexframe_skin_transmission').val(),
                 skin_thickness: $('#flexframe_skin_thickness').val(),
                 skin_ior: $('#flexframe_skin_ior').val(),
-                skin_env_intensity: $('#flexframe_skin_env_intensity').val()
+                skin_env_intensity: $('#flexframe_skin_env_intensity').val(),
+                // Scene Background Settings
+                bg_gradient_top: $('#flexframe_bg_gradient_top').val(),
+                bg_gradient_bottom: $('#flexframe_bg_gradient_bottom').val(),
+                bg_gradient_opacity: $('#flexframe_bg_gradient_opacity').val(),
+                // Lighting Settings
+                ambient_intensity: $('#flexframe_ambient_intensity').val(),
+                ambient_color: $('#flexframe_ambient_color').val(),
+                directional_intensity: $('#flexframe_directional_intensity').val(),
+                directional_color: $('#flexframe_directional_color').val(),
+                directional_pos_x: $('#flexframe_directional_pos_x').val(),
+                directional_pos_y: $('#flexframe_directional_pos_y').val(),
+                directional_pos_z: $('#flexframe_directional_pos_z').val(),
+                // Particle Settings
+                particles_enabled: $('input[name="flexframe_particles_enabled"]:checked').val() === '1',
+                particle_count: $('#flexframe_particle_count').val(),
+                particle_size: $('#flexframe_particle_size').val(),
+                particle_color: $('#flexframe_particle_color').val(),
+                particle_opacity: $('#flexframe_particle_opacity').val(),
+                particle_speed: $('#flexframe_particle_speed').val()
             };
         }
         
@@ -2762,6 +3161,75 @@ function flexframe_settings_page() {
             $('#flexframe_skin_ior').siblings('.range-value').text(settings.skin_ior);
             $('#flexframe_skin_env_intensity').val(settings.skin_env_intensity);
             $('#flexframe_skin_env_intensity').siblings('.range-value').text(settings.skin_env_intensity);
+            
+            // Scene Background Settings (if present - for backwards compatibility)
+            if (settings.bg_gradient_top !== undefined) {
+                $('#flexframe_bg_gradient_top').val(settings.bg_gradient_top).trigger('input');
+                $('#flexframe_bg_gradient_top').siblings('.color-value').text(settings.bg_gradient_top);
+            }
+            if (settings.bg_gradient_bottom !== undefined) {
+                $('#flexframe_bg_gradient_bottom').val(settings.bg_gradient_bottom).trigger('input');
+                $('#flexframe_bg_gradient_bottom').siblings('.color-value').text(settings.bg_gradient_bottom);
+            }
+            if (settings.bg_gradient_opacity !== undefined) {
+                $('#flexframe_bg_gradient_opacity').val(settings.bg_gradient_opacity).trigger('input');
+                $('#flexframe_bg_gradient_opacity').siblings('.opacity-value').text(settings.bg_gradient_opacity);
+            }
+            
+            // Lighting Settings (if present)
+            if (settings.ambient_intensity !== undefined) {
+                $('#flexframe_ambient_intensity').val(settings.ambient_intensity).trigger('input');
+                $('#flexframe_ambient_intensity').siblings('.range-value').text(settings.ambient_intensity);
+            }
+            if (settings.ambient_color !== undefined) {
+                $('#flexframe_ambient_color').val(settings.ambient_color).trigger('input');
+                $('#flexframe_ambient_color').siblings('.color-value').text(settings.ambient_color);
+            }
+            if (settings.directional_intensity !== undefined) {
+                $('#flexframe_directional_intensity').val(settings.directional_intensity).trigger('input');
+                $('#flexframe_directional_intensity').siblings('.range-value').text(settings.directional_intensity);
+            }
+            if (settings.directional_color !== undefined) {
+                $('#flexframe_directional_color').val(settings.directional_color).trigger('input');
+                $('#flexframe_directional_color').siblings('.color-value').text(settings.directional_color);
+            }
+            if (settings.directional_pos_x !== undefined) {
+                $('#flexframe_directional_pos_x').val(settings.directional_pos_x).trigger('input');
+                $('#flexframe_directional_pos_x').siblings('.range-value').text(settings.directional_pos_x);
+            }
+            if (settings.directional_pos_y !== undefined) {
+                $('#flexframe_directional_pos_y').val(settings.directional_pos_y).trigger('input');
+                $('#flexframe_directional_pos_y').siblings('.range-value').text(settings.directional_pos_y);
+            }
+            if (settings.directional_pos_z !== undefined) {
+                $('#flexframe_directional_pos_z').val(settings.directional_pos_z).trigger('input');
+                $('#flexframe_directional_pos_z').siblings('.range-value').text(settings.directional_pos_z);
+            }
+            
+            // Particle Settings (if present)
+            if (settings.particles_enabled !== undefined) {
+                $('input[name="flexframe_particles_enabled"][value="' + (settings.particles_enabled ? '1' : '0') + '"]').prop('checked', true).trigger('change');
+            }
+            if (settings.particle_count !== undefined) {
+                $('#flexframe_particle_count').val(settings.particle_count).trigger('input');
+                $('#flexframe_particle_count').siblings('.range-value').text(settings.particle_count);
+            }
+            if (settings.particle_size !== undefined) {
+                $('#flexframe_particle_size').val(settings.particle_size).trigger('input');
+                $('#flexframe_particle_size').siblings('.range-value').text(settings.particle_size);
+            }
+            if (settings.particle_color !== undefined) {
+                $('#flexframe_particle_color').val(settings.particle_color).trigger('input');
+                $('#flexframe_particle_color').siblings('.color-value').text(settings.particle_color);
+            }
+            if (settings.particle_opacity !== undefined) {
+                $('#flexframe_particle_opacity').val(settings.particle_opacity).trigger('input');
+                $('#flexframe_particle_opacity').siblings('.range-value').text(settings.particle_opacity);
+            }
+            if (settings.particle_speed !== undefined) {
+                $('#flexframe_particle_speed').val(settings.particle_speed).trigger('input');
+                $('#flexframe_particle_speed').siblings('.range-value').text(settings.particle_speed);
+            }
             
             // Update UI preview
             if (typeof updateUIPreview === 'function') {

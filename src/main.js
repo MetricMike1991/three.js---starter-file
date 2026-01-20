@@ -233,6 +233,9 @@ class ThreeJSApp {
         // Apply WordPress UI settings if available
         this.applyWordPressUISettings();
         
+        // Apply WordPress scene settings (background, lighting, particles)
+        this.applyWordPressSceneSettings();
+        
         // Apply initial player styling after short delay to ensure DOM is ready
         setTimeout(() => {
             this.initializePlayerStyling();
@@ -306,6 +309,10 @@ class ThreeJSApp {
         // Wait for default settings to load, then apply them
         await this.waitForDefaultSettings();
         this.settingsManager.applyDefaultSettings();
+        
+        // Apply WordPress scene settings AFTER default settings are applied
+        // This ensures WordPress settings override the JSON defaults
+        this.applyWordPressSceneSettings();
         
         // Update GUI to reflect default settings
         setTimeout(() => this.updateAllGUIControls(), 500);
@@ -477,6 +484,84 @@ class ThreeJSApp {
         // Apply spinner color if available
         if (uiSettings.spinnerColor) {
             this.updateSpinnerColor(uiSettings.spinnerColor);
+        }
+    }
+    
+    applyWordPressSceneSettings() {
+        // Apply Background Settings from WordPress
+        if (window.flexframeSettings?.backgroundSettings) {
+            const bgSettings = window.flexframeSettings.backgroundSettings;
+            console.log('[FlexFrame Scene] Applying WordPress background settings:', bgSettings);
+            
+            this.backgroundParams.gradientTop = bgSettings.gradientTop || '#3865ad';
+            this.backgroundParams.gradientBottom = bgSettings.gradientBottom || '#0101bc';
+            this.backgroundParams.gradientAlpha = bgSettings.gradientAlpha ?? 1;
+            
+            // Update the background
+            if (this.sceneManager) {
+                this.sceneManager.updateGradientBackground(this.backgroundParams);
+            }
+        }
+        
+        // Apply Lighting Settings from WordPress - directly set only defined properties
+        if (window.flexframeSettings?.lightingSettings && this.lightingSystem) {
+            const lightSettings = window.flexframeSettings.lightingSettings;
+            console.log('[FlexFrame Scene] Applying WordPress lighting settings:', lightSettings);
+            
+            // Apply ambient light settings
+            if (lightSettings.ambientLight) {
+                if (lightSettings.ambientLight.intensity !== undefined) {
+                    this.lightingSystem.ambientLight.intensity = lightSettings.ambientLight.intensity;
+                }
+                if (lightSettings.ambientLight.color) {
+                    this.lightingSystem.ambientLight.color.set(lightSettings.ambientLight.color);
+                }
+            }
+            
+            // Apply directional light settings
+            if (lightSettings.directionalLight) {
+                if (lightSettings.directionalLight.intensity !== undefined) {
+                    this.lightingSystem.directionalLight.intensity = lightSettings.directionalLight.intensity;
+                }
+                if (lightSettings.directionalLight.color) {
+                    this.lightingSystem.directionalLight.color.set(lightSettings.directionalLight.color);
+                }
+                if (lightSettings.directionalLight.position) {
+                    const pos = lightSettings.directionalLight.position;
+                    if (pos.x !== undefined) this.lightingSystem.directionalLight.position.x = pos.x;
+                    if (pos.y !== undefined) this.lightingSystem.directionalLight.position.y = pos.y;
+                    if (pos.z !== undefined) this.lightingSystem.directionalLight.position.z = pos.z;
+                }
+            }
+        }
+        
+        // Apply Particle Settings from WordPress
+        if (window.flexframeSettings?.particleSettings && this.particleSystem) {
+            const particleSettings = window.flexframeSettings.particleSettings;
+            console.log('[FlexFrame Scene] Applying WordPress particle settings:', particleSettings);
+            
+            // Update particle parameters
+            if (particleSettings.visible !== undefined) {
+                this.particleSystem.params.visible = particleSettings.visible;
+            }
+            if (particleSettings.count !== undefined) {
+                this.particleSystem.params.count = particleSettings.count;
+            }
+            if (particleSettings.size !== undefined) {
+                this.particleSystem.params.size = particleSettings.size;
+            }
+            if (particleSettings.color) {
+                this.particleSystem.params.color = particleSettings.color;
+            }
+            if (particleSettings.opacity !== undefined) {
+                this.particleSystem.params.opacity = particleSettings.opacity;
+            }
+            if (particleSettings.speed !== undefined) {
+                this.particleSystem.params.speed = particleSettings.speed;
+            }
+            
+            // Recreate particles with new settings
+            this.particleSystem.createDustParticles();
         }
     }
     
