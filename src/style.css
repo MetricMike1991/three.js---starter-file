@@ -361,7 +361,7 @@ body
 }
 
 /* Button styles */
-.play-pause-btn, .speed-btn, .quality-toggle-btn, .ar-btn {
+.play-pause-btn, .speed-btn, .quality-toggle-btn, .quality-btn, .ar-btn {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
@@ -374,12 +374,12 @@ body
     transition: all 0.2s ease;
 }
 
-.play-pause-btn:hover, .speed-btn:hover, .quality-toggle-btn:hover, .ar-btn:hover {
+.play-pause-btn:hover, .speed-btn:hover, .quality-toggle-btn:hover, .quality-btn:hover, .ar-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
 }
 
-.play-pause-btn svg, .speed-btn svg, .quality-toggle-btn svg, .ar-btn svg {
+.play-pause-btn svg, .speed-btn svg, .quality-toggle-btn svg, .quality-btn svg, .ar-btn svg {
     flex-shrink: 0;
 }
 
@@ -393,6 +393,23 @@ body
 .ar-btn:hover {
     background: rgba(74, 158, 255, 0.3);
     border-color: rgba(74, 158, 255, 0.5);
+}
+
+/* Quality Button specific styles */
+.quality-btn {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.quality-btn:hover {
+    background: rgba(74, 158, 255, 0.3);
+    border-color: rgba(74, 158, 255, 0.5);
+}
+
+.quality-btn span {
+    min-width: 20px;
+    text-align: center;
 }
 
 .quality-toggle-btn {

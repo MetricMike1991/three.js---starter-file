@@ -1226,7 +1226,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-DUSGSj1M.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-DCLo_nJr.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -1580,14 +1580,6 @@ function flexframe_viewer_shortcode($atts) {
         
         <!-- Canvas element -->
         <canvas class="webgl"></canvas>
-        
-        <!-- Model Quality Toggle Button (Standalone) -->
-        <button id="quality-toggle-btn" class="standalone-quality-btn" title="Switch Model Quality" style="display: none;">
-            <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-            </svg>
-            <span id="quality-text">SQ</span>
-        </button>
         
         <!-- Animation Player -->
         <div id="animation-player" class="animation-player" style="display: none;">

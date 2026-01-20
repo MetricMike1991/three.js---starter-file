@@ -3,6 +3,8 @@
  * Organized modular architecture for better maintainability
  */
 
+console.log('[FlexFrame Build] main.js v28.1 loaded - Build timestamp:', new Date().toISOString());
+
 // Helper function to resolve asset paths for WordPress plugin
 export function getAssetUrl(path) {
     // Check if running in WordPress plugin context
@@ -1677,8 +1679,10 @@ class ThreeJSApp {
 
     setupQualityToggle() {
         const qualityBtn = document.getElementById('quality-toggle-btn');
+        console.log('[Quality Debug] setupQualityToggle called, button found:', !!qualityBtn);
         if (qualityBtn) {
             qualityBtn.addEventListener('click', () => {
+                console.log('[Quality Debug] Quality button clicked!');
                 this.switchModelQuality();
             });
         }
@@ -1688,22 +1692,32 @@ class ThreeJSApp {
         const qualityBtn = document.getElementById('quality-toggle-btn');
         const qualityText = document.getElementById('quality-text');
         
+        console.log('[Quality Debug] updateQualityButtonVisibility called');
+        console.log('[Quality Debug] Button found:', !!qualityBtn);
+        console.log('[Quality Debug] modelUrlSQ:', this.modelUrlSQ);
+        console.log('[Quality Debug] modelUrlHQ:', this.modelUrlHQ);
+        
         if (qualityBtn) {
             // Show button only if both SQ and HQ models exist
             if (this.modelUrlSQ && this.modelUrlHQ) {
+                console.log('[Quality Debug] ✅ Both models exist, showing button');
                 qualityBtn.style.display = 'flex';
                 if (qualityText) {
                     // Show the quality you'll switch TO, not what's currently loaded
                     const nextQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
                     qualityText.textContent = nextQuality;
+                    console.log('[Quality Debug] Set button text to:', nextQuality);
                 }
                 
                 // Start pulsate animation only when HQ is available to switch to
                 this.startQualityButtonPulsate();
             } else {
+                console.log('[Quality Debug] ❌ Missing model URLs, hiding button');
                 qualityBtn.style.display = 'none';
                 this.stopQualityButtonPulsate();
             }
+        } else {
+            console.log('[Quality Debug] ❌ Button element not found in DOM!');
         }
     }
     
