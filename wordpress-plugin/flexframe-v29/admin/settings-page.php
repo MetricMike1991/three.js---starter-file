@@ -522,7 +522,7 @@ function flexframe_settings_page() {
                                 <span class="theme-card">
                                     <span class="theme-icon">⚙️</span>
                                     <span class="theme-title"><?php _e('Custom Theme', 'flexframe-viewer'); ?></span>
-                                    <span class="theme-desc"><?php _e('Full control over skin material settings', 'flexframe-viewer'); ?></span>
+                                    <span class="theme-desc"><?php _e('Full control over UI and material settings', 'flexframe-viewer'); ?></span>
                                 </span>
                             </label>
                         </div>
@@ -549,8 +549,256 @@ function flexframe_settings_page() {
                         
                         <!-- Custom Settings Panel (shown when mode = custom) -->
                         <div class="flexframe-custom-panel" <?php echo $material_mode !== 'custom' ? 'style="display:none;"' : ''; ?>>
-                            <h4><?php _e('Custom Skin Material Settings', 'flexframe-viewer'); ?></h4>
-                            <div class="flexframe-custom-settings">
+                            
+                            <!-- UI Settings Section -->
+                            <div class="custom-panel-section">
+                                <div class="custom-panel-header" data-target="ui-settings-content">
+                                    <h4><span class="dashicons dashicons-admin-appearance"></span> <?php _e('UI Settings', 'flexframe-viewer'); ?></h4>
+                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                                </div>
+                                <div class="custom-panel-content" id="ui-settings-content">
+                                    
+                                    <!-- Loading Spinner Settings -->
+                                    <div class="ui-settings-section">
+                                        <h5><span class="dashicons dashicons-update"></span> <?php _e('Loading Indicator', 'flexframe-viewer'); ?></h5>
+                                        <table class="form-table ui-settings-table">
+                                            <tr>
+                                                <th scope="row">
+                                                    <label><?php _e('Loader Type', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <div class="loader-type-options">
+                                                        <label class="loader-type-option <?php echo !$use_logo_loader ? 'selected' : ''; ?>">
+                                                            <input type="radio" name="flexframe_use_logo_loader" value="0" <?php checked($use_logo_loader, false); ?> />
+                                                            <span class="loader-type-card">
+                                                                <span class="loader-type-icon"><span class="dashicons dashicons-update"></span></span>
+                                                                <span class="loader-type-label"><?php _e('Spinner', 'flexframe-viewer'); ?></span>
+                                                            </span>
+                                                        </label>
+                                                        <label class="loader-type-option <?php echo $use_logo_loader ? 'selected' : ''; ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?>">
+                                                            <input type="radio" name="flexframe_use_logo_loader" value="1" <?php checked($use_logo_loader, true); ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?> />
+                                                            <span class="loader-type-card">
+                                                                <span class="loader-type-icon"><span class="dashicons dashicons-format-image"></span></span>
+                                                                <span class="loader-type-label"><?php _e('Your Logo', 'flexframe-viewer'); ?></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <?php if (empty($logo_url)) : ?>
+                                                        <p class="description logo-warning"><span class="dashicons dashicons-warning"></span> <?php _e('Upload a logo in Step 2 to use it as a loading indicator.', 'flexframe-viewer'); ?></p>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                            <tr class="spinner-options" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <th scope="row">
+                                                    <label for="flexframe_spinner_color"><?php _e('Spinner Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_spinner_color" name="flexframe_spinner_color" value="<?php echo esc_attr($spinner_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($spinner_color); ?></span>
+                                                </td>
+                                            </tr>
+                                            <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <th scope="row">
+                                                    <label for="flexframe_logo_loader_animation"><?php _e('Animation Style', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <select id="flexframe_logo_loader_animation" name="flexframe_logo_loader_animation">
+                                                        <option value="pulse" <?php selected($logo_loader_animation, 'pulse'); ?>><?php _e('Pulse (Grow & Shrink)', 'flexframe-viewer'); ?></option>
+                                                        <option value="spin" <?php selected($logo_loader_animation, 'spin'); ?>><?php _e('Spin (Rotate)', 'flexframe-viewer'); ?></option>
+                                                        <option value="fade" <?php selected($logo_loader_animation, 'fade'); ?>><?php _e('Fade (Opacity)', 'flexframe-viewer'); ?></option>
+                                                        <option value="bounce" <?php selected($logo_loader_animation, 'bounce'); ?>><?php _e('Bounce (Up & Down)', 'flexframe-viewer'); ?></option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <th scope="row">
+                                                    <label for="flexframe_logo_loader_size"><?php _e('Logo Size', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="range" id="flexframe_logo_loader_size" name="flexframe_logo_loader_size" min="40" max="150" step="10" value="<?php echo esc_attr($logo_loader_size); ?>" />
+                                                    <span class="size-value"><?php echo esc_html($logo_loader_size); ?>px</span>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    <!-- Animation Player Settings -->
+                                    <div class="ui-settings-section">
+                                        <h5><span class="dashicons dashicons-controls-play"></span> <?php _e('Animation Player', 'flexframe-viewer'); ?></h5>
+                                        <table class="form-table ui-settings-table">
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_player_bg_color"><?php _e('Player Background', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_player_bg_color" name="flexframe_player_bg_color" value="<?php echo esc_attr($player_bg_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($player_bg_color); ?></span>
+                                                    <p class="description"><?php _e('Background color of the entire player bar.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_player_bg_opacity"><?php _e('Player Background Opacity', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="range" id="flexframe_player_bg_opacity" name="flexframe_player_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($player_bg_opacity); ?>" class="opacity-slider" />
+                                                    <span class="opacity-value"><?php echo esc_html($player_bg_opacity); ?></span>
+                                                    <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_player_button_bg_color"><?php _e('Button Background', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_player_button_bg_color" name="flexframe_player_button_bg_color" value="<?php echo esc_attr($player_button_bg_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($player_button_bg_color); ?></span>
+                                                    <p class="description"><?php _e('Background color of the Play/Pause and Speed buttons.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_player_button_bg_opacity"><?php _e('Button Background Opacity', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="range" id="flexframe_player_button_bg_opacity" name="flexframe_player_button_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($player_button_bg_opacity); ?>" class="opacity-slider" />
+                                                    <span class="opacity-value"><?php echo esc_html($player_button_bg_opacity); ?></span>
+                                                    <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_player_icon_color"><?php _e('Icon & Text Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_player_icon_color" name="flexframe_player_icon_color" value="<?php echo esc_attr($player_icon_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($player_icon_color); ?></span>
+                                                    <p class="description"><?php _e('Color of Play/Pause icons, speed text, and time display.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_player_accent_color"><?php _e('Accent Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_player_accent_color" name="flexframe_player_accent_color" value="<?php echo esc_attr($player_accent_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($player_accent_color); ?></span>
+                                                    <p class="description"><?php _e('Accent color for progress bar/scrubber.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_player_always_visible"><?php _e('Visibility Mode', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <select id="flexframe_player_always_visible" name="flexframe_player_always_visible">
+                                                        <option value="no" <?php selected($player_always_visible, 'no'); ?>><?php _e('Auto-hide (shows on hover/interaction)', 'flexframe-viewer'); ?></option>
+                                                        <option value="yes" <?php selected($player_always_visible, 'yes'); ?>><?php _e('Always Visible', 'flexframe-viewer'); ?></option>
+                                                    </select>
+                                                    <p class="description"><?php _e('Choose whether the player controls stay visible or hide automatically.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    <!-- Menu Settings -->
+                                    <div class="ui-settings-section">
+                                        <h5><span class="dashicons dashicons-menu"></span> <?php _e('Menus & Panels', 'flexframe-viewer'); ?></h5>
+                                        <table class="form-table ui-settings-table">
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_menu_bg_color"><?php _e('Background Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_menu_bg_color" name="flexframe_menu_bg_color" value="<?php echo esc_attr($menu_bg_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($menu_bg_color); ?></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_menu_bg_opacity"><?php _e('Background Opacity', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="range" id="flexframe_menu_bg_opacity" name="flexframe_menu_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($menu_bg_opacity); ?>" class="opacity-slider" />
+                                                    <span class="opacity-value"><?php echo esc_html($menu_bg_opacity); ?></span>
+                                                    <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_menu_text_color"><?php _e('Text Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_menu_text_color" name="flexframe_menu_text_color" value="<?php echo esc_attr($menu_text_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($menu_text_color); ?></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_menu_accent_color"><?php _e('Accent Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_menu_accent_color" name="flexframe_menu_accent_color" value="<?php echo esc_attr($menu_accent_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($menu_accent_color); ?></span>
+                                                    <p class="description"><?php _e('Accent color for selected items and hover states.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_hide_right_menu"><?php _e('Hide Info Panel', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <label class="toggle-switch">
+                                                        <input type="checkbox" id="flexframe_hide_right_menu" name="flexframe_hide_right_menu" value="1" <?php checked($hide_right_menu, true); ?> />
+                                                        <span class="toggle-slider"></span>
+                                                    </label>
+                                                    <p class="description"><?php _e('Hide the information panel (Hints, Tips, Steps, Errors) on the right side of the viewer.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                    
+                                    <!-- UI Preview Section -->
+                                    <div class="ui-preview-section">
+                                        <h5><?php _e('Preview', 'flexframe-viewer'); ?></h5>
+                                        <div class="ui-preview-container">
+                                            <div class="preview-player" id="preview-player">
+                                                <div class="preview-controls">
+                                                    <button type="button" class="preview-btn">▶</button>
+                                                    <div class="preview-progress">
+                                                        <div class="preview-progress-fill"></div>
+                                                    </div>
+                                                    <span class="preview-time">0:00 / 1:00</span>
+                                                </div>
+                                            </div>
+                                            <div class="preview-menu" id="preview-menu">
+                                                <div class="preview-menu-item active"><?php _e('Exercise 1', 'flexframe-viewer'); ?></div>
+                                                <div class="preview-menu-item"><?php _e('Exercise 2', 'flexframe-viewer'); ?></div>
+                                                <div class="preview-menu-item"><?php _e('Exercise 3', 'flexframe-viewer'); ?></div>
+                                            </div>
+                                            <div class="preview-spinner" id="preview-spinner" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <div class="spinner-circle"></div>
+                                            </div>
+                                            <div class="preview-logo-loader" id="preview-logo-loader" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <?php if (!empty($logo_url)) : ?>
+                                                    <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
+                                                <?php else : ?>
+                                                    <div class="logo-placeholder"><span class="dashicons dashicons-format-image"></span></div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Model Material Settings Section -->
+                            <div class="custom-panel-section">
+                                <div class="custom-panel-header" data-target="material-settings-content">
+                                    <h4><span class="dashicons dashicons-art"></span> <?php _e('Model Material Settings', 'flexframe-viewer'); ?></h4>
+                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                                </div>
+                                <div class="custom-panel-content" id="material-settings-content">
+                                    <div class="flexframe-custom-settings">
                                 <!-- Color -->
                                 <div class="flexframe-setting-row">
                                     <label for="flexframe_skin_color"><?php _e('Skin Color', 'flexframe-viewer'); ?></label>
@@ -610,12 +858,14 @@ function flexframe_settings_page() {
                                 <p class="description">
                                     <?php _e('💡 Tip: Set Transmission to 1 for a glass-like refraction effect that lets you see the muscles beneath.', 'flexframe-viewer'); ?>
                                 </p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <div class="flexframe-step-section" id="step-4-section">
+                <div class="flexframe-step-section">
                     <div class="flexframe-step-header">
                         <span class="step-number">4</span>
                         <h2><?php _e('Exercise Library', 'flexframe-viewer'); ?></h2>
@@ -679,248 +929,6 @@ function flexframe_settings_page() {
                         <p class="description" style="margin-top: 16px;">
                             <?php _e('💡 Tip: Use the direct links to share specific exercises on social media or in emails. Hidden exercises won\'t appear in the exercise menu for your users.', 'flexframe-viewer'); ?>
                         </p>
-                    </div>
-                </div>
-                
-                <!-- Step 5: UI Settings -->
-                <div class="settings-step" id="step-5-section">
-                    <div class="step-header">
-                        <span class="step-number">5</span>
-                        <h2><?php _e('UI Settings', 'flexframe-viewer'); ?></h2>
-                    </div>
-                    <div class="step-content">
-                        <p class="step-description"><?php _e('Customize the appearance of the loading spinner, animation player controls, and menus.', 'flexframe-viewer'); ?></p>
-                        
-                        <!-- Loading Spinner Settings -->
-                        <div class="ui-settings-section">
-                            <h3><span class="dashicons dashicons-update"></span> <?php _e('Loading Indicator', 'flexframe-viewer'); ?></h3>
-                            <table class="form-table ui-settings-table">
-                                <tr>
-                                    <th scope="row">
-                                        <label><?php _e('Loader Type', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <div class="loader-type-options">
-                                            <label class="loader-type-option <?php echo !$use_logo_loader ? 'selected' : ''; ?>">
-                                                <input type="radio" name="flexframe_use_logo_loader" value="0" <?php checked($use_logo_loader, false); ?> />
-                                                <span class="loader-type-card">
-                                                    <span class="loader-type-icon"><span class="dashicons dashicons-update"></span></span>
-                                                    <span class="loader-type-label"><?php _e('Spinner', 'flexframe-viewer'); ?></span>
-                                                </span>
-                                            </label>
-                                            <label class="loader-type-option <?php echo $use_logo_loader ? 'selected' : ''; ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?>">
-                                                <input type="radio" name="flexframe_use_logo_loader" value="1" <?php checked($use_logo_loader, true); ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?> />
-                                                <span class="loader-type-card">
-                                                    <span class="loader-type-icon"><span class="dashicons dashicons-format-image"></span></span>
-                                                    <span class="loader-type-label"><?php _e('Your Logo', 'flexframe-viewer'); ?></span>
-                                                </span>
-                                            </label>
-                                        </div>
-                                        <?php if (empty($logo_url)) : ?>
-                                            <p class="description logo-warning"><span class="dashicons dashicons-warning"></span> <?php _e('Upload a logo in Step 1 to use it as a loading indicator.', 'flexframe-viewer'); ?></p>
-                                        <?php endif; ?>
-                                    </td>
-                                </tr>
-                                <tr class="spinner-options" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <th scope="row">
-                                        <label for="flexframe_spinner_color"><?php _e('Spinner Color', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_spinner_color" name="flexframe_spinner_color" value="<?php echo esc_attr($spinner_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($spinner_color); ?></span>
-                                    </td>
-                                </tr>
-                                <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <th scope="row">
-                                        <label for="flexframe_logo_loader_animation"><?php _e('Animation Style', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <select id="flexframe_logo_loader_animation" name="flexframe_logo_loader_animation">
-                                            <option value="pulse" <?php selected($logo_loader_animation, 'pulse'); ?>><?php _e('Pulse (Grow & Shrink)', 'flexframe-viewer'); ?></option>
-                                            <option value="spin" <?php selected($logo_loader_animation, 'spin'); ?>><?php _e('Spin (Rotate)', 'flexframe-viewer'); ?></option>
-                                            <option value="fade" <?php selected($logo_loader_animation, 'fade'); ?>><?php _e('Fade (Opacity)', 'flexframe-viewer'); ?></option>
-                                            <option value="bounce" <?php selected($logo_loader_animation, 'bounce'); ?>><?php _e('Bounce (Up & Down)', 'flexframe-viewer'); ?></option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <th scope="row">
-                                        <label for="flexframe_logo_loader_size"><?php _e('Logo Size', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="range" id="flexframe_logo_loader_size" name="flexframe_logo_loader_size" min="40" max="150" step="10" value="<?php echo esc_attr($logo_loader_size); ?>" />
-                                        <span class="size-value"><?php echo esc_html($logo_loader_size); ?>px</span>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        
-                        <!-- Animation Player Settings -->
-                        <div class="ui-settings-section">
-                            <h3><span class="dashicons dashicons-controls-play"></span> <?php _e('Animation Player', 'flexframe-viewer'); ?></h3>
-                            <table class="form-table ui-settings-table">
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_player_bg_color"><?php _e('Player Background', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_player_bg_color" name="flexframe_player_bg_color" value="<?php echo esc_attr($player_bg_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($player_bg_color); ?></span>
-                                        <p class="description"><?php _e('Background color of the entire player bar.', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_player_bg_opacity"><?php _e('Player Background Opacity', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="range" id="flexframe_player_bg_opacity" name="flexframe_player_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($player_bg_opacity); ?>" class="opacity-slider" />
-                                        <span class="opacity-value"><?php echo esc_html($player_bg_opacity); ?></span>
-                                        <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_player_button_bg_color"><?php _e('Button Background', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_player_button_bg_color" name="flexframe_player_button_bg_color" value="<?php echo esc_attr($player_button_bg_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($player_button_bg_color); ?></span>
-                                        <p class="description"><?php _e('Background color of the Play/Pause and Speed buttons.', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_player_button_bg_opacity"><?php _e('Button Background Opacity', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="range" id="flexframe_player_button_bg_opacity" name="flexframe_player_button_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($player_button_bg_opacity); ?>" class="opacity-slider" />
-                                        <span class="opacity-value"><?php echo esc_html($player_button_bg_opacity); ?></span>
-                                        <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_player_icon_color"><?php _e('Icon & Text Color', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_player_icon_color" name="flexframe_player_icon_color" value="<?php echo esc_attr($player_icon_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($player_icon_color); ?></span>
-                                        <p class="description"><?php _e('Color of Play/Pause icons, speed text, and time display.', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_player_accent_color"><?php _e('Accent Color', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_player_accent_color" name="flexframe_player_accent_color" value="<?php echo esc_attr($player_accent_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($player_accent_color); ?></span>
-                                        <p class="description"><?php _e('Accent color for progress bar/scrubber.', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_player_always_visible"><?php _e('Visibility Mode', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <select id="flexframe_player_always_visible" name="flexframe_player_always_visible">
-                                            <option value="no" <?php selected($player_always_visible, 'no'); ?>><?php _e('Auto-hide (shows on hover/interaction)', 'flexframe-viewer'); ?></option>
-                                            <option value="yes" <?php selected($player_always_visible, 'yes'); ?>><?php _e('Always Visible', 'flexframe-viewer'); ?></option>
-                                        </select>
-                                        <p class="description"><?php _e('Choose whether the player controls stay visible or hide automatically.', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        
-                        <!-- Menu Settings -->
-                        <div class="ui-settings-section">
-                            <h3><span class="dashicons dashicons-menu"></span> <?php _e('Menus & Panels', 'flexframe-viewer'); ?></h3>
-                            <table class="form-table ui-settings-table">
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_menu_bg_color"><?php _e('Background Color', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_menu_bg_color" name="flexframe_menu_bg_color" value="<?php echo esc_attr($menu_bg_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($menu_bg_color); ?></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_menu_bg_opacity"><?php _e('Background Opacity', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="range" id="flexframe_menu_bg_opacity" name="flexframe_menu_bg_opacity" min="0" max="1" step="0.1" value="<?php echo esc_attr($menu_bg_opacity); ?>" class="opacity-slider" />
-                                        <span class="opacity-value"><?php echo esc_html($menu_bg_opacity); ?></span>
-                                        <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_menu_text_color"><?php _e('Text Color', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_menu_text_color" name="flexframe_menu_text_color" value="<?php echo esc_attr($menu_text_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($menu_text_color); ?></span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_menu_accent_color"><?php _e('Accent Color', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <input type="color" id="flexframe_menu_accent_color" name="flexframe_menu_accent_color" value="<?php echo esc_attr($menu_accent_color); ?>" class="color-picker" />
-                                        <span class="color-value"><?php echo esc_html($menu_accent_color); ?></span>
-                                        <p class="description"><?php _e('Accent color for selected items and hover states.', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">
-                                        <label for="flexframe_hide_right_menu"><?php _e('Hide Info Panel', 'flexframe-viewer'); ?></label>
-                                    </th>
-                                    <td>
-                                        <label class="toggle-switch">
-                                            <input type="checkbox" id="flexframe_hide_right_menu" name="flexframe_hide_right_menu" value="1" <?php checked($hide_right_menu, true); ?> />
-                                            <span class="toggle-slider"></span>
-                                        </label>
-                                        <p class="description"><?php _e('Hide the information panel (Hints, Tips, Steps, Errors) on the right side of the viewer.', 'flexframe-viewer'); ?></p>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        
-                        <!-- Preview Section -->
-                        <div class="ui-preview-section">
-                            <h4><?php _e('Preview', 'flexframe-viewer'); ?></h4>
-                            <div class="ui-preview-container">
-                                <div class="preview-player" id="preview-player">
-                                    <div class="preview-controls">
-                                        <button type="button" class="preview-btn">▶</button>
-                                        <div class="preview-progress">
-                                            <div class="preview-progress-fill"></div>
-                                        </div>
-                                        <span class="preview-time">0:00 / 1:00</span>
-                                    </div>
-                                </div>
-                                <div class="preview-menu" id="preview-menu">
-                                    <div class="preview-menu-item active"><?php _e('Exercise 1', 'flexframe-viewer'); ?></div>
-                                    <div class="preview-menu-item"><?php _e('Exercise 2', 'flexframe-viewer'); ?></div>
-                                    <div class="preview-menu-item"><?php _e('Exercise 3', 'flexframe-viewer'); ?></div>
-                                </div>
-                                <div class="preview-spinner" id="preview-spinner" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <div class="spinner-circle"></div>
-                                </div>
-                                <div class="preview-logo-loader" id="preview-logo-loader" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
-                                    <?php if (!empty($logo_url)) : ?>
-                                        <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
-                                    <?php else : ?>
-                                        <div class="logo-placeholder"><span class="dashicons dashicons-format-image"></span></div>
-                                    <?php endif; ?>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 
@@ -1218,6 +1226,87 @@ function flexframe_settings_page() {
             margin: 0 0 16px 0;
             font-size: 14px;
             color: #1d2327;
+        }
+        
+        /* Collapsible panel sections */
+        .custom-panel-section {
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            margin-bottom: 16px;
+            background: #fff;
+            overflow: hidden;
+        }
+        .custom-panel-section:last-child {
+            margin-bottom: 0;
+        }
+        .custom-panel-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f0f1 100%);
+            cursor: pointer;
+            user-select: none;
+            transition: background 0.2s ease;
+        }
+        .custom-panel-header:hover {
+            background: linear-gradient(135deg, #f0f0f1 0%, #e8e8e9 100%);
+        }
+        .custom-panel-header h4 {
+            margin: 0;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1d2327;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .custom-panel-header h4 .dashicons {
+            color: #2271b1;
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+        }
+        .custom-panel-header .toggle-icon {
+            color: #646970;
+            transition: transform 0.3s ease;
+        }
+        .custom-panel-header.collapsed .toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .custom-panel-content {
+            padding: 16px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .custom-panel-content.collapsed {
+            display: none;
+        }
+        
+        /* UI Settings subsections in custom panel */
+        .custom-panel-content .ui-settings-section {
+            margin-bottom: 24px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+        .custom-panel-content .ui-settings-section:last-of-type {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .custom-panel-content .ui-settings-section h5 {
+            font-size: 13px;
+            font-weight: 600;
+            color: #1d2327;
+            margin: 0 0 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .custom-panel-content .ui-settings-section h5 .dashicons {
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+            color: #50575e;
         }
         
         /* Custom settings panel styles */
@@ -1932,18 +2021,15 @@ function flexframe_settings_page() {
             }
         });
         
-        // Function to toggle steps 4 and 5 based on theme mode
-        function updateStepsAvailability(mode) {
-            if (mode === 'preset') {
-                // Disable steps 4 and 5 when using preset
-                $('#step-4-section').addClass('disabled');
-                $('#step-5-section').addClass('disabled');
-            } else {
-                // Enable steps 4 and 5 when using custom
-                $('#step-4-section').removeClass('disabled');
-                $('#step-5-section').removeClass('disabled');
-            }
-        }
+        // Collapsible panel sections
+        $('.custom-panel-header').on('click', function() {
+            var $header = $(this);
+            var targetId = $header.data('target');
+            var $content = $('#' + targetId);
+            
+            $header.toggleClass('collapsed');
+            $content.slideToggle(200);
+        });
         
         // Toggle theme mode (preset vs custom)
         $('input[name="flexframe_material_mode"]').on('change', function() {
@@ -1960,13 +2046,7 @@ function flexframe_settings_page() {
                 $('.flexframe-preset-panel').slideUp(200);
                 $('.flexframe-custom-panel').slideDown(200);
             }
-            
-            // Update steps 4 and 5 availability
-            updateStepsAvailability(mode);
         });
-        
-        // Apply initial state on page load
-        updateStepsAvailability($('input[name="flexframe_material_mode"]:checked').val());
         
         // Toggle advanced logo settings
         $('#toggle-logo-advanced').on('click', function() {
