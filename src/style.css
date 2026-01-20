@@ -366,12 +366,21 @@ body
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
     color: white;
-    padding: 8px 12px;
+    padding: 0 12px;
     cursor: pointer;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 6px;
     transition: all 0.2s ease;
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    box-sizing: border-box;
+    line-height: 1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
 }
 
 .play-pause-btn:hover, .speed-btn:hover, .quality-toggle-btn:hover, .quality-btn:hover, .ar-btn:hover {
@@ -384,38 +393,21 @@ body
 }
 
 /* AR Button specific styles */
-.ar-btn {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
 .ar-btn:hover {
     background: rgba(74, 158, 255, 0.3);
     border-color: rgba(74, 158, 255, 0.5);
 }
 
 /* Quality Button specific styles */
-.quality-btn {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
-}
-
 .quality-btn:hover {
     background: rgba(74, 158, 255, 0.3);
     border-color: rgba(74, 158, 255, 0.5);
 }
 
-.quality-btn span {
+.quality-btn span,
+.ar-btn span {
     min-width: 20px;
     text-align: center;
-}
-
-.quality-toggle-btn {
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.5px;
 }
 
 .quality-toggle-btn span {

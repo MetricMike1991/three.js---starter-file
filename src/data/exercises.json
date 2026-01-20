@@ -72,7 +72,7 @@
   {
     "id": "sumo_deadlift",
     "name": "The Sumo Deadlift",
-    "thumbnailUrl": "",
+    "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/The%20Sumo%20Deadlift%20Thumbnail_2026-01-20T09-04-26.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/sumo_deadlift.json",
     "muscleGroup": ["Glutes"],
     "equipment": ["Barbell"],

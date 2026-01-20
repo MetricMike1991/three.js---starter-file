@@ -1,12 +1,12 @@
 /**
  * Animation Player Module
  * Sketchfab-like animation controls for Three.js animations
- * v28.1 - Quality button in player
+ * v28.3 - Button height fix with inline styles
  */
 
 export class AnimationPlayer {
     constructor() {
-        console.log('[FlexFrame Build] animation-player.js v28.1 - Quality button in player loaded');
+        console.log('[FlexFrame Build] animation-player.js v28.3 - INLINE BUTTON STYLES - Build: 2026-01-20-0930');
         this.mixer = null;
         this.actions = [];
         this.currentAction = null;
@@ -52,19 +52,13 @@ export class AnimationPlayer {
                 </div>
                 
                 <div class="player-right">
-                    <button class="ar-btn" id="ar-btn" title="View in AR">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6zM12 8l-4 6h3v4h2v-4h3l-4-6z"/>
-                        </svg>
+                    <button class="ar-btn" id="ar-btn" title="View in AR" style="height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: flex !important; align-items: center !important; justify-content: center !important;">
                         <span>AR</span>
                     </button>
-                    <button class="quality-btn" id="quality-toggle-btn" title="Switch Model Quality" style="display: none;">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14H6v-2h6v2zm4-4H6v-2h10v2zm0-4H6V7h10v2z"/>
-                        </svg>
-                        <span id="quality-text">HQ</span>
+                    <button class="quality-btn" id="quality-toggle-btn" title="Switch Model Quality" style="display: none; height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; align-items: center !important; justify-content: center !important;">
+                        <span id="quality-text">HD</span>
                     </button>
-                    <button class="speed-btn" id="speed-btn">
+                    <button class="speed-btn" id="speed-btn" style="height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: flex !important; align-items: center !important; justify-content: center !important;">
                         <span id="speed-text">1x</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M7 10l5 5 5-5z"/>

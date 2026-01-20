@@ -1703,8 +1703,8 @@ class ThreeJSApp {
                 console.log('[Quality Debug] ✅ Both models exist, showing button');
                 qualityBtn.style.display = 'flex';
                 if (qualityText) {
-                    // Show the quality you'll switch TO, not what's currently loaded
-                    const nextQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
+                    // Show the quality you'll switch TO, not what's currently loaded (HD/SD for button display)
+                    const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
                     qualityText.textContent = nextQuality;
                     console.log('[Quality Debug] Set button text to:', nextQuality);
                 }
@@ -1730,8 +1730,8 @@ class ThreeJSApp {
         
         // Function to trigger pulsate
         const triggerPulsate = () => {
-            // Only pulsate when showing HQ (meaning SQ is currently loaded)
-            if (qualityBtn && qualityText && qualityText.textContent === 'HQ') {
+            // Only pulsate when showing HD (meaning SD is currently loaded)
+            if (qualityBtn && qualityText && qualityText.textContent === 'HD') {
                 qualityBtn.classList.add('pulsate');
                 // Remove class after animation completes (2 seconds)
                 setTimeout(() => {
@@ -1768,10 +1768,10 @@ class ThreeJSApp {
         
         console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
         
-        // Update button text to show the NEXT quality you can switch to
+        // Update button text to show the NEXT quality you can switch to (HD/SD for button display)
         const qualityText = document.getElementById('quality-text');
         if (qualityText) {
-            const nextQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
+            const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
             qualityText.textContent = nextQuality;
         }
         
@@ -2199,8 +2199,13 @@ class ThreeJSApp {
 
                 // Apply LOGO texture from WordPress settings if available
                 if (window.flexframeSettings && window.flexframeSettings.logoUrl) {
-                    console.log('🎨 Applying LOGO texture from WordPress settings:', window.flexframeSettings.logoUrl);
-                    this.applyLogoTexture(model, window.flexframeSettings.logoUrl, window.flexframeSettings.logoThreshold);
+                    // Ensure HTTPS to avoid mixed content warnings
+                    let logoUrl = window.flexframeSettings.logoUrl;
+                    if (logoUrl.startsWith('http://')) {
+                        logoUrl = logoUrl.replace('http://', 'https://');
+                    }
+                    console.log('🎨 Applying LOGO texture from WordPress settings:', logoUrl);
+                    this.applyLogoTexture(model, logoUrl, window.flexframeSettings.logoThreshold);
                 }
 
                 model.position.set(0, -0.02, 0);

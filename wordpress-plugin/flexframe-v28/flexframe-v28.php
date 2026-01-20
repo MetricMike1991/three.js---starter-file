@@ -1226,7 +1226,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-DCLo_nJr.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-B92M9uGK.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -1236,6 +1236,10 @@ function flexframe_enqueue_assets() {
         $primary_color_mode = get_option('flexframe_primary_color_mode', 'default');
         $primary_color = get_option('flexframe_primary_color', '#ff0000');
         $logo_url = get_option('flexframe_logo_url', '');
+        // Ensure HTTPS to avoid mixed content warnings
+        if (!empty($logo_url) && strpos($logo_url, 'http://') === 0) {
+            $logo_url = str_replace('http://', 'https://', $logo_url);
+        }
         $logo_threshold = get_option('flexframe_logo_threshold', 0.95);
         $material_mode = get_option('flexframe_material_mode', 'preset');
         $material_preset = get_option('flexframe_material_preset', 'preset1');
