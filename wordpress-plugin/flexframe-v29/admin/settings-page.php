@@ -787,6 +787,12 @@ function flexframe_settings_page() {
                                     <option value="light" <?php selected($material_preset, 'light'); ?>>
                                         <?php _e('3. Light Theme', 'flexframe-viewer'); ?>
                                     </option>
+                                    <option value="branded" <?php selected($material_preset, 'branded'); ?>>
+                                        <?php _e('4. Branded Theme', 'flexframe-viewer'); ?>
+                                    </option>
+                                    <option value="random" <?php selected($material_preset, 'random'); ?>>
+                                        <?php _e('5. 🎲 Random Theme', 'flexframe-viewer'); ?>
+                                    </option>
                                 </select>
                                 <button type="button" id="apply-preset-theme" class="button button-primary">
                                     <span class="dashicons dashicons-yes" style="margin-top: 4px;"></span>
@@ -2864,6 +2870,61 @@ function flexframe_settings_page() {
                     particleOpacity: 1,
                     particleSpeed: 0.5
                 }
+            },
+            'random': {
+                name: '<?php _e('Random Theme', 'flexframe-viewer'); ?>',
+                description: '<?php _e('Generates random colors and settings based on your primary color. Try it multiple times for different results!', 'flexframe-viewer'); ?>',
+                isRandom: true
+            },
+            'branded': {
+                name: '<?php _e('Branded Theme', 'flexframe-viewer'); ?>',
+                description: '<?php _e('White-to-brand gradient background with matching skin color. Perfect for showcasing your brand.', 'flexframe-viewer'); ?>',
+                settings: {
+                    spinnerColor: '#00f510',
+                    useLogoLoader: true,
+                    logoLoaderAnimation: 'pulse',
+                    logoLoaderSize: 100,
+                    playerBgColor: '#828282',
+                    playerBgOpacity: 0,
+                    playerButtonBgColor: 'primary',
+                    playerButtonBgOpacity: 0.8,
+                    playerIconColor: '#ffffff',
+                    playerAccentColor: 'primary',
+                    playerAlwaysVisible: 'no',
+                    menuBgColor: '#000000',
+                    menuBgOpacity: 0.9,
+                    menuTextColor: '#ffffff',
+                    menuAccentColor: 'primary',
+                    hideRightMenu: false,
+                    // Material settings - skin uses primary color
+                    skinColor: 'primary',
+                    skinOpacity: 1,
+                    skinRoughness: 0,
+                    skinMetalness: 0,
+                    skinTransmission: 1,
+                    skinThickness: 0,
+                    skinIor: 1,
+                    skinEnvIntensity: 2.29,
+                    // Scene Background settings - white top, primary bottom gradient
+                    bgGradientTop: '#ffffff',
+                    bgGradientBottom: 'primary',
+                    bgGradientOpacity: 1,
+                    // Lighting settings
+                    ambientIntensity: 0.4,
+                    ambientColor: '#ffffff',
+                    directionalIntensity: 1.43,
+                    directionalColor: '#ffffff',
+                    directionalPosX: 1.35,
+                    directionalPosY: 1.57,
+                    directionalPosZ: 0.9,
+                    // Particle settings
+                    particlesEnabled: true,
+                    particleCount: 1150,
+                    particleSize: 0.0095,
+                    particleColor: 'primary',
+                    particleOpacity: 1,
+                    particleSpeed: 0.5
+                }
             }
         };
         
@@ -2881,8 +2942,16 @@ function flexframe_settings_page() {
             var preset = builtInPresets[presetId];
             if (!preset) return;
             
-            var settings = preset.settings;
             var primaryColor = $('#flexframe_primary_color').val() || '#2383cd';
+            
+            // Handle random theme specially
+            var settings;
+            if (preset.isRandom) {
+                settings = generateRandomTheme(primaryColor);
+                console.log('Generated random theme:', settings);
+            } else {
+                settings = preset.settings;
+            }
             
             // Helper to get color (use primary if marked)
             function getColor(value) {
@@ -2931,8 +3000,8 @@ function flexframe_settings_page() {
             $('#flexframe_hide_right_menu').prop('checked', settings.hideRightMenu);
             
             // Apply Material Settings - trigger input events so values are recognized
-            $('#flexframe_skin_color').val(settings.skinColor).trigger('input').trigger('change');
-            $('#flexframe_skin_color').siblings('.color-hex').text(settings.skinColor);
+            $('#flexframe_skin_color').val(getColor(settings.skinColor)).trigger('input').trigger('change');
+            $('#flexframe_skin_color').siblings('.color-hex').text(getColor(settings.skinColor));
             
             $('#flexframe_skin_opacity').val(settings.skinOpacity).trigger('input');
             $('#flexframe_skin_opacity').siblings('.range-value').text(settings.skinOpacity);
@@ -2964,10 +3033,10 @@ function flexframe_settings_page() {
             });
             
             // Apply Scene Background Settings
-            $('#flexframe_bg_gradient_top').val(settings.bgGradientTop).trigger('input');
-            $('#flexframe_bg_gradient_top').siblings('.color-value').text(settings.bgGradientTop);
-            $('#flexframe_bg_gradient_bottom').val(settings.bgGradientBottom).trigger('input');
-            $('#flexframe_bg_gradient_bottom').siblings('.color-value').text(settings.bgGradientBottom);
+            $('#flexframe_bg_gradient_top').val(getColor(settings.bgGradientTop)).trigger('input');
+            $('#flexframe_bg_gradient_top').siblings('.color-value').text(getColor(settings.bgGradientTop));
+            $('#flexframe_bg_gradient_bottom').val(getColor(settings.bgGradientBottom)).trigger('input');
+            $('#flexframe_bg_gradient_bottom').siblings('.color-value').text(getColor(settings.bgGradientBottom));
             $('#flexframe_bg_opacity').val(settings.bgGradientOpacity).trigger('input');
             $('#flexframe_bg_opacity').siblings('.opacity-value').text(settings.bgGradientOpacity);
             
@@ -2978,8 +3047,8 @@ function flexframe_settings_page() {
             $('#flexframe_ambient_color').siblings('.color-value').text(settings.ambientColor);
             $('#flexframe_directional_intensity').val(settings.directionalIntensity).trigger('input');
             $('#flexframe_directional_intensity').siblings('.range-value').text(settings.directionalIntensity);
-            $('#flexframe_directional_color').val(settings.directionalColor).trigger('input');
-            $('#flexframe_directional_color').siblings('.color-value').text(settings.directionalColor);
+            $('#flexframe_directional_color').val(getColor(settings.directionalColor)).trigger('input');
+            $('#flexframe_directional_color').siblings('.color-value').text(getColor(settings.directionalColor));
             $('#flexframe_directional_pos_x').val(settings.directionalPosX).trigger('input');
             $('#flexframe_directional_pos_x').siblings('.range-value').text(settings.directionalPosX);
             $('#flexframe_directional_pos_y').val(settings.directionalPosY).trigger('input');
@@ -2993,8 +3062,8 @@ function flexframe_settings_page() {
             $('#flexframe_particle_count').siblings('.range-value').text(settings.particleCount);
             $('#flexframe_particle_size').val(settings.particleSize).trigger('input');
             $('#flexframe_particle_size').siblings('.range-value').text(settings.particleSize);
-            $('#flexframe_particle_color').val(settings.particleColor).trigger('input');
-            $('#flexframe_particle_color').siblings('.color-value').text(settings.particleColor);
+            $('#flexframe_particle_color').val(getColor(settings.particleColor)).trigger('input');
+            $('#flexframe_particle_color').siblings('.color-value').text(getColor(settings.particleColor));
             $('#flexframe_particle_opacity').val(settings.particleOpacity).trigger('input');
             $('#flexframe_particle_opacity').siblings('.range-value').text(settings.particleOpacity);
             $('#flexframe_particle_speed').val(settings.particleSpeed).trigger('input');
@@ -3010,6 +3079,167 @@ function flexframe_settings_page() {
             if (typeof updateUIPreview === 'function') {
                 updateUIPreview();
             }
+        }
+        
+        // Generate random color variations
+        function generateRandomTheme(primaryColor) {
+            // Helper functions
+            function hexToHSL(hex) {
+                var r = parseInt(hex.slice(1,3), 16) / 255;
+                var g = parseInt(hex.slice(3,5), 16) / 255;
+                var b = parseInt(hex.slice(5,7), 16) / 255;
+                var max = Math.max(r, g, b), min = Math.min(r, g, b);
+                var h, s, l = (max + min) / 2;
+                if (max === min) { h = s = 0; }
+                else {
+                    var d = max - min;
+                    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                    switch (max) {
+                        case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
+                        case g: h = ((b - r) / d + 2) / 6; break;
+                        case b: h = ((r - g) / d + 4) / 6; break;
+                    }
+                }
+                return { h: h * 360, s: s * 100, l: l * 100 };
+            }
+            
+            function hslToHex(h, s, l) {
+                h /= 360; s /= 100; l /= 100;
+                var r, g, b;
+                if (s === 0) { r = g = b = l; }
+                else {
+                    function hue2rgb(p, q, t) {
+                        if (t < 0) t += 1; if (t > 1) t -= 1;
+                        if (t < 1/6) return p + (q - p) * 6 * t;
+                        if (t < 1/2) return q;
+                        if (t < 2/3) return p + (q - p) * (2/3 - t) * 6;
+                        return p;
+                    }
+                    var q = l < 0.5 ? l * (1 + s) : l + s - l * s;
+                    var p = 2 * l - q;
+                    r = hue2rgb(p, q, h + 1/3);
+                    g = hue2rgb(p, q, h);
+                    b = hue2rgb(p, q, h - 1/3);
+                }
+                return '#' + [r, g, b].map(function(x) {
+                    return Math.round(x * 255).toString(16).padStart(2, '0');
+                }).join('');
+            }
+            
+            function randomInRange(min, max) {
+                return Math.random() * (max - min) + min;
+            }
+            
+            function randomChoice(arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+            
+            var hsl = hexToHSL(primaryColor);
+            
+            // Generate complementary/analogous colors based on primary
+            var hueShift = randomChoice([0, 30, -30, 60, -60, 120, 180]); // Analogous or complementary
+            var secondaryHue = (hsl.h + hueShift + 360) % 360;
+            var secondaryColor = hslToHex(secondaryHue, Math.min(100, hsl.s + randomInRange(-20, 20)), Math.min(90, Math.max(20, hsl.l + randomInRange(-20, 20))));
+            
+            // Random gradient type
+            var gradientStyle = randomChoice(['dark', 'light', 'colored', 'duotone']);
+            var bgTop, bgBottom;
+            
+            switch(gradientStyle) {
+                case 'dark':
+                    bgTop = hslToHex(hsl.h, randomInRange(10, 40), randomInRange(5, 20));
+                    bgBottom = hslToHex(hsl.h, randomInRange(20, 50), randomInRange(2, 10));
+                    break;
+                case 'light':
+                    bgTop = '#ffffff';
+                    bgBottom = hslToHex(hsl.h, randomInRange(20, 60), randomInRange(85, 95));
+                    break;
+                case 'colored':
+                    bgTop = hslToHex(hsl.h, randomInRange(40, 80), randomInRange(40, 70));
+                    bgBottom = hslToHex(secondaryHue, randomInRange(40, 80), randomInRange(20, 50));
+                    break;
+                case 'duotone':
+                    bgTop = primaryColor;
+                    bgBottom = secondaryColor;
+                    break;
+            }
+            
+            // Random skin color (variations of primary or secondary)
+            var skinStyle = randomChoice(['primary', 'secondary', 'neutral', 'light']);
+            var skinColor;
+            switch(skinStyle) {
+                case 'primary': skinColor = primaryColor; break;
+                case 'secondary': skinColor = secondaryColor; break;
+                case 'neutral': skinColor = hslToHex(hsl.h, randomInRange(5, 20), randomInRange(70, 90)); break;
+                case 'light': skinColor = hslToHex(hsl.h, randomInRange(20, 50), randomInRange(80, 95)); break;
+            }
+            
+            // Random particle color
+            var particleColor = randomChoice([primaryColor, secondaryColor, '#ffffff', hslToHex(hsl.h, 60, 60)]);
+            
+            // Random lighting
+            var lightingStyle = randomChoice(['dramatic', 'soft', 'colored']);
+            var ambientIntensity, directionalIntensity, directionalColor;
+            switch(lightingStyle) {
+                case 'dramatic':
+                    ambientIntensity = randomInRange(0.2, 0.5);
+                    directionalIntensity = randomInRange(2, 5);
+                    directionalColor = randomChoice(['#ffffff', primaryColor]);
+                    break;
+                case 'soft':
+                    ambientIntensity = randomInRange(0.8, 1.5);
+                    directionalIntensity = randomInRange(0.3, 1);
+                    directionalColor = '#ffffff';
+                    break;
+                case 'colored':
+                    ambientIntensity = randomInRange(0.4, 0.8);
+                    directionalIntensity = randomInRange(1, 3);
+                    directionalColor = randomChoice([primaryColor, secondaryColor]);
+                    break;
+            }
+            
+            return {
+                spinnerColor: primaryColor,
+                useLogoLoader: true,
+                logoLoaderAnimation: randomChoice(['pulse', 'spin', 'bounce']),
+                logoLoaderSize: Math.round(randomInRange(80, 120)),
+                playerBgColor: hslToHex(0, 0, randomInRange(30, 70)),
+                playerBgOpacity: randomInRange(0, 0.5),
+                playerButtonBgColor: primaryColor,
+                playerButtonBgOpacity: randomInRange(0.6, 1),
+                playerIconColor: '#ffffff',
+                playerAccentColor: primaryColor,
+                playerAlwaysVisible: 'no',
+                menuBgColor: hslToHex(hsl.h, randomInRange(5, 20), randomInRange(5, 25)),
+                menuBgOpacity: randomInRange(0.7, 0.95),
+                menuTextColor: '#ffffff',
+                menuAccentColor: primaryColor,
+                hideRightMenu: false,
+                skinColor: skinColor,
+                skinOpacity: 1,
+                skinRoughness: randomInRange(0, 0.3),
+                skinMetalness: randomInRange(0, 0.2),
+                skinTransmission: randomInRange(0.7, 1),
+                skinThickness: 0,
+                skinIor: randomInRange(1, 1.5),
+                skinEnvIntensity: randomInRange(1.5, 3),
+                bgGradientTop: bgTop,
+                bgGradientBottom: bgBottom,
+                bgGradientOpacity: 1,
+                ambientIntensity: ambientIntensity,
+                ambientColor: '#ffffff',
+                directionalIntensity: directionalIntensity,
+                directionalColor: directionalColor,
+                directionalPosX: randomInRange(0.5, 2),
+                directionalPosY: randomInRange(1, 2),
+                directionalPosZ: randomInRange(0.5, 1.5),
+                particlesEnabled: Math.random() > 0.2, // 80% chance enabled
+                particleCount: Math.round(randomInRange(500, 2000)),
+                particleSize: randomInRange(0.005, 0.015),
+                particleColor: particleColor,
+                particleOpacity: randomInRange(0.5, 1),
+                particleSpeed: randomInRange(0.2, 0.8)
+            };
         }
         
         // Apply Theme button click
