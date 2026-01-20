@@ -418,32 +418,18 @@ function flexframe_settings_page() {
                             <?php _e('Choose your main brand color. This will be applied to accent elements like bumper plates, kettlebells, and trim colors on machines — helping the 3D models match your gym\'s branding.', 'flexframe-viewer'); ?>
                         </p>
                         
-                        <div class="flexframe-color-mode-selector">
-                            <label class="color-mode-option <?php echo $primary_color_mode === 'default' ? 'selected' : ''; ?>">
-                                <input type="radio" name="flexframe_primary_color_mode" value="default" <?php checked($primary_color_mode, 'default'); ?> />
-                                <span class="color-mode-card">
-                                    <span class="color-mode-icon">🎨</span>
-                                    <span class="color-mode-title"><?php _e('Use Default Color', 'flexframe-viewer'); ?></span>
-                                    <span class="color-mode-desc"><?php _e('Uses primary color from the default theme selected in Step 3 below', 'flexframe-viewer'); ?></span>
-                                </span>
-                            </label>
-                            
-                            <label class="color-mode-option <?php echo $primary_color_mode === 'custom' ? 'selected' : ''; ?>">
-                                <input type="radio" name="flexframe_primary_color_mode" value="custom" <?php checked($primary_color_mode, 'custom'); ?> />
-                                <span class="color-mode-card">
-                                    <span class="color-mode-icon">✏️</span>
-                                    <span class="color-mode-title"><?php _e('Custom Brand Color', 'flexframe-viewer'); ?></span>
-                                    <span class="color-mode-desc"><?php _e('Choose your own color to match your gym branding', 'flexframe-viewer'); ?></span>
-                                </span>
-                            </label>
-                        </div>
+                        <!-- Hidden field to always use custom mode when color is set -->
+                        <input type="hidden" name="flexframe_primary_color_mode" value="<?php echo !empty($primary_color) ? 'custom' : 'default'; ?>" />
                         
-                        <div class="flexframe-custom-color-panel" <?php echo $primary_color_mode !== 'custom' ? 'style="display:none;"' : ''; ?>>
+                        <div class="flexframe-custom-color-panel">
                             <div class="flexframe-color-picker">
-                                <input type="color" id="flexframe_primary_color" name="flexframe_primary_color" value="<?php echo esc_attr($primary_color); ?>" />
-                                <span class="color-hex-display"><?php echo esc_html($primary_color); ?></span>
+                                <input type="color" id="flexframe_primary_color" name="flexframe_primary_color" value="<?php echo esc_attr($primary_color ?: '#c20e1d'); ?>" />
+                                <span class="color-hex-display"><?php echo esc_html($primary_color ?: '#c20e1d'); ?></span>
                                 <span class="color-label"><?php _e('Your Brand Color', 'flexframe-viewer'); ?></span>
                             </div>
+                            <p class="color-hint" style="margin-top: 10px; color: #666; font-size: 13px;">
+                                <?php _e('If no color is saved, the default color from your selected theme will be used.', 'flexframe-viewer'); ?>
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -1891,19 +1877,10 @@ function flexframe_settings_page() {
             $('#preview-logo-loader .logo-loader-img').css('width', size + 'px');
         });
         
-        // Toggle primary color mode (default vs custom)
-        $('input[name="flexframe_primary_color_mode"]').on('change', function() {
-            var mode = $(this).val();
-            
-            // Update card selection - remove selected from all, add to current
-            $('.color-mode-option').removeClass('selected');
-            $(this).closest('.color-mode-option').addClass('selected');
-            
-            if (mode === 'custom') {
-                $('.flexframe-custom-color-panel').slideDown(200);
-            } else {
-                $('.flexframe-custom-color-panel').slideUp(200);
-            }
+        // Update hex display when primary color changes
+        $('#flexframe_primary_color').on('input change', function() {
+            var color = $(this).val();
+            $(this).siblings('.color-hex-display').text(color);
         });
         
         // Toggle theme mode (preset vs custom)
