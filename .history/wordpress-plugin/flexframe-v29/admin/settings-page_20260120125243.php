@@ -924,7 +924,16 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 
-                <?php submit_button(); ?>
+                <div class="flexframe-button-row">
+                    <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
+                    <button type="button" class="button button-secondary" id="flexframe-export-settings" style="margin-left: 10px;">
+                        <span class="dashicons dashicons-clipboard" style="vertical-align: middle; margin-right: 5px;"></span>
+                        <?php _e('Export Settings to Clipboard', 'flexframe-viewer'); ?>
+                    </button>
+                    <span id="export-success-message" style="display: none; color: #00a32a; margin-left: 10px; line-height: 30px;">
+                        ✓ <?php _e('Settings copied to clipboard!', 'flexframe-viewer'); ?>
+                    </span>
+                </div>
             </form>
             
             <!-- Usage Instructions -->
@@ -1877,10 +1886,27 @@ function flexframe_settings_page() {
             $('#preview-logo-loader .logo-loader-img').css('width', size + 'px');
         });
         
-        // Update hex display when primary color changes
+        // Update hex display and sync related colors when primary color changes
         $('#flexframe_primary_color').on('input change', function() {
             var color = $(this).val();
             $(this).siblings('.color-hex-display').text(color);
+            
+            // Sync to Animation Player - Button Background
+            $('#flexframe_player_button_bg_color').val(color);
+            $('#flexframe_player_button_bg_color').siblings('.color-value').text(color);
+            
+            // Sync to Animation Player - Accent Color
+            $('#flexframe_player_accent_color').val(color);
+            $('#flexframe_player_accent_color').siblings('.color-value').text(color);
+            
+            // Sync to Menus & Panels - Accent Color
+            $('#flexframe_menu_accent_color').val(color);
+            $('#flexframe_menu_accent_color').siblings('.color-value').text(color);
+            
+            // Update the UI preview
+            if (typeof updateUIPreview === 'function') {
+                updateUIPreview();
+            }
         });
         
         // Toggle theme mode (preset vs custom)
@@ -2266,6 +2292,79 @@ function flexframe_settings_page() {
         if ($('#preview-player').length) {
             updateUIPreview();
         }
+        
+        // ============================================
+        // Export Settings to Clipboard
+        // ============================================
+        $('#flexframe-export-settings').on('click', function() {
+            var settings = {
+                // Step 1: Primary Brand Color
+                primaryColorMode: $('input[name="flexframe_primary_color_mode"]').val(),
+                primaryColor: $('#flexframe_primary_color').val(),
+                
+                // Step 2: Logo
+                logoUrl: $('#flexframe_logo_url').val(),
+                logoThreshold: $('#flexframe_logo_threshold').val(),
+                
+                // Step 3: Theme/Materials
+                materialMode: $('input[name="flexframe_material_mode"]:checked').val(),
+                wpSkinPreset: $('input[name="flexframe_wp_skin_preset"]:checked').val(),
+                
+                // Custom materials (if in custom mode)
+                customSkinColor: $('#flexframe_custom_skin_color').val(),
+                customSkinMetalness: $('#flexframe_custom_skin_metalness').val(),
+                customSkinRoughness: $('#flexframe_custom_skin_roughness').val(),
+                customPadColor: $('#flexframe_custom_pad_color').val(),
+                customPadMetalness: $('#flexframe_custom_pad_metalness').val(),
+                customPadRoughness: $('#flexframe_custom_pad_roughness').val(),
+                customPlasticColor: $('#flexframe_custom_plastic_color').val(),
+                customPlasticMetalness: $('#flexframe_custom_plastic_metalness').val(),
+                customPlasticRoughness: $('#flexframe_custom_plastic_roughness').val(),
+                
+                // Step 4: Exercise Visibility
+                hiddenExercises: $('#flexframe_hidden_exercises').val(),
+                
+                // Step 5: UI Settings
+                spinnerStyle: $('input[name="flexframe_spinner_style"]:checked').val(),
+                spinnerColor: $('#flexframe_spinner_color').val(),
+                useLogoLoader: $('input[name="flexframe_use_logo_loader"]:checked').val(),
+                logoLoaderAnimation: $('input[name="flexframe_logo_loader_animation"]:checked').val(),
+                logoLoaderSize: $('#flexframe_logo_loader_size').val(),
+                playerBgColor: $('#flexframe_player_bg_color').val(),
+                playerBgOpacity: $('#flexframe_player_bg_opacity').val(),
+                playerButtonBgColor: $('#flexframe_player_button_bg_color').val(),
+                playerButtonBgOpacity: $('#flexframe_player_button_bg_opacity').val(),
+                playerButtonIconColor: $('#flexframe_player_button_icon_color').val(),
+                playerScrubberColor: $('#flexframe_player_scrubber_color').val(),
+                playerScrubberOpacity: $('#flexframe_player_scrubber_opacity').val(),
+                
+                // Meta
+                exportDate: new Date().toISOString(),
+                pluginVersion: '<?php echo FLEXFRAME_VERSION; ?>'
+            };
+            
+            var settingsJson = JSON.stringify(settings, null, 2);
+            
+            navigator.clipboard.writeText(settingsJson).then(function() {
+                $('#export-success-message').fadeIn(200);
+                setTimeout(function() {
+                    $('#export-success-message').fadeOut(200);
+                }, 3000);
+            }).catch(function(err) {
+                // Fallback for older browsers
+                var textarea = document.createElement('textarea');
+                textarea.value = settingsJson;
+                document.body.appendChild(textarea);
+                textarea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textarea);
+                
+                $('#export-success-message').fadeIn(200);
+                setTimeout(function() {
+                    $('#export-success-message').fadeOut(200);
+                }, 3000);
+            });
+        });
     });
     </script>
     <?php
