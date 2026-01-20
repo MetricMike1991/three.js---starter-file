@@ -2650,30 +2650,28 @@ function flexframe_settings_page() {
         // Update hex display and sync related colors when primary color changes
         $('#flexframe_primary_color').on('input change', function() {
             var color = $(this).val();
-            console.log('[FlexFrame Admin] Primary color changed to:', color);
             $(this).siblings('.color-hex-display').text(color);
             
             // Sync to Animation Player - Button Background
-            $('#flexframe_player_button_bg_color').val(color).trigger('input');
+            $('#flexframe_player_button_bg_color').val(color);
             $('#flexframe_player_button_bg_color').siblings('.color-value').text(color);
             
             // Sync to Animation Player - Accent Color
-            $('#flexframe_player_accent_color').val(color).trigger('input');
+            $('#flexframe_player_accent_color').val(color);
             $('#flexframe_player_accent_color').siblings('.color-value').text(color);
             
             // Sync to Menus & Panels - Accent Color
-            $('#flexframe_menu_accent_color').val(color).trigger('input');
+            $('#flexframe_menu_accent_color').val(color);
             $('#flexframe_menu_accent_color').siblings('.color-value').text(color);
             
             // Sync to Dust Particles - Color
-            var particleInput = $('#flexframe_particles_color');
-            console.log('[FlexFrame Admin] Particle color input found:', particleInput.length > 0);
-            particleInput.val(color).trigger('input');
-            particleInput.siblings('.color-hex').text(color);
+            $('#flexframe_particle_color').val(color);
+            $('#flexframe_particle_color').siblings('.color-value').text(color);
             
-            // Sync to Directional Light - Color
-            $('#flexframe_directional_color').val(color).trigger('input');
-            $('#flexframe_directional_color').siblings('.color-hex').text(color);
+            // Sync to Ambient Light - Color (optional, you might want white light)
+            // Uncomment below if you want ambient light to use primary color
+            // $('#flexframe_ambient_color').val(color);
+            // $('#flexframe_ambient_color').siblings('.color-value').text(color);
             
             // Update the UI preview
             if (typeof updateUIPreview === 'function') {

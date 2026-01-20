@@ -2650,30 +2650,19 @@ function flexframe_settings_page() {
         // Update hex display and sync related colors when primary color changes
         $('#flexframe_primary_color').on('input change', function() {
             var color = $(this).val();
-            console.log('[FlexFrame Admin] Primary color changed to:', color);
             $(this).siblings('.color-hex-display').text(color);
             
             // Sync to Animation Player - Button Background
-            $('#flexframe_player_button_bg_color').val(color).trigger('input');
+            $('#flexframe_player_button_bg_color').val(color);
             $('#flexframe_player_button_bg_color').siblings('.color-value').text(color);
             
             // Sync to Animation Player - Accent Color
-            $('#flexframe_player_accent_color').val(color).trigger('input');
+            $('#flexframe_player_accent_color').val(color);
             $('#flexframe_player_accent_color').siblings('.color-value').text(color);
             
             // Sync to Menus & Panels - Accent Color
-            $('#flexframe_menu_accent_color').val(color).trigger('input');
+            $('#flexframe_menu_accent_color').val(color);
             $('#flexframe_menu_accent_color').siblings('.color-value').text(color);
-            
-            // Sync to Dust Particles - Color
-            var particleInput = $('#flexframe_particles_color');
-            console.log('[FlexFrame Admin] Particle color input found:', particleInput.length > 0);
-            particleInput.val(color).trigger('input');
-            particleInput.siblings('.color-hex').text(color);
-            
-            // Sync to Directional Light - Color
-            $('#flexframe_directional_color').val(color).trigger('input');
-            $('#flexframe_directional_color').siblings('.color-hex').text(color);
             
             // Update the UI preview
             if (typeof updateUIPreview === 'function') {
@@ -3068,9 +3057,6 @@ function flexframe_settings_page() {
         // Get current settings for saving
         function getCurrentSettings() {
             return {
-                // Step 1 - Brand Settings
-                primary_color_mode: $('input[name="flexframe_primary_color_mode"]:checked').val(),
-                primary_color: $('#flexframe_primary_color').val(),
                 // UI Settings
                 spinner_color: $('#flexframe_spinner_color').val(),
                 use_logo_loader: $('input[name="flexframe_use_logo_loader"]:checked').val() === '1',
@@ -3083,8 +3069,6 @@ function flexframe_settings_page() {
                 player_icon_color: $('#flexframe_player_icon_color').val(),
                 player_accent_color: $('#flexframe_player_accent_color').val(),
                 player_always_visible: $('#flexframe_player_always_visible').val(),
-                player_width: $('#flexframe_player_width').val(),
-                player_show_time: $('#flexframe_player_show_time').is(':checked'),
                 menu_bg_color: $('#flexframe_menu_bg_color').val(),
                 menu_bg_opacity: $('#flexframe_menu_bg_opacity').val(),
                 menu_text_color: $('#flexframe_menu_text_color').val(),
@@ -3279,31 +3263,6 @@ function flexframe_settings_page() {
             `;
             $('body').append(modalHtml);
             $('#preset-name-input').focus();
-        });
-        
-        // Export to Clipboard Button
-        $('#flexframe-export-settings-btn').on('click', function() {
-            var settings = getCurrentSettings();
-            var settingsJson = JSON.stringify(settings, null, 2);
-            
-            navigator.clipboard.writeText(settingsJson).then(function() {
-                showPresetMessage('<?php _e('Settings exported to clipboard!', 'flexframe-viewer'); ?>', 'success');
-            }).catch(function(err) {
-                // Fallback for older browsers
-                var textarea = document.createElement('textarea');
-                textarea.value = settingsJson;
-                textarea.style.position = 'fixed';
-                textarea.style.opacity = '0';
-                document.body.appendChild(textarea);
-                textarea.select();
-                try {
-                    document.execCommand('copy');
-                    showPresetMessage('<?php _e('Settings exported to clipboard!', 'flexframe-viewer'); ?>', 'success');
-                } catch (e) {
-                    showPresetMessage('<?php _e('Failed to copy to clipboard', 'flexframe-viewer'); ?>', 'error');
-                }
-                document.body.removeChild(textarea);
-            });
         });
         
         // Close modal
