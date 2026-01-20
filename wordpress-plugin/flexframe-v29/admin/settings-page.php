@@ -84,6 +84,144 @@ function flexframe_create_viewer_page() {
 add_action('wp_ajax_flexframe_create_viewer_page', 'flexframe_create_viewer_page');
 
 /**
+ * AJAX handler to save a custom theme preset
+ */
+function flexframe_save_custom_preset() {
+    // Check nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'flexframe_settings_nonce')) {
+        wp_send_json_error(array('message' => 'Security check failed.'));
+    }
+    
+    // Check permissions
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error(array('message' => 'Permission denied.'));
+    }
+    
+    $preset_name = isset($_POST['preset_name']) ? sanitize_text_field($_POST['preset_name']) : '';
+    $preset_data = isset($_POST['preset_data']) ? $_POST['preset_data'] : array();
+    
+    if (empty($preset_name)) {
+        wp_send_json_error(array('message' => 'Preset name is required.'));
+    }
+    
+    // Get existing presets
+    $custom_presets = get_option('flexframe_custom_presets', array());
+    
+    // Generate unique ID
+    $preset_id = 'custom_' . sanitize_title($preset_name) . '_' . time();
+    
+    // Sanitize preset data
+    $sanitized_data = array(
+        'name' => $preset_name,
+        'created' => current_time('mysql'),
+        'settings' => array(
+            // UI Settings
+            'spinner_color' => sanitize_hex_color($preset_data['spinner_color'] ?? '#00f510'),
+            'use_logo_loader' => (bool)($preset_data['use_logo_loader'] ?? false),
+            'logo_loader_animation' => sanitize_text_field($preset_data['logo_loader_animation'] ?? 'pulse'),
+            'logo_loader_size' => intval($preset_data['logo_loader_size'] ?? 100),
+            'player_bg_color' => sanitize_hex_color($preset_data['player_bg_color'] ?? '#828282'),
+            'player_bg_opacity' => floatval($preset_data['player_bg_opacity'] ?? 0),
+            'player_button_bg_color' => sanitize_hex_color($preset_data['player_button_bg_color'] ?? '#f50000'),
+            'player_button_bg_opacity' => floatval($preset_data['player_button_bg_opacity'] ?? 0.8),
+            'player_icon_color' => sanitize_hex_color($preset_data['player_icon_color'] ?? '#ffffff'),
+            'player_accent_color' => sanitize_hex_color($preset_data['player_accent_color'] ?? '#f50000'),
+            'player_always_visible' => sanitize_text_field($preset_data['player_always_visible'] ?? 'no'),
+            'menu_bg_color' => sanitize_hex_color($preset_data['menu_bg_color'] ?? '#000000'),
+            'menu_bg_opacity' => floatval($preset_data['menu_bg_opacity'] ?? 0.9),
+            'menu_text_color' => sanitize_hex_color($preset_data['menu_text_color'] ?? '#ffffff'),
+            'menu_accent_color' => sanitize_hex_color($preset_data['menu_accent_color'] ?? '#f50000'),
+            'hide_right_menu' => (bool)($preset_data['hide_right_menu'] ?? false),
+            // Material Settings
+            'skin_color' => sanitize_hex_color($preset_data['skin_color'] ?? '#ffdbac'),
+            'skin_opacity' => floatval($preset_data['skin_opacity'] ?? 0.4),
+            'skin_roughness' => floatval($preset_data['skin_roughness'] ?? 0.7),
+            'skin_metalness' => floatval($preset_data['skin_metalness'] ?? 0),
+            'skin_transmission' => floatval($preset_data['skin_transmission'] ?? 0),
+            'skin_thickness' => floatval($preset_data['skin_thickness'] ?? 0),
+            'skin_ior' => floatval($preset_data['skin_ior'] ?? 1.5),
+            'skin_env_intensity' => floatval($preset_data['skin_env_intensity'] ?? 1),
+        )
+    );
+    
+    // Add preset
+    $custom_presets[$preset_id] = $sanitized_data;
+    
+    // Save
+    update_option('flexframe_custom_presets', $custom_presets);
+    
+    wp_send_json_success(array(
+        'message' => 'Preset saved successfully!',
+        'preset_id' => $preset_id,
+        'presets' => $custom_presets
+    ));
+}
+add_action('wp_ajax_flexframe_save_custom_preset', 'flexframe_save_custom_preset');
+
+/**
+ * AJAX handler to load a custom theme preset
+ */
+function flexframe_load_custom_preset() {
+    // Check nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'flexframe_settings_nonce')) {
+        wp_send_json_error(array('message' => 'Security check failed.'));
+    }
+    
+    $preset_id = isset($_POST['preset_id']) ? sanitize_text_field($_POST['preset_id']) : '';
+    
+    if (empty($preset_id)) {
+        wp_send_json_error(array('message' => 'Preset ID is required.'));
+    }
+    
+    $custom_presets = get_option('flexframe_custom_presets', array());
+    
+    if (!isset($custom_presets[$preset_id])) {
+        wp_send_json_error(array('message' => 'Preset not found.'));
+    }
+    
+    wp_send_json_success(array(
+        'preset' => $custom_presets[$preset_id]
+    ));
+}
+add_action('wp_ajax_flexframe_load_custom_preset', 'flexframe_load_custom_preset');
+
+/**
+ * AJAX handler to delete a custom theme preset
+ */
+function flexframe_delete_custom_preset() {
+    // Check nonce
+    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'flexframe_settings_nonce')) {
+        wp_send_json_error(array('message' => 'Security check failed.'));
+    }
+    
+    // Check permissions
+    if (!current_user_can('manage_options')) {
+        wp_send_json_error(array('message' => 'Permission denied.'));
+    }
+    
+    $preset_id = isset($_POST['preset_id']) ? sanitize_text_field($_POST['preset_id']) : '';
+    
+    if (empty($preset_id)) {
+        wp_send_json_error(array('message' => 'Preset ID is required.'));
+    }
+    
+    $custom_presets = get_option('flexframe_custom_presets', array());
+    
+    if (!isset($custom_presets[$preset_id])) {
+        wp_send_json_error(array('message' => 'Preset not found.'));
+    }
+    
+    unset($custom_presets[$preset_id]);
+    update_option('flexframe_custom_presets', $custom_presets);
+    
+    wp_send_json_success(array(
+        'message' => 'Preset deleted successfully!',
+        'presets' => $custom_presets
+    ));
+}
+add_action('wp_ajax_flexframe_delete_custom_preset', 'flexframe_delete_custom_preset');
+
+/**
  * Set a blank/canvas template for the page
  */
 function flexframe_set_blank_template($page_id) {
@@ -165,7 +303,7 @@ function flexframe_register_settings() {
         'default' => 'preset1'
     ));
     
-    // Custom SKIN settings
+    // Custom SKIN settings - Default: pure material appearance, no textures
     register_setting('flexframe_settings_group', 'flexframe_skin_color', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -356,9 +494,12 @@ function flexframe_settings_page() {
     $logo_url = get_option('flexframe_logo_url', '');
     $logo_threshold = get_option('flexframe_logo_threshold', 0.95);
     $material_mode = get_option('flexframe_material_mode', 'preset');
-    $material_preset = get_option('flexframe_material_preset', 'preset1');
+    $material_preset = get_option('flexframe_material_preset', 'default');
     
-    // Custom SKIN settings
+    // Custom presets
+    $custom_presets = get_option('flexframe_custom_presets', array());
+    
+    // Custom SKIN settings - Default: pure material, no textures
     $skin_color = get_option('flexframe_skin_color', '#ccdef5');
     $skin_opacity = get_option('flexframe_skin_opacity', 1);
     $skin_roughness = get_option('flexframe_skin_roughness', 0);
@@ -402,7 +543,7 @@ function flexframe_settings_page() {
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
         
         <div class="flexframe-settings-container">
-            <form method="post" action="options.php">
+            <form method="post" action="options.php" id="flexframe-settings-form">
                 <?php
                 settings_fields('flexframe_settings_group');
                 do_settings_sections('flexframe_settings_group');
@@ -527,14 +668,65 @@ function flexframe_settings_page() {
                             </label>
                         </div>
                         
-                        <!-- Preset Info (shown when mode = preset) -->
+                        <!-- Preset Selection (shown when mode = preset) -->
                         <div class="flexframe-preset-panel" <?php echo $material_mode !== 'preset' ? 'style="display:none;"' : ''; ?>>
-                            <p class="preset-info"><span class="dashicons dashicons-yes-alt" style="color: #00a32a;"></span> <?php _e('Using Default Settings - Your brand colors and optimized defaults are applied.', 'flexframe-viewer'); ?></p>
-                            <input type="hidden" name="flexframe_material_preset" value="preset1" />
+                            <div class="preset-theme-selector">
+                                <label for="flexframe_material_preset"><?php _e('Select Theme:', 'flexframe-viewer'); ?></label>
+                                <select id="flexframe_material_preset" name="flexframe_material_preset" class="preset-theme-select">
+                                    <option value="default" <?php selected($material_preset, 'default'); ?>>
+                                        <?php _e('1. Default Settings', 'flexframe-viewer'); ?>
+                                    </option>
+                                    <option value="dark" <?php selected($material_preset, 'dark'); ?>>
+                                        <?php _e('2. Dark Theme', 'flexframe-viewer'); ?>
+                                    </option>
+                                    <option value="light" <?php selected($material_preset, 'light'); ?>>
+                                        <?php _e('3. Light Theme', 'flexframe-viewer'); ?>
+                                    </option>
+                                </select>
+                                <button type="button" id="apply-preset-theme" class="button button-primary">
+                                    <span class="dashicons dashicons-yes" style="margin-top: 4px;"></span>
+                                    <?php _e('Apply & Save', 'flexframe-viewer'); ?>
+                                </button>
+                            </div>
+                            <p class="preset-theme-description" id="preset-theme-description">
+                                <span class="dashicons dashicons-info"></span>
+                                <span id="preset-desc-text"><?php _e('Optimized settings with your brand colors.', 'flexframe-viewer'); ?></span>
+                            </p>
                         </div>
                         
                         <!-- Custom Settings Panel (always visible, disabled when preset selected) -->
                         <div class="flexframe-custom-panel <?php echo $material_mode !== 'custom' ? 'panel-disabled' : ''; ?>">
+                            
+                            <!-- Preset Manager -->
+                            <div class="preset-manager">
+                                <div class="preset-manager-row">
+                                    <div class="preset-load-section">
+                                        <label for="flexframe_load_preset"><?php _e('Load Saved Preset:', 'flexframe-viewer'); ?></label>
+                                        <select id="flexframe_load_preset" class="preset-select">
+                                            <option value=""><?php _e('-- Select a preset --', 'flexframe-viewer'); ?></option>
+                                            <?php foreach ($custom_presets as $preset_id => $preset) : ?>
+                                                <option value="<?php echo esc_attr($preset_id); ?>">
+                                                    <?php echo esc_html($preset['name']); ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
+                                        <button type="button" id="flexframe-load-preset-btn" class="button" disabled>
+                                            <span class="dashicons dashicons-download" style="margin-top: 4px;"></span>
+                                            <?php _e('Load', 'flexframe-viewer'); ?>
+                                        </button>
+                                        <button type="button" id="flexframe-delete-preset-btn" class="button button-link-delete" disabled>
+                                            <span class="dashicons dashicons-trash" style="margin-top: 4px;"></span>
+                                        </button>
+                                    </div>
+                                    <div class="preset-save-section">
+                                        <button type="button" id="flexframe-save-preset-btn" class="button button-secondary">
+                                            <span class="dashicons dashicons-cloud-saved" style="margin-top: 4px;"></span>
+                                            <?php _e('Save Current as Preset', 'flexframe-viewer'); ?>
+                                        </button>
+                                    </div>
+                                </div>
+                                <span id="preset-action-message" class="preset-message" style="display: none;"></span>
+                            </div>
                             
                             <!-- UI Settings Section -->
                             <div class="custom-panel-section">
@@ -1222,6 +1414,36 @@ function flexframe_settings_page() {
             color: #1d2327;
         }
         
+        /* Preset Theme Selector */
+        .preset-theme-selector {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .preset-theme-selector label {
+            font-weight: 500;
+            color: #1d2327;
+        }
+        .preset-theme-select {
+            min-width: 200px;
+            padding: 6px 12px;
+        }
+        .preset-theme-description {
+            margin: 12px 0 0 0;
+            padding: 10px 14px;
+            background: #e7f3ff;
+            border-radius: 4px;
+            color: #1d2327;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .preset-theme-description .dashicons {
+            color: #2271b1;
+        }
+        
         /* Disabled panel state */
         .flexframe-custom-panel.panel-disabled {
             position: relative;
@@ -1241,6 +1463,131 @@ function flexframe_settings_page() {
         }
         .flexframe-custom-panel.panel-disabled .custom-panel-header {
             cursor: default;
+        }
+        
+        /* Preset Manager */
+        .preset-manager {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            border-radius: 6px;
+            padding: 16px;
+            margin-bottom: 16px;
+        }
+        .preset-manager-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .preset-load-section {
+            display: flex;
+            align-items: flex-end;
+            gap: 8px;
+        }
+        .preset-load-section label {
+            font-weight: 500;
+            font-size: 13px;
+            color: #1d2327;
+            margin-bottom: 4px;
+            display: block;
+        }
+        .preset-select {
+            min-width: 200px;
+        }
+        .preset-save-section {
+            display: flex;
+            gap: 8px;
+        }
+        .preset-message {
+            display: block;
+            margin-top: 12px;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .preset-message.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .preset-message.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .button-link-delete {
+            color: #b32d2e !important;
+        }
+        .button-link-delete:hover {
+            color: #a00 !important;
+            background: #fee !important;
+        }
+        
+        /* Save Preset Modal */
+        .preset-modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .preset-modal {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            width: 400px;
+            max-width: 90%;
+        }
+        .preset-modal-header {
+            padding: 16px 20px;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .preset-modal-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+        .preset-modal-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #666;
+            padding: 0;
+            line-height: 1;
+        }
+        .preset-modal-close:hover {
+            color: #000;
+        }
+        .preset-modal-body {
+            padding: 20px;
+        }
+        .preset-modal-body label {
+            display: block;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+        .preset-modal-body input[type="text"] {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .preset-modal-footer {
+            padding: 16px 20px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
         }
         
         /* Collapsible panel sections */
@@ -1809,6 +2156,9 @@ function flexframe_settings_page() {
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        .dashicons.spin {
+            animation: spin 1s linear infinite;
+        }
         
         /* Loader Type Options */
         .loader-type-options {
@@ -2062,6 +2412,513 @@ function flexframe_settings_page() {
                 $('.flexframe-custom-panel').removeClass('panel-disabled');
             }
         });
+        
+        // =====================
+        // Built-in Theme Presets
+        // =====================
+        
+        // Preset theme definitions
+        var builtInPresets = {
+            'default': {
+                name: '<?php _e('Default Settings', 'flexframe-viewer'); ?>',
+                description: '<?php _e('Optimized settings with your brand colors.', 'flexframe-viewer'); ?>',
+                settings: {
+                    // Use primary color from Step 1 for these (marked with 'primary')
+                    spinnerColor: '#00f510',
+                    useLogoLoader: true,
+                    logoLoaderAnimation: 'pulse',
+                    logoLoaderSize: 100,
+                    playerBgColor: '#828282',
+                    playerBgOpacity: 0,
+                    playerButtonBgColor: 'primary', // Will use primary color
+                    playerButtonBgOpacity: 0.8,
+                    playerIconColor: '#ffffff',
+                    playerAccentColor: 'primary', // Will use primary color
+                    playerAlwaysVisible: 'no',
+                    menuBgColor: '#000000',
+                    menuBgOpacity: 0.9,
+                    menuTextColor: '#ffffff',
+                    menuAccentColor: 'primary', // Will use primary color
+                    hideRightMenu: false,
+                    // Material settings
+                    skinColor: '#ccdef5',
+                    skinOpacity: 1,
+                    skinRoughness: 0,
+                    skinMetalness: 0,
+                    skinTransmission: 1,
+                    skinThickness: 0,
+                    skinIor: 1,
+                    skinEnvIntensity: 2.29
+                }
+            },
+            'dark': {
+                name: '<?php _e('Dark Theme', 'flexframe-viewer'); ?>',
+                description: '<?php _e('Dark interface with high contrast. Great for dark websites.', 'flexframe-viewer'); ?>',
+                settings: {
+                    spinnerColor: '#00f510',
+                    useLogoLoader: true,
+                    logoLoaderAnimation: 'pulse',
+                    logoLoaderSize: 100,
+                    playerBgColor: '#1a1a1a',
+                    playerBgOpacity: 0.95,
+                    playerButtonBgColor: 'primary',
+                    playerButtonBgOpacity: 0.9,
+                    playerIconColor: '#ffffff',
+                    playerAccentColor: 'primary',
+                    playerAlwaysVisible: 'no',
+                    menuBgColor: '#1a1a1a',
+                    menuBgOpacity: 0.95,
+                    menuTextColor: '#ffffff',
+                    menuAccentColor: 'primary',
+                    hideRightMenu: false,
+                    // Material settings
+                    skinColor: '#ccdef5',
+                    skinOpacity: 1,
+                    skinRoughness: 0,
+                    skinMetalness: 0,
+                    skinTransmission: 1,
+                    skinThickness: 0,
+                    skinIor: 1,
+                    skinEnvIntensity: 2.29
+                }
+            },
+            'light': {
+                name: '<?php _e('Light Theme', 'flexframe-viewer'); ?>',
+                description: '<?php _e('Light interface with soft colors. Great for light websites.', 'flexframe-viewer'); ?>',
+                settings: {
+                    spinnerColor: 'primary',
+                    useLogoLoader: true,
+                    logoLoaderAnimation: 'pulse',
+                    logoLoaderSize: 100,
+                    playerBgColor: '#f5f5f5',
+                    playerBgOpacity: 0.95,
+                    playerButtonBgColor: 'primary',
+                    playerButtonBgOpacity: 0.9,
+                    playerIconColor: '#333333',
+                    playerAccentColor: 'primary',
+                    playerAlwaysVisible: 'no',
+                    menuBgColor: '#ffffff',
+                    menuBgOpacity: 0.95,
+                    menuTextColor: '#333333',
+                    menuAccentColor: 'primary',
+                    hideRightMenu: false,
+                    // Material settings
+                    skinColor: '#ccdef5',
+                    skinOpacity: 1,
+                    skinRoughness: 0,
+                    skinMetalness: 0,
+                    skinTransmission: 1,
+                    skinThickness: 0,
+                    skinIor: 1,
+                    skinEnvIntensity: 2.29
+                }
+            }
+        };
+        
+        // Update preset description when dropdown changes
+        $('#flexframe_material_preset').on('change', function() {
+            var presetId = $(this).val();
+            var preset = builtInPresets[presetId];
+            if (preset) {
+                $('#preset-desc-text').text(preset.description);
+            }
+        });
+        
+        // Apply built-in preset theme
+        function applyBuiltInPreset(presetId) {
+            var preset = builtInPresets[presetId];
+            if (!preset) return;
+            
+            var settings = preset.settings;
+            var primaryColor = $('#flexframe_primary_color').val() || '#2383cd';
+            
+            // Helper to get color (use primary if marked)
+            function getColor(value) {
+                return value === 'primary' ? primaryColor : value;
+            }
+            
+            // Apply UI Settings
+            $('#flexframe_spinner_color').val(getColor(settings.spinnerColor));
+            $('#flexframe_spinner_color').siblings('.color-value').text(getColor(settings.spinnerColor));
+            
+            $('input[name="flexframe_use_logo_loader"][value="' + (settings.useLogoLoader ? '1' : '0') + '"]').prop('checked', true).trigger('change');
+            
+            $('#flexframe_logo_loader_animation').val(settings.logoLoaderAnimation);
+            $('#flexframe_logo_loader_size').val(settings.logoLoaderSize);
+            $('#flexframe_logo_loader_size').siblings('.size-value').text(settings.logoLoaderSize + 'px');
+            
+            $('#flexframe_player_bg_color').val(getColor(settings.playerBgColor));
+            $('#flexframe_player_bg_color').siblings('.color-value').text(getColor(settings.playerBgColor));
+            $('#flexframe_player_bg_opacity').val(settings.playerBgOpacity);
+            $('#flexframe_player_bg_opacity').siblings('.opacity-value').text(settings.playerBgOpacity);
+            
+            $('#flexframe_player_button_bg_color').val(getColor(settings.playerButtonBgColor));
+            $('#flexframe_player_button_bg_color').siblings('.color-value').text(getColor(settings.playerButtonBgColor));
+            $('#flexframe_player_button_bg_opacity').val(settings.playerButtonBgOpacity);
+            $('#flexframe_player_button_bg_opacity').siblings('.opacity-value').text(settings.playerButtonBgOpacity);
+            
+            $('#flexframe_player_icon_color').val(getColor(settings.playerIconColor));
+            $('#flexframe_player_icon_color').siblings('.color-value').text(getColor(settings.playerIconColor));
+            
+            $('#flexframe_player_accent_color').val(getColor(settings.playerAccentColor));
+            $('#flexframe_player_accent_color').siblings('.color-value').text(getColor(settings.playerAccentColor));
+            
+            $('#flexframe_player_always_visible').val(settings.playerAlwaysVisible);
+            
+            $('#flexframe_menu_bg_color').val(getColor(settings.menuBgColor));
+            $('#flexframe_menu_bg_color').siblings('.color-value').text(getColor(settings.menuBgColor));
+            $('#flexframe_menu_bg_opacity').val(settings.menuBgOpacity);
+            $('#flexframe_menu_bg_opacity').siblings('.opacity-value').text(settings.menuBgOpacity);
+            
+            $('#flexframe_menu_text_color').val(getColor(settings.menuTextColor));
+            $('#flexframe_menu_text_color').siblings('.color-value').text(getColor(settings.menuTextColor));
+            
+            $('#flexframe_menu_accent_color').val(getColor(settings.menuAccentColor));
+            $('#flexframe_menu_accent_color').siblings('.color-value').text(getColor(settings.menuAccentColor));
+            
+            $('#flexframe_hide_right_menu').prop('checked', settings.hideRightMenu);
+            
+            // Apply Material Settings - trigger input events so values are recognized
+            $('#flexframe_skin_color').val(settings.skinColor).trigger('input').trigger('change');
+            $('#flexframe_skin_color').siblings('.color-hex').text(settings.skinColor);
+            
+            $('#flexframe_skin_opacity').val(settings.skinOpacity).trigger('input');
+            $('#flexframe_skin_opacity').siblings('.range-value').text(settings.skinOpacity);
+            
+            $('#flexframe_skin_roughness').val(settings.skinRoughness).trigger('input');
+            $('#flexframe_skin_roughness').siblings('.range-value').text(settings.skinRoughness);
+            
+            $('#flexframe_skin_metalness').val(settings.skinMetalness).trigger('input');
+            $('#flexframe_skin_metalness').siblings('.range-value').text(settings.skinMetalness);
+            
+            $('#flexframe_skin_transmission').val(settings.skinTransmission).trigger('input');
+            $('#flexframe_skin_transmission').siblings('.range-value').text(settings.skinTransmission);
+            
+            $('#flexframe_skin_thickness').val(settings.skinThickness).trigger('input');
+            $('#flexframe_skin_thickness').siblings('.range-value').text(settings.skinThickness);
+            
+            $('#flexframe_skin_ior').val(settings.skinIor).trigger('input');
+            $('#flexframe_skin_ior').siblings('.range-value').text(settings.skinIor);
+            
+            $('#flexframe_skin_env_intensity').val(settings.skinEnvIntensity).trigger('input');
+            $('#flexframe_skin_env_intensity').siblings('.range-value').text(settings.skinEnvIntensity);
+            
+            console.log('Applied skin settings:', {
+                color: settings.skinColor,
+                opacity: settings.skinOpacity,
+                transmission: settings.skinTransmission,
+                ior: settings.skinIor,
+                envIntensity: settings.skinEnvIntensity
+            });
+            
+            // Update UI preview if available
+            if (typeof updateUIPreview === 'function') {
+                updateUIPreview();
+            }
+        }
+        
+        // Apply Theme button click
+        $('#apply-preset-theme').on('click', function() {
+            var presetId = $('#flexframe_material_preset').val();
+            // Temporarily remove disabled state to ensure values are set properly
+            var wasDisabled = $('.flexframe-custom-panel').hasClass('panel-disabled');
+            $('.flexframe-custom-panel').removeClass('panel-disabled');
+            
+            applyBuiltInPreset(presetId);
+            
+            // Re-apply disabled state if it was disabled
+            if (wasDisabled) {
+                $('.flexframe-custom-panel').addClass('panel-disabled');
+            }
+            
+            // Show success feedback and disable button
+            var $btn = $(this);
+            $btn.prop('disabled', true).html('<span class="dashicons dashicons-yes" style="margin-top: 4px;"></span> <?php _e('Saving...', 'flexframe-viewer'); ?>');
+            
+            // Submit by clicking the main save button
+            setTimeout(function() {
+                $('#submit').click();
+            }, 100);
+        });
+        
+        // Apply preset on page load if preset mode is selected
+        if ($('input[name="flexframe_material_mode"]:checked').val() === 'preset') {
+            // Set initial description
+            var initialPreset = $('#flexframe_material_preset').val();
+            if (builtInPresets[initialPreset]) {
+                $('#preset-desc-text').text(builtInPresets[initialPreset].description);
+            }
+        }
+        
+        // =====================
+        // Custom Preset Manager
+        // =====================
+        
+        // Enable/disable load and delete buttons based on selection
+        $('#flexframe_load_preset').on('change', function() {
+            var hasSelection = $(this).val() !== '';
+            $('#flexframe-load-preset-btn').prop('disabled', !hasSelection);
+            $('#flexframe-delete-preset-btn').prop('disabled', !hasSelection);
+        });
+        
+        // Show preset message
+        function showPresetMessage(message, type) {
+            var $msg = $('#preset-action-message');
+            $msg.removeClass('success error').addClass(type).text(message).fadeIn(200);
+            setTimeout(function() {
+                $msg.fadeOut(200);
+            }, 3000);
+        }
+        
+        // Get current settings for saving
+        function getCurrentSettings() {
+            return {
+                // UI Settings
+                spinner_color: $('#flexframe_spinner_color').val(),
+                use_logo_loader: $('input[name="flexframe_use_logo_loader"]:checked').val() === '1',
+                logo_loader_animation: $('#flexframe_logo_loader_animation').val(),
+                logo_loader_size: $('#flexframe_logo_loader_size').val(),
+                player_bg_color: $('#flexframe_player_bg_color').val(),
+                player_bg_opacity: $('#flexframe_player_bg_opacity').val(),
+                player_button_bg_color: $('#flexframe_player_button_bg_color').val(),
+                player_button_bg_opacity: $('#flexframe_player_button_bg_opacity').val(),
+                player_icon_color: $('#flexframe_player_icon_color').val(),
+                player_accent_color: $('#flexframe_player_accent_color').val(),
+                player_always_visible: $('#flexframe_player_always_visible').val(),
+                menu_bg_color: $('#flexframe_menu_bg_color').val(),
+                menu_bg_opacity: $('#flexframe_menu_bg_opacity').val(),
+                menu_text_color: $('#flexframe_menu_text_color').val(),
+                menu_accent_color: $('#flexframe_menu_accent_color').val(),
+                hide_right_menu: $('#flexframe_hide_right_menu').is(':checked'),
+                // Material Settings
+                skin_color: $('#flexframe_skin_color').val(),
+                skin_opacity: $('#flexframe_skin_opacity').val(),
+                skin_roughness: $('#flexframe_skin_roughness').val(),
+                skin_metalness: $('#flexframe_skin_metalness').val(),
+                skin_transmission: $('#flexframe_skin_transmission').val(),
+                skin_thickness: $('#flexframe_skin_thickness').val(),
+                skin_ior: $('#flexframe_skin_ior').val(),
+                skin_env_intensity: $('#flexframe_skin_env_intensity').val()
+            };
+        }
+        
+        // Apply settings from preset
+        function applyPresetSettings(settings) {
+            // UI Settings
+            $('#flexframe_spinner_color').val(settings.spinner_color).trigger('input');
+            $('#flexframe_spinner_color').siblings('.color-value').text(settings.spinner_color);
+            
+            $('input[name="flexframe_use_logo_loader"][value="' + (settings.use_logo_loader ? '1' : '0') + '"]').prop('checked', true).trigger('change');
+            
+            $('#flexframe_logo_loader_animation').val(settings.logo_loader_animation);
+            $('#flexframe_logo_loader_size').val(settings.logo_loader_size);
+            $('#flexframe_logo_loader_size').siblings('.size-value').text(settings.logo_loader_size + 'px');
+            
+            $('#flexframe_player_bg_color').val(settings.player_bg_color).trigger('input');
+            $('#flexframe_player_bg_color').siblings('.color-value').text(settings.player_bg_color);
+            $('#flexframe_player_bg_opacity').val(settings.player_bg_opacity);
+            $('#flexframe_player_bg_opacity').siblings('.opacity-value').text(settings.player_bg_opacity);
+            
+            $('#flexframe_player_button_bg_color').val(settings.player_button_bg_color).trigger('input');
+            $('#flexframe_player_button_bg_color').siblings('.color-value').text(settings.player_button_bg_color);
+            $('#flexframe_player_button_bg_opacity').val(settings.player_button_bg_opacity);
+            $('#flexframe_player_button_bg_opacity').siblings('.opacity-value').text(settings.player_button_bg_opacity);
+            
+            $('#flexframe_player_icon_color').val(settings.player_icon_color).trigger('input');
+            $('#flexframe_player_icon_color').siblings('.color-value').text(settings.player_icon_color);
+            
+            $('#flexframe_player_accent_color').val(settings.player_accent_color).trigger('input');
+            $('#flexframe_player_accent_color').siblings('.color-value').text(settings.player_accent_color);
+            
+            $('#flexframe_player_always_visible').val(settings.player_always_visible);
+            
+            $('#flexframe_menu_bg_color').val(settings.menu_bg_color).trigger('input');
+            $('#flexframe_menu_bg_color').siblings('.color-value').text(settings.menu_bg_color);
+            $('#flexframe_menu_bg_opacity').val(settings.menu_bg_opacity);
+            $('#flexframe_menu_bg_opacity').siblings('.opacity-value').text(settings.menu_bg_opacity);
+            
+            $('#flexframe_menu_text_color').val(settings.menu_text_color).trigger('input');
+            $('#flexframe_menu_text_color').siblings('.color-value').text(settings.menu_text_color);
+            
+            $('#flexframe_menu_accent_color').val(settings.menu_accent_color).trigger('input');
+            $('#flexframe_menu_accent_color').siblings('.color-value').text(settings.menu_accent_color);
+            
+            $('#flexframe_hide_right_menu').prop('checked', settings.hide_right_menu);
+            
+            // Material Settings
+            $('#flexframe_skin_color').val(settings.skin_color);
+            $('#flexframe_skin_color').siblings('.color-hex').text(settings.skin_color);
+            $('#flexframe_skin_opacity').val(settings.skin_opacity);
+            $('#flexframe_skin_opacity').siblings('.range-value').text(settings.skin_opacity);
+            $('#flexframe_skin_roughness').val(settings.skin_roughness);
+            $('#flexframe_skin_roughness').siblings('.range-value').text(settings.skin_roughness);
+            $('#flexframe_skin_metalness').val(settings.skin_metalness);
+            $('#flexframe_skin_metalness').siblings('.range-value').text(settings.skin_metalness);
+            $('#flexframe_skin_transmission').val(settings.skin_transmission);
+            $('#flexframe_skin_transmission').siblings('.range-value').text(settings.skin_transmission);
+            $('#flexframe_skin_thickness').val(settings.skin_thickness);
+            $('#flexframe_skin_thickness').siblings('.range-value').text(settings.skin_thickness);
+            $('#flexframe_skin_ior').val(settings.skin_ior);
+            $('#flexframe_skin_ior').siblings('.range-value').text(settings.skin_ior);
+            $('#flexframe_skin_env_intensity').val(settings.skin_env_intensity);
+            $('#flexframe_skin_env_intensity').siblings('.range-value').text(settings.skin_env_intensity);
+            
+            // Update UI preview
+            if (typeof updateUIPreview === 'function') {
+                updateUIPreview();
+            }
+        }
+        
+        // Save Preset Button - Show Modal
+        $('#flexframe-save-preset-btn').on('click', function() {
+            var modalHtml = `
+                <div class="preset-modal-overlay" id="preset-save-modal">
+                    <div class="preset-modal">
+                        <div class="preset-modal-header">
+                            <h3><?php _e('Save Custom Preset', 'flexframe-viewer'); ?></h3>
+                            <button type="button" class="preset-modal-close">&times;</button>
+                        </div>
+                        <div class="preset-modal-body">
+                            <label for="preset-name-input"><?php _e('Preset Name:', 'flexframe-viewer'); ?></label>
+                            <input type="text" id="preset-name-input" placeholder="<?php _e('My Custom Theme', 'flexframe-viewer'); ?>" />
+                        </div>
+                        <div class="preset-modal-footer">
+                            <button type="button" class="button preset-modal-cancel"><?php _e('Cancel', 'flexframe-viewer'); ?></button>
+                            <button type="button" class="button button-primary" id="preset-save-confirm"><?php _e('Save Preset', 'flexframe-viewer'); ?></button>
+                        </div>
+                    </div>
+                </div>
+            `;
+            $('body').append(modalHtml);
+            $('#preset-name-input').focus();
+        });
+        
+        // Close modal
+        $(document).on('click', '.preset-modal-close, .preset-modal-cancel, .preset-modal-overlay', function(e) {
+            if (e.target === this) {
+                $('#preset-save-modal').remove();
+            }
+        });
+        
+        // Confirm save preset
+        $(document).on('click', '#preset-save-confirm', function() {
+            var presetName = $('#preset-name-input').val().trim();
+            
+            if (!presetName) {
+                alert('<?php _e('Please enter a preset name.', 'flexframe-viewer'); ?>');
+                return;
+            }
+            
+            var $btn = $(this);
+            $btn.prop('disabled', true).text('<?php _e('Saving...', 'flexframe-viewer'); ?>');
+            
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_save_custom_preset',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    preset_name: presetName,
+                    preset_data: getCurrentSettings()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Add new preset to dropdown
+                        var $select = $('#flexframe_load_preset');
+                        $select.append($('<option>', {
+                            value: response.data.preset_id,
+                            text: presetName
+                        }));
+                        
+                        $('#preset-save-modal').remove();
+                        showPresetMessage('<?php _e('Preset saved successfully!', 'flexframe-viewer'); ?>', 'success');
+                    } else {
+                        alert(response.data.message || '<?php _e('Error saving preset.', 'flexframe-viewer'); ?>');
+                        $btn.prop('disabled', false).text('<?php _e('Save Preset', 'flexframe-viewer'); ?>');
+                    }
+                },
+                error: function() {
+                    alert('<?php _e('Error saving preset.', 'flexframe-viewer'); ?>');
+                    $btn.prop('disabled', false).text('<?php _e('Save Preset', 'flexframe-viewer'); ?>');
+                }
+            });
+        });
+        
+        // Load Preset Button
+        $('#flexframe-load-preset-btn').on('click', function() {
+            var presetId = $('#flexframe_load_preset').val();
+            if (!presetId) return;
+            
+            var $btn = $(this);
+            $btn.prop('disabled', true);
+            
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_load_custom_preset',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    preset_id: presetId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        applyPresetSettings(response.data.preset.settings);
+                        showPresetMessage('<?php _e('Preset loaded! Remember to save your settings.', 'flexframe-viewer'); ?>', 'success');
+                    } else {
+                        showPresetMessage(response.data.message || '<?php _e('Error loading preset.', 'flexframe-viewer'); ?>', 'error');
+                    }
+                    $btn.prop('disabled', false);
+                },
+                error: function() {
+                    showPresetMessage('<?php _e('Error loading preset.', 'flexframe-viewer'); ?>', 'error');
+                    $btn.prop('disabled', false);
+                }
+            });
+        });
+        
+        // Delete Preset Button
+        $('#flexframe-delete-preset-btn').on('click', function() {
+            var presetId = $('#flexframe_load_preset').val();
+            var presetName = $('#flexframe_load_preset option:selected').text();
+            
+            if (!presetId) return;
+            
+            if (!confirm('<?php _e('Are you sure you want to delete the preset:', 'flexframe-viewer'); ?> "' + presetName + '"?')) {
+                return;
+            }
+            
+            var $btn = $(this);
+            $btn.prop('disabled', true);
+            
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_delete_custom_preset',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    preset_id: presetId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Remove from dropdown
+                        $('#flexframe_load_preset option[value="' + presetId + '"]').remove();
+                        $('#flexframe_load_preset').val('').trigger('change');
+                        showPresetMessage('<?php _e('Preset deleted successfully!', 'flexframe-viewer'); ?>', 'success');
+                    } else {
+                        showPresetMessage(response.data.message || '<?php _e('Error deleting preset.', 'flexframe-viewer'); ?>', 'error');
+                    }
+                    $btn.prop('disabled', false);
+                },
+                error: function() {
+                    showPresetMessage('<?php _e('Error deleting preset.', 'flexframe-viewer'); ?>', 'error');
+                    $btn.prop('disabled', false);
+                }
+            });
+        });
+        
+        // =====================
+        // End Preset Manager
+        // =====================
         
         // Toggle advanced logo settings
         $('#toggle-logo-advanced').on('click', function() {

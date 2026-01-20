@@ -2007,32 +2007,30 @@ class ThreeJSApp {
                                         } else {
                                             console.log(`Converting/Updating ${mat.name} to MeshPhysicalMaterial for advanced transparency`);
                                             
-                                            // Check if WP Preset should be applied
-                                            const useWPPreset = window.flexframeSettings && window.flexframeSettings.wpSkinPreset;
-                                            console.log('WP Preset enabled:', useWPPreset);
-                                            
                                             // Create new MeshPhysicalMaterial with custom refraction settings
+                                            // Default SKIN material: pure material, no texture maps
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: useWPPreset ? new THREE.Color(0xd3e3f8) : new THREE.Color(0x006eff),
-                                                map: mat.map,
-                                                normalMap: mat.normalMap,
-                                                roughness: useWPPreset ? 0.54 : 0.51,
+                                                color: new THREE.Color(0xccdef5),
+                                                // Remove all texture maps for pure material appearance
+                                                map: null,
+                                                normalMap: null,
+                                                roughness: 0,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: useWPPreset ? 1.51 : 1,
-                                                emissiveMap: mat.emissiveMap,
-                                                opacity: useWPPreset ? 0.57 : 0.53,
-                                                transparent: true,
-                                                side: useWPPreset ? THREE.DoubleSide : THREE.FrontSide,
+                                                emissiveIntensity: 1,
+                                                emissiveMap: null,
+                                                opacity: 1,
+                                                transparent: false,
+                                                side: THREE.FrontSide,
                                                 depthWrite: false,
                                                 depthTest: true,
-                                                blending: useWPPreset ? THREE.NormalBlending : THREE.CustomBlending,
+                                                blending: THREE.CustomBlending,
                                                 alphaTest: 0,
                                                 // Refraction/transmission properties
-                                                transmission: useWPPreset ? 1 : 0.8,
-                                                thickness: useWPPreset ? 1.25 : 0,
-                                                ior: useWPPreset ? 1 : 1.45,
-                                                envMapIntensity: useWPPreset ? 1.58 : 2.29,
+                                                transmission: 1,
+                                                thickness: 0,
+                                                ior: 1,
+                                                envMapIntensity: 2.29,
                                                 sheen: 0,
                                                 sheenRoughness: 1,
                                                 sheenColor: new THREE.Color(0x000000)
@@ -2041,14 +2039,11 @@ class ThreeJSApp {
                                             // Copy the name
                                             physicalMat.name = mat.name;
                                             
-                                            // Apply bump map from color texture
-                                            if (mat.map) {
-                                                physicalMat.bumpMap = mat.map;
-                                                physicalMat.bumpScale = 1;
-                                            }
+                                            // No bump map - pure material appearance
+                                            physicalMat.bumpScale = 1;
                                             
                                             // Log the applied settings
-                                            console.log(`✅ ${mat.name} Material Settings Applied${useWPPreset ? ' (WP Preset)' : ''}:`, {
+                                            console.log(`✅ ${mat.name} Material Settings Applied:`, {
                                                 color: '#' + physicalMat.color.getHexString(),
                                                 opacity: physicalMat.opacity,
                                                 transmission: physicalMat.transmission,
@@ -2276,8 +2271,9 @@ class ThreeJSApp {
                         const preset = window.flexframeSettings.materialPreset;
                         console.log('Material Preset setting:', preset);
                         
-                        if (preset === 'preset1') {
-                            console.log('Pre-applying Preset 1 (Refraction)...');
+                        // 'default', 'dark', 'light' all use the same material settings
+                        if (preset === 'default' || preset === 'dark' || preset === 'light' || preset === 'preset1') {
+                            console.log('Pre-applying Default Material Preset...');
                             this.applyMaterialPreset1();
                         } else if (preset === 'wp_preset') {
                             console.log('Pre-applying WP Preset...');
@@ -2976,9 +2972,8 @@ class ThreeJSApp {
                 transmission: 1,
                 thickness: 0,
                 ior: 1,
-                attenuationDistance: Infinity,
-                side: THREE.DoubleSide,
-                blending: THREE.NormalBlending,
+                side: THREE.FrontSide,
+                blending: THREE.CustomBlending,
                 depthWrite: false,
                 depthTest: true,
                 envMapIntensity: 2.29
@@ -3087,9 +3082,12 @@ class ThreeJSApp {
                         mat.depthTest = preset.depthTest;
                         mat.envMapIntensity = preset.envMapIntensity;
                         
-                        // Remove color map for SKIN material on LQ/SQ models only
-                        if (mat.name.toUpperCase() === 'SKIN' && this.currentModelQuality === 'SQ') {
+                        // Remove ALL texture maps for SKIN material - pure material appearance
+                        if (mat.name.toUpperCase() === 'SKIN') {
                             mat.map = null;
+                            mat.normalMap = null;
+                            mat.emissiveMap = null;
+                            mat.bumpMap = null;
                         }
                         
                         if (preset.attenuationDistance) {
