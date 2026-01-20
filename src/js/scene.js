@@ -39,6 +39,9 @@ class SceneManager {
         // Enable linear filtering for smoother interpolation
         this.bgTexture.minFilter = THREE.LinearFilter;
         this.bgTexture.magFilter = THREE.LinearFilter;
+        // Use LinearSRGBColorSpace to bypass tone mapping for backgrounds
+        // This ensures white (#ffffff) stays white, not gray
+        this.bgTexture.colorSpace = THREE.LinearSRGBColorSpace;
         this.scene.background = this.bgTexture;
         this.scene._originalBackgroundTexture = this.bgTexture;
     }
