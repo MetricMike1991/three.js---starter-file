@@ -648,15 +648,104 @@ function flexframe_settings_page() {
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
         
         <div class="flexframe-settings-container">
+            <!-- Getting Started Section -->
+            <div class="flexframe-instructions" style="margin-bottom: 24px;">
+                <h2><?php _e('🚀 Getting Started', 'flexframe-viewer'); ?></h2>
+                <p><?php _e('Add the FlexFrame 3D Exercise Viewer to any page or post using the shortcode:', 'flexframe-viewer'); ?></p>
+                <code style="display: inline-block; padding: 10px 16px; background: #f0f0f1; font-size: 15px; border-radius: 4px;">[flexframe_viewer]</code>
+                <p style="margin-top: 12px; color: #646970;"><?php _e('Or use the button below to automatically create a viewer page.', 'flexframe-viewer'); ?></p>
+                
+                <h3 style="margin-top: 20px;"><?php _e('Shortcode Options:', 'flexframe-viewer'); ?></h3>
+                <ul style="margin-left: 20px;">
+                    <li><code>[flexframe_viewer height="600px" width="100%"]</code> - <?php _e('Custom dimensions', 'flexframe-viewer'); ?></li>
+                    <li><code>[flexframe_viewer exercise="barbell_back_squat"]</code> - <?php _e('Load specific exercise', 'flexframe-viewer'); ?></li>
+                </ul>
+            </div>
+            
             <form method="post" action="options.php" id="flexframe-settings-form">
                 <?php
                 settings_fields('flexframe_settings_group');
                 do_settings_sections('flexframe_settings_group');
                 ?>
                 
+                <!-- Step 1: Create Viewer Page / Exercise Library -->
                 <div class="flexframe-step-section">
                     <div class="flexframe-step-header">
                         <span class="step-number">1</span>
+                        <h2><?php _e('Create Your Exercise Library', 'flexframe-viewer'); ?></h2>
+                    </div>
+                    <div class="flexframe-step-content">
+                        <p class="step-description">
+                            <?php _e('First, create a page for your exercise viewer. Then manage which exercises are visible and get direct links to share.', 'flexframe-viewer'); ?>
+                        </p>
+                        
+                        <div class="flexframe-viewer-url-setting">
+                            <div class="flexframe-create-page-row">
+                                <button type="button" id="flexframe-create-viewer-page" class="button button-primary button-hero">
+                                    <span class="dashicons dashicons-plus-alt" style="margin-top: 5px; margin-right: 5px;"></span>
+                                    <?php _e('Create Exercise Viewer Page', 'flexframe-viewer'); ?>
+                                </button>
+                                <span id="flexframe-create-page-status" style="margin-left: 10px; line-height: 46px;"></span>
+                            </div>
+                            <p class="description" style="margin-top: 8px; margin-bottom: 16px;">
+                                <?php _e('Click to automatically create a new page with the FlexFrame viewer shortcode.', 'flexframe-viewer'); ?>
+                            </p>
+                            
+                            <label for="flexframe_viewer_page_url"><?php _e('Viewer Page URL:', 'flexframe-viewer'); ?></label>
+                            <input type="url" id="flexframe_viewer_page_url" name="flexframe_viewer_page_url" 
+                                   value="<?php echo esc_attr($viewer_page_url); ?>" 
+                                   class="regular-text"
+                                   placeholder="https://yoursite.com/exercise-viewer/" />
+                            <p class="description" id="flexframe-url-status">
+                                <?php if (!empty($viewer_page_url)): ?>
+                                    <span style="color: #00a32a; font-size: 14px;">✓ <?php _e('Viewer page URL is set.', 'flexframe-viewer'); ?></span>
+                                    <a href="<?php echo esc_url($viewer_page_url); ?>" target="_blank" class="button button-secondary" style="margin-left: 12px;"><?php _e('View Page →', 'flexframe-viewer'); ?></a>
+                                <?php else: ?>
+                                    <span style="color: #d63638;">⚠ <?php _e('No viewer page set. Click the button above to create one automatically, or paste your URL here.', 'flexframe-viewer'); ?></span>
+                                <?php endif; ?>
+                            </p>
+                        </div>
+                        
+                        <hr style="margin: 24px 0; border: none; border-top: 1px solid #e2e4e7;" />
+                        
+                        <h3 style="margin-bottom: 16px;"><?php _e('Exercise Library', 'flexframe-viewer'); ?></h3>
+                        <p class="step-description" style="margin-bottom: 16px;">
+                            <?php _e('Manage which exercises are visible in your viewer. Copy direct links to share specific exercises, or hide exercises you don\'t want your users to see.', 'flexframe-viewer'); ?>
+                        </p>
+                        
+                        <div class="flexframe-exercise-library">
+                            <div class="exercise-library-header">
+                                <div class="exercise-search-box">
+                                    <input type="text" id="exercise-search" placeholder="<?php _e('Search exercises...', 'flexframe-viewer'); ?>" />
+                                </div>
+                                <div class="exercise-bulk-actions">
+                                    <button type="button" class="button" id="show-all-exercises"><?php _e('Show All', 'flexframe-viewer'); ?></button>
+                                    <button type="button" class="button" id="hide-all-exercises"><?php _e('Hide All', 'flexframe-viewer'); ?></button>
+                                </div>
+                            </div>
+                            
+                            <div class="exercise-list-container">
+                                <div id="exercise-list" class="exercise-list">
+                                    <div class="exercise-loading">
+                                        <span class="spinner is-active"></span>
+                                        <?php _e('Loading exercises...', 'flexframe-viewer'); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Hidden input to store the JSON array of hidden exercises -->
+                            <input type="hidden" id="flexframe_hidden_exercises" name="flexframe_hidden_exercises" value="<?php echo esc_attr($hidden_exercises); ?>" />
+                        </div>
+                        
+                        <p class="description" style="margin-top: 16px;">
+                            <?php _e('💡 Tip: Use the direct links to share specific exercises on social media or in emails. Hidden exercises won\'t appear in the exercise menu for your users.', 'flexframe-viewer'); ?>
+                        </p>
+                    </div>
+                </div>
+                
+                <div class="flexframe-step-section">
+                    <div class="flexframe-step-header">
+                        <span class="step-number">2</span>
                         <h2><?php _e('Select Your Primary Brand Color', 'flexframe-viewer'); ?></h2>
                     </div>
                     <div class="flexframe-step-content">
@@ -682,7 +771,7 @@ function flexframe_settings_page() {
                 
                 <div class="flexframe-step-section">
                     <div class="flexframe-step-header">
-                        <span class="step-number">2</span>
+                        <span class="step-number">3</span>
                         <h2><?php _e('Upload Your Logo', 'flexframe-viewer'); ?></h2>
                     </div>
                     <div class="flexframe-step-content">
@@ -745,7 +834,7 @@ function flexframe_settings_page() {
                 
                 <div class="flexframe-step-section">
                     <div class="flexframe-step-header">
-                        <span class="step-number">3</span>
+                        <span class="step-number">4</span>
                         <h2><?php _e('Select a Theme', 'flexframe-viewer'); ?></h2>
                     </div>
                     <div class="flexframe-step-content">
@@ -1333,73 +1422,6 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 
-                <div class="flexframe-step-section">
-                    <div class="flexframe-step-header">
-                        <span class="step-number">4</span>
-                        <h2><?php _e('Exercise Library', 'flexframe-viewer'); ?></h2>
-                    </div>
-                    <div class="flexframe-step-content">
-                        <p class="step-description">
-                            <?php _e('Manage which exercises are visible in your viewer. Copy direct links to share specific exercises, or hide exercises you don\'t want your users to see.', 'flexframe-viewer'); ?>
-                        </p>
-                        
-                        <div class="flexframe-viewer-url-setting">
-                            <div class="flexframe-create-page-row">
-                                <button type="button" id="flexframe-create-viewer-page" class="button button-primary">
-                                    <span class="dashicons dashicons-plus-alt" style="margin-top: 3px;"></span>
-                                    <?php _e('Create Exercise Viewer Page', 'flexframe-viewer'); ?>
-                                </button>
-                                <span id="flexframe-create-page-status" style="margin-left: 10px; line-height: 30px;"></span>
-                            </div>
-                            <p class="description" style="margin-top: 8px; margin-bottom: 16px;">
-                                <?php _e('Click to automatically create a new page with the FlexFrame viewer shortcode.', 'flexframe-viewer'); ?>
-                            </p>
-                            
-                            <label for="flexframe_viewer_page_url"><?php _e('Viewer Page URL:', 'flexframe-viewer'); ?></label>
-                            <input type="url" id="flexframe_viewer_page_url" name="flexframe_viewer_page_url" 
-                                   value="<?php echo esc_attr($viewer_page_url); ?>" 
-                                   class="regular-text"
-                                   placeholder="https://yoursite.com/exercise-viewer/" />
-                            <p class="description">
-                                <?php if (!empty($viewer_page_url)): ?>
-                                    <span style="color: #00a32a;">✓ <?php _e('Viewer page URL is set.', 'flexframe-viewer'); ?></span>
-                                    <a href="<?php echo esc_url($viewer_page_url); ?>" target="_blank" style="margin-left: 8px;"><?php _e('View Page →', 'flexframe-viewer'); ?></a>
-                                <?php else: ?>
-                                    <span style="color: #d63638;">⚠ <?php _e('No viewer page set. Click the button above to create one automatically.', 'flexframe-viewer'); ?></span>
-                                <?php endif; ?>
-                            </p>
-                        </div>
-                        
-                        <div class="flexframe-exercise-library">
-                            <div class="exercise-library-header">
-                                <div class="exercise-search-box">
-                                    <input type="text" id="exercise-search" placeholder="<?php _e('Search exercises...', 'flexframe-viewer'); ?>" />
-                                </div>
-                                <div class="exercise-bulk-actions">
-                                    <button type="button" class="button" id="show-all-exercises"><?php _e('Show All', 'flexframe-viewer'); ?></button>
-                                    <button type="button" class="button" id="hide-all-exercises"><?php _e('Hide All', 'flexframe-viewer'); ?></button>
-                                </div>
-                            </div>
-                            
-                            <div class="exercise-list-container">
-                                <div id="exercise-list" class="exercise-list">
-                                    <div class="exercise-loading">
-                                        <span class="spinner is-active"></span>
-                                        <?php _e('Loading exercises...', 'flexframe-viewer'); ?>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Hidden input to store the JSON array of hidden exercises -->
-                            <input type="hidden" id="flexframe_hidden_exercises" name="flexframe_hidden_exercises" value="<?php echo esc_attr($hidden_exercises); ?>" />
-                        </div>
-                        
-                        <p class="description" style="margin-top: 16px;">
-                            <?php _e('💡 Tip: Use the direct links to share specific exercises on social media or in emails. Hidden exercises won\'t appear in the exercise menu for your users.', 'flexframe-viewer'); ?>
-                        </p>
-                    </div>
-                </div>
-                
                 <div class="flexframe-button-row">
                     <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
                     <button type="button" class="button button-secondary" id="flexframe-export-settings" style="margin-left: 10px;">
@@ -1411,18 +1433,6 @@ function flexframe_settings_page() {
                     </span>
                 </div>
             </form>
-            
-            <!-- Usage Instructions -->
-            <div class="flexframe-instructions">
-                <h2><?php _e('How to Use', 'flexframe-viewer'); ?></h2>
-                <p><?php _e('Add the FlexFrame viewer to any page or post using the shortcode:', 'flexframe-viewer'); ?></p>
-                <code>[flexframe_viewer]</code>
-                
-                <h3><?php _e('Shortcode Options:', 'flexframe-viewer'); ?></h3>
-                <ul>
-                    <li><code>[flexframe_viewer height="600px" width="100%"]</code></li>
-                </ul>
-            </div>
         </div>
     </div>
     
@@ -3708,16 +3718,21 @@ function flexframe_settings_page() {
                         $status.html('<span style="color: #00a32a;">✓ ' + response.data.message + '</span>');
                         $('#flexframe_viewer_page_url').val(response.data.url);
                         
+                        // Update the URL status section below the input
+                        $('#flexframe-url-status').html(
+                            '<span style="color: #00a32a; font-size: 14px;">✓ Viewer page URL is set.</span> ' +
+                            '<a href="' + response.data.url + '" target="_blank" class="button button-secondary" style="margin-left: 12px;">View Page →</a> ' +
+                            '<a href="' + response.data.edit_url + '" target="_blank" class="button button-secondary" style="margin-left: 8px;">Edit Page</a>'
+                        );
+                        
                         // Update the viewerPageUrl variable for exercise URLs
                         viewerPageUrl = response.data.url;
                         renderExerciseList();
                         
-                        // Show links to view/edit the page
+                        // Show links to view/edit the page in status area
                         setTimeout(function() {
                             $status.html(
-                                '<span style="color: #00a32a;">✓ Page created!</span> ' +
-                                '<a href="' + response.data.url + '" target="_blank">View Page</a> | ' +
-                                '<a href="' + response.data.edit_url + '" target="_blank">Edit Page</a>'
+                                '<span style="color: #00a32a;">✓ Page created!</span> '
                             );
                         }, 1500);
                     } else {
