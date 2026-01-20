@@ -136,6 +136,12 @@
         const glbUrl = params.get('glb');
         const usdzUrl = params.get('usdz');
         const title = params.get('title') || 'Exercise';
+        
+        // Branding parameters
+        const logoUrl = params.get('logo');
+        const websiteUrl = params.get('website') || window.location.origin;
+        const companyName = params.get('company') || 'FlexFrame';
+        const callToAction = params.get('cta') || 'Visit ' + companyName;
 
         // DOM elements
         const deviceMessage = document.getElementById('device-message');
@@ -158,6 +164,50 @@
             const a = document.createElement('a');
             return a.relList && a.relList.supports && a.relList.supports('ar');
         }
+        
+        // Build iOS AR URL with branding
+        function buildIOSArUrl(baseUrl) {
+            const hashParams = [];
+            
+            // Add call-to-action banner
+            if (websiteUrl) {
+                hashParams.push(`callToAction=${encodeURIComponent(callToAction)}`);
+                hashParams.push(`checkoutTitle=${encodeURIComponent(companyName)}`);
+                hashParams.push(`checkoutSubtitle=${encodeURIComponent('Tap to visit website')}`);
+                hashParams.push(`canonicalWebPageURL=${encodeURIComponent(websiteUrl)}`);
+            }
+            
+            // Add custom banner image if logo available
+            if (logoUrl) {
+                hashParams.push(`custom=${encodeURIComponent(logoUrl)}`);
+            }
+            
+            if (hashParams.length > 0) {
+                return baseUrl + '#' + hashParams.join('&');
+            }
+            return baseUrl;
+        }
+        
+        // Build Android Scene Viewer URL with branding
+        function buildAndroidArUrl(fileUrl) {
+            const sceneViewerParams = [
+                `file=${encodeURIComponent(fileUrl)}`,
+                `mode=ar_preferred`,
+                `title=${encodeURIComponent(title)}`
+            ];
+            
+            // Add branded link button
+            if (websiteUrl) {
+                sceneViewerParams.push(`link=${encodeURIComponent(websiteUrl)}`);
+                sceneViewerParams.push(`linkText=${encodeURIComponent(callToAction)}`);
+            }
+            
+            return `intent://arvr.google.com/scene-viewer/1.0?` +
+                sceneViewerParams.join('&') +
+                `#Intent;scheme=https;package=com.google.android.googlequicksearchbox;` +
+                `action=android.intent.action.VIEW;` +
+                `S.browser_fallback_url=${encodeURIComponent(fileUrl)};end;`;
+        }
 
         const deviceType = getDeviceType();
         
@@ -175,8 +225,8 @@
                 launchButton.style.display = 'inline-block';
                 launchButton.textContent = 'View in AR';
                 
-                // Set up AR Quick Look link
-                arLink.href = usdzUrl;
+                // Set up AR Quick Look link with branding
+                arLink.href = buildIOSArUrl(usdzUrl);
                 
                 launchButton.addEventListener('click', function() {
                     loading.classList.add('show');
@@ -193,7 +243,7 @@
                 launchButton.style.display = 'inline-block';
                 launchButton.textContent = 'Try AR (GLB)';
                 
-                arLink.href = glbUrl;
+                arLink.href = buildIOSArUrl(glbUrl);
                 
                 launchButton.addEventListener('click', function() {
                     arLink.click();
@@ -208,14 +258,8 @@
                 launchButton.addEventListener('click', function() {
                     loading.classList.add('show');
                     
-                    // Use Google Scene Viewer
-                    const intentUrl = `intent://arvr.google.com/scene-viewer/1.0?` +
-                        `file=${encodeURIComponent(glbUrl)}&` +
-                        `mode=ar_preferred&` +
-                        `title=${encodeURIComponent(title)}` +
-                        `#Intent;scheme=https;package=com.google.android.googlequicksearchbox;` +
-                        `action=android.intent.action.VIEW;` +
-                        `S.browser_fallback_url=${encodeURIComponent(glbUrl)};end;`;
+                    // Use Google Scene Viewer with branding
+                    const intentUrl = buildAndroidArUrl(glbUrl);
                     
                     window.location.href = intentUrl;
                     

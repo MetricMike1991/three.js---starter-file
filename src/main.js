@@ -126,6 +126,9 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
+        // Setup AR branding from WordPress settings
+        this.setupARBranding();
+        
         // Setup quality toggle button after DOM is ready
         setTimeout(() => {
             this.setupQualityToggle();
@@ -1679,6 +1682,40 @@ class ThreeJSApp {
         this.ground.receiveShadow = this.groundParams.receiveShadow;
         this.ground.castShadow = this.groundParams.castShadow;
         this.ground.visible = this.groundParams.visible;
+    }
+
+    /**
+     * Setup AR branding from WordPress settings
+     * Uses the uploaded logo if available, otherwise uses default branding
+     */
+    setupARBranding() {
+        const branding = {
+            companyName: 'FlexFrame',
+            callToAction: 'Visit FlexFrame',
+            websiteUrl: window.location.origin
+        };
+
+        // Check if WordPress settings have a custom logo
+        if (window.flexframeSettings) {
+            // Use uploaded logo URL if available
+            if (window.flexframeSettings.logoUrl) {
+                let logoUrl = window.flexframeSettings.logoUrl;
+                // Ensure HTTPS
+                if (logoUrl.startsWith('http://')) {
+                    logoUrl = logoUrl.replace('http://', 'https://');
+                }
+                branding.logoUrl = logoUrl;
+                console.log('[FlexFrame AR] Using WordPress logo for AR branding:', logoUrl);
+            }
+
+            // Use site URL if available
+            if (window.flexframeSettings.siteUrl) {
+                branding.websiteUrl = window.flexframeSettings.siteUrl;
+            }
+        }
+
+        // Apply branding to AR handler
+        arHandler.setBranding(branding);
     }
 
     setupQualityToggle() {

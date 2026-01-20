@@ -1,7 +1,7 @@
 /**
  * AR Handler Module
  * Handles AR functionality across iOS (USDZ), Android (GLB), and Desktop (QR code)
- * v1.0 - Initial AR implementation
+ * v1.1 - Added branding support for iOS banner and Android link button
  */
 
 export class ARHandler {
@@ -9,7 +9,24 @@ export class ARHandler {
         console.log('[FlexFrame AR] ARHandler initialized');
         this.currentConfig = null;
         this.qrModal = null;
+        this.branding = {
+            logoUrl: null,
+            websiteUrl: 'https://thegymmanagerblog.com',
+            companyName: 'FlexFrame',
+            callToAction: 'Visit FlexFrame'
+        };
         this.setupARButton();
+    }
+
+    /**
+     * Set branding information for AR experiences
+     */
+    setBranding(options) {
+        if (options.logoUrl) this.branding.logoUrl = options.logoUrl;
+        if (options.websiteUrl) this.branding.websiteUrl = options.websiteUrl;
+        if (options.companyName) this.branding.companyName = options.companyName;
+        if (options.callToAction) this.branding.callToAction = options.callToAction;
+        console.log('[FlexFrame AR] Branding updated:', this.branding);
     }
 
     /**
@@ -110,6 +127,7 @@ export class ARHandler {
 
     /**
      * Launch AR on iOS using AR Quick Look (USDZ)
+     * Supports custom banner with logo and call-to-action
      */
     launchIOSAR() {
         const usdzUrl = this.currentConfig.ar.usdz;
@@ -123,10 +141,36 @@ export class ARHandler {
 
         console.log('[FlexFrame AR] Launching iOS AR with USDZ:', usdzUrl);
 
+        // Build AR Quick Look URL with banner parameters
+        // iOS AR Quick Look supports hash parameters for customization
+        let arUrl = usdzUrl;
+        const hashParams = [];
+        
+        // Add call-to-action banner (appears at bottom of AR view)
+        if (this.branding.websiteUrl) {
+            hashParams.push(`callToAction=${encodeURIComponent(this.branding.callToAction)}`);
+            hashParams.push(`checkoutTitle=${encodeURIComponent(this.branding.companyName)}`);
+            hashParams.push(`checkoutSubtitle=${encodeURIComponent('Tap to visit website')}`);
+            // The banner links to this URL when tapped
+            hashParams.push(`canonicalWebPageURL=${encodeURIComponent(this.branding.websiteUrl)}`);
+        }
+        
+        // Add custom banner image if logo is available
+        if (this.branding.logoUrl) {
+            hashParams.push(`custom=${encodeURIComponent(this.branding.logoUrl)}`);
+        }
+        
+        // Append hash parameters to URL
+        if (hashParams.length > 0) {
+            arUrl += '#' + hashParams.join('&');
+        }
+
+        console.log('[FlexFrame AR] iOS AR URL with branding:', arUrl);
+
         // Create an invisible anchor with rel="ar" for AR Quick Look
         const anchor = document.createElement('a');
         anchor.setAttribute('rel', 'ar');
-        anchor.setAttribute('href', usdzUrl);
+        anchor.setAttribute('href', arUrl);
         
         // iOS requires an image as the anchor content
         const img = document.createElement('img');
@@ -142,6 +186,7 @@ export class ARHandler {
 
     /**
      * Launch AR on Android using Scene Viewer (GLB)
+     * Supports branded link button at bottom of AR view
      */
     launchAndroidAR() {
         const glbUrl = this.currentConfig.ar.glb;
@@ -154,15 +199,27 @@ export class ARHandler {
 
         console.log('[FlexFrame AR] Launching Android AR with GLB:', glbUrl);
 
+        // Build Scene Viewer URL with branding parameters
+        let sceneViewerParams = [
+            `file=${encodeURIComponent(glbUrl)}`,
+            `mode=ar_preferred`,
+            `title=${encodeURIComponent(this.currentConfig.exerciseId || 'Exercise')}`
+        ];
+        
+        // Add branded link button (appears at bottom of AR view)
+        if (this.branding.websiteUrl) {
+            sceneViewerParams.push(`link=${encodeURIComponent(this.branding.websiteUrl)}`);
+            sceneViewerParams.push(`linkText=${encodeURIComponent(this.branding.callToAction)}`);
+        }
+
         // Use Google's Scene Viewer intent
         const intentUrl = `intent://arvr.google.com/scene-viewer/1.0?` +
-            `file=${encodeURIComponent(glbUrl)}&` +
-            `mode=ar_preferred&` +
-            `title=${encodeURIComponent(this.currentConfig.exerciseId || 'Exercise')}` +
+            sceneViewerParams.join('&') +
             `#Intent;scheme=https;package=com.google.android.googlequicksearchbox;` +
             `action=android.intent.action.VIEW;` +
             `S.browser_fallback_url=${encodeURIComponent(glbUrl)};end;`;
 
+        console.log('[FlexFrame AR] Android AR URL with branding:', intentUrl);
         window.location.href = intentUrl;
     }
 
@@ -304,12 +361,26 @@ export class ARHandler {
         const usdzUrl = this.currentConfig?.ar?.usdz;
         const exerciseId = this.currentConfig?.exerciseId || 'exercise';
 
-        // Create AR viewer URL parameters
+        // Create AR viewer URL parameters including branding
         const arParams = new URLSearchParams({
             glb: glbUrl || '',
             usdz: usdzUrl || '',
             title: exerciseId
         });
+        
+        // Add branding parameters if available
+        if (this.branding.logoUrl) {
+            arParams.set('logo', this.branding.logoUrl);
+        }
+        if (this.branding.websiteUrl) {
+            arParams.set('website', this.branding.websiteUrl);
+        }
+        if (this.branding.companyName) {
+            arParams.set('company', this.branding.companyName);
+        }
+        if (this.branding.callToAction) {
+            arParams.set('cta', this.branding.callToAction);
+        }
 
         // Use the AR viewer page from the WordPress plugin
         // This is located at /wp-content/plugins/flexframe-v28/viewer/ar-viewer.html
