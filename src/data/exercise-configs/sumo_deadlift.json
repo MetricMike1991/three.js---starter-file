@@ -2,6 +2,10 @@
   "exerciseId": "sumo_deadlift",
   "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.%20Sumo%20Deadlift.glb",
   "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.Sumo-New%20glb.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.%20Sumo%20Deadlift.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006%20Sumo%20Old%20USDZ.usdz"
+  },
   "model": {
     "position": [0, 0.01, 0],
     "rotation": [0, 0, 0],

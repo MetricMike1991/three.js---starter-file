@@ -3,7 +3,7 @@
  * Organized modular architecture for better maintainability
  */
 
-console.log('[FlexFrame Build] main.js v28.1 loaded - Build timestamp:', new Date().toISOString());
+console.log('[FlexFrame Build] main.js v28.4 loaded - AR Support - Build timestamp:', new Date().toISOString());
 
 // Helper function to resolve asset paths for WordPress plugin
 export function getAssetUrl(path) {
@@ -32,6 +32,7 @@ import AnimationPlayer from './js/animation-player.js';
 import { ScreenshotUtils } from './js/screenshot-utils.js';
 import { MultiThumbnailMenuSystem } from './js/multi-thumbnail-menu.js';
 import { RightMenuSystem } from './js/right-menu-system.js';
+import { arHandler } from './js/ar-handler.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 
 /**
@@ -169,6 +170,9 @@ class ThreeJSApp {
                     
                     // Store full config for quality switching
                     this.currentConfig = config;
+                    
+                    // Update AR handler with new config
+                    arHandler.updateConfig(config);
                     
                     // Store config temporarily to apply after model loads
                     this.pendingModelConfig = config.model;
