@@ -1443,8 +1443,8 @@ body
 
 .thumbnail-item.selected {
     transform: scale(1.05);
-    border-color: #4a9eff;
-    box-shadow: 0 0 20px rgba(74, 158, 255, 0.5), 0 5px 20px rgba(0, 0, 0, 0.3);
+    border-color: var(--flexframe-primary-color, #4a9eff);
+    box-shadow: 0 0 20px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.5), 0 5px 20px rgba(0, 0, 0, 0.3);
 }
 
 .thumbnail-item.selected img {
@@ -1456,7 +1456,7 @@ body
     position: absolute;
     top: 10px;
     right: 10px;
-    background: #4a9eff;
+    background: var(--flexframe-primary-color, #4a9eff);
     color: white;
     width: 24px;
     height: 24px;

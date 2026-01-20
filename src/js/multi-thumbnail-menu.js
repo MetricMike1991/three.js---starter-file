@@ -267,16 +267,22 @@ class ThumbnailDropdownMenu {
         this.lastScrollInteraction = 0;
         
         // Style settings (shared across all menus)
+        // Use primary color from WordPress settings for glow, fallback to blue
+        const primaryColor = window.flexframeSettings?.primaryColor || '#4a9eff';
+        console.log('[FlexFrame Glow] flexframeSettings:', window.flexframeSettings);
+        console.log('[FlexFrame Glow] primaryColor value:', primaryColor);
+        console.log('[FlexFrame Glow] Using primary color for thumbnail glow:', primaryColor);
         this.settings = {
             widthPercentage: 90,
             backgroundColor: '#000000',
             backgroundOpacity: 0.9,
             borderRadius: 12,
             keepOpen: false,
-            glowColor: '#4a9eff',
+            glowColor: primaryColor,
             glowIntensity: 0.6,
             glowSize: 20
         };
+        console.log('[FlexFrame Glow] Menu settings initialized with glowColor:', this.settings.glowColor);
         
         this.initializeElements();
         this.loadExerciseData();
@@ -1273,13 +1279,28 @@ export class MultiThumbnailMenuSystem {
         this.selectedMuscle = null; // Track selected muscle for filtering
         this.selectedEquipment = null; // Track selected equipment for filtering
         this.selectedExerciseId = null; // Track selected exercise to preserve selection
+        
+        // Use primary color from WordPress settings for glow, fallback to blue
+        const primaryColor = window.flexframeSettings?.primaryColor || '#4a9eff';
+        console.log('[FlexFrame Glow] MultiThumbnailMenuSystem using primaryColor:', primaryColor);
+        
+        // Set CSS custom property for primary color (used by style.css)
+        document.documentElement.style.setProperty('--flexframe-primary-color', primaryColor);
+        // Also set RGB values for rgba() usage
+        const hex = primaryColor.replace('#', '');
+        const r = parseInt(hex.substring(0, 2), 16);
+        const g = parseInt(hex.substring(2, 4), 16);
+        const b = parseInt(hex.substring(4, 6), 16);
+        document.documentElement.style.setProperty('--flexframe-primary-color-rgb', `${r}, ${g}, ${b}`);
+        console.log('[FlexFrame Glow] Set CSS variables --flexframe-primary-color:', primaryColor, 'RGB:', r, g, b);
+        
         this.settings = {
             widthPercentage: 90,
             backgroundColor: '#000000',
             backgroundOpacity: 0.9,
             borderRadius: 12,
             keepOpen: false,
-            glowColor: '#4a9eff',
+            glowColor: primaryColor,
             glowIntensity: 0.6,
             glowSize: 20
         };

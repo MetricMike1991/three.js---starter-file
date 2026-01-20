@@ -466,6 +466,7 @@ function flexframe_enqueue_assets() {
         $menu_bg_opacity = floatval(get_option('flexframe_menu_bg_opacity', 0.9));
         $menu_text_color = esc_attr(get_option('flexframe_menu_text_color', '#ffffff'));
         $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#f50000'));
+        $primary_color = esc_attr(get_option('flexframe_primary_color', '#f50000'));
         $hide_right_menu = get_option('flexframe_hide_right_menu', false);
         
         // Convert hex to RGB for rgba usage
@@ -997,6 +998,19 @@ function flexframe_enqueue_assets() {
                 fill: #ffffff !important;
             }
             
+            /* ===== SELECTED THUMBNAIL GLOW & CHECKMARK - Uses Primary Color ===== */
+            #flexframe-viewer-container .thumbnail-item.selected,
+            .thumbnail-item.selected {
+                border-color: ' . $primary_color . ' !important;
+                box-shadow: 0 0 20px ' . $primary_color . '80 !important;
+            }
+            #flexframe-viewer-container .thumbnail-item.selected::before,
+            .thumbnail-item.selected::before,
+            .thumbnail-item.selected:before {
+                background: ' . $primary_color . ' !important;
+                background-color: ' . $primary_color . ' !important;
+            }
+            
             /* ===== LINKS HOVER ===== */
             .thumbnail-grid-container a:hover,
             .thumbnail-dropdown a:hover,
@@ -1226,7 +1240,7 @@ function flexframe_enqueue_assets() {
         // Register JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-DYLqHKYX.js',
+            FLEXFRAME_PLUGIN_URL . 'viewer/assets/index-wZFzlDGw.js',
             array(),
             FLEXFRAME_VERSION,
             true
