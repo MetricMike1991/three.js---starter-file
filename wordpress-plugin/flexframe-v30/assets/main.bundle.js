@@ -1,4 +1,28 @@
-(() => {
+var FlexFrame = (() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // src/main.js
+  var main_exports = {};
+  __export(main_exports, {
+    getAssetUrl: () => getAssetUrl
+  });
+
   // node_modules/three/build/three.core.js
   var REVISION = "174";
   var MOUSE = { LEFT: 0, MIDDLE: 1, RIGHT: 2, ROTATE: 0, DOLLY: 1, PAN: 2 };
@@ -31652,7 +31676,7 @@ void main() {
     // Show/hide screenshot button
     setScreenshotButtonVisible(visible) {
       if (this.screenshotBtn) {
-        this.screenshotBtn.style.display = visible ? "flex" : "none";
+        this.screenshotBtn.style.setProperty("display", visible ? "flex" : "none", "important");
       }
     }
   };
@@ -31703,6 +31727,11 @@ void main() {
       width: 1920,
       height: 1080,
       addTimestamp: true,
+      // Frame cropping - when provided, adjusts camera to capture only what's in the frame
+      frameWidth: null,
+      frameHeight: null,
+      containerWidth: null,
+      containerHeight: null,
       ...options
     };
     try {
@@ -31734,6 +31763,22 @@ void main() {
       }
       const tempCamera = camera.clone();
       tempCamera.aspect = settings.width / settings.height;
+      if (settings.frameWidth && settings.frameHeight && settings.containerWidth && settings.containerHeight) {
+        const containerAspect = settings.containerWidth / settings.containerHeight;
+        const targetAspect = settings.width / settings.height;
+        let frameWidthRatio, frameHeightRatio;
+        if (targetAspect > containerAspect) {
+          frameWidthRatio = settings.frameWidth / settings.containerWidth;
+          frameHeightRatio = settings.frameHeight / settings.containerHeight;
+        } else {
+          frameWidthRatio = settings.frameWidth / settings.containerWidth;
+          frameHeightRatio = settings.frameHeight / settings.containerHeight;
+        }
+        const fovScale = frameHeightRatio;
+        const originalFov = camera.fov;
+        tempCamera.fov = originalFov * fovScale;
+        console.log(`\u{1F4F8} Frame crop: frame ${settings.frameWidth}x${settings.frameHeight}, container ${settings.containerWidth}x${settings.containerHeight}, fovScale: ${fovScale.toFixed(3)}, FOV: ${originalFov} -> ${tempCamera.fov.toFixed(1)}`);
+      }
       tempCamera.updateProjectionMatrix();
       let originalBackground = null;
       if (settings.transparent && scene.background) {
@@ -32038,6 +32083,20 @@ void main() {
           const originalCount = exercises.length;
           exercises = exercises.filter((ex) => !hiddenIds.includes(ex.id));
           console.log(`\u{1F512} Filtered ${originalCount - exercises.length} hidden exercises (${exercises.length} remaining)`);
+        }
+        if (typeof window.flexframeSettings !== "undefined" && window.flexframeSettings.customThumbnails && typeof window.flexframeSettings.customThumbnails === "object") {
+          const customThumbnails = window.flexframeSettings.customThumbnails;
+          let customCount = 0;
+          exercises = exercises.map((ex) => {
+            if (customThumbnails[ex.id]) {
+              customCount++;
+              return { ...ex, thumbnailUrl: customThumbnails[ex.id] };
+            }
+            return ex;
+          });
+          if (customCount > 0) {
+            console.log(`\u{1F5BC}\uFE0F Applied ${customCount} custom thumbnails`);
+          }
         }
         this.allExercises = exercises;
         console.log("\u2705 Loaded exercises from CDN:", cdnUrl);
@@ -37790,13 +37849,29 @@ void main() {
       if (this.ground) {
         this.ground.visible = showFloorShadow;
       }
+      let frameWidth = null, frameHeight = null;
+      let containerWidth = null, containerHeight = null;
+      if (this.screenshotFramePanel) {
+        const container = document.getElementById("flexframe-viewer-container");
+        if (container) {
+          const containerRect = container.getBoundingClientRect();
+          containerWidth = containerRect.width;
+          containerHeight = containerRect.height;
+          frameWidth = parseFloat(this.screenshotFramePanel.style.width) || 0;
+          frameHeight = parseFloat(this.screenshotFramePanel.style.height) || 0;
+        }
+      }
       try {
         const result = await ScreenshotUtils.takeScreenshot(renderer, scene, camera, {
           width,
           height,
           filename,
           format,
-          transparent
+          transparent,
+          frameWidth,
+          frameHeight,
+          containerWidth,
+          containerHeight
         });
         if (result.success) {
           console.log(`\u{1F4F8} Custom screenshot saved: ${result.filename} (${width}x${height})`);
@@ -39355,6 +39430,7 @@ Note: Remove all texture maps (map, normalMap, emissiveMap, bumpMap) for a pure 
     }
   };
   var app = new ThreeJSApp();
+  return __toCommonJS(main_exports);
 })();
 /*! Bundled license information:
 

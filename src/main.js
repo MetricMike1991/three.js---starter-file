@@ -2311,13 +2311,34 @@ class ThreeJSApp {
             this.ground.visible = showFloorShadow;
         }
         
+        // Get frame dimensions to properly crop the screenshot
+        let frameWidth = null, frameHeight = null;
+        let containerWidth = null, containerHeight = null;
+        
+        if (this.screenshotFramePanel) {
+            const container = document.getElementById('flexframe-viewer-container');
+            if (container) {
+                const containerRect = container.getBoundingClientRect();
+                containerWidth = containerRect.width;
+                containerHeight = containerRect.height;
+                
+                // Get the actual frame dimensions on screen
+                frameWidth = parseFloat(this.screenshotFramePanel.style.width) || 0;
+                frameHeight = parseFloat(this.screenshotFramePanel.style.height) || 0;
+            }
+        }
+        
         try {
             const result = await ScreenshotUtils.takeScreenshot(renderer, scene, camera, {
                 width: width,
                 height: height,
                 filename: filename,
                 format: format,
-                transparent: transparent
+                transparent: transparent,
+                frameWidth: frameWidth,
+                frameHeight: frameHeight,
+                containerWidth: containerWidth,
+                containerHeight: containerHeight
             });
             
             if (result.success) {

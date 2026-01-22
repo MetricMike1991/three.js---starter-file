@@ -325,6 +325,24 @@ class ThumbnailDropdownMenu {
                 console.log(`🔒 Filtered ${originalCount - exercises.length} hidden exercises (${exercises.length} remaining)`);
             }
             
+            // Apply custom thumbnails if available from WordPress settings
+            if (typeof window.flexframeSettings !== 'undefined' && 
+                window.flexframeSettings.customThumbnails && 
+                typeof window.flexframeSettings.customThumbnails === 'object') {
+                const customThumbnails = window.flexframeSettings.customThumbnails;
+                let customCount = 0;
+                exercises = exercises.map(ex => {
+                    if (customThumbnails[ex.id]) {
+                        customCount++;
+                        return { ...ex, thumbnailUrl: customThumbnails[ex.id] };
+                    }
+                    return ex;
+                });
+                if (customCount > 0) {
+                    console.log(`🖼️ Applied ${customCount} custom thumbnails`);
+                }
+            }
+            
             this.allExercises = exercises;
             console.log('✅ Loaded exercises from CDN:', cdnUrl);
             this.filterDataForMenu();

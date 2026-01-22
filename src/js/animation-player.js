@@ -462,7 +462,7 @@ export class AnimationPlayer {
     // Show/hide screenshot button
     setScreenshotButtonVisible(visible) {
         if (this.screenshotBtn) {
-            this.screenshotBtn.style.display = visible ? 'flex' : 'none';
+            this.screenshotBtn.style.setProperty('display', visible ? 'flex' : 'none', 'important');
         }
     }
 }

@@ -417,6 +417,13 @@ function flexframe_register_settings() {
         'default' => '[]'
     ));
     
+    // Custom exercise thumbnails - stored as JSON object { exerciseId: thumbnailUrl }
+    register_setting('flexframe_settings_group', 'flexframe_custom_thumbnails', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => '{}'
+    ));
+    
     // Viewer page URL for generating exercise deep links
     register_setting('flexframe_settings_group', 'flexframe_viewer_page_url', array(
         'type' => 'string',
@@ -689,6 +696,9 @@ function flexframe_settings_page() {
     // Hidden exercises
     $hidden_exercises = get_option('flexframe_hidden_exercises', '[]');
     
+    // Custom exercise thumbnails
+    $custom_thumbnails = get_option('flexframe_custom_thumbnails', '{}');
+    
     // Get current page URL for exercise deep links
     $current_page_url = home_url($_SERVER['REQUEST_URI']);
     // Try to get the page where shortcode is used (if set)
@@ -814,6 +824,8 @@ function flexframe_settings_page() {
                             
                             <!-- Hidden input to store the JSON array of hidden exercises -->
                             <input type="hidden" id="flexframe_hidden_exercises" name="flexframe_hidden_exercises" value="<?php echo esc_attr($hidden_exercises); ?>" />
+                            <!-- Hidden input to store custom thumbnails -->
+                            <input type="hidden" id="flexframe_custom_thumbnails" name="flexframe_custom_thumbnails" value="<?php echo esc_attr($custom_thumbnails); ?>" />
                         </div>
                         
                         <p class="description" style="margin-top: 16px;">
@@ -2724,6 +2736,69 @@ function flexframe_settings_page() {
         }
         .qr-code-btn:hover {
             background: #6b3fa0;
+        }
+        /* Exercise Thumbnail Styles */
+        .exercise-thumbnail-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 12px;
+        }
+        .exercise-thumbnail {
+            width: 50px;
+            height: 50px;
+            border-radius: 6px;
+            overflow: hidden;
+            border: 2px solid #ddd;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .exercise-thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .exercise-thumbnail .no-thumbnail {
+            font-size: 20px;
+            color: #999;
+        }
+        .exercise-thumbnail.has-custom {
+            border-color: #00a32a;
+        }
+        .exercise-thumbnail-actions {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        .upload-thumbnail-btn {
+            padding: 4px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            background: #2271b1;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .upload-thumbnail-btn:hover {
+            background: #135e96;
+        }
+        .remove-thumbnail-btn {
+            padding: 4px 8px;
+            font-size: 11px;
+            cursor: pointer;
+            background: #d63638;
+            color: #fff;
+            border: none;
+            border-radius: 3px;
+            transition: background 0.2s;
+        }
+        .remove-thumbnail-btn:hover {
+            background: #b32d2e;
         }
         .no-exercises-found {
             padding: 40px;
@@ -4755,6 +4830,7 @@ function flexframe_settings_page() {
         // Exercise Library functionality
         var exercises = [];
         var hiddenExercises = [];
+        var customThumbnails = {};
         var viewerPageUrl = $('#flexframe_viewer_page_url').val() || '<?php echo esc_js(home_url('/')); ?>';
         
         // Load hidden exercises from the hidden input
@@ -4762,6 +4838,13 @@ function flexframe_settings_page() {
             hiddenExercises = JSON.parse($('#flexframe_hidden_exercises').val() || '[]');
         } catch (e) {
             hiddenExercises = [];
+        }
+        
+        // Load custom thumbnails from the hidden input
+        try {
+            customThumbnails = JSON.parse($('#flexframe_custom_thumbnails').val() || '{}');
+        } catch (e) {
+            customThumbnails = {};
         }
         
         // Fetch exercises from CDN
@@ -4807,10 +4890,29 @@ function flexframe_settings_page() {
                 var exerciseUrl = generateExerciseUrl(exercise.id);
                 var muscleGroups = exercise.muscleGroup ? exercise.muscleGroup.join(', ') : '';
                 var equipment = exercise.equipment ? exercise.equipment.join(', ') : '';
+                var customThumb = customThumbnails[exercise.id] || '';
+                var defaultThumb = exercise.thumbnail || '';
+                var displayThumb = customThumb || defaultThumb;
+                var hasCustom = !!customThumb;
                 
                 html += '<div class="exercise-item' + (isHidden ? ' hidden-exercise' : '') + '" data-id="' + exercise.id + '">';
                 html += '    <div class="exercise-visibility-toggle">';
                 html += '        <input type="checkbox" ' + (isHidden ? '' : 'checked') + ' title="' + (isHidden ? 'Click to show' : 'Click to hide') + '" />';
+                html += '    </div>';
+                html += '    <div class="exercise-thumbnail-wrapper">';
+                html += '        <div class="exercise-thumbnail' + (hasCustom ? ' has-custom' : '') + '" data-id="' + exercise.id + '">';
+                if (displayThumb) {
+                    html += '            <img src="' + displayThumb + '" alt="' + exercise.name + '" />';
+                } else {
+                    html += '            <span class="no-thumbnail">📷</span>';
+                }
+                html += '        </div>';
+                html += '        <div class="exercise-thumbnail-actions">';
+                html += '            <button type="button" class="upload-thumbnail-btn" data-id="' + exercise.id + '" data-name="' + exercise.name.replace(/"/g, '&quot;') + '">' + (hasCustom ? 'Change' : 'Upload') + '</button>';
+                if (hasCustom) {
+                    html += '            <button type="button" class="remove-thumbnail-btn" data-id="' + exercise.id + '">Remove</button>';
+                }
+                html += '        </div>';
                 html += '    </div>';
                 html += '    <div class="exercise-info">';
                 html += '        <div class="exercise-name">' + exercise.name + '</div>';
@@ -4872,6 +4974,96 @@ function flexframe_settings_page() {
             
             // Update the hidden input
             $('#flexframe_hidden_exercises').val(JSON.stringify(hiddenExercises));
+        });
+        
+        // Upload custom thumbnail
+        $(document).on('click', '.upload-thumbnail-btn', function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var exerciseId = $btn.data('id');
+            var exerciseName = $btn.data('name');
+            
+            // Create WordPress media frame
+            var mediaFrame = wp.media({
+                title: 'Select Thumbnail for ' + exerciseName,
+                button: {
+                    text: 'Use as Thumbnail'
+                },
+                multiple: false,
+                library: {
+                    type: 'image'
+                }
+            });
+            
+            // When image is selected
+            mediaFrame.on('select', function() {
+                var attachment = mediaFrame.state().get('selection').first().toJSON();
+                var imageUrl = attachment.url;
+                
+                // Use thumbnail size if available
+                if (attachment.sizes && attachment.sizes.thumbnail) {
+                    imageUrl = attachment.sizes.thumbnail.url;
+                } else if (attachment.sizes && attachment.sizes.medium) {
+                    imageUrl = attachment.sizes.medium.url;
+                }
+                
+                // Update customThumbnails object
+                customThumbnails[exerciseId] = imageUrl;
+                
+                // Update hidden input
+                $('#flexframe_custom_thumbnails').val(JSON.stringify(customThumbnails));
+                
+                // Update the thumbnail display
+                var $wrapper = $btn.closest('.exercise-thumbnail-wrapper');
+                var $thumb = $wrapper.find('.exercise-thumbnail');
+                $thumb.html('<img src="' + imageUrl + '" alt="' + exerciseName + '" />');
+                $thumb.addClass('has-custom');
+                
+                // Update button text
+                $btn.text('Change');
+                
+                // Add remove button if not present
+                if ($wrapper.find('.remove-thumbnail-btn').length === 0) {
+                    $btn.after('<button type="button" class="remove-thumbnail-btn" data-id="' + exerciseId + '">Remove</button>');
+                }
+            });
+            
+            // Open the media frame
+            mediaFrame.open();
+        });
+        
+        // Remove custom thumbnail
+        $(document).on('click', '.remove-thumbnail-btn', function(e) {
+            e.preventDefault();
+            var $btn = $(this);
+            var exerciseId = $btn.data('id');
+            var $wrapper = $btn.closest('.exercise-thumbnail-wrapper');
+            var $item = $btn.closest('.exercise-item');
+            
+            // Remove from customThumbnails object
+            delete customThumbnails[exerciseId];
+            
+            // Update hidden input
+            $('#flexframe_custom_thumbnails').val(JSON.stringify(customThumbnails));
+            
+            // Find the original thumbnail from exercises data
+            var exercise = exercisesData.find(function(ex) { return ex.id === exerciseId; });
+            var defaultThumb = exercise ? (exercise.thumbnail || '') : '';
+            
+            // Update the thumbnail display
+            var $thumb = $wrapper.find('.exercise-thumbnail');
+            if (defaultThumb) {
+                $thumb.html('<img src="' + defaultThumb + '" alt="' + (exercise ? exercise.name : '') + '" />');
+            } else {
+                $thumb.html('<span class="no-thumbnail">📷</span>');
+            }
+            $thumb.removeClass('has-custom');
+            
+            // Update upload button text
+            $wrapper.find('.upload-thumbnail-btn').text('Upload');
+            
+            // Remove the remove button
+            $btn.remove();
         });
         
         // Copy URL functionality

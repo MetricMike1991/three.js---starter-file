@@ -59,6 +59,11 @@ const takeScreenshot = async (renderer, scene, camera, options = {}) => {
         width: 1920,
         height: 1080,
         addTimestamp: true,
+        // Frame cropping - when provided, adjusts camera to capture only what's in the frame
+        frameWidth: null,
+        frameHeight: null,
+        containerWidth: null,
+        containerHeight: null,
         ...options
     };
 
@@ -104,6 +109,42 @@ const takeScreenshot = async (renderer, scene, camera, options = {}) => {
         // Create a temporary camera clone instead of modifying the original
         const tempCamera = camera.clone();
         tempCamera.aspect = settings.width / settings.height;
+        
+        // If frame dimensions are provided, adjust FOV to capture what's visible in the frame
+        if (settings.frameWidth && settings.frameHeight && 
+            settings.containerWidth && settings.containerHeight) {
+            
+            const containerAspect = settings.containerWidth / settings.containerHeight;
+            const targetAspect = settings.width / settings.height;
+            
+            // Calculate how much of the view the frame covers
+            // The frame is centered and scaled to fit 80% of the container while maintaining aspect ratio
+            let frameWidthRatio, frameHeightRatio;
+            
+            if (targetAspect > containerAspect) {
+                // Frame is width-limited
+                frameWidthRatio = settings.frameWidth / settings.containerWidth;
+                frameHeightRatio = settings.frameHeight / settings.containerHeight;
+            } else {
+                // Frame is height-limited
+                frameWidthRatio = settings.frameWidth / settings.containerWidth;
+                frameHeightRatio = settings.frameHeight / settings.containerHeight;
+            }
+            
+            // The vertical extent of the frame relative to the container determines the FOV adjustment
+            // If the frame is smaller than the container (which it usually is), we need to zoom in
+            const fovScale = frameHeightRatio;
+            
+            // Adjust the FOV to capture only what's in the frame
+            // Smaller frame = need to zoom in = smaller FOV
+            const originalFov = camera.fov;
+            tempCamera.fov = originalFov * fovScale;
+            
+            console.log(`📸 Frame crop: frame ${settings.frameWidth}x${settings.frameHeight}, ` +
+                       `container ${settings.containerWidth}x${settings.containerHeight}, ` +
+                       `fovScale: ${fovScale.toFixed(3)}, FOV: ${originalFov} -> ${tempCamera.fov.toFixed(1)}`);
+        }
+        
         tempCamera.updateProjectionMatrix();
 
         // Store original scene background for transparent screenshots

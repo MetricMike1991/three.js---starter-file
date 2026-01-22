@@ -1384,6 +1384,13 @@ function flexframe_enqueue_assets() {
             $hidden_exercises = array();
         }
         
+        // Get custom thumbnails
+        $custom_thumbnails_json = get_option('flexframe_custom_thumbnails', '{}');
+        $custom_thumbnails = json_decode($custom_thumbnails_json, true);
+        if (!is_array($custom_thumbnails)) {
+            $custom_thumbnails = array();
+        }
+        
         // Get UI settings
         $ui_settings = array(
             'spinnerColor' => get_option('flexframe_spinner_color', '#4a9eff'),
@@ -1450,6 +1457,7 @@ function flexframe_enqueue_assets() {
             'materialPreset' => $material_preset,
             'skinSettings' => $skin_settings,
             'hiddenExercises' => $hidden_exercises,
+            'customThumbnails' => $custom_thumbnails,
             'uiSettings' => $ui_settings,
             'backgroundSettings' => $background_settings,
             'lightingSettings' => $lighting_settings,
