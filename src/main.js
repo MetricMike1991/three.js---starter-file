@@ -519,10 +519,15 @@ class ThreeJSApp {
             }
         }
         
-        // Apply spinner color if available
-        if (uiSettings.spinnerColor) {
-            this.updateSpinnerColor(uiSettings.spinnerColor);
-        }
+        // Apply spinner color - use primary color as the default
+        const primaryColor = window.flexframeSettings?.primaryColor || '#4a9eff';
+        const spinnerColor = uiSettings.spinnerColor || primaryColor;
+        this.updateSpinnerColor(spinnerColor);
+        
+        // Always update progress bar with primary color (not spinner color)
+        this.updateProgressBarColor(primaryColor);
+        
+        console.log('[FlexFrame UI] Spinner color:', spinnerColor, ', Progress bar color (primary):', primaryColor);
     }
     
     applyWordPressSceneSettings() {
@@ -611,27 +616,88 @@ class ThreeJSApp {
     }
     
     updateSpinnerColor(color) {
-        // Update CSS for all spinner types
+        // Update CSS for all spinner types in the model-loader
         const style = document.createElement('style');
         style.id = 'flexframe-spinner-color';
+        
+        // Generate rgba versions for gradients
+        const hexToRgba = (hex, alpha) => {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        };
+        
         style.textContent = `
-            .loading-overlay .spinner-box .spinner-circle {
-                border-top-color: ${color} !important;
+            /* COOL SPINNER (original) */
+            #model-loader .loader-spinner {
+                background: conic-gradient(
+                    from 0deg,
+                    transparent 0%,
+                    ${hexToRgba(color, 0.3)} 30%,
+                    ${hexToRgba(color, 0.8)} 60%,
+                    ${color} 80%,
+                    ${color} 100%
+                ) !important;
             }
-            .loading-overlay .spinner-box .spinner-dots span {
+            #model-loader .loader-spinner::before {
+                box-shadow: inset 0 0 10px ${hexToRgba(color, 0.3)} !important;
+            }
+            
+            /* GRADIENT SPINNER (circle-border) */
+            #model-loader .circle-border {
+                background: linear-gradient(0deg, ${hexToRgba(color, 0.1)} 33%, ${color} 100%) !important;
+            }
+            
+            /* GRADIENT CIRCLE PLANES (leo-border) */
+            #model-loader .leo-border-1 {
+                background: linear-gradient(0deg, ${hexToRgba(color, 0.1)} 33%, ${color} 100%) !important;
+            }
+            #model-loader .leo-border-2 {
+                background: linear-gradient(0deg, ${hexToRgba(color, 0.1)} 33%, ${color} 100%) !important;
+            }
+            
+            /* SPINNING SQUARES (configure-border) */
+            #model-loader .configure-border-1 {
+                background: ${color} !important;
+            }
+            #model-loader .configure-border-2 {
+                background: ${color} !important;
+            }
+            
+            /* LOADING DOTS (pulse-bubble) */
+            #model-loader .pulse-bubble {
                 background-color: ${color} !important;
             }
-            .loading-overlay .spinner-box .spinner-bars span {
+            
+            /* SOLAR SYSTEM (planets) */
+            #model-loader .planet {
                 background-color: ${color} !important;
             }
-            .loading-overlay .spinner-box .spinner-pulse {
+            #model-loader .sun {
                 background-color: ${color} !important;
             }
-            .loading-overlay .spinner-box .spinner-ripple span {
+            
+            /* SPINNER ORBITS */
+            #model-loader .blue-orbit {
+                border-color: ${hexToRgba(color, 0.65)} !important;
+            }
+            #model-loader .green-orbit {
+                border-color: ${hexToRgba(color, 0.65)} !important;
+            }
+            #model-loader .red-orbit {
+                border-color: ${hexToRgba(color, 0.65)} !important;
+            }
+            
+            /* THREE QUARTER SPINNER */
+            #model-loader .three-quarter-spinner {
                 border-color: ${color} !important;
+                border-top-color: transparent !important;
             }
-            .loading-overlay .spinner-box .cool-loader .loading-spinner {
-                border-top-color: ${color} !important;
+            
+            /* Loader text color */
+            #model-loader .loader-text {
+                color: ${color} !important;
             }
         `;
         
@@ -640,6 +706,57 @@ class ThreeJSApp {
         if (existing) existing.remove();
         
         document.head.appendChild(style);
+        console.log('[FlexFrame] Spinner color updated to:', color);
+    }
+    
+    updateProgressBarColor(color) {
+        // Update progress bar and loading text with primary color
+        const style = document.createElement('style');
+        style.id = 'flexframe-progress-color';
+        
+        // Generate rgba versions for gradients
+        const hexToRgba = (hex, alpha) => {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        };
+        
+        style.textContent = `
+            /* LOGO LOADER - Progress bar and text */
+            .logo-progress-bar {
+                background: linear-gradient(90deg, ${hexToRgba(color, 0.5)}, ${color}) !important;
+            }
+            .logo-progress-text {
+                color: ${color} !important;
+            }
+            
+            /* Indeterminate progress animation */
+            @keyframes indeterminateProgress {
+                0% { 
+                    width: 30%;
+                    margin-left: 0%;
+                    background: linear-gradient(90deg, ${hexToRgba(color, 0.3)}, ${color});
+                }
+                50% { 
+                    width: 50%;
+                    margin-left: 25%;
+                    background: linear-gradient(90deg, ${color}, ${hexToRgba(color, 0.3)});
+                }
+                100% { 
+                    width: 30%;
+                    margin-left: 70%;
+                    background: linear-gradient(90deg, ${hexToRgba(color, 0.3)}, ${color});
+                }
+            }
+        `;
+        
+        // Remove existing style if present
+        const existing = document.getElementById('flexframe-progress-color');
+        if (existing) existing.remove();
+        
+        document.head.appendChild(style);
+        console.log('[FlexFrame] Progress bar color updated to:', color);
     }
     
     setupCanvasInteraction() {

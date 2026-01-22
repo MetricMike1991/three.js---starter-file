@@ -3534,7 +3534,7 @@ function flexframe_settings_page() {
                 description: '<?php _e('Optimized settings with your brand colors.', 'flexframe-viewer'); ?>',
                 settings: {
                     // Use primary color from Step 1 for these (marked with 'primary')
-                    spinnerColor: '#00f510',
+                    spinnerColor: 'primary',
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,
@@ -3595,7 +3595,7 @@ function flexframe_settings_page() {
                 name: '<?php _e('Dark Theme', 'flexframe-viewer'); ?>',
                 description: '<?php _e('Dark interface with high contrast. Great for dark websites.', 'flexframe-viewer'); ?>',
                 settings: {
-                    spinnerColor: '#00f510',
+                    spinnerColor: 'primary',
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,
@@ -3656,7 +3656,7 @@ function flexframe_settings_page() {
                 name: '<?php _e('Light Theme', 'flexframe-viewer'); ?>',
                 description: '<?php _e('Light interface with soft colors. Great for light websites.', 'flexframe-viewer'); ?>',
                 settings: {
-                    spinnerColor: '#00f510',
+                    spinnerColor: 'primary',
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,
@@ -3722,7 +3722,7 @@ function flexframe_settings_page() {
                 name: '<?php _e('Branded Theme', 'flexframe-viewer'); ?>',
                 description: '<?php _e('White-to-brand gradient background with matching skin color. Perfect for showcasing your brand.', 'flexframe-viewer'); ?>',
                 settings: {
-                    spinnerColor: '#00f510',
+                    spinnerColor: 'primary',
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,

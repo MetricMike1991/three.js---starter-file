@@ -1391,9 +1391,15 @@ function flexframe_enqueue_assets() {
             $custom_thumbnails = array();
         }
         
+        // Get spinner color - if it's 'primary' or matches old green default, use primary color instead
+        $spinner_color_option = get_option('flexframe_spinner_color', '#4a9eff');
+        $spinner_color = ($spinner_color_option === 'primary' || $spinner_color_option === '#00f510') 
+            ? $primary_color 
+            : $spinner_color_option;
+        
         // Get UI settings
         $ui_settings = array(
-            'spinnerColor' => get_option('flexframe_spinner_color', '#4a9eff'),
+            'spinnerColor' => $spinner_color,
             'player' => array(
                 'bgColor' => get_option('flexframe_player_bg_color', '#000000'),
                 'bgOpacity' => floatval(get_option('flexframe_player_bg_opacity', 0.8)),
