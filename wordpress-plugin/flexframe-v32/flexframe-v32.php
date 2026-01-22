@@ -1449,6 +1449,37 @@ function flexframe_enqueue_assets() {
             'speed' => floatval(get_option('flexframe_particles_speed', 0.5))
         );
         
+        // Equipment Material Settings
+        $equipment_materials = array('barbell', 'bumper', 'cable', 'chrome', 'color1', 'metal', 'pad', 'plastic', 'rubber');
+        $equipment_settings = array();
+        
+        foreach ($equipment_materials as $mat_key) {
+            $is_enabled = get_option("flexframe_{$mat_key}_enabled", false);
+            if ($is_enabled) {
+                $equipment_settings[strtoupper($mat_key)] = array(
+                    'enabled' => true,
+                    'color' => get_option("flexframe_{$mat_key}_color", '#808080'),
+                    'opacity' => floatval(get_option("flexframe_{$mat_key}_opacity", 1)),
+                    'metalness' => floatval(get_option("flexframe_{$mat_key}_metalness", 0)),
+                    'roughness' => floatval(get_option("flexframe_{$mat_key}_roughness", 0.5)),
+                    'colorMapEnabled' => (bool) get_option("flexframe_{$mat_key}_color_map_enabled", true),
+                    'bumpScale' => floatval(get_option("flexframe_{$mat_key}_bump_scale", 1)),
+                    'normalScale' => floatval(get_option("flexframe_{$mat_key}_normal_scale", 1)),
+                    'clearcoat' => floatval(get_option("flexframe_{$mat_key}_clearcoat", 0)),
+                    'clearcoatRoughness' => floatval(get_option("flexframe_{$mat_key}_clearcoat_roughness", 0)),
+                    'emissiveColor' => get_option("flexframe_{$mat_key}_emissive_color", '#000000'),
+                    'emissiveIntensity' => floatval(get_option("flexframe_{$mat_key}_emissive_intensity", 0)),
+                    'blending' => get_option("flexframe_{$mat_key}_blending", 'normal'),
+                    'transmission' => floatval(get_option("flexframe_{$mat_key}_transmission", 0)),
+                    'thickness' => floatval(get_option("flexframe_{$mat_key}_thickness", 0)),
+                    'ior' => floatval(get_option("flexframe_{$mat_key}_ior", 1.5)),
+                    'envMapIntensity' => floatval(get_option("flexframe_{$mat_key}_env_intensity", 1)),
+                    'sheen' => floatval(get_option("flexframe_{$mat_key}_sheen", 0)),
+                    'sheenRoughness' => floatval(get_option("flexframe_{$mat_key}_sheen_roughness", 0.5)),
+                    'sheenColor' => get_option("flexframe_{$mat_key}_sheen_color", '#ffffff')
+                );
+            }
+        }
 
         
         $settings_data = array(
@@ -1462,6 +1493,7 @@ function flexframe_enqueue_assets() {
             'materialMode' => $material_mode,
             'materialPreset' => $material_preset,
             'skinSettings' => $skin_settings,
+            'equipmentMaterials' => $equipment_settings,
             'hiddenExercises' => $hidden_exercises,
             'customThumbnails' => $custom_thumbnails,
             'uiSettings' => $ui_settings,

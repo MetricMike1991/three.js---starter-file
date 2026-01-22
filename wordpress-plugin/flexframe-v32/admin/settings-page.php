@@ -410,6 +410,344 @@ function flexframe_register_settings() {
         'default' => 2.29
     ));
     
+    // ========== Equipment Material Settings ==========
+    // Materials: BARBELL, BUMPER, CABLE, CHROME, COLOR1, METAL, PAD, PLASTIC, RUBBER
+    
+    $equipment_materials = array(
+        'barbell' => array(
+            'color' => '#c0c0c0',
+            'opacity' => 1,
+            'metalness' => 0.9,
+            'roughness' => 0.3,
+            'color_map_enabled' => true,
+            'bump_scale' => 1,
+            'normal_scale' => 1,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'bumper' => array(
+            'color' => '#1a1a1a',
+            'opacity' => 1,
+            'metalness' => 0,
+            'roughness' => 0.8,
+            'color_map_enabled' => true,
+            'bump_scale' => 1,
+            'normal_scale' => 1,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'cable' => array(
+            'color' => '#2a2a2a',
+            'opacity' => 1,
+            'metalness' => 0.1,
+            'roughness' => 0.6,
+            'color_map_enabled' => true,
+            'bump_scale' => 1,
+            'normal_scale' => 1,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'chrome' => array(
+            'color' => '#ffffff',
+            'opacity' => 1,
+            'metalness' => 0.82,
+            'roughness' => 0.07,
+            'color_map_enabled' => false,
+            'bump_scale' => 0,
+            'normal_scale' => 0,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'color1' => array(
+            'color' => '#ff0000',
+            'opacity' => 1,
+            'metalness' => 0,
+            'roughness' => 0.22,
+            'color_map_enabled' => false,
+            'bump_scale' => 0,
+            'normal_scale' => 0,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'metal' => array(
+            'color' => '#808080',
+            'opacity' => 1,
+            'metalness' => 0.8,
+            'roughness' => 0.4,
+            'color_map_enabled' => true,
+            'bump_scale' => 1,
+            'normal_scale' => 1,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'pad' => array(
+            'color' => '#1a1a1a',
+            'opacity' => 1,
+            'metalness' => 0,
+            'roughness' => 0.9,
+            'color_map_enabled' => true,
+            'bump_scale' => 1,
+            'normal_scale' => 1,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'plastic' => array(
+            'color' => '#2a2a2a',
+            'opacity' => 1,
+            'metalness' => 0,
+            'roughness' => 0.5,
+            'color_map_enabled' => true,
+            'bump_scale' => 1,
+            'normal_scale' => 1,
+            'clearcoat' => 0.3,
+            'clearcoat_roughness' => 0.2,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        ),
+        'rubber' => array(
+            'color' => '#1a1a1a',
+            'opacity' => 1,
+            'metalness' => 0,
+            'roughness' => 0.95,
+            'color_map_enabled' => true,
+            'bump_scale' => 1,
+            'normal_scale' => 1,
+            'clearcoat' => 0,
+            'clearcoat_roughness' => 0,
+            'emissive_color' => '#000000',
+            'emissive_intensity' => 0,
+            'blending' => 'normal',
+            'transmission' => 0,
+            'thickness' => 0,
+            'ior' => 1.5,
+            'env_intensity' => 1,
+            'sheen' => 0,
+            'sheen_roughness' => 0.5,
+            'sheen_color' => '#ffffff'
+        )
+    );
+    
+    // Register settings for each equipment material
+    foreach ($equipment_materials as $mat_key => $defaults) {
+        // Enable/disable toggle for this material's custom settings
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_enabled", array(
+            'type' => 'boolean',
+            'sanitize_callback' => 'rest_sanitize_boolean',
+            'default' => false
+        ));
+        
+        // Color
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_color", array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_hex_color',
+            'default' => $defaults['color']
+        ));
+        
+        // Opacity
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_opacity", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['opacity']
+        ));
+        
+        // Metalness
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_metalness", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['metalness']
+        ));
+        
+        // Roughness
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_roughness", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['roughness']
+        ));
+        
+        // Color Map Toggle
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_color_map_enabled", array(
+            'type' => 'boolean',
+            'sanitize_callback' => 'rest_sanitize_boolean',
+            'default' => $defaults['color_map_enabled']
+        ));
+        
+        // Bump Scale
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_bump_scale", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['bump_scale']
+        ));
+        
+        // Normal Scale
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_normal_scale", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['normal_scale']
+        ));
+        
+        // Clearcoat
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_clearcoat", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['clearcoat']
+        ));
+        
+        // Clearcoat Roughness
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_clearcoat_roughness", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['clearcoat_roughness']
+        ));
+        
+        // Emissive Color
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_emissive_color", array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_hex_color',
+            'default' => $defaults['emissive_color']
+        ));
+        
+        // Emissive Intensity
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_emissive_intensity", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['emissive_intensity']
+        ));
+        
+        // Blending Mode
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_blending", array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_text_field',
+            'default' => $defaults['blending']
+        ));
+        
+        // Transmission
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_transmission", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['transmission']
+        ));
+        
+        // Thickness
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_thickness", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['thickness']
+        ));
+        
+        // IOR
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_ior", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['ior']
+        ));
+        
+        // Environment Map Intensity
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_env_intensity", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['env_intensity']
+        ));
+        
+        // Sheen
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_sheen", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['sheen']
+        ));
+        
+        // Sheen Roughness
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_sheen_roughness", array(
+            'type' => 'number',
+            'sanitize_callback' => 'floatval',
+            'default' => $defaults['sheen_roughness']
+        ));
+        
+        // Sheen Color
+        register_setting('flexframe_settings_group', "flexframe_{$mat_key}_sheen_color", array(
+            'type' => 'string',
+            'sanitize_callback' => 'sanitize_hex_color',
+            'default' => $defaults['sheen_color']
+        ));
+    }
+    
     // Hidden exercises - stored as JSON array of exercise IDs
     register_setting('flexframe_settings_group', 'flexframe_hidden_exercises', array(
         'type' => 'string',
@@ -1486,6 +1824,238 @@ function flexframe_settings_page() {
                                 </div>
                             </div>
                             
+                            <!-- Equipment Material Settings Section -->
+                            <div class="custom-panel-section">
+                                <div class="custom-panel-header" data-target="equipment-settings-content">
+                                    <h4><span class="dashicons dashicons-hammer"></span> <?php _e('Equipment Materials', 'flexframe-viewer'); ?></h4>
+                                    <div class="header-preview equipment-preview">
+                                        <span class="dashicons dashicons-admin-generic"></span>
+                                    </div>
+                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                                </div>
+                                <div class="custom-panel-content" id="equipment-settings-content">
+                                    <div class="flexframe-custom-settings">
+                                        <p class="description" style="margin-bottom: 20px;">
+                                            <?php _e('Customize the appearance of equipment materials in your 3D models. Enable a material to override its default settings.', 'flexframe-viewer'); ?>
+                                        </p>
+                                        
+                                        <?php
+                                        // Define equipment materials with display names and icons
+                                        $equipment_material_config = array(
+                                            'barbell' => array('name' => 'Barbell', 'icon' => '🏋️'),
+                                            'bumper' => array('name' => 'Bumper Plates', 'icon' => '⚫'),
+                                            'cable' => array('name' => 'Cable', 'icon' => '🔗'),
+                                            'chrome' => array('name' => 'Chrome', 'icon' => '✨'),
+                                            'color1' => array('name' => 'Brand Color (COLOR1)', 'icon' => '🎨'),
+                                            'metal' => array('name' => 'Metal', 'icon' => '🔩'),
+                                            'pad' => array('name' => 'Pad / Cushion', 'icon' => '🛋️'),
+                                            'plastic' => array('name' => 'Plastic', 'icon' => '🧱'),
+                                            'rubber' => array('name' => 'Rubber', 'icon' => '⬛')
+                                        );
+                                        
+                                        foreach ($equipment_material_config as $mat_key => $mat_config) :
+                                            // Get current values
+                                            $mat_enabled = get_option("flexframe_{$mat_key}_enabled", false);
+                                            $mat_color = get_option("flexframe_{$mat_key}_color", '#808080');
+                                            $mat_opacity = get_option("flexframe_{$mat_key}_opacity", 1);
+                                            $mat_metalness = get_option("flexframe_{$mat_key}_metalness", 0);
+                                            $mat_roughness = get_option("flexframe_{$mat_key}_roughness", 0.5);
+                                            $mat_color_map = get_option("flexframe_{$mat_key}_color_map_enabled", true);
+                                            $mat_bump = get_option("flexframe_{$mat_key}_bump_scale", 1);
+                                            $mat_normal = get_option("flexframe_{$mat_key}_normal_scale", 1);
+                                            $mat_clearcoat = get_option("flexframe_{$mat_key}_clearcoat", 0);
+                                            $mat_clearcoat_rough = get_option("flexframe_{$mat_key}_clearcoat_roughness", 0);
+                                            $mat_emissive = get_option("flexframe_{$mat_key}_emissive_color", '#000000');
+                                            $mat_emissive_int = get_option("flexframe_{$mat_key}_emissive_intensity", 0);
+                                            $mat_blending = get_option("flexframe_{$mat_key}_blending", 'normal');
+                                            $mat_transmission = get_option("flexframe_{$mat_key}_transmission", 0);
+                                            $mat_thickness = get_option("flexframe_{$mat_key}_thickness", 0);
+                                            $mat_ior = get_option("flexframe_{$mat_key}_ior", 1.5);
+                                            $mat_env = get_option("flexframe_{$mat_key}_env_intensity", 1);
+                                            $mat_sheen = get_option("flexframe_{$mat_key}_sheen", 0);
+                                            $mat_sheen_rough = get_option("flexframe_{$mat_key}_sheen_roughness", 0.5);
+                                            $mat_sheen_color = get_option("flexframe_{$mat_key}_sheen_color", '#ffffff');
+                                        ?>
+                                        
+                                        <!-- <?php echo esc_html($mat_config['name']); ?> Material Accordion -->
+                                        <div class="equipment-material-accordion <?php echo $mat_enabled ? 'active' : ''; ?>" data-material="<?php echo esc_attr($mat_key); ?>">
+                                            <div class="equipment-material-header">
+                                                <label class="equipment-enable-toggle">
+                                                    <input type="checkbox" 
+                                                           name="flexframe_<?php echo esc_attr($mat_key); ?>_enabled" 
+                                                           value="1" 
+                                                           <?php checked($mat_enabled, true); ?>
+                                                           class="equipment-material-toggle" />
+                                                    <span class="toggle-slider"></span>
+                                                </label>
+                                                <span class="material-icon"><?php echo $mat_config['icon']; ?></span>
+                                                <span class="material-name"><?php echo esc_html($mat_config['name']); ?></span>
+                                                <div class="material-color-preview" style="background-color: <?php echo esc_attr($mat_color); ?>;"></div>
+                                                <span class="accordion-arrow dashicons dashicons-arrow-down-alt2"></span>
+                                            </div>
+                                            <div class="equipment-material-content" <?php echo !$mat_enabled ? 'style="display:none;"' : ''; ?>>
+                                                
+                                                <!-- Basic Properties -->
+                                                <div class="material-property-group">
+                                                    <h5><?php _e('Basic Properties', 'flexframe-viewer'); ?></h5>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Color', 'flexframe-viewer'); ?></label>
+                                                        <input type="color" name="flexframe_<?php echo esc_attr($mat_key); ?>_color" value="<?php echo esc_attr($mat_color); ?>" />
+                                                        <span class="color-hex"><?php echo esc_html($mat_color); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Opacity', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_opacity" value="<?php echo esc_attr($mat_opacity); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_opacity); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Metalness', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_metalness" value="<?php echo esc_attr($mat_metalness); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_metalness); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Roughness', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_roughness" value="<?php echo esc_attr($mat_roughness); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_roughness); ?></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Texture Maps -->
+                                                <div class="material-property-group">
+                                                    <h5><?php _e('Texture Maps', 'flexframe-viewer'); ?></h5>
+                                                    
+                                                    <div class="flexframe-setting-row checkbox-row">
+                                                        <label>
+                                                            <input type="checkbox" name="flexframe_<?php echo esc_attr($mat_key); ?>_color_map_enabled" value="1" <?php checked($mat_color_map, true); ?> />
+                                                            <?php _e('Use Color Map (Texture)', 'flexframe-viewer'); ?>
+                                                        </label>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Bump Scale', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_bump_scale" value="<?php echo esc_attr($mat_bump); ?>" min="0" max="5" step="0.1" />
+                                                        <span class="range-value"><?php echo esc_html($mat_bump); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Normal Scale', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_normal_scale" value="<?php echo esc_attr($mat_normal); ?>" min="0" max="5" step="0.1" />
+                                                        <span class="range-value"><?php echo esc_html($mat_normal); ?></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Clearcoat -->
+                                                <div class="material-property-group">
+                                                    <h5><?php _e('Clearcoat', 'flexframe-viewer'); ?></h5>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Clearcoat', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_clearcoat" value="<?php echo esc_attr($mat_clearcoat); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_clearcoat); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Clearcoat Roughness', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_clearcoat_roughness" value="<?php echo esc_attr($mat_clearcoat_rough); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_clearcoat_rough); ?></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Emission -->
+                                                <div class="material-property-group">
+                                                    <h5><?php _e('Emission (Glow)', 'flexframe-viewer'); ?></h5>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Emissive Color', 'flexframe-viewer'); ?></label>
+                                                        <input type="color" name="flexframe_<?php echo esc_attr($mat_key); ?>_emissive_color" value="<?php echo esc_attr($mat_emissive); ?>" />
+                                                        <span class="color-hex"><?php echo esc_html($mat_emissive); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Emissive Intensity', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_emissive_intensity" value="<?php echo esc_attr($mat_emissive_int); ?>" min="0" max="5" step="0.1" />
+                                                        <span class="range-value"><?php echo esc_html($mat_emissive_int); ?></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Advanced -->
+                                                <div class="material-property-group">
+                                                    <h5><?php _e('Advanced Properties', 'flexframe-viewer'); ?></h5>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Blending Mode', 'flexframe-viewer'); ?></label>
+                                                        <select name="flexframe_<?php echo esc_attr($mat_key); ?>_blending">
+                                                            <option value="normal" <?php selected($mat_blending, 'normal'); ?>><?php _e('Normal', 'flexframe-viewer'); ?></option>
+                                                            <option value="additive" <?php selected($mat_blending, 'additive'); ?>><?php _e('Additive', 'flexframe-viewer'); ?></option>
+                                                            <option value="subtractive" <?php selected($mat_blending, 'subtractive'); ?>><?php _e('Subtractive', 'flexframe-viewer'); ?></option>
+                                                            <option value="multiply" <?php selected($mat_blending, 'multiply'); ?>><?php _e('Multiply', 'flexframe-viewer'); ?></option>
+                                                        </select>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Transmission (Glass)', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_transmission" value="<?php echo esc_attr($mat_transmission); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_transmission); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Thickness', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_thickness" value="<?php echo esc_attr($mat_thickness); ?>" min="0" max="10" step="0.1" />
+                                                        <span class="range-value"><?php echo esc_html($mat_thickness); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('IOR (Refraction Index)', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_ior" value="<?php echo esc_attr($mat_ior); ?>" min="1" max="2.5" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_ior); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Environment Intensity', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_env_intensity" value="<?php echo esc_attr($mat_env); ?>" min="0" max="5" step="0.1" />
+                                                        <span class="range-value"><?php echo esc_html($mat_env); ?></span>
+                                                    </div>
+                                                </div>
+                                                
+                                                <!-- Sheen -->
+                                                <div class="material-property-group">
+                                                    <h5><?php _e('Sheen (Fabric/Velvet Effect)', 'flexframe-viewer'); ?></h5>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Sheen', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_sheen" value="<?php echo esc_attr($mat_sheen); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_sheen); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Sheen Roughness', 'flexframe-viewer'); ?></label>
+                                                        <input type="range" name="flexframe_<?php echo esc_attr($mat_key); ?>_sheen_roughness" value="<?php echo esc_attr($mat_sheen_rough); ?>" min="0" max="1" step="0.01" />
+                                                        <span class="range-value"><?php echo esc_html($mat_sheen_rough); ?></span>
+                                                    </div>
+                                                    
+                                                    <div class="flexframe-setting-row">
+                                                        <label><?php _e('Sheen Color', 'flexframe-viewer'); ?></label>
+                                                        <input type="color" name="flexframe_<?php echo esc_attr($mat_key); ?>_sheen_color" value="<?php echo esc_attr($mat_sheen_color); ?>" />
+                                                        <span class="color-hex"><?php echo esc_html($mat_sheen_color); ?></span>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        
+                                        <?php endforeach; ?>
+                                        
+                                        <p class="description" style="margin-top: 20px;">
+                                            <?php _e('💡 Enable a material to customize its appearance. These settings will be applied when the model contains materials with matching names (BARBELL, BUMPER, CABLE, CHROME, COLOR1, METAL, PAD, PLASTIC, RUBBER).', 'flexframe-viewer'); ?>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            
                             <!-- Scene Background Settings Section -->
                             <div class="custom-panel-section">
                                 <div class="custom-panel-header" data-target="background-settings-content">
@@ -2553,6 +3123,159 @@ function flexframe_settings_page() {
             margin-left: 24px;
             padding-left: 12px;
             border-left: 2px solid #dcdcde;
+        }
+        
+        /* Equipment Material Accordion Styles */
+        .equipment-material-accordion {
+            border: 1px solid #dcdcde;
+            border-radius: 8px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: #fff;
+            transition: box-shadow 0.2s ease;
+        }
+        .equipment-material-accordion:hover {
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+        .equipment-material-accordion.active {
+            border-color: #2271b1;
+            box-shadow: 0 0 0 1px #2271b1;
+        }
+        .equipment-material-header {
+            display: flex;
+            align-items: center;
+            padding: 12px 16px;
+            cursor: pointer;
+            background: #f9f9f9;
+            transition: background-color 0.2s ease;
+            gap: 12px;
+        }
+        .equipment-material-header:hover {
+            background: #f0f0f1;
+        }
+        .equipment-enable-toggle {
+            position: relative;
+            display: inline-block;
+            width: 40px;
+            height: 22px;
+            flex-shrink: 0;
+        }
+        .equipment-enable-toggle input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .equipment-enable-toggle .toggle-slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: 0.3s;
+            border-radius: 22px;
+        }
+        .equipment-enable-toggle .toggle-slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        .equipment-enable-toggle input:checked + .toggle-slider {
+            background-color: #2271b1;
+        }
+        .equipment-enable-toggle input:checked + .toggle-slider:before {
+            transform: translateX(18px);
+        }
+        .material-icon {
+            font-size: 18px;
+            width: 24px;
+            text-align: center;
+        }
+        .material-name {
+            font-weight: 600;
+            color: #1d2327;
+            flex: 1;
+        }
+        .material-color-preview {
+            width: 24px;
+            height: 24px;
+            border-radius: 4px;
+            border: 2px solid #dcdcde;
+            flex-shrink: 0;
+        }
+        .accordion-arrow {
+            color: #646970;
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+        .equipment-material-accordion.active .accordion-arrow {
+            transform: rotate(180deg);
+        }
+        .equipment-material-content {
+            padding: 20px;
+            background: #fff;
+            border-top: 1px solid #e2e4e7;
+        }
+        .material-property-group {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #f0f0f1;
+        }
+        .material-property-group:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .material-property-group h5 {
+            margin: 0 0 12px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #50575e;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        .equipment-material-content .flexframe-setting-row {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 0;
+        }
+        .equipment-material-content .flexframe-setting-row label {
+            min-width: 140px;
+            font-weight: 500;
+            color: #1d2327;
+        }
+        .equipment-material-content .flexframe-setting-row input[type="range"] {
+            flex: 1;
+            max-width: 200px;
+        }
+        .equipment-material-content .flexframe-setting-row select {
+            min-width: 150px;
+        }
+        .equipment-material-content .checkbox-row {
+            padding: 8px 0;
+        }
+        .equipment-material-content .checkbox-row label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+        .equipment-preview {
+            min-width: 40px;
+            background: #2a2a3e;
+        }
+        .equipment-preview .dashicons {
+            color: #8c8c9a;
+            font-size: 18px;
         }
         
         /* Instructions box */
@@ -4776,6 +5499,48 @@ function flexframe_settings_page() {
         $('input[type="color"]').on('input', function() {
             $(this).siblings('.color-hex').text($(this).val());
             $(this).siblings('.color-hex-display').text($(this).val());
+            
+            // Update material color preview if in equipment accordion
+            var $accordion = $(this).closest('.equipment-material-accordion');
+            if ($accordion.length && $(this).attr('name').indexOf('_color') > -1 && $(this).attr('name').indexOf('_emissive') === -1 && $(this).attr('name').indexOf('_sheen') === -1) {
+                $accordion.find('.material-color-preview').css('background-color', $(this).val());
+            }
+        });
+        
+        // =====================
+        // Equipment Material Accordion Handlers
+        // =====================
+        
+        // Toggle equipment material accordion
+        $('.equipment-material-header').on('click', function(e) {
+            // Don't toggle if clicking on the enable checkbox
+            if ($(e.target).closest('.equipment-enable-toggle').length) {
+                return;
+            }
+            
+            var $accordion = $(this).closest('.equipment-material-accordion');
+            var $content = $accordion.find('.equipment-material-content');
+            var isEnabled = $accordion.find('.equipment-material-toggle').is(':checked');
+            
+            // Only allow toggle if the material is enabled
+            if (isEnabled) {
+                $accordion.toggleClass('active');
+                $content.slideToggle(200);
+            }
+        });
+        
+        // Handle equipment material enable/disable toggle
+        $('.equipment-material-toggle').on('change', function() {
+            var $accordion = $(this).closest('.equipment-material-accordion');
+            var $content = $accordion.find('.equipment-material-content');
+            
+            if ($(this).is(':checked')) {
+                $accordion.addClass('active');
+                $content.slideDown(200);
+            } else {
+                $accordion.removeClass('active');
+                $content.slideUp(200);
+            }
         });
         
         // Create Viewer Page button handler

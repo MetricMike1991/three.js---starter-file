@@ -3083,6 +3083,12 @@ class ThreeJSApp {
                             this.applyWPPreset();
                         }
                     }
+                    
+                    // Apply equipment material settings if any are enabled
+                    if (window.flexframeSettings.equipmentMaterials) {
+                        console.log('Applying Equipment Material Settings...');
+                        this.applyEquipmentMaterials(model, window.flexframeSettings.equipmentMaterials);
+                    }
                 }
                 
                 this.sceneManager.getScene().add(model);
@@ -4047,6 +4053,169 @@ class ThreeJSApp {
                 });
             }, 100);
         }
+    }
+
+    /**
+     * Apply equipment material settings from WordPress admin
+     * @param {Object} model - The loaded 3D model
+     * @param {Object} equipmentMaterials - Settings object for each equipment material
+     */
+    applyEquipmentMaterials(model, equipmentMaterials) {
+        if (!model || !equipmentMaterials) {
+            console.log('No model or equipment materials to apply');
+            return;
+        }
+
+        console.log('Equipment Materials from WordPress:', equipmentMaterials);
+
+        // Map material names in the model to settings keys (PHP sends uppercase keys)
+        const materialMapping = {
+            'BARBELL': 'BARBELL',
+            'BUMPER': 'BUMPER',
+            'CABLE': 'CABLE',
+            'CHROME': 'CHROME',
+            'COLOR_1': 'COLOR1',
+            'COLOR1': 'COLOR1',
+            'METAL': 'METAL',
+            'PAD': 'PAD',
+            'PLASTIC': 'PLASTIC',
+            'RUBBER': 'RUBBER'
+        };
+
+        model.traverse((child) => {
+            if (child.isMesh && child.material) {
+                const materials = Array.isArray(child.material) ? child.material : [child.material];
+                
+                materials.forEach(mat => {
+                    if (!mat.name) return;
+                    
+                    const matNameUpper = mat.name.toUpperCase();
+                    const settingsKey = materialMapping[matNameUpper];
+                    
+                    if (settingsKey && equipmentMaterials[settingsKey]) {
+                        const settings = equipmentMaterials[settingsKey];
+                        
+                        // Check if this material is enabled
+                        if (!settings.enabled) {
+                            console.log(`Equipment material ${matNameUpper} is disabled, skipping`);
+                            return;
+                        }
+
+                        console.log(`Applying equipment settings to ${matNameUpper}:`, settings);
+
+                        // Apply basic properties
+                        if (settings.color) {
+                            mat.color.set(settings.color);
+                        }
+
+                        if (settings.opacity !== undefined && settings.opacity !== null) {
+                            mat.opacity = parseFloat(settings.opacity);
+                            mat.transparent = mat.opacity < 1;
+                        }
+
+                        if (settings.metalness !== undefined && settings.metalness !== null) {
+                            mat.metalness = parseFloat(settings.metalness);
+                        }
+
+                        if (settings.roughness !== undefined && settings.roughness !== null) {
+                            mat.roughness = parseFloat(settings.roughness);
+                        }
+
+                        // Clearcoat
+                        if (settings.clearcoat !== undefined && settings.clearcoat !== null) {
+                            mat.clearcoat = parseFloat(settings.clearcoat);
+                        }
+
+                        if (settings.clearcoatRoughness !== undefined && settings.clearcoatRoughness !== null) {
+                            mat.clearcoatRoughness = parseFloat(settings.clearcoatRoughness);
+                        }
+
+                        // Emission
+                        if (settings.emissiveColor) {
+                            mat.emissive.set(settings.emissiveColor);
+                        }
+
+                        if (settings.emissiveIntensity !== undefined && settings.emissiveIntensity !== null) {
+                            mat.emissiveIntensity = parseFloat(settings.emissiveIntensity);
+                        }
+
+                        // Transmission (glass-like)
+                        if (settings.transmission !== undefined && settings.transmission !== null) {
+                            mat.transmission = parseFloat(settings.transmission);
+                        }
+
+                        if (settings.thickness !== undefined && settings.thickness !== null) {
+                            mat.thickness = parseFloat(settings.thickness);
+                        }
+
+                        if (settings.ior !== undefined && settings.ior !== null) {
+                            mat.ior = parseFloat(settings.ior);
+                        }
+
+                        // Sheen
+                        if (settings.sheen !== undefined && settings.sheen !== null) {
+                            mat.sheen = parseFloat(settings.sheen);
+                        }
+
+                        if (settings.sheenRoughness !== undefined && settings.sheenRoughness !== null) {
+                            mat.sheenRoughness = parseFloat(settings.sheenRoughness);
+                        }
+
+                        if (settings.sheenColor) {
+                            mat.sheenColor.set(settings.sheenColor);
+                        }
+
+                        // Environment map intensity
+                        if (settings.envMapIntensity !== undefined && settings.envMapIntensity !== null) {
+                            mat.envMapIntensity = parseFloat(settings.envMapIntensity);
+                        }
+
+                        // Blending mode
+                        if (settings.blending) {
+                            switch (settings.blending) {
+                                case 'normal':
+                                    mat.blending = THREE.NormalBlending;
+                                    break;
+                                case 'additive':
+                                    mat.blending = THREE.AdditiveBlending;
+                                    break;
+                                case 'subtractive':
+                                    mat.blending = THREE.SubtractiveBlending;
+                                    break;
+                                case 'multiply':
+                                    mat.blending = THREE.MultiplyBlending;
+                                    break;
+                            }
+                        }
+
+                        // Bump and normal map toggles
+                        if (settings.bumpMapEnabled !== undefined && settings.bumpMapEnabled !== null) {
+                            // If bump map is disabled, set bumpScale to 0
+                            if (!settings.bumpMapEnabled && mat.bumpMap) {
+                                mat.bumpScale = 0;
+                            }
+                        }
+
+                        if (settings.normalMapEnabled !== undefined && settings.normalMapEnabled !== null) {
+                            // If normal map is disabled, set normalScale to 0
+                            if (!settings.normalMapEnabled && mat.normalMap) {
+                                mat.normalScale.set(0, 0);
+                            }
+                        }
+
+                        if (settings.colorMapEnabled !== undefined && settings.colorMapEnabled !== null) {
+                            // If color map is disabled, remove it
+                            if (!settings.colorMapEnabled && mat.map) {
+                                mat.map = null;
+                            }
+                        }
+
+                        mat.needsUpdate = true;
+                        console.log(`✅ Equipment material settings applied to: ${matNameUpper}`);
+                    }
+                });
+            }
+        });
     }
 
     setupEventListeners() {

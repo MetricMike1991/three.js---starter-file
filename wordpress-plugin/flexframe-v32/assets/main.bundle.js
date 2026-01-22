@@ -38453,6 +38453,10 @@ void main() {
                   this.applyWPPreset();
                 }
               }
+              if (window.flexframeSettings.equipmentMaterials) {
+                console.log("Applying Equipment Material Settings...");
+                this.applyEquipmentMaterials(model, window.flexframeSettings.equipmentMaterials);
+              }
             }
             this.sceneManager.getScene().add(model);
             const loader2 = document.getElementById("model-loader");
@@ -39141,6 +39145,127 @@ Note: Remove all texture maps (map, normalMap, emissiveMap, bumpMap) for a pure 
           });
         }, 100);
       }
+    }
+    /**
+     * Apply equipment material settings from WordPress admin
+     * @param {Object} model - The loaded 3D model
+     * @param {Object} equipmentMaterials - Settings object for each equipment material
+     */
+    applyEquipmentMaterials(model, equipmentMaterials) {
+      if (!model || !equipmentMaterials) {
+        console.log("No model or equipment materials to apply");
+        return;
+      }
+      console.log("Equipment Materials from WordPress:", equipmentMaterials);
+      const materialMapping = {
+        "BARBELL": "BARBELL",
+        "BUMPER": "BUMPER",
+        "CABLE": "CABLE",
+        "CHROME": "CHROME",
+        "COLOR_1": "COLOR1",
+        "COLOR1": "COLOR1",
+        "METAL": "METAL",
+        "PAD": "PAD",
+        "PLASTIC": "PLASTIC",
+        "RUBBER": "RUBBER"
+      };
+      model.traverse((child) => {
+        if (child.isMesh && child.material) {
+          const materials = Array.isArray(child.material) ? child.material : [child.material];
+          materials.forEach((mat) => {
+            if (!mat.name) return;
+            const matNameUpper = mat.name.toUpperCase();
+            const settingsKey = materialMapping[matNameUpper];
+            if (settingsKey && equipmentMaterials[settingsKey]) {
+              const settings = equipmentMaterials[settingsKey];
+              if (!settings.enabled) {
+                console.log(`Equipment material ${matNameUpper} is disabled, skipping`);
+                return;
+              }
+              console.log(`Applying equipment settings to ${matNameUpper}:`, settings);
+              if (settings.color) {
+                mat.color.set(settings.color);
+              }
+              if (settings.opacity !== void 0 && settings.opacity !== null) {
+                mat.opacity = parseFloat(settings.opacity);
+                mat.transparent = mat.opacity < 1;
+              }
+              if (settings.metalness !== void 0 && settings.metalness !== null) {
+                mat.metalness = parseFloat(settings.metalness);
+              }
+              if (settings.roughness !== void 0 && settings.roughness !== null) {
+                mat.roughness = parseFloat(settings.roughness);
+              }
+              if (settings.clearcoat !== void 0 && settings.clearcoat !== null) {
+                mat.clearcoat = parseFloat(settings.clearcoat);
+              }
+              if (settings.clearcoatRoughness !== void 0 && settings.clearcoatRoughness !== null) {
+                mat.clearcoatRoughness = parseFloat(settings.clearcoatRoughness);
+              }
+              if (settings.emissiveColor) {
+                mat.emissive.set(settings.emissiveColor);
+              }
+              if (settings.emissiveIntensity !== void 0 && settings.emissiveIntensity !== null) {
+                mat.emissiveIntensity = parseFloat(settings.emissiveIntensity);
+              }
+              if (settings.transmission !== void 0 && settings.transmission !== null) {
+                mat.transmission = parseFloat(settings.transmission);
+              }
+              if (settings.thickness !== void 0 && settings.thickness !== null) {
+                mat.thickness = parseFloat(settings.thickness);
+              }
+              if (settings.ior !== void 0 && settings.ior !== null) {
+                mat.ior = parseFloat(settings.ior);
+              }
+              if (settings.sheen !== void 0 && settings.sheen !== null) {
+                mat.sheen = parseFloat(settings.sheen);
+              }
+              if (settings.sheenRoughness !== void 0 && settings.sheenRoughness !== null) {
+                mat.sheenRoughness = parseFloat(settings.sheenRoughness);
+              }
+              if (settings.sheenColor) {
+                mat.sheenColor.set(settings.sheenColor);
+              }
+              if (settings.envMapIntensity !== void 0 && settings.envMapIntensity !== null) {
+                mat.envMapIntensity = parseFloat(settings.envMapIntensity);
+              }
+              if (settings.blending) {
+                switch (settings.blending) {
+                  case "normal":
+                    mat.blending = NormalBlending;
+                    break;
+                  case "additive":
+                    mat.blending = AdditiveBlending;
+                    break;
+                  case "subtractive":
+                    mat.blending = SubtractiveBlending;
+                    break;
+                  case "multiply":
+                    mat.blending = MultiplyBlending;
+                    break;
+                }
+              }
+              if (settings.bumpMapEnabled !== void 0 && settings.bumpMapEnabled !== null) {
+                if (!settings.bumpMapEnabled && mat.bumpMap) {
+                  mat.bumpScale = 0;
+                }
+              }
+              if (settings.normalMapEnabled !== void 0 && settings.normalMapEnabled !== null) {
+                if (!settings.normalMapEnabled && mat.normalMap) {
+                  mat.normalScale.set(0, 0);
+                }
+              }
+              if (settings.colorMapEnabled !== void 0 && settings.colorMapEnabled !== null) {
+                if (!settings.colorMapEnabled && mat.map) {
+                  mat.map = null;
+                }
+              }
+              mat.needsUpdate = true;
+              console.log(`\u2705 Equipment material settings applied to: ${matNameUpper}`);
+            }
+          });
+        }
+      });
     }
     setupEventListeners() {
       window.addEventListener("resize", () => {
