@@ -3544,18 +3544,9 @@ function flexframe_settings_page() {
         
         // Enable/disable load and delete buttons based on selection
         $('#flexframe_load_preset').on('change', function() {
-            var selectedVal = $(this).val();
-            var hasSelection = selectedVal !== '';
-            var isBuiltIn = selectedVal.indexOf('builtin:') === 0;
-            
+            var hasSelection = $(this).val() !== '';
             $('#flexframe-load-preset-btn').prop('disabled', !hasSelection);
-            
-            // Only show delete button for user-saved presets (not built-in)
-            if (hasSelection && !isBuiltIn) {
-                $('#flexframe-delete-preset-btn').show().prop('disabled', false);
-            } else {
-                $('#flexframe-delete-preset-btn').hide().prop('disabled', true);
-            }
+            $('#flexframe-delete-preset-btn').prop('disabled', !hasSelection);
         });
         
         // Show preset message
@@ -3867,81 +3858,6 @@ function flexframe_settings_page() {
             var $btn = $(this);
             $btn.prop('disabled', true);
             
-            // Check if this is a built-in preset
-            if (presetId.indexOf('builtin:') === 0) {
-                var builtInId = presetId.replace('builtin:', '');
-                var preset = builtInPresets[builtInId];
-                
-                if (preset && preset.settings) {
-                    // Get primary color for 'primary' value substitution
-                    var primaryColor = $('#flexframe_primary_color').val() || '#2383cd';
-                    
-                    // Map camelCase keys from built-in presets to snake_case for applyPresetSettings
-                    var keyMap = {
-                        spinnerColor: 'spinner_color',
-                        useLogoLoader: 'use_logo_loader',
-                        logoLoaderAnimation: 'logo_loader_animation',
-                        logoLoaderSize: 'logo_loader_size',
-                        playerBgColor: 'player_bg_color',
-                        playerBgOpacity: 'player_bg_opacity',
-                        playerButtonBgColor: 'player_button_bg_color',
-                        playerButtonBgOpacity: 'player_button_bg_opacity',
-                        playerIconColor: 'player_icon_color',
-                        playerAccentColor: 'player_accent_color',
-                        playerAlwaysVisible: 'player_always_visible',
-                        menuBgColor: 'menu_bg_color',
-                        menuBgOpacity: 'menu_bg_opacity',
-                        menuTextColor: 'menu_text_color',
-                        menuAccentColor: 'menu_accent_color',
-                        hideRightMenu: 'hide_right_menu',
-                        skinColor: 'skin_color',
-                        skinOpacity: 'skin_opacity',
-                        skinRoughness: 'skin_roughness',
-                        skinMetalness: 'skin_metalness',
-                        skinTransmission: 'skin_transmission',
-                        skinThickness: 'skin_thickness',
-                        skinIor: 'skin_ior',
-                        skinEnvIntensity: 'skin_env_intensity',
-                        bgGradientTop: 'bg_gradient_top',
-                        bgGradientBottom: 'bg_gradient_bottom',
-                        bgGradientOpacity: 'bg_gradient_opacity',
-                        ambientIntensity: 'ambient_intensity',
-                        ambientColor: 'ambient_color',
-                        directionalIntensity: 'directional_intensity',
-                        directionalColor: 'directional_color',
-                        directionalPosX: 'directional_pos_x',
-                        directionalPosY: 'directional_pos_y',
-                        directionalPosZ: 'directional_pos_z',
-                        particlesEnabled: 'particles_enabled',
-                        particleCount: 'particle_count',
-                        particleSize: 'particle_size',
-                        particleColor: 'particle_color',
-                        particleOpacity: 'particle_opacity',
-                        particleSpeed: 'particle_speed'
-                    };
-                    
-                    // Create settings object with snake_case keys and 'primary' replaced
-                    var settingsToApply = {};
-                    for (var camelKey in preset.settings) {
-                        var snakeKey = keyMap[camelKey] || camelKey;
-                        var value = preset.settings[camelKey];
-                        if (value === 'primary') {
-                            settingsToApply[snakeKey] = primaryColor;
-                        } else {
-                            settingsToApply[snakeKey] = value;
-                        }
-                    }
-                    
-                    applyPresetSettings(settingsToApply);
-                    showPresetMessage('<?php _e('Theme loaded! Remember to save your settings.', 'flexframe-viewer'); ?>', 'success');
-                } else {
-                    showPresetMessage('<?php _e('Error: Could not find theme settings.', 'flexframe-viewer'); ?>', 'error');
-                }
-                $btn.prop('disabled', false);
-                return;
-            }
-            
-            // Load user-saved preset via AJAX
             $.ajax({
                 url: ajaxurl,
                 type: 'POST',

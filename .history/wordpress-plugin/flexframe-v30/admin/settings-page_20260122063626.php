@@ -3876,59 +3876,14 @@ function flexframe_settings_page() {
                     // Get primary color for 'primary' value substitution
                     var primaryColor = $('#flexframe_primary_color').val() || '#2383cd';
                     
-                    // Map camelCase keys from built-in presets to snake_case for applyPresetSettings
-                    var keyMap = {
-                        spinnerColor: 'spinner_color',
-                        useLogoLoader: 'use_logo_loader',
-                        logoLoaderAnimation: 'logo_loader_animation',
-                        logoLoaderSize: 'logo_loader_size',
-                        playerBgColor: 'player_bg_color',
-                        playerBgOpacity: 'player_bg_opacity',
-                        playerButtonBgColor: 'player_button_bg_color',
-                        playerButtonBgOpacity: 'player_button_bg_opacity',
-                        playerIconColor: 'player_icon_color',
-                        playerAccentColor: 'player_accent_color',
-                        playerAlwaysVisible: 'player_always_visible',
-                        menuBgColor: 'menu_bg_color',
-                        menuBgOpacity: 'menu_bg_opacity',
-                        menuTextColor: 'menu_text_color',
-                        menuAccentColor: 'menu_accent_color',
-                        hideRightMenu: 'hide_right_menu',
-                        skinColor: 'skin_color',
-                        skinOpacity: 'skin_opacity',
-                        skinRoughness: 'skin_roughness',
-                        skinMetalness: 'skin_metalness',
-                        skinTransmission: 'skin_transmission',
-                        skinThickness: 'skin_thickness',
-                        skinIor: 'skin_ior',
-                        skinEnvIntensity: 'skin_env_intensity',
-                        bgGradientTop: 'bg_gradient_top',
-                        bgGradientBottom: 'bg_gradient_bottom',
-                        bgGradientOpacity: 'bg_gradient_opacity',
-                        ambientIntensity: 'ambient_intensity',
-                        ambientColor: 'ambient_color',
-                        directionalIntensity: 'directional_intensity',
-                        directionalColor: 'directional_color',
-                        directionalPosX: 'directional_pos_x',
-                        directionalPosY: 'directional_pos_y',
-                        directionalPosZ: 'directional_pos_z',
-                        particlesEnabled: 'particles_enabled',
-                        particleCount: 'particle_count',
-                        particleSize: 'particle_size',
-                        particleColor: 'particle_color',
-                        particleOpacity: 'particle_opacity',
-                        particleSpeed: 'particle_speed'
-                    };
-                    
-                    // Create settings object with snake_case keys and 'primary' replaced
+                    // Create a copy of settings and replace 'primary' with actual color
                     var settingsToApply = {};
-                    for (var camelKey in preset.settings) {
-                        var snakeKey = keyMap[camelKey] || camelKey;
-                        var value = preset.settings[camelKey];
+                    for (var key in preset.settings) {
+                        var value = preset.settings[key];
                         if (value === 'primary') {
-                            settingsToApply[snakeKey] = primaryColor;
+                            settingsToApply[key] = primaryColor;
                         } else {
-                            settingsToApply[snakeKey] = value;
+                            settingsToApply[key] = value;
                         }
                     }
                     
