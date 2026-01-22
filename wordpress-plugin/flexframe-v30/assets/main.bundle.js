@@ -36218,6 +36218,12 @@ void main() {
       document.addEventListener("exercisesSelected", async (e) => {
         const exercise = e.detail.item;
         this.currentExerciseName = exercise.name;
+        if (this.screenshotPanel) {
+          const filenameInput = this.screenshotPanel.querySelector("#ss-filename");
+          if (filenameInput) {
+            filenameInput.value = exercise.name;
+          }
+        }
         if (exercise.configUrl) {
           try {
             const cacheBuster = `?t=${Date.now()}`;
@@ -37371,39 +37377,445 @@ void main() {
      * Setup screenshot button in animation player
      */
     setupScreenshotButton() {
+      this.createScreenshotPanel();
       if (this.animationPlayer) {
         this.animationPlayer.setScreenshotCallback(() => {
-          this.takeUserScreenshot();
+          this.toggleScreenshotPanel();
         });
         const showScreenshotButton = window.flexframeSettings?.showScreenshotButton !== false;
         this.animationPlayer.setScreenshotButtonVisible(showScreenshotButton);
       }
     }
     /**
-     * Take a screenshot for the end user
+     * Create the screenshot panel UI
      */
-    async takeUserScreenshot() {
-      const renderer = this.sceneManager.getRenderer();
+    createScreenshotPanel() {
+      const existing = document.querySelector(".screenshot-panel");
+      if (existing) existing.remove();
+      const panel = document.createElement("div");
+      panel.className = "screenshot-panel";
+      panel.innerHTML = `
+            <div class="screenshot-panel-header">
+                <span>Screenshot Settings</span>
+                <button class="screenshot-panel-close">\u2715</button>
+            </div>
+            <div class="screenshot-panel-content">
+                <div class="screenshot-presets">
+                    <button class="ss-preset-btn" id="ss-preset-thumbnail">Thumbnail</button>
+                    <button class="ss-preset-btn" id="ss-preset-hd">HD</button>
+                </div>
+                <div class="screenshot-row">
+                    <label>Width</label>
+                    <input type="number" id="ss-width" value="800" min="100" max="4096">
+                </div>
+                <div class="screenshot-row">
+                    <label>Height</label>
+                    <input type="number" id="ss-height" value="800" min="100" max="4096">
+                </div>
+                <div class="screenshot-row">
+                    <label>Format</label>
+                    <select id="ss-format">
+                        <option value="png">PNG</option>
+                        <option value="jpg">JPG</option>
+                        <option value="webp">WebP</option>
+                    </select>
+                </div>
+                <div class="screenshot-row checkbox-row">
+                    <label>Transparent Background</label>
+                    <input type="checkbox" id="ss-transparent">
+                </div>
+                <div class="screenshot-row checkbox-row">
+                    <label>Show Floor Shadow</label>
+                    <input type="checkbox" id="ss-floor-shadow">
+                </div>
+                <div class="screenshot-row">
+                    <label>Filename</label>
+                    <input type="text" id="ss-filename" value="screenshot">
+                </div>
+                <div class="screenshot-buttons">
+                    <button class="ss-btn ss-custom">Take Screenshot</button>
+                </div>
+            </div>
+        `;
+      const style = document.createElement("style");
+      style.textContent = `
+            .screenshot-panel {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: rgba(30, 30, 30, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                padding: 0;
+                min-width: 280px;
+                z-index: 10000;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                color: #fff;
+                display: none;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            }
+            .screenshot-panel.visible {
+                display: block;
+            }
+            .screenshot-panel-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 12px 12px 0 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-weight: 600;
+            }
+            .screenshot-panel-close {
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 18px;
+                cursor: pointer;
+                opacity: 0.7;
+                padding: 4px 8px;
+                border-radius: 4px;
+            }
+            .screenshot-panel-close:hover {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.1);
+            }
+            .screenshot-panel-content {
+                padding: 16px;
+            }
+            .screenshot-presets {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+            .ss-preset-btn {
+                flex: 1;
+                padding: 8px 12px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 6px;
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+                font-size: 12px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            .ss-preset-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: var(--ss-primary-color, #4a9eff);
+            }
+            .ss-preset-btn.active {
+                background: var(--ss-primary-color, #4a9eff);
+                border-color: var(--ss-primary-color, #4a9eff);
+            }
+            .screenshot-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+            .screenshot-row label {
+                font-size: 13px;
+                opacity: 0.9;
+            }
+            .screenshot-row input[type="number"],
+            .screenshot-row input[type="text"],
+            .screenshot-row select {
+                width: 120px;
+                padding: 6px 10px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 6px;
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                font-size: 13px;
+            }
+            .screenshot-row input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+                accent-color: var(--ss-primary-color, #4a9eff);
+            }
+            .checkbox-row {
+                flex-direction: row;
+            }
+            .screenshot-buttons {
+                display: flex;
+                gap: 10px;
+                margin-top: 16px;
+            }
+            .ss-btn {
+                flex: 1;
+                padding: 10px 16px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+            .ss-custom {
+                background: var(--ss-primary-color, #4a9eff);
+                color: #fff;
+            }
+            .ss-custom:hover {
+                filter: brightness(1.1);
+            }
+        `;
+      const primaryColor = window.flexframeSettings?.primaryColor || "#4a9eff";
+      const container = document.getElementById("flexframe-viewer-container") || document.body;
+      container.style.setProperty("--ss-primary-color", primaryColor);
+      container.appendChild(style);
+      container.appendChild(panel);
+      this.screenshotPanel = panel;
+      this.createScreenshotFrameForPanel();
+      panel.querySelector(".screenshot-panel-close").addEventListener("click", () => {
+        this.toggleScreenshotPanel(false);
+      });
+      panel.querySelector("#ss-width").addEventListener("input", (e) => {
+        this.updateScreenshotFramePanel(parseInt(e.target.value), parseInt(panel.querySelector("#ss-height").value));
+      });
+      panel.querySelector("#ss-height").addEventListener("input", (e) => {
+        this.updateScreenshotFramePanel(parseInt(panel.querySelector("#ss-width").value), parseInt(e.target.value));
+      });
+      panel.querySelector("#ss-preset-thumbnail").addEventListener("click", () => {
+        panel.querySelector("#ss-width").value = 250;
+        panel.querySelector("#ss-height").value = 250;
+        panel.querySelector("#ss-format").value = "webp";
+        this.updateScreenshotFramePanel(250, 250);
+        panel.querySelectorAll(".ss-preset-btn").forEach((btn) => btn.classList.remove("active"));
+        panel.querySelector("#ss-preset-thumbnail").classList.add("active");
+      });
+      panel.querySelector("#ss-preset-hd").addEventListener("click", () => {
+        panel.querySelector("#ss-width").value = 1920;
+        panel.querySelector("#ss-height").value = 1080;
+        panel.querySelector("#ss-format").value = "png";
+        this.updateScreenshotFramePanel(1920, 1080);
+        panel.querySelectorAll(".ss-preset-btn").forEach((btn) => btn.classList.remove("active"));
+        panel.querySelector("#ss-preset-hd").classList.add("active");
+      });
+      panel.querySelector(".ss-custom").addEventListener("click", () => {
+        this.takeCustomScreenshot();
+      });
+      document.addEventListener("exercisesSelected", () => {
+        if (this.currentExerciseName) {
+          panel.querySelector("#ss-filename").value = this.currentExerciseName;
+        }
+      });
+      if (this.currentExerciseName) {
+        panel.querySelector("#ss-filename").value = this.currentExerciseName;
+      }
+    }
+    /**
+     * Create screenshot frame overlay for panel preview
+     */
+    createScreenshotFrameForPanel() {
+      const existing = document.querySelector(".screenshot-frame-panel");
+      if (existing) existing.remove();
+      const frame = document.createElement("div");
+      frame.className = "screenshot-frame-panel";
+      frame.innerHTML = `
+            <div class="frame-corner top-left"></div>
+            <div class="frame-corner top-right"></div>
+            <div class="frame-corner bottom-left"></div>
+            <div class="frame-corner bottom-right"></div>
+            <div class="frame-info-panel"></div>
+        `;
+      const style = document.createElement("style");
+      style.textContent = `
+            .screenshot-frame-panel {
+                position: absolute;
+                pointer-events: none;
+                border: 2px solid #4a9eff;
+                background: rgba(74, 158, 255, 0.1);
+                z-index: 9999;
+                display: none;
+                box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+            }
+            .screenshot-frame-panel.visible {
+                display: block;
+            }
+            .screenshot-frame-panel .frame-corner {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                border: 2px solid #4a9eff;
+                background: rgba(74, 158, 255, 0.8);
+            }
+            .screenshot-frame-panel .frame-corner.top-left {
+                top: -2px;
+                left: -2px;
+                border-right: none;
+                border-bottom: none;
+            }
+            .screenshot-frame-panel .frame-corner.top-right {
+                top: -2px;
+                right: -2px;
+                border-left: none;
+                border-bottom: none;
+            }
+            .screenshot-frame-panel .frame-corner.bottom-left {
+                bottom: -2px;
+                left: -2px;
+                border-right: none;
+                border-top: none;
+            }
+            .screenshot-frame-panel .frame-corner.bottom-right {
+                bottom: -2px;
+                right: -2px;
+                border-left: none;
+                border-top: none;
+            }
+            .frame-info-panel {
+                position: absolute;
+                bottom: -28px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(74, 158, 255, 0.9);
+                color: #fff;
+                padding: 4px 10px;
+                border-radius: 4px;
+                font-size: 11px;
+                font-family: monospace;
+                white-space: nowrap;
+            }
+        `;
+      const container = document.getElementById("flexframe-viewer-container") || document.body;
+      container.appendChild(style);
+      container.appendChild(frame);
+      this.screenshotFramePanel = frame;
+    }
+    /**
+     * Toggle screenshot frame panel visibility
+     */
+    toggleScreenshotFramePanel(visible) {
+      if (this.screenshotFramePanel) {
+        this.screenshotFramePanel.classList.toggle("visible", visible);
+      }
+    }
+    /**
+     * Update screenshot frame panel position and size
+     */
+    updateScreenshotFramePanel(width, height) {
+      if (!this.screenshotFramePanel) return;
+      const container = document.getElementById("flexframe-viewer-container");
+      if (!container) return;
+      const containerRect = container.getBoundingClientRect();
+      const containerWidth = containerRect.width;
+      const containerHeight = containerRect.height;
+      const targetAspect = width / height;
+      const containerAspect = containerWidth / containerHeight;
+      let frameWidth, frameHeight;
+      if (targetAspect > containerAspect) {
+        frameWidth = Math.min(width, containerWidth * 0.8);
+        frameHeight = frameWidth / targetAspect;
+      } else {
+        frameHeight = Math.min(height, containerHeight * 0.8);
+        frameWidth = frameHeight * targetAspect;
+      }
+      const left = (containerWidth - frameWidth) / 2;
+      const top = (containerHeight - frameHeight) / 2;
+      this.screenshotFramePanel.style.width = `${frameWidth}px`;
+      this.screenshotFramePanel.style.height = `${frameHeight}px`;
+      this.screenshotFramePanel.style.left = `${left}px`;
+      this.screenshotFramePanel.style.top = `${top}px`;
+      const infoLabel = this.screenshotFramePanel.querySelector(".frame-info-panel");
+      if (infoLabel) {
+        infoLabel.textContent = `${width} x ${height}`;
+      }
+    }
+    /**
+     * Toggle screenshot panel visibility
+     */
+    toggleScreenshotPanel(forceState) {
+      if (!this.screenshotPanel) return;
+      const isVisible = this.screenshotPanel.classList.contains("visible");
+      const newState = forceState !== void 0 ? forceState : !isVisible;
+      this.screenshotPanel.classList.toggle("visible", newState);
+      if (newState) {
+        this.toggleScreenshotFramePanel(true);
+        const width = parseInt(this.screenshotPanel.querySelector("#ss-width").value);
+        const height = parseInt(this.screenshotPanel.querySelector("#ss-height").value);
+        this.updateScreenshotFramePanel(width, height);
+        if (this.currentExerciseName) {
+          this.screenshotPanel.querySelector("#ss-filename").value = this.currentExerciseName;
+        }
+      } else {
+        this.toggleScreenshotFramePanel(false);
+      }
+    }
+    /**
+     * Take a quick screenshot (viewport size, 2x resolution)
+     */
+    async takeQuickScreenshot() {
+      const renderer = this.renderer;
       const scene = this.sceneManager.getScene();
       const camera = this.cameraManager.getCamera();
       const canvas = renderer.domElement;
+      const filename = this.screenshotPanel?.querySelector("#ss-filename")?.value || (this.currentExerciseName ? this.currentExerciseName.replace(/\s+/g, "_") : "flexframe_screenshot");
+      const format = this.screenshotPanel?.querySelector("#ss-format")?.value || "png";
+      const transparent = this.screenshotPanel?.querySelector("#ss-transparent")?.checked || false;
       try {
         const result = await ScreenshotUtils.takeScreenshot(renderer, scene, camera, {
           width: canvas.clientWidth * 2,
-          // 2x for better quality
           height: canvas.clientHeight * 2,
-          filename: this.currentExerciseName ? this.currentExerciseName.replace(/\s+/g, "_") : "flexframe_screenshot",
-          format: "png",
-          transparent: false
+          filename,
+          format,
+          transparent
         });
         if (result.success) {
-          console.log(`\u{1F4F8} User screenshot saved: ${result.filename}`);
+          console.log(`\u{1F4F8} Quick screenshot saved: ${result.filename}`);
         } else {
           console.error("Screenshot failed:", result.error);
         }
       } catch (error) {
         console.error("Screenshot error:", error);
       }
+    }
+    /**
+     * Take a custom screenshot with specified dimensions
+     */
+    async takeCustomScreenshot() {
+      const renderer = this.renderer;
+      const scene = this.sceneManager.getScene();
+      const camera = this.cameraManager.getCamera();
+      const width = parseInt(this.screenshotPanel?.querySelector("#ss-width")?.value) || 800;
+      const height = parseInt(this.screenshotPanel?.querySelector("#ss-height")?.value) || 800;
+      const baseFilename = this.screenshotPanel?.querySelector("#ss-filename")?.value || "screenshot";
+      const format = this.screenshotPanel?.querySelector("#ss-format")?.value || "png";
+      const transparent = this.screenshotPanel?.querySelector("#ss-transparent")?.checked || false;
+      const showFloorShadow = this.screenshotPanel?.querySelector("#ss-floor-shadow")?.checked || false;
+      const filename = `${baseFilename}_${width}x${height}`;
+      const originalGroundVisible = this.ground ? this.ground.visible : false;
+      if (this.ground) {
+        this.ground.visible = showFloorShadow;
+      }
+      try {
+        const result = await ScreenshotUtils.takeScreenshot(renderer, scene, camera, {
+          width,
+          height,
+          filename,
+          format,
+          transparent
+        });
+        if (result.success) {
+          console.log(`\u{1F4F8} Custom screenshot saved: ${result.filename} (${width}x${height})`);
+        } else {
+          console.error("Screenshot failed:", result.error);
+        }
+      } catch (error) {
+        console.error("Screenshot error:", error);
+      } finally {
+        if (this.ground) {
+          this.ground.visible = originalGroundVisible;
+        }
+      }
+    }
+    /**
+     * Take a screenshot for the end user (legacy method)
+     */
+    async takeUserScreenshot() {
+      await this.takeQuickScreenshot();
     }
     /**
      * Setup AR branding from WordPress settings
