@@ -465,6 +465,7 @@ function flexframe_enqueue_assets() {
         $menu_bg_color = esc_attr(get_option('flexframe_menu_bg_color', '#000000'));
         $menu_bg_opacity = floatval(get_option('flexframe_menu_bg_opacity', 0.9));
         $menu_text_color = esc_attr(get_option('flexframe_menu_text_color', '#ffffff'));
+        $menu_text_opacity = floatval(get_option('flexframe_menu_text_opacity', 1));
         $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#f50000'));
         $primary_color = esc_attr(get_option('flexframe_primary_color', '#f50000'));
         $hide_right_menu = get_option('flexframe_hide_right_menu', false);
@@ -473,6 +474,7 @@ function flexframe_enqueue_assets() {
         $player_bg_rgb = sscanf($player_bg_color, "#%02x%02x%02x");
         $player_button_bg_rgb = sscanf($player_button_bg_color, "#%02x%02x%02x");
         $menu_bg_rgb = sscanf($menu_bg_color, "#%02x%02x%02x");
+        $menu_text_rgb = sscanf($menu_text_color, "#%02x%02x%02x");
         
         $ui_css = '
             /* FlexFrame UI Settings - Loading Spinner */
@@ -564,7 +566,7 @@ function flexframe_enqueue_assets() {
             .logo-progress-bar {
                 width: 0%;
                 height: 100%;
-                background: linear-gradient(90deg, #4a9eff, #00f510);
+                background: linear-gradient(90deg, <?php echo $primary_color; ?>80, <?php echo $primary_color; ?>);
                 border-radius: 2px;
                 transition: width 0.15s ease-out;
             }
@@ -652,7 +654,7 @@ function flexframe_enqueue_assets() {
             .side-menu *,
             .thumbnail-dropdown *,
             .right-menu * {
-                color: ' . $menu_text_color . ' !important;
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
             }
             
             /* ===== MENU TITLE BUTTONS (Exercises, Muscles, Equipment, Search) ===== */
@@ -702,7 +704,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab svg,
             .thumbnail-grid-container .menu-hint-tab svg,
             .menu-hint-tab svg {
-                fill: ' . $menu_text_color . ' !important;
+                fill: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
                 width: 22px !important;
                 height: 22px !important;
             }
@@ -1084,7 +1086,7 @@ function flexframe_enqueue_assets() {
             .thumbnail-grid-container-right .thumbnail-menu-toggle,
             .thumbnail-grid-container-right .thumbnail-menu-toggle *,
             .thumbnail-grid-container-right .thumbnail-menu-toggle span {
-                color: ' . $menu_text_color . ' !important;
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
                 background-color: transparent !important;
             }
             /* Re-apply background to button itself */
@@ -1095,7 +1097,7 @@ function flexframe_enqueue_assets() {
             /* Right menu toggle button icons */
             #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle svg,
             .thumbnail-grid-container-right .thumbnail-menu-toggle svg {
-                fill: ' . $menu_text_color . ' !important;
+                fill: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
             }
             /* Right menu toggle button hover and active states */
             #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle:hover,
@@ -1121,7 +1123,7 @@ function flexframe_enqueue_assets() {
             /* Right menu text color */
             #flexframe-viewer-container .thumbnail-dropdown-right *,
             .thumbnail-dropdown-right * {
-                color: ' . $menu_text_color . ' !important;
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
             }
             /* Right menu hint tab (CIRCULAR) */
             #flexframe-viewer-container .menu-hint-tab-right,
@@ -1157,7 +1159,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab-right svg,
             .thumbnail-grid-container-right .menu-hint-tab-right svg,
             .menu-hint-tab-right svg {
-                fill: ' . $menu_text_color . ' !important;
+                fill: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
                 width: 22px !important;
                 height: 22px !important;
             }
@@ -1177,7 +1179,9 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .info-step-item,
             .thumbnail-dropdown-right .info-step-item,
             .info-step-item {
+                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 border-color: ' . $menu_accent_color . '44 !important;
+                opacity: 1 !important;
             }
             #flexframe-viewer-container .info-step-item:hover,
             .thumbnail-dropdown-right .info-step-item:hover,
@@ -1188,9 +1192,19 @@ function flexframe_enqueue_assets() {
             /* Right menu info titles - use text color */
             #flexframe-viewer-container .info-step-title,
             .thumbnail-dropdown-right .info-step-title,
+            .info-step-item .info-step-title,
             .info-step-title {
-                color: ' . $menu_text_color . ' !important;
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                opacity: 1 !important;
                 font-weight: 600 !important;
+            }
+            /* Right menu info text - use text opacity setting */
+            #flexframe-viewer-container .info-step-text,
+            .thumbnail-dropdown-right .info-step-text,
+            .info-step-item .info-step-text,
+            .info-step-text {
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                opacity: 1 !important;
             }
             /* Right menu scroll buttons */
             #flexframe-viewer-container .thumbnail-dropdown-right .scroll-btn:hover,
@@ -1365,6 +1379,8 @@ function flexframe_enqueue_assets() {
             'speed' => floatval(get_option('flexframe_particles_speed', 0.5))
         );
         
+
+        
         $settings_data = array(
             'primaryColorMode' => $primary_color_mode,
             'primaryColor' => $primary_color,
@@ -1489,7 +1505,7 @@ function flexframe_viewer_shortcode($atts) {
     $logo_url = get_option('flexframe_logo_url', '');
     
     ?>
-    <div id="flexframe-viewer-container" style="width: <?php echo esc_attr($atts['width']); ?>; height: <?php echo esc_attr($atts['height']); ?>; position: relative;">
+    <div id="flexframe-viewer-container" style="width: <?php echo esc_attr($atts['width']); ?>; height: <?php echo esc_attr($atts['height']); ?>; position: relative; overflow: hidden;">
         <!-- Model Loader -->
         <div id="model-loader" class="model-loader" style="display: none;">
             <?php if ($use_logo_loader && !empty($logo_url)) : ?>
@@ -1681,6 +1697,42 @@ function flexframe_viewer_shortcode($atts) {
         
         <!-- Canvas element -->
         <canvas class="webgl"></canvas>
+        
+        <?php
+        // Background Logo Watermark (CSS Overlay)
+        $bg_logo_enabled = get_option('flexframe_bg_logo_enabled', false);
+        $bg_logo_size = absint(get_option('flexframe_bg_logo_size', 150));
+        $bg_logo_opacity = floatval(get_option('flexframe_bg_logo_opacity', 0.5));
+        $bg_logo_pos_x = absint(get_option('flexframe_bg_logo_pos_x', 50));
+        $bg_logo_pos_y = absint(get_option('flexframe_bg_logo_pos_y', 90));
+        // Convert from "% from bottom" to CSS top value
+        $bg_logo_pos_y_css = 100 - $bg_logo_pos_y;
+        
+        if ($bg_logo_enabled && !empty($logo_url)) :
+        ?>
+        <!-- Logo Watermark Overlay -->
+        <div class="flexframe-bg-watermark" style="
+            position: absolute;
+            top: <?php echo esc_attr($bg_logo_pos_y_css); ?>%;
+            left: <?php echo esc_attr($bg_logo_pos_x); ?>%;
+            transform: translate(-50%, -50%);
+            width: <?php echo esc_attr($bg_logo_size); ?>px;
+            height: auto;
+            opacity: <?php echo esc_attr($bg_logo_opacity); ?>;
+            pointer-events: none;
+            z-index: 1;
+            user-select: none;
+            -webkit-user-drag: none;
+        ">
+            <img src="<?php echo esc_url($logo_url); ?>" alt="" style="
+                width: 100%;
+                height: auto;
+                pointer-events: none;
+                user-select: none;
+                -webkit-user-drag: none;
+            " draggable="false" />
+        </div>
+        <?php endif; ?>
         
         <!-- Animation Player -->
         <div id="animation-player" class="animation-player" style="display: none;">

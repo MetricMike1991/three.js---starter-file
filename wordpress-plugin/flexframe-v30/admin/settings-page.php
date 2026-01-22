@@ -327,6 +327,33 @@ function flexframe_register_settings() {
         'default' => 100
     ));
     
+    // Background logo settings
+    register_setting('flexframe_settings_group', 'flexframe_bg_logo_enabled', array(
+        'type' => 'boolean',
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'default' => false
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_bg_logo_size', array(
+        'type' => 'number',
+        'sanitize_callback' => 'absint',
+        'default' => 150
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_bg_logo_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.5
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_bg_logo_pos_x', array(
+        'type' => 'number',
+        'sanitize_callback' => 'absint',
+        'default' => 50
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_bg_logo_pos_y', array(
+        'type' => 'number',
+        'sanitize_callback' => 'absint',
+        'default' => 90
+    ));
+    
     // Material mode: 'preset' or 'custom'
     register_setting('flexframe_settings_group', 'flexframe_material_mode', array(
         'type' => 'string',
@@ -474,6 +501,11 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'sanitize_hex_color',
         'default' => '#ffffff'
     ));
+    register_setting('flexframe_settings_group', 'flexframe_menu_text_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 1
+    ));
     register_setting('flexframe_settings_group', 'flexframe_menu_accent_color', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -620,6 +652,9 @@ function flexframe_settings_page() {
     $logo_border_enabled = get_option('flexframe_logo_border_enabled', false);
     $logo_border_size = get_option('flexframe_logo_border_size', 2);
     $logo_display_size = get_option('flexframe_logo_display_size', 100);
+    $bg_logo_enabled = get_option('flexframe_bg_logo_enabled', false);
+    $bg_logo_size = get_option('flexframe_bg_logo_size', 150);
+    $bg_logo_opacity = get_option('flexframe_bg_logo_opacity', 0.15);
     $material_mode = get_option('flexframe_material_mode', 'preset');
     $material_preset = get_option('flexframe_material_preset', 'default');
     
@@ -662,6 +697,7 @@ function flexframe_settings_page() {
     $menu_bg_color = get_option('flexframe_menu_bg_color', '#000000');
     $menu_bg_opacity = get_option('flexframe_menu_bg_opacity', 0.9);
     $menu_text_color = get_option('flexframe_menu_text_color', '#ffffff');
+    $menu_text_opacity = get_option('flexframe_menu_text_opacity', 1);
     $menu_accent_color = get_option('flexframe_menu_accent_color', '#f50000');
     $hide_right_menu = get_option('flexframe_hide_right_menu', false);
     
@@ -921,6 +957,21 @@ function flexframe_settings_page() {
                                     <?php _e('Thickness of the white border in pixels (1-10). Default: 2px', 'flexframe-viewer'); ?>
                                 </p>
                             </div>
+                            
+                            <!-- Background Logo Section (Info Only) -->
+                            <div class="flexframe-setting-section-divider">
+                                <h4><?php _e('Background Logo (Watermark)', 'flexframe-viewer'); ?></h4>
+                            </div>
+                            
+                            <div class="flexframe-bg-logo-info-box">
+                                <div class="info-icon">
+                                    <span class="dashicons dashicons-info"></span>
+                                </div>
+                                <div class="info-content">
+                                    <p><strong><?php _e('Background logo settings are available in Custom Theme', 'flexframe-viewer'); ?></strong></p>
+                                    <p class="description"><?php _e('To add your logo as a watermark on the viewer background, go to Step 4 → Select "Custom Theme" → Scene Background section.', 'flexframe-viewer'); ?></p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1042,6 +1093,12 @@ function flexframe_settings_page() {
                             <div class="custom-panel-section">
                                 <div class="custom-panel-header" data-target="ui-settings-content">
                                     <h4><span class="dashicons dashicons-admin-appearance"></span> <?php _e('UI Settings', 'flexframe-viewer'); ?></h4>
+                                    <div class="header-preview ui-preview">
+                                        <div class="ui-icons-preview" id="preview-ui-icons">
+                                            <span class="ui-icon-btn">▶</span>
+                                            <span class="ui-icon-menu">☰</span>
+                                        </div>
+                                    </div>
                                     <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                                 </div>
                                 <div class="custom-panel-content" id="ui-settings-content">
@@ -1056,7 +1113,7 @@ function flexframe_settings_page() {
                                                 </div>
                                                 <div class="preview-logo-loader-inline" id="preview-logo-loader" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
                                                     <?php if (!empty($logo_url)) : ?>
-                                                        <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto; max-width: 60px;" />
+                                                        <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr(min($logo_loader_size, 60)); ?>px; max-width: <?php echo esc_attr(min($logo_loader_size, 60)); ?>px; height: auto;" />
                                                     <?php else : ?>
                                                         <div class="logo-placeholder-small"><span class="dashicons dashicons-format-image"></span></div>
                                                     <?php endif; ?>
@@ -1258,6 +1315,16 @@ function flexframe_settings_page() {
                                             </tr>
                                             <tr>
                                                 <th scope="row">
+                                                    <label for="flexframe_menu_text_opacity"><?php _e('Text Opacity', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="range" id="flexframe_menu_text_opacity" name="flexframe_menu_text_opacity" min="0" max="1" step="0.05" value="<?php echo esc_attr($menu_text_opacity); ?>" />
+                                                    <span class="opacity-value"><?php echo esc_html($menu_text_opacity); ?></span>
+                                                    <p class="description"><?php _e('0 = fully transparent, 1 = fully opaque', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
                                                     <label for="flexframe_menu_accent_color"><?php _e('Accent Color', 'flexframe-viewer'); ?></label>
                                                 </th>
                                                 <td>
@@ -1287,6 +1354,9 @@ function flexframe_settings_page() {
                             <div class="custom-panel-section">
                                 <div class="custom-panel-header" data-target="material-settings-content">
                                     <h4><span class="dashicons dashicons-art"></span> <?php _e('Model Material Settings', 'flexframe-viewer'); ?></h4>
+                                    <div class="header-preview material-preview">
+                                        <div class="material-sphere" id="preview-material-sphere"></div>
+                                    </div>
                                     <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                                 </div>
                                 <div class="custom-panel-content" id="material-settings-content">
@@ -1358,6 +1428,9 @@ function flexframe_settings_page() {
                             <div class="custom-panel-section">
                                 <div class="custom-panel-header" data-target="background-settings-content">
                                     <h4><span class="dashicons dashicons-admin-appearance"></span> <?php _e('Scene Background', 'flexframe-viewer'); ?></h4>
+                                    <div class="header-preview background-preview">
+                                        <div class="gradient-swatch" id="preview-gradient-swatch"></div>
+                                    </div>
                                     <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                                 </div>
                                 <div class="custom-panel-content" id="background-settings-content">
@@ -1390,6 +1463,68 @@ function flexframe_settings_page() {
                                         <p class="description">
                                             <?php _e('💡 Customize the gradient background of the 3D scene.', 'flexframe-viewer'); ?>
                                         </p>
+                                        
+                                        <!-- Background Logo Watermark -->
+                                        <div class="flexframe-subsection-divider">
+                                            <h5><span class="dashicons dashicons-format-image"></span> <?php _e('Logo Watermark Overlay', 'flexframe-viewer'); ?></h5>
+                                        </div>
+                                        
+                                        <div class="flexframe-setting-row">
+                                            <label class="flexframe-checkbox-label">
+                                                <input 
+                                                    type="checkbox" 
+                                                    id="flexframe_bg_logo_enabled" 
+                                                    name="flexframe_bg_logo_enabled" 
+                                                    value="1"
+                                                    <?php checked($bg_logo_enabled, true); ?>
+                                                    <?php echo empty($logo_url) ? 'disabled' : ''; ?>
+                                                />
+                                                <?php _e('Show Logo Watermark on Viewer', 'flexframe-viewer'); ?>
+                                            </label>
+                                            <?php if (empty($logo_url)) : ?>
+                                                <p class="description" style="margin-left: 24px; color: #d63638;">
+                                                    <span class="dashicons dashicons-warning" style="font-size: 14px;"></span>
+                                                    <?php _e('Upload a logo in Step 3 to enable this feature.', 'flexframe-viewer'); ?>
+                                                </p>
+                                            <?php endif; ?>
+                                        </div>
+                                        
+                                        <?php
+                                        // Get watermark position settings
+                                        $bg_logo_pos_x = get_option('flexframe_bg_logo_pos_x', 50);
+                                        $bg_logo_pos_y = get_option('flexframe_bg_logo_pos_y', 90);
+                                        ?>
+                                        
+                                        <div class="flexframe-bg-logo-options" id="bg_logo_options" style="<?php echo ($bg_logo_enabled && !empty($logo_url)) ? '' : 'display:none;'; ?>">
+                                            
+                                            <div class="flexframe-setting-row">
+                                                <label for="flexframe_bg_logo_pos_x"><?php _e('Horizontal Position', 'flexframe-viewer'); ?></label>
+                                                <input type="range" id="flexframe_bg_logo_pos_x" name="flexframe_bg_logo_pos_x" value="<?php echo esc_attr($bg_logo_pos_x); ?>" min="0" max="100" step="1" />
+                                                <span class="range-value" id="bg_logo_pos_x_value"><?php echo esc_html($bg_logo_pos_x); ?>%</span>
+                                            </div>
+                                            
+                                            <div class="flexframe-setting-row">
+                                                <label for="flexframe_bg_logo_pos_y"><?php _e('Vertical Position', 'flexframe-viewer'); ?></label>
+                                                <input type="range" id="flexframe_bg_logo_pos_y" name="flexframe_bg_logo_pos_y" value="<?php echo esc_attr($bg_logo_pos_y); ?>" min="0" max="100" step="1" />
+                                                <span class="range-value" id="bg_logo_pos_y_value"><?php echo esc_html($bg_logo_pos_y); ?>%</span>
+                                            </div>
+                                            
+                                            <div class="flexframe-setting-row">
+                                                <label for="flexframe_bg_logo_size"><?php _e('Logo Size', 'flexframe-viewer'); ?></label>
+                                                <input type="range" id="flexframe_bg_logo_size" name="flexframe_bg_logo_size" value="<?php echo esc_attr($bg_logo_size); ?>" min="30" max="500" step="10" />
+                                                <span class="range-value" id="bg_logo_size_value"><?php echo esc_html($bg_logo_size); ?>px</span>
+                                            </div>
+                                            
+                                            <div class="flexframe-setting-row">
+                                                <label for="flexframe_bg_logo_opacity"><?php _e('Logo Opacity', 'flexframe-viewer'); ?></label>
+                                                <input type="range" id="flexframe_bg_logo_opacity" name="flexframe_bg_logo_opacity" value="<?php echo esc_attr($bg_logo_opacity); ?>" min="0" max="1" step="0.05" />
+                                                <span class="range-value" id="bg_logo_opacity_value"><?php echo esc_html(round($bg_logo_opacity * 100)); ?>%</span>
+                                            </div>
+                                            
+                                            <p class="description">
+                                                <?php _e('💡 The watermark appears as an overlay on the viewer. Adjust position and opacity to your preference.', 'flexframe-viewer'); ?>
+                                            </p>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -1398,6 +1533,12 @@ function flexframe_settings_page() {
                             <div class="custom-panel-section">
                                 <div class="custom-panel-header" data-target="lighting-settings-content">
                                     <h4><span class="dashicons dashicons-lightbulb"></span> <?php _e('Lighting', 'flexframe-viewer'); ?></h4>
+                                    <div class="header-preview lighting-preview">
+                                        <div class="lighting-indicator" id="preview-lighting">
+                                            <div class="light-ambient" title="Ambient"></div>
+                                            <div class="light-directional" title="Directional"></div>
+                                        </div>
+                                    </div>
                                     <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                                 </div>
                                 <div class="custom-panel-content" id="lighting-settings-content">
@@ -1470,6 +1611,15 @@ function flexframe_settings_page() {
                             <div class="custom-panel-section">
                                 <div class="custom-panel-header" data-target="particles-settings-content">
                                     <h4><span class="dashicons dashicons-star-filled"></span> <?php _e('Dust Particles', 'flexframe-viewer'); ?></h4>
+                                    <div class="header-preview particles-preview">
+                                        <div class="particles-container" id="preview-particles">
+                                            <span class="particle p1"></span>
+                                            <span class="particle p2"></span>
+                                            <span class="particle p3"></span>
+                                            <span class="particle p4"></span>
+                                            <span class="particle p5"></span>
+                                        </div>
+                                    </div>
                                     <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                                 </div>
                                 <div class="custom-panel-content" id="particles-settings-content">
@@ -2091,6 +2241,117 @@ function flexframe_settings_page() {
         .custom-panel-header.collapsed .toggle-icon {
             transform: rotate(-90deg);
         }
+        
+        /* Header Preview Panels */
+        .header-preview {
+            background: #1a1a2e;
+            border-radius: 6px;
+            padding: 8px 12px;
+            margin-left: auto;
+            margin-right: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* UI Settings Preview */
+        .ui-preview {
+            min-width: 60px;
+        }
+        .ui-icons-preview {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .ui-icon-btn {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+        }
+        .ui-icon-menu {
+            font-size: 14px;
+            padding: 3px 6px;
+            border-radius: 3px;
+        }
+        
+        /* Material Sphere Preview */
+        .material-preview {
+            min-width: 50px;
+        }
+        .material-sphere {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%);
+            box-shadow: 
+                inset -3px -3px 8px rgba(0,0,0,0.3),
+                inset 3px 3px 8px rgba(255,255,255,0.2),
+                0 2px 8px rgba(0,0,0,0.3);
+        }
+        
+        /* Gradient Background Preview */
+        .background-preview {
+            min-width: 60px;
+        }
+        .gradient-swatch {
+            width: 50px;
+            height: 32px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        /* Lighting Preview */
+        .lighting-preview {
+            min-width: 70px;
+        }
+        .lighting-indicator {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .light-ambient, .light-directional {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            position: relative;
+        }
+        .light-ambient {
+            box-shadow: 0 0 10px 3px currentColor;
+        }
+        .light-directional {
+            box-shadow: 0 0 12px 4px currentColor;
+        }
+        
+        /* Particles Preview */
+        .particles-preview {
+            min-width: 60px;
+            min-height: 36px;
+        }
+        .particles-container {
+            position: relative;
+            width: 50px;
+            height: 32px;
+        }
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: floatParticle 3s ease-in-out infinite;
+        }
+        .particle.p1 { width: 4px; height: 4px; top: 5px; left: 10px; animation-delay: 0s; }
+        .particle.p2 { width: 3px; height: 3px; top: 15px; left: 25px; animation-delay: 0.5s; }
+        .particle.p3 { width: 5px; height: 5px; top: 8px; left: 40px; animation-delay: 1s; }
+        .particle.p4 { width: 3px; height: 3px; top: 22px; left: 8px; animation-delay: 1.5s; }
+        .particle.p5 { width: 4px; height: 4px; top: 20px; left: 35px; animation-delay: 2s; }
+        
+        @keyframes floatParticle {
+            0%, 100% { transform: translateY(0); opacity: 0.7; }
+            50% { transform: translateY(-5px); opacity: 1; }
+        }
+        
         .custom-panel-content {
             padding: 16px;
             border-top: 1px solid #e0e0e0;
@@ -2207,6 +2468,26 @@ function flexframe_settings_page() {
         
         /* Border size row */
         .flexframe-border-size-row {
+            margin-left: 24px;
+            padding-left: 12px;
+            border-left: 2px solid #dcdcde;
+        }
+        
+        /* Section divider */
+        .flexframe-setting-section-divider {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e4e7;
+        }
+        .flexframe-setting-section-divider h4 {
+            margin: 0 0 16px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #1d2327;
+        }
+        
+        /* Background logo options */
+        .flexframe-bg-logo-options {
             margin-left: 24px;
             padding-left: 12px;
             border-left: 2px solid #dcdcde;
@@ -2541,8 +2822,7 @@ function flexframe_settings_page() {
             justify-content: center;
         }
         .preview-logo-loader-inline .logo-loader-img {
-            max-width: 50px;
-            max-height: 50px;
+            max-height: 60px;
             object-fit: contain;
         }
         .logo-placeholder-small {
@@ -3017,9 +3297,12 @@ function flexframe_settings_page() {
         $('#flexframe_logo_loader_size').on('input', function() {
             var size = $(this).val();
             $(this).siblings('.size-value').text(size + 'px');
-            // Cap at 50px for inline preview, actual size used in viewer
-            var previewSize = Math.min(size, 50);
-            $('#preview-logo-loader .logo-loader-img').css('width', previewSize + 'px');
+            // Cap at 60px for inline preview, actual size used in viewer
+            var previewSize = Math.min(size, 60);
+            $('#preview-logo-loader .logo-loader-img').css({
+                'width': previewSize + 'px',
+                'max-width': previewSize + 'px'
+            });
         });
         
         // Update hex display and sync related colors when primary color changes
@@ -3140,6 +3423,7 @@ function flexframe_settings_page() {
                     menuBgColor: '#000000',
                     menuBgOpacity: 0.9,
                     menuTextColor: '#ffffff',
+                    menuTextOpacity: 1,
                     menuAccentColor: 'primary', // Will use primary color
                     hideRightMenu: false,
                     // Material settings
@@ -3169,7 +3453,13 @@ function flexframe_settings_page() {
                     particleSize: 0.0095,
                     particleColor: '#0d529c',
                     particleOpacity: 1,
-                    particleSpeed: 0.5
+                    particleSpeed: 0.5,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5
                 }
             },
             'dark': {
@@ -3190,6 +3480,7 @@ function flexframe_settings_page() {
                     menuBgColor: '#000000',
                     menuBgOpacity: 0.9,
                     menuTextColor: '#ffffff',
+                    menuTextOpacity: 1,
                     menuAccentColor: 'primary',
                     hideRightMenu: false,
                     // Material settings
@@ -3219,7 +3510,13 @@ function flexframe_settings_page() {
                     particleSize: 0.0095,
                     particleColor: 'primary',
                     particleOpacity: 1,
-                    particleSpeed: 0.5
+                    particleSpeed: 0.5,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5
                 }
             },
             'light': {
@@ -3237,9 +3534,10 @@ function flexframe_settings_page() {
                     playerIconColor: '#ffffff',
                     playerAccentColor: 'primary',
                     playerAlwaysVisible: 'no',
-                    menuBgColor: '#525252',
-                    menuBgOpacity: 0.8,
+                    menuBgColor: '#7d7d7d',
+                    menuBgOpacity: 0.3,
                     menuTextColor: '#ffffff',
+                    menuTextOpacity: 1,
                     menuAccentColor: 'primary',
                     hideRightMenu: false,
                     // Material settings
@@ -3269,7 +3567,13 @@ function flexframe_settings_page() {
                     particleSize: 0.0095,
                     particleColor: 'primary',
                     particleOpacity: 1,
-                    particleSpeed: 0.5
+                    particleSpeed: 0.5,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5
                 }
             },
             'random': {
@@ -3295,6 +3599,7 @@ function flexframe_settings_page() {
                     menuBgColor: '#000000',
                     menuBgOpacity: 0.9,
                     menuTextColor: '#ffffff',
+                    menuTextOpacity: 1,
                     menuAccentColor: 'primary',
                     hideRightMenu: false,
                     // Material settings - skin uses primary color
@@ -3324,7 +3629,13 @@ function flexframe_settings_page() {
                     particleSize: 0.0095,
                     particleColor: 'primary',
                     particleOpacity: 1,
-                    particleSpeed: 0.5
+                    particleSpeed: 0.5,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5
                 }
             }
         };
@@ -3394,6 +3705,11 @@ function flexframe_settings_page() {
             
             $('#flexframe_menu_text_color').val(getColor(settings.menuTextColor));
             $('#flexframe_menu_text_color').siblings('.color-value').text(getColor(settings.menuTextColor));
+            
+            if (settings.menuTextOpacity !== undefined) {
+                $('#flexframe_menu_text_opacity').val(settings.menuTextOpacity);
+                $('#flexframe_menu_text_opacity').siblings('.opacity-value').text(settings.menuTextOpacity);
+            }
             
             $('#flexframe_menu_accent_color').val(getColor(settings.menuAccentColor));
             $('#flexframe_menu_accent_color').siblings('.color-value').text(getColor(settings.menuAccentColor));
@@ -3728,6 +4044,7 @@ function flexframe_settings_page() {
                 menu_bg_color: $('#flexframe_menu_bg_color').val(),
                 menu_bg_opacity: $('#flexframe_menu_bg_opacity').val(),
                 menu_text_color: $('#flexframe_menu_text_color').val(),
+                menu_text_opacity: $('#flexframe_menu_text_opacity').val(),
                 menu_accent_color: $('#flexframe_menu_accent_color').val(),
                 hide_right_menu: $('#flexframe_hide_right_menu').is(':checked'),
                 // Material Settings
@@ -3798,6 +4115,11 @@ function flexframe_settings_page() {
             
             $('#flexframe_menu_text_color').val(settings.menu_text_color).trigger('input');
             $('#flexframe_menu_text_color').siblings('.color-value').text(settings.menu_text_color);
+            
+            if (settings.menu_text_opacity !== undefined) {
+                $('#flexframe_menu_text_opacity').val(settings.menu_text_opacity).trigger('input');
+                $('#flexframe_menu_text_opacity').siblings('.opacity-value').text(settings.menu_text_opacity);
+            }
             
             $('#flexframe_menu_accent_color').val(settings.menu_accent_color).trigger('input');
             $('#flexframe_menu_accent_color').siblings('.color-value').text(settings.menu_accent_color);
@@ -3891,9 +4213,47 @@ function flexframe_settings_page() {
                 $('#flexframe_particle_speed').siblings('.range-value').text(settings.particle_speed);
             }
             
+            // Background Logo Settings (if present)
+            if (settings.bg_logo_enabled !== undefined) {
+                $('input[name="flexframe_bg_logo_enabled"][value="' + (settings.bg_logo_enabled ? '1' : '0') + '"]').prop('checked', true).trigger('change');
+            }
+            if (settings.bg_logo_pos_x !== undefined) {
+                $('#flexframe_bg_logo_pos_x').val(settings.bg_logo_pos_x).trigger('input');
+                $('#flexframe_bg_logo_pos_x').siblings('.range-value').text(settings.bg_logo_pos_x + '%');
+            }
+            if (settings.bg_logo_pos_y !== undefined) {
+                $('#flexframe_bg_logo_pos_y').val(settings.bg_logo_pos_y).trigger('input');
+                $('#flexframe_bg_logo_pos_y').siblings('.range-value').text(settings.bg_logo_pos_y + '%');
+            }
+            if (settings.bg_logo_size !== undefined) {
+                $('#flexframe_bg_logo_size').val(settings.bg_logo_size).trigger('input');
+                $('#flexframe_bg_logo_size').siblings('.range-value').text(settings.bg_logo_size + 'px');
+            }
+            if (settings.bg_logo_opacity !== undefined) {
+                $('#flexframe_bg_logo_opacity').val(settings.bg_logo_opacity).trigger('input');
+                $('#flexframe_bg_logo_opacity').siblings('.range-value').text(Math.round(settings.bg_logo_opacity * 100) + '%');
+            }
+            
             // Update UI preview
             if (typeof updateUIPreview === 'function') {
                 updateUIPreview();
+            }
+            
+            // Update all header previews
+            if (typeof updateUIHeaderPreview === 'function') {
+                updateUIHeaderPreview();
+            }
+            if (typeof updateMaterialPreview === 'function') {
+                updateMaterialPreview();
+            }
+            if (typeof updateBackgroundPreview === 'function') {
+                updateBackgroundPreview();
+            }
+            if (typeof updateLightingPreview === 'function') {
+                updateLightingPreview();
+            }
+            if (typeof updateParticlesPreview === 'function') {
+                updateParticlesPreview();
             }
         }
         
@@ -4030,6 +4390,7 @@ function flexframe_settings_page() {
                         menuBgColor: 'menu_bg_color',
                         menuBgOpacity: 'menu_bg_opacity',
                         menuTextColor: 'menu_text_color',
+                        menuTextOpacity: 'menu_text_opacity',
                         menuAccentColor: 'menu_accent_color',
                         hideRightMenu: 'hide_right_menu',
                         skinColor: 'skin_color',
@@ -4055,7 +4416,12 @@ function flexframe_settings_page() {
                         particleSize: 'particle_size',
                         particleColor: 'particle_color',
                         particleOpacity: 'particle_opacity',
-                        particleSpeed: 'particle_speed'
+                        particleSpeed: 'particle_speed',
+                        bgLogoEnabled: 'bg_logo_enabled',
+                        bgLogoPosX: 'bg_logo_pos_x',
+                        bgLogoPosY: 'bg_logo_pos_y',
+                        bgLogoSize: 'bg_logo_size',
+                        bgLogoOpacity: 'bg_logo_opacity'
                     };
                     
                     // Create settings object with snake_case keys and 'primary' replaced
@@ -4170,6 +4536,33 @@ function flexframe_settings_page() {
                 $('#logo_border_size_row').slideUp(200);
             }
             updateLogoPreview();
+        });
+        
+        // Background logo checkbox toggle
+        $('#flexframe_bg_logo_enabled').on('change', function() {
+            if ($(this).is(':checked')) {
+                $('#bg_logo_options').slideDown(200);
+            } else {
+                $('#bg_logo_options').slideUp(200);
+            }
+        });
+        
+        // Background logo sliders
+        $('#flexframe_bg_logo_size').on('input', function() {
+            $('#bg_logo_size_value').text($(this).val() + 'px');
+        });
+        
+        $('#flexframe_bg_logo_opacity').on('input', function() {
+            var percent = Math.round($(this).val() * 100);
+            $('#bg_logo_opacity_value').text(percent + '%');
+        });
+        
+        $('#flexframe_bg_logo_pos_x').on('input', function() {
+            $('#bg_logo_pos_x_value').text($(this).val() + '%');
+        });
+        
+        $('#flexframe_bg_logo_pos_y').on('input', function() {
+            $('#bg_logo_pos_y_value').text($(this).val() + '%');
         });
         
         // Logo display size slider
@@ -4564,6 +4957,160 @@ function flexframe_settings_page() {
         if ($('#preview-player').length) {
             updateUIPreview();
         }
+        
+        // ============================================
+        // Header Preview Updates for Custom Settings
+        // ============================================
+        
+        // UI Settings Header Preview
+        function updateUIHeaderPreview() {
+            var playerButtonBgColor = $('#flexframe_player_button_bg_color').val();
+            var playerButtonBgOpacity = parseFloat($('#flexframe_player_button_bg_opacity').val());
+            var playerIconColor = $('#flexframe_player_icon_color').val();
+            var menuBgColor = $('#flexframe_menu_bg_color').val();
+            var menuBgOpacity = parseFloat($('#flexframe_menu_bg_opacity').val());
+            var menuTextColor = $('#flexframe_menu_text_color').val();
+            
+            function hexToRgba(hex, alpha) {
+                var r = parseInt(hex.slice(1, 3), 16);
+                var g = parseInt(hex.slice(3, 5), 16);
+                var b = parseInt(hex.slice(5, 7), 16);
+                return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
+            }
+            
+            $('#preview-ui-icons .ui-icon-btn').css({
+                'background-color': hexToRgba(playerButtonBgColor, playerButtonBgOpacity),
+                'color': playerIconColor
+            });
+            
+            $('#preview-ui-icons .ui-icon-menu').css({
+                'background-color': hexToRgba(menuBgColor, menuBgOpacity),
+                'color': menuTextColor
+            });
+        }
+        
+        // Material Sphere Preview
+        function updateMaterialPreview() {
+            var skinColor = $('#flexframe_skin_color').val();
+            var opacity = parseFloat($('#flexframe_skin_opacity').val());
+            var roughness = parseFloat($('#flexframe_skin_roughness').val());
+            var metalness = parseFloat($('#flexframe_skin_metalness').val());
+            
+            var $sphere = $('#preview-material-sphere');
+            
+            // Calculate highlight based on roughness (less rough = more shine)
+            var highlightIntensity = (1 - roughness) * 0.4;
+            var highlightColor = metalness > 0.5 ? skinColor : 'rgba(255,255,255,' + highlightIntensity + ')';
+            
+            $sphere.css({
+                'background-color': skinColor,
+                'opacity': opacity,
+                'background': 'linear-gradient(135deg, ' + highlightColor + ' 0%, ' + skinColor + ' 50%, ' + adjustBrightness(skinColor, -30) + ' 100%)'
+            });
+        }
+        
+        // Gradient Background Preview
+        function updateBackgroundPreview() {
+            var topColor = $('#flexframe_bg_gradient_top').val();
+            var bottomColor = $('#flexframe_bg_gradient_bottom').val();
+            var opacity = parseFloat($('#flexframe_bg_opacity').val());
+            
+            $('#preview-gradient-swatch').css({
+                'background': 'linear-gradient(to bottom, ' + topColor + ', ' + bottomColor + ')',
+                'opacity': opacity
+            });
+        }
+        
+        // Lighting Preview
+        function updateLightingPreview() {
+            var ambientColor = $('#flexframe_ambient_color').val();
+            var ambientIntensity = parseFloat($('#flexframe_ambient_intensity').val());
+            var directionalColor = $('#flexframe_directional_color').val();
+            var directionalIntensity = parseFloat($('#flexframe_directional_intensity').val());
+            
+            // Scale intensity to opacity (0-2 -> 0.2-1)
+            var ambientOpacity = Math.min(0.2 + (ambientIntensity / 2) * 0.8, 1);
+            var directionalOpacity = Math.min(0.2 + (directionalIntensity / 5) * 0.8, 1);
+            
+            $('#preview-lighting .light-ambient').css({
+                'background-color': ambientColor,
+                'color': ambientColor,
+                'opacity': ambientOpacity
+            });
+            
+            $('#preview-lighting .light-directional').css({
+                'background-color': directionalColor,
+                'color': directionalColor,
+                'opacity': directionalOpacity
+            });
+        }
+        
+        // Particles Preview
+        function updateParticlesPreview() {
+            var enabled = $('#flexframe_particles_enabled').is(':checked');
+            var color = $('#flexframe_particles_color').val();
+            var opacity = parseFloat($('#flexframe_particles_opacity').val());
+            var size = parseFloat($('#flexframe_particles_size').val());
+            
+            var $container = $('#preview-particles');
+            
+            if (!enabled) {
+                $container.css('opacity', 0.3);
+            } else {
+                $container.css('opacity', 1);
+            }
+            
+            // Scale size for preview (0.001-0.05 -> 2-6px)
+            var previewSize = 2 + (size / 0.05) * 4;
+            
+            $container.find('.particle').css({
+                'background-color': color,
+                'opacity': opacity,
+                'width': previewSize + 'px',
+                'height': previewSize + 'px'
+            });
+        }
+        
+        // Helper function to adjust color brightness
+        function adjustBrightness(hex, percent) {
+            var r = parseInt(hex.slice(1, 3), 16);
+            var g = parseInt(hex.slice(3, 5), 16);
+            var b = parseInt(hex.slice(5, 7), 16);
+            
+            r = Math.max(0, Math.min(255, r + percent));
+            g = Math.max(0, Math.min(255, g + percent));
+            b = Math.max(0, Math.min(255, b + percent));
+            
+            return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+        }
+        
+        // Bind change events to update previews
+        // UI Header Settings
+        $('#flexframe_player_button_bg_color, #flexframe_player_button_bg_opacity, #flexframe_player_icon_color, #flexframe_menu_bg_color, #flexframe_menu_bg_opacity, #flexframe_menu_text_color, #flexframe_menu_text_opacity').on('input change', updateUIHeaderPreview);
+        
+        // Text opacity slider value display
+        $('#flexframe_menu_text_opacity').on('input', function() {
+            $(this).siblings('.opacity-value').text($(this).val());
+        });
+        
+        // Material Settings
+        $('#flexframe_skin_color, #flexframe_skin_opacity, #flexframe_skin_roughness, #flexframe_skin_metalness').on('input change', updateMaterialPreview);
+        
+        // Background Settings
+        $('#flexframe_bg_gradient_top, #flexframe_bg_gradient_bottom, #flexframe_bg_opacity').on('input change', updateBackgroundPreview);
+        
+        // Lighting Settings
+        $('#flexframe_ambient_color, #flexframe_ambient_intensity, #flexframe_directional_color, #flexframe_directional_intensity').on('input change', updateLightingPreview);
+        
+        // Particles Settings
+        $('#flexframe_particles_enabled, #flexframe_particles_color, #flexframe_particles_opacity, #flexframe_particles_size').on('input change', updateParticlesPreview);
+        
+        // Initial preview updates
+        updateUIHeaderPreview();
+        updateMaterialPreview();
+        updateBackgroundPreview();
+        updateLightingPreview();
+        updateParticlesPreview();
         
         // ============================================
         // Export Settings to Clipboard
