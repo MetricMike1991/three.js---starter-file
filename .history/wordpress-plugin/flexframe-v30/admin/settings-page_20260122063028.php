@@ -2918,20 +2918,6 @@ function flexframe_settings_page() {
             $content.slideToggle(200);
         });
         
-        // Set initial state of custom panels based on theme mode
-        var initialMode = $('input[name="flexframe_material_mode"]:checked').val();
-        if (initialMode === 'custom') {
-            // Collapse all panels when Custom Theme is selected
-            $('.custom-panel-header').each(function() {
-                var $header = $(this);
-                var targetId = $header.data('target');
-                var $content = $('#' + targetId);
-                $header.addClass('collapsed');
-                $content.hide();
-            });
-        }
-        // If preset mode, panels stay expanded (default state)
-        
         // Toggle theme mode (preset vs custom)
         $('input[name="flexframe_material_mode"]').on('change', function() {
             var mode = $(this).val();
