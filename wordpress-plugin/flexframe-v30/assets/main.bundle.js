@@ -33470,6 +33470,16 @@ void main() {
      * Create the QR code modal
      */
     createQRModal() {
+      const primaryColor = window.flexframeSettings?.primaryColor || "#4a9eff";
+      const hexToRgb = (hex) => {
+        const r = parseInt(hex.slice(1, 3), 16);
+        const g = parseInt(hex.slice(3, 5), 16);
+        const b = parseInt(hex.slice(5, 7), 16);
+        return { r, g, b };
+      };
+      const rgb = hexToRgb(primaryColor);
+      const darkBg1 = `rgb(${Math.floor(rgb.r * 0.15)}, ${Math.floor(rgb.g * 0.15)}, ${Math.floor(rgb.b * 0.2 + 20)})`;
+      const darkBg2 = `rgb(${Math.floor(rgb.r * 0.1)}, ${Math.floor(rgb.g * 0.12)}, ${Math.floor(rgb.b * 0.18 + 30)})`;
       this.qrModal = document.createElement("div");
       this.qrModal.id = "ar-qr-modal";
       this.qrModal.innerHTML = `
@@ -33487,18 +33497,18 @@ void main() {
                 backdrop-filter: blur(10px);
             ">
                 <div class="ar-qr-modal-content" style="
-                    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+                    background: linear-gradient(135deg, ${darkBg1} 0%, ${darkBg2} 100%);
                     border-radius: 20px;
                     padding: 40px;
                     text-align: center;
                     max-width: 400px;
                     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-                    border: 1px solid rgba(74, 158, 255, 0.3);
+                    border: 1px solid ${primaryColor}4D;
                 ">
                     <div class="ar-qr-header" style="margin-bottom: 24px;">
                         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="margin-bottom: 16px;">
-                            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
-                            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+                            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="${primaryColor}"/>
+                            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="${primaryColor}"/>
                         </svg>
                         <h2 style="
                             color: white;
@@ -33519,6 +33529,7 @@ void main() {
                         border-radius: 12px;
                         display: inline-block;
                         margin-bottom: 24px;
+                        border: 3px solid ${primaryColor};
                     ">
                         <!-- QR code will be inserted here -->
                         <div style="width: 200px; height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center;">
@@ -33536,8 +33547,8 @@ void main() {
                     </div>
                     
                     <button id="ar-qr-close" style="
-                        background: rgba(255, 255, 255, 0.1);
-                        border: 1px solid rgba(255, 255, 255, 0.2);
+                        background: ${primaryColor};
+                        border: none;
                         color: white;
                         padding: 12px 32px;
                         border-radius: 8px;
