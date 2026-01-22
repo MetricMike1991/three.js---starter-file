@@ -126,6 +126,9 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
+        // Setup screenshot button callback
+        this.setupScreenshotButton();
+        
         // Setup AR branding from WordPress settings
         this.setupARBranding();
         
@@ -1800,6 +1803,52 @@ class ThreeJSApp {
         this.ground.receiveShadow = this.groundParams.receiveShadow;
         this.ground.castShadow = this.groundParams.castShadow;
         this.ground.visible = this.groundParams.visible;
+    }
+
+    /**
+     * Setup screenshot button in animation player
+     */
+    setupScreenshotButton() {
+        if (this.animationPlayer) {
+            // Set the screenshot callback
+            this.animationPlayer.setScreenshotCallback(() => {
+                this.takeUserScreenshot();
+            });
+            
+            // Check WordPress settings for screenshot button visibility
+            const showScreenshotButton = window.flexframeSettings?.showScreenshotButton !== false;
+            this.animationPlayer.setScreenshotButtonVisible(showScreenshotButton);
+        }
+    }
+    
+    /**
+     * Take a screenshot for the end user
+     */
+    async takeUserScreenshot() {
+        const renderer = this.sceneManager.getRenderer();
+        const scene = this.sceneManager.getScene();
+        const camera = this.cameraManager.getCamera();
+        
+        // Use current viewport size for screenshot
+        const canvas = renderer.domElement;
+        
+        try {
+            const result = await ScreenshotUtils.takeScreenshot(renderer, scene, camera, {
+                width: canvas.clientWidth * 2, // 2x for better quality
+                height: canvas.clientHeight * 2,
+                filename: this.currentExerciseName ? this.currentExerciseName.replace(/\s+/g, '_') : 'flexframe_screenshot',
+                format: 'png',
+                transparent: false
+            });
+            
+            if (result.success) {
+                console.log(`📸 User screenshot saved: ${result.filename}`);
+            } else {
+                console.error('Screenshot failed:', result.error);
+            }
+        } catch (error) {
+            console.error('Screenshot error:', error);
+        }
     }
 
     /**

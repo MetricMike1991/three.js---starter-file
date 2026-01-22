@@ -516,6 +516,21 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'rest_sanitize_boolean',
         'default' => false
     ));
+    register_setting('flexframe_settings_group', 'flexframe_show_screenshot_button', array(
+        'type' => 'boolean',
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'default' => true
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_thumbnail_label_color', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_hex_color',
+        'default' => '#000000'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_thumbnail_label_opacity', array(
+        'type' => 'number',
+        'sanitize_callback' => 'floatval',
+        'default' => 0.1
+    ));
     
     // ========== Scene/Background Settings ==========
     register_setting('flexframe_settings_group', 'flexframe_bg_gradient_top', array(
@@ -700,6 +715,9 @@ function flexframe_settings_page() {
     $menu_text_opacity = get_option('flexframe_menu_text_opacity', 1);
     $menu_accent_color = get_option('flexframe_menu_accent_color', '#f50000');
     $hide_right_menu = get_option('flexframe_hide_right_menu', false);
+    $show_screenshot_button = get_option('flexframe_show_screenshot_button', true);
+    $thumbnail_label_color = get_option('flexframe_thumbnail_label_color', '#000000');
+    $thumbnail_label_opacity = get_option('flexframe_thumbnail_label_opacity', 0.1);
     
     ?>
     <div class="wrap">
@@ -1335,6 +1353,26 @@ function flexframe_settings_page() {
                                             </tr>
                                             <tr>
                                                 <th scope="row">
+                                                    <label for="flexframe_thumbnail_label_color"><?php _e('Thumbnail Label Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_thumbnail_label_color" name="flexframe_thumbnail_label_color" value="<?php echo esc_attr($thumbnail_label_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($thumbnail_label_color); ?></span>
+                                                    <p class="description"><?php _e('Background gradient color for thumbnail labels.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_thumbnail_label_opacity"><?php _e('Thumbnail Label Opacity', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="range" id="flexframe_thumbnail_label_opacity" name="flexframe_thumbnail_label_opacity" min="0" max="1" step="0.05" value="<?php echo esc_attr($thumbnail_label_opacity); ?>" class="opacity-slider" />
+                                                    <span class="opacity-value"><?php echo esc_html($thumbnail_label_opacity); ?></span>
+                                                    <p class="description"><?php _e('Opacity of the thumbnail label gradient (0 = transparent, 1 = solid).', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
                                                     <label for="flexframe_hide_right_menu"><?php _e('Hide Info Panel', 'flexframe-viewer'); ?></label>
                                                 </th>
                                                 <td>
@@ -1343,6 +1381,18 @@ function flexframe_settings_page() {
                                                         <span class="toggle-slider"></span>
                                                     </label>
                                                     <p class="description"><?php _e('Hide the information panel (Hints, Tips, Steps, Errors) on the right side of the viewer.', 'flexframe-viewer'); ?></p>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">
+                                                    <label for="flexframe_show_screenshot_button"><?php _e('Show Screenshot Button', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <label class="toggle-switch">
+                                                        <input type="checkbox" id="flexframe_show_screenshot_button" name="flexframe_show_screenshot_button" value="1" <?php checked($show_screenshot_button, true); ?> />
+                                                        <span class="toggle-slider"></span>
+                                                    </label>
+                                                    <p class="description"><?php _e('Show a screenshot button in the animation player controls.', 'flexframe-viewer'); ?></p>
                                                 </td>
                                             </tr>
                                         </table>
@@ -3426,6 +3476,10 @@ function flexframe_settings_page() {
                     menuTextOpacity: 1,
                     menuAccentColor: 'primary', // Will use primary color
                     hideRightMenu: false,
+                    showScreenshotButton: true,
+                    // Thumbnail Label settings
+                    thumbnailLabelColor: '#000000',
+                    thumbnailLabelOpacity: 0.1,
                     // Material settings
                     skinColor: '#ccdef5',
                     skinOpacity: 1,
@@ -3483,6 +3537,10 @@ function flexframe_settings_page() {
                     menuTextOpacity: 1,
                     menuAccentColor: 'primary',
                     hideRightMenu: false,
+                    showScreenshotButton: true,
+                    // Thumbnail Label settings
+                    thumbnailLabelColor: '#000000',
+                    thumbnailLabelOpacity: 0.1,
                     // Material settings
                     skinColor: '#ccdef5',
                     skinOpacity: 1,
@@ -3536,10 +3594,14 @@ function flexframe_settings_page() {
                     playerAlwaysVisible: 'no',
                     menuBgColor: '#7d7d7d',
                     menuBgOpacity: 0.3,
-                    menuTextColor: '#ffffff',
+                    menuTextColor: '#222222',
                     menuTextOpacity: 1,
                     menuAccentColor: 'primary',
                     hideRightMenu: false,
+                    showScreenshotButton: true,
+                    // Thumbnail Label settings
+                    thumbnailLabelColor: '#333333',
+                    thumbnailLabelOpacity: 0.1,
                     // Material settings
                     skinColor: '#aaadb1',
                     skinOpacity: 1,
@@ -3602,6 +3664,10 @@ function flexframe_settings_page() {
                     menuTextOpacity: 1,
                     menuAccentColor: 'primary',
                     hideRightMenu: false,
+                    showScreenshotButton: true,
+                    // Thumbnail Label settings
+                    thumbnailLabelColor: '#222222',
+                    thumbnailLabelOpacity: 0.1,
                     // Material settings - skin uses primary color
                     skinColor: 'primary',
                     skinOpacity: 1,
@@ -3715,6 +3781,17 @@ function flexframe_settings_page() {
             $('#flexframe_menu_accent_color').siblings('.color-value').text(getColor(settings.menuAccentColor));
             
             $('#flexframe_hide_right_menu').prop('checked', settings.hideRightMenu);
+            $('#flexframe_show_screenshot_button').prop('checked', settings.showScreenshotButton !== false);
+            
+            // Apply Thumbnail Label Settings
+            if (settings.thumbnailLabelColor !== undefined) {
+                $('#flexframe_thumbnail_label_color').val(getColor(settings.thumbnailLabelColor));
+                $('#flexframe_thumbnail_label_color').siblings('.color-value').text(getColor(settings.thumbnailLabelColor));
+            }
+            if (settings.thumbnailLabelOpacity !== undefined) {
+                $('#flexframe_thumbnail_label_opacity').val(settings.thumbnailLabelOpacity);
+                $('#flexframe_thumbnail_label_opacity').siblings('.opacity-value').text(settings.thumbnailLabelOpacity);
+            }
             
             // Apply Material Settings - trigger input events so values are recognized
             $('#flexframe_skin_color').val(getColor(settings.skinColor)).trigger('input').trigger('change');
@@ -3932,6 +4009,7 @@ function flexframe_settings_page() {
                 menuTextColor: '#ffffff',
                 menuAccentColor: primaryColor,
                 hideRightMenu: false,
+                showScreenshotButton: true,
                 skinColor: skinColor,
                 skinOpacity: 1,
                 skinRoughness: randomInRange(0, 0.3),
@@ -4047,6 +4125,9 @@ function flexframe_settings_page() {
                 menu_text_opacity: $('#flexframe_menu_text_opacity').val(),
                 menu_accent_color: $('#flexframe_menu_accent_color').val(),
                 hide_right_menu: $('#flexframe_hide_right_menu').is(':checked'),
+                // Thumbnail Label Settings
+                thumbnail_label_color: $('#flexframe_thumbnail_label_color').val(),
+                thumbnail_label_opacity: $('#flexframe_thumbnail_label_opacity').val(),
                 // Material Settings
                 skin_color: $('#flexframe_skin_color').val(),
                 skin_opacity: $('#flexframe_skin_opacity').val(),
@@ -4125,6 +4206,16 @@ function flexframe_settings_page() {
             $('#flexframe_menu_accent_color').siblings('.color-value').text(settings.menu_accent_color);
             
             $('#flexframe_hide_right_menu').prop('checked', settings.hide_right_menu);
+            
+            // Thumbnail Label Settings
+            if (settings.thumbnail_label_color !== undefined) {
+                $('#flexframe_thumbnail_label_color').val(settings.thumbnail_label_color).trigger('input');
+                $('#flexframe_thumbnail_label_color').siblings('.color-value').text(settings.thumbnail_label_color);
+            }
+            if (settings.thumbnail_label_opacity !== undefined) {
+                $('#flexframe_thumbnail_label_opacity').val(settings.thumbnail_label_opacity).trigger('input');
+                $('#flexframe_thumbnail_label_opacity').siblings('.opacity-value').text(settings.thumbnail_label_opacity);
+            }
             
             // Material Settings
             $('#flexframe_skin_color').val(settings.skin_color);
@@ -4393,6 +4484,7 @@ function flexframe_settings_page() {
                         menuTextOpacity: 'menu_text_opacity',
                         menuAccentColor: 'menu_accent_color',
                         hideRightMenu: 'hide_right_menu',
+                        showScreenshotButton: 'show_screenshot_button',
                         skinColor: 'skin_color',
                         skinOpacity: 'skin_opacity',
                         skinRoughness: 'skin_roughness',
@@ -5090,6 +5182,11 @@ function flexframe_settings_page() {
         
         // Text opacity slider value display
         $('#flexframe_menu_text_opacity').on('input', function() {
+            $(this).siblings('.opacity-value').text($(this).val());
+        });
+        
+        // Thumbnail label opacity slider value display
+        $('#flexframe_thumbnail_label_opacity').on('input', function() {
             $(this).siblings('.opacity-value').text($(this).val());
         });
         

@@ -26,16 +26,19 @@
     box-shadow: 0 2px 8px rgba(0,0,0,0.08);
     color: #fff;
     font-size: 1.08em;
+    opacity: 1;
 }
 .info-step-title {
     font-weight: bold;
     font-size: 1.12em;
     margin-bottom: 6px;
-    color: #4a9eff;
+    color: #fff;
+    opacity: 1;
 }
 .info-step-text {
     font-size: 1em;
-    color: #e0e0e0;
+    color: #fff;
+    opacity: 1;
 }
 .info-step-empty {
     color: #bbb;
@@ -361,7 +364,7 @@ body
 }
 
 /* Button styles */
-.play-pause-btn, .speed-btn, .quality-toggle-btn, .quality-btn, .ar-btn {
+.play-pause-btn, .speed-btn, .quality-toggle-btn, .quality-btn, .ar-btn, .screenshot-btn {
     background: rgba(255, 255, 255, 0.1);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 6px;
@@ -383,13 +386,19 @@ body
     letter-spacing: 0.5px;
 }
 
-.play-pause-btn:hover, .speed-btn:hover, .quality-toggle-btn:hover, .quality-btn:hover, .ar-btn:hover {
+.play-pause-btn:hover, .speed-btn:hover, .quality-toggle-btn:hover, .quality-btn:hover, .ar-btn:hover, .screenshot-btn:hover {
     background: rgba(255, 255, 255, 0.2);
     transform: translateY(-1px);
 }
 
-.play-pause-btn svg, .speed-btn svg, .quality-toggle-btn svg, .quality-btn svg, .ar-btn svg {
+.play-pause-btn svg, .speed-btn svg, .quality-toggle-btn svg, .quality-btn svg, .ar-btn svg, .screenshot-btn svg {
     flex-shrink: 0;
+}
+
+/* Screenshot Button specific styles */
+.screenshot-btn:hover {
+    background: rgba(74, 158, 255, 0.3);
+    border-color: rgba(74, 158, 255, 0.5);
 }
 
 /* AR Button specific styles */
@@ -1713,7 +1722,7 @@ body
 
 .thumbnail-grid-container-right:hover .menu-hint-tab-right,
 .thumbnail-grid-container-right.menu-active .menu-hint-tab-right {
-    opacity: 0.3;
+    opacity: 1;
 }
 
 .thumbnail-dropdown-right {

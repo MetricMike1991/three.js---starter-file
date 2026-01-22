@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.29.0');
+define('FLEXFRAME_VERSION', '1.30.5');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -469,12 +469,16 @@ function flexframe_enqueue_assets() {
         $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#f50000'));
         $primary_color = esc_attr(get_option('flexframe_primary_color', '#f50000'));
         $hide_right_menu = get_option('flexframe_hide_right_menu', false);
+        $thumbnail_label_color = esc_attr(get_option('flexframe_thumbnail_label_color', '#000000'));
+        $thumbnail_label_opacity = floatval(get_option('flexframe_thumbnail_label_opacity', 0.1));
         
         // Convert hex to RGB for rgba usage
         $player_bg_rgb = sscanf($player_bg_color, "#%02x%02x%02x");
         $player_button_bg_rgb = sscanf($player_button_bg_color, "#%02x%02x%02x");
         $menu_bg_rgb = sscanf($menu_bg_color, "#%02x%02x%02x");
         $menu_text_rgb = sscanf($menu_text_color, "#%02x%02x%02x");
+        $primary_rgb = sscanf($primary_color, "#%02x%02x%02x");
+        $thumbnail_label_rgb = sscanf($thumbnail_label_color, "#%02x%02x%02x");
         
         $ui_css = '
             /* FlexFrame UI Settings - Loading Spinner */
@@ -654,7 +658,7 @@ function flexframe_enqueue_assets() {
             .side-menu *,
             .thumbnail-dropdown *,
             .right-menu * {
-                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                color: ' . $menu_text_color . ' !important;
             }
             
             /* ===== MENU TITLE BUTTONS (Exercises, Muscles, Equipment, Search) ===== */
@@ -668,6 +672,7 @@ function flexframe_enqueue_assets() {
             button.thumbnail-menu-toggle.active {
                 background-color: ' . $menu_accent_color . ' !important;
                 border-color: ' . $menu_accent_color . ' !important;
+                box-shadow: none !important;
             }
             
             /* ===== SLIDE IN/OUT TAB BUTTON (LEFT - CIRCULAR) ===== */
@@ -704,7 +709,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab svg,
             .thumbnail-grid-container .menu-hint-tab svg,
             .menu-hint-tab svg {
-                fill: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                fill: ' . $menu_text_color . ' !important;
                 width: 22px !important;
                 height: 22px !important;
             }
@@ -1086,7 +1091,7 @@ function flexframe_enqueue_assets() {
             .thumbnail-grid-container-right .thumbnail-menu-toggle,
             .thumbnail-grid-container-right .thumbnail-menu-toggle *,
             .thumbnail-grid-container-right .thumbnail-menu-toggle span {
-                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                color: ' . $menu_text_color . ' !important;
                 background-color: transparent !important;
             }
             /* Re-apply background to button itself */
@@ -1097,7 +1102,7 @@ function flexframe_enqueue_assets() {
             /* Right menu toggle button icons */
             #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle svg,
             .thumbnail-grid-container-right .thumbnail-menu-toggle svg {
-                fill: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                fill: ' . $menu_text_color . ' !important;
             }
             /* Right menu toggle button hover and active states */
             #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle:hover,
@@ -1106,7 +1111,7 @@ function flexframe_enqueue_assets() {
             .thumbnail-grid-container-right .thumbnail-menu-toggle.active {
                 background-color: ' . $menu_accent_color . ' !important;
             }
-            /* Right menu dropdowns */
+            /* Right menu dropdowns - transparent container, items have their own backgrounds */
             #flexframe-viewer-container .thumbnail-dropdown-right,
             #flexframe-viewer-container #hintsDropdown,
             #flexframe-viewer-container #tipsDropdown,
@@ -1117,13 +1122,25 @@ function flexframe_enqueue_assets() {
             #tipsDropdown,
             #stepsDropdown,
             #errorsDropdown {
-                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                background: transparent !important;
+                background-color: transparent !important;
                 border: 2px solid ' . $menu_accent_color . ' !important;
             }
             /* Right menu text color */
             #flexframe-viewer-container .thumbnail-dropdown-right *,
             .thumbnail-dropdown-right * {
-                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                color: ' . $menu_text_color . ' !important;
+                opacity: 1 !important;
+            }
+            /* Remove focus/selection shadows from info items */
+            #flexframe-viewer-container .info-step-item:focus,
+            #flexframe-viewer-container .info-step-item:active,
+            .thumbnail-dropdown-right .info-step-item:focus,
+            .thumbnail-dropdown-right .info-step-item:active,
+            .info-step-item:focus,
+            .info-step-item:active {
+                outline: none !important;
+                box-shadow: none !important;
             }
             /* Right menu hint tab (CIRCULAR) */
             #flexframe-viewer-container .menu-hint-tab-right,
@@ -1159,7 +1176,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab-right svg,
             .thumbnail-grid-container-right .menu-hint-tab-right svg,
             .menu-hint-tab-right svg {
-                fill: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                fill: ' . $menu_text_color . ' !important;
                 width: 22px !important;
                 height: 22px !important;
             }
@@ -1175,12 +1192,19 @@ function flexframe_enqueue_assets() {
             .menu-hint-tab-right:hover svg {
                 fill: #ffffff !important;
             }
-            /* Right menu info items */
+            /* Right menu info items - background only uses opacity, text stays solid */
             #flexframe-viewer-container .info-step-item,
             .thumbnail-dropdown-right .info-step-item,
             .info-step-item {
                 background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 border-color: ' . $menu_accent_color . '44 !important;
+                color: ' . $menu_text_color . ' !important;
+            }
+            /* Ensure all text inside info items is solid color, not transparent */
+            #flexframe-viewer-container .info-step-item *,
+            .thumbnail-dropdown-right .info-step-item *,
+            .info-step-item * {
+                color: ' . $menu_text_color . ' !important;
                 opacity: 1 !important;
             }
             #flexframe-viewer-container .info-step-item:hover,
@@ -1194,7 +1218,7 @@ function flexframe_enqueue_assets() {
             .thumbnail-dropdown-right .info-step-title,
             .info-step-item .info-step-title,
             .info-step-title {
-                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                color: ' . $menu_text_color . ' !important;
                 opacity: 1 !important;
                 font-weight: 600 !important;
             }
@@ -1203,7 +1227,7 @@ function flexframe_enqueue_assets() {
             .thumbnail-dropdown-right .info-step-text,
             .info-step-item .info-step-text,
             .info-step-text {
-                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                color: ' . $menu_text_color . ' !important;
                 opacity: 1 !important;
             }
             /* Right menu scroll buttons */
@@ -1267,6 +1291,39 @@ function flexframe_enqueue_assets() {
             .thumbnail-dropdown-right input[type="range"],
             .right-menu-settings-panel input[type="range"] {
                 accent-color: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* FINAL OVERRIDE: Force all text inside info-step-item to be 100% opaque */
+            .info-step-item,
+            .info-step-item *,
+            .info-step-item .info-step-title,
+            .info-step-item .info-step-text,
+            .info-step-title,
+            .info-step-text,
+            #flexframe-viewer-container .info-step-item,
+            #flexframe-viewer-container .info-step-item *,
+            #flexframe-viewer-container .info-step-title,
+            #flexframe-viewer-container .info-step-text,
+            .thumbnail-dropdown-right .info-step-item,
+            .thumbnail-dropdown-right .info-step-item *,
+            .thumbnail-dropdown-right .info-step-title,
+            .thumbnail-dropdown-right .info-step-text {
+                opacity: 1 !important;
+                -webkit-opacity: 1 !important;
+            }
+            
+            /* Thumbnail label gradient uses custom color and opacity */
+            #flexframe-viewer-container .thumbnail-label,
+            .thumbnail-dropdown .thumbnail-label,
+            .thumbnail-label {
+                background: linear-gradient(rgba(' . $thumbnail_label_rgb[0] . ', ' . $thumbnail_label_rgb[1] . ', ' . $thumbnail_label_rgb[2] . ', ' . $thumbnail_label_opacity . '), transparent) !important;
+            }
+            
+            /* Thumbnail muscle info gradient (bottom) uses same settings */
+            #flexframe-viewer-container .thumbnail-muscle-info,
+            .thumbnail-dropdown .thumbnail-muscle-info,
+            .thumbnail-muscle-info {
+                background: linear-gradient(transparent, rgba(' . $thumbnail_label_rgb[0] . ', ' . $thumbnail_label_rgb[1] . ', ' . $thumbnail_label_rgb[2] . ', ' . $thumbnail_label_opacity . ')) !important;
             }
         ';
         
@@ -1397,6 +1454,7 @@ function flexframe_enqueue_assets() {
             'backgroundSettings' => $background_settings,
             'lightingSettings' => $lighting_settings,
             'particleSettings' => $particle_settings,
+            'showScreenshotButton' => (bool) get_option('flexframe_show_screenshot_button', true),
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'debug' => FLEXFRAME_DEBUG,
             'version' => FLEXFRAME_VERSION
@@ -1503,6 +1561,11 @@ function flexframe_viewer_shortcode($atts) {
     $logo_loader_animation = esc_attr(get_option('flexframe_logo_loader_animation', 'pulse'));
     $logo_loader_size = absint(get_option('flexframe_logo_loader_size', 80));
     $logo_url = get_option('flexframe_logo_url', '');
+    
+    // Convert HTTP to HTTPS to prevent mixed content warnings
+    if (!empty($logo_url) && strpos($logo_url, 'http://') === 0) {
+        $logo_url = str_replace('http://', 'https://', $logo_url);
+    }
     
     ?>
     <div id="flexframe-viewer-container" style="width: <?php echo esc_attr($atts['width']); ?>; height: <?php echo esc_attr($atts['height']); ?>; position: relative; overflow: hidden;">
