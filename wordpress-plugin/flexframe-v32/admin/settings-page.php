@@ -1072,19 +1072,6 @@ function flexframe_settings_page() {
         <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
         
         <div class="flexframe-settings-container">
-            <!-- Getting Started Section -->
-            <div class="flexframe-instructions" style="margin-bottom: 24px;">
-                <h2><?php _e('🚀 Getting Started', 'flexframe-viewer'); ?></h2>
-                <p><?php _e('Add the FlexFrame 3D Exercise Viewer to any page or post using the shortcode:', 'flexframe-viewer'); ?></p>
-                <code style="display: inline-block; padding: 10px 16px; background: #f0f0f1; font-size: 15px; border-radius: 4px;">[flexframe_viewer]</code>
-                <p style="margin-top: 12px; color: #646970;"><?php _e('Or use the button below to automatically create a viewer page.', 'flexframe-viewer'); ?></p>
-                
-                <h3 style="margin-top: 20px;"><?php _e('Shortcode Options:', 'flexframe-viewer'); ?></h3>
-                <ul style="margin-left: 20px;">
-                    <li><code>[flexframe_viewer height="600px" width="100%"]</code> - <?php _e('Custom dimensions', 'flexframe-viewer'); ?></li>
-                    <li><code>[flexframe_viewer exercise="barbell_back_squat"]</code> - <?php _e('Load specific exercise', 'flexframe-viewer'); ?></li>
-                </ul>
-            </div>
             
             <form method="post" action="options.php" id="flexframe-settings-form">
                 <?php
@@ -4366,14 +4353,14 @@ function flexframe_settings_page() {
         
         // Shortcode options toggle
         $('#shortcode-options-toggle').on('click', function() {
-            var $content = $('#shortcode-options-content');
-            var $icon = $(this).find('.dashicons-arrow-down-alt2, .dashicons-arrow-up-alt2');
+            var $content = $(this).next('.shortcode-options-content');
+            var $hint = $(this).find('.toggle-hint');
             
             $content.slideToggle(200, function() {
                 if ($content.is(':visible')) {
-                    $icon.removeClass('dashicons-arrow-down-alt2').addClass('dashicons-arrow-up-alt2');
+                    $hint.text('<?php _e('(click to collapse)', 'flexframe-viewer'); ?>');
                 } else {
-                    $icon.removeClass('dashicons-arrow-up-alt2').addClass('dashicons-arrow-down-alt2');
+                    $hint.text('<?php _e('(click to expand)', 'flexframe-viewer'); ?>');
                 }
             });
         });
