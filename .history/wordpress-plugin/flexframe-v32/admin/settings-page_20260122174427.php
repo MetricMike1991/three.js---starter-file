@@ -4700,9 +4700,9 @@ function flexframe_settings_page() {
                 url: ajaxurl,
                 type: 'POST',
                 data: {
-                    action: 'flexframe_delete_custom_preset',
+                    action: 'flexframe_delete_preset',
                     preset_id: presetId,
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>'
+                    nonce: '<?php echo wp_create_nonce('flexframe_preset_action'); ?>'
                 },
                 success: function(response) {
                     if (response.success) {
