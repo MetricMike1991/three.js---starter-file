@@ -4349,35 +4349,6 @@ function flexframe_settings_page() {
             $content.slideToggle(200);
         });
         
-        // Copy shortcode to clipboard
-        $('.copy-shortcode-btn').on('click', function() {
-            var $btn = $(this);
-            var $codeElement = $btn.closest('.shortcode-display, td').find('code');
-            var shortcode = $codeElement.text();
-            
-            navigator.clipboard.writeText(shortcode).then(function() {
-                var $icon = $btn.find('.dashicons');
-                $icon.removeClass('dashicons-clipboard').addClass('dashicons-yes');
-                setTimeout(function() {
-                    $icon.removeClass('dashicons-yes').addClass('dashicons-clipboard');
-                }, 1500);
-            });
-        });
-        
-        // Shortcode options toggle
-        $('#shortcode-options-toggle').on('click', function() {
-            var $content = $('#shortcode-options-content');
-            var $icon = $(this).find('.dashicons-arrow-down-alt2, .dashicons-arrow-up-alt2');
-            
-            $content.slideToggle(200, function() {
-                if ($content.is(':visible')) {
-                    $icon.removeClass('dashicons-arrow-down-alt2').addClass('dashicons-arrow-up-alt2');
-                } else {
-                    $icon.removeClass('dashicons-arrow-up-alt2').addClass('dashicons-arrow-down-alt2');
-                }
-            });
-        });
-        
         // Save button animation
         $('.step-save-btn').on('click', function(e) {
             var $btn = $(this);

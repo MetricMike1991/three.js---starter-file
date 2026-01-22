@@ -1103,29 +1103,11 @@ function flexframe_settings_page() {
                         </button>
                     </div>
                     <div class="flexframe-step-content" style="display: none;">
+                        <p class="step-description">
+                            <?php _e('First, create a page for your exercise viewer. Then manage which exercises are visible and get direct links to share.', 'flexframe-viewer'); ?>
+                        </p>
                         
-                        <!-- Getting Started Section -->
-                        <div class="flexframe-getting-started">
-                            <div class="getting-started-header">
-                                <span class="getting-started-icon">🚀</span>
-                                <h3><?php _e('Getting Started', 'flexframe-viewer'); ?></h3>
-                            </div>
-                            <p class="getting-started-desc">
-                                <?php _e('Add the FlexFrame 3D Exercise Viewer to any page or post using the shortcode below, or generate an exercise viewer page automatically.', 'flexframe-viewer'); ?>
-                            </p>
-                            
-                            <!-- Shortcode Display Box -->
-                            <div class="flexframe-shortcode-box">
-                                <div class="shortcode-display">
-                                    <code id="flexframe-shortcode">[flexframe_viewer]</code>
-                                    <button type="button" class="button button-small copy-shortcode-btn" data-shortcode="[flexframe_viewer]" title="<?php _e('Copy to clipboard', 'flexframe-viewer'); ?>">
-                                        <span class="dashicons dashicons-clipboard"></span>
-                                    </button>
-                                </div>
-                                <span class="copy-success" style="display: none; color: #00a32a; margin-left: 8px;">✓ <?php _e('Copied!', 'flexframe-viewer'); ?></span>
-                            </div>
-                            
-                            <!-- Quick Create Button -->
+                        <div class="flexframe-viewer-url-setting">
                             <div class="flexframe-create-page-row">
                                 <button type="button" id="flexframe-create-viewer-page" class="button button-primary button-hero">
                                     <span class="dashicons dashicons-plus-alt" style="margin-top: 5px; margin-right: 5px;"></span>
@@ -1133,108 +1115,61 @@ function flexframe_settings_page() {
                                 </button>
                                 <span id="flexframe-create-page-status" style="margin-left: 10px; line-height: 46px;"></span>
                             </div>
-                            <p class="description" style="margin-top: 8px;">
+                            <p class="description" style="margin-top: 8px; margin-bottom: 16px;">
                                 <?php _e('Click to automatically create a new page with the FlexFrame viewer shortcode.', 'flexframe-viewer'); ?>
                             </p>
-                        </div>
-                        
-                        <!-- Viewer Page URL Section -->
-                        <div class="flexframe-viewer-url-setting">
-                            <label for="flexframe_viewer_page_url"><strong><?php _e('Viewer Page URL:', 'flexframe-viewer'); ?></strong></label>
-                            <div class="url-input-row">
-                                <input type="url" id="flexframe_viewer_page_url" name="flexframe_viewer_page_url" 
-                                       value="<?php echo esc_attr($viewer_page_url); ?>" 
-                                       class="regular-text"
-                                       placeholder="https://yoursite.com/exercise-viewer/" />
-                            </div>
+                            
+                            <label for="flexframe_viewer_page_url"><?php _e('Viewer Page URL:', 'flexframe-viewer'); ?></label>
+                            <input type="url" id="flexframe_viewer_page_url" name="flexframe_viewer_page_url" 
+                                   value="<?php echo esc_attr($viewer_page_url); ?>" 
+                                   class="regular-text"
+                                   placeholder="https://yoursite.com/exercise-viewer/" />
                             <p class="description" id="flexframe-url-status">
                                 <?php if (!empty($viewer_page_url)): ?>
                                     <span style="color: #00a32a; font-size: 14px;">✓ <?php _e('Viewer page URL is set.', 'flexframe-viewer'); ?></span>
                                     <a href="<?php echo esc_url($viewer_page_url); ?>" target="_blank" class="button button-secondary" style="margin-left: 12px;"><?php _e('View Page →', 'flexframe-viewer'); ?></a>
                                 <?php else: ?>
-                                    <span style="color: #d63638;">⚠ <?php _e('No viewer page set. Create one above or paste your URL here.', 'flexframe-viewer'); ?></span>
+                                    <span style="color: #d63638;">⚠ <?php _e('No viewer page set. Click the button above to create one automatically, or paste your URL here.', 'flexframe-viewer'); ?></span>
                                 <?php endif; ?>
                             </p>
                         </div>
                         
-                        <!-- Shortcode Options Collapsible -->
-                        <div class="flexframe-shortcode-options">
-                            <div class="shortcode-options-header" id="shortcode-options-toggle">
-                                <span class="dashicons dashicons-editor-code"></span>
-                                <strong><?php _e('Shortcode Options', 'flexframe-viewer'); ?></strong>
-                                <span class="toggle-hint"><?php _e('(click to expand)', 'flexframe-viewer'); ?></span>
-                            </div>
-                            <div class="shortcode-options-content" style="display: none;">
-                                <table class="shortcode-examples-table">
-                                    <tr>
-                                        <td><code>[flexframe_viewer]</code></td>
-                                        <td><?php _e('Basic viewer with default settings', 'flexframe-viewer'); ?></td>
-                                        <td><button type="button" class="button button-small copy-shortcode-btn" data-shortcode="[flexframe_viewer]"><span class="dashicons dashicons-clipboard"></span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>[flexframe_viewer height="600px" width="100%"]</code></td>
-                                        <td><?php _e('Custom dimensions', 'flexframe-viewer'); ?></td>
-                                        <td><button type="button" class="button button-small copy-shortcode-btn" data-shortcode='[flexframe_viewer height="600px" width="100%"]'><span class="dashicons dashicons-clipboard"></span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>[flexframe_viewer exercise="barbell_back_squat"]</code></td>
-                                        <td><?php _e('Load specific exercise', 'flexframe-viewer'); ?></td>
-                                        <td><button type="button" class="button button-small copy-shortcode-btn" data-shortcode='[flexframe_viewer exercise="barbell_back_squat"]'><span class="dashicons dashicons-clipboard"></span></button></td>
-                                    </tr>
-                                    <tr>
-                                        <td><code>[flexframe_viewer height="500px" exercise="bench_press"]</code></td>
-                                        <td><?php _e('Combined options', 'flexframe-viewer'); ?></td>
-                                        <td><button type="button" class="button button-small copy-shortcode-btn" data-shortcode='[flexframe_viewer height="500px" exercise="bench_press"]'><span class="dashicons dashicons-clipboard"></span></button></td>
-                                    </tr>
-                                </table>
-                                <p class="description" style="margin-top: 12px;">
-                                    <?php _e('💡 Available exercises: barbell_back_squat, barbell_deadlift, bench_press, seated_lat_pulldown, sumo_deadlift', 'flexframe-viewer'); ?>
-                                </p>
-                            </div>
-                        </div>
-                        
                         <hr style="margin: 24px 0; border: none; border-top: 1px solid #e2e4e7;" />
                         
-                        <!-- Exercise Library Section -->
-                        <div class="flexframe-library-section">
-                            <div class="library-section-header">
-                                <span class="library-icon">📚</span>
-                                <h3><?php _e('Exercise Library', 'flexframe-viewer'); ?></h3>
-                            </div>
-                            <p class="step-description" style="margin-bottom: 16px;">
-                                <?php _e('Manage which exercises are visible in your viewer. Copy direct links to share specific exercises, or hide exercises you don\'t want your users to see.', 'flexframe-viewer'); ?>
-                            </p>
-                            
-                            <div class="flexframe-exercise-library">
-                                <div class="exercise-library-header">
-                                    <div class="exercise-search-box">
-                                        <input type="text" id="exercise-search" placeholder="<?php _e('Search exercises...', 'flexframe-viewer'); ?>" />
-                                    </div>
-                                    <div class="exercise-bulk-actions">
-                                        <button type="button" class="button" id="show-all-exercises"><?php _e('Show All', 'flexframe-viewer'); ?></button>
-                                        <button type="button" class="button" id="hide-all-exercises"><?php _e('Hide All', 'flexframe-viewer'); ?></button>
-                                    </div>
+                        <h3 style="margin-bottom: 16px;"><?php _e('Exercise Library', 'flexframe-viewer'); ?></h3>
+                        <p class="step-description" style="margin-bottom: 16px;">
+                            <?php _e('Manage which exercises are visible in your viewer. Copy direct links to share specific exercises, or hide exercises you don\'t want your users to see.', 'flexframe-viewer'); ?>
+                        </p>
+                        
+                        <div class="flexframe-exercise-library">
+                            <div class="exercise-library-header">
+                                <div class="exercise-search-box">
+                                    <input type="text" id="exercise-search" placeholder="<?php _e('Search exercises...', 'flexframe-viewer'); ?>" />
                                 </div>
-                                
-                                <div class="exercise-list-container">
-                                    <div id="exercise-list" class="exercise-list">
-                                        <div class="exercise-loading">
-                                            <span class="spinner is-active"></span>
-                                            <?php _e('Loading exercises...', 'flexframe-viewer'); ?>
-                                        </div>
-                                    </div>
+                                <div class="exercise-bulk-actions">
+                                    <button type="button" class="button" id="show-all-exercises"><?php _e('Show All', 'flexframe-viewer'); ?></button>
+                                    <button type="button" class="button" id="hide-all-exercises"><?php _e('Hide All', 'flexframe-viewer'); ?></button>
                                 </div>
-                                
-                                <!-- Hidden input to store the JSON array of hidden exercises -->
-                                <input type="hidden" id="flexframe_hidden_exercises" name="flexframe_hidden_exercises" value="<?php echo esc_attr($hidden_exercises); ?>" />
-                                <!-- Hidden input to store custom thumbnails -->
-                                <input type="hidden" id="flexframe_custom_thumbnails" name="flexframe_custom_thumbnails" value="<?php echo esc_attr($custom_thumbnails); ?>" />
                             </div>
                             
-                            <p class="description" style="margin-top: 16px;">
-                                <?php _e('💡 Tip: Use the direct links to share specific exercises on social media or in emails. Hidden exercises won\'t appear in the exercise menu for your users.', 'flexframe-viewer'); ?>
-                            </p>
+                            <div class="exercise-list-container">
+                                <div id="exercise-list" class="exercise-list">
+                                    <div class="exercise-loading">
+                                        <span class="spinner is-active"></span>
+                                        <?php _e('Loading exercises...', 'flexframe-viewer'); ?>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Hidden input to store the JSON array of hidden exercises -->
+                            <input type="hidden" id="flexframe_hidden_exercises" name="flexframe_hidden_exercises" value="<?php echo esc_attr($hidden_exercises); ?>" />
+                            <!-- Hidden input to store custom thumbnails -->
+                            <input type="hidden" id="flexframe_custom_thumbnails" name="flexframe_custom_thumbnails" value="<?php echo esc_attr($custom_thumbnails); ?>" />
                         </div>
+                        
+                        <p class="description" style="margin-top: 16px;">
+                            <?php _e('💡 Tip: Use the direct links to share specific exercises on social media or in emails. Hidden exercises won\'t appear in the exercise menu for your users.', 'flexframe-viewer'); ?>
+                        </p>
                     </div>
                 </div>
                 
@@ -1268,16 +1203,15 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 
-                <div class="flexframe-step-section collapsed">
-                    <div class="flexframe-step-header" data-step="3">
+                <div class="flexframe-step-section">
+                    <div class="flexframe-step-header">
                         <span class="step-number">3</span>
                         <h2><?php _e('Upload Your Logo', 'flexframe-viewer'); ?></h2>
-                        <span class="step-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                         <button type="submit" class="button button-primary step-save-btn">
                             <span class="dashicons dashicons-saved"></span><?php _e('Save Settings', 'flexframe-viewer'); ?>
                         </button>
                     </div>
-                    <div class="flexframe-step-content" style="display: none;">
+                    <div class="flexframe-step-content">
                         <p class="step-description">
                             <?php _e('Upload a PNG logo with a transparent background. This logo will automatically appear on equipment pads, machine displays, and other branded surfaces in your 3D models.', 'flexframe-viewer'); ?>
                         </p>
@@ -1412,16 +1346,15 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 
-                <div class="flexframe-step-section collapsed">
-                    <div class="flexframe-step-header" data-step="4">
+                <div class="flexframe-step-section">
+                    <div class="flexframe-step-header">
                         <span class="step-number">4</span>
                         <h2><?php _e('Select a Theme', 'flexframe-viewer'); ?></h2>
-                        <span class="step-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                         <button type="submit" class="button button-primary step-save-btn">
                             <span class="dashicons dashicons-saved"></span><?php _e('Save Settings', 'flexframe-viewer'); ?>
                         </button>
                     </div>
-                    <div class="flexframe-step-content" style="display: none;">
+                    <div class="flexframe-step-content">
                         <p class="step-description">
                             <?php _e('Choose how the anatomical skin layer appears on your 3D models. Select a preset for quick setup, or use custom settings for full control over the material appearance.', 'flexframe-viewer'); ?>
                         </p>
@@ -2492,18 +2425,6 @@ function flexframe_settings_page() {
             font-size: 18px;
             font-weight: 600;
             color: #1d2327;
-            flex: 1;
-        }
-        .flexframe-step-header {
-            cursor: pointer;
-        }
-        .step-toggle-icon {
-            color: #646970;
-            transition: transform 0.3s ease;
-            font-size: 20px;
-        }
-        .flexframe-step-section.collapsed .step-toggle-icon {
-            transform: rotate(-90deg);
         }
         .flexframe-step-content {
             padding: 20px;
@@ -2514,180 +2435,6 @@ function flexframe_settings_page() {
             line-height: 1.6;
             margin: 0 0 20px 0;
             max-width: 700px;
-        }
-        
-        /* Getting Started Section */
-        .flexframe-getting-started {
-            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 100%);
-            border: 1px solid #c3d9ed;
-            border-radius: 8px;
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-        .getting-started-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .getting-started-icon {
-            font-size: 28px;
-        }
-        .getting-started-header h3 {
-            margin: 0;
-            font-size: 20px;
-            font-weight: 600;
-            color: #1d2327;
-        }
-        .getting-started-desc {
-            color: #50575e;
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0 0 20px 0;
-        }
-        
-        /* Shortcode Display Box */
-        .flexframe-shortcode-box {
-            display: flex;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-        .shortcode-display {
-            display: flex;
-            align-items: center;
-            background: #1d2327;
-            border-radius: 6px;
-            padding: 4px 4px 4px 16px;
-            gap: 12px;
-        }
-        .shortcode-display code {
-            font-family: 'Monaco', 'Consolas', monospace;
-            font-size: 15px;
-            color: #7cd9a9;
-            background: transparent;
-            padding: 8px 0;
-        }
-        .copy-shortcode-btn {
-            background: #2271b1 !important;
-            border-color: #2271b1 !important;
-            color: #fff !important;
-            padding: 6px 10px !important;
-            height: auto !important;
-            min-height: 32px;
-        }
-        .copy-shortcode-btn:hover {
-            background: #135e96 !important;
-            border-color: #135e96 !important;
-        }
-        .copy-shortcode-btn .dashicons {
-            font-size: 16px;
-            width: 16px;
-            height: 16px;
-            line-height: 16px;
-        }
-        
-        /* Viewer URL Section */
-        .flexframe-viewer-url-setting {
-            background: #f9f9f9;
-            border: 1px solid #e2e4e7;
-            border-radius: 6px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        .flexframe-viewer-url-setting label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        .url-input-row {
-            margin-bottom: 8px;
-        }
-        .url-input-row input {
-            width: 100%;
-            max-width: 500px;
-        }
-        
-        /* Shortcode Options Section */
-        .flexframe-shortcode-options {
-            background: #fff;
-            border: 1px solid #e2e4e7;
-            border-radius: 6px;
-            overflow: hidden;
-        }
-        .shortcode-options-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background: #f6f7f7;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .shortcode-options-header:hover {
-            background: #eef0f1;
-        }
-        .shortcode-options-header .dashicons {
-            color: #2271b1;
-        }
-        .shortcode-options-header .toggle-hint {
-            color: #888;
-            font-size: 12px;
-            margin-left: auto;
-        }
-        .shortcode-options-content {
-            padding: 16px;
-            border-top: 1px solid #e2e4e7;
-        }
-        .shortcode-examples-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .shortcode-examples-table td {
-            padding: 10px 12px;
-            border-bottom: 1px solid #f0f0f0;
-            vertical-align: middle;
-        }
-        .shortcode-examples-table tr:last-child td {
-            border-bottom: none;
-        }
-        .shortcode-examples-table td:first-child {
-            font-family: monospace;
-            font-size: 13px;
-            color: #1d2327;
-            background: #f9f9f9;
-            border-radius: 4px;
-            white-space: nowrap;
-        }
-        .shortcode-examples-table td:first-child code {
-            background: transparent;
-            padding: 0;
-        }
-        .shortcode-examples-table td:nth-child(2) {
-            color: #646970;
-            font-size: 13px;
-        }
-        .shortcode-examples-table td:last-child {
-            text-align: right;
-            width: 50px;
-        }
-        
-        /* Library Section Header */
-        .flexframe-library-section {
-            margin-top: 0;
-        }
-        .library-section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 12px;
-        }
-        .library-icon {
-            font-size: 24px;
-        }
-        .library-section-header h3 {
-            margin: 0;
-            font-size: 18px;
-            font-weight: 600;
-            color: #1d2327;
         }
         
         /* Primary color picker */
@@ -4335,49 +4082,6 @@ function flexframe_settings_page() {
     
     <script>
     jQuery(document).ready(function($) {
-        // Step section collapse/expand functionality
-        $('.flexframe-step-header').on('click', function(e) {
-            // Don't toggle if clicking on the save button
-            if ($(e.target).closest('.step-save-btn').length) {
-                return;
-            }
-            
-            var $section = $(this).closest('.flexframe-step-section');
-            var $content = $section.find('.flexframe-step-content');
-            
-            $section.toggleClass('collapsed');
-            $content.slideToggle(200);
-        });
-        
-        // Copy shortcode to clipboard
-        $('.copy-shortcode-btn').on('click', function() {
-            var $btn = $(this);
-            var $codeElement = $btn.closest('.shortcode-display, td').find('code');
-            var shortcode = $codeElement.text();
-            
-            navigator.clipboard.writeText(shortcode).then(function() {
-                var $icon = $btn.find('.dashicons');
-                $icon.removeClass('dashicons-clipboard').addClass('dashicons-yes');
-                setTimeout(function() {
-                    $icon.removeClass('dashicons-yes').addClass('dashicons-clipboard');
-                }, 1500);
-            });
-        });
-        
-        // Shortcode options toggle
-        $('#shortcode-options-toggle').on('click', function() {
-            var $content = $('#shortcode-options-content');
-            var $icon = $(this).find('.dashicons-arrow-down-alt2, .dashicons-arrow-up-alt2');
-            
-            $content.slideToggle(200, function() {
-                if ($content.is(':visible')) {
-                    $icon.removeClass('dashicons-arrow-down-alt2').addClass('dashicons-arrow-up-alt2');
-                } else {
-                    $icon.removeClass('dashicons-arrow-up-alt2').addClass('dashicons-arrow-down-alt2');
-                }
-            });
-        });
-        
         // Save button animation
         $('.step-save-btn').on('click', function(e) {
             var $btn = $(this);
