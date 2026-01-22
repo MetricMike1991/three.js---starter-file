@@ -3017,9 +3017,7 @@ function flexframe_settings_page() {
         $('#flexframe_logo_loader_size').on('input', function() {
             var size = $(this).val();
             $(this).siblings('.size-value').text(size + 'px');
-            // Cap at 50px for inline preview, actual size used in viewer
-            var previewSize = Math.min(size, 50);
-            $('#preview-logo-loader .logo-loader-img').css('width', previewSize + 'px');
+            $('#preview-logo-loader .logo-loader-img').css('width', size + 'px');
         });
         
         // Update hex display and sync related colors when primary color changes
@@ -4522,21 +4520,21 @@ function flexframe_settings_page() {
                 return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
             }
             
-            // Update inline player preview
+            // Update preview player
             var $player = $('#preview-player');
             $player.css('background-color', hexToRgba(playerBgColor, playerBgOpacity));
-            $player.find('.preview-btn-inline').css({
+            $player.find('.preview-btn').css({
                 'background-color': hexToRgba(playerButtonBgColor, playerButtonBgOpacity),
                 'color': playerIconColor
             });
-            $player.find('.preview-progress-fill-inline').css('background-color', playerAccentColor);
-            $player.find('.preview-time-inline').css('color', playerIconColor);
+            $player.find('.preview-progress-fill').css('background-color', playerAccentColor);
+            $player.find('.preview-time').css('color', playerIconColor);
             
-            // Update inline menu preview
+            // Update preview menu
             var $menu = $('#preview-menu');
             $menu.css('background-color', hexToRgba(menuBgColor, menuBgOpacity));
-            $menu.find('.preview-menu-item-inline').css('color', menuTextColor);
-            $menu.find('.preview-menu-item-inline.active').css({
+            $menu.find('.preview-menu-item').css('color', menuTextColor);
+            $menu.find('.preview-menu-item.active').css({
                 'background-color': hexToRgba(menuAccentColor, 0.2),
                 'color': menuAccentColor
             });

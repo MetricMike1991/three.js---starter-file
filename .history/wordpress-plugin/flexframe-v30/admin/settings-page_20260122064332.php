@@ -3017,9 +3017,7 @@ function flexframe_settings_page() {
         $('#flexframe_logo_loader_size').on('input', function() {
             var size = $(this).val();
             $(this).siblings('.size-value').text(size + 'px');
-            // Cap at 50px for inline preview, actual size used in viewer
-            var previewSize = Math.min(size, 50);
-            $('#preview-logo-loader .logo-loader-img').css('width', previewSize + 'px');
+            $('#preview-logo-loader .logo-loader-img').css('width', size + 'px');
         });
         
         // Update hex display and sync related colors when primary color changes

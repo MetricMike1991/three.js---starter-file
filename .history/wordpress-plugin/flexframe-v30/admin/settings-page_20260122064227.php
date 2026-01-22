@@ -1218,15 +1218,7 @@ function flexframe_settings_page() {
                                     
                                     <!-- Menu Settings -->
                                     <div class="ui-settings-section">
-                                        <div class="ui-section-header-row">
-                                            <h5><span class="dashicons dashicons-menu"></span> <?php _e('Menus & Panels', 'flexframe-viewer'); ?></h5>
-                                            <div class="inline-preview menu-preview">
-                                                <div class="preview-menu-inline" id="preview-menu">
-                                                    <div class="preview-menu-item-inline active"><?php _e('Exercise 1', 'flexframe-viewer'); ?></div>
-                                                    <div class="preview-menu-item-inline"><?php _e('Exercise 2', 'flexframe-viewer'); ?></div>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <h5><span class="dashicons dashicons-menu"></span> <?php _e('Menus & Panels', 'flexframe-viewer'); ?></h5>
                                         <table class="form-table ui-settings-table">
                                             <tr>
                                                 <th scope="row">
@@ -1279,6 +1271,37 @@ function flexframe_settings_page() {
                                                 </td>
                                             </tr>
                                         </table>
+                                    </div>
+                                    
+                                    <!-- UI Preview Section -->
+                                    <div class="ui-preview-section">
+                                        <h5><?php _e('Preview', 'flexframe-viewer'); ?></h5>
+                                        <div class="ui-preview-container">
+                                            <div class="preview-player" id="preview-player">
+                                                <div class="preview-controls">
+                                                    <button type="button" class="preview-btn">▶</button>
+                                                    <div class="preview-progress">
+                                                        <div class="preview-progress-fill"></div>
+                                                    </div>
+                                                    <span class="preview-time">0:00 / 1:00</span>
+                                                </div>
+                                            </div>
+                                            <div class="preview-menu" id="preview-menu">
+                                                <div class="preview-menu-item active"><?php _e('Exercise 1', 'flexframe-viewer'); ?></div>
+                                                <div class="preview-menu-item"><?php _e('Exercise 2', 'flexframe-viewer'); ?></div>
+                                                <div class="preview-menu-item"><?php _e('Exercise 3', 'flexframe-viewer'); ?></div>
+                                            </div>
+                                            <div class="preview-spinner" id="preview-spinner" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <div class="spinner-circle"></div>
+                                            </div>
+                                            <div class="preview-logo-loader" id="preview-logo-loader" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <?php if (!empty($logo_url)) : ?>
+                                                    <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
+                                                <?php else : ?>
+                                                    <div class="logo-placeholder"><span class="dashicons dashicons-format-image"></span></div>
+                                                <?php endif; ?>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -2490,138 +2513,6 @@ function flexframe_settings_page() {
             border-radius: 8px;
             border: 1px solid #e2e4e7;
         }
-        
-        /* Inline Preview Styles */
-        .ui-section-header-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 16px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #e2e4e7;
-        }
-        .ui-section-header-row h5 {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin: 0;
-            font-size: 15px;
-            color: #1d2327;
-        }
-        .ui-section-header-row h5 .dashicons {
-            color: #2271b1;
-        }
-        .inline-preview {
-            background: #1a1a2e;
-            padding: 10px 15px;
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 50px;
-        }
-        
-        /* Inline Loading Preview */
-        .loading-preview {
-            min-width: 80px;
-        }
-        .preview-spinner-inline {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .preview-spinner-inline .spinner-circle {
-            width: 30px;
-            height: 30px;
-            border-width: 3px;
-        }
-        .preview-logo-loader-inline {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .preview-logo-loader-inline .logo-loader-img {
-            max-width: 50px;
-            max-height: 50px;
-            object-fit: contain;
-        }
-        .logo-placeholder-small {
-            width: 40px;
-            height: 40px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: rgba(255,255,255,0.4);
-        }
-        .logo-placeholder-small .dashicons {
-            font-size: 20px;
-            width: 20px;
-            height: 20px;
-        }
-        
-        /* Inline Player Preview */
-        .player-preview {
-            min-width: 200px;
-        }
-        .preview-player-inline {
-            width: 100%;
-        }
-        .preview-controls-inline {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .preview-btn-inline {
-            width: 28px;
-            height: 28px;
-            border-radius: 50%;
-            border: none;
-            cursor: default;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .preview-progress-inline {
-            flex: 1;
-            height: 4px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 2px;
-            overflow: hidden;
-            min-width: 80px;
-        }
-        .preview-progress-fill-inline {
-            width: 40%;
-            height: 100%;
-            border-radius: 2px;
-        }
-        .preview-time-inline {
-            font-size: 10px;
-            font-family: monospace;
-        }
-        
-        /* Inline Menu Preview */
-        .menu-preview {
-            min-width: 120px;
-        }
-        .preview-menu-inline {
-            width: 100%;
-        }
-        .preview-menu-item-inline {
-            padding: 5px 8px;
-            border-radius: 3px;
-            font-size: 11px;
-            margin-bottom: 3px;
-        }
-        .preview-menu-item-inline:last-child {
-            margin-bottom: 0;
-        }
-        .preview-menu-item-inline.active {
-            font-weight: 500;
-        }
-        
         .ui-settings-section h3 {
             display: flex;
             align-items: center;
@@ -3017,9 +2908,7 @@ function flexframe_settings_page() {
         $('#flexframe_logo_loader_size').on('input', function() {
             var size = $(this).val();
             $(this).siblings('.size-value').text(size + 'px');
-            // Cap at 50px for inline preview, actual size used in viewer
-            var previewSize = Math.min(size, 50);
-            $('#preview-logo-loader .logo-loader-img').css('width', previewSize + 'px');
+            $('#preview-logo-loader .logo-loader-img').css('width', size + 'px');
         });
         
         // Update hex display and sync related colors when primary color changes
@@ -4522,21 +4411,21 @@ function flexframe_settings_page() {
                 return 'rgba(' + r + ', ' + g + ', ' + b + ', ' + alpha + ')';
             }
             
-            // Update inline player preview
+            // Update preview player
             var $player = $('#preview-player');
             $player.css('background-color', hexToRgba(playerBgColor, playerBgOpacity));
-            $player.find('.preview-btn-inline').css({
+            $player.find('.preview-btn').css({
                 'background-color': hexToRgba(playerButtonBgColor, playerButtonBgOpacity),
                 'color': playerIconColor
             });
-            $player.find('.preview-progress-fill-inline').css('background-color', playerAccentColor);
-            $player.find('.preview-time-inline').css('color', playerIconColor);
+            $player.find('.preview-progress-fill').css('background-color', playerAccentColor);
+            $player.find('.preview-time').css('color', playerIconColor);
             
-            // Update inline menu preview
+            // Update preview menu
             var $menu = $('#preview-menu');
             $menu.css('background-color', hexToRgba(menuBgColor, menuBgOpacity));
-            $menu.find('.preview-menu-item-inline').css('color', menuTextColor);
-            $menu.find('.preview-menu-item-inline.active').css({
+            $menu.find('.preview-menu-item').css('color', menuTextColor);
+            $menu.find('.preview-menu-item.active').css({
                 'background-color': hexToRgba(menuAccentColor, 0.2),
                 'color': menuAccentColor
             });
