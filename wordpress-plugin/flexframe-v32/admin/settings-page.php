@@ -4231,6 +4231,13 @@ function flexframe_settings_page() {
                     $header.removeClass('collapsed');
                     $content.slideDown(200);
                 });
+                
+                // Disable all equipment material toggles when switching to preset mode
+                $('.equipment-material-toggle').each(function() {
+                    if ($(this).is(':checked')) {
+                        $(this).prop('checked', false).trigger('change');
+                    }
+                });
             } else {
                 $('.flexframe-preset-panel').slideUp(200);
                 $('.flexframe-custom-panel').removeClass('panel-disabled');
@@ -4261,18 +4268,22 @@ function flexframe_settings_page() {
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,
+                    // Animation Player
                     playerBgColor: '#828282',
                     playerBgOpacity: 0,
-                    playerButtonBgColor: 'primary', // Will use primary color
+                    playerButtonBgColor: 'primary',
                     playerButtonBgOpacity: 0.8,
                     playerIconColor: '#ffffff',
-                    playerAccentColor: 'primary', // Will use primary color
+                    playerAccentColor: 'primary',
                     playerAlwaysVisible: 'no',
+                    playerWidth: 100,
+                    playerShowTime: true,
+                    // Menu
                     menuBgColor: '#000000',
                     menuBgOpacity: 0.9,
                     menuTextColor: '#ffffff',
                     menuTextOpacity: 1,
-                    menuAccentColor: 'primary', // Will use primary color
+                    menuAccentColor: 'primary',
                     hideRightMenu: false,
                     showScreenshotButton: true,
                     // Thumbnail Label settings
@@ -4291,6 +4302,12 @@ function flexframe_settings_page() {
                     bgGradientTop: '#3865ad',
                     bgGradientBottom: '#0101bc',
                     bgGradientOpacity: 1,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5,
                     // Lighting settings
                     ambientIntensity: 0.4,
                     ambientColor: '#ffffff',
@@ -4301,17 +4318,11 @@ function flexframe_settings_page() {
                     directionalPosZ: 0.9,
                     // Particle settings
                     particlesEnabled: true,
-                    particleCount: 1150,
-                    particleSize: 0.0095,
-                    particleColor: '#0d529c',
-                    particleOpacity: 1,
-                    particleSpeed: 0.5,
-                    // Background Logo settings
-                    bgLogoEnabled: true,
-                    bgLogoPosX: 50,
-                    bgLogoPosY: 90,
-                    bgLogoSize: 150,
-                    bgLogoOpacity: 0.5
+                    particlesCount: 1150,
+                    particlesSize: 0.0095,
+                    particlesColor: '#0d529c',
+                    particlesOpacity: 1,
+                    particlesSpeed: 0.5
                 }
             },
             'dark': {
@@ -4322,6 +4333,7 @@ function flexframe_settings_page() {
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,
+                    // Animation Player
                     playerBgColor: '#828282',
                     playerBgOpacity: 0,
                     playerButtonBgColor: 'primary',
@@ -4329,6 +4341,9 @@ function flexframe_settings_page() {
                     playerIconColor: '#ffffff',
                     playerAccentColor: 'primary',
                     playerAlwaysVisible: 'no',
+                    playerWidth: 100,
+                    playerShowTime: true,
+                    // Menu
                     menuBgColor: '#000000',
                     menuBgOpacity: 0.9,
                     menuTextColor: '#ffffff',
@@ -4352,6 +4367,12 @@ function flexframe_settings_page() {
                     bgGradientTop: '#000000',
                     bgGradientBottom: '#000000',
                     bgGradientOpacity: 1,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5,
                     // Lighting settings
                     ambientIntensity: 0.4,
                     ambientColor: '#ffffff',
@@ -4362,17 +4383,11 @@ function flexframe_settings_page() {
                     directionalPosZ: 0.9,
                     // Particle settings
                     particlesEnabled: true,
-                    particleCount: 1150,
-                    particleSize: 0.0095,
-                    particleColor: 'primary',
-                    particleOpacity: 1,
-                    particleSpeed: 0.5,
-                    // Background Logo settings
-                    bgLogoEnabled: true,
-                    bgLogoPosX: 50,
-                    bgLogoPosY: 90,
-                    bgLogoSize: 150,
-                    bgLogoOpacity: 0.5
+                    particlesCount: 1150,
+                    particlesSize: 0.0095,
+                    particlesColor: 'primary',
+                    particlesOpacity: 1,
+                    particlesSpeed: 0.5
                 }
             },
             'light': {
@@ -4383,6 +4398,7 @@ function flexframe_settings_page() {
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,
+                    // Animation Player
                     playerBgColor: '#7d7d7d',
                     playerBgOpacity: 0.3,
                     playerButtonBgColor: 'primary',
@@ -4390,6 +4406,9 @@ function flexframe_settings_page() {
                     playerIconColor: '#ffffff',
                     playerAccentColor: 'primary',
                     playerAlwaysVisible: 'no',
+                    playerWidth: 100,
+                    playerShowTime: true,
+                    // Menu
                     menuBgColor: '#7d7d7d',
                     menuBgOpacity: 0.3,
                     menuTextColor: '#222222',
@@ -4413,6 +4432,12 @@ function flexframe_settings_page() {
                     bgGradientTop: '#ffffff',
                     bgGradientBottom: '#ffffff',
                     bgGradientOpacity: 1,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.3,
                     // Lighting settings
                     ambientIntensity: 1.52,
                     ambientColor: '#ffffff',
@@ -4423,17 +4448,11 @@ function flexframe_settings_page() {
                     directionalPosZ: 0.9,
                     // Particle settings
                     particlesEnabled: true,
-                    particleCount: 1150,
-                    particleSize: 0.0095,
-                    particleColor: 'primary',
-                    particleOpacity: 1,
-                    particleSpeed: 0.5,
-                    // Background Logo settings
-                    bgLogoEnabled: true,
-                    bgLogoPosX: 50,
-                    bgLogoPosY: 90,
-                    bgLogoSize: 150,
-                    bgLogoOpacity: 0.5
+                    particlesCount: 1150,
+                    particlesSize: 0.0095,
+                    particlesColor: 'primary',
+                    particlesOpacity: 1,
+                    particlesSpeed: 0.5
                 }
             },
             'random': {
@@ -4449,6 +4468,7 @@ function flexframe_settings_page() {
                     useLogoLoader: true,
                     logoLoaderAnimation: 'pulse',
                     logoLoaderSize: 100,
+                    // Animation Player
                     playerBgColor: '#828282',
                     playerBgOpacity: 0,
                     playerButtonBgColor: 'primary',
@@ -4456,6 +4476,9 @@ function flexframe_settings_page() {
                     playerIconColor: '#ffffff',
                     playerAccentColor: 'primary',
                     playerAlwaysVisible: 'no',
+                    playerWidth: 100,
+                    playerShowTime: true,
+                    // Menu
                     menuBgColor: '#000000',
                     menuBgOpacity: 0.9,
                     menuTextColor: '#ffffff',
@@ -4479,6 +4502,12 @@ function flexframe_settings_page() {
                     bgGradientTop: '#ffffff',
                     bgGradientBottom: 'primary',
                     bgGradientOpacity: 1,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5,
                     // Lighting settings
                     ambientIntensity: 0.4,
                     ambientColor: '#ffffff',
@@ -4489,17 +4518,11 @@ function flexframe_settings_page() {
                     directionalPosZ: 0.9,
                     // Particle settings
                     particlesEnabled: true,
-                    particleCount: 1150,
-                    particleSize: 0.0095,
-                    particleColor: 'primary',
-                    particleOpacity: 1,
-                    particleSpeed: 0.5,
-                    // Background Logo settings
-                    bgLogoEnabled: true,
-                    bgLogoPosX: 50,
-                    bgLogoPosY: 90,
-                    bgLogoSize: 150,
-                    bgLogoOpacity: 0.5
+                    particlesCount: 1150,
+                    particlesSize: 0.0095,
+                    particlesColor: 'primary',
+                    particlesOpacity: 1,
+                    particlesSpeed: 0.5
                 }
             }
         };
@@ -4561,6 +4584,15 @@ function flexframe_settings_page() {
             $('#flexframe_player_accent_color').siblings('.color-value').text(getColor(settings.playerAccentColor));
             
             $('#flexframe_player_always_visible').val(settings.playerAlwaysVisible);
+            
+            // Player Width and Show Time
+            if (settings.playerWidth !== undefined) {
+                $('#flexframe_player_width').val(settings.playerWidth).trigger('input');
+                $('#flexframe_player_width').siblings('.range-value').text(settings.playerWidth + '%');
+            }
+            if (settings.playerShowTime !== undefined) {
+                $('#flexframe_player_show_time').prop('checked', settings.playerShowTime);
+            }
             
             $('#flexframe_menu_bg_color').val(getColor(settings.menuBgColor));
             $('#flexframe_menu_bg_color').siblings('.color-value').text(getColor(settings.menuBgColor));
@@ -4648,18 +4680,47 @@ function flexframe_settings_page() {
             $('#flexframe_directional_pos_z').val(settings.directionalPosZ).trigger('input');
             $('#flexframe_directional_pos_z').siblings('.range-value').text(settings.directionalPosZ);
             
-            // Apply Particle Settings
-            $('input[name="flexframe_particles_enabled"][value="' + (settings.particlesEnabled ? '1' : '0') + '"]').prop('checked', true).trigger('change');
-            $('#flexframe_particle_count').val(settings.particleCount).trigger('input');
-            $('#flexframe_particle_count').siblings('.range-value').text(settings.particleCount);
-            $('#flexframe_particle_size').val(settings.particleSize).trigger('input');
-            $('#flexframe_particle_size').siblings('.range-value').text(settings.particleSize);
-            $('#flexframe_particle_color').val(getColor(settings.particleColor)).trigger('input');
-            $('#flexframe_particle_color').siblings('.color-value').text(getColor(settings.particleColor));
-            $('#flexframe_particle_opacity').val(settings.particleOpacity).trigger('input');
-            $('#flexframe_particle_opacity').siblings('.range-value').text(settings.particleOpacity);
-            $('#flexframe_particle_speed').val(settings.particleSpeed).trigger('input');
-            $('#flexframe_particle_speed').siblings('.range-value').text(settings.particleSpeed);
+            // Apply Particle Settings - use correct field IDs (flexframe_particles_*)
+            $('#flexframe_particles_enabled').prop('checked', settings.particlesEnabled).trigger('change');
+            
+            // Handle both old (particleCount) and new (particlesCount) naming from presets
+            var pCount = settings.particlesCount !== undefined ? settings.particlesCount : settings.particleCount;
+            var pSize = settings.particlesSize !== undefined ? settings.particlesSize : settings.particleSize;
+            var pColor = settings.particlesColor !== undefined ? settings.particlesColor : settings.particleColor;
+            var pOpacity = settings.particlesOpacity !== undefined ? settings.particlesOpacity : settings.particleOpacity;
+            var pSpeed = settings.particlesSpeed !== undefined ? settings.particlesSpeed : settings.particleSpeed;
+            
+            $('#flexframe_particles_count').val(pCount).trigger('input');
+            $('#flexframe_particles_count').siblings('.range-value').text(pCount);
+            $('#flexframe_particles_size').val(pSize).trigger('input');
+            $('#flexframe_particles_size').siblings('.range-value').text(pSize);
+            $('#flexframe_particles_color').val(getColor(pColor)).trigger('input');
+            $('#flexframe_particles_color').siblings('.color-hex').text(getColor(pColor));
+            $('#flexframe_particles_opacity').val(pOpacity).trigger('input');
+            $('#flexframe_particles_opacity').siblings('.range-value').text(pOpacity);
+            $('#flexframe_particles_speed').val(pSpeed).trigger('input');
+            $('#flexframe_particles_speed').siblings('.range-value').text(pSpeed);
+            
+            // Apply Background Logo Settings
+            if (settings.bgLogoEnabled !== undefined) {
+                $('#flexframe_bg_logo_enabled').prop('checked', settings.bgLogoEnabled).trigger('change');
+            }
+            if (settings.bgLogoPosX !== undefined) {
+                $('#flexframe_bg_logo_pos_x').val(settings.bgLogoPosX).trigger('input');
+                $('#flexframe_bg_logo_pos_x').siblings('.range-value').text(settings.bgLogoPosX + '%');
+            }
+            if (settings.bgLogoPosY !== undefined) {
+                $('#flexframe_bg_logo_pos_y').val(settings.bgLogoPosY).trigger('input');
+                $('#flexframe_bg_logo_pos_y').siblings('.range-value').text(settings.bgLogoPosY + '%');
+            }
+            if (settings.bgLogoSize !== undefined) {
+                $('#flexframe_bg_logo_size').val(settings.bgLogoSize).trigger('input');
+                $('#flexframe_bg_logo_size').siblings('.range-value').text(settings.bgLogoSize + 'px');
+            }
+            if (settings.bgLogoOpacity !== undefined) {
+                $('#flexframe_bg_logo_opacity').val(settings.bgLogoOpacity).trigger('input');
+                $('#flexframe_bg_logo_opacity').siblings('.range-value').text(Math.round(settings.bgLogoOpacity * 100) + '%');
+            }
             
             console.log('Applied scene settings:', {
                 background: { top: settings.bgGradientTop, bottom: settings.bgGradientBottom, opacity: settings.bgGradientOpacity },
@@ -4795,6 +4856,7 @@ function flexframe_settings_page() {
                 useLogoLoader: true,
                 logoLoaderAnimation: randomChoice(['pulse', 'spin', 'bounce']),
                 logoLoaderSize: Math.round(randomInRange(80, 120)),
+                // Animation Player
                 playerBgColor: hslToHex(0, 0, randomInRange(30, 70)),
                 playerBgOpacity: randomInRange(0, 0.5),
                 playerButtonBgColor: primaryColor,
@@ -4802,12 +4864,20 @@ function flexframe_settings_page() {
                 playerIconColor: '#ffffff',
                 playerAccentColor: primaryColor,
                 playerAlwaysVisible: 'no',
+                playerWidth: 100,
+                playerShowTime: true,
+                // Menu
                 menuBgColor: hslToHex(hsl.h, randomInRange(5, 20), randomInRange(5, 25)),
                 menuBgOpacity: randomInRange(0.7, 0.95),
                 menuTextColor: '#ffffff',
+                menuTextOpacity: 1,
                 menuAccentColor: primaryColor,
                 hideRightMenu: false,
                 showScreenshotButton: true,
+                // Thumbnail Labels
+                thumbnailLabelColor: randomChoice(['#000000', '#333333', '#222222']),
+                thumbnailLabelOpacity: randomInRange(0.05, 0.2),
+                // Material settings
                 skinColor: skinColor,
                 skinOpacity: 1,
                 skinRoughness: randomInRange(0, 0.3),
@@ -4816,9 +4886,17 @@ function flexframe_settings_page() {
                 skinThickness: 0,
                 skinIor: randomInRange(1, 1.5),
                 skinEnvIntensity: randomInRange(1.5, 3),
+                // Scene Background
                 bgGradientTop: bgTop,
                 bgGradientBottom: bgBottom,
                 bgGradientOpacity: 1,
+                // Background Logo
+                bgLogoEnabled: true,
+                bgLogoPosX: 50,
+                bgLogoPosY: Math.round(randomInRange(80, 95)),
+                bgLogoSize: Math.round(randomInRange(100, 200)),
+                bgLogoOpacity: randomInRange(0.3, 0.7),
+                // Lighting
                 ambientIntensity: ambientIntensity,
                 ambientColor: '#ffffff',
                 directionalIntensity: directionalIntensity,
@@ -4826,12 +4904,13 @@ function flexframe_settings_page() {
                 directionalPosX: randomInRange(0.5, 2),
                 directionalPosY: randomInRange(1, 2),
                 directionalPosZ: randomInRange(0.5, 1.5),
+                // Particles - use new naming convention
                 particlesEnabled: Math.random() > 0.2, // 80% chance enabled
-                particleCount: Math.round(randomInRange(500, 2000)),
-                particleSize: randomInRange(0.005, 0.015),
-                particleColor: particleColor,
-                particleOpacity: randomInRange(0.5, 1),
-                particleSpeed: randomInRange(0.2, 0.8)
+                particlesCount: Math.round(randomInRange(500, 2000)),
+                particlesSize: randomInRange(0.005, 0.015),
+                particlesColor: particleColor,
+                particlesOpacity: randomInRange(0.5, 1),
+                particlesSpeed: randomInRange(0.2, 0.8)
             };
         }
         
@@ -4899,15 +4978,50 @@ function flexframe_settings_page() {
         
         // Get current settings for saving
         function getCurrentSettings() {
+            // Collect equipment material settings
+            var equipmentMaterials = {};
+            var materialKeys = ['barbell', 'bumper', 'cable', 'chrome', 'color1', 'metal', 'pad', 'plastic', 'rubber'];
+            
+            materialKeys.forEach(function(matKey) {
+                var isEnabled = $('input[name="flexframe_' + matKey + '_enabled"]').is(':checked');
+                if (isEnabled) {
+                    equipmentMaterials[matKey] = {
+                        enabled: true,
+                        color: $('input[name="flexframe_' + matKey + '_color"]').val(),
+                        opacity: $('input[name="flexframe_' + matKey + '_opacity"]').val(),
+                        metalness: $('input[name="flexframe_' + matKey + '_metalness"]').val(),
+                        roughness: $('input[name="flexframe_' + matKey + '_roughness"]').val(),
+                        color_map_enabled: $('input[name="flexframe_' + matKey + '_color_map_enabled"]').is(':checked'),
+                        bump_scale: $('input[name="flexframe_' + matKey + '_bump_scale"]').val(),
+                        normal_scale: $('input[name="flexframe_' + matKey + '_normal_scale"]').val(),
+                        clearcoat: $('input[name="flexframe_' + matKey + '_clearcoat"]').val(),
+                        clearcoat_roughness: $('input[name="flexframe_' + matKey + '_clearcoat_roughness"]').val(),
+                        emissive_color: $('input[name="flexframe_' + matKey + '_emissive_color"]').val(),
+                        emissive_intensity: $('input[name="flexframe_' + matKey + '_emissive_intensity"]').val(),
+                        blending: $('select[name="flexframe_' + matKey + '_blending"]').val(),
+                        transmission: $('input[name="flexframe_' + matKey + '_transmission"]').val(),
+                        thickness: $('input[name="flexframe_' + matKey + '_thickness"]').val(),
+                        ior: $('input[name="flexframe_' + matKey + '_ior"]').val(),
+                        env_intensity: $('input[name="flexframe_' + matKey + '_env_intensity"]').val(),
+                        sheen: $('input[name="flexframe_' + matKey + '_sheen"]').val(),
+                        sheen_roughness: $('input[name="flexframe_' + matKey + '_sheen_roughness"]').val(),
+                        sheen_color: $('input[name="flexframe_' + matKey + '_sheen_color"]').val()
+                    };
+                }
+            });
+            
             return {
                 // Step 1 - Brand Settings
                 primary_color_mode: $('input[name="flexframe_primary_color_mode"]:checked').val(),
                 primary_color: $('#flexframe_primary_color').val(),
-                // UI Settings
+                
+                // UI Settings - Loading Indicator
                 spinner_color: $('#flexframe_spinner_color').val(),
                 use_logo_loader: $('input[name="flexframe_use_logo_loader"]:checked').val() === '1',
                 logo_loader_animation: $('#flexframe_logo_loader_animation').val(),
                 logo_loader_size: $('#flexframe_logo_loader_size').val(),
+                
+                // UI Settings - Animation Player
                 player_bg_color: $('#flexframe_player_bg_color').val(),
                 player_bg_opacity: $('#flexframe_player_bg_opacity').val(),
                 player_button_bg_color: $('#flexframe_player_button_bg_color').val(),
@@ -4917,16 +5031,21 @@ function flexframe_settings_page() {
                 player_always_visible: $('#flexframe_player_always_visible').val(),
                 player_width: $('#flexframe_player_width').val(),
                 player_show_time: $('#flexframe_player_show_time').is(':checked'),
+                
+                // UI Settings - Menu Styling
                 menu_bg_color: $('#flexframe_menu_bg_color').val(),
                 menu_bg_opacity: $('#flexframe_menu_bg_opacity').val(),
                 menu_text_color: $('#flexframe_menu_text_color').val(),
                 menu_text_opacity: $('#flexframe_menu_text_opacity').val(),
                 menu_accent_color: $('#flexframe_menu_accent_color').val(),
                 hide_right_menu: $('#flexframe_hide_right_menu').is(':checked'),
-                // Thumbnail Label Settings
+                show_screenshot_button: $('#flexframe_show_screenshot_button').is(':checked'),
+                
+                // UI Settings - Thumbnail Labels
                 thumbnail_label_color: $('#flexframe_thumbnail_label_color').val(),
                 thumbnail_label_opacity: $('#flexframe_thumbnail_label_opacity').val(),
-                // Material Settings
+                
+                // Material Settings - SKIN
                 skin_color: $('#flexframe_skin_color').val(),
                 skin_opacity: $('#flexframe_skin_opacity').val(),
                 skin_roughness: $('#flexframe_skin_roughness').val(),
@@ -4935,25 +5054,40 @@ function flexframe_settings_page() {
                 skin_thickness: $('#flexframe_skin_thickness').val(),
                 skin_ior: $('#flexframe_skin_ior').val(),
                 skin_env_intensity: $('#flexframe_skin_env_intensity').val(),
+                
+                // Equipment Material Settings
+                equipment_materials: equipmentMaterials,
+                
                 // Scene Background Settings
                 bg_gradient_top: $('#flexframe_bg_gradient_top').val(),
                 bg_gradient_bottom: $('#flexframe_bg_gradient_bottom').val(),
                 bg_gradient_opacity: $('#flexframe_bg_opacity').val(),
-                // Lighting Settings
+                
+                // Background Logo Watermark
+                bg_logo_enabled: $('#flexframe_bg_logo_enabled').is(':checked'),
+                bg_logo_pos_x: $('#flexframe_bg_logo_pos_x').val(),
+                bg_logo_pos_y: $('#flexframe_bg_logo_pos_y').val(),
+                bg_logo_size: $('#flexframe_bg_logo_size').val(),
+                bg_logo_opacity: $('#flexframe_bg_logo_opacity').val(),
+                
+                // Lighting Settings - Ambient
                 ambient_intensity: $('#flexframe_ambient_intensity').val(),
                 ambient_color: $('#flexframe_ambient_color').val(),
+                
+                // Lighting Settings - Directional
                 directional_intensity: $('#flexframe_directional_intensity').val(),
                 directional_color: $('#flexframe_directional_color').val(),
                 directional_pos_x: $('#flexframe_directional_pos_x').val(),
                 directional_pos_y: $('#flexframe_directional_pos_y').val(),
                 directional_pos_z: $('#flexframe_directional_pos_z').val(),
+                
                 // Particle Settings
-                particles_enabled: $('input[name="flexframe_particles_enabled"]:checked').val() === '1',
-                particle_count: $('#flexframe_particle_count').val(),
-                particle_size: $('#flexframe_particle_size').val(),
-                particle_color: $('#flexframe_particle_color').val(),
-                particle_opacity: $('#flexframe_particle_opacity').val(),
-                particle_speed: $('#flexframe_particle_speed').val()
+                particles_enabled: $('#flexframe_particles_enabled').is(':checked'),
+                particles_count: $('#flexframe_particles_count').val(),
+                particles_size: $('#flexframe_particles_size').val(),
+                particles_color: $('#flexframe_particles_color').val(),
+                particles_opacity: $('#flexframe_particles_opacity').val(),
+                particles_speed: $('#flexframe_particles_speed').val()
             };
         }
         
@@ -5077,29 +5211,140 @@ function flexframe_settings_page() {
                 $('#flexframe_directional_pos_z').siblings('.range-value').text(settings.directional_pos_z);
             }
             
-            // Particle Settings (if present)
+            // Particle Settings (if present) - handle both old 'particle_' and new 'particles_' naming
             if (settings.particles_enabled !== undefined) {
-                $('input[name="flexframe_particles_enabled"][value="' + (settings.particles_enabled ? '1' : '0') + '"]').prop('checked', true).trigger('change');
+                $('#flexframe_particles_enabled').prop('checked', settings.particles_enabled).trigger('change');
             }
-            if (settings.particle_count !== undefined) {
-                $('#flexframe_particle_count').val(settings.particle_count).trigger('input');
-                $('#flexframe_particle_count').siblings('.range-value').text(settings.particle_count);
+            // Handle both naming conventions
+            var particleCount = settings.particles_count !== undefined ? settings.particles_count : settings.particle_count;
+            if (particleCount !== undefined) {
+                $('#flexframe_particles_count').val(particleCount).trigger('input');
+                $('#flexframe_particles_count').siblings('.range-value').text(particleCount);
             }
-            if (settings.particle_size !== undefined) {
-                $('#flexframe_particle_size').val(settings.particle_size).trigger('input');
-                $('#flexframe_particle_size').siblings('.range-value').text(settings.particle_size);
+            var particleSize = settings.particles_size !== undefined ? settings.particles_size : settings.particle_size;
+            if (particleSize !== undefined) {
+                $('#flexframe_particles_size').val(particleSize).trigger('input');
+                $('#flexframe_particles_size').siblings('.range-value').text(particleSize);
             }
-            if (settings.particle_color !== undefined) {
-                $('#flexframe_particle_color').val(settings.particle_color).trigger('input');
-                $('#flexframe_particle_color').siblings('.color-value').text(settings.particle_color);
+            var particleColor = settings.particles_color !== undefined ? settings.particles_color : settings.particle_color;
+            if (particleColor !== undefined) {
+                $('#flexframe_particles_color').val(particleColor).trigger('input');
+                $('#flexframe_particles_color').siblings('.color-hex').text(particleColor);
             }
-            if (settings.particle_opacity !== undefined) {
-                $('#flexframe_particle_opacity').val(settings.particle_opacity).trigger('input');
-                $('#flexframe_particle_opacity').siblings('.range-value').text(settings.particle_opacity);
+            var particleOpacity = settings.particles_opacity !== undefined ? settings.particles_opacity : settings.particle_opacity;
+            if (particleOpacity !== undefined) {
+                $('#flexframe_particles_opacity').val(particleOpacity).trigger('input');
+                $('#flexframe_particles_opacity').siblings('.range-value').text(particleOpacity);
             }
-            if (settings.particle_speed !== undefined) {
-                $('#flexframe_particle_speed').val(settings.particle_speed).trigger('input');
-                $('#flexframe_particle_speed').siblings('.range-value').text(settings.particle_speed);
+            var particleSpeed = settings.particles_speed !== undefined ? settings.particles_speed : settings.particle_speed;
+            if (particleSpeed !== undefined) {
+                $('#flexframe_particles_speed').val(particleSpeed).trigger('input');
+                $('#flexframe_particles_speed').siblings('.range-value').text(particleSpeed);
+            }
+            
+            // Player Width and Show Time (if present)
+            if (settings.player_width !== undefined) {
+                $('#flexframe_player_width').val(settings.player_width).trigger('input');
+                $('#flexframe_player_width').siblings('.range-value').text(settings.player_width + '%');
+            }
+            if (settings.player_show_time !== undefined) {
+                $('#flexframe_player_show_time').prop('checked', settings.player_show_time);
+            }
+            
+            // Show Screenshot Button (if present)
+            if (settings.show_screenshot_button !== undefined) {
+                $('#flexframe_show_screenshot_button').prop('checked', settings.show_screenshot_button);
+            }
+            
+            // Equipment Material Settings (if present)
+            if (settings.equipment_materials !== undefined) {
+                var materialKeys = ['barbell', 'bumper', 'cable', 'chrome', 'color1', 'metal', 'pad', 'plastic', 'rubber'];
+                
+                materialKeys.forEach(function(matKey) {
+                    var matSettings = settings.equipment_materials[matKey];
+                    var $accordion = $('.equipment-material-accordion[data-material="' + matKey + '"]');
+                    
+                    if (matSettings && matSettings.enabled) {
+                        // Enable the material
+                        $('input[name="flexframe_' + matKey + '_enabled"]').prop('checked', true).trigger('change');
+                        
+                        // Apply all settings
+                        if (matSettings.color) {
+                            $('input[name="flexframe_' + matKey + '_color"]').val(matSettings.color).trigger('input');
+                        }
+                        if (matSettings.opacity !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_opacity"]').val(matSettings.opacity).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_opacity"]').siblings('.range-value').text(matSettings.opacity);
+                        }
+                        if (matSettings.metalness !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_metalness"]').val(matSettings.metalness).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_metalness"]').siblings('.range-value').text(matSettings.metalness);
+                        }
+                        if (matSettings.roughness !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_roughness"]').val(matSettings.roughness).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_roughness"]').siblings('.range-value').text(matSettings.roughness);
+                        }
+                        if (matSettings.color_map_enabled !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_color_map_enabled"]').prop('checked', matSettings.color_map_enabled);
+                        }
+                        if (matSettings.bump_scale !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_bump_scale"]').val(matSettings.bump_scale).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_bump_scale"]').siblings('.range-value').text(matSettings.bump_scale);
+                        }
+                        if (matSettings.normal_scale !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_normal_scale"]').val(matSettings.normal_scale).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_normal_scale"]').siblings('.range-value').text(matSettings.normal_scale);
+                        }
+                        if (matSettings.clearcoat !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_clearcoat"]').val(matSettings.clearcoat).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_clearcoat"]').siblings('.range-value').text(matSettings.clearcoat);
+                        }
+                        if (matSettings.clearcoat_roughness !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_clearcoat_roughness"]').val(matSettings.clearcoat_roughness).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_clearcoat_roughness"]').siblings('.range-value').text(matSettings.clearcoat_roughness);
+                        }
+                        if (matSettings.emissive_color) {
+                            $('input[name="flexframe_' + matKey + '_emissive_color"]').val(matSettings.emissive_color).trigger('input');
+                        }
+                        if (matSettings.emissive_intensity !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_emissive_intensity"]').val(matSettings.emissive_intensity).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_emissive_intensity"]').siblings('.range-value').text(matSettings.emissive_intensity);
+                        }
+                        if (matSettings.blending) {
+                            $('select[name="flexframe_' + matKey + '_blending"]').val(matSettings.blending);
+                        }
+                        if (matSettings.transmission !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_transmission"]').val(matSettings.transmission).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_transmission"]').siblings('.range-value').text(matSettings.transmission);
+                        }
+                        if (matSettings.thickness !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_thickness"]').val(matSettings.thickness).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_thickness"]').siblings('.range-value').text(matSettings.thickness);
+                        }
+                        if (matSettings.ior !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_ior"]').val(matSettings.ior).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_ior"]').siblings('.range-value').text(matSettings.ior);
+                        }
+                        if (matSettings.env_intensity !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_env_intensity"]').val(matSettings.env_intensity).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_env_intensity"]').siblings('.range-value').text(matSettings.env_intensity);
+                        }
+                        if (matSettings.sheen !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_sheen"]').val(matSettings.sheen).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_sheen"]').siblings('.range-value').text(matSettings.sheen);
+                        }
+                        if (matSettings.sheen_roughness !== undefined) {
+                            $('input[name="flexframe_' + matKey + '_sheen_roughness"]').val(matSettings.sheen_roughness).trigger('input');
+                            $('input[name="flexframe_' + matKey + '_sheen_roughness"]').siblings('.range-value').text(matSettings.sheen_roughness);
+                        }
+                        if (matSettings.sheen_color) {
+                            $('input[name="flexframe_' + matKey + '_sheen_color"]').val(matSettings.sheen_color).trigger('input');
+                        }
+                    } else {
+                        // Disable the material if not in preset or explicitly disabled
+                        $('input[name="flexframe_' + matKey + '_enabled"]').prop('checked', false).trigger('change');
+                    }
+                });
             }
             
             // Background Logo Settings (if present)
@@ -5269,6 +5514,7 @@ function flexframe_settings_page() {
                         useLogoLoader: 'use_logo_loader',
                         logoLoaderAnimation: 'logo_loader_animation',
                         logoLoaderSize: 'logo_loader_size',
+                        // Animation Player
                         playerBgColor: 'player_bg_color',
                         playerBgOpacity: 'player_bg_opacity',
                         playerButtonBgColor: 'player_button_bg_color',
@@ -5276,6 +5522,9 @@ function flexframe_settings_page() {
                         playerIconColor: 'player_icon_color',
                         playerAccentColor: 'player_accent_color',
                         playerAlwaysVisible: 'player_always_visible',
+                        playerWidth: 'player_width',
+                        playerShowTime: 'player_show_time',
+                        // Menu
                         menuBgColor: 'menu_bg_color',
                         menuBgOpacity: 'menu_bg_opacity',
                         menuTextColor: 'menu_text_color',
@@ -5283,6 +5532,10 @@ function flexframe_settings_page() {
                         menuAccentColor: 'menu_accent_color',
                         hideRightMenu: 'hide_right_menu',
                         showScreenshotButton: 'show_screenshot_button',
+                        // Thumbnail Labels
+                        thumbnailLabelColor: 'thumbnail_label_color',
+                        thumbnailLabelOpacity: 'thumbnail_label_opacity',
+                        // Skin Material
                         skinColor: 'skin_color',
                         skinOpacity: 'skin_opacity',
                         skinRoughness: 'skin_roughness',
@@ -5291,9 +5544,17 @@ function flexframe_settings_page() {
                         skinThickness: 'skin_thickness',
                         skinIor: 'skin_ior',
                         skinEnvIntensity: 'skin_env_intensity',
+                        // Scene Background
                         bgGradientTop: 'bg_gradient_top',
                         bgGradientBottom: 'bg_gradient_bottom',
                         bgGradientOpacity: 'bg_gradient_opacity',
+                        // Background Logo
+                        bgLogoEnabled: 'bg_logo_enabled',
+                        bgLogoPosX: 'bg_logo_pos_x',
+                        bgLogoPosY: 'bg_logo_pos_y',
+                        bgLogoSize: 'bg_logo_size',
+                        bgLogoOpacity: 'bg_logo_opacity',
+                        // Lighting
                         ambientIntensity: 'ambient_intensity',
                         ambientColor: 'ambient_color',
                         directionalIntensity: 'directional_intensity',
@@ -5301,17 +5562,19 @@ function flexframe_settings_page() {
                         directionalPosX: 'directional_pos_x',
                         directionalPosY: 'directional_pos_y',
                         directionalPosZ: 'directional_pos_z',
+                        // Particles - support both old and new naming
                         particlesEnabled: 'particles_enabled',
-                        particleCount: 'particle_count',
-                        particleSize: 'particle_size',
-                        particleColor: 'particle_color',
-                        particleOpacity: 'particle_opacity',
-                        particleSpeed: 'particle_speed',
-                        bgLogoEnabled: 'bg_logo_enabled',
-                        bgLogoPosX: 'bg_logo_pos_x',
-                        bgLogoPosY: 'bg_logo_pos_y',
-                        bgLogoSize: 'bg_logo_size',
-                        bgLogoOpacity: 'bg_logo_opacity'
+                        particlesCount: 'particles_count',
+                        particlesSize: 'particles_size',
+                        particlesColor: 'particles_color',
+                        particlesOpacity: 'particles_opacity',
+                        particlesSpeed: 'particles_speed',
+                        // Old particle naming (for backwards compatibility)
+                        particleCount: 'particles_count',
+                        particleSize: 'particles_size',
+                        particleColor: 'particles_color',
+                        particleOpacity: 'particles_opacity',
+                        particleSpeed: 'particles_speed'
                     };
                     
                     // Create settings object with snake_case keys and 'primary' replaced
