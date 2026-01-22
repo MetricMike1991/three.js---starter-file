@@ -1225,39 +1225,10 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 
+                <!-- Step 2: Upload Your Logo -->
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="2">
                         <span class="step-number">2</span>
-                        <h2><?php _e('Select Your Primary Brand Color', 'flexframe-viewer'); ?></h2>
-                        <span class="step-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
-                        <button type="submit" class="button button-primary step-save-btn">
-                            <span class="dashicons dashicons-saved"></span><?php _e('Save Settings', 'flexframe-viewer'); ?>
-                        </button>
-                    </div>
-                    <div class="flexframe-step-content" style="display: none;">
-                        <p class="step-description">
-                            <?php _e('Choose your main brand color. This will be applied to accent elements like bumper plates, kettlebells, and trim colors on machines — helping the 3D models match your gym\'s branding.', 'flexframe-viewer'); ?>
-                        </p>
-                        
-                        <!-- Hidden field to always use custom mode when color is set -->
-                        <input type="hidden" name="flexframe_primary_color_mode" value="<?php echo !empty($primary_color) ? 'custom' : 'default'; ?>" />
-                        
-                        <div class="flexframe-custom-color-panel">
-                            <div class="flexframe-color-picker">
-                                <input type="color" id="flexframe_primary_color" name="flexframe_primary_color" value="<?php echo esc_attr($primary_color ?: '#c20e1d'); ?>" />
-                                <span class="color-hex-display"><?php echo esc_html($primary_color ?: '#c20e1d'); ?></span>
-                                <span class="color-label"><?php _e('Your Brand Color', 'flexframe-viewer'); ?></span>
-                            </div>
-                            <p class="color-hint" style="margin-top: 10px; color: #666; font-size: 13px;">
-                                <?php _e('If no color is saved, the default color from your selected theme will be used.', 'flexframe-viewer'); ?>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="flexframe-step-section collapsed">
-                    <div class="flexframe-step-header" data-step="3">
-                        <span class="step-number">3</span>
                         <h2><?php _e('Upload Your Logo', 'flexframe-viewer'); ?></h2>
                         <span class="step-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                         <button type="submit" class="button button-primary step-save-btn">
@@ -1395,6 +1366,57 @@ function flexframe_settings_page() {
                                     <p class="description"><?php _e('To add your logo as a watermark on the viewer background, go to Step 4 → Select "Custom Theme" → Scene Background section.', 'flexframe-viewer'); ?></p>
                                 </div>
                             </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Step 3: Primary Brand Color -->
+                <div class="flexframe-step-section collapsed">
+                    <div class="flexframe-step-header" data-step="3">
+                        <span class="step-number">3</span>
+                        <h2><?php _e('Select Your Primary Brand Color', 'flexframe-viewer'); ?></h2>
+                        <span class="step-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                        <button type="submit" class="button button-primary step-save-btn">
+                            <span class="dashicons dashicons-saved"></span><?php _e('Save Settings', 'flexframe-viewer'); ?>
+                        </button>
+                    </div>
+                    <div class="flexframe-step-content" style="display: none;">
+                        <p class="step-description">
+                            <?php _e('Choose your main brand color. This will be applied to accent elements like bumper plates, kettlebells, and trim colors on machines — helping the 3D models match your gym\'s branding.', 'flexframe-viewer'); ?>
+                        </p>
+                        
+                        <!-- Hidden field to always use custom mode when color is set -->
+                        <input type="hidden" name="flexframe_primary_color_mode" value="<?php echo !empty($primary_color) ? 'custom' : 'default'; ?>" />
+                        
+                        <div class="flexframe-color-with-logo">
+                            <!-- Color Picker -->
+                            <div class="flexframe-custom-color-panel">
+                                <div class="flexframe-color-picker">
+                                    <input type="color" id="flexframe_primary_color" name="flexframe_primary_color" value="<?php echo esc_attr($primary_color ?: '#c20e1d'); ?>" />
+                                    <span class="color-hex-display"><?php echo esc_html($primary_color ?: '#c20e1d'); ?></span>
+                                    <span class="color-label"><?php _e('Your Brand Color', 'flexframe-viewer'); ?></span>
+                                </div>
+                                <p class="color-hint" style="margin-top: 10px; color: #666; font-size: 13px;">
+                                    <?php _e('If no color is saved, the default color from your selected theme will be used.', 'flexframe-viewer'); ?>
+                                </p>
+                            </div>
+                            
+                            <!-- Logo Preview for Eyedropper -->
+                            <?php if (!empty($logo_url)) : ?>
+                            <div class="flexframe-logo-color-reference">
+                                <div class="logo-reference-header">
+                                    <span class="dashicons dashicons-art"></span>
+                                    <strong><?php _e('Your Logo', 'flexframe-viewer'); ?></strong>
+                                </div>
+                                <div class="logo-reference-preview">
+                                    <img src="<?php echo esc_url($logo_url); ?>" alt="Logo for color reference" id="logo-color-reference-img">
+                                </div>
+                                <p class="logo-reference-hint">
+                                    <span class="dashicons dashicons-lightbulb"></span>
+                                    <?php _e('Use the eyedropper to sample colors from your logo!', 'flexframe-viewer'); ?>
+                                </p>
+                            </div>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>
@@ -2763,6 +2785,76 @@ function flexframe_settings_page() {
             padding: 16px;
             background: #f9f9f9;
             border-radius: 6px;
+        }
+        
+        /* Color picker with logo side by side */
+        .flexframe-color-with-logo {
+            display: flex;
+            gap: 24px;
+            align-items: flex-start;
+        }
+        .flexframe-color-with-logo .flexframe-custom-color-panel {
+            margin-top: 0;
+            flex: 0 0 auto;
+        }
+        
+        /* Logo color reference for eyedropper */
+        .flexframe-logo-color-reference {
+            background: #f6f7f7;
+            border: 1px solid #e2e4e7;
+            border-radius: 8px;
+            padding: 16px;
+            flex: 0 0 auto;
+            max-width: 220px;
+        }
+        .logo-reference-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 10px;
+            color: #1d2327;
+            font-size: 13px;
+        }
+        .logo-reference-header .dashicons {
+            color: #2271b1;
+            font-size: 16px;
+            width: 16px;
+            height: 16px;
+        }
+        .logo-reference-preview {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(45deg, #e8e8e8 25%, #f5f5f5 25%, #f5f5f5 50%, #e8e8e8 50%, #e8e8e8 75%, #f5f5f5 75%);
+            background-size: 12px 12px;
+            border-radius: 6px;
+            padding: 12px;
+            min-height: 80px;
+        }
+        .logo-reference-preview img {
+            max-width: 100%;
+            max-height: 100px;
+            object-fit: contain;
+        }
+        .logo-reference-hint {
+            display: flex;
+            align-items: flex-start;
+            gap: 6px;
+            margin-top: 10px;
+            padding: 8px 10px;
+            background: #fff8e5;
+            border: 1px solid #f0c36d;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #6e4b00;
+            line-height: 1.4;
+        }
+        .logo-reference-hint .dashicons {
+            color: #d68f00;
+            flex-shrink: 0;
+            font-size: 14px;
+            width: 14px;
+            height: 14px;
         }
         
         /* Logo upload */
