@@ -445,6 +445,32 @@ class ThreeJSApp {
         }
     }
 
+    updateLoadProgress(percent) {
+        // Update progress bar and text
+        const progressBar = document.getElementById('logo-progress-bar');
+        const progressText = document.getElementById('logo-progress-text');
+        
+        if (percent === -1) {
+            // Indeterminate progress - server didn't provide content length
+            if (progressBar) {
+                progressBar.style.width = '100%';
+                progressBar.style.animation = 'indeterminateProgress 1.5s ease-in-out infinite';
+            }
+            if (progressText) {
+                progressText.textContent = 'Loading...';
+            }
+        } else {
+            // Determinate progress - accurate percentage
+            if (progressBar) {
+                progressBar.style.animation = 'none';
+                progressBar.style.width = `${percent}%`;
+            }
+            if (progressText) {
+                progressText.textContent = `${percent}%`;
+            }
+        }
+    }
+
     applyWordPressUISettings() {
         // Check if WordPress UI settings are available
         if (!window.flexframeSettings || !window.flexframeSettings.uiSettings) {
@@ -2025,6 +2051,9 @@ class ThreeJSApp {
         
         // console.log('Loading model from:', modelUrl);
         
+        // Reset progress indicators
+        this.updateLoadProgress(0);
+        
         this.gltfLoader.load(
             modelUrl,
             (gltf) => {
@@ -2410,10 +2439,22 @@ class ThreeJSApp {
                 // Add materials GUI controls
                 this.setupMaterialsGUI(model);
                 
+                // Complete progress
+                this.updateLoadProgress(100);
+                
                 // Resolve the promise when model is fully loaded
                 resolve(model);
             },
-            undefined,
+            (progress) => {
+                // Progress callback
+                if (progress.lengthComputable) {
+                    const percent = Math.round((progress.loaded / progress.total) * 100);
+                    this.updateLoadProgress(percent);
+                } else {
+                    // If length not computable, show indeterminate progress
+                    this.updateLoadProgress(-1);
+                }
+            },
             (error) => {
                 console.error('An error happened while loading the GLB model:', error);
                 

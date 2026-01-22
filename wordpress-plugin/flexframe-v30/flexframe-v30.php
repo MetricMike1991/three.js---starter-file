@@ -536,15 +536,42 @@ function flexframe_enqueue_assets() {
             }
             
             /* FlexFrame Logo Loader Animations */
+            .logo-loader-wrapper {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 12px;
+            }
             .logo-loader-container {
                 display: flex;
                 align-items: center;
                 justify-content: center;
+                position: relative;
             }
             .logo-loader-img {
                 max-width: 100%;
                 max-height: 100%;
                 object-fit: contain;
+            }
+            .logo-progress-bar-container {
+                width: 80%;
+                max-width: 150px;
+                height: 4px;
+                background: rgba(255, 255, 255, 0.2);
+                border-radius: 2px;
+                overflow: hidden;
+            }
+            .logo-progress-bar {
+                width: 0%;
+                height: 100%;
+                background: linear-gradient(90deg, #4a9eff, #00f510);
+                border-radius: 2px;
+                transition: width 0.15s ease-out;
+            }
+            .logo-progress-text {
+                font-size: 12px;
+                color: rgba(255, 255, 255, 0.8);
+                font-weight: 500;
             }
             .logo-loader-img.pulse {
                 animation: flexframePulse 1.5s ease-in-out infinite;
@@ -573,6 +600,11 @@ function flexframe_enqueue_assets() {
             @keyframes flexframeBounce {
                 0%, 100% { transform: translateY(0); }
                 50% { transform: translateY(-10px); }
+            }
+            @keyframes indeterminateProgress {
+                0% { transform: translateX(-100%); }
+                50% { transform: translateX(0%); }
+                100% { transform: translateX(100%); }
             }
         ';
         
@@ -1461,9 +1493,16 @@ function flexframe_viewer_shortcode($atts) {
         <!-- Model Loader -->
         <div id="model-loader" class="model-loader" style="display: none;">
             <?php if ($use_logo_loader && !empty($logo_url)) : ?>
-                <!-- Logo Loader -->
-                <div class="logo-loader-container" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: <?php echo esc_attr($logo_loader_size); ?>px;">
-                    <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
+                <!-- Logo Loader with Progress -->
+                <div class="logo-loader-wrapper">
+                    <div class="logo-loader-container" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: <?php echo esc_attr($logo_loader_size); ?>px;">
+                        <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
+                    </div>
+                    <!-- Progress bar under logo -->
+                    <div class="logo-progress-bar-container">
+                        <div class="logo-progress-bar" id="logo-progress-bar"></div>
+                    </div>
+                    <div class="logo-progress-text" id="logo-progress-text">0%</div>
                 </div>
             <?php else : ?>
                 <!-- Default Spinner -->
