@@ -2333,7 +2333,11 @@ class ThreeJSApp {
                         logoUrl = logoUrl.replace('http://', 'https://');
                     }
                     console.log('🎨 Applying LOGO texture from WordPress settings:', logoUrl);
-                    this.applyLogoTexture(model, logoUrl, window.flexframeSettings.logoThreshold);
+                    const logoThreshold = window.flexframeSettings.logoThreshold || 0.95;
+                    const logoBorderEnabled = window.flexframeSettings.logoBorderEnabled || false;
+                    const logoBorderSize = window.flexframeSettings.logoBorderSize || 2;
+                    const logoDisplaySize = window.flexframeSettings.logoDisplaySize || 100;
+                    this.applyLogoTexture(model, logoUrl, logoThreshold, logoBorderEnabled, logoBorderSize, logoDisplaySize);
                 }
 
                 model.position.set(0, -0.02, 0);
@@ -2986,7 +2990,7 @@ class ThreeJSApp {
         });
     }
 
-    applyLogoTexture(model, logoUrl, threshold = 0.95) {
+    applyLogoTexture(model, logoUrl, threshold = 0.95, borderEnabled = false, borderSize = 2, displaySize = 100) {
         // Apply LOGO texture to material named "LOGO"
         const cacheBustedUrl = logoUrl + (logoUrl.includes('?') ? '&' : '?') + `t=${Date.now()}`;
         
@@ -3003,8 +3007,69 @@ class ThreeJSApp {
                             mat.map.dispose();
                         }
                         
-                        // Load the texture
-                        this.textureLoader.load(cacheBustedUrl, (texture) => {
+                        // Load the image first to process it
+                        const img = new Image();
+                        img.crossOrigin = 'anonymous';
+                        img.onload = () => {
+                            // Create canvas to process the image
+                            const canvas = document.createElement('canvas');
+                            const ctx = canvas.getContext('2d');
+                            
+                            // Calculate size based on displaySize percentage
+                            const scale = displaySize / 100;
+                            const scaledWidth = img.width * scale;
+                            const scaledHeight = img.height * scale;
+                            
+                            // Set canvas size to original image dimensions
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            
+                            // Clear canvas
+                            ctx.clearRect(0, 0, canvas.width, canvas.height);
+                            
+                            // Calculate centered position for scaled image
+                            const offsetX = (canvas.width - scaledWidth) / 2;
+                            const offsetY = (canvas.height - scaledHeight) / 2;
+                            
+                            // Add white border if enabled
+                            if (borderEnabled && borderSize > 0) {
+                                // Draw multiple offset versions for border effect
+                                ctx.globalCompositeOperation = 'source-over';
+                                
+                                // Create a temporary canvas for the border
+                                const tempCanvas = document.createElement('canvas');
+                                const tempCtx = tempCanvas.getContext('2d');
+                                tempCanvas.width = canvas.width;
+                                tempCanvas.height = canvas.height;
+                                
+                                // Draw scaled image to temp canvas
+                                tempCtx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
+                                
+                                // Get image data and create border
+                                const borderPixels = parseInt(borderSize);
+                                for (let angle = 0; angle < 360; angle += 15) {
+                                    const rad = angle * Math.PI / 180;
+                                    const dx = Math.cos(rad) * borderPixels;
+                                    const dy = Math.sin(rad) * borderPixels;
+                                    ctx.drawImage(tempCanvas, dx, dy);
+                                }
+                                
+                                // Make the border white
+                                ctx.globalCompositeOperation = 'source-in';
+                                ctx.fillStyle = 'white';
+                                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                                
+                                // Draw the original image on top
+                                ctx.globalCompositeOperation = 'source-over';
+                                ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
+                            } else {
+                                // Just draw scaled and centered
+                                ctx.drawImage(img, offsetX, offsetY, scaledWidth, scaledHeight);
+                            }
+                            
+                            // Create texture from canvas
+                            const texture = new THREE.CanvasTexture(canvas);
+                            
                             // Fix white fringe by setting proper color space and filtering
                             texture.colorSpace = THREE.SRGBColorSpace;
                             texture.premultiplyAlpha = false;
@@ -3023,10 +3088,12 @@ class ThreeJSApp {
                             mat.depthWrite = false;
                             
                             mat.needsUpdate = true;
-                            console.log('✅ LOGO texture applied successfully');
-                        }, undefined, (error) => {
+                            console.log('✅ LOGO texture applied successfully with border:', borderEnabled, 'size:', borderSize, 'displaySize:', displaySize);
+                        };
+                        img.onerror = (error) => {
                             console.error('❌ Error loading LOGO texture:', error);
-                        });
+                        };
+                        img.src = cacheBustedUrl;
                     }
                 });
             }
