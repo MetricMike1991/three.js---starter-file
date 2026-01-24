@@ -125,6 +125,9 @@ function flexframe_save_custom_preset() {
         'name' => $preset_name,
         'created' => current_time('mysql'),
         'settings' => array(
+            // Primary Color (for Theme Editor compatibility)
+            'primary_color' => sanitize_hex_color($preset_data['primary_color'] ?? '#f50000'),
+            'primary_color_mode' => sanitize_text_field($preset_data['primary_color_mode'] ?? 'custom'),
             // UI Settings
             'spinner_color' => sanitize_hex_color($preset_data['spinner_color'] ?? '#00f510'),
             'use_logo_loader' => (bool)($preset_data['use_logo_loader'] ?? false),
@@ -298,20 +301,40 @@ function flexframe_set_blank_template($page_id) {
 }
 
 /**
+ * Sanitize primary color with logging
+ */
+function flexframe_sanitize_primary_color($value) {
+    error_log('[FlexFrame Form Save] Received primary_color value: ' . $value);
+    $sanitized = sanitize_hex_color($value);
+    error_log('[FlexFrame Form Save] Sanitized primary_color: ' . $sanitized);
+    return $sanitized;
+}
+
+/**
+ * Sanitize primary color mode with logging
+ */
+function flexframe_sanitize_primary_color_mode($value) {
+    error_log('[FlexFrame Form Save] Received primary_color_mode value: ' . $value);
+    $sanitized = sanitize_text_field($value);
+    error_log('[FlexFrame Form Save] Sanitized primary_color_mode: ' . $sanitized);
+    return $sanitized;
+}
+
+/**
  * Register settings
  */
 function flexframe_register_settings() {
     // Primary color mode: 'default' or 'custom'
     register_setting('flexframe_settings_group', 'flexframe_primary_color_mode', array(
         'type' => 'string',
-        'sanitize_callback' => 'sanitize_text_field',
+        'sanitize_callback' => 'flexframe_sanitize_primary_color_mode',
         'default' => 'default'
     ));
     
     // Primary brand color (COLOR_1 material) - only used when mode is 'custom'
     register_setting('flexframe_settings_group', 'flexframe_primary_color', array(
         'type' => 'string',
-        'sanitize_callback' => 'sanitize_hex_color',
+        'sanitize_callback' => 'flexframe_sanitize_primary_color',
         'default' => '#ff0000'
     ));
     
@@ -5016,8 +5039,12 @@ function flexframe_settings_page() {
         
         // Apply built-in preset theme
         function applyBuiltInPreset(presetId) {
+            console.log('[Theme Load] Loading built-in theme:', presetId);
             var preset = builtInPresets[presetId];
-            if (!preset) return;
+            if (!preset) {
+                console.error('[Theme Load] Built-in theme not found:', presetId);
+                return;
+            }
             
             var primaryColor = $('#flexframe_primary_color').val() || '#2383cd';
             
@@ -5025,270 +5052,100 @@ function flexframe_settings_page() {
             var settings;
             if (preset.isRandom) {
                 settings = generateRandomTheme(primaryColor);
-                console.log('Generated random theme:', settings);
+                console.log('[Theme Load] Generated random theme:', settings);
             } else {
                 settings = preset.settings;
+                console.log('[Theme Load] Built-in theme settings:', settings);
             }
             
-            // Helper to get color (use primary if marked)
-            function getColor(value) {
-                return value === 'primary' ? primaryColor : value;
+            // Map camelCase keys from built-in presets to snake_case for applyPresetSettings
+            var keyMap = {
+                spinnerColor: 'spinner_color',
+                useLogoLoader: 'use_logo_loader',
+                logoLoaderAnimation: 'logo_loader_animation',
+                logoLoaderSize: 'logo_loader_size',
+                // Animation Player
+                playerBgColor: 'player_bg_color',
+                playerBgOpacity: 'player_bg_opacity',
+                playerButtonBgColor: 'player_button_bg_color',
+                playerButtonBgOpacity: 'player_button_bg_opacity',
+                playerIconColor: 'player_icon_color',
+                playerAccentColor: 'player_accent_color',
+                playerAlwaysVisible: 'player_always_visible',
+                playerWidth: 'player_width',
+                playerShowTime: 'player_show_time',
+                // Menu
+                menuBgColor: 'menu_bg_color',
+                menuBgOpacity: 'menu_bg_opacity',
+                menuTextColor: 'menu_text_color',
+                menuTextOpacity: 'menu_text_opacity',
+                menuAccentColor: 'menu_accent_color',
+                hideRightMenu: 'hide_right_menu',
+                showScreenshotButton: 'show_screenshot_button',
+                // Thumbnail Labels
+                thumbnailLabelColor: 'thumbnail_label_color',
+                thumbnailLabelOpacity: 'thumbnail_label_opacity',
+                // Skin Material
+                skinColor: 'skin_color',
+                skinOpacity: 'skin_opacity',
+                skinRoughness: 'skin_roughness',
+                skinMetalness: 'skin_metalness',
+                skinTransmission: 'skin_transmission',
+                skinThickness: 'skin_thickness',
+                skinIor: 'skin_ior',
+                skinEnvIntensity: 'skin_env_intensity',
+                // Scene Background
+                bgGradientTop: 'bg_gradient_top',
+                bgGradientBottom: 'bg_gradient_bottom',
+                bgGradientOpacity: 'bg_gradient_opacity',
+                // Background Logo
+                bgLogoEnabled: 'bg_logo_enabled',
+                bgLogoPosX: 'bg_logo_pos_x',
+                bgLogoPosY: 'bg_logo_pos_y',
+                bgLogoSize: 'bg_logo_size',
+                bgLogoOpacity: 'bg_logo_opacity',
+                // Lighting
+                ambientIntensity: 'ambient_intensity',
+                ambientColor: 'ambient_color',
+                directionalIntensity: 'directional_intensity',
+                directionalColor: 'directional_color',
+                directionalPosX: 'directional_pos_x',
+                directionalPosY: 'directional_pos_y',
+                directionalPosZ: 'directional_pos_z',
+                // Particles - support both old and new naming
+                particlesEnabled: 'particles_enabled',
+                particlesCount: 'particles_count',
+                particlesSize: 'particles_size',
+                particlesColor: 'particles_color',
+                particlesOpacity: 'particles_opacity',
+                particlesSpeed: 'particles_speed',
+                // Old particle naming (for backwards compatibility)
+                particleCount: 'particles_count',
+                particleSize: 'particles_size',
+                particleColor: 'particles_color',
+                particleOpacity: 'particles_opacity',
+                particleSpeed: 'particles_speed'
+            };
+            
+            // Create settings object with snake_case keys and 'primary' replaced
+            var settingsToApply = {};
+            for (var camelKey in settings) {
+                var snakeKey = keyMap[camelKey] || camelKey;
+                var value = settings[camelKey];
+                if (value === 'primary') {
+                    settingsToApply[snakeKey] = primaryColor;
+                } else {
+                    settingsToApply[snakeKey] = value;
+                }
             }
             
-            // Apply UI Settings
-            $('#flexframe_spinner_color').val(getColor(settings.spinnerColor));
-            $('#flexframe_spinner_color').siblings('.color-value').text(getColor(settings.spinnerColor));
+            console.log('[Theme Load] Converted settings to apply:', JSON.stringify(settingsToApply, null, 2));
+            console.log('[Theme Load] Total settings count:', Object.keys(settingsToApply).length);
             
-            $('input[name="flexframe_use_logo_loader"][value="' + (settings.useLogoLoader ? '1' : '0') + '"]').prop('checked', true).trigger('change');
-            
-            $('#flexframe_logo_loader_animation').val(settings.logoLoaderAnimation);
-            $('#flexframe_logo_loader_size').val(settings.logoLoaderSize);
-            $('#flexframe_logo_loader_size').siblings('.size-value').text(settings.logoLoaderSize + 'px');
-            
-            $('#flexframe_player_bg_color').val(getColor(settings.playerBgColor));
-            $('#flexframe_player_bg_color').siblings('.color-value').text(getColor(settings.playerBgColor));
-            $('#flexframe_player_bg_opacity').val(settings.playerBgOpacity);
-            $('#flexframe_player_bg_opacity').siblings('.opacity-value').text(settings.playerBgOpacity);
-            
-            $('#flexframe_player_button_bg_color').val(getColor(settings.playerButtonBgColor));
-            $('#flexframe_player_button_bg_color').siblings('.color-value').text(getColor(settings.playerButtonBgColor));
-            $('#flexframe_player_button_bg_opacity').val(settings.playerButtonBgOpacity);
-            $('#flexframe_player_button_bg_opacity').siblings('.opacity-value').text(settings.playerButtonBgOpacity);
-            
-            $('#flexframe_player_icon_color').val(getColor(settings.playerIconColor));
-            $('#flexframe_player_icon_color').siblings('.color-value').text(getColor(settings.playerIconColor));
-            
-            $('#flexframe_player_accent_color').val(getColor(settings.playerAccentColor));
-            $('#flexframe_player_accent_color').siblings('.color-value').text(getColor(settings.playerAccentColor));
-            
-            $('#flexframe_player_always_visible').val(settings.playerAlwaysVisible);
-            
-            // Player Width and Show Time
-            if (settings.playerWidth !== undefined) {
-                $('#flexframe_player_width').val(settings.playerWidth).trigger('input');
-                $('#flexframe_player_width').siblings('.range-value').text(settings.playerWidth + '%');
-            }
-            if (settings.playerShowTime !== undefined) {
-                $('#flexframe_player_show_time').prop('checked', settings.playerShowTime);
-            }
-            
-            $('#flexframe_menu_bg_color').val(getColor(settings.menuBgColor));
-            $('#flexframe_menu_bg_color').siblings('.color-value').text(getColor(settings.menuBgColor));
-            $('#flexframe_menu_bg_opacity').val(settings.menuBgOpacity);
-            $('#flexframe_menu_bg_opacity').siblings('.opacity-value').text(settings.menuBgOpacity);
-            
-            $('#flexframe_menu_text_color').val(getColor(settings.menuTextColor));
-            $('#flexframe_menu_text_color').siblings('.color-value').text(getColor(settings.menuTextColor));
-            
-            if (settings.menuTextOpacity !== undefined) {
-                $('#flexframe_menu_text_opacity').val(settings.menuTextOpacity);
-                $('#flexframe_menu_text_opacity').siblings('.opacity-value').text(settings.menuTextOpacity);
-            }
-            
-            $('#flexframe_menu_accent_color').val(getColor(settings.menuAccentColor));
-            $('#flexframe_menu_accent_color').siblings('.color-value').text(getColor(settings.menuAccentColor));
-            
-            $('#flexframe_hide_right_menu').prop('checked', settings.hideRightMenu);
-            $('#flexframe_show_screenshot_button').prop('checked', settings.showScreenshotButton !== false);
-            
-            // Apply Thumbnail Label Settings
-            if (settings.thumbnailLabelColor !== undefined) {
-                $('#flexframe_thumbnail_label_color').val(getColor(settings.thumbnailLabelColor));
-                $('#flexframe_thumbnail_label_color').siblings('.color-value').text(getColor(settings.thumbnailLabelColor));
-            }
-            if (settings.thumbnailLabelOpacity !== undefined) {
-                $('#flexframe_thumbnail_label_opacity').val(settings.thumbnailLabelOpacity);
-                $('#flexframe_thumbnail_label_opacity').siblings('.opacity-value').text(settings.thumbnailLabelOpacity);
-            }
-            
-            // Apply Material Settings - trigger input events so values are recognized
-            $('#flexframe_skin_color').val(getColor(settings.skinColor)).trigger('input').trigger('change');
-            $('#flexframe_skin_color').siblings('.color-hex').text(getColor(settings.skinColor));
-            
-            $('#flexframe_skin_opacity').val(settings.skinOpacity).trigger('input');
-            $('#flexframe_skin_opacity').siblings('.range-value').text(settings.skinOpacity);
-            
-            $('#flexframe_skin_roughness').val(settings.skinRoughness).trigger('input');
-            $('#flexframe_skin_roughness').siblings('.range-value').text(settings.skinRoughness);
-            
-            $('#flexframe_skin_metalness').val(settings.skinMetalness).trigger('input');
-            $('#flexframe_skin_metalness').siblings('.range-value').text(settings.skinMetalness);
-            
-            $('#flexframe_skin_transmission').val(settings.skinTransmission).trigger('input');
-            $('#flexframe_skin_transmission').siblings('.range-value').text(settings.skinTransmission);
-            
-            $('#flexframe_skin_thickness').val(settings.skinThickness).trigger('input');
-            $('#flexframe_skin_thickness').siblings('.range-value').text(settings.skinThickness);
-            
-            $('#flexframe_skin_ior').val(settings.skinIor).trigger('input');
-            $('#flexframe_skin_ior').siblings('.range-value').text(settings.skinIor);
-            
-            $('#flexframe_skin_env_intensity').val(settings.skinEnvIntensity).trigger('input');
-            $('#flexframe_skin_env_intensity').siblings('.range-value').text(settings.skinEnvIntensity);
-            
-            console.log('Applied skin settings:', {
-                color: settings.skinColor,
-                opacity: settings.skinOpacity,
-                transmission: settings.skinTransmission,
-                ior: settings.skinIor,
-                envIntensity: settings.skinEnvIntensity
-            });
-            
-            // Apply Scene Background Settings
-            $('#flexframe_bg_gradient_top').val(getColor(settings.bgGradientTop)).trigger('input');
-            $('#flexframe_bg_gradient_top').siblings('.color-value').text(getColor(settings.bgGradientTop));
-            $('#flexframe_bg_gradient_bottom').val(getColor(settings.bgGradientBottom)).trigger('input');
-            $('#flexframe_bg_gradient_bottom').siblings('.color-value').text(getColor(settings.bgGradientBottom));
-            $('#flexframe_bg_opacity').val(settings.bgGradientOpacity).trigger('input');
-            $('#flexframe_bg_opacity').siblings('.opacity-value').text(settings.bgGradientOpacity);
-            
-            // Apply Lighting Settings
-            $('#flexframe_ambient_intensity').val(settings.ambientIntensity).trigger('input');
-            $('#flexframe_ambient_intensity').siblings('.range-value').text(settings.ambientIntensity);
-            $('#flexframe_ambient_color').val(settings.ambientColor).trigger('input');
-            $('#flexframe_ambient_color').siblings('.color-value').text(settings.ambientColor);
-            $('#flexframe_directional_intensity').val(settings.directionalIntensity).trigger('input');
-            $('#flexframe_directional_intensity').siblings('.range-value').text(settings.directionalIntensity);
-            $('#flexframe_directional_color').val(getColor(settings.directionalColor)).trigger('input');
-            $('#flexframe_directional_color').siblings('.color-value').text(getColor(settings.directionalColor));
-            $('#flexframe_directional_pos_x').val(settings.directionalPosX).trigger('input');
-            $('#flexframe_directional_pos_x').siblings('.range-value').text(settings.directionalPosX);
-            $('#flexframe_directional_pos_y').val(settings.directionalPosY).trigger('input');
-            $('#flexframe_directional_pos_y').siblings('.range-value').text(settings.directionalPosY);
-            $('#flexframe_directional_pos_z').val(settings.directionalPosZ).trigger('input');
-            $('#flexframe_directional_pos_z').siblings('.range-value').text(settings.directionalPosZ);
-            
-            // Apply Particle Settings - use correct field IDs (flexframe_particles_*)
-            $('#flexframe_particles_enabled').prop('checked', settings.particlesEnabled).trigger('change');
-            
-            // Handle both old (particleCount) and new (particlesCount) naming from presets
-            var pCount = settings.particlesCount !== undefined ? settings.particlesCount : settings.particleCount;
-            var pSize = settings.particlesSize !== undefined ? settings.particlesSize : settings.particleSize;
-            var pColor = settings.particlesColor !== undefined ? settings.particlesColor : settings.particleColor;
-            var pOpacity = settings.particlesOpacity !== undefined ? settings.particlesOpacity : settings.particleOpacity;
-            var pSpeed = settings.particlesSpeed !== undefined ? settings.particlesSpeed : settings.particleSpeed;
-            
-            $('#flexframe_particles_count').val(pCount).trigger('input');
-            $('#flexframe_particles_count').siblings('.range-value').text(pCount);
-            $('#flexframe_particles_size').val(pSize).trigger('input');
-            $('#flexframe_particles_size').siblings('.range-value').text(pSize);
-            $('#flexframe_particles_color').val(getColor(pColor)).trigger('input');
-            $('#flexframe_particles_color').siblings('.color-hex').text(getColor(pColor));
-            $('#flexframe_particles_opacity').val(pOpacity).trigger('input');
-            $('#flexframe_particles_opacity').siblings('.range-value').text(pOpacity);
-            $('#flexframe_particles_speed').val(pSpeed).trigger('input');
-            $('#flexframe_particles_speed').siblings('.range-value').text(pSpeed);
-            
-            // Apply Background Logo Settings
-            if (settings.bgLogoEnabled !== undefined) {
-                $('#flexframe_bg_logo_enabled').prop('checked', settings.bgLogoEnabled).trigger('change');
-            }
-            if (settings.bgLogoPosX !== undefined) {
-                $('#flexframe_bg_logo_pos_x').val(settings.bgLogoPosX).trigger('input');
-                $('#flexframe_bg_logo_pos_x').siblings('.range-value').text(settings.bgLogoPosX + '%');
-            }
-            if (settings.bgLogoPosY !== undefined) {
-                $('#flexframe_bg_logo_pos_y').val(settings.bgLogoPosY).trigger('input');
-                $('#flexframe_bg_logo_pos_y').siblings('.range-value').text(settings.bgLogoPosY + '%');
-            }
-            if (settings.bgLogoSize !== undefined) {
-                $('#flexframe_bg_logo_size').val(settings.bgLogoSize).trigger('input');
-                $('#flexframe_bg_logo_size').siblings('.range-value').text(settings.bgLogoSize + 'px');
-            }
-            if (settings.bgLogoOpacity !== undefined) {
-                $('#flexframe_bg_logo_opacity').val(settings.bgLogoOpacity).trigger('input');
-                $('#flexframe_bg_logo_opacity').siblings('.range-value').text(Math.round(settings.bgLogoOpacity * 100) + '%');
-            }
-            
-            console.log('Applied scene settings:', {
-                background: { top: settings.bgGradientTop, bottom: settings.bgGradientBottom, opacity: settings.bgGradientOpacity },
-                lighting: { ambient: settings.ambientIntensity, directional: settings.directionalIntensity },
-                particles: { enabled: settings.particlesEnabled, count: settings.particleCount }
-            });
-            
-            // Update UI preview if available
-            if (typeof updateUIPreview === 'function') {
-                updateUIPreview();
-            }
+            // Use the unified applyPresetSettings function
+            applyPresetSettings(settingsToApply);
         }
         
-        // Apply settings from a custom preset (uses same logic as applyBuiltInPreset but takes raw settings object)
-        function applySettings(settings) {
-            if (!settings) return;
-            
-            var primaryColor = $('#flexframe_primary_color').val() || '#2383cd';
-            
-            // Helper to get color (use primary if marked)
-            function getColor(value) {
-                return value === 'primary' ? primaryColor : value;
-            }
-            
-            // Apply each setting if it exists
-            if (settings.spinnerColor) $('#flexframe_spinner_color').val(getColor(settings.spinnerColor));
-            if (settings.useLogoLoader !== undefined) $('input[name="flexframe_use_logo_loader"][value="' + (settings.useLogoLoader ? '1' : '0') + '"]').prop('checked', true).trigger('change');
-            if (settings.logoLoaderAnimation) $('#flexframe_logo_loader_animation').val(settings.logoLoaderAnimation);
-            if (settings.logoLoaderSize) $('#flexframe_logo_loader_size').val(settings.logoLoaderSize);
-            if (settings.playerBgColor) $('#flexframe_player_bg_color').val(getColor(settings.playerBgColor));
-            if (settings.playerBgOpacity !== undefined) $('#flexframe_player_bg_opacity').val(settings.playerBgOpacity);
-            if (settings.playerButtonBgColor) $('#flexframe_player_button_bg_color').val(getColor(settings.playerButtonBgColor));
-            if (settings.playerButtonBgOpacity !== undefined) $('#flexframe_player_button_bg_opacity').val(settings.playerButtonBgOpacity);
-            if (settings.playerIconColor) $('#flexframe_player_icon_color').val(getColor(settings.playerIconColor));
-            if (settings.playerAccentColor) $('#flexframe_player_accent_color').val(getColor(settings.playerAccentColor));
-            if (settings.playerAlwaysVisible) $('#flexframe_player_always_visible').val(settings.playerAlwaysVisible);
-            if (settings.playerWidth !== undefined) $('#flexframe_player_width').val(settings.playerWidth).trigger('input');
-            if (settings.playerShowTime !== undefined) $('#flexframe_player_show_time').prop('checked', settings.playerShowTime);
-            if (settings.menuBgColor) $('#flexframe_menu_bg_color').val(getColor(settings.menuBgColor));
-            if (settings.menuBgOpacity !== undefined) $('#flexframe_menu_bg_opacity').val(settings.menuBgOpacity);
-            if (settings.menuTextColor) $('#flexframe_menu_text_color').val(getColor(settings.menuTextColor));
-            if (settings.menuTextOpacity !== undefined) $('#flexframe_menu_text_opacity').val(settings.menuTextOpacity);
-            if (settings.menuAccentColor) $('#flexframe_menu_accent_color').val(getColor(settings.menuAccentColor));
-            if (settings.hideRightMenu !== undefined) $('#flexframe_hide_right_menu').prop('checked', settings.hideRightMenu);
-            if (settings.showScreenshotButton !== undefined) $('#flexframe_show_screenshot_button').prop('checked', settings.showScreenshotButton);
-            if (settings.thumbnailLabelColor) $('#flexframe_thumbnail_label_color').val(getColor(settings.thumbnailLabelColor));
-            if (settings.thumbnailLabelOpacity !== undefined) $('#flexframe_thumbnail_label_opacity').val(settings.thumbnailLabelOpacity);
-            
-            // Material settings
-            if (settings.skinColor) $('#flexframe_skin_color').val(getColor(settings.skinColor)).trigger('input');
-            if (settings.skinOpacity !== undefined) $('#flexframe_skin_opacity').val(settings.skinOpacity).trigger('input');
-            if (settings.skinRoughness !== undefined) $('#flexframe_skin_roughness').val(settings.skinRoughness).trigger('input');
-            if (settings.skinMetalness !== undefined) $('#flexframe_skin_metalness').val(settings.skinMetalness).trigger('input');
-            if (settings.skinTransmission !== undefined) $('#flexframe_skin_transmission').val(settings.skinTransmission).trigger('input');
-            if (settings.skinThickness !== undefined) $('#flexframe_skin_thickness').val(settings.skinThickness).trigger('input');
-            if (settings.skinIor !== undefined) $('#flexframe_skin_ior').val(settings.skinIor).trigger('input');
-            if (settings.skinEnvIntensity !== undefined) $('#flexframe_skin_env_intensity').val(settings.skinEnvIntensity).trigger('input');
-            
-            // Background settings
-            if (settings.bgGradientTop) $('#flexframe_bg_gradient_top').val(getColor(settings.bgGradientTop)).trigger('input');
-            if (settings.bgGradientBottom) $('#flexframe_bg_gradient_bottom').val(getColor(settings.bgGradientBottom)).trigger('input');
-            if (settings.bgGradientOpacity !== undefined) $('#flexframe_bg_gradient_opacity').val(settings.bgGradientOpacity).trigger('input');
-            if (settings.bgLogoEnabled !== undefined) $('#flexframe_bg_logo_enabled').prop('checked', settings.bgLogoEnabled).trigger('change');
-            if (settings.bgLogoPosX !== undefined) $('#flexframe_bg_logo_pos_x').val(settings.bgLogoPosX).trigger('input');
-            if (settings.bgLogoPosY !== undefined) $('#flexframe_bg_logo_pos_y').val(settings.bgLogoPosY).trigger('input');
-            if (settings.bgLogoSize !== undefined) $('#flexframe_bg_logo_size').val(settings.bgLogoSize).trigger('input');
-            if (settings.bgLogoOpacity !== undefined) $('#flexframe_bg_logo_opacity').val(settings.bgLogoOpacity).trigger('input');
-            
-            // Lighting settings
-            if (settings.ambientIntensity !== undefined) $('#flexframe_ambient_intensity').val(settings.ambientIntensity).trigger('input');
-            if (settings.ambientColor) $('#flexframe_ambient_color').val(settings.ambientColor);
-            if (settings.directionalIntensity !== undefined) $('#flexframe_directional_intensity').val(settings.directionalIntensity).trigger('input');
-            if (settings.directionalColor) $('#flexframe_directional_color').val(settings.directionalColor);
-            if (settings.directionalPosX !== undefined) $('#flexframe_directional_pos_x').val(settings.directionalPosX).trigger('input');
-            if (settings.directionalPosY !== undefined) $('#flexframe_directional_pos_y').val(settings.directionalPosY).trigger('input');
-            if (settings.directionalPosZ !== undefined) $('#flexframe_directional_pos_z').val(settings.directionalPosZ).trigger('input');
-            
-            // Particles settings
-            if (settings.particlesEnabled !== undefined) $('#flexframe_particles_enabled').prop('checked', settings.particlesEnabled);
-            if (settings.particlesCount !== undefined) $('#flexframe_particles_count').val(settings.particlesCount).trigger('input');
-            if (settings.particlesSize !== undefined) $('#flexframe_particles_size').val(settings.particlesSize).trigger('input');
-            if (settings.particlesColor) $('#flexframe_particles_color').val(settings.particlesColor);
-            if (settings.particlesOpacity !== undefined) $('#flexframe_particles_opacity').val(settings.particlesOpacity).trigger('input');
-            if (settings.particlesSpeed !== undefined) $('#flexframe_particles_speed').val(settings.particlesSpeed).trigger('input');
-            
-            // Update UI preview if available
-            if (typeof updateUIPreview === 'function') {
-                updateUIPreview();
-            }
-        }
         
         // Generate random color variations
         function generateRandomTheme(primaryColor) {
@@ -5476,27 +5333,27 @@ function flexframe_settings_page() {
             var presetId = selectedVal.replace('custom:', '');
             var isCustomTheme = selectedVal.indexOf('custom:') === 0;
             
-            // Apply the preset settings to Step 5 form fields
-            if (isCustomTheme) {
-                // Load custom preset via AJAX
-                loadCustomPreset(presetId);
-            } else {
-                // Apply built-in preset
-                applyBuiltInPreset(presetId);
-            }
+            var $btn = $(this);
+            $btn.prop('disabled', true).html('<span class="dashicons dashicons-update spin" style="margin-top: 4px;"></span> <?php _e('Applying & Saving...', 'flexframe-viewer'); ?>');
             
             // Update the base theme indicator in Step 5
             var themeName = isCustomTheme ? presetId : (builtInPresets[presetId] ? builtInPresets[presetId].name : presetId);
             $('#current-base-theme-name').text(themeName + ' Theme');
             
-            // Show success feedback and save
-            var $btn = $(this);
-            $btn.prop('disabled', true).html('<span class="dashicons dashicons-yes" style="margin-top: 4px;"></span> <?php _e('Saving...', 'flexframe-viewer'); ?>');
+            // Apply the preset settings to form fields
+            if (isCustomTheme) {
+                // Load custom preset via AJAX
+                loadCustomPreset(presetId);
+            } else {
+                // Apply built-in preset (synchronous)
+                applyBuiltInPreset(presetId);
+            }
             
-            // Submit by clicking the main save button
+            // Submit form after brief delay to allow settings to populate
             setTimeout(function() {
+                console.log('[Theme Apply] Submitting form to save settings...');
                 $('#submit').click();
-            }, 100);
+            }, isCustomTheme ? 800 : 200);
         });
         
         // Set initial description on page load
@@ -5522,6 +5379,7 @@ function flexframe_settings_page() {
         
         // Load custom preset from server
         function loadCustomPreset(presetId) {
+            console.log('[Theme Load] Loading custom theme ID:', presetId);
             $.ajax({
                 url: ajaxurl,
                 type: 'POST',
@@ -5531,9 +5389,17 @@ function flexframe_settings_page() {
                     nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>'
                 },
                 success: function(response) {
+                    console.log('[Theme Load] AJAX response:', response);
                     if (response.success && response.data && response.data.preset) {
-                        applySettings(response.data.preset.settings);
+                        console.log('[Theme Load] Theme settings from AJAX:', response.data.preset.settings);
+                        console.log('[Theme Load] Primary color:', response.data.preset.settings.primary_color, 'mode:', response.data.preset.settings.primary_color_mode);
+                        applyPresetSettings(response.data.preset.settings);
+                    } else {
+                        console.error('[Theme Load] Failed to load theme:', response);
                     }
+                },
+                error: function(xhr, status, error) {
+                    console.error('[Theme Load] AJAX error:', error);
                 }
             });
         }
@@ -5637,6 +5503,7 @@ function flexframe_settings_page() {
         }
         
         // Get current settings for saving
+        // Get current settings for saving
         function getCurrentSettings() {
             // Collect equipment material settings
             var equipmentMaterials = {};
@@ -5672,7 +5539,7 @@ function flexframe_settings_page() {
             
             return {
                 // Step 1 - Brand Settings
-                primary_color_mode: $('input[name="flexframe_primary_color_mode"]:checked').val(),
+                primary_color_mode: $('input[name="flexframe_primary_color_mode"]').val() || 'custom',
                 primary_color: $('#flexframe_primary_color').val(),
                 
                 // UI Settings - Loading Indicator
@@ -5749,10 +5616,35 @@ function flexframe_settings_page() {
                 particles_opacity: $('#flexframe_particles_opacity').val(),
                 particles_speed: $('#flexframe_particles_speed').val()
             };
+            
+            console.log('[Theme Save] Collected primary color:', settings.primary_color, 'mode:', settings.primary_color_mode);
+            return settings;
         }
         
         // Apply settings from preset
         function applyPresetSettings(settings) {
+            console.log('[Theme Apply] Applying preset settings:', settings);
+            
+            // Primary Color (if exists in preset)
+            if (settings.primary_color !== undefined) {
+                $('#flexframe_primary_color').val(settings.primary_color).trigger('input');
+                $('#flexframe_primary_color').siblings('.color-value').text(settings.primary_color);
+                // Update hex display in Step 3
+                $('.color-hex-display').text(settings.primary_color);
+                console.log('[Theme Apply] Set primary color to:', settings.primary_color);
+            }
+            if (settings.primary_color_mode !== undefined) {
+                // Update hidden input for primary color mode
+                $('input[name="flexframe_primary_color_mode"]').val(settings.primary_color_mode);
+                console.log('[Theme Apply] Set primary color mode to:', settings.primary_color_mode);
+            } else {
+                // If no mode specified, set to 'custom' when color exists
+                if (settings.primary_color !== undefined) {
+                    $('input[name="flexframe_primary_color_mode"]').val('custom');
+                    console.log('[Theme Apply] Set primary color mode to: custom (fallback)');
+                }
+            }
+            
             // UI Settings
             $('#flexframe_spinner_color').val(settings.spinner_color).trigger('input');
             $('#flexframe_spinner_color').siblings('.color-value').text(settings.spinner_color);
@@ -6249,6 +6141,8 @@ function flexframe_settings_page() {
                         }
                     }
                     
+                    console.log('[Theme Load] Built-in theme data:', settingsToApply);
+                    console.log('[Theme Load] Primary color from built-in:', settingsToApply.primary_color, 'mode:', settingsToApply.primary_color_mode);
                     applyPresetSettings(settingsToApply);
                     showPresetMessage('<?php _e('Theme loaded! Remember to save your settings.', 'flexframe-viewer'); ?>', 'success');
                 } else {
@@ -6269,6 +6163,8 @@ function flexframe_settings_page() {
                 },
                 success: function(response) {
                     if (response.success) {
+                        console.log('[Theme Load] AJAX theme response:', response.data.preset);
+                        console.log('[Theme Load] Primary color from AJAX:', response.data.preset.settings.primary_color, 'mode:', response.data.preset.settings.primary_color_mode);
                         applyPresetSettings(response.data.preset.settings);
                         showPresetMessage('<?php _e('Preset loaded! Remember to save your settings.', 'flexframe-viewer'); ?>', 'success');
                     } else {
