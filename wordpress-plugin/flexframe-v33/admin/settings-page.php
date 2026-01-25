@@ -1538,8 +1538,54 @@ function flexframe_settings_page() {
                     </div>
                     <div class="flexframe-step-content" style="display: none;">
                         <p class="step-description">
-                            <?php _e('Fine-tune your theme settings below. The theme selected in Step 4 has been loaded as your starting point. Customize any settings, then save your custom theme.', 'flexframe-viewer'); ?>
+                            <?php _e('Create your perfect theme using our Visual Theme Editor, or fine-tune settings manually below.', 'flexframe-viewer'); ?>
                         </p>
+                        
+                        <!-- Visual Theme Editor CTA -->
+                        <div class="visual-theme-editor-cta">
+                            <div class="cta-content">
+                                <div class="cta-icon">
+                                    <span class="dashicons dashicons-art"></span>
+                                </div>
+                                <div class="cta-text">
+                                    <h3><?php _e('Visual Theme Editor', 'flexframe-viewer'); ?></h3>
+                                    <p><?php _e('The easiest way to create your theme! See changes in real-time as you customize colors, lighting, particles, and more.', 'flexframe-viewer'); ?></p>
+                                </div>
+                                <div class="cta-action">
+                                    <?php 
+                                    $theme_editor_url = $viewer_page_url ? add_query_arg('openThemeEditor', '1', $viewer_page_url) : '#';
+                                    ?>
+                                    <a href="<?php echo esc_url($theme_editor_url); ?>" target="_blank" class="button button-primary button-hero open-theme-editor-btn" <?php echo empty($viewer_page_url) ? 'disabled style="pointer-events:none;opacity:0.5;"' : ''; ?>>
+                                        <span class="dashicons dashicons-edit" style="margin-top: 6px;"></span>
+                                        <?php _e('Open Visual Editor', 'flexframe-viewer'); ?>
+                                        <span class="dashicons dashicons-external" style="margin-top: 6px; font-size: 16px;"></span>
+                                    </a>
+                                    <?php if (empty($viewer_page_url)) : ?>
+                                        <p class="cta-warning"><span class="dashicons dashicons-warning"></span> <?php _e('Set up your Viewer Page URL in Step 3 first.', 'flexframe-viewer'); ?></p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="cta-tip">
+                                <span class="dashicons dashicons-lightbulb"></span>
+                                <?php _e('Tip: Press "T" on your keyboard anytime in the viewer to open/close the Theme Editor.', 'flexframe-viewer'); ?>
+                            </div>
+                        </div>
+                        
+                        <!-- Divider with "OR" -->
+                        <div class="theme-settings-divider">
+                            <span class="divider-line"></span>
+                            <span class="divider-text"><?php _e('OR', 'flexframe-viewer'); ?></span>
+                            <span class="divider-line"></span>
+                        </div>
+                        
+                        <!-- Manual Settings Section (Collapsible) -->
+                        <div class="manual-theme-settings">
+                            <div class="manual-settings-header" id="manual-settings-toggle">
+                                <span class="dashicons dashicons-admin-generic"></span>
+                                <h3><?php _e('Advanced Manual Settings', 'flexframe-viewer'); ?></h3>
+                                <span class="manual-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                            </div>
+                            <p class="manual-settings-desc"><?php _e('Configure theme settings directly here. Changes will apply to the viewer in real-time.', 'flexframe-viewer'); ?></p>
                         
                         <!-- Current Theme Indicator -->
                         <div class="current-theme-indicator">
@@ -2417,6 +2463,7 @@ function flexframe_settings_page() {
                                 </div>
                             </div>
                         </div>
+                        </div><!-- End of manual-theme-settings -->
                     </div>
                 </div>
                 
@@ -3083,6 +3130,164 @@ function flexframe_settings_page() {
         }
         .current-theme-indicator strong {
             color: #1d2327;
+        }
+        
+        /* Visual Theme Editor CTA (Step 5) */
+        .visual-theme-editor-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+        .visual-theme-editor-cta .cta-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .visual-theme-editor-cta .cta-icon {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            flex-shrink: 0;
+        }
+        .visual-theme-editor-cta .cta-icon .dashicons {
+            font-size: 40px;
+            width: 40px;
+            height: 40px;
+        }
+        .visual-theme-editor-cta .cta-text {
+            flex: 1;
+            min-width: 200px;
+        }
+        .visual-theme-editor-cta .cta-text h3 {
+            margin: 0 0 8px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .visual-theme-editor-cta .cta-text p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .visual-theme-editor-cta .cta-action {
+            flex-shrink: 0;
+        }
+        .visual-theme-editor-cta .open-theme-editor-btn {
+            background: #fff !important;
+            color: #667eea !important;
+            border: none !important;
+            padding: 14px 28px !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            border-radius: 8px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+            text-decoration: none !important;
+        }
+        .visual-theme-editor-cta .open-theme-editor-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+            color: #5a67d8 !important;
+        }
+        .visual-theme-editor-cta .cta-warning {
+            margin: 10px 0 0 0;
+            font-size: 12px;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .visual-theme-editor-cta .cta-tip {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            opacity: 0.85;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .visual-theme-editor-cta .cta-tip .dashicons {
+            color: #ffd700;
+        }
+        
+        /* Theme Settings Divider */
+        .theme-settings-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .theme-settings-divider .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c3c4c7, transparent);
+        }
+        .theme-settings-divider .divider-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #646970;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Manual Theme Settings Section */
+        .manual-theme-settings {
+            border: 1px solid #c3c4c7;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .manual-settings-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 20px;
+            background: #f6f7f7;
+            border-bottom: 1px solid #c3c4c7;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .manual-settings-header:hover {
+            background: #f0f0f1;
+        }
+        .manual-settings-header .dashicons {
+            color: #646970;
+        }
+        .manual-settings-header h3 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d2327;
+            flex: 1;
+        }
+        .manual-toggle-icon {
+            color: #646970;
+            transition: transform 0.3s;
+        }
+        .manual-theme-settings.collapsed .manual-toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .manual-settings-desc {
+            padding: 12px 20px;
+            margin: 0;
+            color: #646970;
+            font-size: 13px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+        }
+        .manual-theme-settings.collapsed .manual-settings-desc,
+        .manual-theme-settings.collapsed .current-theme-indicator,
+        .manual-theme-settings.collapsed .save-custom-theme-section,
+        .manual-theme-settings.collapsed .flexframe-custom-panel {
+            display: none !important;
         }
         
         /* Save Custom Theme Section */
@@ -4542,6 +4747,15 @@ function flexframe_settings_page() {
             $section.toggleClass('collapsed');
             $content.slideToggle(200);
         });
+        
+        // Manual theme settings toggle (Step 5)
+        $('#manual-settings-toggle').on('click', function() {
+            var $container = $(this).closest('.manual-theme-settings');
+            $container.toggleClass('collapsed');
+        });
+        
+        // Start with manual settings collapsed by default
+        $('.manual-theme-settings').addClass('collapsed');
         
         // Copy shortcode to clipboard
         $('.copy-shortcode-btn').on('click', function() {
@@ -6531,6 +6745,18 @@ function flexframe_settings_page() {
         $('#flexframe_viewer_page_url').on('input', function() {
             viewerPageUrl = $(this).val() || '<?php echo esc_js(home_url('/')); ?>';
             renderExerciseList($('#exercise-search').val());
+            
+            // Also update the Visual Theme Editor button URL
+            var $editorBtn = $('.open-theme-editor-btn');
+            if (viewerPageUrl) {
+                var separator = viewerPageUrl.indexOf('?') !== -1 ? '&' : '?';
+                $editorBtn.attr('href', viewerPageUrl + separator + 'openThemeEditor=1');
+                $editorBtn.removeAttr('disabled').css({'pointer-events': 'auto', 'opacity': '1'});
+                $editorBtn.closest('.cta-action').find('.cta-warning').remove();
+            } else {
+                $editorBtn.attr('href', '#');
+                $editorBtn.attr('disabled', 'disabled').css({'pointer-events': 'none', 'opacity': '0.5'});
+            }
         });
         
         // Search functionality
