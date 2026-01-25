@@ -267,30 +267,29 @@ export class RightMenuSystem {
             if (hintTab) {
                 hintTab.addEventListener('click', (e) => {
                     e.stopPropagation(); // Prevent event bubbling
-                    
-                    // Toggle menu visibility
-                    if (menuContainer.classList.contains('menu-visible') || 
-                        menuContainer.classList.contains('menu-active')) {
-                        // Close all menus and hide the menu container
-                        Object.values(this.menus).forEach(menu => {
-                            if (menu.isOpen) {
-                                menu.closeMenu();
-                            }
-                        });
-                        menuContainer.classList.remove('menu-visible');
-                    } else {
-                        // Show menu
-                        menuContainer.classList.add('menu-visible');
-                    }
+                    this.toggleRightMenu();
                 });
             }
+            
+            // Create mobile toggle button
+            this.createMobileToggleButton(menuContainer);
         }
         
         // Close menus when clicking outside the menu area
         document.addEventListener('click', (e) => {
+            // Don't close if clicking on mobile toggle
+            if (e.target.closest('.mobile-menu-toggle')) return;
+            
             if (menuContainer && !menuContainer.contains(e.target)) {
                 // Remove menu visibility and close all open menus
                 menuContainer.classList.remove('menu-visible');
+                
+                // On mobile, also update toggle icon
+                if (window.innerWidth <= 768) {
+                    menuContainer.classList.remove('mobile-open');
+                    menuContainer.style.right = '-130px';
+                    this.updateMobileToggleIcon(false);
+                }
                 
                 // Check if any menu is currently open
                 const anyMenuOpen = Object.values(this.menus).some(menu => menu.isOpen);
@@ -355,5 +354,102 @@ export class RightMenuSystem {
         }).catch(err => {
             console.error('Failed to copy settings:', err);
         });
+    }
+
+    // Mobile toggle methods
+    createMobileToggleButton(menuContainer) {
+        // Remove existing toggle if any
+        const existing = document.querySelector('.mobile-menu-toggle.right-toggle');
+        if (existing) existing.remove();
+        
+        const toggle = document.createElement('div');
+        toggle.className = 'mobile-menu-toggle right-toggle';
+        toggle.innerHTML = '▶';
+        toggle.style.cssText = `
+            position: fixed;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid rgba(74, 158, 255, 0.6);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        `;
+        
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleRightMenu();
+        });
+        
+        document.body.appendChild(toggle);
+        this.mobileToggleButton = toggle;
+        
+        // Show/hide based on screen size
+        this.updateMobileToggleVisibility();
+        window.addEventListener('resize', () => this.updateMobileToggleVisibility());
+    }
+
+    updateMobileToggleVisibility() {
+        if (this.mobileToggleButton) {
+            if (window.innerWidth <= 768) {
+                this.mobileToggleButton.style.display = 'flex';
+            } else {
+                this.mobileToggleButton.style.display = 'none';
+            }
+        }
+    }
+
+    toggleRightMenu() {
+        const menuContainer = document.querySelector('.thumbnail-grid-container-right');
+        if (!menuContainer) return;
+        
+        const isOpen = menuContainer.classList.contains('mobile-open');
+        
+        if (isOpen) {
+            // Close menu
+            menuContainer.classList.remove('mobile-open');
+            menuContainer.classList.remove('menu-visible');
+            menuContainer.style.right = '-130px';
+            this.updateMobileToggleIcon(false);
+            
+            // Close all submenus
+            Object.values(this.menus).forEach(menu => {
+                if (menu.isOpen) {
+                    menu.closeMenu();
+                }
+            });
+        } else {
+            // Close left menu first
+            const leftMenu = document.querySelector('.thumbnail-grid-container');
+            if (leftMenu && leftMenu.classList.contains('mobile-open')) {
+                leftMenu.classList.remove('mobile-open');
+                leftMenu.style.left = '-130px';
+                // Update left toggle icon
+                const leftToggle = document.querySelector('.mobile-menu-toggle.left-toggle');
+                if (leftToggle) leftToggle.innerHTML = '◀';
+            }
+            
+            // Open right menu
+            menuContainer.classList.add('mobile-open');
+            menuContainer.classList.add('menu-visible');
+            menuContainer.style.right = '0px';
+            this.updateMobileToggleIcon(true);
+        }
+    }
+
+    updateMobileToggleIcon(isOpen) {
+        if (this.mobileToggleButton) {
+            this.mobileToggleButton.innerHTML = isOpen ? '✕' : '▶';
+        }
     }
 }

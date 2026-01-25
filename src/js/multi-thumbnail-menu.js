@@ -1510,27 +1510,21 @@ export class MultiThumbnailMenuSystem {
             if (hintTab) {
                 hintTab.addEventListener('click', (e) => {
                     e.stopPropagation(); // Prevent event bubbling
-                    
-                    // Toggle menu visibility
-                    if (menuContainer.classList.contains('menu-visible') || 
-                        menuContainer.classList.contains('menu-active')) {
-                        // Close all menus and hide the menu container
-                        Object.values(this.menus).forEach(menu => {
-                            if (menu.isOpen) {
-                                menu.closeMenu();
-                            }
-                        });
-                        menuContainer.classList.remove('menu-visible');
-                    } else {
-                        // Show menu
-                        menuContainer.classList.add('menu-visible');
-                    }
+                    this.toggleLeftMenu();
                 });
             }
+            
+            // Create mobile toggle button (separate from menu container)
+            this.createMobileToggleButton(menuContainer);
         }
         
         // Close menus when clicking outside the menu area
         document.addEventListener('click', (e) => {
+            // Check if click is on a mobile toggle button
+            if (e.target.closest('.mobile-menu-toggle')) {
+                return;
+            }
+            
             if (menuContainer && !menuContainer.contains(e.target)) {
                 // Check if any menu has recent scroll interaction
                 const hasRecentScroll = Object.values(this.menus).some(menu => 
@@ -1544,6 +1538,7 @@ export class MultiThumbnailMenuSystem {
                 
                 // Remove menu visibility and close all open menus
                 menuContainer.classList.remove('menu-visible');
+                this.updateMobileToggleIcon(false);
                 
                 // Check if any menu is currently open
                 const anyMenuOpen = Object.values(this.menus).some(menu => menu.isOpen);
@@ -1598,6 +1593,94 @@ export class MultiThumbnailMenuSystem {
         } catch (error) {
             console.error('Failed to copy to clipboard:', error);
             alert('Failed to copy settings to clipboard.');
+        }
+    }
+
+    // Mobile toggle methods
+    createMobileToggleButton(menuContainer) {
+        // Remove existing toggle if any
+        const existing = document.querySelector('.mobile-menu-toggle.left-toggle');
+        if (existing) existing.remove();
+        
+        const toggle = document.createElement('div');
+        toggle.className = 'mobile-menu-toggle left-toggle';
+        toggle.innerHTML = '◀';
+        toggle.style.cssText = `
+            position: fixed;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 44px;
+            height: 44px;
+            background: rgba(0, 0, 0, 0.85);
+            border: 2px solid rgba(74, 158, 255, 0.6);
+            border-radius: 50%;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 10001;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        `;
+        
+        toggle.addEventListener('click', (e) => {
+            e.stopPropagation();
+            this.toggleLeftMenu();
+        });
+        
+        document.body.appendChild(toggle);
+        this.mobileToggleButton = toggle;
+        
+        // Show/hide based on screen size
+        this.updateMobileToggleVisibility();
+        window.addEventListener('resize', () => this.updateMobileToggleVisibility());
+    }
+
+    updateMobileToggleVisibility() {
+        if (this.mobileToggleButton) {
+            if (window.innerWidth <= 768) {
+                this.mobileToggleButton.style.display = 'flex';
+            } else {
+                this.mobileToggleButton.style.display = 'none';
+            }
+        }
+    }
+
+    toggleLeftMenu() {
+        const menuContainer = document.querySelector('.thumbnail-grid-container');
+        if (!menuContainer) return;
+        
+        const isOpen = menuContainer.classList.contains('mobile-open');
+        
+        if (isOpen) {
+            // Close menu
+            menuContainer.classList.remove('mobile-open');
+            menuContainer.style.left = '-130px';
+            this.updateMobileToggleIcon(false);
+        } else {
+            // Close right menu first
+            const rightMenu = document.querySelector('.thumbnail-grid-container-right');
+            if (rightMenu && rightMenu.classList.contains('mobile-open')) {
+                rightMenu.classList.remove('mobile-open');
+                rightMenu.style.right = '-130px';
+                // Update right toggle icon
+                const rightToggle = document.querySelector('.mobile-menu-toggle.right-toggle');
+                if (rightToggle) rightToggle.innerHTML = '▶';
+            }
+            
+            // Open left menu
+            menuContainer.classList.add('mobile-open');
+            menuContainer.style.left = '0px';
+            this.updateMobileToggleIcon(true);
+        }
+    }
+
+    updateMobileToggleIcon(isOpen) {
+        if (this.mobileToggleButton) {
+            this.mobileToggleButton.innerHTML = isOpen ? '✕' : '◀';
         }
     }
 }
