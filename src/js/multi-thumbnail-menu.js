@@ -1126,10 +1126,21 @@ class ThumbnailDropdownMenu {
         // Set isOpen flag first to prevent this menu from being closed by the closeAll event
         this.isOpen = true;
         
-        // Close other menus first
+        // Close other left menus first
         document.dispatchEvent(new CustomEvent('closeAllThumbnailMenus', { 
             detail: { except: this.menuType } 
         }));
+        
+        // Close all right menus when left menu opens
+        document.dispatchEvent(new CustomEvent('closeAllRightMenus', { 
+            detail: { except: null } 
+        }));
+        
+        // Hide the entire right menu container
+        const rightMenuContainer = document.querySelector('.thumbnail-grid-container-right');
+        if (rightMenuContainer) {
+            rightMenuContainer.classList.remove('menu-visible', 'menu-active');
+        }
 
         // For search tab, focus the input and refresh results
         if (this.menuType === 'search') {
@@ -1482,6 +1493,16 @@ export class MultiThumbnailMenuSystem {
             // Show menu on hover and keep it visible
             menuContainer.addEventListener('mouseenter', () => {
                 menuContainer.classList.add('menu-visible');
+                
+                // Hide the right menu container when left menu becomes visible
+                const rightMenuContainer = document.querySelector('.thumbnail-grid-container-right');
+                if (rightMenuContainer) {
+                    rightMenuContainer.classList.remove('menu-visible', 'menu-active');
+                    // Also close any open right menus
+                    document.dispatchEvent(new CustomEvent('closeAllRightMenus', { 
+                        detail: { except: null } 
+                    }));
+                }
             });
             
             // Make hint tab clickable to toggle menu

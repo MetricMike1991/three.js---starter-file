@@ -112,10 +112,21 @@ class RightMenuDropdown {
     }
 
     openMenu() {
-        // Close other menus first
+        // Close other right menus first
         document.dispatchEvent(new CustomEvent('closeAllRightMenus', { 
             detail: { except: this.menuType } 
         }));
+        
+        // Close all left menus when right menu opens
+        document.dispatchEvent(new CustomEvent('closeAllThumbnailMenus', { 
+            detail: { except: null } 
+        }));
+        
+        // Hide the entire left menu container
+        const leftMenuContainer = document.querySelector('.thumbnail-grid-container');
+        if (leftMenuContainer) {
+            leftMenuContainer.classList.remove('menu-visible', 'menu-active');
+        }
 
         this.dropdown.classList.add('show');
         this.toggleBtn.classList.add('active');
@@ -239,6 +250,16 @@ export class RightMenuSystem {
             // Show menu on hover and keep it visible
             menuContainer.addEventListener('mouseenter', () => {
                 menuContainer.classList.add('menu-visible');
+                
+                // Hide the left menu container when right menu becomes visible
+                const leftMenuContainer = document.querySelector('.thumbnail-grid-container');
+                if (leftMenuContainer) {
+                    leftMenuContainer.classList.remove('menu-visible', 'menu-active');
+                    // Also close any open left menus
+                    document.dispatchEvent(new CustomEvent('closeAllThumbnailMenus', { 
+                        detail: { except: null } 
+                    }));
+                }
             });
             
             // Make hint tab clickable to toggle menu
