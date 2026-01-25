@@ -33,12 +33,12 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.33.0');
+define('FLEXFRAME_VERSION', '1.33.2');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Log plugin initialization
-flexframe_log('Plugin loaded', array('version' => '1.33.0', 'plugin_url' => plugin_dir_url(__FILE__)));
+flexframe_log('Plugin loaded', array('version' => '1.33.2', 'plugin_url' => plugin_dir_url(__FILE__)));
 
 // Include admin settings
 require_once FLEXFRAME_PLUGIN_DIR . 'admin/settings-page.php';
@@ -69,6 +69,32 @@ function flexframe_enqueue_assets() {
         
         // Add inline CSS for WordPress theme isolation
         $isolation_css = '
+            /* CRITICAL: Prevent horizontal/vertical overflow on mobile */
+            html, body {
+                overflow: hidden !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
+            
+            /* WebGL canvas must fit exactly */
+            canvas.webgl {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 100vw !important;
+                max-height: 100vh !important;
+                display: block !important;
+            }
+            
             /* FlexFrame CSS Isolation from WordPress Theme */
             #flexframe-viewer-container * {
                 box-sizing: border-box;
@@ -347,6 +373,160 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .thumbnail-grid-container-right {
                 display: grid !important;
             }
+            
+            /* Enable hover to show menus on desktop */
+            #flexframe-viewer-container .thumbnail-grid-container:hover {
+                left: 20px !important;
+            }
+            #flexframe-viewer-container .thumbnail-grid-container-right:hover {
+                right: 20px !important;
+            }
+            
+            /* ==========================================
+               MOBILE RESPONSIVE STYLES
+               ========================================== */
+            @media screen and (max-width: 768px) {
+                /* Menus always visible on mobile (no hover) */
+                #flexframe-viewer-container .thumbnail-grid-container {
+                    width: 110px !important;
+                    left: 8px !important;
+                    top: 8px !important;
+                    gap: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container:hover,
+                #flexframe-viewer-container .thumbnail-grid-container.menu-visible,
+                #flexframe-viewer-container .thumbnail-grid-container.menu-active {
+                    left: 8px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container-right {
+                    width: 110px !important;
+                    right: 8px !important;
+                    top: 8px !important;
+                    gap: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container-right:hover,
+                #flexframe-viewer-container .thumbnail-grid-container-right.menu-visible,
+                #flexframe-viewer-container .thumbnail-grid-container-right.menu-active {
+                    right: 8px !important;
+                }
+                /* Hide hint tabs on mobile */
+                .menu-hint-tab,
+                .menu-hint-tab-right {
+                    display: none !important;
+                }
+                /* Smaller menu buttons */
+                .thumbnail-menu-toggle {
+                    height: 38px !important;
+                    padding: 4px !important;
+                    font-size: 8px !important;
+                }
+                .thumbnail-menu-toggle svg {
+                    width: 12px !important;
+                    height: 12px !important;
+                }
+                /* Smaller dropdowns */
+                .thumbnail-dropdown {
+                    width: 80vw !important;
+                    max-width: 260px !important;
+                    left: 8px !important;
+                    top: 100px !important;
+                    max-height: 55vh !important;
+                }
+                .thumbnail-dropdown-right {
+                    width: 80vw !important;
+                    max-width: 280px !important;
+                    right: 8px !important;
+                    top: 100px !important;
+                    max-height: 55vh !important;
+                }
+                /* Animation player always visible */
+                .animation-player {
+                    transform: translateY(0) !important;
+                    opacity: 1 !important;
+                    pointer-events: all !important;
+                    padding: 6px 10px !important;
+                }
+                .player-controls {
+                    gap: 4px !important;
+                }
+                .player-left {
+                    min-width: 50px !important;
+                    gap: 3px !important;
+                }
+                .player-right {
+                    min-width: 80px !important;
+                    gap: 3px !important;
+                }
+                .play-pause-btn,
+                .speed-btn,
+                .screenshot-btn,
+                .ar-btn {
+                    padding: 4px 6px !important;
+                    font-size: 9px !important;
+                    height: 28px !important;
+                    min-height: 28px !important;
+                }
+                .play-pause-btn svg,
+                .speed-btn svg,
+                .screenshot-btn svg {
+                    width: 14px !important;
+                    height: 14px !important;
+                }
+                .time-display {
+                    font-size: 9px !important;
+                }
+            }
+            
+            @media screen and (max-width: 480px) {
+                #flexframe-viewer-container .thumbnail-grid-container {
+                    width: 95px !important;
+                    left: 5px !important;
+                    top: 5px !important;
+                    gap: 3px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container-right {
+                    width: 95px !important;
+                    right: 5px !important;
+                    top: 5px !important;
+                    gap: 3px !important;
+                }
+                .thumbnail-menu-toggle {
+                    height: 34px !important;
+                    padding: 3px !important;
+                    font-size: 7px !important;
+                }
+                .thumbnail-menu-toggle svg {
+                    width: 10px !important;
+                    height: 10px !important;
+                }
+                .thumbnail-dropdown {
+                    width: 85vw !important;
+                    max-width: 240px !important;
+                    left: 5px !important;
+                    top: 90px !important;
+                }
+                .thumbnail-dropdown-right {
+                    width: 85vw !important;
+                    max-width: 250px !important;
+                    right: 5px !important;
+                    top: 90px !important;
+                }
+                .animation-player {
+                    padding: 4px 6px !important;
+                }
+                .play-pause-btn,
+                .speed-btn,
+                .screenshot-btn,
+                .ar-btn {
+                    padding: 3px 5px !important;
+                    font-size: 8px !important;
+                    height: 26px !important;
+                    min-height: 26px !important;
+                }
+                .time-display {
+                    font-size: 8px !important;
+                }
+            }
         ';
         
         // If this is a dedicated FlexFrame viewer page, hide all WordPress theme elements
@@ -355,17 +535,21 @@ function flexframe_enqueue_assets() {
             /* Full-screen FlexFrame viewer - hide all WordPress elements */
             html {
                 overflow: hidden !important;
-                height: 100vh !important;
-                width: 100vw !important;
+                height: 100% !important;
+                width: 100% !important;
+                position: fixed !important;
             }
             body, body.page {
                 margin: 0 !important;
                 padding: 0 !important;
-                overflow: visible !important;
-                height: 100vh !important;
-                width: 100vw !important;
-                min-height: 100vh !important;
-                max-height: 100vh !important;
+                overflow: hidden !important;
+                height: 100% !important;
+                width: 100% !important;
+                min-height: 100% !important;
+                max-height: 100% !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
             }
             /* Hide WordPress header, footer, sidebar, navigation, admin bar */
             header, footer, aside, nav,
@@ -390,24 +574,26 @@ function flexframe_enqueue_assets() {
             .entry-content, article, .page, .type-page,
             .wp-block-group, .wp-site-blocks,
             .is-layout-constrained, .is-layout-flow {
-                width: 100vw !important;
-                max-width: 100vw !important;
-                height: 100vh !important;
-                max-height: 100vh !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 100% !important;
+                max-height: 100% !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                overflow: visible !important;
-                position: relative !important;
+                overflow: hidden !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
             }
             /* Ensure FlexFrame container is full screen */
             #flexframe-viewer-container {
                 position: fixed !important;
                 top: 0 !important;
                 left: 0 !important;
-                width: 100vw !important;
-                height: 100vh !important;
+                width: 100% !important;
+                height: 100% !important;
                 z-index: 9999 !important;
-                overflow: visible !important;
+                overflow: hidden !important;
             }
             /* Animation player is appended to body, not container - ensure proper positioning */
             body > .animation-player,
@@ -1585,9 +1771,20 @@ function flexframe_enqueue_assets() {
         
         // Now enqueue the script
         wp_enqueue_script('flexframe-viewer-script');
+        
+        // Add viewport meta tag for proper mobile scaling
+        add_action('wp_head', 'flexframe_add_viewport_meta', 1);
     }
 }
 add_action('wp_enqueue_scripts', 'flexframe_enqueue_assets');
+
+/**
+ * Add viewport meta tag for proper mobile responsiveness
+ */
+function flexframe_add_viewport_meta() {
+    // Remove any existing viewport meta and add our own for proper 1:1 scaling
+    echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">' . "\n";
+}
 
 /**
  * AJAX handler to save primary color setting
