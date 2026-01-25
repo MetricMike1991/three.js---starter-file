@@ -59,7 +59,31 @@ class CameraManager {
     init() {
         // Create perspective camera with default FOV 50
         this.camera = new THREE.PerspectiveCamera(50, this.sizes.width / this.sizes.height, 0.1, 100);
-        this.camera.position.set(-0.9767395667747095, 0.6513489013452174, -0.5290562260411343);
+        
+        // Zoom out more on mobile devices - use higher FOV for wider view
+        const isMobile = window.innerWidth <= 768;
+        const mobileZoomFactor = 1.8; // How much further to position camera on mobile
+        
+        if (isMobile) {
+            // Use wider FOV on mobile for better model visibility
+            this.camera.fov = 60;
+            this.camera.updateProjectionMatrix();
+            // Position camera further away on mobile
+            this.camera.position.set(
+                -0.9767395667747095 * mobileZoomFactor, 
+                0.6513489013452174 * mobileZoomFactor, 
+                -0.5290562260411343 * mobileZoomFactor
+            );
+            // Also update original position for reset
+            this.originalPosition = new THREE.Vector3(
+                -0.9767395667747095 * mobileZoomFactor,
+                0.6513489013452174 * mobileZoomFactor,
+                -0.5290562260411343 * mobileZoomFactor
+            );
+            console.log('[FlexFrame Camera] Mobile mode: zoomed out with FOV 60, factor:', mobileZoomFactor);
+        } else {
+            this.camera.position.set(-0.9767395667747095, 0.6513489013452174, -0.5290562260411343);
+        }
         this.camera.rotation.set(-2.6863117716033176, -0.9484795935271679, -2.7629820926703275, 'XYZ');
 
         // Create orbit controls

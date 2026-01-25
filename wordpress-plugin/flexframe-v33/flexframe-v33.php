@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v33
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.33.0
+ * Version: 1.33.6
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,12 +33,12 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.33.2');
+define('FLEXFRAME_VERSION', '1.33.5');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Log plugin initialization
-flexframe_log('Plugin loaded', array('version' => '1.33.2', 'plugin_url' => plugin_dir_url(__FILE__)));
+flexframe_log('Plugin loaded', array('version' => '1.33.4', 'plugin_url' => plugin_dir_url(__FILE__)));
 
 // Include admin settings
 require_once FLEXFRAME_PLUGIN_DIR . 'admin/settings-page.php';
@@ -424,20 +424,50 @@ function flexframe_enqueue_assets() {
                     width: 12px !important;
                     height: 12px !important;
                 }
-                /* Smaller dropdowns */
+                /* Mobile dropdowns - closer to menu with always-on blur effect */
+                #flexframe-viewer-container .thumbnail-dropdown,
+                #flexframe-viewer-container .thumbnail-dropdown-right,
+                .thumbnail-dropdown,
+                .thumbnail-dropdown-right {
+                    width: 160px !important;
+                    max-width: 160px !important;
+                    margin-top: 4px !important;
+                    top: auto !important;
+                    max-height: 75vh !important;
+                    padding: 8px !important;
+                    background: rgba(0, 0, 0, 0.7) !important;
+                    backdrop-filter: blur(20px) saturate(180%) !important;
+                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                }
                 .thumbnail-dropdown {
-                    width: 80vw !important;
-                    max-width: 260px !important;
                     left: 8px !important;
-                    top: 100px !important;
-                    max-height: 55vh !important;
+                    right: auto !important;
                 }
                 .thumbnail-dropdown-right {
-                    width: 80vw !important;
-                    max-width: 280px !important;
+                    left: auto !important;
                     right: 8px !important;
-                    top: 100px !important;
-                    max-height: 55vh !important;
+                }
+                /* Smaller fonts in dropdowns on mobile */
+                .thumbnail-item {
+                    font-size: 10px !important;
+                }
+                .thumbnail-label {
+                    font-size: 9px !important;
+                    line-height: 1.1 !important;
+                }
+                .search-header,
+                .search-input,
+                .filter-status-box {
+                    font-size: 11px !important;
+                }
+                .thumbnail-scroll-controls {
+                    font-size: 10px !important;
+                }
+                /* Smaller background logo on mobile */
+                .flexframe-bg-watermark {
+                    width: 120px !important;
+                    max-width: 40vw !important;
                 }
                 /* Animation player always visible */
                 .animation-player {
@@ -475,6 +505,37 @@ function flexframe_enqueue_assets() {
                 .time-display {
                     font-size: 9px !important;
                 }
+                /* Mobile: Override fixed positioning for dropdowns */
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown.show,
+                div.thumbnail-dropdown-right.show {
+                    position: absolute !important;
+                    top: 100% !important;
+                    margin-top: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                .thumbnail-dropdown.show,
+                div.thumbnail-dropdown.show {
+                    left: 0 !important;
+                    right: auto !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown-right.show {
+                    left: auto !important;
+                    right: 0 !important;
+                }
+                /* Mobile: Permanent hover effect on info-step-items (no hover needed) */
+                #flexframe-viewer-container .info-step-item,
+                .thumbnail-dropdown-right .info-step-item,
+                .info-step-item {
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
+                }
             }
             
             @media screen and (max-width: 480px) {
@@ -499,17 +560,47 @@ function flexframe_enqueue_assets() {
                     width: 10px !important;
                     height: 10px !important;
                 }
+                /* Even narrower dropdowns on small screens with blur */
+                #flexframe-viewer-container .thumbnail-dropdown,
+                #flexframe-viewer-container .thumbnail-dropdown-right,
+                .thumbnail-dropdown,
+                .thumbnail-dropdown-right {
+                    width: 140px !important;
+                    max-width: 140px !important;
+                    margin-top: 4px !important;
+                    top: auto !important;
+                    max-height: 70vh !important;
+                    padding: 6px !important;
+                    background: rgba(0, 0, 0, 0.7) !important;
+                    backdrop-filter: blur(20px) saturate(180%) !important;
+                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                }
                 .thumbnail-dropdown {
-                    width: 85vw !important;
-                    max-width: 240px !important;
                     left: 5px !important;
-                    top: 90px !important;
                 }
                 .thumbnail-dropdown-right {
-                    width: 85vw !important;
-                    max-width: 250px !important;
                     right: 5px !important;
-                    top: 90px !important;
+                }
+                /* Even smaller fonts on small screens */
+                .thumbnail-item {
+                    font-size: 9px !important;
+                }
+                .thumbnail-label {
+                    font-size: 8px !important;
+                }
+                .search-header,
+                .search-input,
+                .filter-status-box {
+                    font-size: 10px !important;
+                }
+                .thumbnail-scroll-controls {
+                    font-size: 9px !important;
+                }
+                /* Even smaller background logo on small screens */
+                .flexframe-bg-watermark {
+                    width: 100px !important;
+                    max-width: 35vw !important;
                 }
                 .animation-player {
                     padding: 4px 6px !important;
@@ -525,6 +616,25 @@ function flexframe_enqueue_assets() {
                 }
                 .time-display {
                     font-size: 8px !important;
+                }
+                /* Mobile small: Override fixed positioning for dropdowns */
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown.show,
+                div.thumbnail-dropdown-right.show {
+                    position: absolute !important;
+                    top: 100% !important;
+                    margin-top: 4px !important;
+                }
+                /* Mobile small: Permanent hover effect on info-step-items */
+                #flexframe-viewer-container .info-step-item,
+                .thumbnail-dropdown-right .info-step-item,
+                .info-step-item {
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
                 }
             }
         ';
