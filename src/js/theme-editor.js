@@ -726,53 +726,61 @@ class ThemeEditor {
                         btn.style.background = '#ff9800';
                     }
                 } else if (previewType === 'menus') {
-                    const toggleButtons = document.querySelectorAll('.thumbnail-menu-toggle');
-                    const dropdowns = document.querySelectorAll('.thumbnail-dropdown');
-                    const wrappers = document.querySelectorAll('.thumbnail-menu-wrapper');
+                    // Only show the exercises dropdown (the main exercise list), not all dropdowns
+                    const exercisesToggle = document.getElementById('exercisesToggle');
+                    const exercisesDropdown = document.getElementById('exercisesDropdown');
+                    const exercisesWrapper = exercisesToggle ? exercisesToggle.closest('.thumbnail-menu-wrapper') : null;
                     
-                    console.log('[Theme Editor] Menu elements found:', {
-                        toggleButtons: toggleButtons.length,
-                        dropdowns: dropdowns.length,
-                        wrappers: wrappers.length
+                    console.log('[Theme Editor] Exercises menu elements found:', {
+                        exercisesToggle: !!exercisesToggle,
+                        exercisesDropdown: !!exercisesDropdown,
+                        exercisesWrapper: !!exercisesWrapper
                     });
                     
                     if (isShowing) {
-                        toggleButtons.forEach(btn => btn.classList.remove('te-force-visible'));
-                        dropdowns.forEach(dd => {
-                            dd.classList.remove('te-force-visible');
-                            dd.style.removeProperty('display');
-                        });
-                        wrappers.forEach(w => w.classList.remove('te-force-visible'));
+                        // Hide - remove force-visible from exercises menu only
+                        if (exercisesToggle) {
+                            exercisesToggle.classList.remove('te-force-visible');
+                            exercisesToggle.style.cssText = '';
+                        }
+                        if (exercisesDropdown) {
+                            exercisesDropdown.classList.remove('te-force-visible', 'show');
+                            exercisesDropdown.style.cssText = '';
+                        }
+                        if (exercisesWrapper) {
+                            exercisesWrapper.classList.remove('te-force-visible');
+                            exercisesWrapper.style.cssText = '';
+                        }
                         btn.textContent = 'Show Side Menus Preview';
                         btn.style.background = '#4CAF50';
                         btn.classList.remove('active');
                     } else {
-                        wrappers.forEach(w => {
-                            w.classList.add('te-force-visible');
-                            w.style.cssText = `
+                        // Show - force-visible only the exercises dropdown
+                        if (exercisesWrapper) {
+                            exercisesWrapper.classList.add('te-force-visible');
+                            exercisesWrapper.style.cssText = `
                                 display: block !important;
                                 visibility: visible !important;
                                 opacity: 1 !important;
                             `;
-                        });
-                        toggleButtons.forEach(btn => {
-                            btn.classList.add('te-force-visible');
-                            btn.style.cssText = `
-                                display: block !important;
+                        }
+                        if (exercisesToggle) {
+                            exercisesToggle.classList.add('te-force-visible');
+                            exercisesToggle.style.cssText = `
+                                display: flex !important;
                                 visibility: visible !important;
                                 opacity: 1 !important;
                             `;
-                        });
-                        dropdowns.forEach(dd => {
-                            dd.classList.add('te-force-visible');
-                            dd.style.cssText = `
+                        }
+                        if (exercisesDropdown) {
+                            exercisesDropdown.classList.add('te-force-visible', 'show');
+                            exercisesDropdown.style.cssText = `
                                 display: block !important;
                                 visibility: visible !important;
                                 opacity: 1 !important;
                                 pointer-events: auto !important;
-                                position: fixed !important;
                             `;
-                        });
+                        }
                         btn.textContent = 'Hide Side Menus Preview';
                         btn.style.background = '#f44336';
                         btn.classList.add('active');
@@ -1363,11 +1371,14 @@ class ThemeEditor {
         const accentColor = this.currentSettings.menuAccentColor;
         const thumbnailLabelColor = this.currentSettings.thumbnailLabelColor || '#000000';
         const thumbnailLabelOpacity = this.currentSettings.thumbnailLabelOpacity ?? 0.1;
+        const primaryColor = this.currentSettings.primaryColor || '#f50000';
         
         const bgRgba = this.hexToRgba(bgColor, bgOpacity);
         const textRgba = this.hexToRgba(textColor, textOpacity);
         const scrollBtnBg = this.hexToRgba(bgColor, Math.min(bgOpacity + 0.2, 1));
         const labelGradient = this.hexToRgba(thumbnailLabelColor, thumbnailLabelOpacity);
+        const infoStepBg = this.hexToRgba(primaryColor, 0.35);
+        const infoStepHoverBg = this.hexToRgba(primaryColor, 0.5);
         
         // Use injected CSS with !important to override WordPress styles
         // Match WordPress specificity with #flexframe-viewer-container
@@ -1452,7 +1463,13 @@ class ThemeEditor {
             .thumbnail-dropdown-right * {
                 color: ${textRgba} !important;
             }
+            /* Info Step Items - use PRIMARY COLOR with 35% opacity and 50px blur */
+            #flexframe-viewer-container .info-step-item,
+            .thumbnail-dropdown-right .info-step-item,
             .info-step-item {
+                background: ${infoStepBg} !important;
+                backdrop-filter: blur(50px) !important;
+                -webkit-backdrop-filter: blur(50px) !important;
                 color: ${textRgba} !important;
             }
             .info-step-title {
@@ -1480,7 +1497,10 @@ class ThemeEditor {
             .thumbnail-item:hover { 
                 background-color: ${accentColor} !important; 
             }
+            #flexframe-viewer-container .info-step-item:hover,
+            .thumbnail-dropdown-right .info-step-item:hover,
             .info-step-item:hover {
+                background: ${infoStepHoverBg} !important;
                 border-color: ${accentColor} !important;
             }
             
@@ -1490,6 +1510,56 @@ class ThemeEditor {
             .menu-hint-tab-right {
                 background-color: ${bgRgba} !important;
                 border-color: ${accentColor} !important;
+            }
+            
+            /* Search Input - use menu background color */
+            #flexframe-viewer-container .search-input,
+            #flexframe-viewer-container input.search-input,
+            #flexframe-viewer-container #searchInput,
+            .thumbnail-dropdown .search-input,
+            .search-header .search-input {
+                background-color: ${bgRgba} !important;
+                color: ${textRgba} !important;
+                border-color: ${accentColor}66 !important;
+            }
+            #flexframe-viewer-container .search-input:focus,
+            #flexframe-viewer-container #searchInput:focus,
+            .thumbnail-dropdown .search-input:focus {
+                background-color: ${bgRgba} !important;
+                border-color: ${accentColor} !important;
+            }
+            #flexframe-viewer-container .search-input::placeholder,
+            #flexframe-viewer-container #searchInput::placeholder {
+                color: ${textRgba} !important;
+                opacity: 0.6 !important;
+            }
+            
+            /* Search Header - use menu background color */
+            #flexframe-viewer-container .search-header,
+            .thumbnail-dropdown .search-header {
+                background: linear-gradient(180deg, ${this.hexToRgba(bgColor, Math.min(bgOpacity + 0.1, 1))}, ${bgRgba}) !important;
+                border-bottom-color: ${accentColor}66 !important;
+            }
+            
+            /* Search action button */
+            #flexframe-viewer-container .search-action-btn,
+            .thumbnail-dropdown .search-action-btn {
+                background-color: ${accentColor}33 !important;
+                color: ${accentColor} !important;
+            }
+            #flexframe-viewer-container .search-action-btn:hover,
+            .thumbnail-dropdown .search-action-btn:hover {
+                background-color: ${accentColor}66 !important;
+            }
+            
+            /* Search suggestions dropdown */
+            #flexframe-viewer-container .search-suggestions,
+            .thumbnail-dropdown .search-suggestions {
+                background-color: ${bgRgba} !important;
+                border-color: ${accentColor}66 !important;
+            }
+            .search-suggestion-item:hover {
+                background-color: ${accentColor}33 !important;
             }
         `;
         

@@ -321,8 +321,6 @@ function flexframe_enqueue_assets() {
                 height: auto !important;
                 overflow: visible !important;
                 position: fixed !important;
-                top: 150px !important;
-                left: 20px !important;
                 z-index: 10001 !important;
             }
             
@@ -354,8 +352,6 @@ function flexframe_enqueue_assets() {
                 height: auto !important;
                 overflow: visible !important;
                 position: fixed !important;
-                top: 150px !important;
-                right: 20px !important;
                 z-index: 10001 !important;
             }
             
@@ -435,7 +431,6 @@ function flexframe_enqueue_assets() {
                     top: auto !important;
                     max-height: 75vh !important;
                     padding: 8px !important;
-                    background: rgba(0, 0, 0, 0.7) !important;
                     backdrop-filter: blur(20px) saturate(180%) !important;
                     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
                     border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -512,21 +507,22 @@ function flexframe_enqueue_assets() {
                 .thumbnail-dropdown-right.show,
                 div.thumbnail-dropdown.show,
                 div.thumbnail-dropdown-right.show {
-                    position: absolute !important;
-                    top: 100% !important;
+                    position: fixed !important;
                     margin-top: 4px !important;
                 }
                 #flexframe-viewer-container .thumbnail-dropdown.show,
                 .thumbnail-dropdown.show,
                 div.thumbnail-dropdown.show {
-                    left: 0 !important;
+                    top: 90px !important;
+                    left: 10px !important;
                     right: auto !important;
                 }
                 #flexframe-viewer-container .thumbnail-dropdown-right.show,
                 .thumbnail-dropdown-right.show,
                 div.thumbnail-dropdown-right.show {
+                    top: 90px !important;
                     left: auto !important;
-                    right: 0 !important;
+                    right: 10px !important;
                 }
                 /* Mobile: Permanent hover effect on info-step-items (no hover needed) */
                 #flexframe-viewer-container .info-step-item,
@@ -571,7 +567,6 @@ function flexframe_enqueue_assets() {
                     top: auto !important;
                     max-height: 70vh !important;
                     padding: 6px !important;
-                    background: rgba(0, 0, 0, 0.7) !important;
                     backdrop-filter: blur(20px) saturate(180%) !important;
                     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
                     border: 1px solid rgba(255, 255, 255, 0.1) !important;
@@ -624,9 +619,22 @@ function flexframe_enqueue_assets() {
                 .thumbnail-dropdown-right.show,
                 div.thumbnail-dropdown.show,
                 div.thumbnail-dropdown-right.show {
-                    position: absolute !important;
-                    top: 100% !important;
+                    position: fixed !important;
                     margin-top: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                .thumbnail-dropdown.show,
+                div.thumbnail-dropdown.show {
+                    top: 90px !important;
+                    left: 10px !important;
+                    right: auto !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown-right.show {
+                    top: 90px !important;
+                    left: auto !important;
+                    right: 10px !important;
                 }
                 /* Mobile small: Permanent hover effect on info-step-items */
                 #flexframe-viewer-container .info-step-item,
@@ -953,6 +961,63 @@ function flexframe_enqueue_assets() {
                 border: 2px solid ' . $menu_accent_color . ' !important;
                 outline: none !important;
             }
+            
+            /* ===== SEARCH INPUT - USE MENU BACKGROUND COLOR ===== */
+            #flexframe-viewer-container .search-input,
+            #flexframe-viewer-container input.search-input,
+            #flexframe-viewer-container #searchInput,
+            .thumbnail-dropdown .search-input,
+            .search-header .search-input {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                border-color: ' . $menu_accent_color . '66 !important;
+            }
+            #flexframe-viewer-container .search-input:focus,
+            #flexframe-viewer-container #searchInput:focus,
+            .thumbnail-dropdown .search-input:focus {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .search-input::placeholder,
+            #flexframe-viewer-container #searchInput::placeholder {
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', 0.5) !important;
+            }
+            
+            /* ===== SEARCH HEADER - USE MENU BACKGROUND COLOR ===== */
+            #flexframe-viewer-container .search-header,
+            .thumbnail-dropdown .search-header {
+                background: linear-gradient(180deg, rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . '), rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ')) !important;
+                border-bottom-color: ' . $menu_accent_color . '66 !important;
+            }
+            
+            /* ===== SEARCH ACTION BUTTON - USE ACCENT COLOR ===== */
+            #flexframe-viewer-container .search-action-btn,
+            .thumbnail-dropdown .search-action-btn {
+                background-color: ' . $menu_accent_color . '33 !important;
+                color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .search-action-btn:hover,
+            .thumbnail-dropdown .search-action-btn:hover {
+                background-color: ' . $menu_accent_color . '66 !important;
+            }
+            #flexframe-viewer-container .search-action-btn svg,
+            .thumbnail-dropdown .search-action-btn svg {
+                fill: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== SEARCH SUGGESTIONS - USE MENU BACKGROUND COLOR ===== */
+            #flexframe-viewer-container .search-suggestions,
+            .thumbnail-dropdown .search-suggestions {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
+                border-color: ' . $menu_accent_color . '66 !important;
+            }
+            .search-suggestion-item:hover {
+                background-color: ' . $menu_accent_color . '33 !important;
+            }
+            .search-suggestion-category {
+                color: ' . $menu_accent_color . ' !important;
+            }
+            
             .thumbnail-grid-container *,
             .exercise-menu *,
             .menu-panel *,
@@ -1493,11 +1558,13 @@ function flexframe_enqueue_assets() {
             .menu-hint-tab-right:hover svg {
                 fill: #ffffff !important;
             }
-            /* Right menu info items - background only uses opacity, text stays solid */
+            /* Right menu info items - use PRIMARY COLOR with 35% opacity and 50px blur */
             #flexframe-viewer-container .info-step-item,
             .thumbnail-dropdown-right .info-step-item,
             .info-step-item {
-                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                background: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.35) !important;
+                backdrop-filter: blur(50px) !important;
+                -webkit-backdrop-filter: blur(50px) !important;
                 border-color: ' . $menu_accent_color . '44 !important;
                 color: ' . $menu_text_color . ' !important;
             }
@@ -1511,7 +1578,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .info-step-item:hover,
             .thumbnail-dropdown-right .info-step-item:hover,
             .info-step-item:hover {
-                background-color: ' . $menu_accent_color . '22 !important;
+                background-color: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.5) !important;
                 border-color: ' . $menu_accent_color . ' !important;
             }
             /* Right menu info titles - use text color */
