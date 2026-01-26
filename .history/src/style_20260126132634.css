@@ -30,13 +30,13 @@
 }
 .info-step-title {
     font-weight: bold;
-    font-size: clamp(12px, 4.57vw, 24px); /* 16px at 350px viewport */
+    font-size: 1.12em;
     margin-bottom: 6px;
     color: #fff;
     opacity: 1;
 }
 .info-step-text {
-    font-size: clamp(8px, 2.86vw, 16px); /* 10px at 350px viewport */
+    font-size: 1em;
     color: #fff;
     opacity: 1;
 }
@@ -163,16 +163,6 @@ body
         font-size: 10px;
         min-width: 25px;
     }
-    
-    /* Mobile info step styling */
-    .info-step-item {
-        padding: 5px 5px !important;
-        margin: 5px 0 !important;
-    }
-    
-    .thumbnail-grid {
-        padding: 0px !important;
-    }
 }
 
 @media screen and (max-width: 480px) {
@@ -213,14 +203,11 @@ body
         margin: 0 6px;
     }
     
-    /* Mobile info step styling */
-    .info-step-item {
-        padding: 5px 5px !important;
-        margin: 5px 0 !important;
-    }
-    
-    .thumbnail-grid {
-        padding: 0px !important;
+    /* 2x font size for slide-out menu tabs on mobile (2x of dropdown 18-20px = 36-40px) */
+    .thumbnail-menu-toggle {
+        font-size: 36px;
+        height: 100px;
+        padding: 18px 12px;
     }
 }
 
@@ -1134,7 +1121,7 @@ body
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    font-size: clamp(6px, 2.29vw, 14px); /* 8px at 350px viewport */
+    font-size: 12px;
     font-weight: 500;
     width: 100%;
     height: 60px;
@@ -1435,7 +1422,7 @@ body
 .thumbnail-grid {
     display: flex;
     flex-direction: column;
-    gap: 0px;
+    gap: 30px;
     padding: 10px;
     align-items: center; /* Center thumbnails horizontally */
 }
@@ -1643,7 +1630,7 @@ body
     
     .thumbnail-grid {
         gap: 20px;
-        padding: 0px;
+        padding: 8px;
     }
 }
 
@@ -1661,7 +1648,7 @@ body
     
     .thumbnail-grid {
         gap: 15px;
-        padding: 0px;
+        padding: 5px;
     }
     
     .scroll-btn {
@@ -1753,7 +1740,7 @@ body
     background: rgba(0, 0, 0, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    padding: 0px;
+    padding: 15px;
     backdrop-filter: blur(15px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     width: 250px;
