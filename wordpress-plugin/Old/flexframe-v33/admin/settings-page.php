@@ -1538,8 +1538,54 @@ function flexframe_settings_page() {
                     </div>
                     <div class="flexframe-step-content" style="display: none;">
                         <p class="step-description">
-                            <?php _e('Fine-tune your theme settings below. The theme selected in Step 4 has been loaded as your starting point. Customize any settings, then save your custom theme.', 'flexframe-viewer'); ?>
+                            <?php _e('Create your perfect theme using our Visual Theme Editor, or fine-tune settings manually below.', 'flexframe-viewer'); ?>
                         </p>
+                        
+                        <!-- Visual Theme Editor CTA -->
+                        <div class="visual-theme-editor-cta">
+                            <div class="cta-content">
+                                <div class="cta-icon">
+                                    <span class="dashicons dashicons-art"></span>
+                                </div>
+                                <div class="cta-text">
+                                    <h3><?php _e('Visual Theme Editor', 'flexframe-viewer'); ?></h3>
+                                    <p><?php _e('The easiest way to create your theme! See changes in real-time as you customize colors, lighting, particles, and more.', 'flexframe-viewer'); ?></p>
+                                </div>
+                                <div class="cta-action">
+                                    <?php 
+                                    $theme_editor_url = $viewer_page_url ? add_query_arg('openThemeEditor', '1', $viewer_page_url) : '#';
+                                    ?>
+                                    <a href="<?php echo esc_url($theme_editor_url); ?>" target="_blank" class="button button-primary button-hero open-theme-editor-btn" <?php echo empty($viewer_page_url) ? 'disabled style="pointer-events:none;opacity:0.5;"' : ''; ?>>
+                                        <span class="dashicons dashicons-edit" style="margin-top: 6px;"></span>
+                                        <?php _e('Open Visual Editor', 'flexframe-viewer'); ?>
+                                        <span class="dashicons dashicons-external" style="margin-top: 6px; font-size: 16px;"></span>
+                                    </a>
+                                    <?php if (empty($viewer_page_url)) : ?>
+                                        <p class="cta-warning"><span class="dashicons dashicons-warning"></span> <?php _e('Set up your Viewer Page URL in Step 3 first.', 'flexframe-viewer'); ?></p>
+                                    <?php endif; ?>
+                                </div>
+                            </div>
+                            <div class="cta-tip">
+                                <span class="dashicons dashicons-lightbulb"></span>
+                                <?php _e('Tip: Press "T" on your keyboard anytime in the viewer to open/close the Theme Editor.', 'flexframe-viewer'); ?>
+                            </div>
+                        </div>
+                        
+                        <!-- Divider with "OR" -->
+                        <div class="theme-settings-divider">
+                            <span class="divider-line"></span>
+                            <span class="divider-text"><?php _e('OR', 'flexframe-viewer'); ?></span>
+                            <span class="divider-line"></span>
+                        </div>
+                        
+                        <!-- Manual Settings Section (Collapsible) -->
+                        <div class="manual-theme-settings">
+                            <div class="manual-settings-header" id="manual-settings-toggle">
+                                <span class="dashicons dashicons-admin-generic"></span>
+                                <h3><?php _e('Advanced Manual Settings', 'flexframe-viewer'); ?></h3>
+                                <span class="manual-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
+                            </div>
+                            <p class="manual-settings-desc"><?php _e('Configure theme settings directly here. Changes will apply to the viewer in real-time.', 'flexframe-viewer'); ?></p>
                         
                         <!-- Current Theme Indicator -->
                         <div class="current-theme-indicator">
@@ -1560,254 +1606,90 @@ function flexframe_settings_page() {
                             <span id="save-theme-message" class="save-theme-message" style="display: none;"></span>
                         </div>
                         
-                        <!-- Live Preview Section -->
-                        <div class="flexframe-live-preview-section" style="margin: 30px 0; padding: 20px; background: #f8f9fa; border: 2px solid #0073aa; border-radius: 8px;">
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-                                <h3 style="margin: 0; display: flex; align-items: center; gap: 10px;">
-                                    <span class="dashicons dashicons-visibility" style="font-size: 24px; color: #0073aa;"></span>
-                                    <?php _e('Live Preview with Theme Editor', 'flexframe-viewer'); ?>
-                                </h3>
-                                <button type="button" id="toggle-preview-btn" class="button button-secondary">
-                                    <span class="dashicons dashicons-visibility"></span>
-                                    <?php _e('Show Preview', 'flexframe-viewer'); ?>
-                                </button>
-                            </div>
-                            <p style="margin: 0 0 15px 0; color: #666;">
-                                <?php _e('Preview your viewer with live theme editing. Press', 'flexframe-viewer'); ?> <kbd style="background: #fff; padding: 2px 6px; border: 1px solid #ccc; border-radius: 3px; font-family: monospace;">T</kbd> <?php _e('inside the preview to open the Theme Editor.', 'flexframe-viewer'); ?>
-                            </p>
-                            <div id="live-preview-container" style="display: none; position: relative; width: 100%; height: 600px; border: 3px solid #0073aa; border-radius: 6px; overflow: hidden; background: #000;">
-                                <?php
-                                $viewer_page_url = get_option('flexframe_viewer_page_url', '');
-                                if (!empty($viewer_page_url)) :
-                                ?>
-                                    <iframe 
-                                        id="live-preview-iframe" 
-                                        src="<?php echo esc_url($viewer_page_url); ?>" 
-                                        style="width: 100%; height: 100%; border: none;"
-                                        allow="xr-spatial-tracking"
-                                    ></iframe>
-                                <?php else : ?>
-                                    <div style="display: flex; align-items: center; justify-content: center; height: 100%; color: #fff; flex-direction: column; gap: 15px;">
-                                        <span class="dashicons dashicons-warning" style="font-size: 48px; opacity: 0.5;"></span>
-                                        <p style="margin: 0; font-size: 16px;"><?php _e('No viewer page URL set. Please set your viewer page URL in Step 1.', 'flexframe-viewer'); ?></p>
-                                    </div>
-                                <?php endif; ?>
-                            </div>
-                        </div>
-                        
                         <!-- Custom Panel Settings (no preset manager, settings only) -->
                         <div class="flexframe-custom-panel">
                             
-                            <div style="padding: 20px; background: #e7f3ff; border-left: 4px solid #0073aa; margin-bottom: 20px;">
-                                <p style="margin: 0; font-size: 14px;">
-                                    <strong><?php _e('💡 Theme Editor Available:', 'flexframe-viewer'); ?></strong>
-                                    <?php _e('UI Settings and Model Materials can now be edited live in the Theme Editor! Press', 'flexframe-viewer'); ?> <kbd style="background: #fff; padding: 2px 6px; border: 1px solid #ccc; border-radius: 3px; font-family: monospace;">T</kbd> <?php _e('in the preview above to open the Theme Editor.', 'flexframe-viewer'); ?>
-                                </p>
-                            </div>
-                            
-                            <!-- Scene Background Settings Section -->
+                            <!-- UI Settings Section -->
                             <div class="custom-panel-section">
-                                <div class="custom-panel-header" data-target="background-settings-content">
-                                    <h4><span class="dashicons dashicons-admin-appearance"></span> <?php _e('Scene Background', 'flexframe-viewer'); ?></h4>
-                                    <div class="header-preview background-preview">
-                                        <div class="gradient-swatch" id="preview-gradient-swatch"></div>
-                                    </div>
-                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
-                                </div>
-                                <div class="custom-panel-content" id="background-settings-content">
-                                    <div class="flexframe-custom-settings">
-                                        <?php
-                                        // Get background settings with defaults
-                                        $bg_gradient_top = get_option('flexframe_bg_gradient_top', '#3865ad');
-                                        $bg_gradient_bottom = get_option('flexframe_bg_gradient_bottom', '#0101bc');
-                                        $bg_opacity = get_option('flexframe_bg_opacity', 1);
-                                        ?>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_bg_gradient_top"><?php _e('Gradient Top Color', 'flexframe-viewer'); ?></label>
-                                            <input type="color" id="flexframe_bg_gradient_top" name="flexframe_bg_gradient_top" value="<?php echo esc_attr($bg_gradient_top); ?>" />
-                                            <span class="color-hex"><?php echo esc_html($bg_gradient_top); ?></span>
-                                        </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_bg_gradient_bottom"><?php _e('Gradient Bottom Color', 'flexframe-viewer'); ?></label>
-                                            <input type="color" id="flexframe_bg_gradient_bottom" name="flexframe_bg_gradient_bottom" value="<?php echo esc_attr($bg_gradient_bottom); ?>" />
-                                            <span class="color-hex"><?php echo esc_html($bg_gradient_bottom); ?></span>
-                                        </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_bg_opacity"><?php _e('Background Opacity', 'flexframe-viewer'); ?></label>
-                                            <input type="range" id="flexframe_bg_opacity" name="flexframe_bg_opacity" value="<?php echo esc_attr($bg_opacity); ?>" min="0" max="1" step="0.01" />
-                                            <span class="range-value"><?php echo esc_html($bg_opacity); ?></span>
-                                        </div>
-                                        
-                                        <p class="description">
-                                            <?php _e('💡 Customize the gradient background of the 3D scene.', 'flexframe-viewer'); ?>
-                                        </p>
-                                        
-                                        <!-- Background Logo Watermark -->
-                                        <div class="flexframe-subsection-divider">
-                                            <h5><span class="dashicons dashicons-format-image"></span> <?php _e('Logo Watermark Overlay', 'flexframe-viewer'); ?></h5>
-                                        </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label class="flexframe-checkbox-label">
-                                                <input 
-                                                    type="checkbox" 
-                                                    id="flexframe_bg_logo_enabled" 
-                                                    name="flexframe_bg_logo_enabled" 
-                                                    value="1"
-                                                    <?php checked($bg_logo_enabled, true); ?>
-                                                    <?php echo empty($logo_url) ? 'disabled' : ''; ?>
-                                                />
-                                                <?php _e('Show Logo Watermark on Viewer', 'flexframe-viewer'); ?>
-                                            </label>
-                                            <?php if (empty($logo_url)) : ?>
-                                                <p class="description" style="margin-left: 24px; color: #d63638;">
-                                                    <span class="dashicons dashicons-warning" style="font-size: 14px;"></span>
-                                                    <?php _e('Upload a logo in Step 3 to enable this feature.', 'flexframe-viewer'); ?>
-                                                </p>
-                                            <?php endif; ?>
-                                        </div>
-                                        
-                                        <?php
-                                        // Get watermark position settings
-                                        $bg_logo_pos_x = get_option('flexframe_bg_logo_pos_x', 50);
-                                        $bg_logo_pos_y = get_option('flexframe_bg_logo_pos_y', 90);
-                                        ?>
-                                        
-                                        <div class="flexframe-bg-logo-options" id="bg_logo_options" style="<?php echo ($bg_logo_enabled && !empty($logo_url)) ? '' : 'display:none;'; ?>">
-                                            
-                                            <div class="flexframe-setting-row">
-                                                <label for="flexframe_bg_logo_pos_x"><?php _e('Horizontal Position', 'flexframe-viewer'); ?></label>
-                                                <input type="range" id="flexframe_bg_logo_pos_x" name="flexframe_bg_logo_pos_x" value="<?php echo esc_attr($bg_logo_pos_x); ?>" min="0" max="100" step="1" />
-                                                <span class="range-value" id="bg_logo_pos_x_value"><?php echo esc_html($bg_logo_pos_x); ?>%</span>
-                                            </div>
-                                            
-                                            <div class="flexframe-setting-row">
-                                                <label for="flexframe_bg_logo_pos_y"><?php _e('Vertical Position', 'flexframe-viewer'); ?></label>
-                                                <input type="range" id="flexframe_bg_logo_pos_y" name="flexframe_bg_logo_pos_y" value="<?php echo esc_attr($bg_logo_pos_y); ?>" min="0" max="100" step="1" />
-                                                <span class="range-value" id="bg_logo_pos_y_value"><?php echo esc_html($bg_logo_pos_y); ?>%</span>
-                                            </div>
-                                            
-                                            <div class="flexframe-setting-row">
-                                                <label for="flexframe_bg_logo_size"><?php _e('Logo Size', 'flexframe-viewer'); ?></label>
-                                                <input type="range" id="flexframe_bg_logo_size" name="flexframe_bg_logo_size" value="<?php echo esc_attr($bg_logo_size); ?>" min="30" max="500" step="10" />
-                                                <span class="range-value" id="bg_logo_size_value"><?php echo esc_html($bg_logo_size); ?>px</span>
-                                            </div>
-                                            
-                                            <div class="flexframe-setting-row">
-                                                <label for="flexframe_bg_logo_opacity"><?php _e('Logo Opacity', 'flexframe-viewer'); ?></label>
-                                                <input type="range" id="flexframe_bg_logo_opacity" name="flexframe_bg_logo_opacity" value="<?php echo esc_attr($bg_logo_opacity); ?>" min="0" max="1" step="0.05" />
-                                                <span class="range-value" id="bg_logo_opacity_value"><?php echo esc_html(round($bg_logo_opacity * 100)); ?>%</span>
-                                            </div>
-                                            
-                                            <p class="description">
-                                                <?php _e('💡 The watermark appears as an overlay on the viewer. Adjust position and opacity to your preference.', 'flexframe-viewer'); ?>
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Lighting Settings Section -->
-                            <div class="custom-panel-section">
-                                <div class="custom-panel-header" data-target="lighting-settings-content">
-                                    <h4><span class="dashicons dashicons-lightbulb"></span> <?php _e('Lighting', 'flexframe-viewer'); ?></h4>
-                                    <div class="header-preview lighting-preview">
-                                        <div class="lighting-indicator" id="preview-lighting">
-                                            <div class="light-ambient" title="Ambient"></div>
-                                            <div class="light-directional" title="Directional"></div>
+                                <div class="custom-panel-header" data-target="ui-settings-content">
+                                    <h4><span class="dashicons dashicons-admin-appearance"></span> <?php _e('UI Settings', 'flexframe-viewer'); ?></h4>
+                                    <div class="header-preview ui-preview">
+                                        <div class="ui-icons-preview" id="preview-ui-icons">
+                                            <span class="ui-icon-btn">▶</span>
+                                            <span class="ui-icon-menu">☰</span>
                                         </div>
                                     </div>
                                     <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                                 </div>
-                                <div class="custom-panel-content" id="lighting-settings-content">
-                                    <div class="flexframe-custom-settings">
-                                        <?php
-                                        // Get lighting settings with defaults
-                                        $ambient_intensity = get_option('flexframe_ambient_intensity', 0.4);
-                                        $ambient_color = get_option('flexframe_ambient_color', '#ffffff');
-                                        $directional_intensity = get_option('flexframe_directional_intensity', 1.43);
-                                        $directional_color = get_option('flexframe_directional_color', '#ffffff');
-                                        $directional_pos_x = get_option('flexframe_directional_pos_x', 1.35);
-                                        $directional_pos_y = get_option('flexframe_directional_pos_y', 1.57);
-                                        $directional_pos_z = get_option('flexframe_directional_pos_z', 0.9);
-                                        ?>
-                                        
-                                        <h5 style="margin: 0 0 12px; color: #4a9eff;"><?php _e('Ambient Light', 'flexframe-viewer'); ?></h5>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_ambient_intensity"><?php _e('Intensity', 'flexframe-viewer'); ?></label>
-                                            <input type="range" id="flexframe_ambient_intensity" name="flexframe_ambient_intensity" value="<?php echo esc_attr($ambient_intensity); ?>" min="0" max="2" step="0.01" />
-                                            <span class="range-value"><?php echo esc_html($ambient_intensity); ?></span>
+                                <div class="custom-panel-content" id="ui-settings-content">
+                                    
+                                    <!-- Loading Spinner Settings -->
+                                    <div class="ui-settings-section">
+                                        <div class="ui-section-header-row">
+                                            <h5><span class="dashicons dashicons-update"></span> <?php _e('Loading Indicator', 'flexframe-viewer'); ?></h5>
+                                            <div class="inline-preview loading-preview">
+                                                <div class="preview-spinner-inline" id="preview-spinner" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                    <div class="spinner-circle"></div>
+                                                </div>
+                                                <div class="preview-logo-loader-inline" id="preview-logo-loader" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                    <?php if (!empty($logo_url)) : ?>
+                                                        <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr(min($logo_loader_size, 60)); ?>px; max-width: <?php echo esc_attr(min($logo_loader_size, 60)); ?>px; height: auto;" />
+                                                    <?php else : ?>
+                                                        <div class="logo-placeholder-small"><span class="dashicons dashicons-format-image"></span></div>
+                                                    <?php endif; ?>
+                                                </div>
+                                            </div>
                                         </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_ambient_color"><?php _e('Color', 'flexframe-viewer'); ?></label>
-                                            <input type="color" id="flexframe_ambient_color" name="flexframe_ambient_color" value="<?php echo esc_attr($ambient_color); ?>" />
-                                            <span class="color-hex"><?php echo esc_html($ambient_color); ?></span>
-                                        </div>
-                                        
-                                        <h5 style="margin: 20px 0 12px; color: #4a9eff;"><?php _e('Directional Light', 'flexframe-viewer'); ?></h5>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_directional_intensity"><?php _e('Intensity', 'flexframe-viewer'); ?></label>
-                                            <input type="range" id="flexframe_directional_intensity" name="flexframe_directional_intensity" value="<?php echo esc_attr($directional_intensity); ?>" min="0" max="3" step="0.01" />
-                                            <span class="range-value"><?php echo esc_html($directional_intensity); ?></span>
-                                        </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_directional_color"><?php _e('Color', 'flexframe-viewer'); ?></label>
-                                            <input type="color" id="flexframe_directional_color" name="flexframe_directional_color" value="<?php echo esc_attr($directional_color); ?>" />
-                                            <span class="color-hex"><?php echo esc_html($directional_color); ?></span>
-                                        </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_directional_pos_x"><?php _e('Position X', 'flexframe-viewer'); ?></label>
-                                            <input type="range" id="flexframe_directional_pos_x" name="flexframe_directional_pos_x" value="<?php echo esc_attr($directional_pos_x); ?>" min="-5" max="5" step="0.01" />
-                                            <span class="range-value"><?php echo esc_html($directional_pos_x); ?></span>
-                                        </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_directional_pos_y"><?php _e('Position Y', 'flexframe-viewer'); ?></label>
-                                            <input type="range" id="flexframe_directional_pos_y" name="flexframe_directional_pos_y" value="<?php echo esc_attr($directional_pos_y); ?>" min="-5" max="5" step="0.01" />
-                                            <span class="range-value"><?php echo esc_html($directional_pos_y); ?></span>
-                                        </div>
-                                        
-                                        <div class="flexframe-setting-row">
-                                            <label for="flexframe_directional_pos_z"><?php _e('Position Z', 'flexframe-viewer'); ?></label>
-                                            <input type="range" id="flexframe_directional_pos_z" name="flexframe_directional_pos_z" value="<?php echo esc_attr($directional_pos_z); ?>" min="-5" max="5" step="0.01" />
-                                            <span class="range-value"><?php echo esc_html($directional_pos_z); ?></span>
-                                        </div>
-                                        
-                                        <p class="description">
-                                            <?php _e('💡 Adjust lighting to highlight muscle definition and create dramatic effects.', 'flexframe-viewer'); ?>
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Dust Particles Settings Section -->
-                            <div class="custom-panel-section">
-                                <div class="custom-panel-header" data-target="particles-settings-content">
-                                    <h4><span class="dashicons dashicons-star-filled"></span> <?php _e('Dust Particles', 'flexframe-viewer'); ?></h4>
-                                    <div class="header-preview particles-preview">
-                                        <div class="particles-container" id="preview-particles">
-                                            <span class="particle p1"></span>
-                                            <span class="particle p2"></span>
-                                            <span class="particle p3"></span>
-                                            <span class="particle p4"></span>
-                                        </div>
-                                    </div>
-                                    <span class="toggle-icon dashicons dashicons-arrow-down-alt2"></span>
-                                </div>
-                                <div class="custom-panel-content" id="particles-settings-content">
-                                    <div class="flexframe-custom-settings">
-                                        <?php
-                                        // Get particle settings with defaults
-                                        $particles_enabled = get_option('flexframe_particles_enabled', true);
-                                        $particles_count = get_option('flexframe_particles_count', 1150);
+                                        <table class="form-table ui-settings-table">
+                                            <tr>
+                                                <th scope="row">
+                                                    <label><?php _e('Loader Type', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <div class="loader-type-options">
+                                                        <label class="loader-type-option <?php echo !$use_logo_loader ? 'selected' : ''; ?>">
+                                                            <input type="radio" name="flexframe_use_logo_loader" value="0" <?php checked($use_logo_loader, false); ?> />
+                                                            <span class="loader-type-card">
+                                                                <span class="loader-type-icon"><span class="dashicons dashicons-update"></span></span>
+                                                                <span class="loader-type-label"><?php _e('Spinner', 'flexframe-viewer'); ?></span>
+                                                            </span>
+                                                        </label>
+                                                        <label class="loader-type-option <?php echo $use_logo_loader ? 'selected' : ''; ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?>">
+                                                            <input type="radio" name="flexframe_use_logo_loader" value="1" <?php checked($use_logo_loader, true); ?> <?php echo empty($logo_url) ? 'disabled' : ''; ?> />
+                                                            <span class="loader-type-card">
+                                                                <span class="loader-type-icon"><span class="dashicons dashicons-format-image"></span></span>
+                                                                <span class="loader-type-label"><?php _e('Your Logo', 'flexframe-viewer'); ?></span>
+                                                            </span>
+                                                        </label>
+                                                    </div>
+                                                    <?php if (empty($logo_url)) : ?>
+                                                        <p class="description logo-warning"><span class="dashicons dashicons-warning"></span> <?php _e('Upload a logo in Step 2 to use it as a loading indicator.', 'flexframe-viewer'); ?></p>
+                                                    <?php endif; ?>
+                                                </td>
+                                            </tr>
+                                            <tr class="spinner-options" <?php echo $use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <th scope="row">
+                                                    <label for="flexframe_spinner_color"><?php _e('Spinner Color', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <input type="color" id="flexframe_spinner_color" name="flexframe_spinner_color" value="<?php echo esc_attr($spinner_color); ?>" class="color-picker" />
+                                                    <span class="color-value"><?php echo esc_html($spinner_color); ?></span>
+                                                </td>
+                                            </tr>
+                                            <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
+                                                <th scope="row">
+                                                    <label for="flexframe_logo_loader_animation"><?php _e('Animation Style', 'flexframe-viewer'); ?></label>
+                                                </th>
+                                                <td>
+                                                    <select id="flexframe_logo_loader_animation" name="flexframe_logo_loader_animation">
+                                                        <option value="pulse" <?php selected($logo_loader_animation, 'pulse'); ?>><?php _e('Pulse (Grow & Shrink)', 'flexframe-viewer'); ?></option>
+                                                        <option value="spin" <?php selected($logo_loader_animation, 'spin'); ?>><?php _e('Spin (Rotate)', 'flexframe-viewer'); ?></option>
+                                                        <option value="fade" <?php selected($logo_loader_animation, 'fade'); ?>><?php _e('Fade (Opacity)', 'flexframe-viewer'); ?></option>
+                                                        <option value="bounce" <?php selected($logo_loader_animation, 'bounce'); ?>><?php _e('Bounce (Up & Down)', 'flexframe-viewer'); ?></option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr class="logo-loader-options" <?php echo !$use_logo_loader ? 'style="display:none;"' : ''; ?>>
                                                 <th scope="row">
                                                     <label for="flexframe_logo_loader_size"><?php _e('Logo Size', 'flexframe-viewer'); ?></label>
                                                 </th>
@@ -2581,6 +2463,7 @@ function flexframe_settings_page() {
                                 </div>
                             </div>
                         </div>
+                        </div><!-- End of manual-theme-settings -->
                     </div>
                 </div>
                 
@@ -3247,6 +3130,164 @@ function flexframe_settings_page() {
         }
         .current-theme-indicator strong {
             color: #1d2327;
+        }
+        
+        /* Visual Theme Editor CTA (Step 5) */
+        .visual-theme-editor-cta {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 24px;
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(102, 126, 234, 0.3);
+        }
+        .visual-theme-editor-cta .cta-content {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .visual-theme-editor-cta .cta-icon {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 12px;
+            padding: 16px;
+            flex-shrink: 0;
+        }
+        .visual-theme-editor-cta .cta-icon .dashicons {
+            font-size: 40px;
+            width: 40px;
+            height: 40px;
+        }
+        .visual-theme-editor-cta .cta-text {
+            flex: 1;
+            min-width: 200px;
+        }
+        .visual-theme-editor-cta .cta-text h3 {
+            margin: 0 0 8px 0;
+            font-size: 20px;
+            font-weight: 600;
+            color: #fff;
+        }
+        .visual-theme-editor-cta .cta-text p {
+            margin: 0;
+            opacity: 0.9;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .visual-theme-editor-cta .cta-action {
+            flex-shrink: 0;
+        }
+        .visual-theme-editor-cta .open-theme-editor-btn {
+            background: #fff !important;
+            color: #667eea !important;
+            border: none !important;
+            padding: 14px 28px !important;
+            font-size: 15px !important;
+            font-weight: 600 !important;
+            border-radius: 8px !important;
+            display: inline-flex !important;
+            align-items: center !important;
+            gap: 8px !important;
+            transition: transform 0.2s, box-shadow 0.2s !important;
+            text-decoration: none !important;
+        }
+        .visual-theme-editor-cta .open-theme-editor-btn:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2) !important;
+            color: #5a67d8 !important;
+        }
+        .visual-theme-editor-cta .cta-warning {
+            margin: 10px 0 0 0;
+            font-size: 12px;
+            color: #ffd700;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .visual-theme-editor-cta .cta-tip {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 13px;
+            opacity: 0.85;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .visual-theme-editor-cta .cta-tip .dashicons {
+            color: #ffd700;
+        }
+        
+        /* Theme Settings Divider */
+        .theme-settings-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 32px 0;
+        }
+        .theme-settings-divider .divider-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #c3c4c7, transparent);
+        }
+        .theme-settings-divider .divider-text {
+            font-size: 13px;
+            font-weight: 600;
+            color: #646970;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        /* Manual Theme Settings Section */
+        .manual-theme-settings {
+            border: 1px solid #c3c4c7;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 24px;
+        }
+        .manual-settings-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 20px;
+            background: #f6f7f7;
+            border-bottom: 1px solid #c3c4c7;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .manual-settings-header:hover {
+            background: #f0f0f1;
+        }
+        .manual-settings-header .dashicons {
+            color: #646970;
+        }
+        .manual-settings-header h3 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1d2327;
+            flex: 1;
+        }
+        .manual-toggle-icon {
+            color: #646970;
+            transition: transform 0.3s;
+        }
+        .manual-theme-settings.collapsed .manual-toggle-icon {
+            transform: rotate(-90deg);
+        }
+        .manual-settings-desc {
+            padding: 12px 20px;
+            margin: 0;
+            color: #646970;
+            font-size: 13px;
+            background: #fafafa;
+            border-bottom: 1px solid #eee;
+        }
+        .manual-theme-settings.collapsed .manual-settings-desc,
+        .manual-theme-settings.collapsed .current-theme-indicator,
+        .manual-theme-settings.collapsed .save-custom-theme-section,
+        .manual-theme-settings.collapsed .flexframe-custom-panel {
+            display: none !important;
         }
         
         /* Save Custom Theme Section */
@@ -4706,6 +4747,15 @@ function flexframe_settings_page() {
             $section.toggleClass('collapsed');
             $content.slideToggle(200);
         });
+        
+        // Manual theme settings toggle (Step 5)
+        $('#manual-settings-toggle').on('click', function() {
+            var $container = $(this).closest('.manual-theme-settings');
+            $container.toggleClass('collapsed');
+        });
+        
+        // Start with manual settings collapsed by default
+        $('.manual-theme-settings').addClass('collapsed');
         
         // Copy shortcode to clipboard
         $('.copy-shortcode-btn').on('click', function() {
@@ -6695,6 +6745,18 @@ function flexframe_settings_page() {
         $('#flexframe_viewer_page_url').on('input', function() {
             viewerPageUrl = $(this).val() || '<?php echo esc_js(home_url('/')); ?>';
             renderExerciseList($('#exercise-search').val());
+            
+            // Also update the Visual Theme Editor button URL
+            var $editorBtn = $('.open-theme-editor-btn');
+            if (viewerPageUrl) {
+                var separator = viewerPageUrl.indexOf('?') !== -1 ? '&' : '?';
+                $editorBtn.attr('href', viewerPageUrl + separator + 'openThemeEditor=1');
+                $editorBtn.removeAttr('disabled').css({'pointer-events': 'auto', 'opacity': '1'});
+                $editorBtn.closest('.cta-action').find('.cta-warning').remove();
+            } else {
+                $editorBtn.attr('href', '#');
+                $editorBtn.attr('disabled', 'disabled').css({'pointer-events': 'none', 'opacity': '0.5'});
+            }
         });
         
         // Search functionality
@@ -7223,33 +7285,6 @@ function flexframe_settings_page() {
                     $('#export-success-message').fadeOut(200);
                 }, 3000);
             });
-        });
-        
-        // ============================================
-        // Live Preview Toggle
-        // ============================================
-        
-        $('#toggle-preview-btn').on('click', function(e) {
-            e.preventDefault();
-            var $button = $(this);
-            var $container = $('#live-preview-container');
-            
-            if ($container.is(':visible')) {
-                // Hide preview
-                $container.slideUp(300);
-                $button.html('<span class="dashicons dashicons-visibility"></span> <?php _e('Show Preview', 'flexframe-viewer'); ?>');
-            } else {
-                // Show preview
-                $container.slideDown(300);
-                $button.html('<span class="dashicons dashicons-hidden"></span> <?php _e('Hide Preview', 'flexframe-viewer'); ?>');
-                
-                // Reload iframe if it exists
-                var $iframe = $('#live-preview-iframe');
-                if ($iframe.length) {
-                    var src = $iframe.attr('src');
-                    $iframe.attr('src', src);
-                }
-            }
         });
     });
     </script>

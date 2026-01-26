@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v33
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.33.0
+ * Version: 1.33.6
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,12 +33,12 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.33.0');
+define('FLEXFRAME_VERSION', '1.33.5');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
 // Log plugin initialization
-flexframe_log('Plugin loaded', array('version' => '1.33.0', 'plugin_url' => plugin_dir_url(__FILE__)));
+flexframe_log('Plugin loaded', array('version' => '1.33.4', 'plugin_url' => plugin_dir_url(__FILE__)));
 
 // Include admin settings
 require_once FLEXFRAME_PLUGIN_DIR . 'admin/settings-page.php';
@@ -69,6 +69,32 @@ function flexframe_enqueue_assets() {
         
         // Add inline CSS for WordPress theme isolation
         $isolation_css = '
+            /* CRITICAL: Prevent horizontal/vertical overflow on mobile */
+            html, body {
+                overflow: hidden !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 100% !important;
+                max-height: 100% !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+            }
+            
+            /* WebGL canvas must fit exactly */
+            canvas.webgl {
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
+                width: 100% !important;
+                height: 100% !important;
+                max-width: 100vw !important;
+                max-height: 100vh !important;
+                display: block !important;
+            }
+            
             /* FlexFrame CSS Isolation from WordPress Theme */
             #flexframe-viewer-container * {
                 box-sizing: border-box;
@@ -295,8 +321,6 @@ function flexframe_enqueue_assets() {
                 height: auto !important;
                 overflow: visible !important;
                 position: fixed !important;
-                top: 150px !important;
-                left: 20px !important;
                 z-index: 10001 !important;
             }
             
@@ -328,8 +352,6 @@ function flexframe_enqueue_assets() {
                 height: auto !important;
                 overflow: visible !important;
                 position: fixed !important;
-                top: 150px !important;
-                right: 20px !important;
                 z-index: 10001 !important;
             }
             
@@ -347,6 +369,282 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .thumbnail-grid-container-right {
                 display: grid !important;
             }
+            
+            /* Enable hover to show menus on desktop */
+            #flexframe-viewer-container .thumbnail-grid-container:hover {
+                left: 20px !important;
+            }
+            #flexframe-viewer-container .thumbnail-grid-container-right:hover {
+                right: 20px !important;
+            }
+            
+            /* ==========================================
+               MOBILE RESPONSIVE STYLES
+               ========================================== */
+            @media screen and (max-width: 768px) {
+                /* Menus always visible on mobile (no hover) */
+                #flexframe-viewer-container .thumbnail-grid-container {
+                    width: 110px !important;
+                    left: 8px !important;
+                    top: 8px !important;
+                    gap: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container:hover,
+                #flexframe-viewer-container .thumbnail-grid-container.menu-visible,
+                #flexframe-viewer-container .thumbnail-grid-container.menu-active {
+                    left: 8px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container-right {
+                    width: 110px !important;
+                    right: 8px !important;
+                    top: 8px !important;
+                    gap: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container-right:hover,
+                #flexframe-viewer-container .thumbnail-grid-container-right.menu-visible,
+                #flexframe-viewer-container .thumbnail-grid-container-right.menu-active {
+                    right: 8px !important;
+                }
+                /* Hide hint tabs on mobile */
+                .menu-hint-tab,
+                .menu-hint-tab-right {
+                    display: none !important;
+                }
+                /* Smaller menu buttons */
+                .thumbnail-menu-toggle {
+                    height: 38px !important;
+                    padding: 4px !important;
+                    font-size: 8px !important;
+                }
+                .thumbnail-menu-toggle svg {
+                    width: 12px !important;
+                    height: 12px !important;
+                }
+                /* Mobile dropdowns - closer to menu with always-on blur effect */
+                #flexframe-viewer-container .thumbnail-dropdown,
+                #flexframe-viewer-container .thumbnail-dropdown-right,
+                .thumbnail-dropdown,
+                .thumbnail-dropdown-right {
+                    width: 160px !important;
+                    max-width: 160px !important;
+                    margin-top: 4px !important;
+                    top: auto !important;
+                    max-height: 75vh !important;
+                    padding: 8px !important;
+                    backdrop-filter: blur(20px) saturate(180%) !important;
+                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                }
+                .thumbnail-dropdown {
+                    left: 8px !important;
+                    right: auto !important;
+                }
+                .thumbnail-dropdown-right {
+                    left: auto !important;
+                    right: 8px !important;
+                }
+                /* Smaller fonts in dropdowns on mobile */
+                .thumbnail-item {
+                    font-size: 10px !important;
+                }
+                .thumbnail-label {
+                    font-size: 9px !important;
+                    line-height: 1.1 !important;
+                }
+                .search-header,
+                .search-input,
+                .filter-status-box {
+                    font-size: 11px !important;
+                }
+                .thumbnail-scroll-controls {
+                    font-size: 10px !important;
+                }
+                /* Smaller background logo on mobile */
+                .flexframe-bg-watermark {
+                    width: 120px !important;
+                    max-width: 40vw !important;
+                }
+                /* Animation player always visible */
+                .animation-player {
+                    transform: translateY(0) !important;
+                    opacity: 1 !important;
+                    pointer-events: all !important;
+                    padding: 6px 10px !important;
+                }
+                .player-controls {
+                    gap: 4px !important;
+                }
+                .player-left {
+                    min-width: 50px !important;
+                    gap: 3px !important;
+                }
+                .player-right {
+                    min-width: 80px !important;
+                    gap: 3px !important;
+                }
+                .play-pause-btn,
+                .speed-btn,
+                .screenshot-btn,
+                .ar-btn {
+                    padding: 4px 6px !important;
+                    font-size: 9px !important;
+                    height: 28px !important;
+                    min-height: 28px !important;
+                }
+                .play-pause-btn svg,
+                .speed-btn svg,
+                .screenshot-btn svg {
+                    width: 14px !important;
+                    height: 14px !important;
+                }
+                .time-display {
+                    font-size: 9px !important;
+                }
+                /* Mobile: Override fixed positioning for dropdowns */
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown.show,
+                div.thumbnail-dropdown-right.show {
+                    position: fixed !important;
+                    margin-top: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                .thumbnail-dropdown.show,
+                div.thumbnail-dropdown.show {
+                    top: 90px !important;
+                    left: 10px !important;
+                    right: auto !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown-right.show {
+                    top: 90px !important;
+                    left: auto !important;
+                    right: 10px !important;
+                }
+                /* Mobile: Permanent hover effect on info-step-items (no hover needed) */
+                #flexframe-viewer-container .info-step-item,
+                .thumbnail-dropdown-right .info-step-item,
+                .info-step-item {
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
+                }
+            }
+            
+            @media screen and (max-width: 480px) {
+                #flexframe-viewer-container .thumbnail-grid-container {
+                    width: 95px !important;
+                    left: 5px !important;
+                    top: 5px !important;
+                    gap: 3px !important;
+                }
+                #flexframe-viewer-container .thumbnail-grid-container-right {
+                    width: 95px !important;
+                    right: 5px !important;
+                    top: 5px !important;
+                    gap: 3px !important;
+                }
+                .thumbnail-menu-toggle {
+                    height: 34px !important;
+                    padding: 3px !important;
+                    font-size: 7px !important;
+                }
+                .thumbnail-menu-toggle svg {
+                    width: 10px !important;
+                    height: 10px !important;
+                }
+                /* Even narrower dropdowns on small screens with blur */
+                #flexframe-viewer-container .thumbnail-dropdown,
+                #flexframe-viewer-container .thumbnail-dropdown-right,
+                .thumbnail-dropdown,
+                .thumbnail-dropdown-right {
+                    width: 140px !important;
+                    max-width: 140px !important;
+                    margin-top: 4px !important;
+                    top: auto !important;
+                    max-height: 70vh !important;
+                    padding: 6px !important;
+                    backdrop-filter: blur(20px) saturate(180%) !important;
+                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+                }
+                .thumbnail-dropdown {
+                    left: 5px !important;
+                }
+                .thumbnail-dropdown-right {
+                    right: 5px !important;
+                }
+                /* Even smaller fonts on small screens */
+                .thumbnail-item {
+                    font-size: 9px !important;
+                }
+                .thumbnail-label {
+                    font-size: 8px !important;
+                }
+                .search-header,
+                .search-input,
+                .filter-status-box {
+                    font-size: 10px !important;
+                }
+                .thumbnail-scroll-controls {
+                    font-size: 9px !important;
+                }
+                /* Even smaller background logo on small screens */
+                .flexframe-bg-watermark {
+                    width: 100px !important;
+                    max-width: 35vw !important;
+                }
+                .animation-player {
+                    padding: 4px 6px !important;
+                }
+                .play-pause-btn,
+                .speed-btn,
+                .screenshot-btn,
+                .ar-btn {
+                    padding: 3px 5px !important;
+                    font-size: 8px !important;
+                    height: 26px !important;
+                    min-height: 26px !important;
+                }
+                .time-display {
+                    font-size: 8px !important;
+                }
+                /* Mobile small: Override fixed positioning for dropdowns */
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown.show,
+                div.thumbnail-dropdown-right.show {
+                    position: fixed !important;
+                    margin-top: 4px !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown.show,
+                .thumbnail-dropdown.show,
+                div.thumbnail-dropdown.show {
+                    top: 90px !important;
+                    left: 10px !important;
+                    right: auto !important;
+                }
+                #flexframe-viewer-container .thumbnail-dropdown-right.show,
+                .thumbnail-dropdown-right.show,
+                div.thumbnail-dropdown-right.show {
+                    top: 90px !important;
+                    left: auto !important;
+                    right: 10px !important;
+                }
+                /* Mobile small: Permanent hover effect on info-step-items */
+                #flexframe-viewer-container .info-step-item,
+                .thumbnail-dropdown-right .info-step-item,
+                .info-step-item {
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
+                }
+            }
         ';
         
         // If this is a dedicated FlexFrame viewer page, hide all WordPress theme elements
@@ -355,17 +653,21 @@ function flexframe_enqueue_assets() {
             /* Full-screen FlexFrame viewer - hide all WordPress elements */
             html {
                 overflow: hidden !important;
-                height: 100vh !important;
-                width: 100vw !important;
+                height: 100% !important;
+                width: 100% !important;
+                position: fixed !important;
             }
             body, body.page {
                 margin: 0 !important;
                 padding: 0 !important;
-                overflow: visible !important;
-                height: 100vh !important;
-                width: 100vw !important;
-                min-height: 100vh !important;
-                max-height: 100vh !important;
+                overflow: hidden !important;
+                height: 100% !important;
+                width: 100% !important;
+                min-height: 100% !important;
+                max-height: 100% !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
             }
             /* Hide WordPress header, footer, sidebar, navigation, admin bar */
             header, footer, aside, nav,
@@ -390,24 +692,26 @@ function flexframe_enqueue_assets() {
             .entry-content, article, .page, .type-page,
             .wp-block-group, .wp-site-blocks,
             .is-layout-constrained, .is-layout-flow {
-                width: 100vw !important;
-                max-width: 100vw !important;
-                height: 100vh !important;
-                max-height: 100vh !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 100% !important;
+                max-height: 100% !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                overflow: visible !important;
-                position: relative !important;
+                overflow: hidden !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
             }
             /* Ensure FlexFrame container is full screen */
             #flexframe-viewer-container {
                 position: fixed !important;
                 top: 0 !important;
                 left: 0 !important;
-                width: 100vw !important;
-                height: 100vh !important;
+                width: 100% !important;
+                height: 100% !important;
                 z-index: 9999 !important;
-                overflow: visible !important;
+                overflow: hidden !important;
             }
             /* Animation player is appended to body, not container - ensure proper positioning */
             body > .animation-player,
@@ -657,6 +961,63 @@ function flexframe_enqueue_assets() {
                 border: 2px solid ' . $menu_accent_color . ' !important;
                 outline: none !important;
             }
+            
+            /* ===== SEARCH INPUT - USE MENU BACKGROUND COLOR ===== */
+            #flexframe-viewer-container .search-input,
+            #flexframe-viewer-container input.search-input,
+            #flexframe-viewer-container #searchInput,
+            .thumbnail-dropdown .search-input,
+            .search-header .search-input {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
+                border-color: ' . $menu_accent_color . '66 !important;
+            }
+            #flexframe-viewer-container .search-input:focus,
+            #flexframe-viewer-container #searchInput:focus,
+            .thumbnail-dropdown .search-input:focus {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .search-input::placeholder,
+            #flexframe-viewer-container #searchInput::placeholder {
+                color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', 0.5) !important;
+            }
+            
+            /* ===== SEARCH HEADER - USE MENU BACKGROUND COLOR ===== */
+            #flexframe-viewer-container .search-header,
+            .thumbnail-dropdown .search-header {
+                background: linear-gradient(180deg, rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . '), rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ')) !important;
+                border-bottom-color: ' . $menu_accent_color . '66 !important;
+            }
+            
+            /* ===== SEARCH ACTION BUTTON - USE ACCENT COLOR ===== */
+            #flexframe-viewer-container .search-action-btn,
+            .thumbnail-dropdown .search-action-btn {
+                background-color: ' . $menu_accent_color . '33 !important;
+                color: ' . $menu_accent_color . ' !important;
+            }
+            #flexframe-viewer-container .search-action-btn:hover,
+            .thumbnail-dropdown .search-action-btn:hover {
+                background-color: ' . $menu_accent_color . '66 !important;
+            }
+            #flexframe-viewer-container .search-action-btn svg,
+            .thumbnail-dropdown .search-action-btn svg {
+                fill: ' . $menu_accent_color . ' !important;
+            }
+            
+            /* ===== SEARCH SUGGESTIONS - USE MENU BACKGROUND COLOR ===== */
+            #flexframe-viewer-container .search-suggestions,
+            .thumbnail-dropdown .search-suggestions {
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
+                border-color: ' . $menu_accent_color . '66 !important;
+            }
+            .search-suggestion-item:hover {
+                background-color: ' . $menu_accent_color . '33 !important;
+            }
+            .search-suggestion-category {
+                color: ' . $menu_accent_color . ' !important;
+            }
+            
             .thumbnail-grid-container *,
             .exercise-menu *,
             .menu-panel *,
@@ -1197,11 +1558,13 @@ function flexframe_enqueue_assets() {
             .menu-hint-tab-right:hover svg {
                 fill: #ffffff !important;
             }
-            /* Right menu info items - background only uses opacity, text stays solid */
+            /* Right menu info items - use PRIMARY COLOR with 35% opacity and 50px blur */
             #flexframe-viewer-container .info-step-item,
             .thumbnail-dropdown-right .info-step-item,
             .info-step-item {
-                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                background: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.35) !important;
+                backdrop-filter: blur(50px) !important;
+                -webkit-backdrop-filter: blur(50px) !important;
                 border-color: ' . $menu_accent_color . '44 !important;
                 color: ' . $menu_text_color . ' !important;
             }
@@ -1215,7 +1578,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .info-step-item:hover,
             .thumbnail-dropdown-right .info-step-item:hover,
             .info-step-item:hover {
-                background-color: ' . $menu_accent_color . '22 !important;
+                background-color: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.5) !important;
                 border-color: ' . $menu_accent_color . ' !important;
             }
             /* Right menu info titles - use text color */
@@ -1414,6 +1777,7 @@ function flexframe_enqueue_assets() {
                 'bgColor' => get_option('flexframe_player_bg_color', '#000000'),
                 'bgOpacity' => floatval(get_option('flexframe_player_bg_opacity', 0.8)),
                 'buttonColor' => get_option('flexframe_player_button_color', '#ffffff'),
+                'buttonBgColor' => get_option('flexframe_player_button_bg_color', '#f50000'),
                 'accentColor' => get_option('flexframe_player_accent_color', '#00bcd4'),
                 'alwaysVisible' => get_option('flexframe_player_always_visible', 'no') === 'yes'
             ),
@@ -1584,9 +1948,20 @@ function flexframe_enqueue_assets() {
         
         // Now enqueue the script
         wp_enqueue_script('flexframe-viewer-script');
+        
+        // Add viewport meta tag for proper mobile scaling
+        add_action('wp_head', 'flexframe_add_viewport_meta', 1);
     }
 }
 add_action('wp_enqueue_scripts', 'flexframe_enqueue_assets');
+
+/**
+ * Add viewport meta tag for proper mobile responsiveness
+ */
+function flexframe_add_viewport_meta() {
+    // Remove any existing viewport meta and add our own for proper 1:1 scaling
+    echo '<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">' . "\n";
+}
 
 /**
  * AJAX handler to save primary color setting
@@ -1618,8 +1993,17 @@ function flexframe_save_primary_color() {
     // Update menu accent color to match primary color (so inline CSS uses new color)
     update_option('flexframe_menu_accent_color', $primary_color);
     
-    // Update player accent color to match primary color
+    // Update player accent color to match primary color (scrubber/timeline)
     update_option('flexframe_player_accent_color', $primary_color);
+    
+    // Update player button BACKGROUND color to match primary color
+    update_option('flexframe_player_button_bg_color', $primary_color);
+    
+    // Update spinner color to match primary color
+    update_option('flexframe_spinner_color', $primary_color);
+    
+    // Update directional light color to match primary color
+    update_option('flexframe_directional_color', $primary_color);
     
     // Update particles color to match primary color
     update_option('flexframe_particles_color', $primary_color);
@@ -1629,6 +2013,9 @@ function flexframe_save_primary_color() {
     wp_cache_delete('flexframe_primary_color_mode', 'options');
     wp_cache_delete('flexframe_menu_accent_color', 'options');
     wp_cache_delete('flexframe_player_accent_color', 'options');
+    wp_cache_delete('flexframe_player_button_bg_color', 'options');
+    wp_cache_delete('flexframe_spinner_color', 'options');
+    wp_cache_delete('flexframe_directional_color', 'options');
     wp_cache_delete('flexframe_particles_color', 'options');
     wp_cache_delete('alloptions', 'options'); // Clear all options cache
     
