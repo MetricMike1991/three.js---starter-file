@@ -240,6 +240,8 @@ body
     
     .menu-hint-tab,
     .menu-hint-tab-right,
+    .thumbnail-grid-container,
+    .thumbnail-grid-container-right,
     div.menu-hint-tab,
     div.menu-hint-tab-right {
         display: none !important;

@@ -176,12 +176,9 @@ body
     
     .menu-hint-tab,
     .menu-hint-tab-right,
-    div.menu-hint-tab,
-    div.menu-hint-tab-right {
+    .thumbnail-grid-container,
+    .thumbnail-grid-container-right {
         display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
     }
     
     .standalone-quality-btn,
@@ -239,13 +236,8 @@ body
     }
     
     .menu-hint-tab,
-    .menu-hint-tab-right,
-    div.menu-hint-tab,
-    div.menu-hint-tab-right {
+    .menu-hint-tab-right {
         display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
     }
     
     .standalone-quality-btn,

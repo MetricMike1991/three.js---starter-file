@@ -175,17 +175,7 @@ body
     }
     
     .menu-hint-tab,
-    .menu-hint-tab-right,
-    div.menu-hint-tab,
-    div.menu-hint-tab-right {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-    
-    .standalone-quality-btn,
-    .ar-btn {
+    .menu-hint-tab-right {
         display: none !important;
     }
 }
@@ -239,17 +229,7 @@ body
     }
     
     .menu-hint-tab,
-    .menu-hint-tab-right,
-    div.menu-hint-tab,
-    div.menu-hint-tab-right {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-    
-    .standalone-quality-btn,
-    .ar-btn {
+    .menu-hint-tab-right {
         display: none !important;
     }
 }

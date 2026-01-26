@@ -30,7 +30,7 @@
 }
 .info-step-title {
     font-weight: bold;
-    font-size: clamp(9px, 3.43vw, 18px); /* 12px at 350px viewport - slightly bigger than text */
+    font-size: clamp(12px, 4.57vw, 24px); /* 16px at 350px viewport */
     margin-bottom: 6px;
     color: #fff;
     opacity: 1;
@@ -175,17 +175,7 @@ body
     }
     
     .menu-hint-tab,
-    .menu-hint-tab-right,
-    div.menu-hint-tab,
-    div.menu-hint-tab-right {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-    
-    .standalone-quality-btn,
-    .ar-btn {
+    .menu-hint-tab-right {
         display: none !important;
     }
 }
@@ -239,17 +229,7 @@ body
     }
     
     .menu-hint-tab,
-    .menu-hint-tab-right,
-    div.menu-hint-tab,
-    div.menu-hint-tab-right {
-        display: none !important;
-        visibility: hidden !important;
-        opacity: 0 !important;
-        pointer-events: none !important;
-    }
-    
-    .standalone-quality-btn,
-    .ar-btn {
+    .menu-hint-tab-right {
         display: none !important;
     }
 }
