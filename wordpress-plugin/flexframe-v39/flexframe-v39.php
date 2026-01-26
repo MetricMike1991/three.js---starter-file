@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.0
+ * Version: 1.39.1
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.0');
+define('FLEXFRAME_VERSION', '1.39.1');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -389,9 +389,174 @@ function flexframe_enqueue_assets() {
                 right: 20px !important;
             }
             
+            /* ===== SEARCH FILTERS PANEL ===== */
+            .search-content-wrapper {
+                display: flex;
+                flex-direction: row;
+                gap: 0;
+                width: 100%;
+                height: 400px;
+                max-height: 70vh;
+                overflow: hidden;
+            }
+            
+            /* Hide filters on desktop/tablet - show only on mobile */
+            .search-filters-panel {
+                display: none;
+            }
+            
+            .search-results-panel {
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                overflow: hidden;
+            }
+            
+            .filter-section {
+                margin-bottom: 15px;
+            }
+            
+            .filter-section-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+            
+            .filter-title {
+                font-size: 11px;
+                font-weight: bold;
+                color: ' . $menu_accent_color . ';
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            
+            .filter-clear-btn {
+                font-size: 9px;
+                color: ' . $menu_accent_color . ' !important;
+                background: transparent !important;
+                border: 1px solid ' . $menu_accent_color . '66 !important;
+                padding: 2px 6px !important;
+                border-radius: 3px !important;
+                cursor: pointer !important;
+                transition: all 0.2s !important;
+            }
+            
+            .filter-clear-btn:hover,
+            .filter-clear-btn:active,
+            .filter-clear-btn:focus {
+                background: ' . $menu_accent_color . '33 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
+                outline: none !important;
+            }
+            
+            #flexframe-viewer-container .filter-clear-btn,
+            #flexframe-viewer-container .filter-clear-btn:hover,
+            #flexframe-viewer-container .filter-clear-btn:active,
+            #flexframe-viewer-container .filter-clear-btn:focus {
+                color: ' . $menu_accent_color . ' !important;
+                background: transparent !important;
+                border-color: ' . $menu_accent_color . '66 !important;
+            }
+            
+            #flexframe-viewer-container .filter-clear-btn:hover {
+                background: ' . $menu_accent_color . '33 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+            }
+            
+            .filter-options {
+                display: flex;
+                flex-direction: column;
+                gap: 6px;
+            }
+            
+            .filter-checkbox-label {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 10px;
+                cursor: pointer;
+                padding: 6px 8px;
+                border-radius: 4px;
+                border: 1px solid transparent !important;
+                transition: all 0.2s;
+            }
+            
+            .filter-checkbox-label:hover {
+                background-color: ' . $menu_accent_color . '22 !important;
+                border: 1px solid ' . $menu_accent_color . '44 !important;
+            }
+            
+            label.filter-checkbox-label.selected {
+                background-color: ' . $menu_accent_color . '22 !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
+                border-style: solid !important;
+                border-width: 2px !important;
+                border-color: ' . $menu_accent_color . ' !important;
+                box-shadow: 0 0 8px ' . $menu_accent_color . '66 !important;
+            }
+            
+            .filter-checkbox {
+                display: none !important;
+            }
+            
+            .filter-checkbox-label span {
+                flex: 1;
+                user-select: none;
+            }
+            
+            /* Scrollbar styling for filter panel - thinner and on left */
+            .search-filters-panel::-webkit-scrollbar {
+                width: 3px;
+            }
+            
+            .search-filters-panel::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .search-filters-panel::-webkit-scrollbar-thumb {
+                background: ' . $menu_accent_color . '66;
+                border-radius: 2px;
+            }
+            
+            .search-filters-panel::-webkit-scrollbar-thumb:hover {
+                background: ' . $menu_accent_color . ';
+            }
+            
             /* ==========================================
                MOBILE RESPONSIVE STYLES
                ========================================== */
+            @media screen and (max-width: 480px) {
+                /* Show search filters only on mobile */
+                .search-filters-panel {
+                    display: block !important;
+                    width: 40%;
+                    max-width: 180px;
+                    height: 100%;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    padding: 10px;
+                    border-right: 1px solid ' . $menu_accent_color . '33;
+                    direction: rtl;
+                }
+                
+                .search-filters-panel > * {
+                    direction: ltr;
+                }
+                
+                /* Force filter label selected state on mobile */
+                .filter-checkbox-label.selected,
+                label.filter-checkbox-label.selected,
+                .search-filters-panel .filter-checkbox-label.selected,
+                #searchFiltersPanel .filter-checkbox-label.selected,
+                #flexframe-viewer-container .filter-checkbox-label.selected {
+                    background-color: ' . $menu_accent_color . '22 !important;
+                    border: 2px solid ' . $menu_accent_color . ' !important;
+                    box-shadow: 0 0 12px ' . $menu_accent_color . 'cc, 0 0 6px ' . $menu_accent_color . '88, inset 0 0 8px ' . $menu_accent_color . '33 !important;
+                }
+            }
+            
             @media screen and (max-width: 768px) {
                 /* Menus always visible on mobile (no hover) */
                 #flexframe-viewer-container .thumbnail-grid-container {
@@ -1767,7 +1932,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BDuStAuq.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cq1TjDb5.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2276,12 +2441,32 @@ function flexframe_viewer_shortcode($atts) {
                             <div class="search-suggestions" id="searchSuggestions" style="display: none;"></div>
                         </div>
                     </div>
-                    <div class="thumbnail-scroll-controls">
-                        <button class="scroll-btn" id="searchScrollUp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg></button>
-                        <button class="scroll-btn" id="searchScrollDown"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg></button>
-                    </div>
-                    <div class="thumbnail-scroll-container" id="searchContainer">
-                        <div class="thumbnail-grid" id="searchGrid"></div>
+                    <div class="search-content-wrapper">
+                        <div class="search-filters-panel" id="searchFiltersPanel">
+                            <div class="filter-section">
+                                <div class="filter-section-header">
+                                    <div class="filter-title">Muscles</div>
+                                    <button class="filter-clear-btn" id="clearMuscleFilters">Clear</button>
+                                </div>
+                                <div class="filter-options" id="muscleFilters"></div>
+                            </div>
+                            <div class="filter-section">
+                                <div class="filter-section-header">
+                                    <div class="filter-title">Equipment</div>
+                                    <button class="filter-clear-btn" id="clearEquipmentFilters">Clear</button>
+                                </div>
+                                <div class="filter-options" id="equipmentFilters"></div>
+                            </div>
+                        </div>
+                        <div class="search-results-panel">
+                            <div class="thumbnail-scroll-controls">
+                                <button class="scroll-btn" id="searchScrollUp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg></button>
+                                <button class="scroll-btn" id="searchScrollDown"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg></button>
+                            </div>
+                            <div class="thumbnail-scroll-container" id="searchContainer">
+                                <div class="thumbnail-grid" id="searchGrid"></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

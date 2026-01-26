@@ -111,6 +111,192 @@ class ThumbnailDropdownMenu {
                 });
             }
         }
+
+    setupSearchFilters() {
+        if (this.menuType !== 'search') return;
+        
+        console.log('🔍 setupSearchFilters called for search menu');
+        
+        const muscleFiltersContainer = document.getElementById('muscleFilters');
+        const equipmentFiltersContainer = document.getElementById('equipmentFilters');
+        
+        console.log('🔍 Filter containers found:', { 
+            muscleFilters: muscleFiltersContainer, 
+            equipmentFilters: equipmentFiltersContainer 
+        });
+        
+        if (!muscleFiltersContainer || !equipmentFiltersContainer) {
+            console.error('❌ Filter containers not found in DOM');
+            return;
+        }
+        
+        // Get unique muscles and equipment from exercises
+        const muscleSet = new Set();
+        const equipmentSet = new Set();
+        
+        console.log('🔍 Sample exercise data:', this.allExercises[0]);
+        
+        this.allExercises.forEach(exercise => {
+            // Try multiple muscle sources
+            if (exercise.information?.primaryMuscle) {
+                muscleSet.add(exercise.information.primaryMuscle);
+            }
+            if (exercise.information?.secondaryMuscles) {
+                exercise.information.secondaryMuscles.forEach(m => muscleSet.add(m));
+            }
+            // Also check muscleGroup array
+            if (exercise.muscleGroup) {
+                exercise.muscleGroup.forEach(m => muscleSet.add(m));
+            }
+            exercise.equipment.forEach(e => equipmentSet.add(e));
+        });
+        
+        console.log('🔍 Muscle sources checked:', {
+            hasPrimaryMuscle: this.allExercises[0]?.information?.primaryMuscle,
+            hasSecondaryMuscles: this.allExercises[0]?.information?.secondaryMuscles,
+            hasMuscleGroup: this.allExercises[0]?.muscleGroup
+        });
+        
+        // Sort alphabetically
+        const muscles = Array.from(muscleSet).sort();
+        const equipment = Array.from(equipmentSet).sort();
+        
+        console.log('🔍 Found filters:', { 
+            muscleCount: muscles.length, 
+            equipmentCount: equipment.length,
+            sampleMuscles: muscles.slice(0, 3),
+            sampleEquipment: equipment.slice(0, 3)
+        });
+        
+        // Create muscle filter checkboxes
+        muscles.forEach(muscle => {
+            const label = document.createElement('label');
+            label.className = 'filter-checkbox-label';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = muscle;
+            checkbox.className = 'filter-checkbox';
+            
+            checkbox.addEventListener('change', (e) => {
+                const primaryColor = this.settings.glowColor || '#8d0000';
+                if (e.target.checked) {
+                    this.selectedMuscleFilters.add(muscle);
+                    label.classList.add('selected');
+                    // Force inline styles with !important as fallback
+                    label.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
+                    label.style.setProperty('background-color', `${primaryColor}22`, 'important');
+                    label.style.setProperty('box-shadow', `0 0 8px ${primaryColor}66`, 'important');
+                    console.log('✅ Added selected class to:', muscle, label);
+                } else {
+                    this.selectedMuscleFilters.delete(muscle);
+                    label.classList.remove('selected');
+                    // Remove inline styles
+                    label.style.removeProperty('border');
+                    label.style.removeProperty('background-color');
+                    label.style.removeProperty('box-shadow');
+                    console.log('❌ Removed selected class from:', muscle, label);
+                }
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+            
+            // Click on label toggles selection
+            label.addEventListener('click', (e) => {
+                e.preventDefault();
+                checkbox.checked = !checkbox.checked;
+                checkbox.dispatchEvent(new Event('change'));
+            });
+            
+            const span = document.createElement('span');
+            span.textContent = muscle;
+            
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            muscleFiltersContainer.appendChild(label);
+        });
+        
+        // Add clear button functionality for muscles
+        const clearMuscleBtn = document.getElementById('clearMuscleFilters');
+        if (clearMuscleBtn) {
+            clearMuscleBtn.addEventListener('click', () => {
+                this.selectedMuscleFilters.clear();
+                muscleFiltersContainer.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+                muscleFiltersContainer.querySelectorAll('.filter-checkbox-label').forEach(label => {
+                    label.classList.remove('selected');
+                    label.style.removeProperty('border');
+                    label.style.removeProperty('background-color');
+                    label.style.removeProperty('box-shadow');
+                });
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+        }
+        
+        // Create equipment filter checkboxes
+        equipment.forEach(eq => {
+            const label = document.createElement('label');
+            label.className = 'filter-checkbox-label';
+            
+            const checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.value = eq;
+            checkbox.className = 'filter-checkbox';
+            
+            checkbox.addEventListener('change', (e) => {
+                const primaryColor = this.settings.glowColor || '#8d0000';
+                if (e.target.checked) {
+                    this.selectedEquipmentFilters.add(eq);
+                    label.classList.add('selected');
+                    // Force inline styles with !important as fallback
+                    label.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
+                    label.style.setProperty('background-color', `${primaryColor}22`, 'important');
+                    label.style.setProperty('box-shadow', `0 0 8px ${primaryColor}66`, 'important');
+                } else {
+                    this.selectedEquipmentFilters.delete(eq);
+                    label.classList.remove('selected');
+                    // Remove inline styles
+                    label.style.removeProperty('border');
+                    label.style.removeProperty('background-color');
+                    label.style.removeProperty('box-shadow');
+                }
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+            
+            // Click on label toggles selection
+            label.addEventListener('click', (e) => {
+                e.preventDefault();
+                checkbox.checked = !checkbox.checked;
+                checkbox.dispatchEvent(new Event('change'));
+            });
+            
+            const span = document.createElement('span');
+            span.textContent = eq;
+            
+            label.appendChild(checkbox);
+            label.appendChild(span);
+            equipmentFiltersContainer.appendChild(label);
+        });
+        
+        // Add clear button functionality for equipment
+        const clearEquipmentBtn = document.getElementById('clearEquipmentFilters');
+        if (clearEquipmentBtn) {
+            clearEquipmentBtn.addEventListener('click', () => {
+                this.selectedEquipmentFilters.clear();
+                equipmentFiltersContainer.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+                equipmentFiltersContainer.querySelectorAll('.filter-checkbox-label').forEach(label => {
+                    label.classList.remove('selected');
+                    label.style.removeProperty('border');
+                    label.style.removeProperty('background-color');
+                    label.style.removeProperty('box-shadow');
+                });
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+        }
+    }
+
     constructor(menuType) {
         this.menuType = menuType;
         this.isOpen = false;
@@ -161,6 +347,10 @@ class ThumbnailDropdownMenu {
         this.activeThumbnail = null;
         this.touchStartY = 0;
         this.touchMoved = false;
+        
+        // Search filters (multi-select)
+        this.selectedMuscleFilters = new Set();
+        this.selectedEquipmentFilters = new Set();
         
         // Style settings (shared across all menus)
         // Use primary color from WordPress settings for glow, fallback to blue
@@ -249,6 +439,7 @@ class ThumbnailDropdownMenu {
                 this.updateStyles();
                 this.updateGlowStyles();
                 this.setupSearchListener();
+                this.setupSearchFilters();
                 this.updateThumbnailGlowStyles();
             }, 100);
         } catch (error) {
@@ -356,9 +547,44 @@ class ThumbnailDropdownMenu {
                 break;
                 
             case 'search':
-                // Filter exercises by search query with match metadata
+                // Start with all exercises
+                let searchResults = this.allExercises;
+                
+                // Apply muscle filters (if any selected) - ALL must match
+                if (this.selectedMuscleFilters.size > 0) {
+                    searchResults = searchResults.filter(exercise => {
+                        // Exercise must contain ALL selected muscles
+                        const exerciseMuscles = new Set();
+                        if (exercise.information?.primaryMuscle) {
+                            exerciseMuscles.add(exercise.information.primaryMuscle);
+                        }
+                        if (exercise.information?.secondaryMuscles) {
+                            exercise.information.secondaryMuscles.forEach(m => exerciseMuscles.add(m));
+                        }
+                        if (exercise.muscleGroup) {
+                            exercise.muscleGroup.forEach(m => exerciseMuscles.add(m));
+                        }
+                        
+                        // Check if ALL selected muscles are present in this exercise
+                        return Array.from(this.selectedMuscleFilters).every(selectedMuscle => 
+                            exerciseMuscles.has(selectedMuscle)
+                        );
+                    });
+                }
+                
+                // Apply equipment filters (if any selected) - ALL must match
+                if (this.selectedEquipmentFilters.size > 0) {
+                    searchResults = searchResults.filter(exercise => {
+                        // Exercise must contain ALL selected equipment
+                        return Array.from(this.selectedEquipmentFilters).every(selectedEquipment => 
+                            exercise.equipment.includes(selectedEquipment)
+                        );
+                    });
+                }
+                
+                // Apply text search query (if provided)
                 if (this.searchQuery) {
-                    this.filteredData = this.allExercises.map(exercise => {
+                    searchResults = searchResults.map(exercise => {
                         const nameMatch = exercise.name.toLowerCase().includes(this.searchQuery);
                         const muscleMatch = exercise.muscleGroup.some(m => m.toLowerCase().includes(this.searchQuery));
                         const equipmentMatch = exercise.equipment.some(e => e.toLowerCase().includes(this.searchQuery));
@@ -397,12 +623,16 @@ class ThumbnailDropdownMenu {
                             }
                         };
                     }).filter(exercise => exercise.searchMatch.type !== '');
-                    
-                    console.log(`Search found ${this.filteredData.length} exercises for: "${this.searchQuery}"`);
                 } else {
-                    // Show all exercises when search is empty
-                    this.filteredData = this.allExercises;
+                    // No text query, just add empty match data
+                    searchResults = searchResults.map(exercise => ({
+                        ...exercise,
+                        searchMatch: { type: '', text: '' }
+                    }));
                 }
+                
+                this.filteredData = searchResults;
+                console.log(`Search filtered to ${this.filteredData.length} exercises`);
                 break;
         }
         
