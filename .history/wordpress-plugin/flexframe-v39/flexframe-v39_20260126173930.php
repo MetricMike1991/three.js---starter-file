@@ -1403,7 +1403,6 @@ function flexframe_enqueue_assets() {
             /* ===== THUMBNAIL ITEMS HOVER/ACTIVE ===== */
             .thumbnail-item.active,
             .thumbnail-item:hover,
-            .thumbnail-item.touch-active,
             .menu-item.active,
             .menu-item:hover,
             .exercise-item.active,
@@ -1412,7 +1411,6 @@ function flexframe_enqueue_assets() {
                 border-color: ' . $menu_accent_color . ' !important;
             }
             .thumbnail-item.active *,
-            .thumbnail-item.touch-active *,
             .menu-item.active * {
                 color: ' . $menu_accent_color . ' !important;
             }
@@ -1767,7 +1765,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BDuStAuq.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Blt5jnLW.js',
             array(),
             FLEXFRAME_VERSION,
             true

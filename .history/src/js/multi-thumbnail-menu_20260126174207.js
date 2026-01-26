@@ -641,52 +641,17 @@ class ThumbnailDropdownMenu {
                 thumbnailElement.dataset.positionId = positionId;
                 thumbnailElement.innerHTML = thumbnailHTML;
                 
-                // Desktop click handler
-                thumbnailElement.addEventListener('click', (e) => {
+                const handleSelect = (e) => {
                     if (this.recentlyDragged && this.hasDragged) {
                         e.preventDefault();
                         e.stopPropagation();
                         return;
                     }
                     this.selectThumbnail(item);
-                });
+                };
                 
-                // Mobile touch handlers - two-touch system
-                thumbnailElement.addEventListener('touchstart', (e) => {
-                    this.touchStartY = e.touches[0].clientY;
-                    this.touchMoved = false;
-                });
-                
-                thumbnailElement.addEventListener('touchmove', (e) => {
-                    const touchY = e.touches[0].clientY;
-                    if (Math.abs(touchY - this.touchStartY) > 10) {
-                        this.touchMoved = true;
-                    }
-                });
-                
-                thumbnailElement.addEventListener('touchend', (e) => {
-                    // If user scrolled, don't do anything
-                    if (this.touchMoved) {
-                        return;
-                    }
-                    
-                    // If this thumbnail is already active, select it (second touch)
-                    if (this.activeThumbnail === thumbnailElement) {
-                        this.selectThumbnail(item);
-                        // Clear active state after selection
-                        if (this.activeThumbnail) {
-                            this.activeThumbnail.classList.remove('touch-active');
-                        }
-                        this.activeThumbnail = null;
-                    } else {
-                        // First touch - make this thumbnail active
-                        if (this.activeThumbnail) {
-                            this.activeThumbnail.classList.remove('touch-active');
-                        }
-                        this.activeThumbnail = thumbnailElement;
-                        thumbnailElement.classList.add('touch-active');
-                    }
-                });
+                thumbnailElement.addEventListener('click', handleSelect);
+                thumbnailElement.addEventListener('touchend', handleSelect);
                 if (prevNode && prevNode.nextSibling) {
                     this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
                 } else if (!prevNode && this.visibleContainer.firstChild) {
