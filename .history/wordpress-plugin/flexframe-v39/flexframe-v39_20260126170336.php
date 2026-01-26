@@ -229,8 +229,6 @@ function flexframe_enqueue_assets() {
             div#searchDropdown .search-header {
                 padding: 12px 15px !important;
                 background: rgb(20, 20, 20) !important;
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
                 border-bottom: 1px solid rgba(74, 158, 255, 0.3) !important;
                 margin: -15px -15px 10px !important;
                 border-radius: 12px 12px 0 0 !important;
@@ -674,22 +672,6 @@ function flexframe_enqueue_assets() {
                     border: 1px solid #0516ff !important;
                 }
             }
-            
-            /* Desktop/Tablet: Remove margins from search input and button */
-            @media screen and (min-width: 769px) {
-                #flexframe-viewer-container .search-input,
-                #flexframe-viewer-container input.search-input,
-                #flexframe-viewer-container #searchInput,
-                #flexframe-viewer-container input#searchInput,
-                .thumbnail-dropdown .search-input,
-                .search-header .search-input {
-                    margin: 0 !important;
-                }
-                #flexframe-viewer-container .search-action-btn,
-                .thumbnail-dropdown .search-action-btn {
-                    margin: 0 !important;
-                }
-            }
         ';
         
         // If this is a dedicated FlexFrame viewer page, hide all WordPress theme elements
@@ -1031,9 +1013,7 @@ function flexframe_enqueue_assets() {
             /* ===== SEARCH HEADER - USE MENU BACKGROUND COLOR ===== */
             #flexframe-viewer-container .search-header,
             .thumbnail-dropdown .search-header {
-                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
+                background: rgba(20, 20, 20, 1) !important;
                 border-bottom-color: ' . $menu_accent_color . '66 !important;
             }
             
@@ -1225,6 +1205,7 @@ function flexframe_enqueue_assets() {
             #searchDropdown.show,
             .search-dropdown.show {
                 border-color: ' . $menu_accent_color . ' !important;
+                outline: 2px solid ' . $menu_accent_color . ' !important;
             }
             /* Search suggestions dropdown */
             #flexframe-viewer-container .search-suggestions,
@@ -1302,9 +1283,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container #searchDropdown .search-header:focus-within,
             .thumbnail-dropdown .search-header:focus-within,
             div#searchDropdown .search-header:focus-within {
-                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
-                backdrop-filter: blur(10px) !important;
-                -webkit-backdrop-filter: blur(10px) !important;
+                background: rgb(20, 20, 20) !important;
                 opacity: 1 !important;
             }
             
@@ -1767,7 +1746,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-D0SwAM-B.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B9Df7sgk.js',
             array(),
             FLEXFRAME_VERSION,
             true
