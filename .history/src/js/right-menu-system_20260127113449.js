@@ -495,11 +495,11 @@ export class RightMenuSystem {
         // Update mobile consolidated menu
         const consolidatedSections = [];
         
-        // Order: Exercise Information, Setup Guide, How To Guide, Alternative Exercises
+        // Order: Exercise Information, How To Guide, Exercise Tips, Alternative Exercises
         const tabOrder = [
             { key: 'exerciseInformation', title: 'Exercise Information' },
-            { key: 'setupGuide', title: 'Exercise Tips' },
             { key: 'howToGuide', title: 'How To Guide' },
+            { key: 'setupGuide', title: 'Exercise Tips' },
             { key: 'alternativeExercises', title: 'Alternative Exercises' }
         ];
         

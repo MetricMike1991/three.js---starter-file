@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.116
+ * Version: 1.39.110
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -919,24 +919,6 @@ function flexframe_enqueue_assets() {
                     background-color: #0516ff22 !important;
                     border-color: #0516ff !important;
                     border: 1px solid #0516ff !important;
-                }
-                /* Mobile: Reduce font sizes for info menu by 5px */
-                #flexframe-viewer-container .info-sticky-header,
-                .thumbnail-dropdown-right .info-sticky-header,
-                .info-sticky-header {
-                    font-size: clamp(4px, 3.43vw, 13px) !important;
-                }
-                #flexframe-viewer-container .info-step-title,
-                .thumbnail-dropdown-right .info-step-title,
-                .info-step-item .info-step-title,
-                .info-step-title {
-                    font-size: clamp(4px, 3.43vw, 13px) !important;
-                }
-                #flexframe-viewer-container .info-step-text,
-                .thumbnail-dropdown-right .info-step-text,
-                .info-step-item .info-step-text,
-                .info-step-text {
-                    font-size: clamp(3px, 2.86vw, 11px) !important;
                 }
             }
             
@@ -2095,17 +2077,14 @@ function flexframe_enqueue_assets() {
                 backdrop-filter: blur(20px) !important;
                 -webkit-backdrop-filter: blur(20px) !important;
                 border-bottom: 2px solid ' . $menu_accent_color . ' !important;
-                padding: 5px !important;
+                padding: 12px 16px !important;
                 text-align: center !important;
                 font-size: clamp(9px, 3.43vw, 18px) !important;
                 font-weight: 700 !important;
                 color: ' . $menu_accent_color . ' !important;
                 text-transform: uppercase !important;
                 letter-spacing: 1px !important;
-                margin: -10px 0px 10px 0px !important;
-                white-space: normal !important;
-                word-wrap: break-word !important;
-                overflow-wrap: break-word !important;
+                margin: 0 !important;
             }
             /* Ensure all text inside info items is solid color, not transparent */
             #flexframe-viewer-container .info-step-item *,
@@ -2250,7 +2229,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C1Bml4fu.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DgtZ3KeQ.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2803,6 +2782,7 @@ function flexframe_viewer_shortcode($atts) {
             <!-- Info1 Menu -->
             <div class="thumbnail-menu-wrapper desktop-only">
                 <button class="thumbnail-menu-toggle" id="info1Toggle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>How To Guide</span>
                 </button>
                 <div class="thumbnail-dropdown-right" id="info1Dropdown">
@@ -2836,6 +2816,7 @@ function flexframe_viewer_shortcode($atts) {
             <!-- Info3 Menu -->
             <div class="thumbnail-menu-wrapper desktop-only">
                 <button class="thumbnail-menu-toggle" id="info3Toggle">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>Exercise Tips</span>
                 </button>
                 <div class="thumbnail-dropdown-right" id="info3Dropdown">

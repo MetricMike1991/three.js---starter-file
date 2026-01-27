@@ -13,7 +13,6 @@ class RightMenuDropdown {
         this.infoData = []; // Store information items
         this.stickyHeader = null; // Dynamic header for mobile info menu
         this.currentSectionTitle = ''; // Track current section
-        this.sectionBoundaries = []; // Track section start positions for mobile
         
         // Style settings (shared across all menus)
         this.settings = {
@@ -229,25 +228,24 @@ class RightMenuDropdown {
     updateStickyHeader() {
         if (!this.stickyHeader || !this.scrollContainer || !this.grid) return;
         
-        // Get all items with section data attributes
-        const items = this.grid.querySelectorAll('[data-section]');
-        if (items.length === 0) return;
+        // Get all section headers
+        const headers = this.grid.querySelectorAll('.info-section-header');
+        if (headers.length === 0) return;
         
+        // Get scroll position relative to container
+        const scrollTop = this.scrollContainer.scrollTop;
         const containerTop = this.scrollContainer.getBoundingClientRect().top;
         
-        // Find which section is currently in view (first item at or past the sticky header)
-        let currentSection = items[0].getAttribute('data-section') || 'Exercise Information';
+        // Find which section is currently in view
+        let currentSection = headers[0].getAttribute('data-section-title') || 'Exercise Information';
         
-        items.forEach(item => {
-            const rect = item.getBoundingClientRect();
-            const itemTop = rect.top - containerTop;
+        headers.forEach(header => {
+            const rect = header.getBoundingClientRect();
+            const headerTop = rect.top - containerTop;
             
-            // If item is at or past the sticky header position (allowing some offset)
-            if (itemTop <= 80) {
-                const section = item.getAttribute('data-section');
-                if (section) {
-                    currentSection = section;
-                }
+            // If header is above or at the sticky header position
+            if (headerTop <= 60) {
+                currentSection = header.getAttribute('data-section-title') || currentSection;
             }
         });
         
@@ -269,17 +267,11 @@ class RightMenuDropdown {
             return;
         }
         
-        // Track section boundaries for mobile sticky header
-        let currentSectionTitle = '';
-        
         sections.forEach(section => {
             const itemDiv = document.createElement('div');
             
             // Check if this is a header section
             if (section.type === 'header') {
-                // Track section title for mobile
-                currentSectionTitle = section.title;
-                
                 // Skip header sections on mobile consolidated menu (we have sticky header instead)
                 if (this.menuType === 'info') {
                     return;
@@ -293,11 +285,6 @@ class RightMenuDropdown {
                     <div class="info-step-title">${section.heading || ''}</div>
                     <div class="info-step-text">${section.content || ''}</div>
                 `;
-                
-                // For mobile, mark the element with its section
-                if (this.menuType === 'info' && currentSectionTitle) {
-                    itemDiv.setAttribute('data-section', currentSectionTitle);
-                }
             }
             
             this.grid.appendChild(itemDiv);
@@ -495,11 +482,11 @@ export class RightMenuSystem {
         // Update mobile consolidated menu
         const consolidatedSections = [];
         
-        // Order: Exercise Information, Setup Guide, How To Guide, Alternative Exercises
+        // Order: Exercise Information, How To Guide, Exercise Tips, Alternative Exercises
         const tabOrder = [
             { key: 'exerciseInformation', title: 'Exercise Information' },
-            { key: 'setupGuide', title: 'Exercise Tips' },
             { key: 'howToGuide', title: 'How To Guide' },
+            { key: 'setupGuide', title: 'Exercise Tips' },
             { key: 'alternativeExercises', title: 'Alternative Exercises' }
         ];
         
