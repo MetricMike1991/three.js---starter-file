@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.109
+ * Version: 1.39.86
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.108');
+define('FLEXFRAME_VERSION', '1.39.86');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -559,199 +559,49 @@ function flexframe_enqueue_assets() {
             }
             
             @media screen and (max-width: 768px) {
-                /* Reposition thumbnail-grid-container to top left for search only */
+                /* Hide entire thumbnail-grid-container on mobile */
                 #flexframe-viewer-container .thumbnail-grid-container,
                 .thumbnail-grid-container {
-                    position: fixed !important;
-                    left: 8px !important;
-                    top: 8px !important;
-                    width: auto !important;
-                    gap: 0 !important;
-                    display: flex !important;
-                    flex-direction: row !important;
-                }
-                /* Hide all menu wrappers except search on mobile */
-                .thumbnail-grid-container .thumbnail-menu-wrapper {
                     display: none !important;
                 }
-                .thumbnail-grid-container .thumbnail-menu-wrapper:has(#searchToggle) {
-                    display: block !important;
-                }
-                /* Right side menu container - simplified for mobile */
                 #flexframe-viewer-container .thumbnail-grid-container-right {
-                    width: auto !important;
+                    width: 110px !important;
                     right: 8px !important;
                     top: 8px !important;
-                    gap: 0 !important;
-                    display: flex !important;
-                    flex-direction: column !important;
-                    background: transparent !important;
+                    gap: 4px !important;
                 }
                 #flexframe-viewer-container .thumbnail-grid-container-right:hover,
                 #flexframe-viewer-container .thumbnail-grid-container-right.menu-visible,
                 #flexframe-viewer-container .thumbnail-grid-container-right.menu-active {
                     right: 8px !important;
-                    transform: none !important;
                 }
                 /* Hide hint tabs on mobile */
                 .menu-hint-tab,
                 .menu-hint-tab-right {
                     display: none !important;
                 }
-                /* Position and style Search button for mobile */
-                #flexframe-viewer-container #searchToggle,
-                #flexframe-viewer-container button#searchToggle,
-                .thumbnail-grid-container #searchToggle,
-                button.thumbnail-menu-toggle#searchToggle {
-                    width: 32px !important;
-                    height: 32px !important;
-                    min-height: 32px !important;
-                    max-height: 32px !important;
-                    padding: 0 !important;
-                    font-size: 0 !important;
-                    font-weight: 700 !important;
-                    line-height: 1 !important;
-                    box-sizing: border-box !important;
-                    display: flex !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    gap: 0 !important;
-                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.25) !important;
-                    backdrop-filter: blur(20px) saturate(180%) !important;
-                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-                    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-                    border-radius: 50% !important;
-                    color: #ffffff !important;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
-                    box-shadow: 0 2px 10px var(--flexframe-primary-color, rgba(0, 0, 0, 0.3)), 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
-                    transition: all 0.2s ease !important;
-                }
-                #flexframe-viewer-container #searchToggle:hover,
-                #flexframe-viewer-container button#searchToggle:hover,
-                .thumbnail-grid-container #searchToggle:hover,
-                #flexframe-viewer-container #searchToggle:active,
-                #flexframe-viewer-container button#searchToggle:active,
-                .thumbnail-grid-container #searchToggle:active {
-                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.35) !important;
-                    border-color: rgba(255, 255, 255, 0.35) !important;
-                    box-shadow: 0 4px 16px var(--flexframe-primary-color, rgba(0, 0, 0, 0.4)), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
-                    transform: translateY(-1px) !important;
-                }
-                #flexframe-viewer-container #searchToggle span {
-                    display: none !important;
-                }
-                #flexframe-viewer-container #searchToggle svg,
-                button.thumbnail-menu-toggle#searchToggle svg {
-                    width: 18px !important;
-                    height: 18px !important;
-                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
-                }
-                /* Position right menu container with single info button */
-                .thumbnail-grid-container-right.mobile-only,
-                #flexframe-viewer-container .thumbnail-grid-container-right.mobile-only {
+                /* Position Search button in top left on mobile */
+                #searchToggle {
                     position: fixed !important;
-                    right: 8px !important;
+                    left: 8px !important;
                     top: 8px !important;
-                    width: auto !important;
-                    z-index: 99999 !important;
-                }
-                /* Position and style Info button for mobile (right side) */
-                #flexframe-viewer-container #infoToggle,
-                #flexframe-viewer-container button#infoToggle,
-                .thumbnail-grid-container-right #infoToggle,
-                button.thumbnail-menu-toggle#infoToggle {
-                    width: 32px !important;
+                    z-index: 1001 !important;
                     height: 32px !important;
                     min-height: 32px !important;
                     max-height: 32px !important;
-                    padding: 0 !important;
-                    font-size: 0 !important;
+                    padding: 0 12px !important;
+                    font-size: 11px !important;
                     font-weight: 700 !important;
                     line-height: 1 !important;
                     box-sizing: border-box !important;
                     display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
-                    gap: 0 !important;
-                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.25) !important;
-                    backdrop-filter: blur(20px) saturate(180%) !important;
-                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-                    border: 1px solid rgba(255, 255, 255, 0.25) !important;
-                    border-radius: 50% !important;
-                    color: #ffffff !important;
-                    fill: #ffffff !important;
-                    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
-                    box-shadow: 0 2px 10px var(--flexframe-primary-color, rgba(0, 0, 0, 0.3)), 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
-                    transition: all 0.2s ease !important;
-                    z-index: 99999 !important;
-                    position: relative !important;
+                    gap: 6px !important;
                 }
-                #flexframe-viewer-container #infoToggle:hover,
-                #flexframe-viewer-container button#infoToggle:hover,
-                .thumbnail-grid-container-right #infoToggle:hover,
-                #flexframe-viewer-container #infoToggle:active,
-                #flexframe-viewer-container button#infoToggle:active,
-                .thumbnail-grid-container-right #infoToggle:active,
-                #flexframe-viewer-container #infoToggle.active,
-                #flexframe-viewer-container button#infoToggle.active,
-                .thumbnail-grid-container-right #infoToggle.active {
-                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.35) !important;
-                    border-color: rgba(255, 255, 255, 0.35) !important;
-                    box-shadow: 0 4px 16px var(--flexframe-primary-color, rgba(0, 0, 0, 0.4)), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
-                    transform: translateY(-1px) !important;
-                    color: #ffffff !important;
-                    fill: #ffffff !important;
-                }
-                #flexframe-viewer-container #infoToggle span,
-                #flexframe-viewer-container #infoToggle.active span {
-                    display: none !important;
-                }
-                #flexframe-viewer-container #infoToggle svg,
-                button.thumbnail-menu-toggle#infoToggle svg,
-                #flexframe-viewer-container #infoToggle:hover svg,
-                #flexframe-viewer-container #infoToggle:active svg,
-                #flexframe-viewer-container #infoToggle.active svg,
-                #flexframe-viewer-container button#infoToggle.active svg,
-                .thumbnail-grid-container-right #infoToggle.active svg {
-                    width: 18px !important;
-                    height: 18px !important;
-                    fill: #ffffff !important;
-                    color: #ffffff !important;
-                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
-                    opacity: 1 !important;
-                    visibility: visible !important;
-                }
-                #flexframe-viewer-container #infoToggle svg path,
-                button.thumbnail-menu-toggle#infoToggle svg path,
-                #flexframe-viewer-container #infoToggle:hover svg path,
-                #flexframe-viewer-container #infoToggle:active svg path,
-                #flexframe-viewer-container #infoToggle.active svg path,
-                #flexframe-viewer-container button#infoToggle.active svg path,
-                .thumbnail-grid-container-right #infoToggle.active svg path {
-                    fill: #ffffff !important;
-                    color: #ffffff !important;
-                    opacity: 1 !important;
-                    visibility: visible !important;
-                    display: block !important;
-                }
-                /* Hide desktop right menus on mobile, show mobile consolidated menu */
-                #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-wrapper.desktop-only,
-                .thumbnail-grid-container-right .thumbnail-menu-wrapper.desktop-only,
-                #flexframe-viewer-container .thumbnail-grid-container-right .desktop-only,
-                .thumbnail-grid-container-right .desktop-only {
-                    display: none !important;
-                    visibility: hidden !important;
-                    opacity: 0 !important;
-                    pointer-events: none !important;
-                }
-                #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-wrapper.mobile-only,
-                .thumbnail-grid-container-right .thumbnail-menu-wrapper.mobile-only,
-                #flexframe-viewer-container .thumbnail-grid-container-right .mobile-only,
-                .thumbnail-grid-container-right .mobile-only {
-                    display: block !important;
-                    visibility: visible !important;
-                    opacity: 1 !important;
-                    pointer-events: auto !important;
+                #searchToggle svg {
+                    width: 16px !important;
+                    height: 16px !important;
                 }
                 /* Smaller menu buttons */
                 .thumbnail-menu-toggle {
@@ -925,15 +775,15 @@ function flexframe_enqueue_assets() {
             @media screen and (max-width: 480px) {
                 #flexframe-viewer-container .thumbnail-grid-container {
                     width: 95px !important;
-                    left: 10px !important;
-                    top: 10px !important;
+                    left: 5px !important;
+                    top: 5px !important;
                     gap: 3px !important;
                 }
                 #flexframe-viewer-container .thumbnail-grid-container-right {
-                    width: auto !important;
-                    right: 10px !important;
-                    top: 10px !important;
-                    gap: 0 !important;
+                    width: 95px !important;
+                    right: 5px !important;
+                    top: 5px !important;
+                    gap: 3px !important;
                 }
                 .thumbnail-menu-toggle {
                     height: 34px !important;
@@ -1911,13 +1761,6 @@ function flexframe_enqueue_assets() {
             }
             
             /* ===== RIGHT SIDE MENU SYSTEM ===== */
-            /* Desktop: show 4 separate menus, hide mobile consolidated menu */
-            .thumbnail-grid-container-right .desktop-only {
-                display: block !important;
-            }
-            .thumbnail-grid-container-right .mobile-only {
-                display: none !important;
-            }
             /* Right menu container */
             #flexframe-viewer-container .thumbnail-grid-container-right,
             .thumbnail-grid-container-right {
@@ -2045,28 +1888,6 @@ function flexframe_enqueue_assets() {
                 -webkit-backdrop-filter: blur(50px) !important;
                 border-color: ' . $menu_accent_color . '44 !important;
                 color: ' . $menu_text_color . ' !important;
-            }
-            /* Section headers - larger, bolder styling */
-            #flexframe-viewer-container .info-section-header,
-            .thumbnail-dropdown-right .info-section-header,
-            .info-section-header {
-                background: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.5) !important;
-                backdrop-filter: blur(50px) !important;
-                -webkit-backdrop-filter: blur(50px) !important;
-                border: 2px solid ' . $menu_accent_color . ' !important;
-                padding: 16px !important;
-                margin: 12px 8px !important;
-                border-radius: 12px !important;
-                text-align: center !important;
-            }
-            #flexframe-viewer-container .info-section-title,
-            .thumbnail-dropdown-right .info-section-title,
-            .info-section-title {
-                font-size: 18px !important;
-                font-weight: 700 !important;
-                color: ' . $menu_accent_color . ' !important;
-                text-transform: uppercase !important;
-                letter-spacing: 1px !important;
             }
             /* Ensure all text inside info items is solid color, not transparent */
             #flexframe-viewer-container .info-step-item *,
@@ -2211,7 +2032,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index--fTq3rz4.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-NvJ6kjK0.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2760,9 +2581,8 @@ function flexframe_viewer_shortcode($atts) {
                 </svg>
             </div>
             
-            <!-- Desktop: 4 separate buttons (hidden on mobile) -->
             <!-- Info1 Menu -->
-            <div class="thumbnail-menu-wrapper desktop-only">
+            <div class="thumbnail-menu-wrapper">
                 <button class="thumbnail-menu-toggle" id="info1Toggle">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>How To Guide</span>
@@ -2779,7 +2599,7 @@ function flexframe_viewer_shortcode($atts) {
             </div>
             
             <!-- Info2 Menu -->
-            <div class="thumbnail-menu-wrapper desktop-only">
+            <div class="thumbnail-menu-wrapper">
                 <button class="thumbnail-menu-toggle" id="info2Toggle">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>Exercise Information</span>
@@ -2796,7 +2616,7 @@ function flexframe_viewer_shortcode($atts) {
             </div>
             
             <!-- Info3 Menu -->
-            <div class="thumbnail-menu-wrapper desktop-only">
+            <div class="thumbnail-menu-wrapper">
                 <button class="thumbnail-menu-toggle" id="info3Toggle">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>Exercise Tips</span>
@@ -2813,7 +2633,7 @@ function flexframe_viewer_shortcode($atts) {
             </div>
             
             <!-- Info4 Menu -->
-            <div class="thumbnail-menu-wrapper desktop-only">
+            <div class="thumbnail-menu-wrapper">
                 <button class="thumbnail-menu-toggle" id="info4Toggle">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>Alternative Exercises</span>
@@ -2825,23 +2645,6 @@ function flexframe_viewer_shortcode($atts) {
                     </div>
                     <div class="thumbnail-scroll-container" id="info4Container">
                         <div class="thumbnail-grid" id="info4Grid"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Mobile: Single consolidated button (hidden on desktop) -->
-            <div class="thumbnail-menu-wrapper mobile-only">
-                <button class="thumbnail-menu-toggle" id="infoToggle">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff" style="fill: #ffffff !important;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="#ffffff" style="fill: #ffffff !important;"/></svg>
-                    <span>Exercise Info</span>
-                </button>
-                <div class="thumbnail-dropdown-right" id="infoDropdown">
-                    <div class="thumbnail-scroll-controls">
-                        <button class="scroll-btn" id="infoScrollUp"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 14l5-5 5 5z"/></svg></button>
-                        <button class="scroll-btn" id="infoScrollDown"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg></button>
-                    </div>
-                    <div class="thumbnail-scroll-container" id="infoContainer">
-                        <div class="thumbnail-grid" id="infoGrid"></div>
                     </div>
                 </div>
             </div>

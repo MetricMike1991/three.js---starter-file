@@ -85,9 +85,22 @@ class RightMenuDropdown {
     setupEventListeners() {
         if (!this.toggleBtn) return;
 
+        // Debug: Log button state on mobile info button
+        if (this.menuType === 'info') {
+            console.log('[RightMenu DEBUG] Info button initialized:', this.toggleBtn);
+            console.log('[RightMenu DEBUG] Info button SVG:', this.toggleBtn.querySelector('svg'));
+            console.log('[RightMenu DEBUG] Info button SVG path:', this.toggleBtn.querySelector('svg path'));
+        }
+
         // Toggle menu
         this.toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (this.menuType === 'info') {
+                console.log('[RightMenu DEBUG] Info button clicked, isOpen:', this.isOpen);
+                console.log('[RightMenu DEBUG] Button classes:', this.toggleBtn.className);
+                console.log('[RightMenu DEBUG] SVG fill:', this.toggleBtn.querySelector('svg')?.getAttribute('fill'));
+                console.log('[RightMenu DEBUG] SVG path fill:', this.toggleBtn.querySelector('svg path')?.getAttribute('fill'));
+            }
             this.toggleMenu();
         });
 
@@ -182,19 +195,7 @@ class RightMenuDropdown {
     updateTitle(newTitle) {
         // Update the toggle button text
         if (this.toggleBtn) {
-            // Preserve SVG icon if it exists (mobile info button)
-            const svg = this.toggleBtn.querySelector('svg');
-            if (svg) {
-                // Clone the SVG to preserve it
-                const svgClone = svg.cloneNode(true);
-                // Update text content (this removes SVG)
-                this.toggleBtn.textContent = newTitle;
-                // Re-append the SVG
-                this.toggleBtn.appendChild(svgClone);
-            } else {
-                // No SVG, just update text
-                this.toggleBtn.textContent = newTitle;
-            }
+            this.toggleBtn.textContent = newTitle;
         }
     }
     

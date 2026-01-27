@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.109
+ * Version: 1.39.103
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.108');
+define('FLEXFRAME_VERSION', '1.39.103');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -653,7 +653,6 @@ function flexframe_enqueue_assets() {
                     right: 8px !important;
                     top: 8px !important;
                     width: auto !important;
-                    z-index: 99999 !important;
                 }
                 /* Position and style Info button for mobile (right side) */
                 #flexframe-viewer-container #infoToggle,
@@ -683,8 +682,6 @@ function flexframe_enqueue_assets() {
                     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
                     box-shadow: 0 2px 10px var(--flexframe-primary-color, rgba(0, 0, 0, 0.3)), 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
                     transition: all 0.2s ease !important;
-                    z-index: 99999 !important;
-                    position: relative !important;
                 }
                 #flexframe-viewer-container #infoToggle:hover,
                 #flexframe-viewer-container button#infoToggle:hover,
@@ -700,39 +697,28 @@ function flexframe_enqueue_assets() {
                     box-shadow: 0 4px 16px var(--flexframe-primary-color, rgba(0, 0, 0, 0.4)), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
                     transform: translateY(-1px) !important;
                     color: #ffffff !important;
-                    fill: #ffffff !important;
                 }
-                #flexframe-viewer-container #infoToggle span,
-                #flexframe-viewer-container #infoToggle.active span {
+                #flexframe-viewer-container #infoToggle span {
                     display: none !important;
                 }
                 #flexframe-viewer-container #infoToggle svg,
                 button.thumbnail-menu-toggle#infoToggle svg,
                 #flexframe-viewer-container #infoToggle:hover svg,
                 #flexframe-viewer-container #infoToggle:active svg,
-                #flexframe-viewer-container #infoToggle.active svg,
-                #flexframe-viewer-container button#infoToggle.active svg,
-                .thumbnail-grid-container-right #infoToggle.active svg {
+                #flexframe-viewer-container #infoToggle.active svg {
                     width: 18px !important;
                     height: 18px !important;
                     fill: #ffffff !important;
                     color: #ffffff !important;
                     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
-                    opacity: 1 !important;
-                    visibility: visible !important;
                 }
                 #flexframe-viewer-container #infoToggle svg path,
                 button.thumbnail-menu-toggle#infoToggle svg path,
                 #flexframe-viewer-container #infoToggle:hover svg path,
                 #flexframe-viewer-container #infoToggle:active svg path,
-                #flexframe-viewer-container #infoToggle.active svg path,
-                #flexframe-viewer-container button#infoToggle.active svg path,
-                .thumbnail-grid-container-right #infoToggle.active svg path {
+                #flexframe-viewer-container #infoToggle.active svg path {
                     fill: #ffffff !important;
                     color: #ffffff !important;
-                    opacity: 1 !important;
-                    visibility: visible !important;
-                    display: block !important;
                 }
                 /* Hide desktop right menus on mobile, show mobile consolidated menu */
                 #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-wrapper.desktop-only,
@@ -2211,7 +2197,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index--fTq3rz4.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BmlpIHgT.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2832,7 +2818,7 @@ function flexframe_viewer_shortcode($atts) {
             <!-- Mobile: Single consolidated button (hidden on desktop) -->
             <div class="thumbnail-menu-wrapper mobile-only">
                 <button class="thumbnail-menu-toggle" id="infoToggle">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff" style="fill: #ffffff !important;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="#ffffff" style="fill: #ffffff !important;"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>Exercise Info</span>
                 </button>
                 <div class="thumbnail-dropdown-right" id="infoDropdown">

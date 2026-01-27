@@ -88,6 +88,12 @@ class RightMenuDropdown {
         // Toggle menu
         this.toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (this.menuType === 'info') {
+                console.log('[RightMenu DEBUG] Info button clicked, isOpen:', this.isOpen);
+                console.log('[RightMenu DEBUG] Button classes:', this.toggleBtn.className);
+                console.log('[RightMenu DEBUG] SVG fill:', this.toggleBtn.querySelector('svg')?.getAttribute('fill'));
+                console.log('[RightMenu DEBUG] SVG path fill:', this.toggleBtn.querySelector('svg path')?.getAttribute('fill'));
+            }
             this.toggleMenu();
         });
 

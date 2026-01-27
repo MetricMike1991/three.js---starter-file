@@ -182,19 +182,7 @@ class RightMenuDropdown {
     updateTitle(newTitle) {
         // Update the toggle button text
         if (this.toggleBtn) {
-            // Preserve SVG icon if it exists (mobile info button)
-            const svg = this.toggleBtn.querySelector('svg');
-            if (svg) {
-                // Clone the SVG to preserve it
-                const svgClone = svg.cloneNode(true);
-                // Update text content (this removes SVG)
-                this.toggleBtn.textContent = newTitle;
-                // Re-append the SVG
-                this.toggleBtn.appendChild(svgClone);
-            } else {
-                // No SVG, just update text
-                this.toggleBtn.textContent = newTitle;
-            }
+            this.toggleBtn.textContent = newTitle;
         }
     }
     

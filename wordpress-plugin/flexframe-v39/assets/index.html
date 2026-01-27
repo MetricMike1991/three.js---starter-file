@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three.js 3D Viewer</title>
-  <script type="module" crossorigin src="/assets/index-DKuAzA9b.js"></script>
+  <script type="module" crossorigin src="/assets/index-CAHcZ381.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-B1llFYUE.css">
 </head>
 <body>
@@ -229,8 +229,8 @@
         <!-- Hover hint tab -->
         <div class="menu-hint-tab-right"></div>
         
-        <!-- Top Row -->
-        <div class="thumbnail-menu-wrapper">
+        <!-- Desktop: 4 separate buttons (hidden on mobile) -->
+        <div class="thumbnail-menu-wrapper desktop-only">
             <button class="thumbnail-menu-toggle" id="info1Toggle">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -256,7 +256,7 @@
             </div>
         </div>
 
-        <div class="thumbnail-menu-wrapper">
+        <div class="thumbnail-menu-wrapper desktop-only">
             <button class="thumbnail-menu-toggle" id="info2Toggle">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -282,8 +282,7 @@
             </div>
         </div>
 
-        <!-- Bottom Row -->
-        <div class="thumbnail-menu-wrapper">
+        <div class="thumbnail-menu-wrapper desktop-only">
             <button class="thumbnail-menu-toggle" id="info3Toggle">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -309,7 +308,7 @@
             </div>
         </div>
 
-        <div class="thumbnail-menu-wrapper">
+        <div class="thumbnail-menu-wrapper desktop-only">
             <button class="thumbnail-menu-toggle" id="info4Toggle">
                 <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                     <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
@@ -331,6 +330,33 @@
                 </div>
                 <div class="thumbnail-scroll-container" id="info4Container">
                     <div class="thumbnail-grid" id="info4Grid"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile: Single consolidated button (hidden on desktop) -->
+        <div class="thumbnail-menu-wrapper mobile-only">
+            <button class="thumbnail-menu-toggle" id="infoToggle">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/>
+                </svg>
+                <span>Exercise Info</span>
+            </button>
+            <div class="thumbnail-dropdown-right" id="infoDropdown">
+                <div class="thumbnail-scroll-controls">
+                    <button class="scroll-btn" id="infoScrollUp">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 14l5-5 5 5z"/>
+                        </svg>
+                    </button>
+                    <button class="scroll-btn" id="infoScrollDown">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M7 10l5 5 5-5z"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="thumbnail-scroll-container" id="infoContainer">
+                    <div class="thumbnail-grid" id="infoGrid"></div>
                 </div>
             </div>
         </div>

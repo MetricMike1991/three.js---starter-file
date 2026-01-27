@@ -85,9 +85,22 @@ class RightMenuDropdown {
     setupEventListeners() {
         if (!this.toggleBtn) return;
 
+        // Debug: Log button state on mobile info button
+        if (this.menuType === 'info') {
+            console.log('[RightMenu DEBUG] Info button initialized:', this.toggleBtn);
+            console.log('[RightMenu DEBUG] Info button SVG:', this.toggleBtn.querySelector('svg'));
+            console.log('[RightMenu DEBUG] Info button SVG path:', this.toggleBtn.querySelector('svg path'));
+        }
+
         // Toggle menu
         this.toggleBtn.addEventListener('click', (e) => {
             e.stopPropagation();
+            if (this.menuType === 'info') {
+                console.log('[RightMenu DEBUG] Info button clicked, isOpen:', this.isOpen);
+                console.log('[RightMenu DEBUG] Button classes:', this.toggleBtn.className);
+                console.log('[RightMenu DEBUG] SVG fill:', this.toggleBtn.querySelector('svg')?.getAttribute('fill'));
+                console.log('[RightMenu DEBUG] SVG path fill:', this.toggleBtn.querySelector('svg path')?.getAttribute('fill'));
+            }
             this.toggleMenu();
         });
 

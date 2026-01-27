@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.109
+ * Version: 1.39.100
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.108');
+define('FLEXFRAME_VERSION', '1.39.100');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -577,21 +577,16 @@ function flexframe_enqueue_assets() {
                 .thumbnail-grid-container .thumbnail-menu-wrapper:has(#searchToggle) {
                     display: block !important;
                 }
-                /* Right side menu container - simplified for mobile */
                 #flexframe-viewer-container .thumbnail-grid-container-right {
-                    width: auto !important;
+                    width: 110px !important;
                     right: 8px !important;
                     top: 8px !important;
-                    gap: 0 !important;
-                    display: flex !important;
-                    flex-direction: column !important;
-                    background: transparent !important;
+                    gap: 4px !important;
                 }
                 #flexframe-viewer-container .thumbnail-grid-container-right:hover,
                 #flexframe-viewer-container .thumbnail-grid-container-right.menu-visible,
                 #flexframe-viewer-container .thumbnail-grid-container-right.menu-active {
                     right: 8px !important;
-                    transform: none !important;
                 }
                 /* Hide hint tabs on mobile */
                 .menu-hint-tab,
@@ -646,15 +641,6 @@ function flexframe_enqueue_assets() {
                     height: 18px !important;
                     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
                 }
-                /* Position right menu container with single info button */
-                .thumbnail-grid-container-right.mobile-only,
-                #flexframe-viewer-container .thumbnail-grid-container-right.mobile-only {
-                    position: fixed !important;
-                    right: 8px !important;
-                    top: 8px !important;
-                    width: auto !important;
-                    z-index: 99999 !important;
-                }
                 /* Position and style Info button for mobile (right side) */
                 #flexframe-viewer-container #infoToggle,
                 #flexframe-viewer-container button#infoToggle,
@@ -679,60 +665,29 @@ function flexframe_enqueue_assets() {
                     border: 1px solid rgba(255, 255, 255, 0.25) !important;
                     border-radius: 50% !important;
                     color: #ffffff !important;
-                    fill: #ffffff !important;
                     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
                     box-shadow: 0 2px 10px var(--flexframe-primary-color, rgba(0, 0, 0, 0.3)), 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
                     transition: all 0.2s ease !important;
-                    z-index: 99999 !important;
-                    position: relative !important;
                 }
                 #flexframe-viewer-container #infoToggle:hover,
                 #flexframe-viewer-container button#infoToggle:hover,
                 .thumbnail-grid-container-right #infoToggle:hover,
                 #flexframe-viewer-container #infoToggle:active,
                 #flexframe-viewer-container button#infoToggle:active,
-                .thumbnail-grid-container-right #infoToggle:active,
-                #flexframe-viewer-container #infoToggle.active,
-                #flexframe-viewer-container button#infoToggle.active,
-                .thumbnail-grid-container-right #infoToggle.active {
+                .thumbnail-grid-container-right #infoToggle:active {
                     background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.35) !important;
                     border-color: rgba(255, 255, 255, 0.35) !important;
                     box-shadow: 0 4px 16px var(--flexframe-primary-color, rgba(0, 0, 0, 0.4)), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
                     transform: translateY(-1px) !important;
-                    color: #ffffff !important;
-                    fill: #ffffff !important;
                 }
-                #flexframe-viewer-container #infoToggle span,
-                #flexframe-viewer-container #infoToggle.active span {
+                #flexframe-viewer-container #infoToggle span {
                     display: none !important;
                 }
                 #flexframe-viewer-container #infoToggle svg,
-                button.thumbnail-menu-toggle#infoToggle svg,
-                #flexframe-viewer-container #infoToggle:hover svg,
-                #flexframe-viewer-container #infoToggle:active svg,
-                #flexframe-viewer-container #infoToggle.active svg,
-                #flexframe-viewer-container button#infoToggle.active svg,
-                .thumbnail-grid-container-right #infoToggle.active svg {
+                button.thumbnail-menu-toggle#infoToggle svg {
                     width: 18px !important;
                     height: 18px !important;
-                    fill: #ffffff !important;
-                    color: #ffffff !important;
                     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
-                    opacity: 1 !important;
-                    visibility: visible !important;
-                }
-                #flexframe-viewer-container #infoToggle svg path,
-                button.thumbnail-menu-toggle#infoToggle svg path,
-                #flexframe-viewer-container #infoToggle:hover svg path,
-                #flexframe-viewer-container #infoToggle:active svg path,
-                #flexframe-viewer-container #infoToggle.active svg path,
-                #flexframe-viewer-container button#infoToggle.active svg path,
-                .thumbnail-grid-container-right #infoToggle.active svg path {
-                    fill: #ffffff !important;
-                    color: #ffffff !important;
-                    opacity: 1 !important;
-                    visibility: visible !important;
-                    display: block !important;
                 }
                 /* Hide desktop right menus on mobile, show mobile consolidated menu */
                 #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-wrapper.desktop-only,
@@ -930,10 +885,10 @@ function flexframe_enqueue_assets() {
                     gap: 3px !important;
                 }
                 #flexframe-viewer-container .thumbnail-grid-container-right {
-                    width: auto !important;
-                    right: 10px !important;
-                    top: 10px !important;
-                    gap: 0 !important;
+                    width: 95px !important;
+                    right: 5px !important;
+                    top: 5px !important;
+                    gap: 3px !important;
                 }
                 .thumbnail-menu-toggle {
                     height: 34px !important;
@@ -2211,7 +2166,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index--fTq3rz4.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B2qS_4Bx.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2832,7 +2787,7 @@ function flexframe_viewer_shortcode($atts) {
             <!-- Mobile: Single consolidated button (hidden on desktop) -->
             <div class="thumbnail-menu-wrapper mobile-only">
                 <button class="thumbnail-menu-toggle" id="infoToggle">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="#ffffff" style="fill: #ffffff !important;"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z" fill="#ffffff" style="fill: #ffffff !important;"/></svg>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></svg>
                     <span>Exercise Info</span>
                 </button>
                 <div class="thumbnail-dropdown-right" id="infoDropdown">

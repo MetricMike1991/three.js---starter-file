@@ -140,8 +140,6 @@ class RightMenuDropdown {
     }
 
     closeMenu() {
-        if (!this.dropdown || !this.toggleBtn) return;
-        
         this.dropdown.classList.remove('show');
         this.toggleBtn.classList.remove('active');
         this.isOpen = false;
@@ -182,19 +180,7 @@ class RightMenuDropdown {
     updateTitle(newTitle) {
         // Update the toggle button text
         if (this.toggleBtn) {
-            // Preserve SVG icon if it exists (mobile info button)
-            const svg = this.toggleBtn.querySelector('svg');
-            if (svg) {
-                // Clone the SVG to preserve it
-                const svgClone = svg.cloneNode(true);
-                // Update text content (this removes SVG)
-                this.toggleBtn.textContent = newTitle;
-                // Re-append the SVG
-                this.toggleBtn.appendChild(svgClone);
-            } else {
-                // No SVG, just update text
-                this.toggleBtn.textContent = newTitle;
-            }
+            this.toggleBtn.textContent = newTitle;
         }
     }
     
@@ -211,68 +197,13 @@ class RightMenuDropdown {
         
         sections.forEach(section => {
             const itemDiv = document.createElement('div');
-            
-            // Check if this is a header section
-            if (section.type === 'header') {
-                itemDiv.className = 'info-section-header';
-                itemDiv.setAttribute('data-section-title', section.title);
-                itemDiv.innerHTML = `<div class="info-section-title">${section.title}</div>`;
-            } else {
-                itemDiv.className = 'info-step-item';
-                itemDiv.innerHTML = `
-                    <div class="info-step-title">${section.heading || ''}</div>
-                    <div class="info-step-text">${section.content || ''}</div>
-                `;
-            }
-            
+            itemDiv.className = 'info-step-item';
+            itemDiv.innerHTML = `
+                <div class="info-step-title">${section.heading || ''}</div>
+                <div class="info-step-text">${section.content || ''}</div>
+            `;
             this.grid.appendChild(itemDiv);
         });
-        
-        // Set up scroll detection for mobile menu to update button text
-        if (this.menuType === 'info' && this.scrollContainer) {
-            this.setupScrollDetection();
-        }
-    }
-    
-    setupScrollDetection() {
-        if (!this.scrollContainer) return;
-        
-        // Debounce scroll handler
-        let scrollTimeout;
-        this.scrollContainer.addEventListener('scroll', () => {
-            clearTimeout(scrollTimeout);
-            scrollTimeout = setTimeout(() => {
-                this.updateButtonTextBasedOnScroll();
-            }, 100);
-        });
-    }
-    
-    updateButtonTextBasedOnScroll() {
-        if (!this.scrollContainer || !this.toggleBtn) return;
-        
-        const headers = this.grid.querySelectorAll('.info-section-header');
-        if (headers.length === 0) return;
-        
-        const containerTop = this.scrollContainer.getBoundingClientRect().top;
-        let currentSection = 'Exercise Info';
-        
-        // Find which section is currently in view
-        headers.forEach(header => {
-            const headerRect = header.getBoundingClientRect();
-            // If header is above or near the top of the container
-            if (headerRect.top <= containerTop + 100) {
-                const sectionTitle = header.getAttribute('data-section-title');
-                if (sectionTitle) {
-                    currentSection = sectionTitle;
-                }
-            }
-        });
-        
-        // Update button text (only update the span, keep the SVG)
-        const span = this.toggleBtn.querySelector('span');
-        if (span && span.textContent !== currentSection) {
-            span.textContent = currentSection;
-        }
     }
 }
 
