@@ -659,21 +659,14 @@ function flexframe_enqueue_assets() {
                     left: -9999px !important;
                 }
                 
-                /* Show info menu wrapper - override global mobile-only hide rule */
+                /* Show info menu wrapper */
                 #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-wrapper:has(#infoToggle),
                 .thumbnail-grid-container-right .thumbnail-menu-wrapper:has(#infoToggle),
                 #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-wrapper.mobile-only,
-                .thumbnail-grid-container-right .thumbnail-menu-wrapper.mobile-only,
-                #flexframe-viewer-container .thumbnail-grid-container-right div.thumbnail-menu-wrapper.mobile-only,
-                .thumbnail-grid-container-right div.thumbnail-menu-wrapper.mobile-only {
+                .thumbnail-grid-container-right .thumbnail-menu-wrapper.mobile-only {
                     display: block !important;
                     visibility: visible !important;
                     opacity: 1 !important;
-                    position: relative !important;
-                    left: auto !important;
-                    width: auto !important;
-                    height: auto !important;
-                    pointer-events: auto !important;
                 }
                 
                 /* Style info toggle button for tablet/desktop */
@@ -2381,23 +2374,12 @@ function flexframe_enqueue_assets() {
             }
             
             /* ===== RIGHT SIDE MENU SYSTEM ===== */
-            /* Desktop ONLY (769px+): show 4 separate menus, hide mobile consolidated menu */
-            @media screen and (min-width: 769px) {
-                .thumbnail-grid-container-right .desktop-only {
-                    display: block !important;
-                }
-                .thumbnail-grid-container-right .mobile-only {
-                    display: none !important;
-                }
+            /* Desktop: show 4 separate menus, hide mobile consolidated menu */
+            .thumbnail-grid-container-right .desktop-only {
+                display: block !important;
             }
-            /* Tablet/Mid screens (481px-768px): show mobile info button, hide desktop menus */
-            @media screen and (min-width: 481px) and (max-width: 768px) {
-                .thumbnail-grid-container-right .desktop-only {
-                    display: none !important;
-                }
-                .thumbnail-grid-container-right .mobile-only {
-                    display: block !important;
-                }
+            .thumbnail-grid-container-right .mobile-only {
+                display: none !important;
             }
             /* Right menu container */
             #flexframe-viewer-container .thumbnail-grid-container-right,
