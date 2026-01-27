@@ -213,42 +213,17 @@ class ThumbnailDropdownMenu {
             });
         }
         
-        // Get unique muscles and equipment from exercises
-        const muscleSet = new Set();
-        const equipmentSet = new Set();
-        
         console.log('🔍 Sample exercise data:', this.allExercises[0]);
         
-        this.allExercises.forEach(exercise => {
-            // Try multiple muscle sources
-            if (exercise.information?.primaryMuscle) {
-                muscleSet.add(exercise.information.primaryMuscle);
-            }
-            if (exercise.information?.secondaryMuscles) {
-                exercise.information.secondaryMuscles.forEach(m => muscleSet.add(m));
-            }
-            // Also check muscleGroup array
-            if (exercise.muscleGroup) {
-                exercise.muscleGroup.forEach(m => muscleSet.add(m));
-            }
-            exercise.equipment.forEach(e => equipmentSet.add(e));
-        });
+        // Use predefined filter lists instead of extracting from data
+        const muscles = ['Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Abs', 'Quads', 'Glutes', 'Hamstrings', 'Calves'];
+        const equipment = ['Barbell', 'Dumbbell', 'Cables', 'Machines', 'Kettlebell', 'Body Weight'];
         
-        console.log('🔍 Muscle sources checked:', {
-            hasPrimaryMuscle: this.allExercises[0]?.information?.primaryMuscle,
-            hasSecondaryMuscles: this.allExercises[0]?.information?.secondaryMuscles,
-            hasMuscleGroup: this.allExercises[0]?.muscleGroup
-        });
-        
-        // Sort alphabetically and filter out unwanted items
-        const muscles = Array.from(muscleSet).filter(m => m !== 'Abs').sort();
-        const equipment = Array.from(equipmentSet).filter(e => e !== 'Freeweight' && e !== 'Free Weight').sort();
-        
-        console.log('🔍 Found filters:', { 
+        console.log('🔍 Using predefined filters:', { 
             muscleCount: muscles.length, 
             equipmentCount: equipment.length,
-            sampleMuscles: muscles.slice(0, 3),
-            sampleEquipment: equipment.slice(0, 3)
+            muscles: muscles,
+            equipment: equipment
         });
         
         // Create muscle filter thumbnails (2 column grid)
