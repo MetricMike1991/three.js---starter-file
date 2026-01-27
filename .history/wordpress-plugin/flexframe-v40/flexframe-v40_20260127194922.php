@@ -1445,13 +1445,6 @@ function flexframe_enqueue_assets() {
                     object-fit: cover !important;
                     flex-shrink: 0 !important;
                 }
-                
-                /* Thumbnail scroll container - add left margin on large screens */
-                #flexframe-viewer-container #searchDropdown .thumbnail-scroll-container,
-                #searchDropdown .thumbnail-scroll-container,
-                .thumbnail-scroll-container {
-                    margin-left: 15px !important;
-                }
             }
         ';
         

@@ -549,14 +549,13 @@ function flexframe_enqueue_assets() {
                 #searchDropdown .thumbnail-item,
                 #searchGrid .thumbnail-item,
                 div.thumbnail-item {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
-                    padding: 1px !important;
-                    margin-bottom: 10px !important;
+                    width: 140px !important;
+                    height: 170px !important;
+                    min-width: 140px !important;
+                    min-height: 170px !important;
+                    max-width: 140px !important;
+                    max-height: 170px !important;
+                    padding: 5px !important;
                     box-sizing: border-box !important;
                     display: flex !important;
                     flex-direction: column !important;
@@ -575,20 +574,20 @@ function flexframe_enqueue_assets() {
                     border-color: rgba(255, 255, 255, 0.2) !important;
                 }
                 
-                /* Thumbnail images - ABSOLUTE FIXED SQUARE 160x160 */
+                /* Thumbnail images - ABSOLUTE FIXED SQUARE */
                 #flexframe-viewer-container #searchDropdown .thumbnail-item img,
                 #searchDropdown .thumbnail-item img,
                 #searchGrid .thumbnail-item img,
                 div.thumbnail-item img {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
+                    width: 120px !important;
+                    height: 120px !important;
+                    min-width: 120px !important;
+                    min-height: 120px !important;
+                    max-width: 120px !important;
+                    max-height: 120px !important;
                     object-fit: cover !important;
                     border-radius: 6px !important;
-                    margin-bottom: 0 !important;
+                    margin-bottom: 8px !important;
                     flex-shrink: 0 !important;
                 }
                 
@@ -1413,20 +1412,16 @@ function flexframe_enqueue_assets() {
                     margin: 0 !important;
                 }
                 
-                /* FORCE same 160x160 thumbnails on large screens - same as mid tier */
+                /* FORCE square thumbnails on large screens */
                 #flexframe-viewer-container #searchDropdown .thumbnail-item,
                 #flexframe-viewer-container #searchDropdown div.thumbnail-item,
                 #searchDropdown .thumbnail-item,
                 div#searchGrid .thumbnail-item,
                 .thumbnail-dropdown .thumbnail-item {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
-                    padding: 1px !important;
-                    margin-bottom: 10px !important;
+                    width: 150px !important;
+                    min-width: 150px !important;
+                    max-width: 150px !important;
+                    height: auto !important;
                     flex-shrink: 0 !important;
                     flex-grow: 0 !important;
                 }
@@ -1436,21 +1431,15 @@ function flexframe_enqueue_assets() {
                 #searchDropdown .thumbnail-item img,
                 div#searchGrid .thumbnail-item img,
                 .thumbnail-dropdown .thumbnail-item img {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
+                    width: 130px !important;
+                    height: 130px !important;
+                    min-width: 130px !important;
+                    min-height: 130px !important;
+                    max-width: 130px !important;
+                    max-height: 130px !important;
+                    aspect-ratio: 1 / 1 !important;
                     object-fit: cover !important;
                     flex-shrink: 0 !important;
-                }
-                
-                /* Thumbnail scroll container - add left margin on large screens */
-                #flexframe-viewer-container #searchDropdown .thumbnail-scroll-container,
-                #searchDropdown .thumbnail-scroll-container,
-                .thumbnail-scroll-container {
-                    margin-left: 15px !important;
                 }
             }
         ';
@@ -2603,7 +2592,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-IKBiZPaU.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BhmTPDsl.js',
             array(),
             FLEXFRAME_VERSION,
             true

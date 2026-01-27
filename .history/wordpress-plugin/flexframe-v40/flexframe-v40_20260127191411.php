@@ -389,9 +389,9 @@ function flexframe_enqueue_assets() {
                 right: 20px !important;
             }
             
-            /* ===== SCREENS ABOVE SMALL MOBILE (above 480px) - SEARCH ONLY ===== */
+            /* ===== HIDE MOST MENUS ON SCREENS ABOVE SMALL MOBILE (above 480px) - BUT KEEP SEARCH ===== */
             @media screen and (min-width: 481px) {
-                /* Left side menu container - keep visible but simplified */
+                /* Left side menu container - keep visible but simplify */
                 #flexframe-viewer-container .thumbnail-grid-container,
                 .thumbnail-grid-container {
                     position: fixed !important;
@@ -407,9 +407,11 @@ function flexframe_enqueue_assets() {
                     z-index: 99999 !important;
                 }
                 
-                /* Hide hint tabs */
+                /* Hide hint tab on screens above 480px */
                 #flexframe-viewer-container .menu-hint-tab,
                 .menu-hint-tab,
+                #flexframe-viewer-container .thumbnail-grid-container > .menu-hint-tab,
+                .thumbnail-grid-container > .menu-hint-tab,
                 div.menu-hint-tab {
                     display: none !important;
                     visibility: hidden !important;
@@ -426,6 +428,10 @@ function flexframe_enqueue_assets() {
                 .thumbnail-menu-wrapper:not(:has(#searchToggle)) {
                     display: none !important;
                     visibility: hidden !important;
+                    opacity: 0 !important;
+                    pointer-events: none !important;
+                    width: 0 !important;
+                    height: 0 !important;
                     position: absolute !important;
                     left: -9999px !important;
                 }
@@ -436,39 +442,51 @@ function flexframe_enqueue_assets() {
                     display: block !important;
                     visibility: visible !important;
                     opacity: 1 !important;
+                    pointer-events: auto !important;
                 }
                 
-                /* Style search toggle button */
+                /* Style the search toggle button like mobile */
                 #flexframe-viewer-container #searchToggle,
+                #flexframe-viewer-container button#searchToggle,
                 button.thumbnail-menu-toggle#searchToggle {
                     width: 40px !important;
                     height: 40px !important;
+                    min-height: 40px !important;
+                    max-height: 40px !important;
                     padding: 0 !important;
                     font-size: 0 !important;
                     display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
                     background-color: rgba(0, 0, 0, 0.5) !important;
-                    backdrop-filter: blur(20px) !important;
+                    backdrop-filter: blur(20px) saturate(180%) !important;
+                    -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
                     border: 1px solid rgba(255, 255, 255, 0.25) !important;
                     border-radius: 50% !important;
                     color: #ffffff !important;
-                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+                    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(255, 255, 255, 0.1) inset !important;
+                    transition: all 0.2s ease !important;
                     cursor: pointer !important;
                 }
-                #flexframe-viewer-container #searchToggle:hover {
+                #flexframe-viewer-container #searchToggle:hover,
+                button.thumbnail-menu-toggle#searchToggle:hover {
                     background-color: rgba(0, 0, 0, 0.65) !important;
+                    border-color: rgba(255, 255, 255, 0.35) !important;
+                    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
                     transform: scale(1.05) !important;
                 }
+                /* Hide text label, show only icon */
                 #flexframe-viewer-container #searchToggle span {
                     display: none !important;
                 }
-                #flexframe-viewer-container #searchToggle svg {
+                #flexframe-viewer-container #searchToggle svg,
+                button.thumbnail-menu-toggle#searchToggle svg {
                     width: 20px !important;
                     height: 20px !important;
+                    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
                 }
                 
-                /* Search dropdown - left aligned, 400px width */
+                /* Style the search dropdown for tablet/desktop - LEFT ALIGNED */
                 #flexframe-viewer-container #searchDropdown,
                 #searchDropdown.thumbnail-dropdown {
                     position: fixed !important;
@@ -476,12 +494,13 @@ function flexframe_enqueue_assets() {
                     left: 10px !important;
                     right: auto !important;
                     transform: none !important;
-                    width: 400px !important;
-                    max-width: 400px !important;
+                    width: 480px !important;
+                    max-width: 480px !important;
                     max-height: 80vh !important;
                     z-index: 999999 !important;
                     background-color: rgba(30, 30, 30, 0.95) !important;
                     backdrop-filter: blur(20px) !important;
+                    -webkit-backdrop-filter: blur(20px) !important;
                     border-radius: 16px !important;
                     border: 1px solid rgba(255, 255, 255, 0.15) !important;
                     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4) !important;
@@ -492,7 +511,55 @@ function flexframe_enqueue_assets() {
                     display: block !important;
                 }
                 
-                /* Search content wrapper */
+                /* Show the close button for search - position relative to left-aligned dropdown */
+                #flexframe-viewer-container .search-close-btn-mobile,
+                .search-close-btn-mobile,
+                #searchCloseBtnMobile {
+                    display: flex !important;
+                    visibility: visible !important;
+                    opacity: 1 !important;
+                    pointer-events: auto !important;
+                    position: fixed !important;
+                    top: 70px !important;
+                    left: 450px !important;
+                    right: auto !important;
+                    width: 32px !important;
+                    height: 32px !important;
+                    max-width: 32px !important;
+                    max-height: 32px !important;
+                    z-index: 9999999 !important;
+                    background-color: rgba(255, 255, 255, 0.15) !important;
+                    border: none !important;
+                    border-radius: 50% !important;
+                    align-items: center !important;
+                    justify-content: center !important;
+                    cursor: pointer !important;
+                    color: white !important;
+                }
+                #flexframe-viewer-container .search-close-btn-mobile:not(.show),
+                .search-close-btn-mobile:not(.show),
+                #searchCloseBtnMobile:not(.show) {
+                    display: none !important;
+                }
+                
+                /* Right side menu container - HIDE completely */
+                #flexframe-viewer-container .thumbnail-grid-container-right,
+                #flexframe-viewer-container .thumbnail-grid-container-right *,
+                .thumbnail-grid-container-right,
+                .thumbnail-grid-container-right *,
+                #flexframe-viewer-container .menu-hint-tab-right,
+                .menu-hint-tab-right {
+                    display: none !important;
+                    visibility: hidden !important;
+                    opacity: 0 !important;
+                    pointer-events: none !important;
+                    width: 0 !important;
+                    height: 0 !important;
+                    position: absolute !important;
+                    left: -9999px !important;
+                }
+                
+                /* Search dropdown content styling for tablet/desktop */
                 #flexframe-viewer-container #searchDropdown .search-content-wrapper,
                 #searchDropdown .search-content-wrapper {
                     display: flex !important;
@@ -501,13 +568,13 @@ function flexframe_enqueue_assets() {
                     max-height: 75vh !important;
                 }
                 
-                /* Filters panel */
+                /* Show filters panel on tablet/desktop dropdown */
                 #flexframe-viewer-container #searchDropdown .search-filters-panel,
                 #searchDropdown .search-filters-panel {
                     display: flex !important;
                     flex-direction: column !important;
-                    width: 180px !important;
-                    min-width: 180px !important;
+                    width: 200px !important;
+                    min-width: 200px !important;
                     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
                     padding: 10px !important;
                     overflow-y: auto !important;
@@ -520,43 +587,62 @@ function flexframe_enqueue_assets() {
                     flex: 1 !important;
                     display: flex !important;
                     flex-direction: column !important;
-                    overflow: hidden !important;
+                    align-items: center !important;
+                    justify-content: flex-start !important;
                 }
                 
-                /* Thumbnail scroll container */
+                /* Search header styling */
+                #flexframe-viewer-container #searchDropdown .search-header,
+                #searchDropdown .search-header {
+                    padding: 12px !important;
+                    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+                }
+                
+                /* Search input styling */
+                #flexframe-viewer-container #searchDropdown .search-input,
+                #searchDropdown .search-input,
+                #searchDropdown #searchInput {
+                    width: 100% !important;
+                    padding: 10px 40px 10px 12px !important;
+                    font-size: 14px !important;
+                    background: rgba(255, 255, 255, 0.1) !important;
+                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
+                    border-radius: 8px !important;
+                    color: white !important;
+                }
+                
+                /* Thumbnail scroll container in search results - centered */
                 #flexframe-viewer-container #searchDropdown .thumbnail-scroll-container,
                 #searchDropdown .thumbnail-scroll-container {
                     flex: 1 !important;
                     overflow-y: auto !important;
-                    padding: 5px !important;
-                }
-                
-                /* Thumbnail grid - SINGLE COLUMN centered */
-                #flexframe-viewer-container #searchDropdown .thumbnail-grid,
-                #searchDropdown .thumbnail-grid,
-                #flexframe-viewer-container #searchGrid,
-                #searchGrid {
-                    display: flex !important;
-                    flex-direction: column !important;
-                    align-items: center !important;
-                    gap: 15px !important;
+                    padding: 10px !important;
                     width: 100% !important;
-                    padding: 0 !important;
+                    display: flex !important;
+                    justify-content: center !important;
                 }
                 
-                /* Thumbnail items - ABSOLUTE FIXED sizing */
+                /* Thumbnail grid - centered layout */
+                #flexframe-viewer-container #searchDropdown .thumbnail-grid,
+                #searchDropdown .thumbnail-grid {
+                    display: grid !important;
+                    grid-template-columns: repeat(2, 110px) !important;
+                    gap: 10px !important;
+                    justify-content: center !important;
+                    align-content: start !important;
+                    width: auto !important;
+                    max-width: 100% !important;
+                }
+                
+                /* Thumbnail items - fixed size with proper spacing */
                 #flexframe-viewer-container #searchDropdown .thumbnail-item,
-                #searchDropdown .thumbnail-item,
-                #searchGrid .thumbnail-item,
-                div.thumbnail-item {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
-                    padding: 1px !important;
-                    margin-bottom: 10px !important;
+                #searchDropdown .thumbnail-item {
+                    width: 110px !important;
+                    min-width: 110px !important;
+                    height: auto !important;
+                    min-height: 130px !important;
+                    padding: 8px !important;
+                    margin: 5px !important;
                     box-sizing: border-box !important;
                     display: flex !important;
                     flex-direction: column !important;
@@ -564,75 +650,29 @@ function flexframe_enqueue_assets() {
                     background: rgba(255, 255, 255, 0.05) !important;
                     border-radius: 8px !important;
                     border: 1px solid rgba(255, 255, 255, 0.1) !important;
-                    cursor: pointer !important;
-                    flex-shrink: 0 !important;
-                    flex-grow: 0 !important;
-                    overflow: hidden !important;
-                }
-                #flexframe-viewer-container #searchDropdown .thumbnail-item:hover,
-                #searchDropdown .thumbnail-item:hover {
-                    background: rgba(255, 255, 255, 0.1) !important;
-                    border-color: rgba(255, 255, 255, 0.2) !important;
                 }
                 
-                /* Thumbnail images - ABSOLUTE FIXED SQUARE 160x160 */
+                /* Thumbnail images */
                 #flexframe-viewer-container #searchDropdown .thumbnail-item img,
-                #searchDropdown .thumbnail-item img,
-                #searchGrid .thumbnail-item img,
-                div.thumbnail-item img {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
+                #searchDropdown .thumbnail-item img {
+                    width: 90px !important;
+                    height: 90px !important;
                     object-fit: cover !important;
                     border-radius: 6px !important;
-                    margin-bottom: 0 !important;
-                    flex-shrink: 0 !important;
+                    margin-bottom: 6px !important;
                 }
                 
                 /* Thumbnail labels */
                 #flexframe-viewer-container #searchDropdown .thumbnail-label,
                 #searchDropdown .thumbnail-label {
-                    font-size: 12px !important;
+                    font-size: 11px !important;
                     text-align: center !important;
-                    line-height: 1.3 !important;
+                    line-height: 1.2 !important;
+                    max-width: 100% !important;
+                    overflow: hidden !important;
+                    text-overflow: ellipsis !important;
+                    white-space: nowrap !important;
                     color: white !important;
-                }
-                
-                /* Close button */
-                #flexframe-viewer-container .search-close-btn-mobile,
-                #searchCloseBtnMobile {
-                    display: none !important;
-                }
-                #flexframe-viewer-container .search-close-btn-mobile.show,
-                #searchCloseBtnMobile.show {
-                    display: flex !important;
-                    position: fixed !important;
-                    top: 70px !important;
-                    left: 370px !important;
-                    width: 32px !important;
-                    height: 32px !important;
-                    z-index: 9999999 !important;
-                    background-color: rgba(255, 255, 255, 0.15) !important;
-                    border: none !important;
-                    border-radius: 50% !important;
-                    align-items: center !important;
-                    justify-content: center !important;
-                    cursor: pointer !important;
-                    color: white !important;
-                }
-                
-                /* Right side menus - HIDE completely */
-                #flexframe-viewer-container .thumbnail-grid-container-right,
-                .thumbnail-grid-container-right,
-                #flexframe-viewer-container .menu-hint-tab-right,
-                .menu-hint-tab-right {
-                    display: none !important;
-                    visibility: hidden !important;
-                    position: absolute !important;
-                    left: -9999px !important;
                 }
             }
             
@@ -1411,46 +1451,6 @@ function flexframe_enqueue_assets() {
                 #flexframe-viewer-container .search-action-btn,
                 .thumbnail-dropdown .search-action-btn {
                     margin: 0 !important;
-                }
-                
-                /* FORCE same 160x160 thumbnails on large screens - same as mid tier */
-                #flexframe-viewer-container #searchDropdown .thumbnail-item,
-                #flexframe-viewer-container #searchDropdown div.thumbnail-item,
-                #searchDropdown .thumbnail-item,
-                div#searchGrid .thumbnail-item,
-                .thumbnail-dropdown .thumbnail-item {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
-                    padding: 1px !important;
-                    margin-bottom: 10px !important;
-                    flex-shrink: 0 !important;
-                    flex-grow: 0 !important;
-                }
-                
-                #flexframe-viewer-container #searchDropdown .thumbnail-item img,
-                #flexframe-viewer-container #searchDropdown div.thumbnail-item img,
-                #searchDropdown .thumbnail-item img,
-                div#searchGrid .thumbnail-item img,
-                .thumbnail-dropdown .thumbnail-item img {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
-                    object-fit: cover !important;
-                    flex-shrink: 0 !important;
-                }
-                
-                /* Thumbnail scroll container - add left margin on large screens */
-                #flexframe-viewer-container #searchDropdown .thumbnail-scroll-container,
-                #searchDropdown .thumbnail-scroll-container,
-                .thumbnail-scroll-container {
-                    margin-left: 15px !important;
                 }
             }
         ';
@@ -2603,7 +2603,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-IKBiZPaU.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-0FXNTsYu.js',
             array(),
             FLEXFRAME_VERSION,
             true

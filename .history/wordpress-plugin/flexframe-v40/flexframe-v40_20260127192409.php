@@ -468,7 +468,7 @@ function flexframe_enqueue_assets() {
                     height: 20px !important;
                 }
                 
-                /* Search dropdown - left aligned, 400px width */
+                /* Search dropdown - left aligned, max 480px */
                 #flexframe-viewer-container #searchDropdown,
                 #searchDropdown.thumbnail-dropdown {
                     position: fixed !important;
@@ -476,8 +476,8 @@ function flexframe_enqueue_assets() {
                     left: 10px !important;
                     right: auto !important;
                     transform: none !important;
-                    width: 400px !important;
-                    max-width: 400px !important;
+                    width: 480px !important;
+                    max-width: 480px !important;
                     max-height: 80vh !important;
                     z-index: 999999 !important;
                     background-color: rgba(30, 30, 30, 0.95) !important;
@@ -506,8 +506,8 @@ function flexframe_enqueue_assets() {
                 #searchDropdown .search-filters-panel {
                     display: flex !important;
                     flex-direction: column !important;
-                    width: 180px !important;
-                    min-width: 180px !important;
+                    width: 200px !important;
+                    min-width: 200px !important;
                     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
                     padding: 10px !important;
                     overflow-y: auto !important;
@@ -528,7 +528,7 @@ function flexframe_enqueue_assets() {
                 #searchDropdown .thumbnail-scroll-container {
                     flex: 1 !important;
                     overflow-y: auto !important;
-                    padding: 5px !important;
+                    padding: 10px !important;
                 }
                 
                 /* Thumbnail grid - SINGLE COLUMN centered */
@@ -541,22 +541,16 @@ function flexframe_enqueue_assets() {
                     align-items: center !important;
                     gap: 15px !important;
                     width: 100% !important;
-                    padding: 0 !important;
+                    padding: 10px !important;
                 }
                 
-                /* Thumbnail items - ABSOLUTE FIXED sizing */
+                /* Thumbnail items - FIXED sizing, no scaling */
                 #flexframe-viewer-container #searchDropdown .thumbnail-item,
-                #searchDropdown .thumbnail-item,
-                #searchGrid .thumbnail-item,
-                div.thumbnail-item {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
-                    padding: 1px !important;
-                    margin-bottom: 10px !important;
+                #searchDropdown .thumbnail-item {
+                    width: 150px !important;
+                    min-width: 150px !important;
+                    max-width: 150px !important;
+                    padding: 8px !important;
                     box-sizing: border-box !important;
                     display: flex !important;
                     flex-direction: column !important;
@@ -567,7 +561,6 @@ function flexframe_enqueue_assets() {
                     cursor: pointer !important;
                     flex-shrink: 0 !important;
                     flex-grow: 0 !important;
-                    overflow: hidden !important;
                 }
                 #flexframe-viewer-container #searchDropdown .thumbnail-item:hover,
                 #searchDropdown .thumbnail-item:hover {
@@ -575,20 +568,19 @@ function flexframe_enqueue_assets() {
                     border-color: rgba(255, 255, 255, 0.2) !important;
                 }
                 
-                /* Thumbnail images - ABSOLUTE FIXED SQUARE 160x160 */
+                /* Thumbnail images - SQUARE 1:1 aspect ratio */
                 #flexframe-viewer-container #searchDropdown .thumbnail-item img,
-                #searchDropdown .thumbnail-item img,
-                #searchGrid .thumbnail-item img,
-                div.thumbnail-item img {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
+                #searchDropdown .thumbnail-item img {
+                    width: 130px !important;
+                    height: 130px !important;
+                    min-width: 130px !important;
+                    min-height: 130px !important;
+                    max-width: 130px !important;
+                    max-height: 130px !important;
+                    aspect-ratio: 1 / 1 !important;
                     object-fit: cover !important;
                     border-radius: 6px !important;
-                    margin-bottom: 0 !important;
+                    margin-bottom: 8px !important;
                     flex-shrink: 0 !important;
                 }
                 
@@ -611,7 +603,7 @@ function flexframe_enqueue_assets() {
                     display: flex !important;
                     position: fixed !important;
                     top: 70px !important;
-                    left: 370px !important;
+                    left: 450px !important;
                     width: 32px !important;
                     height: 32px !important;
                     z-index: 9999999 !important;
@@ -1413,20 +1405,16 @@ function flexframe_enqueue_assets() {
                     margin: 0 !important;
                 }
                 
-                /* FORCE same 160x160 thumbnails on large screens - same as mid tier */
+                /* FORCE square thumbnails on large screens */
                 #flexframe-viewer-container #searchDropdown .thumbnail-item,
                 #flexframe-viewer-container #searchDropdown div.thumbnail-item,
                 #searchDropdown .thumbnail-item,
                 div#searchGrid .thumbnail-item,
                 .thumbnail-dropdown .thumbnail-item {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
-                    padding: 1px !important;
-                    margin-bottom: 10px !important;
+                    width: 150px !important;
+                    min-width: 150px !important;
+                    max-width: 150px !important;
+                    height: auto !important;
                     flex-shrink: 0 !important;
                     flex-grow: 0 !important;
                 }
@@ -1436,21 +1424,15 @@ function flexframe_enqueue_assets() {
                 #searchDropdown .thumbnail-item img,
                 div#searchGrid .thumbnail-item img,
                 .thumbnail-dropdown .thumbnail-item img {
-                    width: 160px !important;
-                    height: 160px !important;
-                    min-width: 160px !important;
-                    min-height: 160px !important;
-                    max-width: 160px !important;
-                    max-height: 160px !important;
+                    width: 130px !important;
+                    height: 130px !important;
+                    min-width: 130px !important;
+                    min-height: 130px !important;
+                    max-width: 130px !important;
+                    max-height: 130px !important;
+                    aspect-ratio: 1 / 1 !important;
                     object-fit: cover !important;
                     flex-shrink: 0 !important;
-                }
-                
-                /* Thumbnail scroll container - add left margin on large screens */
-                #flexframe-viewer-container #searchDropdown .thumbnail-scroll-container,
-                #searchDropdown .thumbnail-scroll-container,
-                .thumbnail-scroll-container {
-                    margin-left: 15px !important;
                 }
             }
         ';
@@ -2603,7 +2585,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-IKBiZPaU.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-0FXNTsYu.js',
             array(),
             FLEXFRAME_VERSION,
             true
