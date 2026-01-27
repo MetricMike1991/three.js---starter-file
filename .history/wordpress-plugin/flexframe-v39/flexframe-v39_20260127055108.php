@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.56
+ * Version: 1.39.54
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.56');
+define('FLEXFRAME_VERSION', '1.39.54');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -1932,7 +1932,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BkXGdg91.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cq1TjDb5.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2588,6 +2588,32 @@ function flexframe_viewer_shortcode($atts) {
             " draggable="false" />
         </div>
         <?php endif; ?>
+        
+        <!-- Animation Player -->
+        <div id="animation-player" class="animation-player" style="display: none;">
+            <div class="player-controls">
+                <button id="play-pause-btn" class="control-btn play-btn" title="Play/Pause">
+                    <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                </button>
+                <div class="time-display"><span id="current-time">0:00</span></div>
+                <div class="timeline-container">
+                    <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="100" value="0">
+                    <div class="timeline-progress"></div>
+                </div>
+                <div class="time-display"><span id="total-time">0:00</span></div>
+                <div class="speed-controls">
+                    <button id="speed-btn" class="control-btn speed-btn" title="Playback Speed"><span id="speed-text">1x</span></button>
+                    <div id="speed-menu" class="speed-menu">
+                        <button class="speed-option" data-speed="0.25">0.25x</button>
+                        <button class="speed-option" data-speed="0.5">0.5x</button>
+                        <button class="speed-option active" data-speed="1">1x</button>
+                        <button class="speed-option" data-speed="1.5">1.5x</button>
+                        <button class="speed-option" data-speed="2">2x</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <?php
     return ob_get_clean();

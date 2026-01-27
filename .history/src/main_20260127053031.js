@@ -4273,13 +4273,6 @@ class ThreeJSApp {
             this.cameraManager.handleResize();
             this.renderer.setSize(this.sizes.width, this.sizes.height);
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-            
-            // Disable always-visible on mobile, re-enable on desktop
-            if (this.animationPlayer && this.uiSettings?.player) {
-                const isMobile = window.innerWidth <= 768;
-                const shouldBeAlwaysVisible = isMobile ? false : (this.uiSettings.player.alwaysVisible === true);
-                this.animationPlayer.setAlwaysVisible(shouldBeAlwaysVisible);
-            }
         });
 
         // Click interactions
