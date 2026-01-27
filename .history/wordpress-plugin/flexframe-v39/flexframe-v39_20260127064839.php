@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.68
+ * Version: 1.39.57
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.68');
+define('FLEXFRAME_VERSION', '1.39.60');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -506,14 +506,22 @@ function flexframe_enqueue_assets() {
                 user-select: none;
             }
             
-            /* Hide scrollbar for filter panel */
+            /* Scrollbar styling for filter panel - thinner and on left */
             .search-filters-panel::-webkit-scrollbar {
-                display: none;
+                width: 3px;
             }
             
-            .search-filters-panel {
-                -ms-overflow-style: none;  /* IE and Edge */
-                scrollbar-width: none;  /* Firefox */
+            .search-filters-panel::-webkit-scrollbar-track {
+                background: transparent;
+            }
+            
+            .search-filters-panel::-webkit-scrollbar-thumb {
+                background: ' . $menu_accent_color . '66;
+                border-radius: 2px;
+            }
+            
+            .search-filters-panel::-webkit-scrollbar-thumb:hover {
+                background: ' . $menu_accent_color . ';
             }
             
             /* ==========================================
@@ -523,8 +531,8 @@ function flexframe_enqueue_assets() {
                 /* Show search filters only on mobile */
                 .search-filters-panel {
                     display: block !important;
-                    width: 45%;
-                    max-width: 200px;
+                    width: 40%;
+                    max-width: 180px;
                     height: 100%;
                     overflow-y: auto;
                     overflow-x: hidden;
@@ -535,15 +543,6 @@ function flexframe_enqueue_assets() {
                 
                 .search-filters-panel > * {
                     direction: ltr;
-                }
-                
-                .search-results-panel {
-                    flex: 1;
-                    padding: 0 5px;
-                }
-                
-                .search-results-panel .thumbnail-grid {
-                    padding: 0 !important;
                 }
                 
                 /* Force filter label selected state on mobile */
@@ -623,7 +622,6 @@ function flexframe_enqueue_assets() {
                 /* Smaller fonts in dropdowns on mobile */
                 .thumbnail-item {
                     font-size: 10px !important;
-                    margin-left: 5px !important;
                 }
                 .thumbnail-label {
                     font-size: 9px !important;
@@ -758,7 +756,6 @@ function flexframe_enqueue_assets() {
                 /* Even smaller fonts on small screens */
                 .thumbnail-item {
                     font-size: 9px !important;
-                    margin-left: 5px !important;
                 }
                 .thumbnail-label {
                     font-size: 8px !important;
@@ -1935,7 +1932,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bjfb6qdY.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bsk1rZsL.js',
             array(),
             FLEXFRAME_VERSION,
             true

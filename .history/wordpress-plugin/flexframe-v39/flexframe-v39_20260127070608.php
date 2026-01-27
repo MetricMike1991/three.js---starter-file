@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.68
+ * Version: 1.39.66
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.68');
+define('FLEXFRAME_VERSION', '1.39.66');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -623,7 +623,6 @@ function flexframe_enqueue_assets() {
                 /* Smaller fonts in dropdowns on mobile */
                 .thumbnail-item {
                     font-size: 10px !important;
-                    margin-left: 5px !important;
                 }
                 .thumbnail-label {
                     font-size: 9px !important;
@@ -758,7 +757,6 @@ function flexframe_enqueue_assets() {
                 /* Even smaller fonts on small screens */
                 .thumbnail-item {
                     font-size: 9px !important;
-                    margin-left: 5px !important;
                 }
                 .thumbnail-label {
                     font-size: 8px !important;
@@ -1935,7 +1933,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bjfb6qdY.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bx546ebi.js',
             array(),
             FLEXFRAME_VERSION,
             true

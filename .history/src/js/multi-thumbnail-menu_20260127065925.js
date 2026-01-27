@@ -159,7 +159,7 @@ class ThumbnailDropdownMenu {
         
         // Sort alphabetically and filter out unwanted items
         const muscles = Array.from(muscleSet).filter(m => m !== 'Abs').sort();
-        const equipment = Array.from(equipmentSet).filter(e => e !== 'Freeweight' && e !== 'Free Weight').sort();
+        const equipment = Array.from(equipmentSet).filter(e => e !== 'Freeweight').sort();
         
         console.log('🔍 Found filters:', { 
             muscleCount: muscles.length, 
@@ -236,9 +236,9 @@ class ThumbnailDropdownMenu {
             });
         }
         
-        // Create equipment filter thumbnails (2 columns)
+        // Create equipment filter thumbnails (3 columns)
         equipmentFiltersContainer.style.display = 'grid';
-        equipmentFiltersContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        equipmentFiltersContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
         equipmentFiltersContainer.style.gap = '8px';
         
         equipment.forEach(eq => {

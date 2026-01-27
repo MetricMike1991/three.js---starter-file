@@ -159,7 +159,7 @@ class ThumbnailDropdownMenu {
         
         // Sort alphabetically and filter out unwanted items
         const muscles = Array.from(muscleSet).filter(m => m !== 'Abs').sort();
-        const equipment = Array.from(equipmentSet).filter(e => e !== 'Freeweight' && e !== 'Free Weight').sort();
+        const equipment = Array.from(equipmentSet).filter(e => e !== 'Freeweight').sort();
         
         console.log('🔍 Found filters:', { 
             muscleCount: muscles.length, 

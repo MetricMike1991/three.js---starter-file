@@ -157,9 +157,9 @@ class ThumbnailDropdownMenu {
             hasMuscleGroup: this.allExercises[0]?.muscleGroup
         });
         
-        // Sort alphabetically and filter out unwanted items
-        const muscles = Array.from(muscleSet).filter(m => m !== 'Abs').sort();
-        const equipment = Array.from(equipmentSet).filter(e => e !== 'Freeweight' && e !== 'Free Weight').sort();
+        // Sort alphabetically
+        const muscles = Array.from(muscleSet).sort();
+        const equipment = Array.from(equipmentSet).sort();
         
         console.log('🔍 Found filters:', { 
             muscleCount: muscles.length, 
@@ -168,9 +168,9 @@ class ThumbnailDropdownMenu {
             sampleEquipment: equipment.slice(0, 3)
         });
         
-        // Create muscle filter thumbnails (2 column grid)
+        // Create muscle filter thumbnails (3x4 grid)
         muscleFiltersContainer.style.display = 'grid';
-        muscleFiltersContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        muscleFiltersContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
         muscleFiltersContainer.style.gap = '8px';
         
         muscles.forEach(muscle => {
@@ -190,23 +190,12 @@ class ThumbnailDropdownMenu {
                 const isSelected = this.selectedMuscleFilters.has(muscle);
                 
                 if (isSelected) {
-                    // Deselect this filter
                     this.selectedMuscleFilters.delete(muscle);
                     thumbnail.classList.remove('selected');
                     thumbnail.style.removeProperty('border');
                     thumbnail.style.removeProperty('background-color');
                     thumbnail.style.removeProperty('box-shadow');
                 } else {
-                    // Clear all other muscle selections first (single selection only)
-                    this.selectedMuscleFilters.clear();
-                    muscleFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
-                        thumb.classList.remove('selected');
-                        thumb.style.removeProperty('border');
-                        thumb.style.removeProperty('background-color');
-                        thumb.style.removeProperty('box-shadow');
-                    });
-                    
-                    // Select this filter
                     this.selectedMuscleFilters.add(muscle);
                     thumbnail.classList.add('selected');
                     thumbnail.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
@@ -236,9 +225,9 @@ class ThumbnailDropdownMenu {
             });
         }
         
-        // Create equipment filter thumbnails (2 columns)
+        // Create equipment filter thumbnails (3 columns)
         equipmentFiltersContainer.style.display = 'grid';
-        equipmentFiltersContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        equipmentFiltersContainer.style.gridTemplateColumns = 'repeat(3, 1fr)';
         equipmentFiltersContainer.style.gap = '8px';
         
         equipment.forEach(eq => {
@@ -258,23 +247,12 @@ class ThumbnailDropdownMenu {
                 const isSelected = this.selectedEquipmentFilters.has(eq);
                 
                 if (isSelected) {
-                    // Deselect this filter
                     this.selectedEquipmentFilters.delete(eq);
                     thumbnail.classList.remove('selected');
                     thumbnail.style.removeProperty('border');
                     thumbnail.style.removeProperty('background-color');
                     thumbnail.style.removeProperty('box-shadow');
                 } else {
-                    // Clear all other equipment selections first (single selection only)
-                    this.selectedEquipmentFilters.clear();
-                    equipmentFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
-                        thumb.classList.remove('selected');
-                        thumb.style.removeProperty('border');
-                        thumb.style.removeProperty('background-color');
-                        thumb.style.removeProperty('box-shadow');
-                    });
-                    
-                    // Select this filter
                     this.selectedEquipmentFilters.add(eq);
                     thumbnail.classList.add('selected');
                     thumbnail.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
@@ -1396,7 +1374,7 @@ class ThumbnailDropdownMenu {
         // Responsive dropdown width - narrower on mobile
         // Background handled by CSS to preserve backdrop-filter blur effect
         const isMobile = window.innerWidth <= 768;
-        this.dropdown.style.width = isMobile ? '40%' : '250px';
+        this.dropdown.style.width = isMobile ? '160px' : '250px';
         this.dropdown.style.borderRadius = `${this.settings.borderRadius}px`;
     }
     
