@@ -34,7 +34,7 @@ export class AnimationPlayer {
         this.container.innerHTML = `
             <div class="player-controls">
                 <div class="player-left">
-                    <button class="play-pause-btn" id="play-pause-btn" style="height: ${window.innerWidth <= 768 ? '32px' : 'auto'} !important; min-height: ${window.innerWidth <= 768 ? '32px' : 'auto'} !important; max-height: ${window.innerWidth <= 768 ? '32px' : 'none'} !important; padding: ${window.innerWidth <= 768 ? '0 12px' : '8px 16px'} !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                    <button class="play-pause-btn" id="play-pause-btn" style="height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: flex !important; align-items: center !important; justify-content: center !important;">
                         <svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
