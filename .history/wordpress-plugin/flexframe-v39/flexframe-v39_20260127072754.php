@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.82
+ * Version: 1.39.68
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.82');
+define('FLEXFRAME_VERSION', '1.39.68');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -648,32 +648,16 @@ function flexframe_enqueue_assets() {
                     opacity: 1 !important;
                     pointer-events: all !important;
                     padding: 6px 10px !important;
-                    display: flex !important;
-                    justify-content: space-between !important;
-                    align-items: center !important;
                 }
                 .player-controls {
                     gap: 4px !important;
-                    width: 100% !important;
-                    display: flex !important;
-                    justify-content: space-between !important;
-                    align-items: center !important;
                 }
                 .player-left {
-                    order: 1 !important;
-                    flex: 0 0 auto !important;
-                    min-width: auto !important;
+                    min-width: 50px !important;
                     gap: 3px !important;
                 }
-                .player-center {
-                    order: 2 !important;
-                    flex: 1 !important;
-                    margin: 0 8px !important;
-                }
                 .player-right {
-                    order: 3 !important;
-                    flex: 0 0 auto !important;
-                    min-width: auto !important;
+                    min-width: 80px !important;
                     gap: 3px !important;
                 }
                 .play-pause-btn,
@@ -695,32 +679,8 @@ function flexframe_enqueue_assets() {
                     font-size: 9px !important;
                     display: none !important;
                 }
-                .speed-btn,
-                .animation-player .speed-btn,
-                button.speed-btn,
-                .player-left .speed-btn,
-                .animation-player .player-left .speed-btn,
-                #flexframe-viewer-container .speed-btn,
-                .screenshot-btn,
-                .animation-player .screenshot-btn,
-                button.screenshot-btn,
-                .player-right .speed-btn,
-                .player-right .screenshot-btn,
-                .animation-player .player-right .speed-btn,
-                .animation-player .player-right .screenshot-btn {
+                .speed-btn {
                     display: none !important;
-                    visibility: hidden !important;
-                    width: 0 !important;
-                    height: 0 !important;
-                    min-width: 0 !important;
-                    min-height: 0 !important;
-                    max-width: 0 !important;
-                    max-height: 0 !important;
-                    padding: 0 !important;
-                    margin: 0 !important;
-                    opacity: 0 !important;
-                    border: none !important;
-                    flex: 0 0 0 !important;
                 }
                 /* Mobile: Override fixed positioning for dropdowns */
                 #flexframe-viewer-container .thumbnail-dropdown.show,
@@ -823,10 +783,6 @@ function flexframe_enqueue_assets() {
                 .animation-player {
                     padding: 4px 6px !important;
                 }
-                .player-left {
-                    min-width: 35px !important;
-                    gap: 3px !important;
-                }
                 .play-pause-btn,
                 .speed-btn,
                 .screenshot-btn,
@@ -838,39 +794,6 @@ function flexframe_enqueue_assets() {
                 }
                 .time-display {
                     font-size: 8px !important;
-                    display: none !important;
-                }
-                .speed-btn,
-                .animation-player .speed-btn,
-                button.speed-btn,
-                .player-left .speed-btn,
-                .animation-player .player-left .speed-btn,
-                #flexframe-viewer-container .speed-btn,
-                .screenshot-btn,
-                .animation-player .screenshot-btn,
-                button.screenshot-btn,
-                .player-right .speed-btn,
-                .player-right .screenshot-btn,
-                .animation-player .player-right .speed-btn,
-                .animation-player .player-right .screenshot-btn {
-                    display: none !important;
-                    visibility: hidden !important;
-                    width: 0 !important;
-                    height: 0 !important;
-                    min-width: 0 !important;
-                    min-height: 0 !important;
-                    max-width: 0 !important;
-                    max-height: 0 !important;
-                    padding: 0 !important;
-                    margin: 0 !important;
-                    opacity: 0 !important;
-                    border: none !important;
-                    flex: 0 0 0 !important;
-                    width: 0 !important;
-                    height: 0 !important;
-                    padding: 0 !important;
-                    margin: 0 !important;
-                    opacity: 0 !important;
                 }
                 /* Mobile small: Override fixed positioning for dropdowns */
                 #flexframe-viewer-container .thumbnail-dropdown.show,
@@ -2016,7 +1939,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B71qqnx9.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bjfb6qdY.js',
             array(),
             FLEXFRAME_VERSION,
             true

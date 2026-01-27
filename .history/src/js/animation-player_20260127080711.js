@@ -34,7 +34,7 @@ export class AnimationPlayer {
         this.container.innerHTML = `
             <div class="player-controls">
                 <div class="player-left">
-                    <button class="play-pause-btn" id="play-pause-btn" style="height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                    <button class="play-pause-btn" id="play-pause-btn">
                         <svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -52,7 +52,7 @@ export class AnimationPlayer {
                 </div>
                 
                 <div class="player-right">
-                    <button class="screenshot-btn" id="screenshot-btn" title="Take Screenshot" style="height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: ${window.innerWidth <= 768 ? '0' : '0 12px'} !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: ${window.innerWidth <= 768 ? 'none' : 'flex'} !important; align-items: center !important; justify-content: center !important;">
+                    <button class="screenshot-btn" id="screenshot-btn" title="Take Screenshot" style="height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: ${window.innerWidth <= 768 ? 'none' : 'flex'} !important; align-items: center !important; justify-content: center !important;">
                         <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/>
                         </svg>
