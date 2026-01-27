@@ -486,16 +486,15 @@ function flexframe_enqueue_assets() {
                     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
                 }
                 
-                /* Style the search dropdown for tablet/desktop - LEFT ALIGNED */
+                /* Style the search dropdown for tablet/desktop */
                 #flexframe-viewer-container #searchDropdown,
                 #searchDropdown.thumbnail-dropdown {
                     position: fixed !important;
                     top: 60px !important;
-                    left: 10px !important;
-                    right: auto !important;
-                    transform: none !important;
-                    width: 480px !important;
-                    max-width: 480px !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) !important;
+                    width: min(90vw, 700px) !important;
+                    max-width: 90vw !important;
                     max-height: 80vh !important;
                     z-index: 999999 !important;
                     background-color: rgba(30, 30, 30, 0.95) !important;
@@ -511,7 +510,7 @@ function flexframe_enqueue_assets() {
                     display: block !important;
                 }
                 
-                /* Show the close button for search - position relative to left-aligned dropdown */
+                /* Show the close button for search */
                 #flexframe-viewer-container .search-close-btn-mobile,
                 .search-close-btn-mobile,
                 #searchCloseBtnMobile {
@@ -521,8 +520,7 @@ function flexframe_enqueue_assets() {
                     pointer-events: auto !important;
                     position: fixed !important;
                     top: 70px !important;
-                    left: 450px !important;
-                    right: auto !important;
+                    right: calc(50% - min(45vw, 350px) + 10px) !important;
                     width: 32px !important;
                     height: 32px !important;
                     max-width: 32px !important;

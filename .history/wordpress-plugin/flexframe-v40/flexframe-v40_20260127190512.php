@@ -521,8 +521,7 @@ function flexframe_enqueue_assets() {
                     pointer-events: auto !important;
                     position: fixed !important;
                     top: 70px !important;
-                    left: 450px !important;
-                    right: auto !important;
+                    right: calc(50% - min(45vw, 350px) + 10px) !important;
                     width: 32px !important;
                     height: 32px !important;
                     max-width: 32px !important;

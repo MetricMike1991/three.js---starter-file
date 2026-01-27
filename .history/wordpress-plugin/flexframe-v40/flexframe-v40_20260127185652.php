@@ -409,18 +409,8 @@ function flexframe_enqueue_assets() {
                 
                 /* Hide hint tab on screens above 480px */
                 #flexframe-viewer-container .menu-hint-tab,
-                .menu-hint-tab,
-                #flexframe-viewer-container .thumbnail-grid-container > .menu-hint-tab,
-                .thumbnail-grid-container > .menu-hint-tab,
-                div.menu-hint-tab {
+                .menu-hint-tab {
                     display: none !important;
-                    visibility: hidden !important;
-                    opacity: 0 !important;
-                    width: 0 !important;
-                    height: 0 !important;
-                    pointer-events: none !important;
-                    position: absolute !important;
-                    left: -9999px !important;
                 }
                 
                 /* Hide all menu wrappers EXCEPT search */
@@ -486,16 +476,15 @@ function flexframe_enqueue_assets() {
                     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
                 }
                 
-                /* Style the search dropdown for tablet/desktop - LEFT ALIGNED */
+                /* Style the search dropdown for tablet/desktop */
                 #flexframe-viewer-container #searchDropdown,
                 #searchDropdown.thumbnail-dropdown {
                     position: fixed !important;
                     top: 60px !important;
-                    left: 10px !important;
-                    right: auto !important;
-                    transform: none !important;
-                    width: 480px !important;
-                    max-width: 480px !important;
+                    left: 50% !important;
+                    transform: translateX(-50%) !important;
+                    width: min(90vw, 700px) !important;
+                    max-width: 90vw !important;
                     max-height: 80vh !important;
                     z-index: 999999 !important;
                     background-color: rgba(30, 30, 30, 0.95) !important;
@@ -511,7 +500,7 @@ function flexframe_enqueue_assets() {
                     display: block !important;
                 }
                 
-                /* Show the close button for search - position relative to left-aligned dropdown */
+                /* Show the close button for search */
                 #flexframe-viewer-container .search-close-btn-mobile,
                 .search-close-btn-mobile,
                 #searchCloseBtnMobile {
@@ -521,8 +510,7 @@ function flexframe_enqueue_assets() {
                     pointer-events: auto !important;
                     position: fixed !important;
                     top: 70px !important;
-                    left: 450px !important;
-                    right: auto !important;
+                    right: calc(50% - min(45vw, 350px) + 10px) !important;
                     width: 32px !important;
                     height: 32px !important;
                     max-width: 32px !important;
@@ -557,71 +545,6 @@ function flexframe_enqueue_assets() {
                     height: 0 !important;
                     position: absolute !important;
                     left: -9999px !important;
-                }
-                
-                /* Search dropdown content styling for tablet/desktop */
-                #flexframe-viewer-container #searchDropdown .search-content-wrapper,
-                #searchDropdown .search-content-wrapper {
-                    display: flex !important;
-                    flex-direction: row !important;
-                    height: 450px !important;
-                    max-height: 75vh !important;
-                }
-                
-                /* Show filters panel on tablet/desktop dropdown */
-                #flexframe-viewer-container #searchDropdown .search-filters-panel,
-                #searchDropdown .search-filters-panel {
-                    display: flex !important;
-                    flex-direction: column !important;
-                    width: 200px !important;
-                    min-width: 200px !important;
-                    border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
-                    padding: 10px !important;
-                    overflow-y: auto !important;
-                    background: rgba(0, 0, 0, 0.2) !important;
-                }
-                
-                /* Results panel */
-                #flexframe-viewer-container #searchDropdown .search-results-panel,
-                #searchDropdown .search-results-panel {
-                    flex: 1 !important;
-                    display: flex !important;
-                    flex-direction: column !important;
-                }
-                
-                /* Search header styling */
-                #flexframe-viewer-container #searchDropdown .search-header,
-                #searchDropdown .search-header {
-                    padding: 12px !important;
-                    border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
-                }
-                
-                /* Search input styling */
-                #flexframe-viewer-container #searchDropdown .search-input,
-                #searchDropdown .search-input,
-                #searchDropdown #searchInput {
-                    width: 100% !important;
-                    padding: 10px 40px 10px 12px !important;
-                    font-size: 14px !important;
-                    background: rgba(255, 255, 255, 0.1) !important;
-                    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-                    border-radius: 8px !important;
-                    color: white !important;
-                }
-                
-                /* Thumbnail grid in search results */
-                #flexframe-viewer-container #searchDropdown .thumbnail-scroll-container,
-                #searchDropdown .thumbnail-scroll-container {
-                    flex: 1 !important;
-                    overflow-y: auto !important;
-                    padding: 10px !important;
-                }
-                
-                #flexframe-viewer-container #searchDropdown .thumbnail-grid,
-                #searchDropdown .thumbnail-grid {
-                    display: grid !important;
-                    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)) !important;
-                    gap: 10px !important;
                 }
             }
             
@@ -2552,7 +2475,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-0FXNTsYu.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bx2DR3ft.js',
             array(),
             FLEXFRAME_VERSION,
             true
