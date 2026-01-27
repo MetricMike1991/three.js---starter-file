@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.124
+ * Version: 1.39.130
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.124');
+define('FLEXFRAME_VERSION', '1.39.129');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -59,7 +59,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B1llFYUE.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bn-szadx.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -1332,24 +1332,46 @@ function flexframe_enqueue_assets() {
             .animation-player button,
             .animation-player .player-btn,
             .animation-player .play-pause-btn,
-            .animation-player .speed-btn {
+            .animation-player .speed-btn,
+            .animation-player .quality-btn,
+            #quality-toggle-btn {
                 background-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . $player_button_bg_opacity . ') !important;
+            }
+            
+            /* Quality button hover/focus states - use player accent color instead of blue */
+            .animation-player .quality-btn:hover,
+            .animation-player .quality-btn:focus,
+            .animation-player .quality-btn:active,
+            #quality-toggle-btn:hover,
+            #quality-toggle-btn:focus,
+            #quality-toggle-btn:active {
+                background-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . min($player_button_bg_opacity + 0.15, 1) . ') !important;
+                border-color: ' . $player_accent_color . ' !important;
+                outline: none !important;
+                box-shadow: 0 0 0 2px ' . $player_accent_color . '40 !important;
             }
             
             /* Icon & Text Color */
             .animation-player button,
             .animation-player .player-btn,
             .animation-player .play-pause-btn,
-            .animation-player .speed-btn {
+            .animation-player .speed-btn,
+            .animation-player .quality-btn,
+            #quality-toggle-btn {
                 color: ' . $player_icon_color . ' !important;
             }
             .animation-player button svg,
             .animation-player .play-pause-btn svg,
-            .animation-player .speed-btn svg {
+            .animation-player .speed-btn svg,
+            .animation-player .quality-btn svg,
+            #quality-toggle-btn svg {
                 fill: ' . $player_icon_color . ' !important;
             }
             .animation-player .speed-btn span,
-            .animation-player #speed-text {
+            .animation-player #speed-text,
+            .animation-player .quality-btn span,
+            #quality-toggle-btn span,
+            #quality-text {
                 color: ' . $player_icon_color . ' !important;
             }
             .animation-player .current-time,
@@ -2294,7 +2316,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-4YCRl6o-.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cq8iissA.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2807,6 +2829,12 @@ function flexframe_viewer_shortcode($atts) {
                     </div>
                     <div class="search-content-wrapper">
                         <div class="search-filters-panel" id="searchFiltersPanel">
+                            <div class="filter-section">
+                                <div class="filter-section-header">
+                                    <div class="filter-title">Type</div>
+                                </div>
+                                <div class="filter-options" id="typeFilters"></div>
+                            </div>
                             <div class="filter-section">
                                 <div class="filter-section-header">
                                     <div class="filter-title">Muscles</div>

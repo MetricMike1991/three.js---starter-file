@@ -117,10 +117,12 @@ class ThumbnailDropdownMenu {
         
         console.log('🔍 setupSearchFilters called for search menu');
         
+        const typeFiltersContainer = document.getElementById('typeFilters');
         const muscleFiltersContainer = document.getElementById('muscleFilters');
         const equipmentFiltersContainer = document.getElementById('equipmentFilters');
         
         console.log('🔍 Filter containers found:', { 
+            typeFilters: typeFiltersContainer,
             muscleFilters: muscleFiltersContainer, 
             equipmentFilters: equipmentFiltersContainer 
         });
@@ -128,6 +130,87 @@ class ThumbnailDropdownMenu {
         if (!muscleFiltersContainer || !equipmentFiltersContainer) {
             console.error('❌ Filter containers not found in DOM');
             return;
+        }
+        
+        // Setup Type filters (Strength / Cardio)
+        if (typeFiltersContainer) {
+            typeFiltersContainer.style.display = 'grid';
+            typeFiltersContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            typeFiltersContainer.style.gap = '8px';
+            
+            const types = ['Strength', 'Cardio'];
+            
+            types.forEach(type => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'filter-thumbnail';
+                thumbnail.dataset.value = type;
+                
+                // Create thumbnail label
+                const label = document.createElement('div');
+                label.className = 'filter-thumbnail-label';
+                label.textContent = type;
+                
+                thumbnail.appendChild(label);
+                
+                thumbnail.addEventListener('click', () => {
+                    const primaryColor = this.settings.glowColor || '#8d0000';
+                    const isSelected = this.selectedTypeFilter === type;
+                    
+                    if (isSelected) {
+                        // Deselect this filter
+                        this.selectedTypeFilter = null;
+                        thumbnail.classList.remove('selected');
+                        thumbnail.style.removeProperty('border');
+                        thumbnail.style.removeProperty('background-color');
+                        thumbnail.style.removeProperty('box-shadow');
+                        
+                        // Re-enable muscle and equipment filters
+                        this.setMuscleEquipmentFiltersEnabled(true, muscleFiltersContainer, equipmentFiltersContainer);
+                    } else {
+                        // Clear all other type selections first (single selection only)
+                        typeFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                            thumb.classList.remove('selected');
+                            thumb.style.removeProperty('border');
+                            thumb.style.removeProperty('background-color');
+                            thumb.style.removeProperty('box-shadow');
+                        });
+                        
+                        // Select this filter
+                        this.selectedTypeFilter = type;
+                        thumbnail.classList.add('selected');
+                        thumbnail.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
+                        thumbnail.style.setProperty('background-color', `${primaryColor}33`, 'important');
+                        thumbnail.style.setProperty('box-shadow', `0 0 12px ${primaryColor}88`, 'important');
+                        
+                        // If Cardio selected, disable muscle and equipment filters
+                        if (type === 'Cardio') {
+                            // Clear any selected muscle/equipment filters first
+                            this.selectedMuscleFilters.clear();
+                            this.selectedEquipmentFilters.clear();
+                            muscleFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                                thumb.classList.remove('selected');
+                                thumb.style.removeProperty('border');
+                                thumb.style.removeProperty('background-color');
+                                thumb.style.removeProperty('box-shadow');
+                            });
+                            equipmentFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                                thumb.classList.remove('selected');
+                                thumb.style.removeProperty('border');
+                                thumb.style.removeProperty('background-color');
+                                thumb.style.removeProperty('box-shadow');
+                            });
+                            this.setMuscleEquipmentFiltersEnabled(false, muscleFiltersContainer, equipmentFiltersContainer);
+                        } else {
+                            // Strength selected - enable filters
+                            this.setMuscleEquipmentFiltersEnabled(true, muscleFiltersContainer, equipmentFiltersContainer);
+                        }
+                    }
+                    this.filterDataForMenu();
+                    this.renderVirtualizedGrid();
+                });
+                
+                typeFiltersContainer.appendChild(thumbnail);
+            });
         }
         
         // Get unique muscles and equipment from exercises
@@ -358,6 +441,7 @@ class ThumbnailDropdownMenu {
         this.touchMoved = false;
         
         // Search filters (multi-select)
+        this.selectedTypeFilter = null; // Single selection: 'Strength' or 'Cardio'
         this.selectedMuscleFilters = new Set();
         this.selectedEquipmentFilters = new Set();
         
@@ -455,6 +539,51 @@ class ThumbnailDropdownMenu {
             console.error('Failed to load exercise data:', error);
             this.generateFallbackData();
         }
+    }
+    
+    // Determine exercise type based on equipment (Strength or Cardio)
+    getExerciseType(exercise) {
+        // Cardio equipment keywords
+        const cardioEquipment = ['Treadmill', 'Bike', 'Elliptical', 'Rower', 'Jump Rope', 'Stair Climber', 'Rowing Machine'];
+        const cardioKeywords = ['cardio', 'run', 'jog', 'sprint', 'cycle', 'rowing', 'jump'];
+        
+        // Check if any equipment matches cardio
+        const hasCardioEquipment = exercise.equipment?.some(eq => 
+            cardioEquipment.some(cardio => eq.toLowerCase().includes(cardio.toLowerCase()))
+        );
+        
+        // Check if name contains cardio keywords
+        const hasCardioKeyword = cardioKeywords.some(keyword => 
+            exercise.name.toLowerCase().includes(keyword)
+        );
+        
+        if (hasCardioEquipment || hasCardioKeyword) {
+            return 'Cardio';
+        }
+        
+        // Default to Strength for everything else (barbell, dumbbell, cable, machine exercises)
+        return 'Strength';
+    }
+
+    // Enable or disable muscle and equipment filter thumbnails
+    setMuscleEquipmentFiltersEnabled(enabled, muscleContainer, equipmentContainer) {
+        const containers = [muscleContainer, equipmentContainer];
+        containers.forEach(container => {
+            if (!container) return;
+            container.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                if (enabled) {
+                    thumb.classList.remove('disabled');
+                    thumb.style.removeProperty('opacity');
+                    thumb.style.removeProperty('pointer-events');
+                    thumb.style.removeProperty('cursor');
+                } else {
+                    thumb.classList.add('disabled');
+                    thumb.style.setProperty('opacity', '0.4', 'important');
+                    thumb.style.setProperty('pointer-events', 'none', 'important');
+                    thumb.style.setProperty('cursor', 'not-allowed', 'important');
+                }
+            });
+        });
     }
 
     filterDataForMenu() {
@@ -558,6 +687,15 @@ class ThumbnailDropdownMenu {
             case 'search':
                 // Start with all exercises
                 let searchResults = this.allExercises;
+                
+                // Apply type filter (Strength / Cardio)
+                if (this.selectedTypeFilter) {
+                    searchResults = searchResults.filter(exercise => {
+                        // Determine exercise type based on equipment or explicit type field
+                        const exerciseType = exercise.type || this.getExerciseType(exercise);
+                        return exerciseType === this.selectedTypeFilter;
+                    });
+                }
                 
                 // Apply muscle filters (if any selected) - ALL must match
                 if (this.selectedMuscleFilters.size > 0) {
@@ -982,9 +1120,9 @@ class ThumbnailDropdownMenu {
             selectedElement.classList.add('selected');
         }
         
-        // Close search dropdown on mobile after selection
+        // Close search dropdown on mobile after selection - use closeMenu() to properly reset state
         if (this.menuType === 'search' && window.innerWidth <= 768) {
-            this.dropdown.classList.remove('show');
+            this.closeMenu();
         }
         
         // Menu stays open after thumbnail selection - only closes when clicking outside
@@ -1377,6 +1515,12 @@ class ThumbnailDropdownMenu {
         this.dropdown.classList.remove('show');
         this.toggleBtn.classList.remove('active');
         this.isOpen = false;
+        
+        // Clear active thumbnail state when menu closes
+        if (this.activeThumbnail) {
+            this.activeThumbnail.classList.remove('touch-active');
+            this.activeThumbnail = null;
+        }
         
         // Check if any other menus are open, if not, remove menu-active class
         const anyMenuOpen = window.menuManager && 

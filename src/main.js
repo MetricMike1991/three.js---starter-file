@@ -244,6 +244,7 @@ class ThreeJSApp {
                     this.modelUrlSQ = config.modelUrl || config.modelUrlSQ;
                     this.modelUrlHQ = config.modelUrlHQ;
                     this.currentModelQuality = 'SQ';
+                    this.isQualitySwitching = false; // Reset quality switch lock
                     
                     // Update quality toggle button visibility
                     this.updateQualityButtonVisibility();
@@ -2648,76 +2649,92 @@ class ThreeJSApp {
     async switchModelQuality() {
         if (!this.modelUrlSQ || !this.modelUrlHQ) return;
         
-        // Toggle quality
-        this.currentModelQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
-        const modelUrl = this.currentModelQuality === 'SQ' ? this.modelUrlSQ : this.modelUrlHQ;
-        
-        console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
-        
-        // Update button text to show the NEXT quality you can switch to (HD/SD for button display)
-        const qualityText = document.getElementById('quality-text');
-        if (qualityText) {
-            const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
-            qualityText.textContent = nextQuality;
+        // Prevent spam clicking - check if already switching
+        if (this.isQualitySwitching) {
+            console.log('[Quality] Already switching quality, ignoring click');
+            return;
         }
         
-        // Restart pulsate animation with new quality
-        this.startQualityButtonPulsate();
+        // Set lock and disable button
+        this.isQualitySwitching = true;
+        const qualityBtn = document.getElementById('quality-toggle-btn');
+        if (qualityBtn) {
+            qualityBtn.disabled = true;
+            qualityBtn.style.opacity = '0.5';
+            qualityBtn.style.cursor = 'wait';
+        }
         
-        // Get quality-specific settings if available
-        console.log('[HQ Debug] currentConfig:', this.currentConfig);
-        console.log('[HQ Debug] Has cameraHQ?', !!this.currentConfig?.cameraHQ);
-        console.log('[HQ Debug] cameraHQ value:', this.currentConfig?.cameraHQ);
-        
-        if (this.currentModelQuality === 'HQ' && (this.currentConfig?.modelHQ || this.currentConfig?.cameraHQ)) {
-            console.log('[HQ Debug] ✅ Entering HQ branch');
-            const hqModelSettings = this.currentConfig.modelHQ;
-            const hqCameraSettings = this.currentConfig.cameraHQ || hqModelSettings?.camera;
-            console.log('[HQ Debug] hqCameraSettings:', hqCameraSettings);
+        try {
+            // Toggle quality
+            this.currentModelQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
+            const modelUrl = this.currentModelQuality === 'SQ' ? this.modelUrlSQ : this.modelUrlHQ;
             
-            // Set pending model config for HQ
-            if (hqModelSettings?.model) {
-                this.pendingModelConfig = hqModelSettings.model;
+            console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
+            
+            // Update button text to show the NEXT quality you can switch to (HD/SD for button display)
+            const qualityText = document.getElementById('quality-text');
+            if (qualityText) {
+                const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
+                qualityText.textContent = nextQuality;
             }
             
-            // Reload model with HQ settings
-            await this.loadModel(modelUrl);
-            console.log('[HQ Debug] Model loaded, now applying camera settings');
+            // Restart pulsate animation with new quality
+            this.startQualityButtonPulsate();
             
-            // Apply HQ camera settings (from cameraHQ or modelHQ.camera)
-            if (hqCameraSettings) {
-                console.log('[HQ Debug] Applying HQ camera position:', hqCameraSettings.position);
-                const camera = this.cameraManager.getCamera();
-                if (hqCameraSettings.position) {
-                    camera.position.set(...hqCameraSettings.position);
-                }
-                if (hqCameraSettings.rotation) {
-                    camera.rotation.set(...hqCameraSettings.rotation);
-                }
-                if (hqCameraSettings.target) {
-                    this.cameraManager.getControls().target.set(...hqCameraSettings.target);
-                }
-                this.cameraManager.getControls().update();
+            // Get quality-specific settings if available
+            console.log('[HQ Debug] currentConfig:', this.currentConfig);
+            console.log('[HQ Debug] Has cameraHQ?', !!this.currentConfig?.cameraHQ);
+            console.log('[HQ Debug] cameraHQ value:', this.currentConfig?.cameraHQ);
+            
+            if (this.currentModelQuality === 'HQ' && (this.currentConfig?.modelHQ || this.currentConfig?.cameraHQ)) {
+                console.log('[HQ Debug] ✅ Entering HQ branch');
+                const hqModelSettings = this.currentConfig.modelHQ;
+                const hqCameraSettings = this.currentConfig.cameraHQ || hqModelSettings?.camera;
+                console.log('[HQ Debug] hqCameraSettings:', hqCameraSettings);
                 
-                // Update original state for spacebar reset
-                this.cameraManager.updateOriginalState(
-                    hqCameraSettings.position,
-                    hqCameraSettings.rotation,
-                    hqCameraSettings.target
-                );
-            }
-        } else {
-            // Use default/SQ settings
-            if (this.currentConfig?.model) {
-                this.pendingModelConfig = this.currentConfig.model;
-            }
-            
-            // Reload model
-            await this.loadModel(modelUrl);
-            
-            // Apply default camera settings
-            if (this.currentConfig?.camera) {
-                const camera = this.cameraManager.getCamera();
+                // Set pending model config for HQ
+                if (hqModelSettings?.model) {
+                    this.pendingModelConfig = hqModelSettings.model;
+                }
+                
+                // Reload model with HQ settings
+                await this.loadModel(modelUrl);
+                console.log('[HQ Debug] Model loaded, now applying camera settings');
+                
+                // Apply HQ camera settings (from cameraHQ or modelHQ.camera)
+                if (hqCameraSettings) {
+                    console.log('[HQ Debug] Applying HQ camera position:', hqCameraSettings.position);
+                    const camera = this.cameraManager.getCamera();
+                    if (hqCameraSettings.position) {
+                        camera.position.set(...hqCameraSettings.position);
+                    }
+                    if (hqCameraSettings.rotation) {
+                        camera.rotation.set(...hqCameraSettings.rotation);
+                    }
+                    if (hqCameraSettings.target) {
+                        this.cameraManager.getControls().target.set(...hqCameraSettings.target);
+                    }
+                    this.cameraManager.getControls().update();
+                    
+                    // Update original state for spacebar reset
+                    this.cameraManager.updateOriginalState(
+                        hqCameraSettings.position,
+                        hqCameraSettings.rotation,
+                        hqCameraSettings.target
+                    );
+                }
+            } else {
+                // Use default/SQ settings
+                if (this.currentConfig?.model) {
+                    this.pendingModelConfig = this.currentConfig.model;
+                }
+                
+                // Reload model
+                await this.loadModel(modelUrl);
+                
+                // Apply default camera settings
+                if (this.currentConfig?.camera) {
+                    const camera = this.cameraManager.getCamera();
                 if (this.currentConfig.camera.position) {
                     camera.position.set(...this.currentConfig.camera.position);
                 }
@@ -2736,6 +2753,18 @@ class ThreeJSApp {
                     this.currentConfig.camera.target
                 );
             }
+        }
+        } finally {
+            // Release lock and re-enable button after a short delay
+            setTimeout(() => {
+                this.isQualitySwitching = false;
+                const qualityBtn = document.getElementById('quality-toggle-btn');
+                if (qualityBtn) {
+                    qualityBtn.disabled = false;
+                    qualityBtn.style.opacity = '1';
+                    qualityBtn.style.cursor = 'pointer';
+                }
+            }, 500); // 500ms cooldown after model loads
         }
     }
     

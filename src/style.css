@@ -526,10 +526,12 @@ body
     border-color: rgba(74, 158, 255, 0.5);
 }
 
-/* Quality Button specific styles */
-.quality-btn:hover {
-    background: rgba(74, 158, 255, 0.3);
-    border-color: rgba(74, 158, 255, 0.5);
+/* Quality Button specific styles - colors set via WordPress theme settings */
+.quality-btn:hover,
+.quality-btn:focus,
+.quality-btn:active {
+    /* Hover/focus colors handled by WordPress CSS override */
+    outline: none;
 }
 
 .quality-btn span,
