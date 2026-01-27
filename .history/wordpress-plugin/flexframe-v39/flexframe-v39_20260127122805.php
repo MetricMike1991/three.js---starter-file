@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.124
+ * Version: 1.39.119
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.124');
+define('FLEXFRAME_VERSION', '1.39.108');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -939,9 +939,7 @@ function flexframe_enqueue_assets() {
                     font-size: clamp(3px, 2.86vw, 11px) !important;
                 }
                 /* Mobile search close button */
-                #flexframe-viewer-container #searchCloseBtnMobile,
-                #flexframe-viewer-container button#searchCloseBtnMobile,
-                #searchCloseBtnMobile {
+                .search-close-btn-mobile {
                     position: fixed !important;
                     right: 10px !important;
                     width: 32px !important;
@@ -950,10 +948,10 @@ function flexframe_enqueue_assets() {
                     max-height: 32px !important;
                     padding: 0 !important;
                     box-sizing: border-box !important;
+                    display: flex !important;
                     align-items: center !important;
                     justify-content: center !important;
-                    background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
-                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.25) !important;
                     backdrop-filter: blur(20px) saturate(180%) !important;
                     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
                     border: 1px solid rgba(255, 255, 255, 0.25) !important;
@@ -965,19 +963,15 @@ function flexframe_enqueue_assets() {
                     cursor: pointer !important;
                     z-index: 99998 !important;
                 }
-                #flexframe-viewer-container #searchCloseBtnMobile svg,
-                #searchCloseBtnMobile svg {
+                .search-close-btn-mobile svg {
                     width: 18px !important;
                     height: 18px !important;
                     fill: #ffffff !important;
                     filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4)) !important;
                 }
-                #flexframe-viewer-container #searchCloseBtnMobile:hover,
-                #flexframe-viewer-container #searchCloseBtnMobile:active,
-                #searchCloseBtnMobile:hover,
-                #searchCloseBtnMobile:active {
-                    background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
-                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
+                .search-close-btn-mobile:hover,
+                .search-close-btn-mobile:active {
+                    background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.35) !important;
                     border-color: rgba(255, 255, 255, 0.35) !important;
                     box-shadow: 0 4px 16px var(--flexframe-primary-color, rgba(0, 0, 0, 0.4)), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
                     transform: translateY(-1px) !important;
@@ -2294,7 +2288,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-4YCRl6o-.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C0SNPWIW.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2470,8 +2464,6 @@ function flexframe_enqueue_assets() {
                 'skinIor' => floatval(get_option('flexframe_skin_ior', 1.5)),
                 'skinEnvIntensity' => floatval(get_option('flexframe_skin_env_intensity', 1))
             ),
-            'menuBackgroundColor' => $menu_bg_color,
-            'menuBackgroundOpacity' => $menu_bg_opacity,
             'showScreenshotButton' => (bool) get_option('flexframe_show_screenshot_button', true),
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'ajaxUrl' => admin_url('admin-ajax.php'),

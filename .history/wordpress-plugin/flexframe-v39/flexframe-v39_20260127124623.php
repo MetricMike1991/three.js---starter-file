@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v39
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.39.124
+ * Version: 1.39.123
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.39.124');
+define('FLEXFRAME_VERSION', '1.39.123');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -2294,7 +2294,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-4YCRl6o-.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-jvoQez4r.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2470,8 +2470,6 @@ function flexframe_enqueue_assets() {
                 'skinIor' => floatval(get_option('flexframe_skin_ior', 1.5)),
                 'skinEnvIntensity' => floatval(get_option('flexframe_skin_env_intensity', 1))
             ),
-            'menuBackgroundColor' => $menu_bg_color,
-            'menuBackgroundOpacity' => $menu_bg_opacity,
             'showScreenshotButton' => (bool) get_option('flexframe_show_screenshot_button', true),
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'ajaxUrl' => admin_url('admin-ajax.php'),

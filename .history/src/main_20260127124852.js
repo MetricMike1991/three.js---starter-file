@@ -4864,39 +4864,6 @@ class ThreeJSApp {
         
         if (!searchCloseBtn || !searchDropdown || !searchToggle) return;
         
-        // Get menu background color from flexframeSettings
-        const settings = window.flexframeSettings || {};
-        const menuBg = settings.menuBackgroundColor || '#000000';
-        const menuBgOpacity = settings.menuBackgroundOpacity || 0.9;
-        
-        // Convert hex to RGB
-        const hexToRgb = (hex) => {
-            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-            return result ? {
-                r: parseInt(result[1], 16),
-                g: parseInt(result[2], 16),
-                b: parseInt(result[3], 16)
-            } : {r: 0, g: 0, b: 0};
-        };
-        
-        const rgb = hexToRgb(menuBg);
-        const bgColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${menuBgOpacity})`;
-        const bgColorHover = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${Math.min(menuBgOpacity + 0.1, 1)})`;
-        
-        // Apply inline styles to override theme CSS
-        searchCloseBtn.style.setProperty('background', bgColor, 'important');
-        searchCloseBtn.style.setProperty('background-color', bgColor, 'important');
-        
-        // Add hover effect
-        searchCloseBtn.addEventListener('mouseenter', () => {
-            searchCloseBtn.style.setProperty('background', bgColorHover, 'important');
-            searchCloseBtn.style.setProperty('background-color', bgColorHover, 'important');
-        });
-        searchCloseBtn.addEventListener('mouseleave', () => {
-            searchCloseBtn.style.setProperty('background', bgColor, 'important');
-            searchCloseBtn.style.setProperty('background-color', bgColor, 'important');
-        });
-        
         // Function to update close button position based on dropdown
         const updateCloseButtonPosition = () => {
             if (searchDropdown.classList.contains('show')) {
