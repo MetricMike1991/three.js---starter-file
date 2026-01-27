@@ -142,13 +142,25 @@ class ThumbnailDropdownMenu {
             
             types.forEach(type => {
                 const thumbnail = document.createElement('div');
-                thumbnail.className = 'filter-thumbnail';
+                thumbnail.className = 'filter-thumbnail type-filter-thumbnail';
                 thumbnail.dataset.value = type;
+                
+                // Style for compact text-only type filters (same width as other thumbnails, just shorter height)
+                thumbnail.style.height = '30px';
+                thumbnail.style.minHeight = '30px';
+                thumbnail.style.display = 'flex';
+                thumbnail.style.alignItems = 'center';
+                thumbnail.style.justifyContent = 'center';
+                thumbnail.style.aspectRatio = 'unset';
                 
                 // Create thumbnail label
                 const label = document.createElement('div');
                 label.className = 'filter-thumbnail-label';
                 label.textContent = type;
+                label.style.position = 'relative';
+                label.style.transform = 'none';
+                label.style.left = 'auto';
+                label.style.bottom = 'auto';
                 
                 thumbnail.appendChild(label);
                 
