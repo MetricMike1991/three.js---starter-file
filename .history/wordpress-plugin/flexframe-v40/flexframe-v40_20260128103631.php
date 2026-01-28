@@ -688,8 +688,9 @@ function flexframe_enqueue_assets() {
                     height: 40px !important;
                     padding: 0 !important;
                     font-size: 0 !important;
-                    display: block !important;
-                    position: relative !important;
+                    display: flex !important;
+                    align-items: center !important;
+                    justify-content: center !important;
                     background-color: rgba(0, 0, 0, 0.5) !important;
                     backdrop-filter: blur(20px) !important;
                     border: 2px solid var(--flexframe-primary-color, #4a9eff) !important;
@@ -697,7 +698,6 @@ function flexframe_enqueue_assets() {
                     color: #ffffff !important;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 8px var(--flexframe-primary-color, rgba(74, 158, 255, 0.3)) !important;
                     cursor: pointer !important;
-                    overflow: hidden !important;
                 }
                 #flexframe-viewer-container #infoToggle:hover,
                 button.thumbnail-menu-toggle#infoToggle:hover {
@@ -707,11 +707,6 @@ function flexframe_enqueue_assets() {
                 }
                 #flexframe-viewer-container #infoToggle span {
                     display: none !important;
-                    visibility: hidden !important;
-                    position: absolute !important;
-                    width: 0 !important;
-                    height: 0 !important;
-                    overflow: hidden !important;
                 }
                 #flexframe-viewer-container #infoToggle svg,
                 button.thumbnail-menu-toggle#infoToggle svg {
@@ -719,10 +714,9 @@ function flexframe_enqueue_assets() {
                     height: 20px !important;
                     fill: #ffffff !important;
                     display: block !important;
-                    position: absolute !important;
-                    top: 50% !important;
-                    left: 50% !important;
-                    transform: translate(-50%, -50%) !important;
+                    margin: auto !important;
+                    vertical-align: middle !important;
+                    flex-shrink: 0 !important;
                 }
                 #flexframe-viewer-container #infoToggle svg path,
                 button.thumbnail-menu-toggle#infoToggle svg path {

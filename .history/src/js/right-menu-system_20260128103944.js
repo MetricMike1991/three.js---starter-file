@@ -40,10 +40,6 @@ class RightMenuDropdown {
         this.scrollUpBtn = document.getElementById(`${this.menuType}ScrollUp`);
         this.scrollDownBtn = document.getElementById(`${this.menuType}ScrollDown`);
 
-        console.log(`[RightMenu DEBUG] initializeElements for ${this.menuType}:`);
-        console.log(`[RightMenu DEBUG] toggleBtn:`, this.toggleBtn);
-        console.log(`[RightMenu DEBUG] toggleBtn innerHTML:`, this.toggleBtn ? this.toggleBtn.innerHTML : 'N/A');
-        
         if (!this.toggleBtn || !this.dropdown) {
             console.error(`Failed to initialize ${this.menuType} menu elements`);
         }
