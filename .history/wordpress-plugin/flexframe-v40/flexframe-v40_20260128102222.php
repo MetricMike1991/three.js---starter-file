@@ -67,11 +67,6 @@ function flexframe_enqueue_assets() {
         // Check if this is a dedicated FlexFrame viewer page (hide all WP elements)
         $is_viewer_page = get_post_meta($post->ID, '_flexframe_viewer_page', true);
         
-        // Get theme color settings early for use in isolation CSS
-        $menu_bg_color = esc_attr(get_option('flexframe_menu_bg_color', '#000000'));
-        $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#f50000'));
-        $menu_bg_rgb = sscanf($menu_bg_color, "#%02x%02x%02x");
-        
         // Add inline CSS for WordPress theme isolation
         $isolation_css = '
             /* CRITICAL: Prevent horizontal/vertical overflow on mobile */
@@ -731,7 +726,7 @@ function flexframe_enqueue_assets() {
                     backdrop-filter: blur(20px) !important;
                     border-radius: 16px !important;
                     border: 1px solid rgba(255, 255, 255, 0.15) !important;
-                    box-shadow: 0 0 20px ' . $menu_accent_color . '66, 0 0 40px ' . $menu_accent_color . '33 !important;
+                    box-shadow: none !important;
                     display: none !important;
                 }
                 #flexframe-viewer-container #infoDropdown.show,
