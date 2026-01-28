@@ -692,7 +692,7 @@ function flexframe_enqueue_assets() {
                     position: relative !important;
                     background-color: rgba(0, 0, 0, 0.5) !important;
                     backdrop-filter: blur(20px) !important;
-                    border: 2px solid ' . $menu_accent_color . ' !important;
+                    border: 1px solid ' . $menu_accent_color . ' !important;
                     border-radius: 50% !important;
                     color: #ffffff !important;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 8px var(--flexframe-primary-color, rgba(74, 158, 255, 0.3)) !important;

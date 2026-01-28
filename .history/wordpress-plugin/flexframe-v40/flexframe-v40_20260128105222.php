@@ -692,7 +692,7 @@ function flexframe_enqueue_assets() {
                     position: relative !important;
                     background-color: rgba(0, 0, 0, 0.5) !important;
                     backdrop-filter: blur(20px) !important;
-                    border: 2px solid ' . $menu_accent_color . ' !important;
+                    border: 1px solid ' . $menu_accent_color . ' !important;
                     border-radius: 50% !important;
                     color: #ffffff !important;
                     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 8px var(--flexframe-primary-color, rgba(74, 158, 255, 0.3)) !important;
@@ -760,13 +760,6 @@ function flexframe_enqueue_assets() {
                 .info-step-item {
                     margin-right: 7px !important;
                     box-shadow: none !important;
-                }
-                
-                /* Info grid right margin for tablet/desktop */
-                #flexframe-viewer-container #infoGrid,
-                #infoDropdown #infoGrid,
-                #infoGrid.thumbnail-grid {
-                    margin-right: 7px !important;
                 }
                 
                 /* Info sticky header for tablet/desktop - border only, no background */
@@ -1088,7 +1081,7 @@ function flexframe_enqueue_assets() {
                 #flexframe-viewer-container button#infoToggle.active,
                 .thumbnail-grid-container-right #infoToggle.active {
                     background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.35) !important;
-                    border: 1px solid ' . $menu_accent_color . ' !important;
+                    border-color: rgba(255, 255, 255, 0.35) !important;
                     box-shadow: 0 4px 16px var(--flexframe-primary-color, rgba(0, 0, 0, 0.4)), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
                     transform: translateY(-1px) !important;
                     color: #ffffff !important;
