@@ -198,9 +198,6 @@ class ThreeJSApp {
         // Setup mobile search close button
         this.setupMobileSearchCloseButton();
         
-        // Setup mobile fullscreen button
-        this.setupFullscreenButton();
-        
         // Listen for thumbnail selection events
         document.addEventListener('thumbnailSelected', (e) => {
             console.log('Thumbnail selected:', e.detail.thumbnail);

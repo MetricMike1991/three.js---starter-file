@@ -59,7 +59,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CuR5q3d5.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-gmQPH--E.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -2760,7 +2760,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C84LFFqC.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Dfkrt0Kj.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -3413,13 +3413,13 @@ function flexframe_viewer_shortcode($atts) {
         
         <!-- Fullscreen Button -->
         <button id="fullscreen-btn" class="fullscreen-btn" title="Toggle Fullscreen">
-            <svg class="fullscreen-enter-icon" viewBox="0 0 24 24" width="18" height="18">
-                <!-- Expand icon -->
-                <path fill="white" d="M5 5h5v2H7v3H5V5zm14 0v5h-2V7h-3V5h5zM5 19v-5h2v3h3v2H5zm14 0h-5v-2h3v-3h2v5z"/>
+            <svg class="fullscreen-enter-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                <!-- Expand arrows pointing outward to corners -->
+                <path d="M3 3h6v2H5v4H3V3zm12 0h6v6h-2V5h-4V3zM3 15h2v4h4v2H3v-6zm18 0v6h-6v-2h4v-4h2z"/>
             </svg>
-            <svg class="fullscreen-exit-icon" viewBox="0 0 24 24" width="18" height="18" style="display: none;">
-                <!-- Contract icon -->
-                <path fill="white" d="M10 10H5V8h3V5h2v5zm4 0V5h2v3h3v2h-5zM10 14v5H8v-3H5v-2h5zm9 0v2h-3v3h-2v-5h5z"/>
+            <svg class="fullscreen-exit-icon" viewBox="0 0 24 24" fill="currentColor" width="24" height="24" style="display: none;">
+                <!-- Collapse arrows pointing inward from corners -->
+                <path d="M9 3v6H3v-2h4V3h2zm6 0h2v4h4v2h-6V3zM3 15h6v6H7v-4H3v-2zm12 6v-6h6v2h-4v4h-2z"/>
             </svg>
         </button>
         
@@ -3499,6 +3499,4 @@ function flexframe_deactivate() {
     // Cleanup if needed
 }
 register_deactivation_hook(__FILE__, 'flexframe_deactivate');
-
-
 

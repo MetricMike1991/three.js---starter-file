@@ -59,7 +59,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CuR5q3d5.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BWHdz-PL.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -2760,7 +2760,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C84LFFqC.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B50WrjKk.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -3411,18 +3411,6 @@ function flexframe_viewer_shortcode($atts) {
         <!-- Canvas element -->
         <canvas class="webgl"></canvas>
         
-        <!-- Fullscreen Button -->
-        <button id="fullscreen-btn" class="fullscreen-btn" title="Toggle Fullscreen">
-            <svg class="fullscreen-enter-icon" viewBox="0 0 24 24" width="18" height="18">
-                <!-- Expand icon -->
-                <path fill="white" d="M5 5h5v2H7v3H5V5zm14 0v5h-2V7h-3V5h5zM5 19v-5h2v3h3v2H5zm14 0h-5v-2h3v-3h2v5z"/>
-            </svg>
-            <svg class="fullscreen-exit-icon" viewBox="0 0 24 24" width="18" height="18" style="display: none;">
-                <!-- Contract icon -->
-                <path fill="white" d="M10 10H5V8h3V5h2v5zm4 0V5h2v3h3v2h-5zM10 14v5H8v-3H5v-2h5zm9 0v2h-3v3h-2v-5h5z"/>
-            </svg>
-        </button>
-        
         <?php
         // Background Logo Watermark (CSS Overlay)
         $bg_logo_enabled = get_option('flexframe_bg_logo_enabled', false);
@@ -3499,6 +3487,4 @@ function flexframe_deactivate() {
     // Cleanup if needed
 }
 register_deactivation_hook(__FILE__, 'flexframe_deactivate');
-
-
 

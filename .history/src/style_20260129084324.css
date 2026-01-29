@@ -157,42 +157,41 @@ body
     justify-content: flex-end;
 }
 
-/* Fullscreen Button - simple icon only */
+/* Fullscreen Button - shown on all screen sizes */
 .fullscreen-btn {
     display: flex;
     position: fixed;
     bottom: 80px;
     right: 15px;
-    width: 28px;
-    height: 28px;
-    background: none !important;
-    border: none;
-    padding: 0;
-    margin: 0;
+    width: 36px;
+    height: 36px;
+    background: transparent;
+    border: 2px solid var(--flexframe-primary-color, #4a9eff);
+    border-radius: 50%;
     color: white;
     cursor: pointer;
     z-index: 1000;
     align-items: center;
     justify-content: center;
-    opacity: 0.7;
-    transition: opacity 0.3s ease, transform 0.3s ease;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    transition: all 0.3s ease;
 }
 
-.fullscreen-btn:hover {
-    opacity: 1;
-    transform: scale(1.15);
-    background: none !important;
+.fullscreen-btn:hover,
+.fullscreen-btn:active {
+    background: rgba(0, 0, 0, 0.3);
+    transform: scale(1.1);
 }
 
-.fullscreen-btn:active,
 .fullscreen-btn:focus {
     outline: none;
-    background: none !important;
+    background: transparent;
 }
 
 .fullscreen-btn svg {
-    width: 28px;
-    height: 28px;
+    width: 20px;
+    height: 20px;
 }
 
 /* Responsive design for smaller screens */
