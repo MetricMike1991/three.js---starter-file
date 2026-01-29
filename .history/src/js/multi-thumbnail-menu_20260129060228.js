@@ -341,16 +341,6 @@ class ThumbnailDropdownMenu {
             thumbnail.className = 'filter-thumbnail';
             thumbnail.dataset.value = eq;
             
-            // Create thumbnail image from embedded base64
-            const thumbnailKey = getFilterThumbnailKey(eq);
-            if (filterThumbnails[thumbnailKey]) {
-                const img = document.createElement('img');
-                img.src = filterThumbnails[thumbnailKey];
-                img.alt = eq;
-                img.className = 'filter-thumbnail-img';
-                thumbnail.appendChild(img);
-            }
-            
             // Create thumbnail label
             const label = document.createElement('div');
             label.className = 'filter-thumbnail-label';
@@ -1664,11 +1654,6 @@ export class MultiThumbnailMenuSystem {
         document.documentElement.style.setProperty('--flexframe-primary-color-rgb', `${r}, ${g}, ${b}`);
         console.log('[FlexFrame Glow] Set CSS variables --flexframe-primary-color:', primaryColor, 'RGB:', r, g, b);
         
-        // Calculate hue rotation for filter thumbnails (base images are red ~0°)
-        const hueRotation = this.calculateHueRotation(r, g, b);
-        document.documentElement.style.setProperty('--flexframe-hue-rotation', `${hueRotation}deg`);
-        console.log('[FlexFrame Glow] Set hue rotation for filter thumbnails:', hueRotation + 'deg');
-        
         this.settings = {
             widthPercentage: 90,
             backgroundColor: '#000000',
@@ -1685,40 +1670,6 @@ export class MultiThumbnailMenuSystem {
         console.log('🎧 Calling setupGlobalListeners...');
         this.setupGlobalListeners();
         console.log('✅ MultiThumbnailMenuSystem constructor complete');
-    }
-    
-    /**
-     * Calculate hue rotation needed to shift red (0°) to the target color's hue
-     * @param {number} r - Red component (0-255)
-     * @param {number} g - Green component (0-255)
-     * @param {number} b - Blue component (0-255)
-     * @returns {number} - Hue rotation in degrees
-     */
-    calculateHueRotation(r, g, b) {
-        // Convert RGB to HSL to get the hue
-        const rNorm = r / 255;
-        const gNorm = g / 255;
-        const bNorm = b / 255;
-        
-        const max = Math.max(rNorm, gNorm, bNorm);
-        const min = Math.min(rNorm, gNorm, bNorm);
-        const delta = max - min;
-        
-        let hue = 0;
-        if (delta !== 0) {
-            if (max === rNorm) {
-                hue = ((gNorm - bNorm) / delta) % 6;
-            } else if (max === gNorm) {
-                hue = (bNorm - rNorm) / delta + 2;
-            } else {
-                hue = (rNorm - gNorm) / delta + 4;
-            }
-            hue = Math.round(hue * 60);
-            if (hue < 0) hue += 360;
-        }
-        
-        // Base images are red (hue ~0°), so rotation = target hue
-        return hue;
     }
     
     initializeMenus() {

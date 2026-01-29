@@ -159,20 +159,6 @@ body
 
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
-    /* Remove background colors on mobile for transparent menus with blur */
-    .thumbnail-dropdown,
-    .exercise-menu,
-    .menu-panel,
-    .side-menu,
-    .right-menu,
-    #searchDropdown,
-    .search-dropdown {
-        background: transparent !important;
-        background-color: transparent !important;
-        -webkit-backdrop-filter: blur(15px) !important;
-        backdrop-filter: blur(15px) !important;
-    }
-    
     .animation-player {
         padding: 8px 12px;
     }
@@ -1989,7 +1975,6 @@ body
     position: absolute;
     top: 0;
     left: 0;
-    filter: hue-rotate(var(--flexframe-hue-rotation, 0deg));
 }
 
 .filter-thumbnail-label {
@@ -2002,11 +1987,6 @@ body
     max-width: 100%;
     position: relative;
     z-index: 1;
-    text-shadow: 
-        1px 1px 2px rgba(0, 0, 0, 0.9),
-        -1px -1px 2px rgba(0, 0, 0, 0.9),
-        1px -1px 2px rgba(0, 0, 0, 0.9),
-        -1px 1px 2px rgba(0, 0, 0, 0.9),
-        0 0 8px rgba(0, 0, 0, 0.8);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8), 0 0 6px rgba(0, 0, 0, 0.6);
     padding: 4px;
 }

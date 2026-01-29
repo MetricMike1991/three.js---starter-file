@@ -159,20 +159,6 @@ body
 
 /* Responsive design for smaller screens */
 @media screen and (max-width: 768px) {
-    /* Remove background colors on mobile for transparent menus with blur */
-    .thumbnail-dropdown,
-    .exercise-menu,
-    .menu-panel,
-    .side-menu,
-    .right-menu,
-    #searchDropdown,
-    .search-dropdown {
-        background: transparent !important;
-        background-color: transparent !important;
-        -webkit-backdrop-filter: blur(15px) !important;
-        backdrop-filter: blur(15px) !important;
-    }
-    
     .animation-player {
         padding: 8px 12px;
     }
