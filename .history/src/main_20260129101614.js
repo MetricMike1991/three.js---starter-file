@@ -5035,9 +5035,6 @@ class ThreeJSApp {
                 const animationPlayer = document.querySelector('.animation-player');
                 const isPlayerVisible = animationPlayer && animationPlayer.classList.contains('visible');
                 fullscreenBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
-            } else {
-                // On mobile, clear inline style to let CSS handle it (50px)
-                fullscreenBtn.style.bottom = '';
             }
         };
         

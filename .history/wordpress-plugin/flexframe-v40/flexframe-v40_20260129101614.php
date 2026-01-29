@@ -2760,7 +2760,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Tn_u0FhX.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cl6FORAT.js',
             array(),
             FLEXFRAME_VERSION,
             true
