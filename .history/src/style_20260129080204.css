@@ -1649,8 +1649,6 @@ body
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
-    position: relative;
-    z-index: 0;
 }
 
 .thumbnail-item:hover img {
@@ -1687,24 +1685,8 @@ body
 
 /* Mobile touch-active state for first tap before selection */
 .thumbnail-item.touch-active {
-    box-shadow: 
-        0 0 20px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.6), 
-        0 5px 20px rgba(0, 0, 0, 0.4);
+    box-shadow: 0 0 20px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.6), 0 5px 20px rgba(0, 0, 0, 0.4);
     border-color: var(--flexframe-primary-color, #4a9eff);
-}
-
-/* Inset glow overlay on touch-active (appears over the image) */
-.thumbnail-item.touch-active::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 20px 8px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.5);
-    pointer-events: none;
-    z-index: 2;
-    border-radius: 6px;
 }
 
 /* Ensure text color doesn't change on touch-active or selected */
@@ -2028,21 +2010,7 @@ body
 .filter-thumbnail.selected {
     border-width: 2px;
     transform: scale(1.05);
-    border-color: var(--flexframe-primary-color, #f50000);
-}
-
-/* Inset glow overlay on selected filter thumbnails (appears over the image) */
-.filter-thumbnail.selected::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    box-shadow: inset 0 0 20px 8px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.5);
-    pointer-events: none;
-    z-index: 2;
-    border-radius: 6px;
+    box-shadow: inset 0 0 12px 2px var(--flexframe-primary-color, #f50000);
 }
 
 .filter-thumbnail-img {
