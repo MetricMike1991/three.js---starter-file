@@ -89,22 +89,6 @@ body
     outline: none;
 }
 
-/* Screenshot and Speed button base styles (desktop) */
-.screenshot-btn,
-.speed-btn {
-    height: 32px;
-    min-height: 32px;
-    max-height: 32px;
-    padding: 0 12px;
-    font-size: 11px;
-    font-weight: 700;
-    line-height: 1;
-    box-sizing: border-box;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 /* Animation Player Styles */
 .animation-player {
     position: fixed;
@@ -177,7 +161,7 @@ body
 .fullscreen-btn {
     display: flex;
     position: fixed;
-    bottom: 20px;
+    bottom: 80px;
     right: 15px;
     width: 28px;
     height: 28px;

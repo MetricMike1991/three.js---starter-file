@@ -5029,28 +5029,6 @@ class ThreeJSApp {
         document.addEventListener('mozfullscreenchange', updateIcons);
         document.addEventListener('MSFullscreenChange', updateIcons);
         
-        // Adjust fullscreen button position based on animation player visibility (desktop only)
-        const updateButtonPosition = () => {
-            if (window.innerWidth > 768) {
-                const animationPlayer = document.querySelector('.animation-player');
-                const isPlayerVisible = animationPlayer && animationPlayer.classList.contains('visible');
-                fullscreenBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
-            }
-        };
-        
-        // Watch for animation player visibility changes
-        const animationPlayer = document.querySelector('.animation-player');
-        if (animationPlayer) {
-            const observer = new MutationObserver(updateButtonPosition);
-            observer.observe(animationPlayer, { attributes: true, attributeFilter: ['class'] });
-        }
-        
-        // Also update on window resize
-        window.addEventListener('resize', updateButtonPosition);
-        
-        // Initial position check
-        updateButtonPosition();
-        
         // Auto-enter fullscreen on first user interaction (required by browsers)
         // Check if WordPress setting enables auto-fullscreen
         if (window.flexframeSettings?.autoFullscreen) {

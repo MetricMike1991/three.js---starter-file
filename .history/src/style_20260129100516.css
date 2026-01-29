@@ -177,7 +177,7 @@ body
 .fullscreen-btn {
     display: flex;
     position: fixed;
-    bottom: 20px;
+    bottom: 80px;
     right: 15px;
     width: 28px;
     height: 28px;

@@ -59,7 +59,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DR8RDQL0.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cc6ljoaA.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -1672,9 +1672,9 @@ function flexframe_enqueue_assets() {
             .animation-player {
                 position: fixed !important;
                 bottom: 0 !important;
-                left: 0 !important;
-                right: 0 !important;
-                width: 100% !important;
+                left: 2.5% !important;
+                right: 2.5% !important;
+                width: 95% !important;
                 z-index: 100000 !important;
                 visibility: visible !important;
                 display: block !important;
@@ -2760,7 +2760,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cl6FORAT.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C3P-YNPf.js',
             array(),
             FLEXFRAME_VERSION,
             true

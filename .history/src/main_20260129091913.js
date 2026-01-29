@@ -5011,8 +5011,7 @@ class ThreeJSApp {
             }
         };
         
-        fullscreenBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent auto-fullscreen from interfering
+        fullscreenBtn.addEventListener('click', () => {
             if (!document.fullscreenElement && 
                 !document.webkitFullscreenElement && 
                 !document.mozFullScreenElement &&
@@ -5029,42 +5028,17 @@ class ThreeJSApp {
         document.addEventListener('mozfullscreenchange', updateIcons);
         document.addEventListener('MSFullscreenChange', updateIcons);
         
-        // Adjust fullscreen button position based on animation player visibility (desktop only)
-        const updateButtonPosition = () => {
-            if (window.innerWidth > 768) {
-                const animationPlayer = document.querySelector('.animation-player');
-                const isPlayerVisible = animationPlayer && animationPlayer.classList.contains('visible');
-                fullscreenBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
-            }
-        };
-        
-        // Watch for animation player visibility changes
-        const animationPlayer = document.querySelector('.animation-player');
-        if (animationPlayer) {
-            const observer = new MutationObserver(updateButtonPosition);
-            observer.observe(animationPlayer, { attributes: true, attributeFilter: ['class'] });
-        }
-        
-        // Also update on window resize
-        window.addEventListener('resize', updateButtonPosition);
-        
-        // Initial position check
-        updateButtonPosition();
-        
         // Auto-enter fullscreen on first user interaction (required by browsers)
         // Check if WordPress setting enables auto-fullscreen
         if (window.flexframeSettings?.autoFullscreen) {
-            const autoEnterFullscreen = (e) => {
-                // Don't auto-fullscreen if clicking the fullscreen button itself
-                if (e.target.closest('#fullscreen-btn')) return;
-                
+            const autoEnterFullscreen = () => {
                 enterFullscreen();
                 // Remove listener after first interaction
                 document.removeEventListener('click', autoEnterFullscreen);
                 document.removeEventListener('touchstart', autoEnterFullscreen);
             };
-            document.addEventListener('click', autoEnterFullscreen);
-            document.addEventListener('touchstart', autoEnterFullscreen);
+            document.addEventListener('click', autoEnterFullscreen, { once: true });
+            document.addEventListener('touchstart', autoEnterFullscreen, { once: true });
         }
     }
 }
