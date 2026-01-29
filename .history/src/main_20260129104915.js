@@ -5084,7 +5084,6 @@ class ThreeJSApp {
                 // Remove all listeners immediately to prevent multiple triggers
                 document.removeEventListener('click', autoEnterFullscreen);
                 document.removeEventListener('touchstart', autoEnterFullscreen);
-                document.removeEventListener('touchend', autoEnterFullscreen);
                 document.removeEventListener('keydown', autoEnterFullscreen);
                 document.removeEventListener('pointerdown', autoEnterFullscreen);
                 document.removeEventListener('mousedown', autoEnterFullscreen);
@@ -5096,8 +5095,7 @@ class ThreeJSApp {
             };
             // Listen for any user interaction
             document.addEventListener('click', autoEnterFullscreen);
-            document.addEventListener('touchstart', autoEnterFullscreen, { passive: true });
-            document.addEventListener('touchend', autoEnterFullscreen, { passive: true });
+            document.addEventListener('touchstart', autoEnterFullscreen);
             document.addEventListener('keydown', autoEnterFullscreen);
             document.addEventListener('pointerdown', autoEnterFullscreen);
             document.addEventListener('mousedown', autoEnterFullscreen);
