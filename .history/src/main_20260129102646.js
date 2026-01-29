@@ -3897,16 +3897,10 @@ class ThreeJSApp {
                             mat.depthWrite = false;
                             
                             mat.needsUpdate = true;
-                            
-                            // Show material now that texture is loaded
-                            mat.visible = true;
-                            
                             console.log('✅ LOGO texture applied successfully with border:', borderEnabled, 'size:', borderSize, 'displaySize:', displaySize);
                         };
                         img.onerror = (error) => {
                             console.error('❌ Error loading LOGO texture:', error);
-                            // Show material even on error so it's not invisible forever
-                            mat.visible = true;
                         };
                         img.src = cacheBustedUrl;
                     }
@@ -5071,17 +5065,13 @@ class ThreeJSApp {
                 // Don't auto-fullscreen if clicking the fullscreen button itself
                 if (e.target?.closest?.('#fullscreen-btn')) return;
                 
-                // Remove all listeners immediately to prevent multiple triggers
+                enterFullscreen();
+                // Remove all listeners after first interaction
                 document.removeEventListener('click', autoEnterFullscreen);
                 document.removeEventListener('touchstart', autoEnterFullscreen);
                 document.removeEventListener('keydown', autoEnterFullscreen);
                 document.removeEventListener('pointerdown', autoEnterFullscreen);
                 document.removeEventListener('mousedown', autoEnterFullscreen);
-                
-                // Delay fullscreen slightly so the original click action completes first
-                setTimeout(() => {
-                    enterFullscreen();
-                }, 50);
             };
             // Listen for any user interaction
             document.addEventListener('click', autoEnterFullscreen);

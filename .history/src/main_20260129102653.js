@@ -5071,17 +5071,13 @@ class ThreeJSApp {
                 // Don't auto-fullscreen if clicking the fullscreen button itself
                 if (e.target?.closest?.('#fullscreen-btn')) return;
                 
-                // Remove all listeners immediately to prevent multiple triggers
+                enterFullscreen();
+                // Remove all listeners after first interaction
                 document.removeEventListener('click', autoEnterFullscreen);
                 document.removeEventListener('touchstart', autoEnterFullscreen);
                 document.removeEventListener('keydown', autoEnterFullscreen);
                 document.removeEventListener('pointerdown', autoEnterFullscreen);
                 document.removeEventListener('mousedown', autoEnterFullscreen);
-                
-                // Delay fullscreen slightly so the original click action completes first
-                setTimeout(() => {
-                    enterFullscreen();
-                }, 50);
             };
             // Listen for any user interaction
             document.addEventListener('click', autoEnterFullscreen);
