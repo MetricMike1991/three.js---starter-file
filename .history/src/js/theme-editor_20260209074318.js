@@ -1378,27 +1378,8 @@ class ThemeEditor {
             .animation-player .ar-btn,
             .animation-player .quality-btn,
             .animation-player .speed-btn,
-            .animation-player .control-btn,
-            .animation-player button {
+            .animation-player .control-btn {
                 background-color: ${btnRgba} !important;
-                border: none !important;
-            }
-            .animation-player .play-pause-btn:hover,
-            .animation-player .screenshot-btn:hover,
-            .animation-player .ar-btn:hover,
-            .animation-player .quality-btn:hover,
-            .animation-player .speed-btn:hover,
-            .animation-player .control-btn:hover,
-            .animation-player button:hover,
-            .animation-player .play-pause-btn:focus,
-            .animation-player .screenshot-btn:focus,
-            .animation-player .ar-btn:focus,
-            .animation-player .quality-btn:focus,
-            .animation-player .speed-btn:focus,
-            .animation-player .control-btn:focus,
-            .animation-player button:focus {
-                border: none !important;
-                outline: none !important;
             }
             .animation-player .play-pause-btn svg,
             .animation-player .screenshot-btn svg,
@@ -1421,19 +1402,11 @@ class ThemeEditor {
             .animation-player #total-time {
                 color: ${iconColor} !important;
             }
-            .animation-player .timeline-slider {
-                accent-color: ${accentColor} !important;
-            }
             .animation-player .timeline-slider::-webkit-slider-thumb {
                 background: ${accentColor} !important;
-                background-color: ${accentColor} !important;
             }
             .animation-player .timeline-slider::-moz-range-thumb {
                 background: ${accentColor} !important;
-                background-color: ${accentColor} !important;
-            }
-            .animation-player .timeline-slider::-webkit-slider-runnable-track {
-                background: linear-gradient(to right, ${accentColor} var(--slider-progress, 0%), rgba(255,255,255,0.3) var(--slider-progress, 0%)) !important;
             }
         `;
         
