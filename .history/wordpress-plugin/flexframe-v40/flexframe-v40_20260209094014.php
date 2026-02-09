@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.266');
+define('FLEXFRAME_VERSION', '1.41.265');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -2826,7 +2826,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bt6p4obm.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BZMZhwyo.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2891,7 +2891,6 @@ function flexframe_enqueue_assets() {
         // Get UI settings
         $ui_settings = array(
             'spinnerColor' => $spinner_color,
-            'useLogoLoader' => (bool) $use_logo_loader,
             'player' => array(
                 'bgColor' => get_option('flexframe_player_bg_color', '#000000'),
                 'bgOpacity' => floatval(get_option('flexframe_player_bg_opacity', 0.8)),

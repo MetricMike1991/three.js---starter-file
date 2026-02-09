@@ -51,7 +51,7 @@
       }
     },
     "ambientLight": {
-      "intensity": 0.3,
+      "intensity": 0.21,
       "color": "#ffffff"
     }
   },

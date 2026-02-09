@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.266');
+define('FLEXFRAME_VERSION', '1.41.265');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -2826,7 +2826,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bt6p4obm.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BZMZhwyo.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2891,7 +2891,6 @@ function flexframe_enqueue_assets() {
         // Get UI settings
         $ui_settings = array(
             'spinnerColor' => $spinner_color,
-            'useLogoLoader' => (bool) $use_logo_loader,
             'player' => array(
                 'bgColor' => get_option('flexframe_player_bg_color', '#000000'),
                 'bgOpacity' => floatval(get_option('flexframe_player_bg_opacity', 0.8)),
@@ -3251,23 +3250,24 @@ function flexframe_viewer_shortcode($atts) {
     <div id="flexframe-viewer-container" style="width: <?php echo esc_attr($atts['width']); ?>; height: <?php echo esc_attr($atts['height']); ?>; position: relative; overflow: hidden; border-radius: 0 !important;">
         <!-- Model Loader -->
         <div id="model-loader" class="model-loader" style="display: none;">
-            <!-- Logo Loader with Progress (always rendered, shown/hidden by setting) -->
-            <div class="logo-loader-wrapper" style="<?php echo ($use_logo_loader && !empty($logo_url)) ? '' : 'display: none;'; ?>">
-                <div class="logo-loader-container" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: <?php echo esc_attr($logo_loader_size); ?>px;">
-                    <?php if (!empty($logo_url)) : ?>
-                    <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
-                    <?php endif; ?>
+            <?php if ($use_logo_loader && !empty($logo_url)) : ?>
+                <!-- Logo Loader with Progress -->
+                <div class="logo-loader-wrapper">
+                    <div class="logo-loader-container" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: <?php echo esc_attr($logo_loader_size); ?>px;">
+                        <img src="<?php echo esc_url($logo_url); ?>" alt="Loading" class="logo-loader-img <?php echo esc_attr($logo_loader_animation); ?>" style="width: <?php echo esc_attr($logo_loader_size); ?>px; height: auto;" />
+                    </div>
+                    <!-- Progress bar under logo -->
+                    <div class="logo-progress-bar-container">
+                        <div class="logo-progress-bar" id="logo-progress-bar"></div>
+                    </div>
+                    <div class="logo-progress-text" id="logo-progress-text">0%</div>
                 </div>
-                <!-- Progress bar under logo -->
-                <div class="logo-progress-bar-container">
-                    <div class="logo-progress-bar" id="logo-progress-bar"></div>
+            <?php else : ?>
+                <!-- Default Spinner -->
+                <div class="spinner-box" data-spinner="cool">
+                    <div class="loader-spinner"></div>
                 </div>
-                <div class="logo-progress-text" id="logo-progress-text">0%</div>
-            </div>
-            <!-- Default Spinner (always rendered, shown/hidden by setting) -->
-            <div class="spinner-box" data-spinner="cool" style="<?php echo ($use_logo_loader && !empty($logo_url)) ? 'display: none;' : ''; ?>">
-                <div class="loader-spinner"></div>
-            </div>
+            <?php endif; ?>
             <div class="loader-text">Loading Model...</div>
         </div>
         

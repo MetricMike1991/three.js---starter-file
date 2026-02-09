@@ -16,7 +16,6 @@ class ThemeEditor {
         this.currentSettings = {
             primaryColor: '#4a9eff',
             spinnerColor: '#00f510',
-            useLogoLoader: false,
             playerBgColor: '#1f1f1f',
             playerBgOpacity: 0,
             playerButtonColor: '#c20e1d',
@@ -135,7 +134,6 @@ class ThemeEditor {
             
             // UI Settings
             spinnerColor: ws.uiSettings?.spinnerColor || '#00f510',
-            useLogoLoader: ws.uiSettings?.useLogoLoader ?? false,
             playerBgColor: ws.uiSettings?.player?.bgColor || '#1f1f1f',
             playerBgOpacity: ws.uiSettings?.player?.bgOpacity ?? 0,
             playerButtonColor: ws.uiSettings?.player?.buttonBgColor || '#c20e1d',  // Button BACKGROUND color
@@ -327,10 +325,9 @@ class ThemeEditor {
                                 <span class="te-toggle-icon">▶</span>
                             </div>
                             <div class="te-section-content" id="section-ui-spinner">
-                                ${this.createCheckboxInput('useLogoLoader', 'Use Logo as Loader')}
                                 ${this.createColorInput('spinnerColor', 'Spinner Color')}
                                 <div style="background: rgba(255, 158, 74, 0.1); border-left: 3px solid #ff9e4a; padding: 10px; margin-top: 12px; font-size: 11px; line-height: 1.5; color: rgba(255,255,255,0.85);">
-                                    <strong>Note:</strong> When 'Use Logo as Loader' is enabled, the site logo will be used as the loading indicator instead of the spinner. The logo must be configured in the WordPress settings.
+                                    <strong>Note:</strong> The loader type (Spinner vs Logo) and animation style are configured in the main WordPress settings. These settings control the initial page load indicator.
                                 </div>
                             </div>
                         </div>
@@ -958,19 +955,6 @@ class ThemeEditor {
         if (key === 'spinnerColor') {
             console.log('Theme Editor: Updating spinner color to', value);
             this.app.updateSpinnerColor(value);
-        }
-        
-        // Logo loader toggle
-        if (key === 'useLogoLoader') {
-            const logoWrapper = document.querySelector('.logo-loader-wrapper');
-            const spinnerBox = document.querySelector('.spinner-box');
-            if (value) {
-                if (logoWrapper) logoWrapper.style.display = '';
-                if (spinnerBox) spinnerBox.style.display = 'none';
-            } else {
-                if (logoWrapper) logoWrapper.style.display = 'none';
-                if (spinnerBox) spinnerBox.style.display = '';
-            }
         }
         
         // Primary color - no longer applied live, requires Save & Apply
@@ -2128,7 +2112,7 @@ class ThemeEditor {
             
             // UI Settings
             spinner_color: this.currentSettings.spinnerColor,
-            use_logo_loader: this.currentSettings.useLogoLoader,
+            use_logo_loader: false,
             logo_loader_animation: 'pulse',
             logo_loader_size: 100,
             player_bg_color: this.currentSettings.playerBgColor,
