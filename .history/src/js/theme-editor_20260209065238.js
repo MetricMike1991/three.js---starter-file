@@ -1543,18 +1543,9 @@ class ThemeEditor {
             .thumbnail-item {
                 color: ${textRgba} !important;
             }
-            #flexframe-viewer-container .thumbnail-label,
-            .thumbnail-dropdown .thumbnail-label,
             .thumbnail-label {
                 color: ${textRgba} !important;
-                background: linear-gradient(${labelGradient}, transparent) !important;
-            }
-            
-            #flexframe-viewer-container .thumbnail-muscle-info,
-            .thumbnail-dropdown .thumbnail-muscle-info,
-            .thumbnail-muscle-info {
-                background: linear-gradient(transparent, ${labelGradient}) !important;
-                color: ${textRgba} !important;
+                background: linear-gradient(to top, ${labelGradient}, transparent) !important;
             }
             
             /* Right Menu */
