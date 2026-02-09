@@ -1347,10 +1347,6 @@ class ThemeEditor {
         const competingStyle = document.getElementById('scrubber-color-style');
         if (competingStyle) competingStyle.remove();
         
-        // Remove competing primary-color player style (it has same selectors and may override us)
-        const competingPrimaryStyle = document.getElementById('te-player-primary-color');
-        if (competingPrimaryStyle) competingPrimaryStyle.remove();
-        
         const bgColor = this.currentSettings.playerBgColor;
         const bgOpacity = this.currentSettings.playerBgOpacity;
         const btnColor = this.currentSettings.playerButtonColor;
