@@ -38,8 +38,6 @@ class ThemeEditor {
             menuV2ThumbnailLabelOpacity: 0.9,
             hideInfoPanel: false,
             showScreenshotButton: true,
-            showHDButton: true,
-            showARButton: true,
             bgGradientTop: '#3865ad',
             bgGradientBottom: '#0101bc',
             bgGradientOpacity: 1,
@@ -158,9 +156,7 @@ class ThemeEditor {
             menuV2ThumbnailLabelColor: ws.uiSettings?.menuV2?.thumbnailLabelColor || '#ffffff',
             menuV2ThumbnailLabelOpacity: ws.uiSettings?.menuV2?.thumbnailLabelOpacity ?? 0.9,
             hideInfoPanel: ws.uiSettings?.hideRightMenu ?? false,
-            showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
-            showHDButton: ws.showHDButton ?? true,
-            showARButton: ws.showARButton ?? true,
+            showScreenshotButton: ws.uiSettings?.showScreenshotButton ?? true,
             
             // Background Settings
             bgGradientTop: ws.backgroundSettings?.gradientTop || '#3865ad',
@@ -355,9 +351,6 @@ class ThemeEditor {
                                 ${this.createRangeInput('playerButtonOpacity', 'Button Opacity', 0, 1, 0.01)}
                                 ${this.createColorInput('playerIconColor', 'Icon Color')}
                                 ${this.createColorInput('playerAccentColor', 'Accent Color')}
-                                ${this.createCheckboxInput('showScreenshotButton', 'Show Screenshot Button')}
-                                ${this.createCheckboxInput('showHDButton', 'Show HD Button')}
-                                ${this.createCheckboxInput('showARButton', 'Show AR Button')}
                             </div>
                         </div>
 
@@ -378,7 +371,6 @@ class ThemeEditor {
                                 ${this.createColorInput('menuV2AccentColor', 'Accent Color')}
                                 ${this.createColorInput('menuV2ThumbnailLabelColor', 'Thumbnail Label Color')}
                                 ${this.createRangeInput('menuV2ThumbnailLabelOpacity', 'Thumbnail Label Opacity', 0, 1, 0.01)}
-                                ${this.createCheckboxInput('hideInfoPanel', 'Hide Info Panel')}
                                 <button id="te-reset-menu-v2" style="
                                     width: 100%;
                                     margin-top: 12px;
@@ -391,6 +383,28 @@ class ThemeEditor {
                                     cursor: pointer;
                                     transition: all 0.2s;
                                 ">↺ Reset to Defaults</button>
+                            </div>
+                        </div>
+
+                        <!-- Side Menus (Legacy) -->
+                        <div class="te-section te-nested">
+                            <div class="te-section-header" data-section="ui-menu">
+                                <span>Side Menus (Legacy)</span>
+                                <span class="te-toggle-icon">▶</span>
+                            </div>
+                            <div class="te-section-content" id="section-ui-menu">
+                                <div style="background: rgba(255, 152, 0, 0.1); border-left: 3px solid #ff9800; padding: 10px; margin-bottom: 12px; font-size: 11px; line-height: 1.5; color: rgba(255,255,255,0.85);">
+                                    <strong>Note:</strong> These settings are for the old menu system and may not work with the new menus. Use Side Menus V2 instead.
+                                </div>
+                                ${this.createColorInput('menuBgColor', 'Background Color')}
+                                ${this.createRangeInput('menuBgOpacity', 'Background Opacity', 0, 1, 0.01)}
+                                ${this.createColorInput('menuTextColor', 'Text Color')}
+                                ${this.createRangeInput('menuTextOpacity', 'Text Opacity', 0, 1, 0.01)}
+                                ${this.createColorInput('menuAccentColor', 'Accent Color')}
+                                ${this.createColorInput('thumbnailLabelColor', 'Thumbnail Label Color')}
+                                ${this.createRangeInput('thumbnailLabelOpacity', 'Thumbnail Label Opacity', 0, 1, 0.01)}
+                                ${this.createCheckboxInput('hideInfoPanel', 'Hide Info Panel')}
+                                ${this.createCheckboxInput('showScreenshotButton', 'Show Screenshot Button')}
                             </div>
                         </div>
 
@@ -960,22 +974,6 @@ class ThemeEditor {
             const screenshotBtn = document.querySelector('.screenshot-btn, #screenshot-btn');
             if (screenshotBtn) {
                 screenshotBtn.style.display = value ? 'flex' : 'none';
-            }
-        }
-
-        // Show/hide HD quality button
-        if (key === 'showHDButton') {
-            const hdBtn = document.querySelector('#quality-toggle-btn, .quality-btn');
-            if (hdBtn) {
-                hdBtn.style.display = value ? 'flex' : 'none';
-            }
-        }
-
-        // Show/hide AR button
-        if (key === 'showARButton') {
-            const arBtn = document.querySelector('.ar-btn');
-            if (arBtn) {
-                arBtn.style.display = value ? 'flex' : 'none';
             }
         }
         
@@ -1729,8 +1727,6 @@ class ThemeEditor {
             menu_v2_thumbnail_label_opacity: this.currentSettings.menuV2ThumbnailLabelOpacity,
             hide_right_menu: this.currentSettings.hideInfoPanel,
             show_screenshot_button: this.currentSettings.showScreenshotButton,
-            show_hd_button: this.currentSettings.showHDButton,
-            show_ar_button: this.currentSettings.showARButton,
             skin_color: this.currentSettings.skinColor,
             skin_opacity: this.currentSettings.skinOpacity,
             skin_roughness: this.currentSettings.skinRoughness,

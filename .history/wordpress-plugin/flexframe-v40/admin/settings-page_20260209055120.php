@@ -933,16 +933,6 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'rest_sanitize_boolean',
         'default' => true
     ));
-    register_setting('flexframe_settings_group', 'flexframe_show_hd_button', array(
-        'type' => 'boolean',
-        'sanitize_callback' => 'rest_sanitize_boolean',
-        'default' => true
-    ));
-    register_setting('flexframe_settings_group', 'flexframe_show_ar_button', array(
-        'type' => 'boolean',
-        'sanitize_callback' => 'rest_sanitize_boolean',
-        'default' => true
-    ));
     register_setting('flexframe_settings_group', 'flexframe_thumbnail_label_color', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_hex_color',
@@ -6043,16 +6033,6 @@ function flexframe_settings_page() {
             // Show Screenshot Button (if present)
             if (settings.show_screenshot_button !== undefined) {
                 $('#flexframe_show_screenshot_button').prop('checked', settings.show_screenshot_button);
-            }
-            
-            // Show HD Button (if present)
-            if (settings.show_hd_button !== undefined && $('#flexframe_show_hd_button').length) {
-                $('#flexframe_show_hd_button').prop('checked', settings.show_hd_button);
-            }
-            
-            // Show AR Button (if present)
-            if (settings.show_ar_button !== undefined && $('#flexframe_show_ar_button').length) {
-                $('#flexframe_show_ar_button').prop('checked', settings.show_ar_button);
             }
             
             // Equipment Material Settings (if present)

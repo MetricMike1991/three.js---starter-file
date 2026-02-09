@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.235
+ * Version: 1.41.231
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.235');
+define('FLEXFRAME_VERSION', '1.41.231');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -87,11 +87,6 @@ function flexframe_enqueue_assets() {
         $menu_v2_text_rgb = sscanf($menu_v2_text_color, "#%02x%02x%02x");
         $menu_v2_text_rgba = 'rgba(' . implode(', ', $menu_v2_text_rgb) . ', ' . $menu_v2_text_opacity . ')';
         $menu_v2_thumbnail_label_rgb = sscanf($menu_v2_thumbnail_label_color, "#%02x%02x%02x");
-        
-        // Button visibility settings
-        $show_screenshot_button = (bool) get_option('flexframe_show_screenshot_button', true);
-        $show_hd_button = (bool) get_option('flexframe_show_hd_button', true);
-        $show_ar_button = (bool) get_option('flexframe_show_ar_button', true);
         
         // Add inline CSS for WordPress theme isolation
         $isolation_css = '
@@ -1848,32 +1843,6 @@ function flexframe_enqueue_assets() {
                 accent-color: ' . $player_accent_color . ' !important;
             }
             
-            /* Button Visibility */
-            ' . (!$show_screenshot_button ? '
-            .screenshot-btn,
-            #screenshot-btn,
-            .animation-player .screenshot-btn,
-            button.screenshot-btn,
-            .player-right .screenshot-btn {
-                display: none !important;
-            }
-            ' : '') . '
-            ' . (!$show_hd_button ? '
-            #quality-toggle-btn,
-            .quality-btn,
-            .animation-player .quality-btn,
-            button.quality-btn {
-                display: none !important;
-            }
-            ' : '') . '
-            ' . (!$show_ar_button ? '
-            .ar-btn,
-            .animation-player .ar-btn,
-            button.ar-btn {
-                display: none !important;
-            }
-            ' : '') . '
-            
             /* FlexFrame Logo Loader Animations */
             .logo-loader-wrapper {
                 display: flex;
@@ -2812,7 +2781,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-9guZn18u.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BtatM6UX.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -3000,8 +2969,6 @@ function flexframe_enqueue_assets() {
             'menuBackgroundColor' => $menu_bg_color,
             'menuBackgroundOpacity' => $menu_bg_opacity,
             'showScreenshotButton' => (bool) get_option('flexframe_show_screenshot_button', true),
-            'showHDButton' => (bool) get_option('flexframe_show_hd_button', true),
-            'showARButton' => (bool) get_option('flexframe_show_ar_button', true),
             'autoFullscreen' => (bool) get_option('flexframe_auto_fullscreen', true),
             'pluginUrl' => FLEXFRAME_PLUGIN_URL,
             'ajaxUrl' => admin_url('admin-ajax.php'),

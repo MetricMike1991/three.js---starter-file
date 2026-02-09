@@ -100,6 +100,15 @@
     "thumbnailLabelColor": "#000000",
     "thumbnailLabelOpacity": 0.1
   },
+  "menuV2Styling": {
+    "backgroundColor": "#1a1a1a",
+    "backgroundOpacity": 0.95,
+    "textColor": "#ffffff",
+    "textOpacity": 1,
+    "accentColor": "USE_PRIMARY_COLOR",
+    "thumbnailLabelColor": "#ffffff",
+    "thumbnailLabelOpacity": 0.9
+  },
   "model": {
     "position": [
       0,

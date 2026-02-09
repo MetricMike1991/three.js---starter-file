@@ -933,16 +933,6 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'rest_sanitize_boolean',
         'default' => true
     ));
-    register_setting('flexframe_settings_group', 'flexframe_show_hd_button', array(
-        'type' => 'boolean',
-        'sanitize_callback' => 'rest_sanitize_boolean',
-        'default' => true
-    ));
-    register_setting('flexframe_settings_group', 'flexframe_show_ar_button', array(
-        'type' => 'boolean',
-        'sanitize_callback' => 'rest_sanitize_boolean',
-        'default' => true
-    ));
     register_setting('flexframe_settings_group', 'flexframe_thumbnail_label_color', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_hex_color',

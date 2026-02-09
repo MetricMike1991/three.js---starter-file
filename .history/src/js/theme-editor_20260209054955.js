@@ -158,9 +158,7 @@ class ThemeEditor {
             menuV2ThumbnailLabelColor: ws.uiSettings?.menuV2?.thumbnailLabelColor || '#ffffff',
             menuV2ThumbnailLabelOpacity: ws.uiSettings?.menuV2?.thumbnailLabelOpacity ?? 0.9,
             hideInfoPanel: ws.uiSettings?.hideRightMenu ?? false,
-            showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
-            showHDButton: ws.showHDButton ?? true,
-            showARButton: ws.showARButton ?? true,
+            showScreenshotButton: ws.uiSettings?.showScreenshotButton ?? true,
             
             // Background Settings
             bgGradientTop: ws.backgroundSettings?.gradientTop || '#3865ad',
@@ -355,9 +353,6 @@ class ThemeEditor {
                                 ${this.createRangeInput('playerButtonOpacity', 'Button Opacity', 0, 1, 0.01)}
                                 ${this.createColorInput('playerIconColor', 'Icon Color')}
                                 ${this.createColorInput('playerAccentColor', 'Accent Color')}
-                                ${this.createCheckboxInput('showScreenshotButton', 'Show Screenshot Button')}
-                                ${this.createCheckboxInput('showHDButton', 'Show HD Button')}
-                                ${this.createCheckboxInput('showARButton', 'Show AR Button')}
                             </div>
                         </div>
 
@@ -379,6 +374,7 @@ class ThemeEditor {
                                 ${this.createColorInput('menuV2ThumbnailLabelColor', 'Thumbnail Label Color')}
                                 ${this.createRangeInput('menuV2ThumbnailLabelOpacity', 'Thumbnail Label Opacity', 0, 1, 0.01)}
                                 ${this.createCheckboxInput('hideInfoPanel', 'Hide Info Panel')}
+                                ${this.createCheckboxInput('showScreenshotButton', 'Show Screenshot Button')}
                                 <button id="te-reset-menu-v2" style="
                                     width: 100%;
                                     margin-top: 12px;
@@ -960,22 +956,6 @@ class ThemeEditor {
             const screenshotBtn = document.querySelector('.screenshot-btn, #screenshot-btn');
             if (screenshotBtn) {
                 screenshotBtn.style.display = value ? 'flex' : 'none';
-            }
-        }
-
-        // Show/hide HD quality button
-        if (key === 'showHDButton') {
-            const hdBtn = document.querySelector('#quality-toggle-btn, .quality-btn');
-            if (hdBtn) {
-                hdBtn.style.display = value ? 'flex' : 'none';
-            }
-        }
-
-        // Show/hide AR button
-        if (key === 'showARButton') {
-            const arBtn = document.querySelector('.ar-btn');
-            if (arBtn) {
-                arBtn.style.display = value ? 'flex' : 'none';
             }
         }
         
@@ -1729,8 +1709,6 @@ class ThemeEditor {
             menu_v2_thumbnail_label_opacity: this.currentSettings.menuV2ThumbnailLabelOpacity,
             hide_right_menu: this.currentSettings.hideInfoPanel,
             show_screenshot_button: this.currentSettings.showScreenshotButton,
-            show_hd_button: this.currentSettings.showHDButton,
-            show_ar_button: this.currentSettings.showARButton,
             skin_color: this.currentSettings.skinColor,
             skin_opacity: this.currentSettings.skinOpacity,
             skin_roughness: this.currentSettings.skinRoughness,

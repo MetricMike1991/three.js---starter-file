@@ -158,9 +158,9 @@ class ThemeEditor {
             menuV2ThumbnailLabelColor: ws.uiSettings?.menuV2?.thumbnailLabelColor || '#ffffff',
             menuV2ThumbnailLabelOpacity: ws.uiSettings?.menuV2?.thumbnailLabelOpacity ?? 0.9,
             hideInfoPanel: ws.uiSettings?.hideRightMenu ?? false,
-            showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
-            showHDButton: ws.showHDButton ?? true,
-            showARButton: ws.showARButton ?? true,
+            showScreenshotButton: ws.uiSettings?.showScreenshotButton ?? true,
+            showHDButton: ws.uiSettings?.showHDButton ?? true,
+            showARButton: ws.uiSettings?.showARButton ?? true,
             
             // Background Settings
             bgGradientTop: ws.backgroundSettings?.gradientTop || '#3865ad',
@@ -962,22 +962,6 @@ class ThemeEditor {
                 screenshotBtn.style.display = value ? 'flex' : 'none';
             }
         }
-
-        // Show/hide HD quality button
-        if (key === 'showHDButton') {
-            const hdBtn = document.querySelector('#quality-toggle-btn, .quality-btn');
-            if (hdBtn) {
-                hdBtn.style.display = value ? 'flex' : 'none';
-            }
-        }
-
-        // Show/hide AR button
-        if (key === 'showARButton') {
-            const arBtn = document.querySelector('.ar-btn');
-            if (arBtn) {
-                arBtn.style.display = value ? 'flex' : 'none';
-            }
-        }
         
         // Spinner color
         if (key === 'spinnerColor') {
@@ -1729,8 +1713,6 @@ class ThemeEditor {
             menu_v2_thumbnail_label_opacity: this.currentSettings.menuV2ThumbnailLabelOpacity,
             hide_right_menu: this.currentSettings.hideInfoPanel,
             show_screenshot_button: this.currentSettings.showScreenshotButton,
-            show_hd_button: this.currentSettings.showHDButton,
-            show_ar_button: this.currentSettings.showARButton,
             skin_color: this.currentSettings.skinColor,
             skin_opacity: this.currentSettings.skinOpacity,
             skin_roughness: this.currentSettings.skinRoughness,

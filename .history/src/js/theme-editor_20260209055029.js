@@ -158,9 +158,9 @@ class ThemeEditor {
             menuV2ThumbnailLabelColor: ws.uiSettings?.menuV2?.thumbnailLabelColor || '#ffffff',
             menuV2ThumbnailLabelOpacity: ws.uiSettings?.menuV2?.thumbnailLabelOpacity ?? 0.9,
             hideInfoPanel: ws.uiSettings?.hideRightMenu ?? false,
-            showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
-            showHDButton: ws.showHDButton ?? true,
-            showARButton: ws.showARButton ?? true,
+            showScreenshotButton: ws.uiSettings?.showScreenshotButton ?? true,
+            showHDButton: ws.uiSettings?.showHDButton ?? true,
+            showARButton: ws.uiSettings?.showARButton ?? true,
             
             // Background Settings
             bgGradientTop: ws.backgroundSettings?.gradientTop || '#3865ad',
