@@ -1361,18 +1361,12 @@ class ThemeEditor {
         const bgRgba = this.hexToRgba(bgColor, bgOpacity);
         const btnRgba = this.hexToRgba(btnColor, btnOpacity);
         
-        // MUST destroy and recreate the style element - Chrome won't re-apply
-        // ::-webkit-slider-thumb styles when you just update textContent
+        // Use injected CSS with !important to override WordPress styles
         let styleEl = document.getElementById('te-player-style');
-        if (styleEl) styleEl.remove();
-        styleEl = document.createElement('style');
-        styleEl.id = 'te-player-style';
-        document.head.appendChild(styleEl);
-        
-        // Also directly set accent-color on the slider as a fallback
-        const slider = player.querySelector('.timeline-slider');
-        if (slider) {
-            slider.style.accentColor = btnRgba;
+        if (!styleEl) {
+            styleEl = document.createElement('style');
+            styleEl.id = 'te-player-style';
+            document.head.appendChild(styleEl);
         }
         
         styleEl.textContent = `
