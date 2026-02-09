@@ -21,6 +21,7 @@ class ThemeEditor {
             playerButtonColor: '#c20e1d',
             playerButtonOpacity: 1,
             playerIconColor: '#ffffff',
+            playerAccentColor: '#c20e1d',
             menuBgColor: '#000000',
             menuBgOpacity: 0.9,
             menuTextColor: '#ffffff',
@@ -138,6 +139,7 @@ class ThemeEditor {
             playerButtonColor: ws.uiSettings?.player?.buttonBgColor || '#c20e1d',  // Button BACKGROUND color
             playerButtonOpacity: ws.uiSettings?.player?.buttonOpacity ?? 1,
             playerIconColor: ws.uiSettings?.player?.buttonColor || '#ffffff',  // Button icon/text color
+            playerAccentColor: ws.uiSettings?.player?.accentColor || '#c20e1d',
             menuBgColor: ws.uiSettings?.menu?.bgColor || '#000000',
             menuBgOpacity: ws.uiSettings?.menu?.bgOpacity ?? 0.9,
             menuTextColor: ws.uiSettings?.menu?.textColor || '#ffffff',
@@ -346,6 +348,7 @@ class ThemeEditor {
                                 ${this.createColorInput('playerButtonColor', 'Button Color')}
                                 ${this.createRangeInput('playerButtonOpacity', 'Button Opacity', 0, 1, 0.01)}
                                 ${this.createColorInput('playerIconColor', 'Icon Color')}
+                                ${this.createColorInput('playerAccentColor', 'Accent Color')}
                                 ${this.createCheckboxInput('showScreenshotButton', 'Show Screenshot Button')}
                                 ${this.createCheckboxInput('showARButton', 'Show AR Button')}
                             </div>
@@ -973,6 +976,7 @@ class ThemeEditor {
         
         // 1. Update Animation Player button background color and accent color via CSS injection
         // This overrides WordPress CSS with !important rules
+        this.currentSettings.playerAccentColor = color;
         this.currentSettings.playerButtonColor = color;
         
         if (this.app.playerStyleParams) {
@@ -1093,6 +1097,9 @@ class ThemeEditor {
         // 4. Update the theme editor inputs to reflect these changes
         const spinnerInput = this.panel.querySelector('[data-setting="spinnerColor"]');
         if (spinnerInput) spinnerInput.value = color;
+        
+        const accentInput = this.panel.querySelector('[data-setting="playerAccentColor"]');
+        if (accentInput) accentInput.value = color;
         
         const buttonInput = this.panel.querySelector('[data-setting="playerButtonColor"]');
         if (buttonInput) buttonInput.value = color;
@@ -1351,6 +1358,7 @@ class ThemeEditor {
         const btnColor = this.currentSettings.playerButtonColor;
         const btnOpacity = this.currentSettings.playerButtonOpacity;
         const iconColor = this.currentSettings.playerIconColor;
+        const accentColor = this.currentSettings.playerAccentColor;
         
         const bgRgba = this.hexToRgba(bgColor, bgOpacity);
         const btnRgba = this.hexToRgba(btnColor, btnOpacity);
@@ -1457,7 +1465,7 @@ class ThemeEditor {
             }
         `;
         
-        console.log('Theme Editor: Player styles injected', { bgRgba, btnRgba, iconColor });
+        console.log('Theme Editor: Player styles injected', { bgRgba, btnRgba, iconColor, accentColor });
     }
 
     updateMenuStyling() {
@@ -2119,7 +2127,7 @@ class ThemeEditor {
             player_button_bg_color: this.currentSettings.playerButtonColor,
             player_button_bg_opacity: this.currentSettings.playerButtonOpacity,
             player_icon_color: this.currentSettings.playerIconColor,
-            player_accent_color: this.currentSettings.playerButtonColor, // Accent removed from editor; thumb uses button color
+            player_accent_color: this.currentSettings.playerAccentColor,
             player_always_visible: 'no',
             menu_bg_color: this.currentSettings.menuBgColor,
             menu_bg_opacity: this.currentSettings.menuBgOpacity,
