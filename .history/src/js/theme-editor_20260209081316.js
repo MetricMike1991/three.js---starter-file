@@ -36,6 +36,7 @@ class ThemeEditor {
             menuV2AccentColor: null, // null = use primary color
             menuV2ShowThumbnailLabels: true,
             showScreenshotButton: true,
+            showHDButton: true,
             showARButton: true,
             bgGradientTop: '#3865ad',
             bgGradientBottom: '#0101bc',
@@ -154,6 +155,7 @@ class ThemeEditor {
             menuV2AccentColor: ws.uiSettings?.menuV2?.accentColor || (ws.primaryColor || '#4a9eff'),
             menuV2ShowThumbnailLabels: ws.uiSettings?.menuV2?.showThumbnailLabels ?? true,
             showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
+            showHDButton: ws.showHDButton ?? true,
             showARButton: ws.showARButton ?? true,
             
             // Background Settings
@@ -350,6 +352,7 @@ class ThemeEditor {
                                 ${this.createColorInput('playerIconColor', 'Icon Color')}
                                 ${this.createColorInput('playerAccentColor', 'Accent Color')}
                                 ${this.createCheckboxInput('showScreenshotButton', 'Show Screenshot Button')}
+                                ${this.createCheckboxInput('showHDButton', 'Show HD Button')}
                                 ${this.createCheckboxInput('showARButton', 'Show AR Button')}
                             </div>
                         </div>
@@ -945,6 +948,14 @@ class ThemeEditor {
             }
         }
 
+        // Show/hide HD quality button
+        if (key === 'showHDButton') {
+            const hdBtn = document.querySelector('#quality-toggle-btn, .quality-btn');
+            if (hdBtn) {
+                hdBtn.style.display = value ? 'flex' : 'none';
+            }
+        }
+
         // Show/hide AR button
         if (key === 'showARButton') {
             const arBtn = document.querySelector('.ar-btn');
@@ -1007,23 +1018,10 @@ class ThemeEditor {
                 accent-color: ${color} !important;
             }
             .animation-player .timeline-slider::-webkit-slider-thumb {
-                -webkit-appearance: none !important;
-                appearance: none !important;
-                width: 14px !important;
-                height: 14px !important;
-                border-radius: 50% !important;
-                background: ${color} !important;
-                cursor: pointer !important;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+                background-color: ${color} !important;
             }
             .animation-player .timeline-slider::-moz-range-thumb {
-                width: 14px !important;
-                height: 14px !important;
-                border-radius: 50% !important;
-                background: ${color} !important;
-                border: none !important;
-                cursor: pointer !important;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+                background-color: ${color} !important;
             }
         `;
         
@@ -1413,23 +1411,12 @@ class ThemeEditor {
                 accent-color: ${accentColor} !important;
             }
             .animation-player .timeline-slider::-webkit-slider-thumb {
-                -webkit-appearance: none !important;
-                appearance: none !important;
-                width: 14px !important;
-                height: 14px !important;
-                border-radius: 50% !important;
                 background: ${accentColor} !important;
-                cursor: pointer !important;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+                background-color: ${accentColor} !important;
             }
             .animation-player .timeline-slider::-moz-range-thumb {
-                width: 14px !important;
-                height: 14px !important;
-                border-radius: 50% !important;
                 background: ${accentColor} !important;
-                border: none !important;
-                cursor: pointer !important;
-                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+                background-color: ${accentColor} !important;
             }
             /* Standalone HD/Quality button */
             .standalone-quality-btn,
@@ -2130,6 +2117,7 @@ class ThemeEditor {
             menu_v2_accent_color: this.currentSettings.menuV2AccentColor,
             menu_v2_show_thumbnail_labels: this.currentSettings.menuV2ShowThumbnailLabels ? 'yes' : 'no',
             show_screenshot_button: this.currentSettings.showScreenshotButton,
+            show_hd_button: this.currentSettings.showHDButton,
             show_ar_button: this.currentSettings.showARButton,
             skin_color: this.currentSettings.skinColor,
             skin_opacity: this.currentSettings.skinOpacity,
