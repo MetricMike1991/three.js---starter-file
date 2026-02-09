@@ -2252,7 +2252,7 @@ class ThemeEditor {
                 const result = await response.json();
                 
                 if (result.success) {
-                    this.showMessage(`Theme "${themeName}" saved & copied to clipboard! It will appear in Step 4 dropdown.`, 'success');
+                    this.showMessage(`Theme "${themeName}" saved! It will appear in Step 4 dropdown.`, 'success');
                     this.panel.querySelector('#te-theme-name').value = '';
                 } else {
                     this.showMessage(result.data?.message || 'Error saving theme', 'error');
@@ -2262,7 +2262,7 @@ class ThemeEditor {
                 const savedThemes = JSON.parse(localStorage.getItem('flexframe_themes') || '{}');
                 savedThemes[themeName] = presetData;
                 localStorage.setItem('flexframe_themes', JSON.stringify(savedThemes));
-                this.showMessage(`Theme "${themeName}" saved locally & copied to clipboard!`, 'success');
+                this.showMessage(`Theme "${themeName}" saved locally!`, 'success');
                 this.panel.querySelector('#te-theme-name').value = '';
             }
         } catch (error) {
