@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.256');
+define('FLEXFRAME_VERSION', '1.41.255');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -59,7 +59,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BywBCiJn.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B9_cpowv.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -2823,7 +2823,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B7MrcqMW.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CQ6M5oqQ.js',
             array(),
             FLEXFRAME_VERSION,
             true

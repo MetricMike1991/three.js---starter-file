@@ -984,10 +984,6 @@ class ThemeEditor {
             this.app.playerStyleParams.buttonColor = color;
         }
         
-        // Remove competing scrubber style from main.js
-        const competingScrubberStyle = document.getElementById('scrubber-color-style');
-        if (competingScrubberStyle) competingScrubberStyle.remove();
-        
         // Create/update CSS style for animation player colors
         let playerColorStyle = document.getElementById('te-player-primary-color');
         if (!playerColorStyle) {
@@ -1342,10 +1338,6 @@ class ThemeEditor {
             console.log('Theme Editor: Player element not found');
             return;
         }
-        
-        // Remove competing scrubber style from main.js
-        const competingStyle = document.getElementById('scrubber-color-style');
-        if (competingStyle) competingStyle.remove();
         
         const bgColor = this.currentSettings.playerBgColor;
         const bgOpacity = this.currentSettings.playerBgOpacity;
