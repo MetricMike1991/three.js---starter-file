@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.274
+ * Version: 1.41.273
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.274');
+define('FLEXFRAME_VERSION', '1.41.273');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -2827,7 +2827,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CladhtAe.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-TzKRCNzm.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2898,7 +2898,6 @@ function flexframe_enqueue_assets() {
                 'bgOpacity' => floatval(get_option('flexframe_player_bg_opacity', 0.8)),
                 'buttonColor' => get_option('flexframe_player_button_color', '#ffffff'),
                 'buttonBgColor' => get_option('flexframe_player_button_bg_color', '#f50000'),
-                'buttonOpacity' => floatval(get_option('flexframe_player_button_bg_opacity', 1)),
                 'accentColor' => get_option('flexframe_player_accent_color', '#00bcd4'),
                 'alwaysVisible' => get_option('flexframe_player_always_visible', 'no') === 'yes'
             ),
@@ -2906,10 +2905,7 @@ function flexframe_enqueue_assets() {
                 'bgColor' => get_option('flexframe_menu_bg_color', '#000000'),
                 'bgOpacity' => floatval(get_option('flexframe_menu_bg_opacity', 0.9)),
                 'textColor' => get_option('flexframe_menu_text_color', '#ffffff'),
-                'textOpacity' => floatval(get_option('flexframe_menu_text_opacity', 1)),
-                'accentColor' => get_option('flexframe_menu_accent_color', '#4a9eff'),
-                'thumbnailLabelColor' => get_option('flexframe_thumbnail_label_color', '#000000'),
-                'thumbnailLabelOpacity' => floatval(get_option('flexframe_thumbnail_label_opacity', 0.1))
+                'accentColor' => get_option('flexframe_menu_accent_color', '#4a9eff')
             ),
             'menuV2' => array(
                 'bgColor' => get_option('flexframe_menu_v2_bg_color', '#1a1a1a'),
