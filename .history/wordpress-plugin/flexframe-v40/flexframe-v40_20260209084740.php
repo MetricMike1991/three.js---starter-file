@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.261');
+define('FLEXFRAME_VERSION', '1.41.259');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -1844,18 +1844,15 @@ function flexframe_enqueue_assets() {
             
             /* Progress bar / scrubber accent color */
             .animation-player .progress-bar,
-            .animation-player .timeline-fill {
+            .animation-player .timeline-fill,
+            .animation-player input[type="range"]::-webkit-slider-thumb {
                 background-color: ' . $player_accent_color . ' !important;
             }
-            /* Slider thumb uses button color (not accent) */
-            .animation-player input[type="range"]::-webkit-slider-thumb {
-                background-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . $player_button_bg_opacity . ') !important;
-            }
             .animation-player input[type="range"]::-moz-range-thumb {
-                background-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . $player_button_bg_opacity . ') !important;
+                background-color: ' . $player_accent_color . ' !important;
             }
             .animation-player .timeline-slider {
-                accent-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . $player_button_bg_opacity . ') !important;
+                accent-color: ' . $player_accent_color . ' !important;
             }
             
             /* Button Visibility */
@@ -2826,7 +2823,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CMBez2Cw.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C_nHo8vx.js',
             array(),
             FLEXFRAME_VERSION,
             true

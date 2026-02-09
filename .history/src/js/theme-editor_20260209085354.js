@@ -988,13 +988,13 @@ class ThemeEditor {
         const competingScrubberStyle = document.getElementById('scrubber-color-style');
         if (competingScrubberStyle) competingScrubberStyle.remove();
         
-        // MUST destroy and recreate - Chrome won't re-apply ::-webkit-slider-thumb
-        // styles when you just update textContent
+        // Create/update CSS style for animation player colors
         let playerColorStyle = document.getElementById('te-player-primary-color');
-        if (playerColorStyle) playerColorStyle.remove();
-        playerColorStyle = document.createElement('style');
-        playerColorStyle.id = 'te-player-primary-color';
-        document.head.appendChild(playerColorStyle);
+        if (!playerColorStyle) {
+            playerColorStyle = document.createElement('style');
+            playerColorStyle.id = 'te-player-primary-color';
+            document.head.appendChild(playerColorStyle);
+        }
         
         playerColorStyle.textContent = `
             /* Animation Player Button Background Color - from Primary Color */

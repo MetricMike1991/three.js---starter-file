@@ -988,13 +988,13 @@ class ThemeEditor {
         const competingScrubberStyle = document.getElementById('scrubber-color-style');
         if (competingScrubberStyle) competingScrubberStyle.remove();
         
-        // MUST destroy and recreate - Chrome won't re-apply ::-webkit-slider-thumb
-        // styles when you just update textContent
+        // Create/update CSS style for animation player colors
         let playerColorStyle = document.getElementById('te-player-primary-color');
-        if (playerColorStyle) playerColorStyle.remove();
-        playerColorStyle = document.createElement('style');
-        playerColorStyle.id = 'te-player-primary-color';
-        document.head.appendChild(playerColorStyle);
+        if (!playerColorStyle) {
+            playerColorStyle = document.createElement('style');
+            playerColorStyle.id = 'te-player-primary-color';
+            document.head.appendChild(playerColorStyle);
+        }
         
         playerColorStyle.textContent = `
             /* Animation Player Button Background Color - from Primary Color */
@@ -1009,17 +1009,6 @@ class ThemeEditor {
             /* Animation Player Accent/Scrubber Color - from Primary Color */
             .animation-player .timeline-slider {
                 accent-color: ${color} !important;
-            }
-            /* Slider thumb - must use !important to override PHP-injected styles */
-            .animation-player .timeline-slider::-webkit-slider-thumb,
-            .animation-player input[type="range"]::-webkit-slider-thumb {
-                background: ${color} !important;
-                background-color: ${color} !important;
-            }
-            .animation-player .timeline-slider::-moz-range-thumb,
-            .animation-player input[type="range"]::-moz-range-thumb {
-                background: ${color} !important;
-                background-color: ${color} !important;
             }
         `;
         
@@ -1451,17 +1440,6 @@ class ThemeEditor {
             #quality-toggle-btn:hover {
                 background-color: ${btnRgba} !important;
                 border: none !important;
-            }
-            /* Slider thumb - must use !important to override PHP-injected styles */
-            .animation-player .timeline-slider::-webkit-slider-thumb,
-            .animation-player input[type="range"]::-webkit-slider-thumb {
-                background: ${btnRgba} !important;
-                background-color: ${btnRgba} !important;
-            }
-            .animation-player .timeline-slider::-moz-range-thumb,
-            .animation-player input[type="range"]::-moz-range-thumb {
-                background: ${btnRgba} !important;
-                background-color: ${btnRgba} !important;
             }
         `;
         
