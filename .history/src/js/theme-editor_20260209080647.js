@@ -1023,6 +1023,9 @@ class ThemeEditor {
             .animation-player .timeline-slider::-moz-range-thumb {
                 background-color: ${color} !important;
             }
+            .animation-player .timeline-slider::-webkit-slider-runnable-track {
+                background: linear-gradient(to right, ${color} var(--slider-progress, 0%), rgba(255,255,255,0.3) var(--slider-progress, 0%)) !important;
+            }
         `;
         
         console.log('[ThemeEditor] Updated animation player colors via CSS');
@@ -1418,6 +1421,9 @@ class ThemeEditor {
                 background: ${accentColor} !important;
                 background-color: ${accentColor} !important;
             }
+            .animation-player .timeline-slider::-webkit-slider-runnable-track {
+                background: linear-gradient(to right, ${accentColor} var(--slider-progress, 0%), rgba(255,255,255,0.3) var(--slider-progress, 0%)) !important;
+            }
             /* Standalone HD/Quality button */
             .standalone-quality-btn,
             #quality-toggle-btn {
@@ -1573,7 +1579,6 @@ class ThemeEditor {
                 color: ${textRgba} !important;
                 background: linear-gradient(${labelGradient}, transparent) !important;
                 border: none !important;
-                border-radius: 0 !important;
                 ${!showThumbnailLabels ? 'display: none !important;' : ''}
             }
             
