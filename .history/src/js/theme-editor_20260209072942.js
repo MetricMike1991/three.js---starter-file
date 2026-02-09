@@ -1577,27 +1577,14 @@ class ThemeEditor {
             
             /* Info Toggle Button (ⓘ icon) - V2 styling */
             #flexframe-viewer-container #infoToggle,
-            #flexframe-viewer-container button#infoToggle,
-            .thumbnail-grid-container-right #infoToggle,
             button.thumbnail-menu-toggle#infoToggle {
                 background-color: ${this.hexToRgba(bgColor, 0.5)} !important;
                 border: 2px solid ${accentColor} !important;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 8px ${accentColor}4d !important;
             }
             #flexframe-viewer-container #infoToggle:hover,
-            #flexframe-viewer-container button#infoToggle:hover,
-            .thumbnail-grid-container-right #infoToggle:hover,
-            button.thumbnail-menu-toggle#infoToggle:hover,
-            #flexframe-viewer-container #infoToggle:active,
-            #flexframe-viewer-container button#infoToggle:active,
-            .thumbnail-grid-container-right #infoToggle:active,
-            button.thumbnail-menu-toggle#infoToggle:active,
-            #flexframe-viewer-container #infoToggle.active,
-            #flexframe-viewer-container button#infoToggle.active,
-            .thumbnail-grid-container-right #infoToggle.active,
-            button.thumbnail-menu-toggle#infoToggle.active {
+            button.thumbnail-menu-toggle#infoToggle:hover {
                 background-color: ${this.hexToRgba(bgColor, 0.65)} !important;
-                border: 2px solid ${accentColor} !important;
                 box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px ${accentColor}80 !important;
             }
             #flexframe-viewer-container #infoToggle svg,
