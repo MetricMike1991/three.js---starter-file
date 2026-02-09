@@ -6522,19 +6522,7 @@ function flexframe_settings_page() {
                         particleSize: 'particles_size',
                         particleColor: 'particles_color',
                         particleOpacity: 'particles_opacity',
-                        particleSpeed: 'particles_speed',
-                        // Menu V2 (Side Menus)
-                        menuV2BgColor: 'menu_v2_bg_color',
-                        menuV2BgOpacity: 'menu_v2_bg_opacity',
-                        menuV2TextColor: 'menu_v2_text_color',
-                        menuV2TextOpacity: 'menu_v2_text_opacity',
-                        menuV2AccentColor: 'menu_v2_accent_color',
-                        menuV2ShowThumbnailLabels: 'menu_v2_show_thumbnail_labels',
-                        // Equipment Materials
-                        color1Color: 'color1_color',
-                        color1Opacity: 'color1_opacity',
-                        color1Metalness: 'color1_metalness',
-                        color1Roughness: 'color1_roughness'
+                        particleSpeed: 'particles_speed'
                     };
                     
                     // Create settings object with snake_case keys and 'primary' replaced
