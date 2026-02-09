@@ -827,7 +827,8 @@ class ThemeEditor {
             menuV2TextColor: '#ffffff',
             menuV2TextOpacity: 1,
             menuV2AccentColor: primaryColor,
-            menuV2ShowThumbnailLabels: true
+            menuV2ThumbnailLabelColor: '#ffffff',
+            menuV2ThumbnailLabelOpacity: 0.9
         };
 
         // Apply each default to currentSettings and update the GUI inputs
@@ -2017,7 +2018,7 @@ class ThemeEditor {
             thumb.style.setProperty('box-shadow', `0 0 12px ${accentColor}88`, 'important');
         });
         
-        console.log('Theme Editor: Menu styles injected', { bgRgba, textRgba, accentColor, labelGradient, showThumbnailLabels, hueRotation: hue });
+        console.log('Theme Editor: Menu styles injected', { bgRgba, textRgba, accentColor, labelGradient, hueRotation: hue });
     }
 
     hexToRgba(hex, alpha) {

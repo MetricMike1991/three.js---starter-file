@@ -106,8 +106,7 @@
     "textColor": "#ffffff",
     "textOpacity": 1,
     "accentColor": "USE_PRIMARY_COLOR",
-    "thumbnailLabelColor": "#ffffff",
-    "thumbnailLabelOpacity": 0.9
+    "showThumbnailLabels": true
   },
   "model": {
     "position": [

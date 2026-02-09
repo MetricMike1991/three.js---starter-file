@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.245
+ * Version: 1.41.244
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.245');
+define('FLEXFRAME_VERSION', '1.41.244');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -80,14 +80,15 @@ function flexframe_enqueue_assets() {
         $menu_v2_accent_color = esc_attr(get_option('flexframe_menu_v2_accent_color', $primary_color));
         $menu_v2_text_color = esc_attr(get_option('flexframe_menu_v2_text_color', '#ffffff'));
         $menu_v2_text_opacity = floatval(get_option('flexframe_menu_v2_text_opacity', 1));
-        $menu_v2_show_thumbnail_labels = get_option('flexframe_menu_v2_show_thumbnail_labels', 'yes');
+        $menu_v2_thumbnail_label_color = esc_attr(get_option('flexframe_menu_v2_thumbnail_label_color', '#ffffff'));
+        $menu_v2_thumbnail_label_opacity = floatval(get_option('flexframe_menu_v2_thumbnail_label_opacity', 0.9));
         
         // Convert hex to rgba for V2 menus
         $menu_v2_bg_rgb = sscanf($menu_v2_bg_color, "#%02x%02x%02x");
         $menu_v2_bg_rgba = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', ' . $menu_v2_bg_opacity . ')';
         $menu_v2_text_rgb = sscanf($menu_v2_text_color, "#%02x%02x%02x");
         $menu_v2_text_rgba = 'rgba(' . implode(', ', $menu_v2_text_rgb) . ', ' . $menu_v2_text_opacity . ')';
-        $menu_v2_thumbnail_label_rgb = $menu_v2_accent_rgb; // Use accent color for label gradient
+        $menu_v2_thumbnail_label_rgb = sscanf($menu_v2_thumbnail_label_color, "#%02x%02x%02x");
         $menu_v2_bg_rgba_light = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', 0.2)'; // For frosted glass info dropdown
         $menu_v2_accent_rgb = sscanf($menu_v2_accent_color, "#%02x%02x%02x");
         
@@ -2786,22 +2787,20 @@ function flexframe_enqueue_assets() {
                 -webkit-opacity: 1 !important;
             }
             
-            /* Thumbnail label gradient uses V2 accent color */
+            /* Thumbnail label gradient uses V2 custom color and opacity */
             #flexframe-viewer-container .thumbnail-label,
             .thumbnail-dropdown .thumbnail-label,
             .thumbnail-label {
-                background: linear-gradient(rgba(' . $menu_v2_thumbnail_label_rgb[0] . ', ' . $menu_v2_thumbnail_label_rgb[1] . ', ' . $menu_v2_thumbnail_label_rgb[2] . ', 0.85), transparent) !important;
+                background: linear-gradient(rgba(' . $menu_v2_thumbnail_label_rgb[0] . ', ' . $menu_v2_thumbnail_label_rgb[1] . ', ' . $menu_v2_thumbnail_label_rgb[2] . ', ' . $menu_v2_thumbnail_label_opacity . '), transparent) !important;
                 color: ' . $menu_v2_text_rgba . ' !important;
-                ' . ($menu_v2_show_thumbnail_labels !== 'yes' ? 'display: none !important;' : '') . '
             }
             
             /* Thumbnail muscle info gradient (bottom) uses same settings */
             #flexframe-viewer-container .thumbnail-muscle-info,
             .thumbnail-dropdown .thumbnail-muscle-info,
             .thumbnail-muscle-info {
-                background: linear-gradient(transparent, rgba(' . $menu_v2_thumbnail_label_rgb[0] . ', ' . $menu_v2_thumbnail_label_rgb[1] . ', ' . $menu_v2_thumbnail_label_rgb[2] . ', 0.85)) !important;
+                background: linear-gradient(transparent, rgba(' . $menu_v2_thumbnail_label_rgb[0] . ', ' . $menu_v2_thumbnail_label_rgb[1] . ', ' . $menu_v2_thumbnail_label_rgb[2] . ', ' . $menu_v2_thumbnail_label_opacity . ')) !important;
                 color: ' . $menu_v2_text_rgba . ' !important;
-                ' . ($menu_v2_show_thumbnail_labels !== 'yes' ? 'display: none !important;' : '') . '
             }
         ';
         
@@ -2821,7 +2820,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C9gM-yjI.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bi1t2Yop.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2906,7 +2905,8 @@ function flexframe_enqueue_assets() {
                 'textColor' => get_option('flexframe_menu_v2_text_color', '#ffffff'),
                 'textOpacity' => floatval(get_option('flexframe_menu_v2_text_opacity', 1)),
                 'accentColor' => get_option('flexframe_menu_v2_accent_color', $primary_color),
-                'showThumbnailLabels' => get_option('flexframe_menu_v2_show_thumbnail_labels', 'yes') === 'yes'
+                'thumbnailLabelColor' => get_option('flexframe_menu_v2_thumbnail_label_color', '#ffffff'),
+                'thumbnailLabelOpacity' => floatval(get_option('flexframe_menu_v2_thumbnail_label_opacity', 0.9))
             )
         );
         

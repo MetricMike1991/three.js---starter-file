@@ -827,7 +827,8 @@ class ThemeEditor {
             menuV2TextColor: '#ffffff',
             menuV2TextOpacity: 1,
             menuV2AccentColor: primaryColor,
-            menuV2ShowThumbnailLabels: true
+            menuV2ThumbnailLabelColor: '#ffffff',
+            menuV2ThumbnailLabelOpacity: 0.9
         };
 
         // Apply each default to currentSettings and update the GUI inputs

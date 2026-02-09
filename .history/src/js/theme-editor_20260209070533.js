@@ -34,7 +34,8 @@ class ThemeEditor {
             menuV2TextColor: '#ffffff',
             menuV2TextOpacity: 1,
             menuV2AccentColor: null, // null = use primary color
-            menuV2ShowThumbnailLabels: true,
+            menuV2ThumbnailLabelColor: '#ffffff',
+            menuV2ThumbnailLabelOpacity: 0.9,
             hideInfoPanel: false,
             showScreenshotButton: true,
             showHDButton: true,
@@ -154,7 +155,8 @@ class ThemeEditor {
             menuV2TextColor: ws.uiSettings?.menuV2?.textColor || '#ffffff',
             menuV2TextOpacity: ws.uiSettings?.menuV2?.textOpacity ?? 1,
             menuV2AccentColor: ws.uiSettings?.menuV2?.accentColor || (ws.primaryColor || '#4a9eff'),
-            menuV2ShowThumbnailLabels: ws.uiSettings?.menuV2?.showThumbnailLabels ?? true,
+            menuV2ThumbnailLabelColor: ws.uiSettings?.menuV2?.thumbnailLabelColor || '#ffffff',
+            menuV2ThumbnailLabelOpacity: ws.uiSettings?.menuV2?.thumbnailLabelOpacity ?? 0.9,
             hideInfoPanel: ws.uiSettings?.hideRightMenu ?? false,
             showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
             showHDButton: ws.showHDButton ?? true,
@@ -374,7 +376,8 @@ class ThemeEditor {
                                 ${this.createColorInput('menuV2TextColor', 'Text Color')}
                                 ${this.createRangeInput('menuV2TextOpacity', 'Text Opacity', 0, 1, 0.01)}
                                 ${this.createColorInput('menuV2AccentColor', 'Accent Color')}
-                                ${this.createCheckboxInput('menuV2ShowThumbnailLabels', 'Show Thumbnail Labels')}
+                                ${this.createColorInput('menuV2ThumbnailLabelColor', 'Thumbnail Label Color')}
+                                ${this.createRangeInput('menuV2ThumbnailLabelOpacity', 'Thumbnail Label Opacity', 0, 1, 0.01)}
                                 ${this.createCheckboxInput('hideInfoPanel', 'Hide Info Panel')}
                                 <button id="te-reset-menu-v2" style="
                                     width: 100%;
@@ -827,7 +830,8 @@ class ThemeEditor {
             menuV2TextColor: '#ffffff',
             menuV2TextOpacity: 1,
             menuV2AccentColor: primaryColor,
-            menuV2ShowThumbnailLabels: true
+            menuV2ThumbnailLabelColor: '#ffffff',
+            menuV2ThumbnailLabelOpacity: 0.9
         };
 
         // Apply each default to currentSettings and update the GUI inputs
@@ -1423,13 +1427,14 @@ class ThemeEditor {
         const accentColor = (menuV2AccentColor === 'USE_PRIMARY_COLOR' || !menuV2AccentColor) 
             ? (this.currentSettings.primaryColor || '#f50000')
             : menuV2AccentColor;
-        const showThumbnailLabels = this.currentSettings.menuV2ShowThumbnailLabels ?? true;
+        const thumbnailLabelColor = this.currentSettings.menuV2ThumbnailLabelColor || '#ffffff';
+        const thumbnailLabelOpacity = this.currentSettings.menuV2ThumbnailLabelOpacity ?? 0.9;
         const primaryColor = this.currentSettings.primaryColor || '#f50000';
         
         const bgRgba = this.hexToRgba(bgColor, bgOpacity);
         const textRgba = this.hexToRgba(textColor, textOpacity);
         const scrollBtnBg = this.hexToRgba(bgColor, Math.min(bgOpacity + 0.2, 1));
-        const labelGradient = this.hexToRgba(accentColor, 0.85);
+        const labelGradient = this.hexToRgba(thumbnailLabelColor, thumbnailLabelOpacity);
         const infoStepBg = this.hexToRgba(accentColor, 0.35);
         const infoStepHoverBg = this.hexToRgba(accentColor, 0.5);
         
@@ -1543,7 +1548,6 @@ class ThemeEditor {
             .thumbnail-label {
                 color: ${textRgba} !important;
                 background: linear-gradient(${labelGradient}, transparent) !important;
-                ${!showThumbnailLabels ? 'display: none !important;' : ''}
             }
             
             #flexframe-viewer-container .thumbnail-muscle-info,
@@ -1551,7 +1555,6 @@ class ThemeEditor {
             .thumbnail-muscle-info {
                 background: linear-gradient(transparent, ${labelGradient}) !important;
                 color: ${textRgba} !important;
-                ${!showThumbnailLabels ? 'display: none !important;' : ''}
             }
             
             /* Right Menu */
@@ -2017,7 +2020,7 @@ class ThemeEditor {
             thumb.style.setProperty('box-shadow', `0 0 12px ${accentColor}88`, 'important');
         });
         
-        console.log('Theme Editor: Menu styles injected', { bgRgba, textRgba, accentColor, labelGradient, showThumbnailLabels, hueRotation: hue });
+        console.log('Theme Editor: Menu styles injected', { bgRgba, textRgba, accentColor, labelGradient, hueRotation: hue });
     }
 
     hexToRgba(hex, alpha) {
@@ -2071,7 +2074,8 @@ class ThemeEditor {
             menu_v2_text_color: this.currentSettings.menuV2TextColor,
             menu_v2_text_opacity: this.currentSettings.menuV2TextOpacity,
             menu_v2_accent_color: this.currentSettings.menuV2AccentColor,
-            menu_v2_show_thumbnail_labels: this.currentSettings.menuV2ShowThumbnailLabels ? 'yes' : 'no',
+            menu_v2_thumbnail_label_color: this.currentSettings.menuV2ThumbnailLabelColor,
+            menu_v2_thumbnail_label_opacity: this.currentSettings.menuV2ThumbnailLabelOpacity,
             hide_right_menu: this.currentSettings.hideInfoPanel,
             show_screenshot_button: this.currentSettings.showScreenshotButton,
             show_hd_button: this.currentSettings.showHDButton,
