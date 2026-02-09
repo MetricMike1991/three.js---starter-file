@@ -1541,12 +1541,12 @@ class ThemeEditor {
             /* Search toggle button - accent border + box-shadow */
             #flexframe-viewer-container #searchToggle,
             button.thumbnail-menu-toggle#searchToggle {
-                background-color: ${bgRgba} !important;
+                background-color: ${this.hexToRgba(bgColor, 0.5)} !important;
                 border: 2px solid ${accentColor} !important;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 8px ${accentColor}4d !important;
             }
             #flexframe-viewer-container #searchToggle:hover {
-                background-color: ${this.hexToRgba(bgColor, Math.min(bgOpacity + 0.15, 1))} !important;
+                background-color: ${this.hexToRgba(bgColor, 0.65)} !important;
                 box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px ${accentColor}80 !important;
             }
             #flexframe-viewer-container #searchToggle svg {
@@ -1630,7 +1630,7 @@ class ThemeEditor {
             #flexframe-viewer-container button#infoToggle,
             .thumbnail-grid-container-right #infoToggle,
             button.thumbnail-menu-toggle#infoToggle {
-                background-color: ${bgRgba} !important;
+                background-color: ${this.hexToRgba(bgColor, 0.5)} !important;
                 border: 2px solid ${accentColor} !important;
                 box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3), 0 0 8px ${accentColor}4d !important;
             }
@@ -1646,7 +1646,7 @@ class ThemeEditor {
             #flexframe-viewer-container button#infoToggle.active,
             .thumbnail-grid-container-right #infoToggle.active,
             button.thumbnail-menu-toggle#infoToggle.active {
-                background-color: ${this.hexToRgba(bgColor, Math.min(bgOpacity + 0.15, 1))} !important;
+                background-color: ${this.hexToRgba(bgColor, 0.65)} !important;
                 border: 2px solid ${accentColor} !important;
                 box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4), 0 0 12px ${accentColor}80 !important;
             }
