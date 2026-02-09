@@ -113,6 +113,48 @@ export class AnimationPlayer {
     }
 
     setupEventListeners() {
+        // DEBUG: Log every click/interaction in the animation player
+        this.container.addEventListener('click', (e) => {
+            const el = e.target;
+            const computed = window.getComputedStyle(el);
+            console.log('[Player Debug] CLICKED:', {
+                tag: el.tagName,
+                id: el.id,
+                className: el.className,
+                type: el.type || '',
+                background: computed.background,
+                backgroundColor: computed.backgroundColor,
+                color: computed.color,
+                border: computed.border,
+                element: el
+            });
+        }, true);
+        
+        this.container.addEventListener('input', (e) => {
+            const el = e.target;
+            const computed = window.getComputedStyle(el);
+            console.log('[Player Debug] INPUT:', {
+                tag: el.tagName,
+                id: el.id,
+                className: el.className,
+                type: el.type || '',
+                value: el.value,
+                background: computed.background,
+                backgroundColor: computed.backgroundColor,
+                accentColor: computed.accentColor,
+                element: el
+            });
+            // Also try to get the thumb pseudo-element styles
+            try {
+                const allStyles = document.querySelectorAll('style');
+                allStyles.forEach(s => {
+                    if (s.textContent.includes('slider-thumb')) {
+                        console.log('[Player Debug] Style element with thumb rules:', s.id, s.textContent.substring(0, 500));
+                    }
+                });
+            } catch(err) {}
+        }, true);
+
         // Play/Pause button
         this.playPauseBtn.addEventListener('click', () => {
             this.togglePlayPause();

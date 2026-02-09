@@ -1,10 +1,12 @@
 /**
  * Animation Player Module
  * Sketchfab-like animation controls for Three.js animations
+ * v28.3 - Button height fix with inline styles
  */
 
 export class AnimationPlayer {
     constructor() {
+        console.log('[FlexFrame Build] animation-player.js v28.3 - INLINE BUTTON STYLES - Build: 2026-01-20-0930');
         this.mixer = null;
         this.actions = [];
         this.currentAction = null;
@@ -12,10 +14,10 @@ export class AnimationPlayer {
         this.currentTime = 0;
         this.duration = 0;
         this.playbackSpeed = 1;
-        this.isVisible = true;
+        this.isVisible = false; // Start as not visible
         this.alwaysVisible = false;
         this.hideTimeout = null;
-        
+        this.hasPlayedOnce = false; // Track if play has been pressed for the first time        
         this.createPlayerElements();
         this.setupEventListeners();
     }
@@ -32,7 +34,7 @@ export class AnimationPlayer {
         this.container.innerHTML = `
             <div class="player-controls">
                 <div class="player-left">
-                    <button class="play-pause-btn" id="play-pause-btn">
+                    <button class="play-pause-btn" id="play-pause-btn" style="height: ${window.innerWidth <= 768 ? '32px' : 'auto'} !important; min-height: ${window.innerWidth <= 768 ? '32px' : 'auto'} !important; max-height: ${window.innerWidth <= 768 ? '32px' : 'none'} !important; padding: ${window.innerWidth <= 768 ? '0 12px' : '8px 16px'} !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: flex !important; align-items: center !important; justify-content: center !important;">
                         <svg class="play-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                             <path d="M8 5v14l11-7z"/>
                         </svg>
@@ -50,6 +52,17 @@ export class AnimationPlayer {
                 </div>
                 
                 <div class="player-right">
+                    <button class="screenshot-btn" id="screenshot-btn" title="Take Screenshot">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M20 4h-3.17L15 2H9L7.17 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 14H4V6h4.05l1.83-2h4.24l1.83 2H20v12zM12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0 8c-1.65 0-3-1.35-3-3s1.35-3 3-3 3 1.35 3 3-1.35 3-3 3z"/>
+                        </svg>
+                    </button>
+                    <button class="ar-btn" id="ar-btn" title="View in AR" style="height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; display: flex !important; align-items: center !important; justify-content: center !important;">
+                        <span>AR</span>
+                    </button>
+                    <button class="quality-btn" id="quality-toggle-btn" title="Switch Model Quality" style="display: none; height: 32px !important; min-height: 32px !important; max-height: 32px !important; padding: 0 12px !important; font-size: 11px !important; font-weight: 700 !important; line-height: 1 !important; box-sizing: border-box !important; align-items: center !important; justify-content: center !important;">
+                        <span id="quality-text">HD</span>
+                    </button>
                     <button class="speed-btn" id="speed-btn">
                         <span id="speed-text">1x</span>
                         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor">
@@ -82,16 +95,79 @@ export class AnimationPlayer {
         this.speedBtn = this.container.querySelector('#speed-btn');
         this.speedText = this.container.querySelector('#speed-text');
         this.speedMenu = this.container.querySelector('#speed-menu');
+        this.screenshotBtn = this.container.querySelector('#screenshot-btn');
+        
+        // Screenshot callback - will be set by main.js
+        this.onScreenshotRequest = null;
+        
+        // Ensure correct initial icon state (should show play icon when paused)
+        // Add small delay to ensure DOM is ready
+        setTimeout(() => {
+            if (this.playIcon && this.pauseIcon) {
+                this.updatePlayPauseIcon();
+            }
+        }, 10);
         
         // Start hidden by default
         this.setVisibility(true); // Player is enabled but hidden until hover
     }
 
     setupEventListeners() {
+        // DEBUG: Log every click/interaction in the animation player
+        this.container.addEventListener('click', (e) => {
+            const el = e.target;
+            const computed = window.getComputedStyle(el);
+            console.log('[Player Debug] CLICKED:', {
+                tag: el.tagName,
+                id: el.id,
+                className: el.className,
+                type: el.type || '',
+                background: computed.background,
+                backgroundColor: computed.backgroundColor,
+                color: computed.color,
+                border: computed.border,
+                element: el
+            });
+        }, true);
+        
+        this.container.addEventListener('input', (e) => {
+            const el = e.target;
+            const computed = window.getComputedStyle(el);
+            console.log('[Player Debug] INPUT:', {
+                tag: el.tagName,
+                id: el.id,
+                className: el.className,
+                type: el.type || '',
+                value: el.value,
+                background: computed.background,
+                backgroundColor: computed.backgroundColor,
+                accentColor: computed.accentColor,
+                element: el
+            });
+            // Also try to get the thumb pseudo-element styles
+            try {
+                const allStyles = document.querySelectorAll('style');
+                allStyles.forEach(s => {
+                    if (s.textContent.includes('slider-thumb')) {
+                        console.log('[Player Debug] Style element with thumb rules:', s.id, s.textContent.substring(0, 500));
+                    }
+                });
+            } catch(err) {}
+        }, true);
+
         // Play/Pause button
         this.playPauseBtn.addEventListener('click', () => {
             this.togglePlayPause();
         });
+        
+        // Screenshot button
+        if (this.screenshotBtn) {
+            this.screenshotBtn.addEventListener('click', () => {
+                if (this.onScreenshotRequest) {
+                    this.onScreenshotRequest();
+                }
+            });
+        }
 
         // Timeline slider
         this.timelineSlider.addEventListener('input', (e) => {
@@ -144,7 +220,7 @@ export class AnimationPlayer {
             }
         });
         
-        // Hover events for auto-show/hide
+        // Hover events for auto-show/hide (desktop)
         this.triggerArea.addEventListener('mouseenter', () => {
             if (this.isVisible && !this.alwaysVisible) {
                 this.showPlayer();
@@ -153,14 +229,36 @@ export class AnimationPlayer {
         
         this.container.addEventListener('mouseenter', () => {
             if (this.isVisible && !this.alwaysVisible) {
-                this.showPlayer();
-                this.clearHideTimeout();
+                this.clearHideTimeout(); // Cancel any pending hide
+                this.container.classList.add('visible'); // Keep visible while hovering
             }
         });
         
         this.container.addEventListener('mouseleave', () => {
             if (this.isVisible && !this.alwaysVisible) {
+                // Schedule hide after leaving the player
                 this.scheduleHide();
+            }
+        });
+        
+        // Touch events for mobile auto-show/hide
+        this.triggerArea.addEventListener('touchstart', (e) => {
+            if (this.isVisible && !this.alwaysVisible) {
+                this.showPlayer();
+            }
+        });
+        
+        // Any interaction with player buttons should keep it visible
+        this.container.addEventListener('touchstart', (e) => {
+            if (this.isVisible && !this.alwaysVisible) {
+                this.clearHideTimeout();
+                this.container.classList.add('visible');
+                // Schedule hide after touch interaction
+                setTimeout(() => {
+                    if (!this.alwaysVisible) {
+                        this.scheduleHide();
+                    }
+                }, 100);
             }
         });
     }
@@ -168,19 +266,41 @@ export class AnimationPlayer {
     showPlayer() {
         this.clearHideTimeout();
         this.container.classList.add('visible');
+        
+        // Schedule hide after 2 seconds of no interaction (unless always visible)
+        if (!this.alwaysVisible) {
+            this.scheduleHide();
+        }
     }
     
     hidePlayer() {
+        if (this.alwaysVisible) {
+            return; // Don't hide if always visible
+        }
         this.container.classList.remove('visible');
     }
     
     scheduleHide() {
+        if (this.alwaysVisible) {
+            return; // Don't schedule hide if always visible
+        }
+        
         this.clearHideTimeout();
         this.hideTimeout = setTimeout(() => {
-            this.hidePlayer();
-        }, 500); // Wait 500ms before hiding
+            // Only hide if not being hovered and not always visible
+            if (!this.container.matches(':hover') && !this.alwaysVisible) {
+                this.hidePlayer();
+            }
+        }, 2000); // Wait 2 seconds before hiding
     }
     
+    // Called when user clicks on the 3D canvas/model
+    onCanvasInteraction() {
+        if (this.isVisible && !this.alwaysVisible) {
+            this.showPlayer();
+        }
+    }
+
     clearHideTimeout() {
         if (this.hideTimeout) {
             clearTimeout(this.hideTimeout);
@@ -194,23 +314,35 @@ export class AnimationPlayer {
         
         if (visible) {
             this.container.style.display = 'block';
+            
             if (this.alwaysVisible) {
-                this.container.classList.add('always-visible');
-                this.showPlayer();
+                this.container.classList.add('always-visible', 'visible');
+                this.clearHideTimeout();
             } else {
                 this.container.classList.remove('always-visible');
-                this.hidePlayer();
+                // Show player and schedule auto-hide
+                this.showPlayer();
             }
         } else {
             this.container.style.display = 'none';
             this.container.classList.remove('visible', 'always-visible');
+            this.clearHideTimeout();
         }
     }
     
     setAlwaysVisible(alwaysVisible) {
+        const wasAlwaysVisible = this.alwaysVisible;
         this.alwaysVisible = alwaysVisible;
-        if (this.isVisible) {
-            this.setVisibility(true); // Refresh visibility state
+        
+        if (alwaysVisible) {
+            this.container.classList.add('always-visible', 'visible');
+            this.clearHideTimeout();
+        } else {
+            this.container.classList.remove('always-visible');
+            // If switching from always-visible to auto-hide, start the countdown
+            if (wasAlwaysVisible && this.isVisible) {
+                this.scheduleHide();
+            }
         }
     }
 
@@ -230,24 +362,59 @@ export class AnimationPlayer {
                 this.currentAction = this.actions[0];
                 this.duration = this.currentAction.getClip().duration;
                 this.updateTimeDisplay();
+                // Ensure icon matches the current playing state
+                this.updatePlayPauseIcon();
             }
+        }
+    }
+
+    updatePlayPauseIcon() {
+        // Check if elements exist
+        if (!this.playIcon || !this.pauseIcon) {
+            console.warn('Animation player icons not found');
+            return;
+        }
+        
+        // console.log('Updating icon - isPlaying:', this.isPlaying);
+        
+        if (this.isPlaying) {
+            // Animation is playing, show pause icon (user can click to pause)
+            this.playIcon.style.display = 'none';
+            this.pauseIcon.style.display = 'block';
+            // console.log('Showing pause icon (animation is playing)');
+        } else {
+            // Animation is paused, show play icon (user can click to play)  
+            this.playIcon.style.display = 'block';
+            this.pauseIcon.style.display = 'none';
+            // console.log('Showing play icon (animation is paused)');
         }
     }
 
     togglePlayPause() {
         if (!this.currentAction) return;
 
+        // console.log('Before toggle - isPlaying:', this.isPlaying);
+
         this.isPlaying = !this.isPlaying;
+        
+        // console.log('After toggle - isPlaying:', this.isPlaying);
         
         if (this.isPlaying) {
             this.currentAction.play();
-            this.playIcon.style.display = 'none';
-            this.pauseIcon.style.display = 'block';
+            this.currentAction.paused = false;
+            
+            // If this is the first time play is pressed, start fade timer
+            if (!this.hasPlayedOnce) {
+                this.hasPlayedOnce = true;
+                this.clearHideTimeout(); // Cancel startup fade
+                this.startFirstPlayFade();
+            }
         } else {
-            this.currentAction.pause();
-            this.playIcon.style.display = 'block';
-            this.pauseIcon.style.display = 'none';
+            this.currentAction.paused = true;
         }
+        
+        // Update icon to match current state
+        this.updatePlayPauseIcon();
     }
 
     seekTo(progress) {
@@ -339,8 +506,26 @@ export class AnimationPlayer {
         if (settings.alwaysVisible !== undefined) {
             this.setAlwaysVisible(settings.alwaysVisible);
         }
-        if (settings.isPlaying && this.currentAction) {
-            this.togglePlayPause();
+        if (settings.isPlaying !== undefined && this.currentAction) {
+            // Only toggle if the state is different
+            if (settings.isPlaying !== this.isPlaying) {
+                this.togglePlayPause();
+            } else {
+                // Ensure icon matches current state
+                this.updatePlayPauseIcon();
+            }
+        }
+    }
+    
+    // Set screenshot callback
+    setScreenshotCallback(callback) {
+        this.onScreenshotRequest = callback;
+    }
+    
+    // Show/hide screenshot button
+    setScreenshotButtonVisible(visible) {
+        if (this.screenshotBtn) {
+            this.screenshotBtn.style.setProperty('display', visible ? 'flex' : 'none', 'important');
         }
     }
 }
