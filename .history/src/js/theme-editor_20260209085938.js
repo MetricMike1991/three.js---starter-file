@@ -1617,7 +1617,7 @@ class ThemeEditor {
             /* Info Dropdown by ID (high specificity to override PHP) */
             #flexframe-viewer-container #infoDropdown,
             #infoDropdown.thumbnail-dropdown-right {
-                background-color: ${bgRgba} !important;
+                background-color: ${this.hexToRgba(bgColor, 0.2)} !important;
                 backdrop-filter: blur(20px) !important;
                 -webkit-backdrop-filter: blur(20px) !important;
                 border: 1px solid rgba(255, 255, 255, 0.15) !important;
