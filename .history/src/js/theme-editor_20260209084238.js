@@ -1010,17 +1010,26 @@ class ThemeEditor {
             .animation-player .timeline-slider {
                 accent-color: ${color} !important;
             }
-        `;
-        
-        // Set CSS custom property on slider for thumb color
-        const playerEl = document.querySelector('.animation-player');
-        if (playerEl) {
-            const sliderEl = playerEl.querySelector('.timeline-slider');
-            if (sliderEl) {
-                sliderEl.style.setProperty('--thumb-color', color);
-                sliderEl.style.accentColor = color;
+            .animation-player .timeline-slider::-webkit-slider-thumb {
+                -webkit-appearance: none !important;
+                appearance: none !important;
+                width: 14px !important;
+                height: 14px !important;
+                border-radius: 50% !important;
+                background: ${color} !important;
+                cursor: pointer !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
             }
-        }
+            .animation-player .timeline-slider::-moz-range-thumb {
+                width: 14px !important;
+                height: 14px !important;
+                border-radius: 50% !important;
+                background: ${color} !important;
+                border: none !important;
+                cursor: pointer !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+            }
+        `;
         
         console.log('[ThemeEditor] Updated animation player colors via CSS');
         
@@ -1360,10 +1369,9 @@ class ThemeEditor {
         styleEl.id = 'te-player-style';
         document.head.appendChild(styleEl);
         
-        // Also directly set the CSS custom property on the slider for thumb color
+        // Also directly set accent-color on the slider as a fallback
         const slider = player.querySelector('.timeline-slider');
         if (slider) {
-            slider.style.setProperty('--thumb-color', btnRgba);
             slider.style.accentColor = btnRgba;
         }
         
@@ -1421,6 +1429,25 @@ class ThemeEditor {
             }
             .animation-player .timeline-slider {
                 accent-color: ${btnRgba} !important;
+            }
+            .animation-player .timeline-slider::-webkit-slider-thumb {
+                -webkit-appearance: none !important;
+                appearance: none !important;
+                width: 14px !important;
+                height: 14px !important;
+                border-radius: 50% !important;
+                background: ${btnRgba} !important;
+                cursor: pointer !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
+            }
+            .animation-player .timeline-slider::-moz-range-thumb {
+                width: 14px !important;
+                height: 14px !important;
+                border-radius: 50% !important;
+                background: ${btnRgba} !important;
+                border: none !important;
+                cursor: pointer !important;
+                box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3) !important;
             }
             /* Standalone HD/Quality button */
             .standalone-quality-btn,
