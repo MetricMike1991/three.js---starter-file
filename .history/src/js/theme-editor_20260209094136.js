@@ -971,15 +971,6 @@ class ThemeEditor {
                 if (logoWrapper) logoWrapper.style.display = 'none';
                 if (spinnerBox) spinnerBox.style.display = '';
             }
-            // Demo the loader for 2 seconds
-            const loader = document.getElementById('model-loader');
-            if (loader) {
-                loader.style.display = 'flex';
-                clearTimeout(this._loaderDemoTimeout);
-                this._loaderDemoTimeout = setTimeout(() => {
-                    loader.style.display = 'none';
-                }, 2000);
-            }
         }
         
         // Primary color - no longer applied live, requires Save & Apply
