@@ -1559,7 +1559,6 @@ class ThemeEditor {
             .thumbnail-label {
                 color: ${textRgba} !important;
                 background: linear-gradient(${labelGradient}, transparent) !important;
-                border: none !important;
                 ${!showThumbnailLabels ? 'display: none !important;' : ''}
             }
             
