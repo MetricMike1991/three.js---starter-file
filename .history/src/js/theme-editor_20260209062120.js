@@ -1706,23 +1706,7 @@ class ThemeEditor {
             #flexframe-viewer-container #searchDropdown .search-header,
             .thumbnail-dropdown .search-header {
                 background: linear-gradient(180deg, ${this.hexToRgba(bgColor, Math.min(bgOpacity + 0.1, 1))}, ${bgRgba}) !important;
-                border-color: ${accentColor}66 !important;
                 border-bottom-color: ${accentColor}66 !important;
-            }
-            
-            /* Search header / input wrapper border + focus-within */
-            #flexframe-viewer-container .search-input-wrapper,
-            #flexframe-viewer-container .search-header,
-            .search-input-wrapper,
-            .search-header {
-                border-color: ${accentColor} !important;
-            }
-            #flexframe-viewer-container .search-input-wrapper:focus-within,
-            #flexframe-viewer-container .search-header:focus-within,
-            .search-input-wrapper:focus-within,
-            .search-header:focus-within {
-                border-color: ${accentColor} !important;
-                box-shadow: 0 0 0 2px ${accentColor}33 !important;
             }
             
             /* Search action button */
@@ -1897,121 +1881,9 @@ class ThemeEditor {
             .thumbnail-dropdown [style*="color:#4a9eff"] {
                 color: ${accentColor} !important;
             }
-            
-            /* ===== FILTER THUMBNAILS - V2 ACCENT COLOR ===== */
-            .filter-thumbnail.selected {
-                border-color: ${accentColor} !important;
-                background-color: ${accentColor}33 !important;
-                box-shadow: 0 0 12px ${accentColor}88 !important;
-            }
-            .filter-thumbnail:hover {
-                border-color: ${accentColor}66 !important;
-            }
-            /* Filter thumbnail selected inset glow overlay */
-            .filter-thumbnail.selected::after {
-                box-shadow: inset 0 0 20px 8px ${this.hexToRgba(accentColor, 0.5)} !important;
-            }
-            /* Filter thumbnail image hue rotation */
-            .filter-thumbnail-img {
-                filter: hue-rotate(var(--flexframe-hue-rotation, 0deg)) !important;
-            }
-            
-            /* ===== FILTER CLEAR BUTTONS (Clear muscle/equipment) ===== */
-            #flexframe-viewer-container .filter-clear-btn,
-            .filter-clear-btn {
-                color: ${accentColor} !important;
-                border-color: ${accentColor}66 !important;
-            }
-            #flexframe-viewer-container .filter-clear-btn:hover,
-            .filter-clear-btn:hover {
-                background: ${accentColor}33 !important;
-                border-color: ${accentColor} !important;
-                color: ${accentColor} !important;
-            }
-            
-            /* ===== FILTER TAG CLOSE (✕) BUTTONS ===== */
-            .filter-clear {
-                background: ${accentColor}b3 !important;
-            }
-            .filter-clear:hover {
-                background: ${accentColor} !important;
-                box-shadow: 0 2px 8px ${accentColor}66 !important;
-            }
-            
-            /* ===== FILTER TITLE TEXT ===== */
-            .filter-title {
-                color: ${accentColor} !important;
-            }
-            
-            /* ===== EXERCISE TITLE HEADER ===== */
-            .exercise-title-header {
-                background: linear-gradient(180deg, ${this.hexToRgba(accentColor, 0.2)}, rgba(0, 0, 0, 0.1)) !important;
-                border-bottom-color: ${accentColor}66 !important;
-            }
-            
-            /* ===== MUSCLE INFO ACCENT ===== */
-            .thumbnail-muscle-info strong {
-                color: ${accentColor} !important;
-            }
         `;
         
-        // === Update CSS variables for hue rotation and primary-color overrides ===
-        const accentHex = accentColor.replace('#', '');
-        const acR = parseInt(accentHex.substring(0, 2), 16);
-        const acG = parseInt(accentHex.substring(2, 4), 16);
-        const acB = parseInt(accentHex.substring(4, 6), 16);
-        
-        // Calculate hue rotation (base images are red ~0°)
-        const rNorm = acR / 255, gNorm = acG / 255, bNorm = acB / 255;
-        const cMax = Math.max(rNorm, gNorm, bNorm);
-        const cMin = Math.min(rNorm, gNorm, bNorm);
-        const delta = cMax - cMin;
-        let hue = 0;
-        if (delta !== 0) {
-            if (cMax === rNorm) hue = ((gNorm - bNorm) / delta) % 6;
-            else if (cMax === gNorm) hue = (bNorm - rNorm) / delta + 2;
-            else hue = (rNorm - gNorm) / delta + 4;
-            hue = Math.round(hue * 60);
-            if (hue < 0) hue += 360;
-        }
-        
-        // Set CSS custom properties for hue rotation and primary color
-        document.documentElement.style.setProperty('--flexframe-hue-rotation', `${hue}deg`);
-        document.documentElement.style.setProperty('--flexframe-primary-color', accentColor);
-        document.documentElement.style.setProperty('--flexframe-primary-color-rgb', `${acR}, ${acG}, ${acB}`);
-        
-        // Update menu manager glowColor so inline-styled filter thumbnails pick up the new color
-        if (window.menuManager) {
-            if (window.menuManager.menus) {
-                Object.values(window.menuManager.menus).forEach(menu => {
-                    if (menu.settings) {
-                        menu.settings.glowColor = accentColor;
-                    }
-                    // Refresh the per-menu dynamic glow style elements
-                    if (menu.updateGlowStyles) menu.updateGlowStyles();
-                    if (menu.updateThumbnailGlowStyles) menu.updateThumbnailGlowStyles();
-                });
-            }
-            if (window.menuManager.settings) {
-                window.menuManager.settings.glowColor = accentColor;
-            }
-            // Refresh the system-level glow styles too
-            if (window.menuManager.updateThumbnailGlowStyles) {
-                window.menuManager.updateThumbnailGlowStyles();
-            }
-            if (window.menuManager.updateGlowStyles) {
-                window.menuManager.updateGlowStyles();
-            }
-        }
-        
-        // Update inline styles on already-selected filter thumbnails (inline !important overrides CSS !important)
-        document.querySelectorAll('.filter-thumbnail.selected').forEach(thumb => {
-            thumb.style.setProperty('border', `2px solid ${accentColor}`, 'important');
-            thumb.style.setProperty('background-color', `${accentColor}33`, 'important');
-            thumb.style.setProperty('box-shadow', `0 0 12px ${accentColor}88`, 'important');
-        });
-        
-        console.log('Theme Editor: Menu styles injected', { bgRgba, textRgba, accentColor, labelGradient, hueRotation: hue });
+        console.log('Theme Editor: Menu styles injected', { bgRgba, textRgba, accentColor, labelGradient });
     }
 
     hexToRgba(hex, alpha) {

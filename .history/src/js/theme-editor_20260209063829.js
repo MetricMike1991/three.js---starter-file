@@ -1942,17 +1942,6 @@ class ThemeEditor {
             .filter-title {
                 color: ${accentColor} !important;
             }
-            
-            /* ===== EXERCISE TITLE HEADER ===== */
-            .exercise-title-header {
-                background: linear-gradient(180deg, ${this.hexToRgba(accentColor, 0.2)}, rgba(0, 0, 0, 0.1)) !important;
-                border-bottom-color: ${accentColor}66 !important;
-            }
-            
-            /* ===== MUSCLE INFO ACCENT ===== */
-            .thumbnail-muscle-info strong {
-                color: ${accentColor} !important;
-            }
         `;
         
         // === Update CSS variables for hue rotation and primary-color overrides ===
@@ -1987,20 +1976,10 @@ class ThemeEditor {
                     if (menu.settings) {
                         menu.settings.glowColor = accentColor;
                     }
-                    // Refresh the per-menu dynamic glow style elements
-                    if (menu.updateGlowStyles) menu.updateGlowStyles();
-                    if (menu.updateThumbnailGlowStyles) menu.updateThumbnailGlowStyles();
                 });
             }
             if (window.menuManager.settings) {
                 window.menuManager.settings.glowColor = accentColor;
-            }
-            // Refresh the system-level glow styles too
-            if (window.menuManager.updateThumbnailGlowStyles) {
-                window.menuManager.updateThumbnailGlowStyles();
-            }
-            if (window.menuManager.updateGlowStyles) {
-                window.menuManager.updateGlowStyles();
             }
         }
         

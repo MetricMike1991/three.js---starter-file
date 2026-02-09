@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.243
+ * Version: 1.41.239
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.243');
+define('FLEXFRAME_VERSION', '1.41.239');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -845,16 +845,16 @@ function flexframe_enqueue_assets() {
             .filter-title {
                 font-size: 11px;
                 font-weight: bold;
-                color: ' . $menu_v2_accent_color . ';
+                color: ' . $menu_accent_color . ';
                 text-transform: uppercase;
                 letter-spacing: 0.5px;
             }
             
             .filter-clear-btn {
                 font-size: 9px;
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
                 background: transparent !important;
-                border: 1px solid ' . $menu_v2_accent_color . '66 !important;
+                border: 1px solid ' . $menu_accent_color . '66 !important;
                 padding: 2px 6px !important;
                 border-radius: 3px !important;
                 cursor: pointer !important;
@@ -864,9 +864,9 @@ function flexframe_enqueue_assets() {
             .filter-clear-btn:hover,
             .filter-clear-btn:active,
             .filter-clear-btn:focus {
-                background: ' . $menu_v2_accent_color . '33 !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
-                color: ' . $menu_v2_accent_color . ' !important;
+                background: ' . $menu_accent_color . '33 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
                 outline: none !important;
             }
             
@@ -874,14 +874,14 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .filter-clear-btn:hover,
             #flexframe-viewer-container .filter-clear-btn:active,
             #flexframe-viewer-container .filter-clear-btn:focus {
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
                 background: transparent !important;
-                border-color: ' . $menu_v2_accent_color . '66 !important;
+                border-color: ' . $menu_accent_color . '66 !important;
             }
             
             #flexframe-viewer-container .filter-clear-btn:hover {
-                background: ' . $menu_v2_accent_color . '33 !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                background: ' . $menu_accent_color . '33 !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             
             .filter-options {
@@ -903,17 +903,17 @@ function flexframe_enqueue_assets() {
             }
             
             .filter-checkbox-label:hover {
-                background-color: ' . $menu_v2_accent_color . '22 !important;
-                border: 1px solid ' . $menu_v2_accent_color . '44 !important;
+                background-color: ' . $menu_accent_color . '22 !important;
+                border: 1px solid ' . $menu_accent_color . '44 !important;
             }
             
             label.filter-checkbox-label.selected {
-                background-color: ' . $menu_v2_accent_color . '22 !important;
-                border: 2px solid ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . '22 !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
                 border-style: solid !important;
                 border-width: 2px !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
-                box-shadow: 0 0 8px ' . $menu_v2_accent_color . '66 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+                box-shadow: 0 0 8px ' . $menu_accent_color . '66 !important;
             }
             
             .filter-checkbox {
@@ -948,7 +948,7 @@ function flexframe_enqueue_assets() {
                     overflow-y: auto;
                     overflow-x: hidden;
                     padding: 10px;
-                    border-right: 1px solid ' . $menu_v2_accent_color . '33;
+                    border-right: 1px solid ' . $menu_accent_color . '33;
                     direction: rtl;
                 }
                 
@@ -971,9 +971,9 @@ function flexframe_enqueue_assets() {
                 .search-filters-panel .filter-checkbox-label.selected,
                 #searchFiltersPanel .filter-checkbox-label.selected,
                 #flexframe-viewer-container .filter-checkbox-label.selected {
-                    background-color: ' . $menu_v2_accent_color . '22 !important;
-                    border: 2px solid ' . $menu_v2_accent_color . ' !important;
-                    box-shadow: 0 0 12px ' . $menu_v2_accent_color . 'cc, 0 0 6px ' . $menu_v2_accent_color . '88, inset 0 0 8px ' . $menu_v2_accent_color . '33 !important;
+                    background-color: ' . $menu_accent_color . '22 !important;
+                    border: 2px solid ' . $menu_accent_color . ' !important;
+                    box-shadow: 0 0 12px ' . $menu_accent_color . 'cc, 0 0 6px ' . $menu_accent_color . '88, inset 0 0 8px ' . $menu_accent_color . '33 !important;
                 }
             }
             
@@ -1038,7 +1038,7 @@ function flexframe_enqueue_assets() {
                     background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.25) !important;
                     backdrop-filter: blur(20px) saturate(180%) !important;
                     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-                    border: 1px solid ' . $menu_v2_accent_color . ' !important;
+                    border: 1px solid ' . $menu_accent_color . ' !important;
                     border-radius: 50% !important;
                     color: #ffffff !important;
                     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.4) !important;
@@ -1095,7 +1095,7 @@ function flexframe_enqueue_assets() {
                     background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.25) !important;
                     backdrop-filter: blur(20px) saturate(180%) !important;
                     -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
-                    border: 1px solid ' . $menu_v2_accent_color . ' !important;
+                    border: 1px solid ' . $menu_accent_color . ' !important;
                     border-radius: 50% !important;
                     color: #ffffff !important;
                     fill: #ffffff !important;
@@ -1115,7 +1115,7 @@ function flexframe_enqueue_assets() {
                 #flexframe-viewer-container button#infoToggle.active,
                 .thumbnail-grid-container-right #infoToggle.active {
                     background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.35) !important;
-                    border: 1px solid ' . $menu_v2_accent_color . ' !important;
+                    border: 1px solid ' . $menu_accent_color . ' !important;
                     box-shadow: 0 4px 16px var(--flexframe-primary-color, rgba(0, 0, 0, 0.4)), 0 0 0 1px rgba(255, 255, 255, 0.15) inset !important;
                     transform: translateY(-1px) !important;
                     color: #ffffff !important;
@@ -2004,13 +2004,13 @@ function flexframe_enqueue_assets() {
             .search-header .search-input {
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 color: rgba(' . $menu_text_rgb[0] . ', ' . $menu_text_rgb[1] . ', ' . $menu_text_rgb[2] . ', ' . $menu_text_opacity . ') !important;
-                border-color: ' . $menu_v2_accent_color . '66 !important;
+                border-color: ' . $menu_accent_color . '66 !important;
             }
             #flexframe-viewer-container .search-input:focus,
             #flexframe-viewer-container #searchInput:focus,
             .thumbnail-dropdown .search-input:focus {
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .search-input::placeholder,
             #flexframe-viewer-container #searchInput::placeholder {
@@ -2028,29 +2028,29 @@ function flexframe_enqueue_assets() {
             /* ===== SEARCH ACTION BUTTON - USE ACCENT COLOR ===== */
             #flexframe-viewer-container .search-action-btn,
             .thumbnail-dropdown .search-action-btn {
-                background-color: ' . $menu_v2_accent_color . '33 !important;
-                color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . '33 !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .search-action-btn:hover,
             .thumbnail-dropdown .search-action-btn:hover {
-                background-color: ' . $menu_v2_accent_color . '66 !important;
+                background-color: ' . $menu_accent_color . '66 !important;
             }
             #flexframe-viewer-container .search-action-btn svg,
             .thumbnail-dropdown .search-action-btn svg {
-                fill: ' . $menu_v2_accent_color . ' !important;
+                fill: ' . $menu_accent_color . ' !important;
             }
             
             /* ===== SEARCH SUGGESTIONS - USE MENU BACKGROUND COLOR ===== */
             #flexframe-viewer-container .search-suggestions,
             .thumbnail-dropdown .search-suggestions {
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . min($menu_bg_opacity + 0.1, 1) . ') !important;
-                border-color: ' . $menu_v2_accent_color . '66 !important;
+                border-color: ' . $menu_accent_color . '66 !important;
             }
             .search-suggestion-item:hover {
-                background-color: ' . $menu_v2_accent_color . '33 !important;
+                background-color: ' . $menu_accent_color . '33 !important;
             }
             .search-suggestion-category {
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             
             .thumbnail-grid-container *,
@@ -2071,8 +2071,8 @@ function flexframe_enqueue_assets() {
             .thumbnail-grid-container .thumbnail-menu-toggle:focus,
             button.thumbnail-menu-toggle:hover,
             button.thumbnail-menu-toggle.active {
-                background-color: ' . $menu_v2_accent_color . ' !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
                 box-shadow: none !important;
             }
             
@@ -2088,11 +2088,11 @@ function flexframe_enqueue_assets() {
                 border-radius: 50% !important;
                 background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
-                border: 2px solid ' . $menu_v2_accent_color . ' !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px ' . $menu_v2_accent_color . '33 !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px ' . $menu_accent_color . '33 !important;
                 backdrop-filter: blur(10px) !important;
                 -webkit-backdrop-filter: blur(10px) !important;
                 transform: translateY(-50%) !important;
@@ -2117,8 +2117,8 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab:hover,
             .thumbnail-grid-container .menu-hint-tab:hover,
             .menu-hint-tab:hover {
-                background: ' . $menu_v2_accent_color . ' !important;
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background: ' . $menu_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
                 transform: translateY(-50%) scale(1.1) !important;
             }
             #flexframe-viewer-container .menu-hint-tab:hover svg,
@@ -2130,12 +2130,12 @@ function flexframe_enqueue_assets() {
             /* ===== SCROLL BUTTONS ===== */
             .scroll-btn:hover,
             .thumbnail-scroll-controls button:hover {
-                background-color: ' . $menu_v2_accent_color . '33 !important;
-                color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . '33 !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             .scroll-btn:hover svg,
             .thumbnail-scroll-controls button:hover svg {
-                fill: ' . $menu_v2_accent_color . ' !important;
+                fill: ' . $menu_accent_color . ' !important;
             }
             
             /* ===== SEARCH BUTTON/ICON ===== */
@@ -2177,7 +2177,7 @@ function flexframe_enqueue_assets() {
             .search-input,
             #searchInput,
             input.search-input {
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
                 outline: none !important;
             }
             #flexframe-viewer-container .search-input:focus,
@@ -2195,10 +2195,10 @@ function flexframe_enqueue_assets() {
             .search-input:focus,
             #searchInput:focus,
             input.search-input:focus {
-                border-color: ' . $menu_v2_accent_color . ' !important;
-                outline: 2px solid ' . $menu_v2_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
+                outline: 2px solid ' . $menu_accent_color . ' !important;
                 outline-offset: -2px !important;
-                box-shadow: 0 0 0 3px ' . $menu_v2_accent_color . '33 !important;
+                box-shadow: 0 0 0 3px ' . $menu_accent_color . '33 !important;
             }
             
             /* ===== SEARCH DROPDOWN CONTAINER & SUGGESTIONS ===== */
@@ -2206,13 +2206,13 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .search-dropdown,
             #searchDropdown,
             .search-dropdown {
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container #searchDropdown.show,
             #flexframe-viewer-container .search-dropdown.show,
             #searchDropdown.show,
             .search-dropdown.show {
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             /* Search suggestions dropdown */
             #flexframe-viewer-container .search-suggestions,
@@ -2221,7 +2221,7 @@ function flexframe_enqueue_assets() {
             #searchSuggestions,
             .search-suggestions,
             .autocomplete-suggestions {
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             /* Search suggestions hover - all possible item classes */
             #flexframe-viewer-container .search-suggestions .suggestion-item:hover,
@@ -2238,7 +2238,7 @@ function flexframe_enqueue_assets() {
             .search-suggestions > div:not(.search-suggestion-category):hover,
             .autocomplete-suggestions .suggestion-item:hover,
             .autocomplete-suggestions > div:hover {
-                background-color: ' . $menu_v2_accent_color . '33 !important;
+                background-color: ' . $menu_accent_color . '33 !important;
             }
             /* Search suggestions scrollbar - webkit */
             #flexframe-viewer-container .search-suggestions::-webkit-scrollbar-thumb,
@@ -2246,14 +2246,14 @@ function flexframe_enqueue_assets() {
             #searchSuggestions::-webkit-scrollbar-thumb,
             .search-suggestions::-webkit-scrollbar-thumb,
             .autocomplete-suggestions::-webkit-scrollbar-thumb {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .search-suggestions::-webkit-scrollbar-thumb:hover,
             #flexframe-viewer-container #searchSuggestions::-webkit-scrollbar-thumb:hover,
             #searchSuggestions::-webkit-scrollbar-thumb:hover,
             .search-suggestions::-webkit-scrollbar-thumb:hover,
             .autocomplete-suggestions::-webkit-scrollbar-thumb:hover {
-                background-color: ' . $menu_v2_accent_color . 'cc !important;
+                background-color: ' . $menu_accent_color . 'cc !important;
             }
             #flexframe-viewer-container .search-suggestions::-webkit-scrollbar-track,
             #flexframe-viewer-container #searchSuggestions::-webkit-scrollbar-track,
@@ -2268,22 +2268,22 @@ function flexframe_enqueue_assets() {
             #searchSuggestions,
             .search-suggestions,
             .autocomplete-suggestions {
-                scrollbar-color: ' . $menu_v2_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+                scrollbar-color: ' . $menu_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
             }
             /* Search input wrapper */
             #flexframe-viewer-container .search-input-wrapper,
             #flexframe-viewer-container .search-header,
             .search-input-wrapper,
             .search-header {
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             /* Focused search area highlight */
             #flexframe-viewer-container .search-input-wrapper:focus-within,
             #flexframe-viewer-container .search-header:focus-within,
             .search-input-wrapper:focus-within,
             .search-header:focus-within {
-                border-color: ' . $menu_v2_accent_color . ' !important;
-                box-shadow: 0 0 0 2px ' . $menu_v2_accent_color . '33 !important;
+                border-color: ' . $menu_accent_color . ' !important;
+                box-shadow: 0 0 0 2px ' . $menu_accent_color . '33 !important;
             }
             /* Keep search header solid on focus */
             #flexframe-viewer-container .search-header:focus-within,
@@ -2315,7 +2315,7 @@ function flexframe_enqueue_assets() {
             .group-header,
             .exercise-category,
             .muscle-group-header {
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             
             /* ===== SEARCH SUGGESTION CATEGORY HEADERS (POPULAR EXERCISES, MUSCLE GROUPS) ===== */
@@ -2326,7 +2326,7 @@ function flexframe_enqueue_assets() {
             #searchSuggestions .search-suggestion-category,
             .search-suggestions .search-suggestion-category,
             .search-suggestion-category {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
                 color: #ffffff !important;
                 padding: 6px 10px !important;
                 margin: 0 !important;
@@ -2344,13 +2344,13 @@ function flexframe_enqueue_assets() {
             .thumbnail-dropdown::-webkit-scrollbar-thumb,
             .thumbnail-scroll-container::-webkit-scrollbar-thumb,
             .thumbnail-grid::-webkit-scrollbar-thumb {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .thumbnail-dropdown::-webkit-scrollbar-thumb:hover,
             #flexframe-viewer-container .thumbnail-scroll-container::-webkit-scrollbar-thumb:hover,
             .thumbnail-dropdown::-webkit-scrollbar-thumb:hover,
             .thumbnail-scroll-container::-webkit-scrollbar-thumb:hover {
-                background-color: ' . $menu_v2_accent_color . 'cc !important;
+                background-color: ' . $menu_accent_color . 'cc !important;
             }
             #flexframe-viewer-container .thumbnail-dropdown::-webkit-scrollbar-track,
             #flexframe-viewer-container .thumbnail-scroll-container::-webkit-scrollbar-track,
@@ -2363,7 +2363,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .thumbnail-scroll-container,
             .thumbnail-dropdown,
             .thumbnail-scroll-container {
-                scrollbar-color: ' . $menu_v2_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+                scrollbar-color: ' . $menu_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
             }
             
             /* ===== EXERCISE LIST ITEM ICONS ===== */
@@ -2373,7 +2373,7 @@ function flexframe_enqueue_assets() {
             .exercise-item::before,
             .menu-item::before,
             .exercise-list-item::before {
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .exercise-icon,
             #flexframe-viewer-container .item-icon,
@@ -2386,8 +2386,8 @@ function flexframe_enqueue_assets() {
             .item-icon,
             .exercise-item svg,
             .menu-item svg {
-                fill: ' . $menu_v2_accent_color . ' !important;
-                color: ' . $menu_v2_accent_color . ' !important;
+                fill: ' . $menu_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             
             /* ===== THUMBNAIL ITEMS HOVER/ACTIVE ===== */
@@ -2398,13 +2398,13 @@ function flexframe_enqueue_assets() {
             .menu-item:hover,
             .exercise-item.active,
             .exercise-item:hover {
-                background-color: ' . $menu_v2_accent_color . '33 !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . '33 !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             .thumbnail-item.active *,
             .thumbnail-item.touch-active *,
             .menu-item.active * {
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             
             /* ===== SELECTED EXERCISE ITEM & CHECKMARK ===== */
@@ -2414,8 +2414,8 @@ function flexframe_enqueue_assets() {
             .thumbnail-item.selected,
             .exercise-item.selected,
             .menu-item.selected {
-                background-color: ' . $menu_v2_accent_color . '44 !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . '44 !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             /* Selected checkmark icon */
             #flexframe-viewer-container .thumbnail-item.selected .selected-icon,
@@ -2432,7 +2432,7 @@ function flexframe_enqueue_assets() {
             .selected-icon,
             .check-icon,
             .checkmark {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
                 color: #ffffff !important;
             }
             #flexframe-viewer-container .thumbnail-item.selected .selected-icon svg,
@@ -2449,24 +2449,24 @@ function flexframe_enqueue_assets() {
                 fill: #ffffff !important;
             }
             
-            /* ===== SELECTED THUMBNAIL GLOW & CHECKMARK - Uses V2 Accent Color ===== */
+            /* ===== SELECTED THUMBNAIL GLOW & CHECKMARK - Uses Primary Color ===== */
             #flexframe-viewer-container .thumbnail-item.selected,
             .thumbnail-item.selected {
-                border-color: ' . $menu_v2_accent_color . ' !important;
-                box-shadow: 0 0 20px ' . $menu_v2_accent_color . '80 !important;
+                border-color: ' . $primary_color . ' !important;
+                box-shadow: 0 0 20px ' . $primary_color . '80 !important;
             }
             #flexframe-viewer-container .thumbnail-item.selected::before,
             .thumbnail-item.selected::before,
             .thumbnail-item.selected:before {
-                background: ' . $menu_v2_accent_color . ' !important;
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background: ' . $primary_color . ' !important;
+                background-color: ' . $primary_color . ' !important;
             }
             
             /* ===== LINKS HOVER ===== */
             .thumbnail-grid-container a:hover,
             .thumbnail-dropdown a:hover,
             .menu-panel a:hover {
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             
             /* ===== OVERRIDE ANY HARDCODED BLUE (#4a9eff) ===== */
@@ -2475,14 +2475,14 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container [style*="background:#4a9eff"],
             .thumbnail-dropdown [style*="background-color: #4a9eff"],
             .thumbnail-dropdown [style*="background:#4a9eff"] {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container [style*="color: #4a9eff"],
             #flexframe-viewer-container [style*="color: rgb(74, 158, 255)"],
             #flexframe-viewer-container [style*="color:#4a9eff"],
             .thumbnail-dropdown [style*="color: #4a9eff"],
             .thumbnail-dropdown [style*="color:#4a9eff"] {
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
             }
             
             /* ===== RIGHT SIDE MENU SYSTEM ===== */
@@ -2539,7 +2539,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .thumbnail-grid-container-right .thumbnail-menu-toggle.active,
             .thumbnail-grid-container-right .thumbnail-menu-toggle:hover,
             .thumbnail-grid-container-right .thumbnail-menu-toggle.active {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
             }
             /* Right menu dropdowns - transparent container, items have their own backgrounds */
             #flexframe-viewer-container .thumbnail-dropdown-right,
@@ -2708,11 +2708,11 @@ function flexframe_enqueue_assets() {
             /* Right menu scroll buttons */
             #flexframe-viewer-container .thumbnail-dropdown-right .scroll-btn:hover,
             .thumbnail-dropdown-right .scroll-btn:hover {
-                background-color: ' . $menu_v2_accent_color . '33 !important;
+                background-color: ' . $menu_accent_color . '33 !important;
             }
             #flexframe-viewer-container .thumbnail-dropdown-right .scroll-btn:hover svg,
             .thumbnail-dropdown-right .scroll-btn:hover svg {
-                fill: ' . $menu_v2_accent_color . ' !important;
+                fill: ' . $menu_accent_color . ' !important;
             }
             /* Right menu scrollbar */
             #flexframe-viewer-container .thumbnail-dropdown-right::-webkit-scrollbar-thumb,
@@ -2725,11 +2725,11 @@ function flexframe_enqueue_assets() {
             #tipsContainer::-webkit-scrollbar-thumb,
             #stepsContainer::-webkit-scrollbar-thumb,
             #errorsContainer::-webkit-scrollbar-thumb {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .thumbnail-dropdown-right::-webkit-scrollbar-thumb:hover,
             .thumbnail-dropdown-right::-webkit-scrollbar-thumb:hover {
-                background-color: ' . $menu_v2_accent_color . 'cc !important;
+                background-color: ' . $menu_accent_color . 'cc !important;
             }
             /* Firefox scrollbar for right menu */
             #flexframe-viewer-container .thumbnail-dropdown-right,
@@ -2738,34 +2738,34 @@ function flexframe_enqueue_assets() {
             #tipsContainer,
             #stepsContainer,
             #errorsContainer {
-                scrollbar-color: ' . $menu_v2_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
+                scrollbar-color: ' . $menu_accent_color . ' rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', 0.5) !important;
             }
             /* Right menu glow effect override */
             #flexframe-viewer-container .thumbnail-dropdown-right.show,
             .thumbnail-dropdown-right.show {
-                box-shadow: 0 0 20px ' . $menu_v2_accent_color . '66 !important;
+                box-shadow: 0 0 20px ' . $menu_accent_color . '66 !important;
             }
             /* Right menu settings panel */
             #flexframe-viewer-container .right-menu-settings-panel,
             .right-menu-settings-panel {
                 background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
-                border: 2px solid ' . $menu_v2_accent_color . ' !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
             }
             /* Right menu sliders */
             #flexframe-viewer-container .thumbnail-dropdown-right input[type="range"]::-webkit-slider-thumb,
             .thumbnail-dropdown-right input[type="range"]::-webkit-slider-thumb,
             .right-menu-settings-panel input[type="range"]::-webkit-slider-thumb {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .thumbnail-dropdown-right input[type="range"]::-moz-range-thumb,
             .thumbnail-dropdown-right input[type="range"]::-moz-range-thumb,
             .right-menu-settings-panel input[type="range"]::-moz-range-thumb {
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
             }
             #flexframe-viewer-container .thumbnail-dropdown-right input[type="range"],
             .thumbnail-dropdown-right input[type="range"],
             .right-menu-settings-panel input[type="range"] {
-                accent-color: ' . $menu_v2_accent_color . ' !important;
+                accent-color: ' . $menu_accent_color . ' !important;
             }
             
             /* FINAL OVERRIDE: Force all text inside info-step-item to be 100% opaque */
@@ -2820,7 +2820,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BSwZBYL2.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cajo6lcm.js',
             array(),
             FLEXFRAME_VERSION,
             true

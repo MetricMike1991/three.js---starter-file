@@ -1942,17 +1942,6 @@ class ThemeEditor {
             .filter-title {
                 color: ${accentColor} !important;
             }
-            
-            /* ===== EXERCISE TITLE HEADER ===== */
-            .exercise-title-header {
-                background: linear-gradient(180deg, ${this.hexToRgba(accentColor, 0.2)}, rgba(0, 0, 0, 0.1)) !important;
-                border-bottom-color: ${accentColor}66 !important;
-            }
-            
-            /* ===== MUSCLE INFO ACCENT ===== */
-            .thumbnail-muscle-info strong {
-                color: ${accentColor} !important;
-            }
         `;
         
         // === Update CSS variables for hue rotation and primary-color overrides ===
