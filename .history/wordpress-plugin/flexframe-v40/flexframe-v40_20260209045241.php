@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.226');
+define('FLEXFRAME_VERSION', '1.40.129');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -2760,7 +2760,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BHFPiLXB.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C9sgRqBE.js',
             array(),
             FLEXFRAME_VERSION,
             true

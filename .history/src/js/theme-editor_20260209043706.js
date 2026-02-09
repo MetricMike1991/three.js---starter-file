@@ -722,6 +722,66 @@ class ThemeEditor {
                         btn.textContent = 'Player Not Found';
                         btn.style.background = '#ff9800';
                     }
+                } else if (previewType === 'menus') {
+                    // Only show the exercises dropdown (the main exercise list), not all dropdowns
+                    const exercisesToggle = document.getElementById('exercisesToggle');
+                    const exercisesDropdown = document.getElementById('exercisesDropdown');
+                    const exercisesWrapper = exercisesToggle ? exercisesToggle.closest('.thumbnail-menu-wrapper') : null;
+                    
+                    console.log('[Theme Editor] Exercises menu elements found:', {
+                        exercisesToggle: !!exercisesToggle,
+                        exercisesDropdown: !!exercisesDropdown,
+                        exercisesWrapper: !!exercisesWrapper
+                    });
+                    
+                    if (isShowing) {
+                        // Hide - remove force-visible from exercises menu only
+                        if (exercisesToggle) {
+                            exercisesToggle.classList.remove('te-force-visible');
+                            exercisesToggle.style.cssText = '';
+                        }
+                        if (exercisesDropdown) {
+                            exercisesDropdown.classList.remove('te-force-visible', 'show');
+                            exercisesDropdown.style.cssText = '';
+                        }
+                        if (exercisesWrapper) {
+                            exercisesWrapper.classList.remove('te-force-visible');
+                            exercisesWrapper.style.cssText = '';
+                        }
+                        btn.textContent = 'Show Side Menus Preview';
+                        btn.style.background = '#4CAF50';
+                        btn.classList.remove('active');
+                    } else {
+                        // Show - force-visible only the exercises dropdown
+                        if (exercisesWrapper) {
+                            exercisesWrapper.classList.add('te-force-visible');
+                            exercisesWrapper.style.cssText = `
+                                display: block !important;
+                                visibility: visible !important;
+                                opacity: 1 !important;
+                            `;
+                        }
+                        if (exercisesToggle) {
+                            exercisesToggle.classList.add('te-force-visible');
+                            exercisesToggle.style.cssText = `
+                                display: flex !important;
+                                visibility: visible !important;
+                                opacity: 1 !important;
+                            `;
+                        }
+                        if (exercisesDropdown) {
+                            exercisesDropdown.classList.add('te-force-visible', 'show');
+                            exercisesDropdown.style.cssText = `
+                                display: block !important;
+                                visibility: visible !important;
+                                opacity: 1 !important;
+                                pointer-events: auto !important;
+                            `;
+                        }
+                        btn.textContent = 'Hide Side Menus Preview';
+                        btn.style.background = '#f44336';
+                        btn.classList.add('active');
+                    }
                 }
             });
         });
