@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.239
+ * Version: 1.41.236
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.239');
+define('FLEXFRAME_VERSION', '1.41.236');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -68,11 +68,9 @@ function flexframe_enqueue_assets() {
         $is_viewer_page = get_post_meta($post->ID, '_flexframe_viewer_page', true);
         
         // Get theme color settings early for use in isolation CSS
-        $primary_color = esc_attr(get_option('flexframe_primary_color', '#f50000'));
         $menu_bg_color = esc_attr(get_option('flexframe_menu_bg_color', '#000000'));
         $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#f50000'));
         $menu_bg_rgb = sscanf($menu_bg_color, "#%02x%02x%02x");
-        $menu_bg_opacity = floatval(get_option('flexframe_menu_bg_opacity', 0.9));
         
         // Get V2 menu settings
         $menu_v2_bg_color = esc_attr(get_option('flexframe_menu_v2_bg_color', '#1a1a1a'));
@@ -1335,9 +1333,9 @@ function flexframe_enqueue_assets() {
                 #flexframe-viewer-container .info-step-item,
                 .thumbnail-dropdown-right .info-step-item,
                 .info-step-item {
-                    background-color: ' . $menu_v2_accent_color . '22 !important;
-                    border-color: ' . $menu_v2_accent_color . ' !important;
-                    border: 1px solid ' . $menu_v2_accent_color . ' !important;
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
                 }
                 /* Mobile: Reduce font sizes for info menu by 5px */
                 #flexframe-viewer-container .info-sticky-header,
@@ -1564,9 +1562,9 @@ function flexframe_enqueue_assets() {
                 #flexframe-viewer-container .info-step-item,
                 .thumbnail-dropdown-right .info-step-item,
                 .info-step-item {
-                    background-color: ' . $menu_v2_accent_color . '22 !important;
-                    border-color: ' . $menu_v2_accent_color . ' !important;
-                    border: 1px solid ' . $menu_v2_accent_color . ' !important;
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
                 }
             }
             
@@ -2816,7 +2814,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cajo6lcm.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Ccr3B6TR.js',
             array(),
             FLEXFRAME_VERSION,
             true

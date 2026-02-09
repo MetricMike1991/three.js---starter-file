@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.239
+ * Version: 1.41.235
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.239');
+define('FLEXFRAME_VERSION', '1.41.235');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -68,11 +68,9 @@ function flexframe_enqueue_assets() {
         $is_viewer_page = get_post_meta($post->ID, '_flexframe_viewer_page', true);
         
         // Get theme color settings early for use in isolation CSS
-        $primary_color = esc_attr(get_option('flexframe_primary_color', '#f50000'));
         $menu_bg_color = esc_attr(get_option('flexframe_menu_bg_color', '#000000'));
         $menu_accent_color = esc_attr(get_option('flexframe_menu_accent_color', '#f50000'));
         $menu_bg_rgb = sscanf($menu_bg_color, "#%02x%02x%02x");
-        $menu_bg_opacity = floatval(get_option('flexframe_menu_bg_opacity', 0.9));
         
         // Get V2 menu settings
         $menu_v2_bg_color = esc_attr(get_option('flexframe_menu_v2_bg_color', '#1a1a1a'));
@@ -89,8 +87,6 @@ function flexframe_enqueue_assets() {
         $menu_v2_text_rgb = sscanf($menu_v2_text_color, "#%02x%02x%02x");
         $menu_v2_text_rgba = 'rgba(' . implode(', ', $menu_v2_text_rgb) . ', ' . $menu_v2_text_opacity . ')';
         $menu_v2_thumbnail_label_rgb = sscanf($menu_v2_thumbnail_label_color, "#%02x%02x%02x");
-        $menu_v2_bg_rgba_light = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', 0.2)'; // For frosted glass info dropdown
-        $menu_v2_accent_rgb = sscanf($menu_v2_accent_color, "#%02x%02x%02x");
         
         // Button visibility settings
         $show_screenshot_button = (bool) get_option('flexframe_show_screenshot_button', true);
@@ -768,7 +764,7 @@ function flexframe_enqueue_assets() {
                     max-width: 350px !important;
                     max-height: 70vh !important;
                     z-index: 999999 !important;
-                    background-color: ' . $menu_v2_bg_rgba_light . ' !important;
+                    background-color: ' . str_replace($menu_v2_bg_opacity . ')', '0.2)', $menu_v2_bg_rgba) . ' !important;
                     backdrop-filter: blur(20px) !important;
                     border-radius: 16px !important;
                     border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -803,7 +799,7 @@ function flexframe_enqueue_assets() {
                 .info-sticky-header {
                     background: transparent !important;
                     background-color: transparent !important;
-                    border: 2px solid ' . $menu_v2_accent_color . ' !important;
+                    border: 2px solid var(--flexframe-primary-color, ' . $menu_accent_color . ') !important;
                     border-radius: 8px !important;
                 }
             }
@@ -1335,9 +1331,9 @@ function flexframe_enqueue_assets() {
                 #flexframe-viewer-container .info-step-item,
                 .thumbnail-dropdown-right .info-step-item,
                 .info-step-item {
-                    background-color: ' . $menu_v2_accent_color . '22 !important;
-                    border-color: ' . $menu_v2_accent_color . ' !important;
-                    border: 1px solid ' . $menu_v2_accent_color . ' !important;
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
                 }
                 /* Mobile: Reduce font sizes for info menu by 5px */
                 #flexframe-viewer-container .info-sticky-header,
@@ -1564,9 +1560,9 @@ function flexframe_enqueue_assets() {
                 #flexframe-viewer-container .info-step-item,
                 .thumbnail-dropdown-right .info-step-item,
                 .info-step-item {
-                    background-color: ' . $menu_v2_accent_color . '22 !important;
-                    border-color: ' . $menu_v2_accent_color . ' !important;
-                    border: 1px solid ' . $menu_v2_accent_color . ' !important;
+                    background-color: #0516ff22 !important;
+                    border-color: #0516ff !important;
+                    border: 1px solid #0516ff !important;
                 }
             }
             
@@ -2550,12 +2546,12 @@ function flexframe_enqueue_assets() {
             #errorsDropdown {
                 background: transparent !important;
                 background-color: transparent !important;
-                border: 2px solid ' . $menu_v2_accent_color . ' !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
             }
             /* Right menu text color */
             #flexframe-viewer-container .thumbnail-dropdown-right *,
             .thumbnail-dropdown-right * {
-                color: ' . $menu_v2_text_rgba . ' !important;
+                color: ' . $menu_text_color . ' !important;
                 opacity: 1 !important;
             }
             /* Remove focus/selection shadows from info items */
@@ -2578,13 +2574,13 @@ function flexframe_enqueue_assets() {
                 width: 44px !important;
                 height: 44px !important;
                 border-radius: 50% !important;
-                background: ' . $menu_v2_bg_rgba . ' !important;
-                background-color: ' . $menu_v2_bg_rgba . ' !important;
-                border: 2px solid ' . $menu_v2_accent_color . ' !important;
+                background: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                background-color: rgba(' . $menu_bg_rgb[0] . ', ' . $menu_bg_rgb[1] . ', ' . $menu_bg_rgb[2] . ', ' . $menu_bg_opacity . ') !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px ' . $menu_v2_accent_color . '33 !important;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.3), 0 0 20px ' . $menu_accent_color . '33 !important;
                 backdrop-filter: blur(10px) !important;
                 -webkit-backdrop-filter: blur(10px) !important;
                 transform: translateY(-50%) !important;
@@ -2602,15 +2598,15 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .menu-hint-tab-right svg,
             .thumbnail-grid-container-right .menu-hint-tab-right svg,
             .menu-hint-tab-right svg {
-                fill: ' . $menu_v2_text_rgba . ' !important;
+                fill: ' . $menu_text_color . ' !important;
                 width: 22px !important;
                 height: 22px !important;
             }
             #flexframe-viewer-container .menu-hint-tab-right:hover,
             .thumbnail-grid-container-right .menu-hint-tab-right:hover,
             .menu-hint-tab-right:hover {
-                background: ' . $menu_v2_accent_color . ' !important;
-                background-color: ' . $menu_v2_accent_color . ' !important;
+                background: ' . $menu_accent_color . ' !important;
+                background-color: ' . $menu_accent_color . ' !important;
                 transform: translateY(-50%) scale(1.1) !important;
             }
             #flexframe-viewer-container .menu-hint-tab-right:hover svg,
@@ -2618,24 +2614,24 @@ function flexframe_enqueue_assets() {
             .menu-hint-tab-right:hover svg {
                 fill: #ffffff !important;
             }
-            /* Right menu info items - use V2 ACCENT COLOR with 35% opacity and 50px blur */
+            /* Right menu info items - use PRIMARY COLOR with 35% opacity and 50px blur */
             #flexframe-viewer-container .info-step-item,
             .thumbnail-dropdown-right .info-step-item,
             .info-step-item {
-                background: rgba(' . $menu_v2_accent_rgb[0] . ', ' . $menu_v2_accent_rgb[1] . ', ' . $menu_v2_accent_rgb[2] . ', 0.35) !important;
+                background: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.35) !important;
                 backdrop-filter: blur(50px) !important;
                 -webkit-backdrop-filter: blur(50px) !important;
-                border-color: ' . $menu_v2_accent_color . '44 !important;
-                color: ' . $menu_v2_text_rgba . ' !important;
+                border-color: ' . $menu_accent_color . '44 !important;
+                color: ' . $menu_text_color . ' !important;
             }
             /* Section headers - larger, bolder styling */
             #flexframe-viewer-container .info-section-header,
             .thumbnail-dropdown-right .info-section-header,
             .info-section-header {
-                background: rgba(' . $menu_v2_accent_rgb[0] . ', ' . $menu_v2_accent_rgb[1] . ', ' . $menu_v2_accent_rgb[2] . ', 0.5) !important;
+                background: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.5) !important;
                 backdrop-filter: blur(50px) !important;
                 -webkit-backdrop-filter: blur(50px) !important;
-                border: 2px solid ' . $menu_v2_accent_color . ' !important;
+                border: 2px solid ' . $menu_accent_color . ' !important;
                 padding: 16px !important;
                 margin: 12px 8px !important;
                 border-radius: 12px !important;
@@ -2646,7 +2642,7 @@ function flexframe_enqueue_assets() {
             .info-section-title {
                 font-size: 18px !important;
                 font-weight: 700 !important;
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
                 text-transform: uppercase !important;
                 letter-spacing: 1px !important;
             }
@@ -2655,15 +2651,15 @@ function flexframe_enqueue_assets() {
                 position: sticky !important;
                 top: 0 !important;
                 z-index: 100 !important;
-                background: rgba(' . $menu_v2_accent_rgb[0] . ', ' . $menu_v2_accent_rgb[1] . ', ' . $menu_v2_accent_rgb[2] . ', 0.95) !important;
+                background: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.95) !important;
                 backdrop-filter: blur(20px) !important;
                 -webkit-backdrop-filter: blur(20px) !important;
-                border-bottom: 2px solid ' . $menu_v2_accent_color . ' !important;
+                border-bottom: 2px solid ' . $menu_accent_color . ' !important;
                 padding: 5px !important;
                 text-align: center !important;
                 font-size: clamp(9px, 3.43vw, 18px) !important;
                 font-weight: 700 !important;
-                color: ' . $menu_v2_accent_color . ' !important;
+                color: ' . $menu_accent_color . ' !important;
                 text-transform: uppercase !important;
                 letter-spacing: 1px !important;
                 margin: -10px 0px 10px 0px !important;
@@ -2675,21 +2671,21 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .info-step-item *,
             .thumbnail-dropdown-right .info-step-item *,
             .info-step-item * {
-                color: ' . $menu_v2_text_rgba . ' !important;
+                color: ' . $menu_text_color . ' !important;
                 opacity: 1 !important;
             }
             #flexframe-viewer-container .info-step-item:hover,
             .thumbnail-dropdown-right .info-step-item:hover,
             .info-step-item:hover {
-                background-color: rgba(' . $menu_v2_accent_rgb[0] . ', ' . $menu_v2_accent_rgb[1] . ', ' . $menu_v2_accent_rgb[2] . ', 0.5) !important;
-                border-color: ' . $menu_v2_accent_color . ' !important;
+                background-color: rgba(' . $primary_rgb[0] . ', ' . $primary_rgb[1] . ', ' . $primary_rgb[2] . ', 0.5) !important;
+                border-color: ' . $menu_accent_color . ' !important;
             }
             /* Right menu info titles - use text color */
             #flexframe-viewer-container .info-step-title,
             .thumbnail-dropdown-right .info-step-title,
             .info-step-item .info-step-title,
             .info-step-title {
-                color: ' . $menu_v2_text_rgba . ' !important;
+                color: ' . $menu_text_color . ' !important;
                 opacity: 1 !important;
                 font-weight: 600 !important;
             }
@@ -2698,7 +2694,7 @@ function flexframe_enqueue_assets() {
             .thumbnail-dropdown-right .info-step-text,
             .info-step-item .info-step-text,
             .info-step-text {
-                color: ' . $menu_v2_text_rgba . ' !important;
+                color: ' . $menu_text_color . ' !important;
                 opacity: 1 !important;
             }
             /* Right menu scroll buttons */
@@ -2816,7 +2812,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Cajo6lcm.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-9guZn18u.js',
             array(),
             FLEXFRAME_VERSION,
             true

@@ -1435,8 +1435,8 @@ class ThemeEditor {
         const textRgba = this.hexToRgba(textColor, textOpacity);
         const scrollBtnBg = this.hexToRgba(bgColor, Math.min(bgOpacity + 0.2, 1));
         const labelGradient = this.hexToRgba(thumbnailLabelColor, thumbnailLabelOpacity);
-        const infoStepBg = this.hexToRgba(accentColor, 0.35);
-        const infoStepHoverBg = this.hexToRgba(accentColor, 0.5);
+        const infoStepBg = this.hexToRgba(primaryColor, 0.35);
+        const infoStepHoverBg = this.hexToRgba(primaryColor, 0.5);
         
         // Use injected CSS with !important to override WordPress styles
         // Match WordPress specificity with #flexframe-viewer-container
@@ -1604,46 +1604,20 @@ class ThemeEditor {
             .thumbnail-dropdown-right * {
                 color: ${textRgba} !important;
             }
-            /* Info Step Items - use ACCENT COLOR with 35% opacity and 50px blur */
+            /* Info Step Items - use PRIMARY COLOR with 35% opacity and 50px blur */
             #flexframe-viewer-container .info-step-item,
             .thumbnail-dropdown-right .info-step-item,
             .info-step-item {
                 background: ${infoStepBg} !important;
                 backdrop-filter: blur(50px) !important;
                 -webkit-backdrop-filter: blur(50px) !important;
-                border-color: ${accentColor}44 !important;
                 color: ${textRgba} !important;
-            }
-            #flexframe-viewer-container .info-step-item *,
-            .thumbnail-dropdown-right .info-step-item *,
-            .info-step-item * {
-                color: ${textRgba} !important;
-                opacity: 1 !important;
             }
             .info-step-title {
                 color: ${textRgba} !important;
             }
             .info-step-text {
                 color: ${textRgba} !important;
-            }
-            /* Info Section Headers */
-            #flexframe-viewer-container .info-section-header,
-            .thumbnail-dropdown-right .info-section-header,
-            .info-section-header {
-                background: ${this.hexToRgba(accentColor, 0.5)} !important;
-                backdrop-filter: blur(50px) !important;
-                border: 2px solid ${accentColor} !important;
-            }
-            #flexframe-viewer-container .info-section-title,
-            .thumbnail-dropdown-right .info-section-title,
-            .info-section-title {
-                color: ${accentColor} !important;
-            }
-            /* Info Sticky Header (mobile) */
-            .info-sticky-header {
-                background: ${this.hexToRgba(accentColor, 0.95)} !important;
-                border-bottom: 2px solid ${accentColor} !important;
-                color: ${accentColor} !important;
             }
             
             /* Scroll buttons */
