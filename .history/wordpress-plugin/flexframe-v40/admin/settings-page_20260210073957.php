@@ -6102,58 +6102,12 @@ function flexframe_settings_page() {
                     console.log('[Theme Import] Applying imported settings:', converted);
                     applyPresetSettings(converted);
                     
-                    // Determine theme name from file or use filename
-                    var themeName = data.name || file.name.replace(/\.json$/i, '');
-                    $('#custom-theme-name').val(themeName);
+                    // Pre-fill the theme name if available
+                    if (data.name) {
+                        $('#custom-theme-name').val(data.name);
+                    }
                     
-                    // Auto-save as a custom theme so it appears in Step 4 dropdown
-                    var settingsToSave = getCurrentSettings();
-                    
-                    $.ajax({
-                        url: ajaxurl,
-                        type: 'POST',
-                        data: {
-                            action: 'flexframe_save_custom_preset',
-                            preset_name: themeName,
-                            preset_data: settingsToSave,
-                            nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>'
-                        },
-                        success: function(response) {
-                            if (response.success) {
-                                var presetId = response.data.preset_id;
-                                
-                                // Add to Step 4 dropdown
-                                var $optgroup = $('#custom-themes-optgroup');
-                                if ($optgroup.length === 0) {
-                                    $('#flexframe_material_preset').append('<optgroup label="<?php _e('Your Custom Themes', 'flexframe-viewer'); ?>" id="custom-themes-optgroup"></optgroup>');
-                                    $optgroup = $('#custom-themes-optgroup');
-                                }
-                                $optgroup.show();
-                                
-                                var $existingOption = $optgroup.find('option[value="custom:' + presetId + '"]');
-                                if ($existingOption.length) {
-                                    $existingOption.text(themeName);
-                                } else {
-                                    $optgroup.append('<option value="custom:' + presetId + '">' + themeName + '</option>');
-                                }
-                                
-                                // Select it in Step 4
-                                $('#flexframe_material_preset').val('custom:' + presetId).trigger('change');
-                                
-                                showImportMessage('<?php _e('Theme applied and saved! You can find it in the theme dropdown in Step 4.', 'flexframe-viewer'); ?>', 'success');
-                                
-                                // Save the form
-                                setTimeout(function() {
-                                    $('#submit').click();
-                                }, 500);
-                            } else {
-                                showImportMessage('<?php _e('Theme applied to settings, but could not save to Step 4 dropdown.', 'flexframe-viewer'); ?>', 'error');
-                            }
-                        },
-                        error: function() {
-                            showImportMessage('<?php _e('Theme applied to settings, but could not save to Step 4 dropdown.', 'flexframe-viewer'); ?>', 'error');
-                        }
-                    });
+                    showImportMessage('<?php _e('Theme imported successfully! Review settings below, then click Save Settings.', 'flexframe-viewer'); ?>', 'success');
                 } catch (err) {
                     console.error('[Theme Import] Parse error:', err);
                     showImportMessage('<?php _e('Failed to parse theme file: ', 'flexframe-viewer'); ?>' + err.message, 'error');
