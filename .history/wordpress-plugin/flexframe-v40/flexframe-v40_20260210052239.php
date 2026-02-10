@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.295
+ * Version: 1.41.294
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.295');
+define('FLEXFRAME_VERSION', '1.41.294');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -525,13 +525,14 @@ function flexframe_enqueue_assets() {
                     background-color: ' . $menu_v2_bg_rgba . ' !important;
                     backdrop-filter: blur(20px) !important;
                     border-radius: 16px !important;
-                    border: 2px solid ' . $menu_v2_accent_border_rgba . ' !important;
+                    border: 1px solid rgba(255, 255, 255, 0.15) !important;
                     box-shadow: 0 0 20px ' . $menu_v2_accent_color . '66, 0 0 40px ' . $menu_v2_accent_color . '33 !important;
                     display: none !important;
                 }
                 #flexframe-viewer-container #searchDropdown.show,
                 #searchDropdown.thumbnail-dropdown.show {
                     display: block !important;
+                    border-color: ' . $menu_v2_accent_border_rgba . ' !important;
                 }
                 
                 /* Search content wrapper */
