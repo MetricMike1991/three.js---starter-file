@@ -369,6 +369,8 @@ class ThemeEditor {
                     <input type="text" id="te-theme-name" placeholder="Enter theme name..." />
                     <button id="te-save-btn" class="te-btn-primary">Save</button>
                     <button id="te-export-btn" class="te-btn-io te-btn-export" title="Export theme as JSON">&#8595;</button>
+                    <button id="te-import-btn" class="te-btn-io te-btn-import" title="Import theme from JSON">&#8593;</button>
+                    <input type="file" id="te-import-file" accept=".json" style="display: none;" />
                 </div>
                 <div id="te-save-message" class="te-message"></div>
             </div>
@@ -889,6 +891,12 @@ class ThemeEditor {
         
         // Export button
         this.panel.querySelector('#te-export-btn').addEventListener('click', () => this.exportTheme());
+        
+        // Import button + hidden file input
+        this.panel.querySelector('#te-import-btn').addEventListener('click', () => {
+            this.panel.querySelector('#te-import-file').click();
+        });
+        this.panel.querySelector('#te-import-file').addEventListener('change', (e) => this.importTheme(e));
         
         // Save & Apply button for Primary Color
         const savePrimaryBtn = this.panel.querySelector('.te-save-primary-btn');
@@ -2335,6 +2343,190 @@ class ThemeEditor {
         this.showMessage(`Theme exported as "${a.download}"`, 'success');
     }
 
+    importTheme(event) {
+        const file = event.target.files[0];
+        if (!file) return;
+        
+        // Reset the input so the same file can be re-imported
+        event.target.value = '';
+        
+        const reader = new FileReader();
+        reader.onload = (e) => {
+            try {
+                const data = JSON.parse(e.target.result);
+                
+                // Support both wrapped format { settings: {...} } and flat format
+                const settings = data.settings || data;
+                
+                // Validate: must have at least a primaryColor or primary_color
+                if (!settings.primaryColor && !settings.primary_color) {
+                    this.showMessage('Invalid theme file: no primary color found', 'error');
+                    return;
+                }
+                
+                // If settings use snake_case keys (from saveTheme/WordPress format), convert to camelCase
+                const mapped = this.mapImportedSettings(settings);
+                
+                // Apply each setting
+                let appliedCount = 0;
+                for (const [key, value] of Object.entries(mapped)) {
+                    if (this.currentSettings.hasOwnProperty(key) && value !== undefined && value !== null) {
+                        this.currentSettings[key] = value;
+                        
+                        // Update the UI input if it exists
+                        const input = this.panel.querySelector(`[data-setting="${key}"]`);
+                        if (input) {
+                            if (input.type === 'checkbox') {
+                                input.checked = !!value;
+                            } else {
+                                input.value = value;
+                            }
+                            // Update any display spans
+                            const display = input.parentElement.querySelector('.te-value');
+                            if (display) display.textContent = value;
+                        }
+                        
+                        // Apply live
+                        if (key !== 'primaryColor') {
+                            this.applySettingLive(key, value);
+                        }
+                        appliedCount++;
+                    }
+                }
+                
+                // Update menu styling with imported accent colors
+                this.updateMenuStyling();
+                
+                // Set the theme name if present
+                if (data.name) {
+                    this.panel.querySelector('#te-theme-name').value = data.name;
+                }
+                
+                this.showMessage(`Imported ${appliedCount} settings from "${file.name}". Use Save & Apply for primary color.`, 'success');
+                console.log('[ThemeEditor] Imported theme:', data.name || file.name, `(${appliedCount} settings)`);
+            } catch (err) {
+                console.error('[ThemeEditor] Import error:', err);
+                this.showMessage('Failed to parse theme file: ' + err.message, 'error');
+            }
+        };
+        reader.readAsText(file);
+    }
+
+    mapImportedSettings(settings) {
+        // If settings already use camelCase, return as-is
+        if (settings.primaryColor !== undefined) return settings;
+        
+        // Map snake_case (WordPress/saveTheme format) to camelCase
+        const map = {
+            primary_color: 'primaryColor',
+            spinner_color: 'spinnerColor',
+            use_logo_loader: 'useLogoLoader',
+            player_bg_color: 'playerBgColor',
+            player_bg_opacity: 'playerBgOpacity',
+            player_button_bg_color: 'playerButtonColor',
+            player_button_bg_opacity: 'playerButtonOpacity',
+            player_icon_color: 'playerIconColor',
+            player_accent_color: 'playerAccentColor',
+            menu_bg_color: 'menuBgColor',
+            menu_bg_opacity: 'menuBgOpacity',
+            menu_text_color: 'menuTextColor',
+            menu_text_opacity: 'menuTextOpacity',
+            menu_accent_color: 'menuAccentColor',
+            thumbnail_label_color: 'thumbnailLabelColor',
+            thumbnail_label_opacity: 'thumbnailLabelOpacity',
+            menu_v2_bg_color: 'menuV2BgColor',
+            menu_v2_bg_opacity: 'menuV2BgOpacity',
+            menu_v2_text_color: 'menuV2TextColor',
+            menu_v2_text_opacity: 'menuV2TextOpacity',
+            menu_v2_accent_color: 'menuV2AccentColor',
+            menu_v2_show_thumbnail_labels: 'menuV2ShowThumbnailLabels',
+            menu_v2_heading_bg_color: 'menuV2HeadingBgColor',
+            menu_v2_heading_bg_opacity: 'menuV2HeadingBgOpacity',
+            menu_v2_info_step_opacity: 'menuV2InfoStepOpacity',
+            menu_v2_info_header_opacity: 'menuV2InfoHeaderOpacity',
+            menu_v2_info_panel_opacity: 'menuV2InfoPanelOpacity',
+            menu_v2_filter_thumb_bg_opacity: 'menuV2FilterThumbBgOpacity',
+            menu_v2_search_input_bg_opacity: 'menuV2SearchInputBgOpacity',
+            menu_v2_search_input_bg_color: 'menuV2SearchInputBgColor',
+            show_screenshot_button: 'showScreenshotButton',
+            show_ar_button: 'showARButton',
+            skin_color: 'skinColor',
+            skin_opacity: 'skinOpacity',
+            skin_roughness: 'skinRoughness',
+            skin_metalness: 'skinMetalness',
+            skin_transmission: 'skinTransmission',
+            skin_thickness: 'skinThickness',
+            skin_ior: 'skinIor',
+            skin_env_intensity: 'skinEnvIntensity',
+            bg_gradient_top: 'bgGradientTop',
+            bg_gradient_bottom: 'bgGradientBottom',
+            bg_gradient_opacity: 'bgGradientOpacity',
+            ambient_intensity: 'ambientIntensity',
+            ambient_color: 'ambientColor',
+            directional_intensity: 'directionalIntensity',
+            directional_color: 'directionalColor',
+            particles_enabled: 'particlesEnabled',
+            particle_count: 'particlesCount',
+            particles_count: 'particlesCount',
+            particle_size: 'particlesSize',
+            particles_size: 'particlesSize',
+            particle_color: 'particlesColor',
+            particles_color: 'particlesColor',
+            particle_opacity: 'particlesOpacity',
+            particles_opacity: 'particlesOpacity',
+            particle_speed: 'particlesSpeed',
+            particles_speed: 'particlesSpeed',
+            barbell_color: 'barbellColor',
+            barbell_opacity: 'barbellOpacity',
+            barbell_metalness: 'barbellMetalness',
+            barbell_roughness: 'barbellRoughness',
+            bumper_color: 'bumperColor',
+            bumper_opacity: 'bumperOpacity',
+            bumper_metalness: 'bumperMetalness',
+            bumper_roughness: 'bumperRoughness',
+            cable_color: 'cableColor',
+            cable_opacity: 'cableOpacity',
+            cable_metalness: 'cableMetalness',
+            cable_roughness: 'cableRoughness',
+            chrome_color: 'chromeColor',
+            chrome_opacity: 'chromeOpacity',
+            chrome_metalness: 'chromeMetalness',
+            chrome_roughness: 'chromeRoughness',
+            color1_color: 'color1Color',
+            color1_opacity: 'color1Opacity',
+            color1_metalness: 'color1Metalness',
+            color1_roughness: 'color1Roughness',
+            metal_color: 'metalColor',
+            metal_opacity: 'metalOpacity',
+            metal_metalness: 'metalMetalness',
+            metal_roughness: 'metalRoughness',
+            pad_color: 'padColor',
+            pad_opacity: 'padOpacity',
+            pad_metalness: 'padMetalness',
+            pad_roughness: 'padRoughness',
+            plastic_color: 'plasticColor',
+            plastic_opacity: 'plasticOpacity',
+            plastic_metalness: 'plasticMetalness',
+            plastic_roughness: 'plasticRoughness',
+            rubber_color: 'rubberColor',
+            rubber_opacity: 'rubberOpacity',
+            rubber_metalness: 'rubberMetalness',
+            rubber_roughness: 'rubberRoughness'
+        };
+        
+        const result = {};
+        for (const [key, value] of Object.entries(settings)) {
+            const camelKey = map[key] || key;
+            // Convert 'yes'/'no' strings to booleans for relevant fields
+            if (camelKey === 'menuV2ShowThumbnailLabels') {
+                result[camelKey] = value === 'yes' || value === true;
+            } else {
+                result[camelKey] = value;
+            }
+        }
+        return result;
+    }
+
     async saveTheme() {
         const themeName = this.panel.querySelector('#te-theme-name').value.trim();
         
@@ -2609,6 +2801,15 @@ class ThemeEditor {
             .te-btn-export:hover {
                 background: rgba(74, 158, 255, 0.35);
                 border-color: rgba(74, 158, 255, 0.6);
+            }
+            
+            .te-btn-import {
+                background: rgba(0, 200, 83, 0.15);
+            }
+            
+            .te-btn-import:hover {
+                background: rgba(0, 200, 83, 0.35);
+                border-color: rgba(0, 200, 83, 0.6);
             }
             
             .te-hint {
