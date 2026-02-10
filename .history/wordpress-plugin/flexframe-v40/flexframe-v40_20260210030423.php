@@ -594,7 +594,7 @@ function flexframe_enqueue_assets() {
                     display: flex !important;
                     flex-direction: column !important;
                     align-items: center !important;
-                    background: rgba(255, 255, 255, 0.1) !important;
+                    background: rgba(255, 255, 255, 0.05) !important;
                     border-radius: 8px !important;
                     border: 1px solid rgba(255, 255, 255, 0.1) !important;
                     cursor: pointer !important;
@@ -604,7 +604,7 @@ function flexframe_enqueue_assets() {
                 }
                 #flexframe-viewer-container #searchDropdown .thumbnail-item:hover,
                 #searchDropdown .thumbnail-item:hover {
-                    background: rgba(255, 255, 255, 0.15) !important;
+                    background: rgba(255, 255, 255, 0.1) !important;
                     border-color: rgba(255, 255, 255, 0.2) !important;
                 }
                 
