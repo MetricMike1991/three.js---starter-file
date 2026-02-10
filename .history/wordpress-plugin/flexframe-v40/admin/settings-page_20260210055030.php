@@ -1053,11 +1053,6 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'floatval',
         'default' => 0.95
     ));
-    register_setting('flexframe_settings_group', 'flexframe_menu_v2_search_input_bg_color', array(
-        'type' => 'string',
-        'sanitize_callback' => 'sanitize_hex_color',
-        'default' => '#1a1a1a'
-    ));
     
     // ========== Scene/Background Settings ==========
     register_setting('flexframe_settings_group', 'flexframe_bg_gradient_top', array(
@@ -2057,7 +2052,6 @@ function flexframe_settings_page() {
                             <input type="hidden" id="flexframe_menu_v2_heading_bg_opacity" name="flexframe_menu_v2_heading_bg_opacity" value="<?php echo esc_attr(get_option('flexframe_menu_v2_heading_bg_opacity', 0.95)); ?>" />
                             <input type="hidden" id="flexframe_menu_v2_info_step_opacity" name="flexframe_menu_v2_info_step_opacity" value="<?php echo esc_attr(get_option('flexframe_menu_v2_info_step_opacity', 0.35)); ?>" />
                             <input type="hidden" id="flexframe_menu_v2_search_input_bg_opacity" name="flexframe_menu_v2_search_input_bg_opacity" value="<?php echo esc_attr(get_option('flexframe_menu_v2_search_input_bg_opacity', 0.95)); ?>" />
-                            <input type="hidden" id="flexframe_menu_v2_search_input_bg_color" name="flexframe_menu_v2_search_input_bg_color" value="<?php echo esc_attr(get_option('flexframe_menu_v2_search_input_bg_color', get_option('flexframe_menu_v2_bg_color', '#1a1a1a'))); ?>" />
 
                             <!-- Model Material Settings Section -->
                             <div class="custom-panel-section">
@@ -5216,8 +5210,6 @@ function flexframe_settings_page() {
                     menuV2HeadingBgColor: 'primary',
                     menuV2HeadingBgOpacity: 0.17,
                     menuV2InfoStepOpacity: 0.35,
-                    menuV2SearchInputBgOpacity: 0.7,
-                    menuV2SearchInputBgColor: '#000000',
                     // Material settings
                     skinColor: '#ccdef5',
                     skinOpacity: 1,
@@ -5440,7 +5432,6 @@ function flexframe_settings_page() {
                 menuV2HeadingBgOpacity: 'menu_v2_heading_bg_opacity',
                 menuV2InfoStepOpacity: 'menu_v2_info_step_opacity',
                 menuV2SearchInputBgOpacity: 'menu_v2_search_input_bg_opacity',
-                menuV2SearchInputBgColor: 'menu_v2_search_input_bg_color',
                 // Skin Material
                 skinColor: 'skin_color',
                 skinOpacity: 'skin_opacity',
@@ -6245,9 +6236,6 @@ function flexframe_settings_page() {
             if (settings.menu_v2_search_input_bg_opacity !== undefined) {
                 $('#flexframe_menu_v2_search_input_bg_opacity').val(settings.menu_v2_search_input_bg_opacity);
             }
-            if (settings.menu_v2_search_input_bg_color !== undefined) {
-                $('#flexframe_menu_v2_search_input_bg_color').val(settings.menu_v2_search_input_bg_color);
-            }
             
             // Flat Equipment Material Settings (from theme editor / built-in presets)
             var materialKeys = ['barbell', 'bumper', 'cable', 'chrome', 'color1', 'metal', 'pad', 'plastic', 'rubber'];
@@ -6598,7 +6586,6 @@ function flexframe_settings_page() {
                         menuV2HeadingBgOpacity: 'menu_v2_heading_bg_opacity',
                         menuV2InfoStepOpacity: 'menu_v2_info_step_opacity',
                         menuV2SearchInputBgOpacity: 'menu_v2_search_input_bg_opacity',
-                        menuV2SearchInputBgColor: 'menu_v2_search_input_bg_color',
                         // Equipment Materials
                         color1Color: 'color1_color',
                         color1Opacity: 'color1_opacity',
