@@ -1733,7 +1733,7 @@ class ThemeEditor {
                 background-color: ${bgRgba} !important;
                 backdrop-filter: blur(20px) !important;
                 -webkit-backdrop-filter: blur(20px) !important;
-                border: 2px solid ${accentColor} !important;
+                border: 1px solid rgba(255, 255, 255, 0.15) !important;
                 box-shadow: 0 0 20px ${accentColor}66, 0 0 40px ${accentColor}33 !important;
             }
             
