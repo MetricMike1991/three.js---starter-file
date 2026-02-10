@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.304
+ * Version: 1.41.303
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -798,7 +798,12 @@ function flexframe_enqueue_assets() {
                     background-color: ' . $menu_v2_bg_rgba_light . ' !important;
                     backdrop-filter: blur(20px) !important;
                     border-radius: 16px !important;
-                    border: 2px solid ' . $menu_v2_accent_border_right_rgba . ' !important;
+                    border: 2px solid ' . $menu_v2_accent_border_rgba . ' !important;
+                    box-shadow: 0 0 20px ' . $menu_v2_accent_color . '66, 0 0 40px ' . $menu_v2_accent_color . '33 !important;
+                    display: none !important;
+                }
+                #flexframe-viewer-container #infoDropdown.show,
+                #infoDropdown.thumbnail-dropdown-right.show {
                     display: block !important;
                 }
                 
@@ -818,13 +823,13 @@ function flexframe_enqueue_assets() {
                     margin-right: 7px !important;
                 }
                 
-                /* Info sticky header for tablet/desktop - use heading background color with info panel opacity */
+                /* Info sticky header for tablet/desktop - use heading background color */
                 #flexframe-viewer-container .info-sticky-header,
                 .thumbnail-dropdown-right .info-sticky-header,
                 #infoDropdown .info-sticky-header,
                 .info-sticky-header {
-                    background: ' . $menu_v2_info_sticky_header_rgba . ' !important;
-                    background-color: ' . $menu_v2_info_sticky_header_rgba . ' !important;
+                    background: ' . $menu_v2_heading_bg_rgba . ' !important;
+                    background-color: ' . $menu_v2_heading_bg_rgba . ' !important;
                     border: none !important;
                     border-radius: 13px 13px 0 0 !important;
                 }
@@ -2584,7 +2589,7 @@ function flexframe_enqueue_assets() {
             #errorsDropdown {
                 background: transparent !important;
                 background-color: transparent !important;
-                border: 2px solid ' . $menu_v2_accent_border_right_rgba . ' !important;
+                border: 2px solid ' . $menu_v2_accent_border_rgba . ' !important;
             }
             /* Right menu text color */
             #flexframe-viewer-container .thumbnail-dropdown-right *,
@@ -2695,12 +2700,12 @@ function flexframe_enqueue_assets() {
             .filter-thumbnail:hover:not(.selected) {
                 background: rgba(60, 60, 60, ' . min($menu_v2_filter_thumb_bg_opacity + 0.1, 1) . ') !important;
             }
-            /* Sticky header for mobile info menu - uses info panel opacity */
+            /* Sticky header for mobile info menu */
             .info-sticky-header {
                 position: sticky !important;
                 top: 0 !important;
                 z-index: 100 !important;
-                background: ' . $menu_v2_info_sticky_header_rgba . ' !important;
+                background: ' . $menu_v2_heading_bg_rgba . ' !important;
                 backdrop-filter: blur(20px) !important;
                 -webkit-backdrop-filter: blur(20px) !important;
                 border-bottom: 2px solid ' . $menu_v2_accent_color . ' !important;
@@ -2865,7 +2870,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CZIKWASe.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-D2aZt9gV.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2962,7 +2967,6 @@ function flexframe_enqueue_assets() {
                 'searchInputBgOpacity' => floatval(get_option('flexframe_menu_v2_search_input_bg_opacity', 0.95)),
                 'searchInputBgColor' => get_option('flexframe_menu_v2_search_input_bg_color', get_option('flexframe_menu_v2_bg_color', '#1a1a1a')),
                 'infoHeaderOpacity' => floatval(get_option('flexframe_menu_v2_info_header_opacity', 0.5)),
-                'infoPanelOpacity' => floatval(get_option('flexframe_menu_v2_info_panel_opacity', 0.95)),
                 'filterThumbBgOpacity' => floatval(get_option('flexframe_menu_v2_filter_thumb_bg_opacity', 0.8))
             )
         );
