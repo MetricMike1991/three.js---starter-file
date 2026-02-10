@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.309
+ * Version: 1.41.308
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later

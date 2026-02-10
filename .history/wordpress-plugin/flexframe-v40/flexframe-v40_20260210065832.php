@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.309
+ * Version: 1.41.308
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -112,9 +112,9 @@ function flexframe_enqueue_assets() {
         // V2 Filter Thumbnail Background opacity
         $menu_v2_filter_thumb_bg_opacity = floatval(get_option('flexframe_menu_v2_filter_thumb_bg_opacity', 0.8));
         
+        $menu_v2_thumbnail_label_rgb = $menu_v2_accent_rgb; // Use accent color for label gradient
         $menu_v2_bg_rgba_light = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', 0.2)'; // For frosted glass info dropdown
         $menu_v2_accent_rgb = sscanf($menu_v2_accent_color, "#%02x%02x%02x");
-        $menu_v2_thumbnail_label_rgb = $menu_v2_accent_rgb; // Use accent color for label gradient
         $menu_v2_accent_border_rgba = 'rgba(' . implode(', ', $menu_v2_accent_rgb) . ', ' . $menu_v2_heading_bg_opacity . ')';
         $menu_v2_accent_border_right_rgba = 'rgba(' . implode(', ', $menu_v2_accent_rgb) . ', ' . $menu_v2_info_panel_opacity . ')';
         $menu_v2_info_sticky_header_rgba = 'rgba(' . implode(', ', $menu_v2_heading_bg_rgb) . ', ' . $menu_v2_info_panel_opacity . ')';
