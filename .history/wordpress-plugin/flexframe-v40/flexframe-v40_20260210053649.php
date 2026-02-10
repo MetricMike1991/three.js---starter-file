@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.296
+ * Version: 1.41.295
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.296');
+define('FLEXFRAME_VERSION', '1.41.295');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -232,10 +232,10 @@ function flexframe_enqueue_assets() {
             .search-header .search-input {
                 width: 100% !important;
                 padding: 10px 45px 10px 10px !important;
-                background: ' . $menu_v2_bg_rgba . ' !important;
-                border: 2px solid ' . $menu_v2_accent_color . '66 !important;
+                background: rgba(30, 30, 30, 0.95) !important;
+                border: 2px solid var(--flexframe-primary-color) !important;
                 border-radius: 10px !important;
-                color: ' . $menu_v2_text_rgba . ' !important;
+                color: #fff !important;
                 font-size: 14px !important;
                 font-family: -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Arial, sans-serif !important;
                 outline: none !important;
@@ -250,17 +250,17 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .search-input::placeholder,
             #flexframe-viewer-container input.search-input::placeholder,
             #flexframe-viewer-container #searchInput::placeholder {
-                color: rgba(' . $menu_v2_text_rgb[0] . ', ' . $menu_v2_text_rgb[1] . ', ' . $menu_v2_text_rgb[2] . ', 0.4) !important;
+                color: rgba(255, 255, 255, 0.4) !important;
                 opacity: 1 !important;
             }
             #flexframe-viewer-container .search-input:focus,
             #flexframe-viewer-container input.search-input:focus,
             #flexframe-viewer-container #searchInput:focus {
-                border-color: ' . $menu_v2_accent_color . ' !important;
-                background: rgba(' . $menu_v2_bg_rgb[0] . ', ' . $menu_v2_bg_rgb[1] . ', ' . $menu_v2_bg_rgb[2] . ', ' . min($menu_v2_bg_opacity + 0.1, 1) . ') !important;
-                box-shadow: 0 0 0 2px ' . $menu_v2_accent_color . '1a !important;
+                border-color: rgba(74, 158, 255, 0.6) !important;
+                background: rgba(40, 40, 40, 0.98) !important;
+                box-shadow: 0 0 0 2px rgba(74, 158, 255, 0.1) !important;
                 outline: none !important;
-                color: ' . $menu_v2_text_rgba . ' !important;
+                color: #fff !important;
             }
             /* Search header container */
             #flexframe-viewer-container .search-header,
