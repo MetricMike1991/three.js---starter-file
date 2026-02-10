@@ -1821,8 +1821,7 @@ class ThemeEditor {
             /* Search Header - use heading background color */
             #flexframe-viewer-container .search-header,
             #flexframe-viewer-container #searchDropdown .search-header,
-            .thumbnail-dropdown .search-header,
-            div#searchDropdown .search-header {
+            .thumbnail-dropdown .search-header {
                 background: linear-gradient(180deg, ${this.hexToRgba(headingBgColor, Math.min(headingBgOpacity + 0.1, 1))}, ${headingBgRgba}) !important;
                 border-color: ${accentColor}66 !important;
                 border-bottom-color: ${accentColor}66 !important;
@@ -1841,13 +1840,6 @@ class ThemeEditor {
             .search-header:focus-within {
                 border-color: ${accentColor} !important;
                 box-shadow: 0 0 0 2px ${accentColor}33 !important;
-            }
-            /* Keep search header heading BG on focus */
-            #flexframe-viewer-container .search-header:focus-within,
-            #flexframe-viewer-container #searchDropdown .search-header:focus-within,
-            .thumbnail-dropdown .search-header:focus-within,
-            div#searchDropdown .search-header:focus-within {
-                background: ${this.hexToRgba(headingBgColor, Math.min(headingBgOpacity + 0.1, 1))} !important;
             }
             
             /* Search action button */
