@@ -2691,7 +2691,7 @@ class ThemeEditor {
         }
         
         saveBtn.disabled = false;
-        saveBtn.innerHTML = 'Save';
+        saveBtn.innerHTML = 'Save Theme';
     }
 
     showMessage(text, type) {

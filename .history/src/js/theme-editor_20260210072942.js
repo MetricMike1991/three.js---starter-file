@@ -367,9 +367,11 @@ class ThemeEditor {
                 </div>
                 <div class="te-save-section">
                     <input type="text" id="te-theme-name" placeholder="Enter theme name..." />
-                    <button id="te-save-btn" class="te-btn-primary">Save</button>
-                    <button id="te-export-btn" class="te-btn-io te-btn-export" title="Export theme as JSON">&#8595;</button>
-                    <button id="te-import-btn" class="te-btn-io te-btn-import" title="Import theme from JSON">&#8593;</button>
+                    <button id="te-save-btn" class="te-btn-primary">Save Theme</button>
+                </div>
+                <div class="te-io-section">
+                    <button id="te-export-btn" class="te-btn-io te-btn-export" title="Export current settings as a JSON file">⬇ Export</button>
+                    <button id="te-import-btn" class="te-btn-io te-btn-import" title="Import settings from a JSON file">⬆ Import</button>
                     <input type="file" id="te-import-file" accept=".json" style="display: none;" />
                 </div>
                 <div id="te-save-message" class="te-message"></div>
@@ -2691,7 +2693,7 @@ class ThemeEditor {
         }
         
         saveBtn.disabled = false;
-        saveBtn.innerHTML = 'Save';
+        saveBtn.innerHTML = 'Save Theme';
     }
 
     showMessage(text, type) {
@@ -2777,25 +2779,28 @@ class ThemeEditor {
                 color: rgba(255,255,255,0.4);
             }
             
+            .te-io-section {
+                display: flex;
+                gap: 8px;
+                margin-top: 8px;
+            }
+            
             .te-btn-io {
-                width: 34px;
-                height: 34px;
-                padding: 0;
+                flex: 1;
+                padding: 7px 12px;
                 border: 1px solid rgba(255,255,255,0.2);
                 border-radius: 6px;
                 color: #fff;
-                font-size: 16px;
-                line-height: 1;
+                font-size: 12px;
+                font-weight: 500;
                 cursor: pointer;
                 transition: all 0.2s;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                flex-shrink: 0;
+                text-align: center;
             }
             
             .te-btn-export {
-                background: rgba(74, 158, 255, 0.15);
+                background: rgba(74, 158, 255, 0.2);
+                border-color: rgba(74, 158, 255, 0.4);
             }
             
             .te-btn-export:hover {
@@ -2804,7 +2809,8 @@ class ThemeEditor {
             }
             
             .te-btn-import {
-                background: rgba(0, 200, 83, 0.15);
+                background: rgba(0, 200, 83, 0.2);
+                border-color: rgba(0, 200, 83, 0.4);
             }
             
             .te-btn-import:hover {
