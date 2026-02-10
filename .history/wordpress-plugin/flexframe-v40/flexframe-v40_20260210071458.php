@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.312
+ * Version: 1.41.311
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -2865,7 +2865,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-imyQKtPT.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DJLXY4A4.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -3201,15 +3201,6 @@ function flexframe_save_primary_color() {
     // Update particles color to match primary color
     update_option('flexframe_particles_color', $primary_color);
     
-    // Update V2 side menu accent color to match primary color
-    update_option('flexframe_menu_v2_accent_color', $primary_color);
-    
-    // Update V2 side menu heading background color to match primary color
-    update_option('flexframe_menu_v2_heading_bg_color', $primary_color);
-    
-    // Update equipment color1 to match primary color
-    update_option('flexframe_color1_color', $primary_color);
-    
     // Force clear WordPress object cache for these specific options
     wp_cache_delete('flexframe_primary_color', 'options');
     wp_cache_delete('flexframe_primary_color_mode', 'options');
@@ -3219,9 +3210,6 @@ function flexframe_save_primary_color() {
     wp_cache_delete('flexframe_spinner_color', 'options');
     wp_cache_delete('flexframe_directional_color', 'options');
     wp_cache_delete('flexframe_particles_color', 'options');
-    wp_cache_delete('flexframe_menu_v2_accent_color', 'options');
-    wp_cache_delete('flexframe_menu_v2_heading_bg_color', 'options');
-    wp_cache_delete('flexframe_color1_color', 'options');
     wp_cache_delete('alloptions', 'options'); // Clear all options cache
     
     // Clear all WordPress caches
