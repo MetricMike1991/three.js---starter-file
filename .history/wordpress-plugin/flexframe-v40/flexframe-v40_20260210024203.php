@@ -544,7 +544,7 @@ function flexframe_enqueue_assets() {
                     border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
                     padding: 10px !important;
                     overflow-y: auto !important;
-                    background: transparent !important;
+                    background: rgba(0, 0, 0, 0.2) !important;
                 }
                 
                 /* Results panel */
