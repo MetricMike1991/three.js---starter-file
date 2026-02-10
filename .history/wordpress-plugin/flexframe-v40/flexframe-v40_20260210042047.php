@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.288
+ * Version: 1.41.286
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.288');
+define('FLEXFRAME_VERSION', '1.41.286');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -83,7 +83,7 @@ function flexframe_enqueue_assets() {
         $menu_v2_show_thumbnail_labels = get_option('flexframe_menu_v2_show_thumbnail_labels', 'yes');
         
         // V2 Heading Background settings
-        $menu_v2_heading_bg_color = esc_attr(get_option('flexframe_menu_v2_heading_bg_color', $primary_color));
+        $menu_v2_heading_bg_color = esc_attr(get_option('flexframe_menu_v2_heading_bg_color', $menu_v2_bg_color));
         $menu_v2_heading_bg_opacity = floatval(get_option('flexframe_menu_v2_heading_bg_opacity', $menu_v2_bg_opacity));
         $menu_v2_heading_bg_rgb = sscanf($menu_v2_heading_bg_color, "#%02x%02x%02x");
         $menu_v2_heading_bg_rgba = 'rgba(' . implode(', ', $menu_v2_heading_bg_rgb) . ', ' . $menu_v2_heading_bg_opacity . ')';
@@ -2841,7 +2841,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DZ0Ab7kW.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DziCmDnU.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2932,7 +2932,7 @@ function flexframe_enqueue_assets() {
                 'textOpacity' => floatval(get_option('flexframe_menu_v2_text_opacity', 1)),
                 'accentColor' => get_option('flexframe_menu_v2_accent_color', $primary_color),
                 'showThumbnailLabels' => get_option('flexframe_menu_v2_show_thumbnail_labels', 'yes') === 'yes',
-                'headingBgColor' => get_option('flexframe_menu_v2_heading_bg_color', $primary_color),
+                'headingBgColor' => get_option('flexframe_menu_v2_heading_bg_color', '#1a1a1a'),
                 'headingBgOpacity' => floatval(get_option('flexframe_menu_v2_heading_bg_opacity', 0.95)),
                 'infoStepOpacity' => floatval(get_option('flexframe_menu_v2_info_step_opacity', 0.35))
             )

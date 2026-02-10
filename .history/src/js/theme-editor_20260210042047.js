@@ -35,7 +35,7 @@ class ThemeEditor {
             menuV2TextOpacity: 1,
             menuV2AccentColor: null, // null = use primary color
             menuV2ShowThumbnailLabels: true,
-            menuV2HeadingBgColor: '#4a9eff',
+            menuV2HeadingBgColor: '#1a1a1a',
             menuV2HeadingBgOpacity: 0.95,
             menuV2InfoStepOpacity: 0.35,
             showScreenshotButton: true,
@@ -221,7 +221,7 @@ class ThemeEditor {
             menuV2TextOpacity: ws.uiSettings?.menuV2?.textOpacity ?? 1,
             menuV2AccentColor: ws.uiSettings?.menuV2?.accentColor || (ws.primaryColor || '#4a9eff'),
             menuV2ShowThumbnailLabels: ws.uiSettings?.menuV2?.showThumbnailLabels ?? true,
-            menuV2HeadingBgColor: ws.uiSettings?.menuV2?.headingBgColor || (ws.primaryColor || '#4a9eff'),
+            menuV2HeadingBgColor: ws.uiSettings?.menuV2?.headingBgColor || '#1a1a1a',
             menuV2HeadingBgOpacity: ws.uiSettings?.menuV2?.headingBgOpacity ?? 0.95,
             menuV2InfoStepOpacity: ws.uiSettings?.menuV2?.infoStepOpacity ?? 0.35,
             showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
