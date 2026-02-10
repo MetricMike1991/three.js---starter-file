@@ -38,8 +38,6 @@ class ThemeEditor {
             menuV2HeadingBgColor: '#4a9eff',
             menuV2HeadingBgOpacity: 0.95,
             menuV2InfoStepOpacity: 0.35,
-            menuV2InfoHeaderOpacity: 0.5,
-            menuV2FilterThumbBgOpacity: 0.8,
             menuV2SearchInputBgOpacity: 0.95,
             menuV2SearchInputBgColor: '#1a1a1a',
             showScreenshotButton: true,
@@ -228,8 +226,6 @@ class ThemeEditor {
             menuV2HeadingBgColor: ws.uiSettings?.menuV2?.headingBgColor || (ws.primaryColor || '#4a9eff'),
             menuV2HeadingBgOpacity: ws.uiSettings?.menuV2?.headingBgOpacity ?? 0.95,
             menuV2InfoStepOpacity: ws.uiSettings?.menuV2?.infoStepOpacity ?? 0.35,
-            menuV2InfoHeaderOpacity: ws.uiSettings?.menuV2?.infoHeaderOpacity ?? 0.5,
-            menuV2FilterThumbBgOpacity: ws.uiSettings?.menuV2?.filterThumbBgOpacity ?? 0.8,
             menuV2SearchInputBgOpacity: ws.uiSettings?.menuV2?.searchInputBgOpacity ?? 0.95,
             menuV2SearchInputBgColor: ws.uiSettings?.menuV2?.searchInputBgColor || (ws.uiSettings?.menuV2?.bgColor || '#1a1a1a'),
             showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
@@ -451,7 +447,6 @@ class ThemeEditor {
                                 ${this.createRangeInput('menuV2TextOpacity', 'Text Opacity', 0, 1, 0.01)}
                                 ${this.createColorInput('menuV2AccentColor', 'Accent Color')}
                                 ${this.createCheckboxInput('menuV2ShowThumbnailLabels', 'Show Thumbnail Labels')}
-                                ${this.createRangeInput('menuV2FilterThumbBgOpacity', 'Filter Thumbnail BG Opacity', 0, 1, 0.01)}
                                 <div style="border-top: 1px solid rgba(255,255,255,0.1); margin: 12px 0 8px; padding-top: 8px;">
                                     <div style="font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Heading Background</div>
                                 </div>
@@ -461,7 +456,6 @@ class ThemeEditor {
                                     <div style="font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.7); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.5px;">Info Step Items</div>
                                 </div>
                                 ${this.createRangeInput('menuV2InfoStepOpacity', 'Info Item BG Opacity', 0, 1, 0.01)}
-                                ${this.createRangeInput('menuV2InfoHeaderOpacity', 'Info Header BG Opacity', 0, 1, 0.01)}
                                 <button id="te-reset-menu-v2" style="
                                     width: 100%;
                                     margin-top: 12px;
@@ -915,9 +909,7 @@ class ThemeEditor {
             menuV2TextColor: '#ffffff',
             menuV2TextOpacity: 1,
             menuV2AccentColor: primaryColor,
-            menuV2ShowThumbnailLabels: true,
-            menuV2FilterThumbBgOpacity: 0.8,
-            menuV2InfoHeaderOpacity: 0.5
+            menuV2ShowThumbnailLabels: true
         };
 
         // Apply each default to currentSettings and update the GUI inputs
@@ -1609,11 +1601,6 @@ class ThemeEditor {
         const infoStepOpacity = this.currentSettings.menuV2InfoStepOpacity ?? 0.35;
         const infoStepBg = this.hexToRgba(accentColor, infoStepOpacity);
         const infoStepHoverBg = this.hexToRgba(accentColor, Math.min(infoStepOpacity + 0.15, 1));
-        const infoHeaderOpacity = this.currentSettings.menuV2InfoHeaderOpacity ?? 0.5;
-        const infoHeaderBg = this.hexToRgba(accentColor, infoHeaderOpacity);
-        const filterThumbBgOpacity = this.currentSettings.menuV2FilterThumbBgOpacity ?? 0.8;
-        const filterThumbBg = this.hexToRgba('#282828', filterThumbBgOpacity);
-        const filterThumbHoverBg = this.hexToRgba('#3c3c3c', Math.min(filterThumbBgOpacity + 0.1, 1));
         const searchInputBgOpacity = this.currentSettings.menuV2SearchInputBgOpacity ?? bgOpacity;
         const searchInputBgColor = this.currentSettings.menuV2SearchInputBgColor || bgColor;
         const searchInputBgRgba = this.hexToRgba(searchInputBgColor, searchInputBgOpacity);
@@ -1838,7 +1825,7 @@ class ThemeEditor {
             #flexframe-viewer-container .info-section-header,
             .thumbnail-dropdown-right .info-section-header,
             .info-section-header {
-                background: ${infoHeaderBg} !important;
+                background: ${this.hexToRgba(accentColor, 0.5)} !important;
                 backdrop-filter: blur(50px) !important;
                 border: 2px solid ${accentColor} !important;
             }
@@ -2118,12 +2105,6 @@ class ThemeEditor {
             }
             
             /* ===== FILTER THUMBNAILS - V2 ACCENT COLOR ===== */
-            .filter-thumbnail {
-                background: ${filterThumbBg} !important;
-            }
-            .filter-thumbnail:hover:not(.selected) {
-                background: ${filterThumbHoverBg} !important;
-            }
             .filter-thumbnail.selected {
                 border-color: ${accentColor} !important;
                 background-color: ${accentColor}33 !important;
@@ -2294,8 +2275,6 @@ class ThemeEditor {
             menu_v2_heading_bg_color: this.currentSettings.menuV2HeadingBgColor,
             menu_v2_heading_bg_opacity: this.currentSettings.menuV2HeadingBgOpacity,
             menu_v2_info_step_opacity: this.currentSettings.menuV2InfoStepOpacity,
-            menu_v2_info_header_opacity: this.currentSettings.menuV2InfoHeaderOpacity,
-            menu_v2_filter_thumb_bg_opacity: this.currentSettings.menuV2FilterThumbBgOpacity,
             menu_v2_search_input_bg_opacity: this.currentSettings.menuV2SearchInputBgOpacity,
             menu_v2_search_input_bg_color: this.currentSettings.menuV2SearchInputBgColor,
             show_screenshot_button: this.currentSettings.showScreenshotButton,

@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.302
+ * Version: 1.41.301
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -102,12 +102,6 @@ function flexframe_enqueue_assets() {
         $menu_v2_search_input_bg_color = esc_attr(get_option('flexframe_menu_v2_search_input_bg_color', $menu_v2_bg_color));
         $menu_v2_search_input_bg_rgb = sscanf($menu_v2_search_input_bg_color, "#%02x%02x%02x");
         $menu_v2_search_input_bg_rgba = 'rgba(' . implode(', ', $menu_v2_search_input_bg_rgb) . ', ' . $menu_v2_search_input_bg_opacity . ')';
-        
-        // V2 Info Header opacity (independent from info step items)
-        $menu_v2_info_header_opacity = floatval(get_option('flexframe_menu_v2_info_header_opacity', 0.5));
-        
-        // V2 Filter Thumbnail Background opacity
-        $menu_v2_filter_thumb_bg_opacity = floatval(get_option('flexframe_menu_v2_filter_thumb_bg_opacity', 0.8));
         
         $menu_v2_thumbnail_label_rgb = $menu_v2_accent_rgb; // Use accent color for label gradient
         $menu_v2_bg_rgba_light = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', 0.2)'; // For frosted glass info dropdown
@@ -2666,7 +2660,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container .info-section-header,
             .thumbnail-dropdown-right .info-section-header,
             .info-section-header {
-                background: rgba(' . $menu_v2_accent_rgb[0] . ', ' . $menu_v2_accent_rgb[1] . ', ' . $menu_v2_accent_rgb[2] . ', ' . $menu_v2_info_header_opacity . ') !important;
+                background: rgba(' . $menu_v2_accent_rgb[0] . ', ' . $menu_v2_accent_rgb[1] . ', ' . $menu_v2_accent_rgb[2] . ', 0.5) !important;
                 backdrop-filter: blur(50px) !important;
                 -webkit-backdrop-filter: blur(50px) !important;
                 border: 2px solid ' . $menu_v2_accent_color . ' !important;
@@ -2683,17 +2677,6 @@ function flexframe_enqueue_assets() {
                 color: ' . $menu_v2_accent_color . ' !important;
                 text-transform: uppercase !important;
                 letter-spacing: 1px !important;
-            }
-            /* Filter Thumbnails - configurable background opacity */
-            #flexframe-viewer-container .filter-thumbnail,
-            .thumbnail-dropdown .filter-thumbnail,
-            .filter-thumbnail {
-                background: rgba(40, 40, 40, ' . $menu_v2_filter_thumb_bg_opacity . ') !important;
-            }
-            #flexframe-viewer-container .filter-thumbnail:hover:not(.selected),
-            .thumbnail-dropdown .filter-thumbnail:hover:not(.selected),
-            .filter-thumbnail:hover:not(.selected) {
-                background: rgba(60, 60, 60, ' . min($menu_v2_filter_thumb_bg_opacity + 0.1, 1) . ') !important;
             }
             /* Sticky header for mobile info menu */
             .info-sticky-header {
@@ -2865,7 +2848,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bu1RzCyD.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BgFcmolz.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2960,9 +2943,7 @@ function flexframe_enqueue_assets() {
                 'headingBgOpacity' => floatval(get_option('flexframe_menu_v2_heading_bg_opacity', 0.95)),
                 'infoStepOpacity' => floatval(get_option('flexframe_menu_v2_info_step_opacity', 0.35)),
                 'searchInputBgOpacity' => floatval(get_option('flexframe_menu_v2_search_input_bg_opacity', 0.95)),
-                'searchInputBgColor' => get_option('flexframe_menu_v2_search_input_bg_color', get_option('flexframe_menu_v2_bg_color', '#1a1a1a')),
-                'infoHeaderOpacity' => floatval(get_option('flexframe_menu_v2_info_header_opacity', 0.5)),
-                'filterThumbBgOpacity' => floatval(get_option('flexframe_menu_v2_filter_thumb_bg_opacity', 0.8))
+                'searchInputBgColor' => get_option('flexframe_menu_v2_search_input_bg_color', get_option('flexframe_menu_v2_bg_color', '#1a1a1a'))
             )
         );
         
