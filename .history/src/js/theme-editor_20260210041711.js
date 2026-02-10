@@ -1779,7 +1779,6 @@ class ThemeEditor {
             .info-sticky-header {
                 background: ${headingBgRgba} !important;
                 border: none !important;
-                border-radius: 13px 13px 0 0 !important;
             }
             
             .thumbnail-grid-container-right *,
