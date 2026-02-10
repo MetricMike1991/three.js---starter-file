@@ -163,28 +163,10 @@ class ThemeEditor {
             this.panel.style.opacity = '1';
             this.panel.style.transform = 'translateX(0)';
         }, 10);
-
-        // Lock menus open while theme editor is active so clicks don't close them
-        window._themeEditorLockMenus = true;
-
-        // Force-open the search dropdown so the user can see styling changes
-        if (window.menuManager && window.menuManager.menus && window.menuManager.menus.search) {
-            const searchMenu = window.menuManager.menus.search;
-            if (!searchMenu.isOpen) {
-                searchMenu.openMenu();
-            }
-            // Also show the left menu container
-            const leftContainer = document.querySelector('.thumbnail-grid-container');
-            if (leftContainer) {
-                leftContainer.classList.add('menu-visible', 'menu-active');
-            }
-        }
     }
 
     close() {
         this.isOpen = false;
-        // Unlock menus so they resume normal open/close behavior
-        window._themeEditorLockMenus = false;
         this.panel.style.opacity = '0';
         this.panel.style.transform = 'translateX(100%)';
         setTimeout(() => {

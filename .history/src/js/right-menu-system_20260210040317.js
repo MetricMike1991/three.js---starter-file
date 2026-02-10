@@ -427,16 +427,13 @@ export class RightMenuSystem {
                 menuContainer.classList.add('menu-visible');
                 
                 // Hide the left menu container when right menu becomes visible
-                // (but not when theme editor has menus locked)
-                if (!window._themeEditorLockMenus) {
-                    const leftMenuContainer = document.querySelector('.thumbnail-grid-container');
-                    if (leftMenuContainer) {
-                        leftMenuContainer.classList.remove('menu-visible', 'menu-active');
-                        // Also close any open left menus
-                        document.dispatchEvent(new CustomEvent('closeAllThumbnailMenus', { 
-                            detail: { except: null } 
-                        }));
-                    }
+                const leftMenuContainer = document.querySelector('.thumbnail-grid-container');
+                if (leftMenuContainer) {
+                    leftMenuContainer.classList.remove('menu-visible', 'menu-active');
+                    // Also close any open left menus
+                    document.dispatchEvent(new CustomEvent('closeAllThumbnailMenus', { 
+                        detail: { except: null } 
+                    }));
                 }
             });
             
