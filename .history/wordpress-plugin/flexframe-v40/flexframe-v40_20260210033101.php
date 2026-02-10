@@ -813,7 +813,7 @@ function flexframe_enqueue_assets() {
                     background: ' . $menu_v2_heading_bg_rgba . ' !important;
                     background-color: ' . $menu_v2_heading_bg_rgba . ' !important;
                     border: 2px solid ' . $menu_v2_accent_color . ' !important;
-                    border-radius: 10px 10px 0 0 !important;
+                    border-radius: 8px !important;
                 }
             }
             
