@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.292
+ * Version: 1.41.291
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.292');
+define('FLEXFRAME_VERSION', '1.41.291');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -99,7 +99,6 @@ function flexframe_enqueue_assets() {
         $menu_v2_thumbnail_label_rgb = $menu_v2_accent_rgb; // Use accent color for label gradient
         $menu_v2_bg_rgba_light = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', 0.2)'; // For frosted glass info dropdown
         $menu_v2_accent_rgb = sscanf($menu_v2_accent_color, "#%02x%02x%02x");
-        $menu_v2_accent_border_rgba = 'rgba(' . implode(', ', $menu_v2_accent_rgb) . ', ' . $menu_v2_heading_bg_opacity . ')';
         
         // Button visibility settings
         $show_screenshot_button = (bool) get_option('flexframe_show_screenshot_button', true);
