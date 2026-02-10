@@ -1758,7 +1758,7 @@ class ThemeEditor {
             }
             /* Info Sticky Header (mobile) */
             .info-sticky-header {
-                background: ${headingBgRgba} !important;
+                background: ${this.hexToRgba(accentColor, 0.95)} !important;
                 border-bottom: 2px solid ${accentColor} !important;
                 color: ${accentColor} !important;
             }

@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.276
+ * Version: 1.41.275
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.276');
+define('FLEXFRAME_VERSION', '1.41.275');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -267,7 +267,7 @@ function flexframe_enqueue_assets() {
             .thumbnail-dropdown .search-header,
             div#searchDropdown .search-header {
                 padding: 12px 15px !important;
-                background: rgba(20, 20, 20, 0.95) !important;
+                background: rgb(20, 20, 20) !important;
                 backdrop-filter: blur(10px) !important;
                 -webkit-backdrop-filter: blur(10px) !important;
                 margin: -15px -15px 10px !important;
@@ -805,13 +805,13 @@ function flexframe_enqueue_assets() {
                     margin-right: 7px !important;
                 }
                 
-                /* Info sticky header for tablet/desktop - use heading background color */
+                /* Info sticky header for tablet/desktop - border only, no background */
                 #flexframe-viewer-container .info-sticky-header,
                 .thumbnail-dropdown-right .info-sticky-header,
                 #infoDropdown .info-sticky-header,
                 .info-sticky-header {
-                    background: ' . $menu_v2_heading_bg_rgba . ' !important;
-                    background-color: ' . $menu_v2_heading_bg_rgba . ' !important;
+                    background: transparent !important;
+                    background-color: transparent !important;
                     border: 2px solid ' . $menu_v2_accent_color . ' !important;
                     border-radius: 8px !important;
                 }
@@ -2676,7 +2676,7 @@ function flexframe_enqueue_assets() {
                 position: sticky !important;
                 top: 0 !important;
                 z-index: 100 !important;
-                background: ' . $menu_v2_heading_bg_rgba . ' !important;
+                background: rgba(' . $menu_v2_accent_rgb[0] . ', ' . $menu_v2_accent_rgb[1] . ', ' . $menu_v2_accent_rgb[2] . ', 0.95) !important;
                 backdrop-filter: blur(20px) !important;
                 -webkit-backdrop-filter: blur(20px) !important;
                 border-bottom: 2px solid ' . $menu_v2_accent_color . ' !important;
@@ -2841,7 +2841,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-D8cW3gj9.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BBlUdH_L.js',
             array(),
             FLEXFRAME_VERSION,
             true

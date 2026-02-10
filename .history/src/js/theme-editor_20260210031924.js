@@ -1708,12 +1708,12 @@ class ThemeEditor {
                 fill: ${textColor} !important;
             }
             
-            /* Info Sticky Header - use heading background color */
+            /* Info Sticky Header - V2 accent border */
             #flexframe-viewer-container .info-sticky-header,
             .thumbnail-dropdown-right .info-sticky-header,
             #infoDropdown .info-sticky-header,
             .info-sticky-header {
-                background: ${headingBgRgba} !important;
+                background: transparent !important;
                 border: 2px solid ${accentColor} !important;
             }
             
@@ -1758,7 +1758,7 @@ class ThemeEditor {
             }
             /* Info Sticky Header (mobile) */
             .info-sticky-header {
-                background: ${headingBgRgba} !important;
+                background: ${this.hexToRgba(accentColor, 0.95)} !important;
                 border-bottom: 2px solid ${accentColor} !important;
                 color: ${accentColor} !important;
             }
