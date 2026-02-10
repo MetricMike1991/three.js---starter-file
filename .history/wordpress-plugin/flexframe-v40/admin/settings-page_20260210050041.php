@@ -1618,8 +1618,17 @@ function flexframe_settings_page() {
                                         <option value="dark" <?php selected($material_preset, 'dark'); ?>>
                                             <?php _e('Dark Spark', 'flexframe-viewer'); ?>
                                         </option>
+                                        <option value="light_v2" <?php selected($material_preset, 'light_v2'); ?>>
+                                            <?php _e('Light Theme - V2', 'flexframe-viewer'); ?>
+                                        </option>
+                                        <option value="branded" <?php selected($material_preset, 'branded'); ?>>
+                                            <?php _e('Branded Theme', 'flexframe-viewer'); ?>
+                                        </option>
                                         <option value="light_v3" <?php selected($material_preset, 'light_v3'); ?>>
                                             <?php _e('Light Theme - V3', 'flexframe-viewer'); ?>
+                                        </option>
+                                        <option value="dark_v2" <?php selected($material_preset, 'dark_v2'); ?>>
+                                            <?php _e('Dark Theme - V2', 'flexframe-viewer'); ?>
                                         </option>
                                     </optgroup>
                                     <?php if (!empty($custom_presets)) : ?>
@@ -5277,6 +5286,143 @@ function flexframe_settings_page() {
                     rubberRoughness: 0.95
                 }
             },
+            'light_v2': {
+                name: '<?php _e('Light Theme - V2', 'flexframe-viewer'); ?>',
+                description: '<?php _e('Clean white interface with transparent menus and vibrant accents. Modern and minimalist.', 'flexframe-viewer'); ?>',
+                settings: {
+                    spinnerColor: 'primary',
+                    useLogoLoader: false,
+                    logoLoaderAnimation: 'pulse',
+                    logoLoaderSize: 100,
+                    // Animation Player
+                    playerBgColor: '#7d7d7d',
+                    playerBgOpacity: 0.2,
+                    playerButtonBgColor: 'primary',
+                    playerButtonBgOpacity: 1,
+                    playerIconColor: '#ffffff',
+                    playerAccentColor: 'primary',
+                    playerAlwaysVisible: 'no',
+                    playerWidth: 100,
+                    playerShowTime: true,
+                    // Menu
+                    menuBgColor: '#ffffff',
+                    menuBgOpacity: 0,
+                    menuTextColor: '#222222',
+                    menuTextOpacity: 1,
+                    menuAccentColor: 'primary',
+                    hideRightMenu: false,
+                    showScreenshotButton: true,
+                    // Thumbnail Label settings
+                    thumbnailLabelColor: '#222222',
+                    thumbnailLabelOpacity: 0.1,
+                    // Material settings
+                    skinColor: '#aaadb1',
+                    skinOpacity: 1,
+                    skinRoughness: 0,
+                    skinMetalness: 0,
+                    skinTransmission: 1,
+                    skinThickness: 0,
+                    skinIor: 1,
+                    skinEnvIntensity: 2.29,
+                    // Menu V2 (Side Menus)
+                    menuV2BgColor: '#8f8f8f',
+                    menuV2BgOpacity: 0.2,
+                    menuV2TextColor: '#ffffff',
+                    menuV2TextOpacity: 1,
+                    menuV2AccentColor: 'primary',
+                    menuV2ShowThumbnailLabels: true,
+                    // Scene Background settings - solid white
+                    bgGradientTop: '#ffffff',
+                    bgGradientBottom: '#ffffff',
+                    bgGradientOpacity: 1,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.3,
+                    // Lighting settings
+                    ambientIntensity: 0.3,
+                    ambientColor: '#ffffff',
+                    directionalIntensity: 0.43,
+                    directionalColor: 'primary',
+                    directionalPosX: 1.35,
+                    directionalPosY: 1.57,
+                    directionalPosZ: 0.9,
+                    // Particle settings
+                    particlesEnabled: true,
+                    particlesCount: 1150,
+                    particlesSize: 0.01,
+                    particlesColor: 'primary',
+                    particlesOpacity: 1,
+                    particlesSpeed: 0.5
+                }
+            },
+            'branded': {
+                name: '<?php _e('Branded Theme', 'flexframe-viewer'); ?>',
+                description: '<?php _e('White-to-brand gradient background with matching skin color. Perfect for showcasing your brand.', 'flexframe-viewer'); ?>',
+                settings: {
+                    spinnerColor: 'primary',
+                    useLogoLoader: true,
+                    logoLoaderAnimation: 'pulse',
+                    logoLoaderSize: 100,
+                    // Animation Player
+                    playerBgColor: '#828282',
+                    playerBgOpacity: 0,
+                    playerButtonBgColor: 'primary',
+                    playerButtonBgOpacity: 0.8,
+                    playerIconColor: '#ffffff',
+                    playerAccentColor: 'primary',
+                    playerAlwaysVisible: 'no',
+                    playerWidth: 100,
+                    playerShowTime: true,
+                    // Menu
+                    menuBgColor: '#000000',
+                    menuBgOpacity: 0.9,
+                    menuTextColor: '#ffffff',
+                    menuTextOpacity: 1,
+                    menuAccentColor: 'primary',
+                    hideRightMenu: false,
+                    showScreenshotButton: true,
+                    // Thumbnail Label settings
+                    thumbnailLabelColor: '#222222',
+                    thumbnailLabelOpacity: 0.1,
+                    // Material settings - skin uses primary color
+                    skinColor: 'primary',
+                    skinOpacity: 1,
+                    skinRoughness: 0,
+                    skinMetalness: 0,
+                    skinTransmission: 1,
+                    skinThickness: 0,
+                    skinIor: 1,
+                    skinEnvIntensity: 2.29,
+                    // Scene Background settings - white top, primary bottom gradient
+                    bgGradientTop: '#ffffff',
+                    bgGradientBottom: 'primary',
+                    bgGradientOpacity: 1,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5,
+                    // Lighting settings
+                    ambientIntensity: 0.4,
+                    ambientColor: '#ffffff',
+                    directionalIntensity: 1.43,
+                    directionalColor: '#ffffff',
+                    directionalPosX: 1.35,
+                    directionalPosY: 1.57,
+                    directionalPosZ: 0.9,
+                    // Particle settings
+                    particlesEnabled: true,
+                    particlesCount: 1150,
+                    particlesSize: 0.0095,
+                    particlesColor: 'primary',
+                    particlesOpacity: 1,
+                    particlesSpeed: 0.5
+                }
+            },
             'light_v3': {
                 name: '<?php _e('Light Theme - V3', 'flexframe-viewer'); ?>',
                 description: '<?php _e('Bright, clean interface with logo loader and glass-like skin. Transparent menus with bold accents.', 'flexframe-viewer'); ?>',
@@ -5336,6 +5482,83 @@ function flexframe_settings_page() {
                     ambientIntensity: 0.3,
                     ambientColor: '#ffffff',
                     directionalIntensity: 0.43,
+                    directionalColor: 'primary',
+                    directionalPosX: 1.35,
+                    directionalPosY: 1.57,
+                    directionalPosZ: 0.9,
+                    // Particle settings
+                    particlesEnabled: true,
+                    particlesCount: 1150,
+                    particlesSize: 0.01,
+                    particlesColor: 'primary',
+                    particlesOpacity: 1,
+                    particlesSpeed: 0.5,
+                    // Equipment Material settings
+                    color1Color: 'primary',
+                    color1Opacity: 1,
+                    color1Metalness: 0.5,
+                    color1Roughness: 0.5
+                }
+            },
+            'dark_v2': {
+                name: '<?php _e('Dark Theme - V2', 'flexframe-viewer'); ?>',
+                description: '<?php _e('Sleek dark interface with transparent side menus, glass-like skin, and vibrant accents. Perfect for dark websites.', 'flexframe-viewer'); ?>',
+                settings: {
+                    spinnerColor: 'primary',
+                    useLogoLoader: true,
+                    logoLoaderAnimation: 'pulse',
+                    logoLoaderSize: 100,
+                    // Animation Player
+                    playerBgColor: '#828282',
+                    playerBgOpacity: 0,
+                    playerButtonBgColor: 'primary',
+                    playerButtonBgOpacity: 0.8,
+                    playerIconColor: '#ffffff',
+                    playerAccentColor: 'primary',
+                    playerAlwaysVisible: 'no',
+                    playerWidth: 100,
+                    playerShowTime: true,
+                    // Menu
+                    menuBgColor: '#000000',
+                    menuBgOpacity: 0.9,
+                    menuTextColor: '#ffffff',
+                    menuTextOpacity: 1,
+                    menuAccentColor: 'primary',
+                    hideRightMenu: false,
+                    showScreenshotButton: true,
+                    // Thumbnail Label settings
+                    thumbnailLabelColor: '#000000',
+                    thumbnailLabelOpacity: 0.1,
+                    // Material settings
+                    skinColor: '#ccdef5',
+                    skinOpacity: 1,
+                    skinRoughness: 0,
+                    skinMetalness: 0,
+                    skinTransmission: 1,
+                    skinThickness: 0,
+                    skinIor: 1,
+                    skinEnvIntensity: 2.29,
+                    // Menu V2 (Side Menus)
+                    menuV2BgColor: '#000000',
+                    menuV2BgOpacity: 0.41,
+                    menuV2TextColor: '#ffffff',
+                    menuV2TextOpacity: 1,
+                    menuV2AccentColor: 'primary',
+                    menuV2ShowThumbnailLabels: true,
+                    // Scene Background settings - solid black
+                    bgGradientTop: '#000000',
+                    bgGradientBottom: '#000000',
+                    bgGradientOpacity: 1,
+                    // Background Logo settings
+                    bgLogoEnabled: true,
+                    bgLogoPosX: 50,
+                    bgLogoPosY: 90,
+                    bgLogoSize: 150,
+                    bgLogoOpacity: 0.5,
+                    // Lighting settings
+                    ambientIntensity: 0.4,
+                    ambientColor: '#ffffff',
+                    directionalIntensity: 4.21,
                     directionalColor: 'primary',
                     directionalPosX: 1.35,
                     directionalPosY: 1.57,
