@@ -6585,7 +6585,6 @@ function flexframe_settings_page() {
                         menuV2HeadingBgColor: 'menu_v2_heading_bg_color',
                         menuV2HeadingBgOpacity: 'menu_v2_heading_bg_opacity',
                         menuV2InfoStepOpacity: 'menu_v2_info_step_opacity',
-                        menuV2SearchInputBgOpacity: 'menu_v2_search_input_bg_opacity',
                         // Equipment Materials
                         color1Color: 'color1_color',
                         color1Opacity: 'color1_opacity',

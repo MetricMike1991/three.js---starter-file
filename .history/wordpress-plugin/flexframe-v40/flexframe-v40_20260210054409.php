@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v40
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.300
+ * Version: 1.41.298
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.300');
+define('FLEXFRAME_VERSION', '1.41.298');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -96,11 +96,6 @@ function flexframe_enqueue_assets() {
         $menu_v2_bg_rgba = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', ' . $menu_v2_bg_opacity . ')';
         $menu_v2_text_rgb = sscanf($menu_v2_text_color, "#%02x%02x%02x");
         $menu_v2_text_rgba = 'rgba(' . implode(', ', $menu_v2_text_rgb) . ', ' . $menu_v2_text_opacity . ')';
-        
-        // V2 Search Input Background opacity (must come after $menu_v2_bg_rgb)
-        $menu_v2_search_input_bg_opacity = floatval(get_option('flexframe_menu_v2_search_input_bg_opacity', $menu_v2_bg_opacity));
-        $menu_v2_search_input_bg_rgba = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', ' . $menu_v2_search_input_bg_opacity . ')';
-        
         $menu_v2_thumbnail_label_rgb = $menu_v2_accent_rgb; // Use accent color for label gradient
         $menu_v2_bg_rgba_light = 'rgba(' . implode(', ', $menu_v2_bg_rgb) . ', 0.2)'; // For frosted glass info dropdown
         $menu_v2_accent_rgb = sscanf($menu_v2_accent_color, "#%02x%02x%02x");
@@ -237,7 +232,7 @@ function flexframe_enqueue_assets() {
             .search-header .search-input {
                 width: 100% !important;
                 padding: 10px 45px 10px 10px !important;
-                background: ' . $menu_v2_search_input_bg_rgba . ' !important;
+                background: ' . $menu_v2_bg_rgba . ' !important;
                 border: 2px solid ' . $menu_v2_accent_color . '66 !important;
                 border-radius: 10px !important;
                 color: ' . $menu_v2_text_rgba . ' !important;
@@ -262,7 +257,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container input.search-input:focus,
             #flexframe-viewer-container #searchInput:focus {
                 border-color: ' . $menu_v2_accent_color . ' !important;
-                background: rgba(' . $menu_v2_bg_rgb[0] . ', ' . $menu_v2_bg_rgb[1] . ', ' . $menu_v2_bg_rgb[2] . ', ' . min($menu_v2_search_input_bg_opacity + 0.1, 1) . ') !important;
+                background: rgba(' . $menu_v2_bg_rgb[0] . ', ' . $menu_v2_bg_rgb[1] . ', ' . $menu_v2_bg_rgb[2] . ', ' . min($menu_v2_bg_opacity + 0.1, 1) . ') !important;
                 box-shadow: 0 0 0 2px ' . $menu_v2_accent_color . '1a !important;
                 outline: none !important;
                 color: ' . $menu_v2_text_rgba . ' !important;
@@ -2013,14 +2008,14 @@ function flexframe_enqueue_assets() {
                 backdrop-filter: blur(20px) !important;
             }
             
-            /* ===== SEARCH INPUT - USE SIDE MENU V2 BG COLOR WITH OWN OPACITY ===== */
+            /* ===== SEARCH INPUT - USE SIDE MENU V2 BACKGROUND COLOR ===== */
             #flexframe-viewer-container .search-input,
             #flexframe-viewer-container input.search-input,
             #flexframe-viewer-container #searchInput,
             #flexframe-viewer-container input#searchInput,
             .thumbnail-dropdown .search-input,
             .search-header .search-input {
-                background-color: ' . $menu_v2_search_input_bg_rgba . ' !important;
+                background-color: ' . $menu_v2_bg_rgba . ' !important;
                 color: ' . $menu_v2_text_rgba . ' !important;
                 border-color: ' . $menu_v2_accent_color . '66 !important;
             }
@@ -2029,7 +2024,7 @@ function flexframe_enqueue_assets() {
             #flexframe-viewer-container #searchInput:focus,
             #flexframe-viewer-container input#searchInput:focus,
             .thumbnail-dropdown .search-input:focus {
-                background-color: rgba(' . $menu_v2_bg_rgb[0] . ', ' . $menu_v2_bg_rgb[1] . ', ' . $menu_v2_bg_rgb[2] . ', ' . min($menu_v2_search_input_bg_opacity + 0.1, 1) . ') !important;
+                background-color: rgba(' . $menu_v2_bg_rgb[0] . ', ' . $menu_v2_bg_rgb[1] . ', ' . $menu_v2_bg_rgb[2] . ', ' . min($menu_v2_bg_opacity + 0.1, 1) . ') !important;
                 border-color: ' . $menu_v2_accent_color . ' !important;
             }
             #flexframe-viewer-container .search-input::placeholder,
@@ -2846,7 +2841,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-0EGpf4TL.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B5RS_S4h.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -2939,8 +2934,7 @@ function flexframe_enqueue_assets() {
                 'showThumbnailLabels' => get_option('flexframe_menu_v2_show_thumbnail_labels', 'yes') === 'yes',
                 'headingBgColor' => get_option('flexframe_menu_v2_heading_bg_color', $primary_color),
                 'headingBgOpacity' => floatval(get_option('flexframe_menu_v2_heading_bg_opacity', 0.95)),
-                'infoStepOpacity' => floatval(get_option('flexframe_menu_v2_info_step_opacity', 0.35)),
-                'searchInputBgOpacity' => floatval(get_option('flexframe_menu_v2_search_input_bg_opacity', 0.95))
+                'infoStepOpacity' => floatval(get_option('flexframe_menu_v2_info_step_opacity', 0.35))
             )
         );
         

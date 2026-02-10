@@ -38,7 +38,6 @@ class ThemeEditor {
             menuV2HeadingBgColor: '#4a9eff',
             menuV2HeadingBgOpacity: 0.95,
             menuV2InfoStepOpacity: 0.35,
-            menuV2SearchInputBgOpacity: 0.95,
             showScreenshotButton: true,
             showARButton: true,
             bgGradientTop: '#3865ad',
@@ -225,7 +224,6 @@ class ThemeEditor {
             menuV2HeadingBgColor: ws.uiSettings?.menuV2?.headingBgColor || (ws.primaryColor || '#4a9eff'),
             menuV2HeadingBgOpacity: ws.uiSettings?.menuV2?.headingBgOpacity ?? 0.95,
             menuV2InfoStepOpacity: ws.uiSettings?.menuV2?.infoStepOpacity ?? 0.35,
-            menuV2SearchInputBgOpacity: ws.uiSettings?.menuV2?.searchInputBgOpacity ?? 0.95,
             showScreenshotButton: ws.showScreenshotButton ?? ws.uiSettings?.showScreenshotButton ?? true,
             showARButton: ws.showARButton ?? true,
             
@@ -439,7 +437,6 @@ class ThemeEditor {
                                 </div>
                                 ${this.createColorInput('menuV2BgColor', 'Background Color')}
                                 ${this.createRangeInput('menuV2BgOpacity', 'Background Opacity', 0, 1, 0.01)}
-                                ${this.createRangeInput('menuV2SearchInputBgOpacity', 'Search Input BG Opacity', 0, 1, 0.01)}
                                 ${this.createColorInput('menuV2TextColor', 'Text Color')}
                                 ${this.createRangeInput('menuV2TextOpacity', 'Text Opacity', 0, 1, 0.01)}
                                 ${this.createColorInput('menuV2AccentColor', 'Accent Color')}
@@ -1596,9 +1593,6 @@ class ThemeEditor {
         const infoStepOpacity = this.currentSettings.menuV2InfoStepOpacity ?? 0.35;
         const infoStepBg = this.hexToRgba(accentColor, infoStepOpacity);
         const infoStepHoverBg = this.hexToRgba(accentColor, Math.min(infoStepOpacity + 0.15, 1));
-        const searchInputBgOpacity = this.currentSettings.menuV2SearchInputBgOpacity ?? bgOpacity;
-        const searchInputBgRgba = this.hexToRgba(bgColor, searchInputBgOpacity);
-        const searchInputBgFocusRgba = this.hexToRgba(bgColor, Math.min(searchInputBgOpacity + 0.1, 1));
         
         // Use injected CSS with !important to override WordPress styles
         // Match WordPress specificity with #flexframe-viewer-container
@@ -1868,14 +1862,14 @@ class ThemeEditor {
                 border-color: ${accentColor} !important;
             }
             
-            /* Search Input - use side menu V2 background color with own opacity */
+            /* Search Input - use side menu V2 background color */
             #flexframe-viewer-container .search-input,
             #flexframe-viewer-container input.search-input,
             #flexframe-viewer-container #searchInput,
             #flexframe-viewer-container input#searchInput,
             .thumbnail-dropdown .search-input,
             .search-header .search-input {
-                background: ${searchInputBgRgba} !important;
+                background: ${bgRgba} !important;
                 color: ${textRgba} !important;
                 border-color: ${accentColor}66 !important;
             }
@@ -1884,7 +1878,7 @@ class ThemeEditor {
             #flexframe-viewer-container #searchInput:focus,
             #flexframe-viewer-container input#searchInput:focus,
             .thumbnail-dropdown .search-input:focus {
-                background: ${searchInputBgFocusRgba} !important;
+                background: ${this.hexToRgba(bgColor, Math.min(bgOpacity + 0.1, 1))} !important;
                 border-color: ${accentColor} !important;
             }
             #flexframe-viewer-container .search-input::placeholder,
@@ -2269,7 +2263,6 @@ class ThemeEditor {
             menu_v2_heading_bg_color: this.currentSettings.menuV2HeadingBgColor,
             menu_v2_heading_bg_opacity: this.currentSettings.menuV2HeadingBgOpacity,
             menu_v2_info_step_opacity: this.currentSettings.menuV2InfoStepOpacity,
-            menu_v2_search_input_bg_opacity: this.currentSettings.menuV2SearchInputBgOpacity,
             show_screenshot_button: this.currentSettings.showScreenshotButton,
             show_ar_button: this.currentSettings.showARButton,
             skin_color: this.currentSettings.skinColor,
