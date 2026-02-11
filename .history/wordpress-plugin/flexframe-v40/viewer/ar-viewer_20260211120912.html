@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>FlexFrame AR Viewer v6</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: white;
+            padding: 20px;
+        }
+        h1 { font-size: 20px; margin-bottom: 4px; }
+        h2 { font-size: 14px; font-weight: 400; color: rgba(255,255,255,0.5); margin-bottom: 20px; }
+        .log {
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            padding: 12px;
+            font-size: 12px;
+            line-height: 1.8;
+            word-break: break-all;
+            margin-bottom: 16px;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+        .ok { color: #4ade80; }
+        .warn { color: #fbbf24; }
+        .err { color: #f87171; }
+        .info { color: #60a5fa; }
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 10px;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+        .btn-primary { background: linear-gradient(135deg, #4a9eff, #2d7dd2); }
+        .btn-secondary { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2); }
+        .btn-success { background: linear-gradient(135deg, #22c55e, #16a34a); }
+        .hidden { display: none; }
+        #viewer-container {
+            width: 100%;
+            height: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 16px;
+            background: #000;
+            display: none;
+        }
+        model-viewer {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">FlexFrame AR Diagnostic</h1>
+    <h2>Version 6.0 — Full diagnostic mode</h2>
+
+    <!-- Log panel -->
+    <div class="log" id="log"></div>
+
+    <!-- Step 1: Test fetch -->
+    <button class="btn btn-secondary" id="btn-fetch" onclick="testFetch()">Step 1: Test GLB Download</button>
+
+    <!-- Step 2: Load model-viewer -->
+    <button class="btn btn-secondary hidden" id="btn-load-mv" onclick="loadModelViewer()">Step 2: Load model-viewer Component</button>
+
+    <!-- Step 3: Set model source -->
+    <button class="btn btn-secondary hidden" id="btn-set-src" onclick="setModelSource()">Step 3: Load 3D Model</button>
+
+    <!-- Step 4: Check AR -->
+    <button class="btn btn-secondary hidden" id="btn-check-ar" onclick="checkAR()">Step 4: Check AR Support</button>
+
+    <!-- Step 5: Launch AR -->
+    <button class="btn btn-primary hidden" id="btn-launch-ar" onclick="launchAR()">🔮 Step 5: Launch AR</button>
+
+    <!-- Alternative: Scene Viewer intent -->
+    <a class="btn btn-secondary hidden" id="btn-scene-viewer" href="#">🔄 Alt: Scene Viewer (intent://)</a>
+
+    <!-- Alternative: Direct download -->
+    <a class="btn btn-secondary hidden" id="btn-download" href="#">📥 Download GLB File</a>
+
+    <!-- model-viewer container (hidden until Step 3) -->
+    <div id="viewer-container">
+        <model-viewer
+            id="viewer"
+            ar
+            ar-modes="webxr quick-look"
+            camera-controls
+            touch-action="pan-y"
+            auto-rotate
+            shadow-intensity="1"
+            environment-image="neutral"
+        >
+            <button slot="ar-button" id="mv-ar-btn" style="
+                position: absolute;
+                bottom: 16px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: linear-gradient(135deg, #4a9eff, #2d7dd2);
+                color: white;
+                border: none;
+                padding: 12px 32px;
+                border-radius: 10px;
+                font-size: 15px;
+                font-weight: 600;
+                cursor: pointer;
+                z-index: 10;
+            ">🔮 Enter AR</button>
+        </model-viewer>
+    </div>
+
+    <script>
+        // ===== Parse params =====
+        var params = new URLSearchParams(window.location.search);
+        var glbUrl = params.get('glb') || '';
+        var usdzUrl = params.get('usdz') || '';
+        var titleParam = params.get('title') || 'Exercise';
+        var exerciseName = titleParam.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+
+        // ===== Device info =====
+        var ua = navigator.userAgent;
+        var isIOS = /iphone|ipad|ipod/i.test(ua);
+        var isAndroid = /android/i.test(ua);
+        var deviceType = isIOS ? 'iOS' : (isAndroid ? 'Android' : 'Desktop');
+        var browserName = 'Unknown';
+        if (/CriOS/i.test(ua)) browserName = 'Chrome (iOS)';
+        else if (/Chrome/i.test(ua) && !/Edge|Edg|OPR|Samsung/i.test(ua)) browserName = 'Chrome';
+        else if (/Safari/i.test(ua) && !/Chrome/i.test(ua)) browserName = 'Safari';
+        else if (/Firefox/i.test(ua)) browserName = 'Firefox';
+        else if (/Samsung/i.test(ua)) browserName = 'Samsung Internet';
+        else if (/OPR/i.test(ua)) browserName = 'Opera';
+        else if (/Edge|Edg/i.test(ua)) browserName = 'Edge';
+
+        // Check if in-app browser (WebView)
+        var isWebView = /wv|WebView/i.test(ua) || 
+            (/Android/i.test(ua) && /Version\/[\d.]+/i.test(ua) && !/Chrome/i.test(ua)) ||
+            /Instagram|FBAN|FBAV|Twitter|Line|WhatsApp|Snapchat|GSA/i.test(ua);
+
+        // ===== Logging =====
+        var logEl = document.getElementById('log');
+        function log(msg, type) {
+            type = type || 'info';
+            var time = new Date().toLocaleTimeString();
+            logEl.innerHTML += '<span class="' + type + '">[' + time + '] ' + msg + '</span><br>';
+            logEl.scrollTop = logEl.scrollHeight;
+            console.log('[AR v6] ' + msg);
+        }
+
+        // ===== Initial diagnostics =====
+        document.getElementById('title').textContent = exerciseName;
+        
+        log('=== AR DIAGNOSTIC v6.0 ===', 'info');
+        log('Device: ' + deviceType + ' | Browser: ' + browserName, 'info');
+        log('WebView: ' + (isWebView ? 'YES ⚠️' : 'No ✅'), isWebView ? 'warn' : 'ok');
+        log('UA: ' + ua.substring(0, 120), 'info');
+        log('---', 'info');
+        log('GLB: ' + (glbUrl || '❌ EMPTY'), glbUrl ? 'ok' : 'err');
+        log('USDZ: ' + (usdzUrl || '❌ EMPTY'), usdzUrl ? 'ok' : 'err');
+        log('---', 'info');
+        log('navigator.xr: ' + (navigator.xr ? 'YES' : 'NO'), navigator.xr ? 'ok' : 'warn');
+        log('HTTPS: ' + (location.protocol === 'https:' ? 'YES' : 'NO'), location.protocol === 'https:' ? 'ok' : 'err');
+
+        // Check WebXR support
+        if (navigator.xr) {
+            navigator.xr.isSessionSupported('immersive-ar').then(function(supported) {
+                log('WebXR immersive-ar: ' + (supported ? 'SUPPORTED ✅' : 'NOT SUPPORTED ❌'), supported ? 'ok' : 'err');
+            }).catch(function(err) {
+                log('WebXR check error: ' + err.message, 'err');
+            });
+        }
+
+        if (isWebView) {
+            log('⚠️ IN-APP BROWSER DETECTED! AR will NOT work here.', 'warn');
+            log('You need to open this in Chrome or Safari.', 'warn');
+        }
+
+        // Setup download button
+        if (glbUrl) {
+            var dlBtn = document.getElementById('btn-download');
+            dlBtn.href = glbUrl;
+            dlBtn.classList.remove('hidden');
+
+            // Setup Scene Viewer intent button (Android only)
+            if (isAndroid) {
+                var svBtn = document.getElementById('btn-scene-viewer');
+                var intentUrl = 'intent://arvr.google.com/scene-viewer/1.0?' +
+                    'file=' + encodeURIComponent(glbUrl) +
+                    '&mode=ar_preferred' +
+                    '&title=' + encodeURIComponent(exerciseName) +
+                    '#Intent;scheme=https;package=com.google.android.googlequicksearchbox;' +
+                    'action=android.intent.action.VIEW;' +
+                    'S.browser_fallback_url=' + encodeURIComponent(glbUrl) + ';end;';
+                svBtn.href = intentUrl;
+                svBtn.classList.remove('hidden');
+            }
+        }
+
+        // ===== Step 1: Test fetch =====
+        function testFetch() {
+            if (!glbUrl) {
+                log('No GLB URL to test!', 'err');
+                return;
+            }
+            log('Fetching GLB file...', 'info');
+            var startTime = Date.now();
+
+            fetch(glbUrl, { method: 'HEAD' })
+                .then(function(response) {
+                    var elapsed = Date.now() - startTime;
+                    log('Response: ' + response.status + ' ' + response.statusText + ' (' + elapsed + 'ms)', response.ok ? 'ok' : 'err');
+                    log('Content-Type: ' + (response.headers.get('content-type') || 'unknown'), 'info');
+                    log('CORS: ' + (response.headers.get('access-control-allow-origin') || 'not set'), 'info');
+                    var size = response.headers.get('content-length');
+                    if (size) log('Size: ' + (parseInt(size) / 1024 / 1024).toFixed(2) + ' MB', 'info');
+                    
+                    if (response.ok) {
+                        log('✅ GLB file is accessible!', 'ok');
+                        document.getElementById('btn-load-mv').classList.remove('hidden');
+                    } else {
+                        log('❌ GLB file returned error status', 'err');
+                    }
+                })
+                .catch(function(err) {
+                    log('❌ Fetch failed: ' + err.message, 'err');
+                    log('This might be a CORS or network issue', 'warn');
+                    // Still allow continuing
+                    document.getElementById('btn-load-mv').classList.remove('hidden');
+                });
+        }
+
+        // ===== Step 2: Load model-viewer =====
+        var modelViewerLoaded = false;
+        function loadModelViewer() {
+            log('Loading model-viewer component...', 'info');
+            
+            var script = document.createElement('script');
+            script.type = 'module';
+            script.src = 'https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js';
+            
+            script.onload = function() {
+                log('✅ model-viewer script loaded', 'ok');
+                modelViewerLoaded = true;
+                
+                // Wait for custom element to be defined
+                customElements.whenDefined('model-viewer').then(function() {
+                    log('✅ model-viewer custom element registered', 'ok');
+                    document.getElementById('btn-set-src').classList.remove('hidden');
+                }).catch(function(err) {
+                    log('❌ model-viewer element failed: ' + err.message, 'err');
+                });
+            };
+            
+            script.onerror = function() {
+                log('❌ Failed to load model-viewer script!', 'err');
+            };
+            
+            document.head.appendChild(script);
+        }
+
+        // ===== Step 3: Set model source =====
+        function setModelSource() {
+            log('Setting model source to GLB URL...', 'info');
+            
+            var viewer = document.getElementById('viewer');
+            var container = document.getElementById('viewer-container');
+            
+            // Show the viewer
+            container.style.display = 'block';
+            
+            // Set the source
+            viewer.setAttribute('src', glbUrl);
+            log('src set to: ' + glbUrl.substring(0, 80) + '...', 'info');
+            
+            if (usdzUrl && isIOS) {
+                viewer.setAttribute('ios-src', usdzUrl);
+                log('ios-src set for iOS', 'ok');
+            }
+            
+            // Listen for events
+            viewer.addEventListener('progress', function(e) {
+                var pct = Math.round(e.detail.totalProgress * 100);
+                if (pct % 20 === 0 || pct === 100) {
+                    log('Model loading: ' + pct + '%', 'info');
+                }
+            });
+            
+            viewer.addEventListener('load', function() {
+                log('✅ 3D model loaded successfully!', 'ok');
+                document.getElementById('btn-check-ar').classList.remove('hidden');
+            });
+            
+            viewer.addEventListener('error', function(e) {
+                log('❌ Model load error: ' + JSON.stringify(e.detail || {}), 'err');
+            });
+        }
+
+        // ===== Step 4: Check AR =====
+        function checkAR() {
+            var viewer = document.getElementById('viewer');
+            
+            log('Checking AR capabilities...', 'info');
+            log('viewer.canActivateAR: ' + viewer.canActivateAR, viewer.canActivateAR ? 'ok' : 'warn');
+            log('ar attribute: ' + viewer.getAttribute('ar'), 'info');
+            log('ar-modes: ' + viewer.getAttribute('ar-modes'), 'info');
+            
+            // Listen for ar-status
+            viewer.addEventListener('ar-status', function(e) {
+                log('AR status event: ' + e.detail.status, e.detail.status === 'failed' ? 'err' : 'ok');
+            });
+            
+            if (viewer.canActivateAR) {
+                log('✅ AR is available! You can launch AR.', 'ok');
+                document.getElementById('btn-launch-ar').classList.remove('hidden');
+            } else {
+                log('❌ canActivateAR is false', 'err');
+                
+                if (isWebView) {
+                    log('REASON: You are in an in-app browser (WebView). WebXR requires Chrome/Safari.', 'err');
+                    log('TIP: Long-press the URL and choose "Open in Chrome"', 'warn');
+                } else if (!navigator.xr) {
+                    log('REASON: navigator.xr not available. Browser does not support WebXR.', 'err');
+                } else {
+                    log('REASON: WebXR exists but immersive-ar may not be supported.', 'warn');
+                    log('Try: scene-viewer fallback button below', 'warn');
+                }
+                
+                // Still show the AR button to try
+                document.getElementById('btn-launch-ar').classList.remove('hidden');
+                document.getElementById('btn-launch-ar').textContent = '🔮 Try AR Anyway';
+            }
+        }
+
+        // ===== Step 5: Launch AR =====
+        function launchAR() {
+            log('Attempting to activate AR...', 'info');
+            var viewer = document.getElementById('viewer');
+            
+            try {
+                viewer.activateAR();
+                log('activateAR() called', 'ok');
+            } catch(e) {
+                log('❌ activateAR() threw: ' + e.message, 'err');
+            }
+        }
+
+        // Auto-run step 1 after a short delay
+        setTimeout(function() {
+            if (glbUrl) {
+                log('--- Auto-running Step 1 ---', 'info');
+                testFetch();
+            }
+        }, 500);
+    </script>
+</body>
+</html>

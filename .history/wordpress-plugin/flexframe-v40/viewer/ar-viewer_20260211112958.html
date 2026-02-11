@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View in AR - FlexFrame</title>
+    <!-- Google's model-viewer web component - handles iOS AR Quick Look + Android Scene Viewer automatically -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+        }
+        .icon {
+            margin-bottom: 24px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+        p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            margin-bottom: 24px;
+            line-height: 1.5;
+        }
+        model-viewer {
+            width: 100%;
+            height: 350px;
+            border-radius: 16px;
+            margin-bottom: 24px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            --poster-color: transparent;
+        }
+        model-viewer::part(default-ar-button) {
+            display: none;
+        }
+        .ar-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            padding: 16px 40px;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(74, 158, 255, 0.3);
+            width: 100%;
+            max-width: 300px;
+        }
+        .ar-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(74, 158, 255, 0.4);
+        }
+        .ar-button:active {
+            transform: translateY(0);
+        }
+        .ar-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .fallback-links {
+            margin-top: 16px;
+            display: none;
+        }
+        .fallback-links a {
+            display: inline-block;
+            color: #4a9eff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border: 1px solid #4a9eff;
+            border-radius: 8px;
+            margin: 4px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+        }
+        .fallback-links a:hover {
+            background: rgba(74, 158, 255, 0.15);
+        }
+        .loading {
+            display: none;
+            margin-top: 16px;
+        }
+        .loading.show {
+            display: block;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255, 255, 255, 0.2);
+            border-top-color: #4a9eff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        .device-info {
+            margin-top: 24px;
+            padding: 16px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
+        }
+        .error {
+            color: #ff6b6b;
+            margin-top: 16px;
+            display: none;
+        }
+        .error.show {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+                <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+            </svg>
+        </div>
+        <h1 id="page-title">View in Augmented Reality</h1>
+        <p id="device-message">Loading 3D model...</p>
+        
+        <!-- model-viewer handles iOS AR Quick Look + Android Scene Viewer automatically -->
+        <model-viewer
+            id="ar-model"
+            ar
+            ar-modes="scene-viewer webxr quick-look"
+            camera-controls
+            touch-action="pan-y"
+            auto-rotate
+            shadow-intensity="1"
+            loading="eager"
+            style="display: none;"
+        >
+        </model-viewer>
+
+        <button id="launch-ar" class="ar-button" style="display: none;">
+            🔮 View in AR
+        </button>
+        
+        <div class="fallback-links" id="fallback-links">
+            <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Or try direct links:</p>
+            <a id="fallback-glb" href="#" style="display: none;">Download 3D Model</a>
+            <a id="fallback-usdz" href="#" rel="ar" style="display: none;">
+                <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1" style="position:absolute;opacity:0;">
+                Open AR (iOS)
+            </a>
+        </div>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Launching AR...</p>
+        </div>
+        
+        <p class="error" id="error"></p>
+        
+        <div class="device-info" id="device-info"></div>
+    </div>
+
+    <script type="module">
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const glbUrl = params.get('glb');
+        const usdzUrl = params.get('usdz');
+        const title = params.get('title') || 'Exercise';
+        
+        // Branding parameters
+        const logoUrl = params.get('logo');
+        const websiteUrl = params.get('website') || window.location.origin;
+        const companyName = params.get('company') || 'FlexFrame';
+        const callToAction = params.get('cta') || 'Visit ' + companyName;
+
+        // DOM elements
+        const deviceMessage = document.getElementById('device-message');
+        const launchButton = document.getElementById('launch-ar');
+        const loading = document.getElementById('loading');
+        const error = document.getElementById('error');
+        const deviceInfo = document.getElementById('device-info');
+        const modelViewer = document.getElementById('ar-model');
+        const fallbackLinks = document.getElementById('fallback-links');
+        const fallbackGlb = document.getElementById('fallback-glb');
+        const fallbackUsdz = document.getElementById('fallback-usdz');
+        const pageTitle = document.getElementById('page-title');
+
+        // Detect device type
+        function getDeviceType() {
+            const ua = navigator.userAgent.toLowerCase();
+            if (/iphone|ipad|ipod/.test(ua)) return 'ios';
+            if (/android/.test(ua)) return 'android';
+            return 'desktop';
+        }
+
+        const deviceType = getDeviceType();
+        
+        // Format exercise name for display
+        const exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+        pageTitle.textContent = exerciseName;
+
+        // Update device info
+        deviceInfo.innerHTML = `Device: ${deviceType.toUpperCase()} | GLB: ${glbUrl ? '✓' : '✗'} | USDZ: ${usdzUrl ? '✓' : '✗'}`;
+
+        if (!glbUrl && !usdzUrl) {
+            // No models provided
+            deviceMessage.textContent = 'No AR model available';
+            error.textContent = 'Error: No model URLs provided in the link.';
+            error.classList.add('show');
+        } else if (deviceType === 'desktop') {
+            // Desktop - show 3D preview only
+            deviceMessage.textContent = 'Please open this page on your mobile device to view in AR.';
+            deviceInfo.innerHTML += '<br><br>📱 This link is designed for mobile AR viewing.';
+            
+            if (glbUrl) {
+                modelViewer.setAttribute('src', glbUrl);
+                if (usdzUrl) modelViewer.setAttribute('ios-src', usdzUrl);
+                modelViewer.style.display = 'block';
+            }
+        } else {
+            // ===== MOBILE DEVICE (iOS or Android) =====
+            
+            // Set GLB source (used by Android Scene Viewer and 3D preview)
+            if (glbUrl) {
+                modelViewer.setAttribute('src', glbUrl);
+            }
+            
+            // Set iOS source with branding hash params
+            if (usdzUrl) {
+                let iosSrc = usdzUrl;
+                const hashParams = [];
+                if (callToAction) hashParams.push('callToAction=' + encodeURIComponent(callToAction));
+                if (companyName) hashParams.push('checkoutTitle=' + encodeURIComponent(companyName));
+                if (websiteUrl) hashParams.push('canonicalWebPageURL=' + encodeURIComponent(websiteUrl));
+                if (logoUrl) hashParams.push('custom=' + encodeURIComponent(logoUrl));
+                if (hashParams.length > 0) {
+                    iosSrc += '#' + hashParams.join('&');
+                }
+                modelViewer.setAttribute('ios-src', iosSrc);
+            }
+
+            // Show the 3D preview and AR button
+            modelViewer.style.display = 'block';
+            launchButton.style.display = 'inline-block';
+            deviceMessage.textContent = 'Tap the button below to view in AR!';
+
+            // When model loads, enable the button
+            modelViewer.addEventListener('load', () => {
+                console.log('[AR Viewer] Model loaded successfully');
+                launchButton.textContent = '🔮 View in AR';
+            });
+
+            modelViewer.addEventListener('error', (e) => {
+                console.error('[AR Viewer] Model failed to load:', e);
+                error.textContent = 'Could not load 3D model. Try the direct links below.';
+                error.classList.add('show');
+            });
+
+            // AR button click - use model-viewer's built-in AR
+            launchButton.addEventListener('click', () => {
+                loading.classList.add('show');
+                
+                // model-viewer.activateAR() handles both iOS and Android automatically:
+                // - iOS: Opens AR Quick Look with the USDZ file
+                // - Android: Opens Google Scene Viewer with the GLB file
+                if (modelViewer.canActivateAR) {
+                    console.log('[AR Viewer] Activating AR via model-viewer');
+                    modelViewer.activateAR();
+                } else {
+                    console.warn('[AR Viewer] model-viewer canActivateAR is false, trying fallback...');
+                    
+                    // Fallback for Android: direct Scene Viewer HTTPS URL (not intent://)
+                    if (deviceType === 'android' && glbUrl) {
+                        let sceneViewerUrl = 'https://arvr.google.com/scene-viewer/1.0?file=' + encodeURIComponent(glbUrl) + '&mode=ar_preferred&title=' + encodeURIComponent(title);
+                        if (websiteUrl) {
+                            sceneViewerUrl += '&link=' + encodeURIComponent(websiteUrl) + '&linkText=' + encodeURIComponent(callToAction);
+                        }
+                        window.location.href = sceneViewerUrl;
+                    } else if (deviceType === 'ios' && usdzUrl) {
+                        // Fallback for iOS: navigate directly to USDZ
+                        window.location.href = usdzUrl;
+                    } else {
+                        error.textContent = 'AR is not supported on this device/browser. Try using Chrome on Android or Safari on iOS.';
+                        error.classList.add('show');
+                    }
+                }
+
+                setTimeout(() => {
+                    loading.classList.remove('show');
+                }, 3000);
+            });
+
+            // Show fallback direct links
+            fallbackLinks.style.display = 'block';
+            if (glbUrl) {
+                fallbackGlb.href = glbUrl;
+                fallbackGlb.style.display = 'inline-block';
+            }
+            if (usdzUrl) {
+                fallbackUsdz.href = usdzUrl;
+                fallbackUsdz.style.display = 'inline-block';
+            }
+        }
+    </script>
+</body>
+</html>

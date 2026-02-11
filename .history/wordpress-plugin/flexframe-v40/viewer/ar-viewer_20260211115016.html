@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>View in AR - FlexFrame</title>
+
+    <!-- Google model-viewer web component -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        /* model-viewer fills the entire screen */
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a2e;
+            --poster-color: #1a1a2e;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 10;
+            transition: opacity 0.5s ease;
+        }
+        .loading-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-overlay h1 {
+            font-size: 22px;
+            margin-bottom: 8px;
+        }
+        .loading-overlay p {
+            color: rgba(255,255,255,0.6);
+            font-size: 14px;
+            margin-bottom: 24px;
+        }
+        .progress-bar-container {
+            width: 200px;
+            height: 4px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .progress-bar {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, #4a9eff, #2d7dd2);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .progress-text {
+            font-size: 12px;
+            color: rgba(255,255,255,0.4);
+        }
+
+        /* Custom AR button (replaces model-viewer's default) */
+        .ar-button-custom {
+            position: absolute;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 20;
+            display: none; /* shown after load */
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(74, 158, 255, 0.4);
+            -webkit-tap-highlight-color: rgba(74, 158, 255, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+        .ar-button-custom:active {
+            transform: translateX(-50%) scale(0.96);
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(74, 158, 255, 0.35); }
+            50% { box-shadow: 0 8px 36px rgba(74, 158, 255, 0.65); }
+        }
+
+        /* Title bar at top */
+        .title-bar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            padding: 16px 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+            z-index: 15;
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        /* Status text */
+        .status-text {
+            position: absolute;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 15;
+            font-size: 13px;
+            color: rgba(255,255,255,0.6);
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        /* Debug panel */
+        .debug-panel {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 10px 16px;
+            background: rgba(0,0,0,0.7);
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+            z-index: 25;
+            line-height: 1.5;
+            word-break: break-all;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+        .debug-panel .label { color: #4a9eff; }
+
+        /* Desktop message */
+        .desktop-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 30;
+            text-align: center;
+            padding: 40px;
+        }
+        .desktop-overlay h1 { font-size: 24px; margin-bottom: 12px; }
+        .desktop-overlay p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.6; }
+
+        /* No-model message */
+        .error-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 30;
+            text-align: center;
+            padding: 40px;
+        }
+        .error-overlay h1 { font-size: 22px; margin-bottom: 12px; color: #ff6b6b; }
+        .error-overlay p { color: rgba(255,255,255,0.6); font-size: 14px; }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <!-- model-viewer: full-screen 3D + AR viewer -->
+        <!-- ar-modes: webxr FIRST (loads model in-browser, uses camera for AR) -->
+        <!-- then scene-viewer as fallback, then quick-look for iOS -->
+        <model-viewer
+            id="viewer"
+            ar
+            ar-modes="webxr scene-viewer quick-look"
+            camera-controls
+            touch-action="pan-y"
+            auto-rotate
+            shadow-intensity="1"
+            environment-image="neutral"
+            loading="eager"
+            style="display:none;"
+        >
+            <!-- Custom AR button (model-viewer slot) -->
+            <button slot="ar-button" class="ar-button-custom" id="ar-btn">
+                🔮 View in AR
+            </button>
+        </model-viewer>
+
+        <!-- Loading overlay (shown until model loads) -->
+        <div class="loading-overlay" id="loading-overlay">
+            <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style="margin-bottom:16px;">
+                <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+                <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+            </svg>
+            <h1 id="page-title">Loading Model...</h1>
+            <p id="loading-status">Preparing your AR experience</p>
+            <div class="progress-bar-container">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <p class="progress-text" id="progress-text">0%</p>
+        </div>
+
+        <!-- Title bar (visible after load) -->
+        <div class="title-bar" id="title-bar" style="display:none;"></div>
+
+        <!-- Status hint -->
+        <div class="status-text" id="status-text" style="display:none;">
+            Tap the button to place in your room
+        </div>
+
+        <!-- Desktop-only overlay -->
+        <div class="desktop-overlay" id="desktop-overlay" style="display:none;">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none" style="margin-bottom:20px;">
+                <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+                <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+            </svg>
+            <h1>View in AR</h1>
+            <p>📱 Open this page on your mobile device<br>to view in augmented reality</p>
+        </div>
+
+        <!-- Error overlay -->
+        <div class="error-overlay" id="error-overlay" style="display:none;">
+            <h1>❌ No Model Available</h1>
+            <p>No AR model URL was provided.</p>
+        </div>
+
+        <!-- Debug panel -->
+        <div class="debug-panel" id="debug"></div>
+    </div>
+
+    <script>
+        // ===== Parse URL parameters =====
+        var params = new URLSearchParams(window.location.search);
+        var glbUrl = params.get('glb') || '';
+        var usdzUrl = params.get('usdz') || '';
+        var title = params.get('title') || 'Exercise';
+        var websiteUrl = params.get('website') || '';
+        var companyName = params.get('company') || 'FlexFrame';
+        var callToAction = params.get('cta') || 'Visit ' + companyName;
+
+        // Format title
+        var exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+
+        // ===== Device detection =====
+        var ua = navigator.userAgent;
+        var isIOS = /iphone|ipad|ipod/i.test(ua);
+        var isAndroid = /android/i.test(ua);
+        var isMobile = isIOS || isAndroid;
+        var deviceType = isIOS ? 'iOS' : (isAndroid ? 'Android' : 'Desktop');
+
+        // ===== Debug =====
+        var debugEl = document.getElementById('debug');
+        var debugLines = [];
+        function addDebug(line) {
+            debugLines.push(line);
+            if (debugLines.length > 15) debugLines.shift();
+            debugEl.innerHTML = debugLines.join('<br>');
+        }
+
+        addDebug('<span class="label">Device:</span> ' + deviceType);
+        addDebug('<span class="label">GLB:</span> ' + (glbUrl ? '✅' : '❌'));
+        addDebug('<span class="label">USDZ:</span> ' + (usdzUrl ? '✅' : '❌'));
+
+        // ===== No model? Show error =====
+        if (!glbUrl && !usdzUrl) {
+            document.getElementById('loading-overlay').style.display = 'none';
+            document.getElementById('error-overlay').style.display = 'flex';
+            addDebug('<span class="label">ERROR:</span> No model URLs in query params');
+
+        // ===== Desktop? Show message =====
+        } else if (!isMobile) {
+            document.getElementById('loading-overlay').style.display = 'none';
+            document.getElementById('desktop-overlay').style.display = 'flex';
+            addDebug('<span class="label">INFO:</span> Desktop detected, showing mobile prompt');
+
+        // ===== Mobile: Load model-viewer =====
+        } else {
+            var viewer = document.getElementById('viewer');
+            var loadingOverlay = document.getElementById('loading-overlay');
+            var titleBar = document.getElementById('title-bar');
+            var statusText = document.getElementById('status-text');
+            var progressBar = document.getElementById('progress-bar');
+            var progressText = document.getElementById('progress-text');
+            var pageTitleEl = document.getElementById('page-title');
+
+            pageTitleEl.textContent = exerciseName;
+
+            // Set the model source
+            viewer.setAttribute('src', glbUrl);
+            addDebug('<span class="label">SRC:</span> ' + glbUrl.substring(0, 80));
+
+            // Set iOS source if USDZ is available
+            if (usdzUrl) {
+                viewer.setAttribute('ios-src', usdzUrl);
+                addDebug('<span class="label">iOS SRC:</span> ' + usdzUrl.substring(0, 80));
+            }
+
+            // Show viewer
+            viewer.style.display = 'block';
+
+            // Track loading progress
+            viewer.addEventListener('progress', function(event) {
+                var pct = Math.round(event.detail.totalProgress * 100);
+                progressBar.style.width = pct + '%';
+                progressText.textContent = pct + '%';
+                addDebug('<span class="label">Loading:</span> ' + pct + '%');
+            });
+
+            // Model loaded successfully
+            viewer.addEventListener('load', function() {
+                addDebug('<span class="label">✅ Model loaded!</span>');
+                addDebug('<span class="label">AR available:</span> checking...');
+
+                // Fade out loading overlay
+                loadingOverlay.classList.add('fade-out');
+                setTimeout(function() {
+                    loadingOverlay.style.display = 'none';
+                }, 600);
+
+                // Show title and status
+                titleBar.textContent = exerciseName;
+                titleBar.style.display = 'block';
+                statusText.style.display = 'block';
+
+                // Check if AR is available
+                // model-viewer exposes canActivateAR after load
+                setTimeout(function() {
+                    var canAR = viewer.canActivateAR;
+                    addDebug('<span class="label">canActivateAR:</span> ' + canAR);
+                    addDebug('<span class="label">ar-modes:</span> ' + viewer.getAttribute('ar-modes'));
+
+                    if (canAR) {
+                        // The AR button (slot="ar-button") will be shown automatically by model-viewer
+                        document.getElementById('ar-btn').style.display = 'flex';
+                        statusText.textContent = 'Tap the button to place in your room';
+                        addDebug('<span class="label">✅ AR is available!</span>');
+                    } else {
+                        statusText.textContent = '3D Preview (AR not supported on this device)';
+                        addDebug('<span class="label">⚠️ AR not available on this device/browser</span>');
+                    }
+                }, 500);
+            });
+
+            // Model load error
+            viewer.addEventListener('error', function(event) {
+                addDebug('<span class="label">❌ Load error:</span> ' + (event.detail ? JSON.stringify(event.detail) : 'unknown'));
+                pageTitleEl.textContent = 'Error Loading Model';
+                document.getElementById('loading-status').textContent = 'Failed to load 3D model';
+                progressBar.style.background = '#ff6b6b';
+            });
+
+            // AR session events
+            viewer.addEventListener('ar-status', function(event) {
+                addDebug('<span class="label">AR status:</span> ' + event.detail.status);
+            });
+
+            // AR tracking events
+            viewer.addEventListener('ar-tracking', function(event) {
+                addDebug('<span class="label">AR tracking:</span> ' + event.detail.status);
+            });
+
+            addDebug('<span class="label">INFO:</span> Waiting for model-viewer to load...');
+            addDebug('<span class="label">ar-modes:</span> webxr scene-viewer quick-look');
+        }
+    </script>
+</body>
+</html>

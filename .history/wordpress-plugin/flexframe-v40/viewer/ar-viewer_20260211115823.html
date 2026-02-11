@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>View in AR - FlexFrame</title>
+
+    <!-- Prevent caching so updates are immediate -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Google model-viewer web component (pinned version) -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; overflow: hidden; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #111;
+            color: white;
+        }
+
+        /* model-viewer fills the entire screen */
+        model-viewer {
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a2e;
+            --poster-color: #1a1a2e;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 100;
+            transition: opacity 0.5s ease;
+        }
+        .loading-overlay.fade-out {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .loading-overlay h1 { font-size: 22px; margin-bottom: 8px; }
+        .loading-overlay p { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 24px; text-align: center; padding: 0 20px; }
+        .progress-bar-container {
+            width: 200px; height: 4px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-bottom: 8px;
+        }
+        .progress-bar {
+            height: 100%; width: 0%;
+            background: linear-gradient(90deg, #4a9eff, #2d7dd2);
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+        .progress-text { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+        /* Custom AR button that replaces model-viewer's default */
+        .ar-button-custom {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 14px;
+            font-size: 17px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(74, 158, 255, 0.4);
+            -webkit-tap-highlight-color: rgba(74, 158, 255, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+            white-space: nowrap;
+        }
+        .ar-button-custom:active { transform: translateX(-50%) scale(0.96); }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(74, 158, 255, 0.35); }
+            50% { box-shadow: 0 8px 36px rgba(74, 158, 255, 0.65); }
+        }
+
+        /* Title bar */
+        .title-bar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            padding: 16px 20px;
+            background: linear-gradient(180deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+            z-index: 50;
+            font-size: 16px;
+            font-weight: 600;
+            display: none;
+        }
+
+        /* Status text above AR button */
+        .status-text {
+            position: fixed;
+            bottom: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 50;
+            font-size: 13px;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            white-space: nowrap;
+            display: none;
+            background: rgba(0,0,0,0.5);
+            padding: 6px 16px;
+            border-radius: 20px;
+        }
+
+        /* Debug panel */
+        .debug-panel {
+            position: fixed;
+            bottom: 0; left: 0; right: 0;
+            padding: 8px 12px;
+            background: rgba(0,0,0,0.85);
+            font-size: 10px;
+            color: rgba(255,255,255,0.5);
+            z-index: 200;
+            line-height: 1.5;
+            word-break: break-all;
+            max-height: 140px;
+            overflow-y: auto;
+        }
+        .debug-panel .ok { color: #4ade80; }
+        .debug-panel .warn { color: #fbbf24; }
+        .debug-panel .err { color: #f87171; }
+        .debug-panel .label { color: #60a5fa; }
+
+        /* Fullscreen overlays */
+        .overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            z-index: 90;
+            text-align: center;
+            padding: 40px;
+        }
+        .overlay h1 { font-size: 22px; margin-bottom: 12px; }
+        .overlay p { color: rgba(255,255,255,0.6); font-size: 14px; line-height: 1.6; }
+        .overlay .btn {
+            display: inline-block;
+            margin-top: 20px;
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            padding: 14px 32px;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <!-- model-viewer: ONLY webxr and quick-look. NO scene-viewer. -->
+    <!-- This forces browser-based AR (no hand-off to Google Scene Viewer app) -->
+    <model-viewer
+        id="viewer"
+        ar
+        ar-modes="webxr quick-look"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        shadow-intensity="1"
+        environment-image="neutral"
+        loading="eager"
+        style="display:none;"
+    >
+        <button slot="ar-button" class="ar-button-custom" id="ar-btn">
+            🔮 View in AR
+        </button>
+    </model-viewer>
+
+    <!-- Loading overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style="margin-bottom:16px;">
+            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+        </svg>
+        <h1 id="page-title">Loading Model...</h1>
+        <p id="loading-status">Preparing your AR experience</p>
+        <div class="progress-bar-container">
+            <div class="progress-bar" id="progress-bar"></div>
+        </div>
+        <p class="progress-text" id="progress-text">0%</p>
+    </div>
+
+    <!-- Title bar -->
+    <div class="title-bar" id="title-bar"></div>
+
+    <!-- Status text -->
+    <div class="status-text" id="status-text">Tap the button to place in your room</div>
+
+    <!-- Desktop overlay -->
+    <div class="overlay" id="desktop-overlay">
+        <svg width="64" height="64" viewBox="0 0 24 24" fill="none" style="margin-bottom:20px;">
+            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+        </svg>
+        <h1>View in AR</h1>
+        <p>📱 Open this page on your mobile device to view in augmented reality</p>
+    </div>
+
+    <!-- No-model overlay -->
+    <div class="overlay" id="error-overlay">
+        <h1 style="color:#f87171;">❌ No Model Available</h1>
+        <p>No AR model URL was provided in the page parameters.</p>
+    </div>
+
+    <!-- No-AR-support overlay (shown if WebXR not available) -->
+    <div class="overlay" id="no-ar-overlay">
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none" style="margin-bottom:16px;">
+            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#fbbf24"/>
+            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#fbbf24"/>
+        </svg>
+        <h1>AR Not Available</h1>
+        <p id="no-ar-reason">Your browser doesn't support AR. Try opening this page in <strong>Google Chrome</strong>.</p>
+        <a class="btn" id="open-chrome-btn" style="display:none;" href="#">Open in Chrome</a>
+        <a class="btn" id="download-model-btn" style="display:none;margin-top:10px;background:transparent;border:1px solid rgba(255,255,255,0.3);" href="#">📥 Download 3D Model</a>
+    </div>
+
+    <!-- Debug panel -->
+    <div class="debug-panel" id="debug"></div>
+
+    <script>
+        // ===== Version =====
+        var AR_VIEWER_VERSION = 'v5.0';
+
+        // ===== Parse URL parameters =====
+        var params = new URLSearchParams(window.location.search);
+        var glbUrl = params.get('glb') || '';
+        var usdzUrl = params.get('usdz') || '';
+        var title = params.get('title') || 'Exercise';
+        var websiteUrl = params.get('website') || '';
+        var companyName = params.get('company') || 'FlexFrame';
+
+        // Format title
+        var exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+
+        // ===== Device detection =====
+        var ua = navigator.userAgent;
+        var isIOS = /iphone|ipad|ipod/i.test(ua);
+        var isAndroid = /android/i.test(ua);
+        var isMobile = isIOS || isAndroid;
+        var deviceType = isIOS ? 'iOS' : (isAndroid ? 'Android' : 'Desktop');
+
+        // ===== Debug logger =====
+        var debugEl = document.getElementById('debug');
+        var debugLines = [];
+        function log(msg, type) {
+            var cls = type === 'ok' ? 'ok' : type === 'warn' ? 'warn' : type === 'err' ? 'err' : 'label';
+            debugLines.push('<span class="' + cls + '">[' + new Date().toLocaleTimeString() + ']</span> ' + msg);
+            if (debugLines.length > 20) debugLines.shift();
+            debugEl.innerHTML = debugLines.join('<br>');
+            debugEl.scrollTop = debugEl.scrollHeight;
+            console.log('[AR Viewer] ' + msg);
+        }
+
+        log('AR Viewer ' + AR_VIEWER_VERSION + ' | Device: ' + deviceType);
+        log('GLB: ' + (glbUrl ? glbUrl.substring(0, 70) + '...' : '❌ NONE'));
+        log('USDZ: ' + (usdzUrl ? usdzUrl.substring(0, 70) + '...' : '❌ NONE'));
+        log('ar-modes: webxr quick-look (NO scene-viewer)');
+
+        // ===== Elements =====
+        var viewer = document.getElementById('viewer');
+        var loadingOverlay = document.getElementById('loading-overlay');
+        var titleBar = document.getElementById('title-bar');
+        var statusText = document.getElementById('status-text');
+        var progressBar = document.getElementById('progress-bar');
+        var progressText = document.getElementById('progress-text');
+        var pageTitleEl = document.getElementById('page-title');
+        var arBtn = document.getElementById('ar-btn');
+
+        pageTitleEl.textContent = exerciseName;
+
+        // ===== Route based on device/model =====
+        if (!glbUrl && !usdzUrl) {
+            loadingOverlay.style.display = 'none';
+            document.getElementById('error-overlay').style.display = 'flex';
+            log('No model URLs provided!', 'err');
+
+        } else if (!isMobile) {
+            loadingOverlay.style.display = 'none';
+            document.getElementById('desktop-overlay').style.display = 'flex';
+            log('Desktop detected - showing mobile prompt');
+
+        } else {
+            // ===== MOBILE: Set up model-viewer =====
+            log('Mobile detected, setting up model-viewer...');
+
+            // Set model source
+            viewer.setAttribute('src', glbUrl);
+            log('Set src to GLB URL', 'ok');
+
+            // Set iOS USDZ source if available
+            if (usdzUrl && isIOS) {
+                viewer.setAttribute('ios-src', usdzUrl);
+                log('Set ios-src to USDZ URL', 'ok');
+            }
+
+            // Show the viewer
+            viewer.style.display = 'block';
+
+            // ===== Loading progress =====
+            viewer.addEventListener('progress', function(event) {
+                var pct = Math.round(event.detail.totalProgress * 100);
+                progressBar.style.width = pct + '%';
+                progressText.textContent = pct + '%';
+                if (pct % 25 === 0) log('Loading: ' + pct + '%');
+            });
+
+            // ===== Model loaded =====
+            viewer.addEventListener('load', function() {
+                log('✅ Model loaded successfully!', 'ok');
+
+                // Fade out loading overlay
+                loadingOverlay.classList.add('fade-out');
+                setTimeout(function() { loadingOverlay.style.display = 'none'; }, 600);
+
+                // Show UI
+                titleBar.textContent = exerciseName;
+                titleBar.style.display = 'block';
+
+                // Check AR support after a moment
+                setTimeout(function() {
+                    var canAR = viewer.canActivateAR;
+                    log('canActivateAR: ' + canAR, canAR ? 'ok' : 'warn');
+
+                    if (canAR) {
+                        arBtn.style.display = 'flex';
+                        statusText.style.display = 'block';
+                        log('✅ AR button shown - ready for AR!', 'ok');
+                    } else {
+                        // AR not supported - show fallback
+                        log('⚠️ AR not available on this device/browser', 'warn');
+                        log('Checking if WebXR is supported...', 'warn');
+
+                        // Check if it's a browser limitation
+                        if (navigator.xr) {
+                            navigator.xr.isSessionSupported('immersive-ar').then(function(supported) {
+                                log('WebXR immersive-ar supported: ' + supported, supported ? 'ok' : 'warn');
+                                if (!supported) {
+                                    showNoARFallback('Your device supports WebXR but not AR sessions. Try updating Chrome or your device\'s AR services.');
+                                }
+                            }).catch(function(err) {
+                                log('WebXR check error: ' + err.message, 'err');
+                                showNoARFallback('WebXR check failed. Try opening in Google Chrome.');
+                            });
+                        } else {
+                            log('navigator.xr not available!', 'err');
+                            showNoARFallback('This browser doesn\'t support WebXR. Please open this page in Google Chrome.');
+                        }
+
+                        // Still show the 3D model for rotation/viewing
+                        statusText.textContent = '3D Preview Mode';
+                        statusText.style.display = 'block';
+                    }
+                }, 1000);
+            });
+
+            // ===== Load error =====
+            viewer.addEventListener('error', function(event) {
+                var detail = event.detail || {};
+                log('❌ Model load error: ' + JSON.stringify(detail), 'err');
+                pageTitleEl.textContent = 'Error Loading Model';
+                document.getElementById('loading-status').textContent = 'Failed to load the 3D model. The file may be unavailable.';
+                progressBar.style.background = '#f87171';
+            });
+
+            // ===== AR status tracking =====
+            viewer.addEventListener('ar-status', function(event) {
+                log('AR status: ' + event.detail.status, event.detail.status === 'failed' ? 'err' : 'ok');
+                if (event.detail.status === 'failed') {
+                    statusText.textContent = 'AR session failed - showing 3D preview';
+                    statusText.style.display = 'block';
+                } else if (event.detail.status === 'session-started') {
+                    statusText.style.display = 'none';
+                }
+            });
+
+            viewer.addEventListener('ar-tracking', function(event) {
+                log('AR tracking: ' + event.detail.status);
+            });
+
+            // Log when user taps AR button
+            arBtn.addEventListener('click', function() {
+                log('👆 AR button tapped!', 'ok');
+            });
+
+            log('Waiting for model to load...');
+        }
+
+        // ===== No-AR fallback =====
+        function showNoARFallback(reason) {
+            var overlay = document.getElementById('no-ar-overlay');
+            document.getElementById('no-ar-reason').innerHTML = reason;
+            overlay.style.display = 'flex';
+
+            // Show download button
+            if (glbUrl) {
+                var dlBtn = document.getElementById('download-model-btn');
+                dlBtn.href = glbUrl;
+                dlBtn.style.display = 'inline-block';
+            }
+
+            // On Android, offer to open in Chrome
+            if (isAndroid) {
+                var chromeBtn = document.getElementById('open-chrome-btn');
+                chromeBtn.href = 'intent://' + window.location.href.replace(/^https?:\/\//, '') + '#Intent;scheme=https;package=com.android.chrome;end;';
+                chromeBtn.textContent = '🌐 Open in Chrome';
+                chromeBtn.style.display = 'inline-block';
+            }
+        }
+    </script>
+</body>
+</html>

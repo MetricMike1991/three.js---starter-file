@@ -59,7 +59,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-D4pkWSxu.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DnQTr3DQ.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -1823,7 +1823,7 @@ function flexframe_enqueue_assets() {
                 background-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . $player_button_bg_opacity . ') !important;
             }
             
-            /* Quality, AR & Screenshot button hover/focus states - use player accent color instead of blue */
+            /* Quality & AR button hover/focus states - use player accent color instead of blue */
             .animation-player .quality-btn:hover,
             .animation-player .quality-btn:focus,
             .animation-player .quality-btn:active,
@@ -1832,10 +1832,7 @@ function flexframe_enqueue_assets() {
             #quality-toggle-btn:active,
             .animation-player .ar-btn:hover,
             .animation-player .ar-btn:focus,
-            .animation-player .ar-btn:active,
-            .animation-player .screenshot-btn:hover,
-            .animation-player .screenshot-btn:focus,
-            .animation-player .screenshot-btn:active {
+            .animation-player .ar-btn:active {
                 background-color: rgba(' . $player_button_bg_rgb[0] . ', ' . $player_button_bg_rgb[1] . ', ' . $player_button_bg_rgb[2] . ', ' . min($player_button_bg_opacity + 0.15, 1) . ') !important;
                 border-color: ' . $player_accent_color . ' !important;
                 outline: none !important;
@@ -2871,7 +2868,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BEoo9ykB.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-zI8iasWr.js',
             array(),
             FLEXFRAME_VERSION,
             true

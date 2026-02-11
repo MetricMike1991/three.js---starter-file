@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>View in AR - FlexFrame</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+        .container { text-align: center; max-width: 400px; width: 100%; }
+        h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; }
+        .subtitle {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 15px;
+            margin-bottom: 28px;
+            line-height: 1.5;
+        }
+        .ar-icon {
+            width: 64px; height: 64px;
+            margin: 0 auto 20px;
+        }
+        /* Primary AR button - visible <a> tag */
+        .ar-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            padding: 18px 40px;
+            border-radius: 14px;
+            font-size: 18px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px rgba(74, 158, 255, 0.35);
+            width: 100%;
+            max-width: 320px;
+            margin-bottom: 16px;
+            -webkit-tap-highlight-color: rgba(74, 158, 255, 0.3);
+        }
+        .ar-link:active {
+            transform: scale(0.97);
+            box-shadow: 0 4px 16px rgba(74, 158, 255, 0.3);
+        }
+        .alt-btn {
+            display: inline-block;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            padding: 12px 24px;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 10px;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            background: transparent;
+            cursor: pointer;
+            margin-bottom: 8px;
+            width: 100%;
+            max-width: 320px;
+        }
+        .alt-btn:active { background: rgba(255,255,255,0.1); }
+        .debug-panel {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 10px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.5);
+            text-align: left;
+            word-break: break-all;
+            line-height: 1.6;
+        }
+        .debug-panel strong { color: rgba(255,255,255,0.8); }
+        .debug-panel .label { color: #4a9eff; }
+        .hidden { display: none !important; }
+        .pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(74, 158, 255, 0.35); }
+            50% { box-shadow: 0 8px 32px rgba(74, 158, 255, 0.6); }
+        }
+        /* iOS AR Quick Look hidden anchor */
+        #ios-ar-anchor {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            opacity: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <svg class="ar-icon" viewBox="0 0 24 24" fill="none">
+            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+        </svg>
+
+        <h1 id="page-title">View in AR</h1>
+        <p class="subtitle" id="status">Tap the button below to launch AR</p>
+
+        <!-- Android: Scene Viewer via intent:// -->
+        <a id="android-ar-link" class="ar-link pulse hidden" href="#">🔮 View in AR</a>
+
+        <!-- Android alternative: different package -->
+        <a id="android-alt-link" class="alt-btn hidden" href="#">Try Alternative AR Viewer</a>
+
+        <!-- iOS: AR Quick Look via <a rel="ar"> -->
+        <a id="ios-ar-btn" class="ar-link pulse hidden" rel="ar" href="#">
+            <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" style="width:0;height:0;position:absolute;">
+            🔮 View in AR
+        </a>
+
+        <!-- Desktop message -->
+        <p id="desktop-msg" class="subtitle hidden">📱 Open this link on your phone to view in augmented reality.</p>
+
+        <!-- Download fallback -->
+        <a id="download-link" class="alt-btn hidden" href="#">📥 Download 3D Model</a>
+
+        <!-- Debug panel - always visible so user can report issues -->
+        <div class="debug-panel" id="debug">
+            <strong>AR Debug Info</strong><br>
+            Loading...
+        </div>
+    </div>
+
+    <!-- Hidden iOS AR Quick Look anchor (backup) -->
+    <a id="ios-ar-anchor" rel="ar" href="#">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1">
+    </a>
+
+    <script>
+        // ===== Parse URL parameters =====
+        var params = new URLSearchParams(window.location.search);
+        var glbUrl = params.get('glb') || '';
+        var usdzUrl = params.get('usdz') || '';
+        var title = params.get('title') || 'Exercise';
+        var logoUrl = params.get('logo') || '';
+        var websiteUrl = params.get('website') || window.location.origin;
+        var companyName = params.get('company') || 'FlexFrame';
+        var callToAction = params.get('cta') || 'Visit ' + companyName;
+
+        // Format title
+        var exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+        document.getElementById('page-title').textContent = exerciseName;
+
+        // ===== Device detection =====
+        var ua = navigator.userAgent;
+        var isIOS = /iphone|ipad|ipod/i.test(ua);
+        var isAndroid = /android/i.test(ua);
+        var isMobile = isIOS || isAndroid;
+        var deviceType = isIOS ? 'iOS' : (isAndroid ? 'Android' : 'Desktop');
+
+        // ===== Debug output =====
+        var debugEl = document.getElementById('debug');
+        function debugLog(lines) {
+            debugEl.innerHTML = '<strong>AR Debug Info</strong><br>' + lines.join('<br>');
+        }
+
+        debugLog([
+            '<span class="label">Device:</span> ' + deviceType,
+            '<span class="label">UA:</span> ' + ua.substring(0, 100),
+            '<span class="label">GLB:</span> ' + (glbUrl ? '✅ ' + glbUrl.substring(0, 80) + '...' : '❌ missing'),
+            '<span class="label">USDZ:</span> ' + (usdzUrl ? '✅ ' + usdzUrl.substring(0, 80) + '...' : '❌ missing'),
+            '<span class="label">Page URL:</span> ' + window.location.href.substring(0, 100)
+        ]);
+
+        // ===== Build Android intent:// URL =====
+        // This is the officially documented way to launch Google Scene Viewer
+        function buildAndroidIntentUrl(packageName) {
+            if (!glbUrl) return null;
+
+            var sceneViewerParams = 'file=' + encodeURIComponent(glbUrl) +
+                '&mode=ar_preferred' +
+                '&title=' + encodeURIComponent(exerciseName);
+
+            if (websiteUrl) {
+                sceneViewerParams += '&link=' + encodeURIComponent(websiteUrl);
+                sceneViewerParams += '&linkText=' + encodeURIComponent(callToAction);
+            }
+
+            // intent://arvr.google.com/scene-viewer/1.0?{params}
+            // #Intent;scheme=https;package={pkg};action=android.intent.action.VIEW;
+            // S.browser_fallback_url={fallback};end;
+            var intentUrl = 'intent://arvr.google.com/scene-viewer/1.0?' +
+                sceneViewerParams +
+                '#Intent;scheme=https;' +
+                'package=' + packageName + ';' +
+                'action=android.intent.action.VIEW;' +
+                'S.browser_fallback_url=' + encodeURIComponent(glbUrl) + ';' +
+                'end;';
+
+            return intentUrl;
+        }
+
+        // ===== Build iOS AR Quick Look URL =====
+        function buildIOSArUrl() {
+            var url = usdzUrl || glbUrl;
+            if (!url) return null;
+
+            if (usdzUrl) {
+                var hashParts = [];
+                if (callToAction) hashParts.push('callToAction=' + encodeURIComponent(callToAction));
+                if (companyName) hashParts.push('checkoutTitle=' + encodeURIComponent(companyName));
+                if (websiteUrl) hashParts.push('canonicalWebPageURL=' + encodeURIComponent(websiteUrl));
+                if (hashParts.length > 0) {
+                    url += '#' + hashParts.join('&');
+                }
+            }
+            return url;
+        }
+
+        // ===== Setup buttons based on device =====
+        var statusEl = document.getElementById('status');
+
+        if (!glbUrl && !usdzUrl) {
+            // No models provided
+            statusEl.textContent = 'No AR model available for this exercise.';
+            debugLog([
+                '<span class="label">ERROR:</span> No GLB or USDZ URL in query params.',
+                '<span class="label">Full URL:</span> ' + window.location.href
+            ]);
+
+        } else if (isAndroid) {
+            // ===== ANDROID =====
+            var androidLink = document.getElementById('android-ar-link');
+            var androidAltLink = document.getElementById('android-alt-link');
+            var downloadLink = document.getElementById('download-link');
+
+            // Primary: Google app (com.google.android.googlequicksearchbox)
+            var primaryIntentUrl = buildAndroidIntentUrl('com.google.android.googlequicksearchbox');
+            // Alternative: ARCore (com.google.ar.core)  
+            var altIntentUrl = buildAndroidIntentUrl('com.google.ar.core');
+
+            if (primaryIntentUrl) {
+                androidLink.href = primaryIntentUrl;
+                androidLink.classList.remove('hidden');
+                statusEl.textContent = 'Tap the button to view in AR';
+
+                // Also show alternative
+                if (altIntentUrl) {
+                    androidAltLink.href = altIntentUrl;
+                    androidAltLink.classList.remove('hidden');
+                    androidAltLink.textContent = '🔄 Try Alternative (ARCore)';
+                }
+            }
+
+            // Show download link as fallback
+            if (glbUrl) {
+                downloadLink.href = glbUrl;
+                downloadLink.classList.remove('hidden');
+            }
+
+            // Update debug
+            debugLog([
+                '<span class="label">Device:</span> Android',
+                '<span class="label">Primary Intent:</span> Google App',
+                '<span class="label">Alt Intent:</span> ARCore',
+                '<span class="label">GLB:</span> ' + glbUrl,
+                '<span class="label">Intent URL (truncated):</span> ' + (primaryIntentUrl || 'none').substring(0, 120) + '...'
+            ]);
+
+        } else if (isIOS) {
+            // ===== iOS =====
+            var iosBtn = document.getElementById('ios-ar-btn');
+            var iosArUrl = buildIOSArUrl();
+
+            if (iosArUrl) {
+                iosBtn.href = iosArUrl;
+                iosBtn.classList.remove('hidden');
+                statusEl.textContent = 'Tap the button to view in AR';
+
+                // Also set the hidden anchor
+                document.getElementById('ios-ar-anchor').href = iosArUrl;
+            }
+
+            // Show download as fallback
+            if (glbUrl || usdzUrl) {
+                var dl = document.getElementById('download-link');
+                dl.href = usdzUrl || glbUrl;
+                dl.classList.remove('hidden');
+            }
+
+            debugLog([
+                '<span class="label">Device:</span> iOS',
+                '<span class="label">AR URL:</span> ' + (iosArUrl || 'none'),
+                '<span class="label">USDZ:</span> ' + (usdzUrl || 'not provided'),
+                '<span class="label">GLB:</span> ' + (glbUrl || 'not provided')
+            ]);
+
+        } else {
+            // ===== DESKTOP =====
+            document.getElementById('desktop-msg').classList.remove('hidden');
+            statusEl.textContent = 'This page is meant for mobile devices';
+
+            if (glbUrl) {
+                var dl = document.getElementById('download-link');
+                dl.href = glbUrl;
+                dl.textContent = '📥 Download 3D Model (.glb)';
+                dl.classList.remove('hidden');
+            }
+        }
+    </script>
+</body>
+</html>

@@ -411,9 +411,6 @@ export class ARHandler {
             const baseUrl = window.location.origin;
             arViewerUrl = `${baseUrl}/ar-viewer.html`;
         }
-
-        // Add cache-busting parameter so mobile browsers always load the latest version
-        arParams.set('_v', Date.now());
         
         return `${arViewerUrl}?${arParams.toString()}`;
     }

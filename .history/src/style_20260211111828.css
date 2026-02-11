@@ -651,12 +651,10 @@ body
     flex-shrink: 0;
 }
 
-/* Screenshot Button specific styles - colors set via WordPress theme settings */
-.screenshot-btn:hover,
-.screenshot-btn:focus,
-.screenshot-btn:active {
-    /* Hover/focus colors handled by WordPress CSS override */
-    outline: none;
+/* Screenshot Button specific styles */
+.screenshot-btn:hover {
+    background: rgba(74, 158, 255, 0.3);
+    border-color: rgba(74, 158, 255, 0.5);
 }
 
 /* AR Button specific styles - colors set via WordPress theme settings */
