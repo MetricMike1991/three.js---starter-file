@@ -93,8 +93,6 @@
             border-radius: 8px;
             font-size: 12px;
             color: rgba(255,255,255,0.5);
-            text-align: left;
-            word-break: break-all;
         }
         .error { color: #ff6b6b; margin-top: 16px; display: none; }
         .error.show { display: block; }
@@ -219,20 +217,8 @@
 
         var deviceType = getDeviceType();
 
-        // Build comprehensive debug info
-        var debugLines = [];
-        debugLines.push('<b>Device:</b> ' + deviceType.toUpperCase());
-        debugLines.push('<b>UserAgent:</b> ' + navigator.userAgent.substring(0, 80));
-        debugLines.push('<b>GLB param:</b> ' + (glbUrl ? '✓ present' : '✗ MISSING'));
-        debugLines.push('<b>USDZ param:</b> ' + (usdzUrl ? '✓ present' : '✗ MISSING'));
-        if (glbUrl) {
-            debugLines.push('<b>GLB URL:</b> ' + glbUrl);
-            var testClean = decodeURIComponent(glbUrl);
-            debugLines.push('<b>Decoded GLB:</b> ' + testClean);
-        }
-
-        // Update device info with debug
-        deviceInfo.innerHTML = debugLines.join('<br>');
+        // Update device info
+        deviceInfo.innerHTML = 'Device: ' + deviceType.toUpperCase() + ' | GLB: ' + (glbUrl ? '✓' : '✗') + ' | USDZ: ' + (usdzUrl ? '✓' : '✗');
 
         // Configure based on device
         if (!glbUrl && !usdzUrl) {
@@ -269,22 +255,9 @@
                 launchButton.style.display = 'inline-block';
                 arTips.style.display = 'flex';
 
-                var intentUrl = buildAndroidArUrl(glbUrl);
-                debugLines.push('<br><b>--- Intent URL ---</b>');
-                debugLines.push(intentUrl.substring(0, 200) + '...');
-                deviceInfo.innerHTML = debugLines.join('<br>');
-
-                // Add a test GLB download link
-                var testLink = document.createElement('a');
-                testLink.href = decodeURIComponent(glbUrl);
-                testLink.target = '_blank';
-                testLink.style.cssText = 'display:block;margin-top:12px;color:#4a9eff;font-size:13px;';
-                testLink.textContent = '🔗 Test: Open GLB URL directly';
-                deviceInfo.appendChild(testLink);
-
                 launchButton.addEventListener('click', function() {
                     loading.classList.add('show');
-                    window.location.href = intentUrl;
+                    window.location.href = buildAndroidArUrl(glbUrl);
                     setTimeout(function() { loading.classList.remove('show'); }, 3000);
                 });
             } else {
