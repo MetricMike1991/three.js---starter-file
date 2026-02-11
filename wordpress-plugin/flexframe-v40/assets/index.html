@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Three.js 3D Viewer</title>
-  <script type="module" crossorigin src="/assets/index-ClC0OuNO.js"></script>
+  <script type="module" crossorigin src="/assets/index-CqjpvtgE.js"></script>
   <link rel="stylesheet" crossorigin href="/assets/index-DnQTr3DQ.css">
 </head>
 <body>
@@ -380,52 +380,7 @@
         </svg>
     </button>
     
-    <!-- Animation Player -->
-    <div id="animation-player" class="animation-player" style="display: none;">
-        <div class="player-controls">
-            <button id="play-pause-btn" class="control-btn play-btn" title="Play/Pause">
-                <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M8 5v14l11-7z"/>
-                </svg>
-                <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor" style="display: none;">
-                    <path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/>
-                </svg>
-            </button>
-            
-            <div class="time-display">
-                <span id="current-time">0:00</span>
-            </div>
-            
-            <div class="timeline-container">
-                <input type="range" id="timeline-slider" class="timeline-slider" min="0" max="100" value="0">
-                <div class="timeline-progress"></div>
-            </div>
-            
-            <div class="time-display">
-                <span id="total-time">0:00</span>
-            </div>
-            
-            <button id="quality-toggle-btn" class="control-btn quality-btn" title="Switch Model Quality" style="display: none;">
-                <svg viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                </svg>
-                <span id="quality-text">SQ</span>
-            </button>
-            
-            <div class="speed-controls">
-                <button id="speed-btn" class="control-btn speed-btn" title="Playback Speed">
-                    <span id="speed-text">1x</span>
-                </button>
-                <div id="speed-menu" class="speed-menu">
-                    <button class="speed-option" data-speed="0.25">0.25x</button>
-                    <button class="speed-option" data-speed="0.5">0.5x</button>
-                    <button class="speed-option active" data-speed="1">1x</button>
-                    <button class="speed-option" data-speed="1.5">1.5x</button>
-                    <button class="speed-option" data-speed="2">2x</button>
-                </div>
-            </div>
-        </div>
-    </div>
+    <!-- Animation player is created dynamically by animation-player.js -->
     
 </body>
 </html>
