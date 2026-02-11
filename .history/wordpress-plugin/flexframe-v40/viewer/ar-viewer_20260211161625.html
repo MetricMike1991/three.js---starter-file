@@ -210,11 +210,17 @@
     <!-- Error message -->
     <p class="error-msg" id="error-msg"></p>
 
-    <!-- model-viewer: AR launcher -->
+    <!-- 
+        model-viewer: AR launcher
+        ar-modes order matters:
+        1. scene-viewer = Google Scene Viewer (smooth on Samsung Internet)
+        2. webxr = In-browser AR (fallback for Chrome if Scene Viewer crashes)
+        3. quick-look = iOS AR
+    -->
     <model-viewer
         id="viewer"
         ar
-        ar-modes="webxr scene-viewer quick-look"
+        ar-modes="scene-viewer webxr quick-look"
         autoplay
         loading="eager"
     >
