@@ -203,9 +203,8 @@
             var cleanUrl = decodeURIComponent(fileUrl);
             var sceneViewerParams = [
                 'file=' + encodeURIComponent(cleanUrl),
-                'mode=ar_only',
-                'title=' + encodeURIComponent(exerciseName),
-                'resizable=false'
+                'mode=ar_preferred',
+                'title=' + encodeURIComponent(exerciseName)
             ];
             if (websiteUrl) {
                 sceneViewerParams.push('link=' + encodeURIComponent(websiteUrl));
@@ -213,7 +212,7 @@
             }
             return 'intent://arvr.google.com/scene-viewer/1.0?' +
                 sceneViewerParams.join('&') +
-                '#Intent;scheme=https;package=com.google.ar.core;' +
+                '#Intent;scheme=https;package=com.google.android.googlequicksearchbox;' +
                 'action=android.intent.action.VIEW;' +
                 'S.browser_fallback_url=' + encodeURIComponent(cleanUrl) + ';end;';
         }
