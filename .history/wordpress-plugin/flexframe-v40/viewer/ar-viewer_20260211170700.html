@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View in AR - FlexFrame</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Full-screen tap target */
+        .tap-screen {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+            padding: 24px;
+        }
+
+        .ar-image {
+            width: 200px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
+            margin-bottom: 24px;
+        }
+
+        h1 { font-size: 22px; font-weight: 700; margin-bottom: 8px; text-align: center; }
+
+        .tap-text {
+            font-size: 18px;
+            color: rgba(255,255,255,0.9);
+            animation: pulse 2s ease-in-out infinite;
+            margin-top: 24px;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .loading-text {
+            font-size: 15px;
+            color: rgba(255,255,255,0.5);
+            margin-top: 16px;
+        }
+
+        /* Spinner */
+        .spinner {
+            width: 32px; height: 32px;
+            border: 3px solid rgba(255,255,255,0.15);
+            border-top-color: #4a9eff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-top: 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        .hidden { display: none !important; }
+
+        /* Hidden model-viewer */
+        model-viewer {
+            position: absolute; width: 1px; height: 1px;
+            opacity: 0; pointer-events: none; overflow: hidden;
+        }
+
+        .debug {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            padding: 6px 10px; background: rgba(0,0,0,0.5);
+            font-size: 9px; color: rgba(255,255,255,0.3);
+            text-align: left; word-break: break-all;
+            max-height: 60px; overflow-y: auto; z-index: 100;
+        }
+    </style>
+</head>
+<body>
+    <!-- Full screen is the tap target -->
+    <div class="tap-screen" id="tap-screen">
+        <img class="ar-image" src="https://FlexFrame.b-cdn.net/AR.jpg" alt="View in AR" />
+        <h1 id="title">Loading...</h1>
+        <div class="spinner" id="spinner"></div>
+        <p class="loading-text" id="status-text">Preparing AR model...</p>
+        <p class="tap-text hidden" id="tap-text">👆 Tap anywhere to start AR</p>
+    </div>
+
+    <model-viewer id="viewer" ar ar-modes="webxr scene-viewer quick-look" autoplay loading="eager"></model-viewer>
+
+    <div class="debug" id="debug"></div>
+
+    <script type="module">
+        const params = new URLSearchParams(window.location.search);
+        const glbUrl = params.get('glb');
+        const usdzUrl = params.get('usdz');
+        const title = params.get('title') || 'Exercise';
+        const exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+        const viewer = document.getElementById('viewer');
+        const tapScreen = document.getElementById('tap-screen');
+        const titleEl = document.getElementById('title');
+        const spinner = document.getElementById('spinner');
+        const statusText = document.getElementById('status-text');
+        const tapText = document.getElementById('tap-text');
+        const debugDiv = document.getElementById('debug');
+
+        let modelReady = false;
+        let arLaunched = false;
+
+        function log(msg) {
+            debugDiv.innerHTML += (debugDiv.innerHTML ? '<br>' : '') + msg;
+            debugDiv.scrollTop = debugDiv.scrollHeight;
+        }
+
+        function isChromeOnAndroid() {
+            const ua = navigator.userAgent || '';
+            return /android/i.test(ua) && /Chrome/i.test(ua) && !/SamsungBrowser/i.test(ua);
+        }
+
+        function openInSamsungInternet() {
+            const url = window.location.href;
+            window.location.href = 'intent://' + url.replace(/^https?:\/\//, '') +
+                '#Intent;scheme=https;package=com.sec.android.app.sbrowser;end;';
+        }
+
+        titleEl.textContent = exerciseName;
+
+        // ============================================================
+        // Chrome on Android → redirect to Samsung Internet immediately
+        // ============================================================
+        if (isChromeOnAndroid()) {
+            statusText.textContent = 'Opening in Samsung Internet...';
+            log('Chrome detected — redirecting to Samsung Internet');
+            // Small delay so user sees the redirect message
+            setTimeout(() => openInSamsungInternet(), 300);
+
+        // ============================================================
+        // Samsung Internet / iOS / Other → load model and launch AR
+        // ============================================================
+        } else if (glbUrl || usdzUrl) {
+            if (glbUrl) viewer.setAttribute('src', glbUrl);
+            if (usdzUrl) viewer.setAttribute('ios-src', usdzUrl);
+
+            log('Loading model...');
+
+            function launchAR() {
+                if (arLaunched) return;
+                arLaunched = true;
+                log('Launching AR!');
+                statusText.textContent = 'Starting AR...';
+                tapText.classList.add('hidden');
+                spinner.classList.remove('hidden');
+                viewer.activateAR();
+            }
+
+            // Model loaded → show "tap anywhere"
+            viewer.addEventListener('load', () => {
+                modelReady = true;
+                log('✓ Model loaded');
+                spinner.classList.add('hidden');
+                statusText.classList.add('hidden');
+                tapText.classList.remove('hidden');
+                titleEl.textContent = exerciseName;
+            });
+
+            viewer.addEventListener('error', (e) => {
+                log('✗ Error: ' + (e.detail?.type || e.detail || 'unknown'));
+                statusText.textContent = 'Failed to load model.';
+                spinner.classList.add('hidden');
+            });
+
+            viewer.addEventListener('ar-status', (e) => {
+                log('AR: ' + e.detail.status);
+                if (e.detail.status === 'not-presenting') {
+                    spinner.classList.add('hidden');
+                }
+            });
+
+            // Tap ANYWHERE on screen to launch AR
+            tapScreen.addEventListener('click', () => {
+                if (modelReady) {
+                    launchAR();
+                }
+            });
+
+        // ============================================================
+        // No model
+        // ============================================================
+        } else {
+            spinner.classList.add('hidden');
+            statusText.textContent = 'No AR model available.';
+            titleEl.textContent = 'Error';
+            log('No GLB or USDZ URL');
+        }
+    </script>
+</body>
+</html>
