@@ -22,9 +22,11 @@
 
         .ar-icon { margin-bottom: 20px; }
         .ar-icon img {
-            width: 220px;
-            height: auto;
+            width: 140px;
+            height: 140px;
+            object-fit: cover;
             border-radius: 16px;
+            border: 2px solid rgba(74, 158, 255, 0.25);
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
         }
         h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; text-align: center; }
@@ -84,9 +86,12 @@
     </style>
 </head>
 <body>
-    <!-- AR promo image -->
+    <!-- Thumbnail or fallback icon -->
     <div class="ar-icon" id="ar-icon">
-        <img src="https://FlexFrame.b-cdn.net/AR.jpg" alt="View in AR" />
+        <svg width="56" height="56" viewBox="0 0 24 24" fill="none">
+            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+        </svg>
     </div>
 
     <h1 id="page-title">View in AR</h1>
@@ -144,7 +149,18 @@
         const glbUrl = params.get('glb');
         const usdzUrl = params.get('usdz');
         const title = params.get('title') || 'Exercise';
+        const thumbUrl = params.get('thumb');
         const exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+        // Replace SVG icon with thumbnail if available
+        if (thumbUrl) {
+            const iconDiv = document.getElementById('ar-icon');
+            const img = document.createElement('img');
+            img.src = thumbUrl;
+            img.alt = exerciseName;
+            img.onerror = () => { /* Keep SVG fallback if image fails */ };
+            img.onload = () => { iconDiv.innerHTML = ''; iconDiv.appendChild(img); };
+        }
 
         const viewer = document.getElementById('viewer');
         const pageTitle = document.getElementById('page-title');

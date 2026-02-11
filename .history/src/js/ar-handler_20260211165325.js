@@ -275,13 +275,10 @@ export class ARHandler {
                     border: 1px solid ${primaryColor}4D;
                 ">
                     <div class="ar-qr-header" style="margin-bottom: 24px;">
-                        <img src="https://FlexFrame.b-cdn.net/AR.jpg" alt="View in AR" style="
-                            width: 180px;
-                            height: auto;
-                            border-radius: 14px;
-                            margin-bottom: 16px;
-                            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
-                        " />
+                        <svg width="48" height="48" viewBox="0 0 24 24" fill="none" style="margin-bottom: 16px;">
+                            <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="${primaryColor}"/>
+                            <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="${primaryColor}"/>
+                        </svg>
                         <h2 style="
                             color: white;
                             font-size: 24px;
