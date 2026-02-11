@@ -22,46 +22,92 @@
         }
 
         model-viewer {
-            width: 1px;
-            height: 1px;
-            position: absolute;
-            top: 0; left: 0;
-            opacity: 0;
-            pointer-events: none;
+            width: 100%;
+            height: 100vh;
+            background-color: #1a1a2e;
+            --poster-color: #1a1a2e;
         }
 
-        /* Custom AR button - full screen tap target */
-        .ar-launch-btn {
+        /* Custom AR button - replaces model-viewer default */
+        .ar-button {
             background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
             color: white;
             border: none;
             border-radius: 14px;
-            padding: 18px 48px;
-            font-size: 19px;
+            padding: 16px 36px;
+            font-size: 18px;
             font-weight: 700;
             cursor: pointer;
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
             box-shadow: 0 8px 28px rgba(74, 158, 255, 0.4);
+            z-index: 10;
             animation: pulse 2s ease-in-out infinite;
             -webkit-tap-highlight-color: rgba(74, 158, 255, 0.3);
             white-space: nowrap;
-            margin-top: 32px;
         }
-        .ar-launch-btn:active { transform: scale(0.96); }
-        .ar-launch-btn:disabled {
-            opacity: 0.5;
-            animation: none;
-        }
-
-        /* Hidden slot button inside model-viewer */
-        .ar-button {
-            position: absolute;
-            top: 0; left: 0;
-            opacity: 0;
-            pointer-events: none;
-        }
+        .ar-button:active { transform: translateX(-50%) scale(0.96); }
         @keyframes pulse {
             0%, 100% { box-shadow: 0 8px 24px rgba(74, 158, 255, 0.35); }
             50% { box-shadow: 0 8px 40px rgba(74, 158, 255, 0.7); }
+        }
+
+        /* Loading / progress */
+        .progress-bar {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%;
+            height: 4px;
+            background: rgba(255,255,255,0.1);
+            z-index: 20;
+        }
+        .progress-bar .fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4a9eff, #2d7dd2);
+            width: 0%;
+            transition: width 0.2s;
+        }
+        .loading-overlay {
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: #1a1a2e;
+            z-index: 15;
+            transition: opacity 0.5s;
+        }
+        .loading-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        .spinner {
+            width: 48px; height: 48px;
+            border: 3px solid rgba(255,255,255,0.15);
+            border-top-color: #4a9eff;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            margin-bottom: 20px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-text { color: rgba(255,255,255,0.7); font-size: 15px; }
+
+        /* Title bar */
+        .title-bar {
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            padding: 16px 20px;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.5), transparent);
+            z-index: 10;
+            text-align: center;
+        }
+        .title-bar h1 {
+            font-size: 18px;
+            font-weight: 600;
+            text-shadow: 0 1px 4px rgba(0,0,0,0.5);
         }
 
         /* Tips row */
@@ -182,52 +228,50 @@
             let iosSrcAttr = cleanUsdzUrl ? ` ios-src="${cleanUsdzUrl}"` : '';
 
             app.innerHTML = `
-                <!-- Hidden model-viewer: only used to trigger AR via its built-in Scene Viewer support -->
                 <model-viewer
                     id="viewer"
                     src="${cleanGlbUrl}"
                     ar
                     ar-modes="scene-viewer webxr quick-look"
                     ar-scale="auto"
+                    camera-controls
+                    auto-rotate
                     autoplay
-                    loading="eager"
+                    shadow-intensity="1"
+                    environment-image="neutral"
                     ${iosSrcAttr}
                 >
-                    <button slot="ar-button" class="ar-button">AR</button>
+                    <button slot="ar-button" class="ar-button">
+                        🔮 View in AR
+                    </button>
                 </model-viewer>
 
-                <!-- Visible landing page -->
-                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;padding:20px;">
-                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" style="margin-bottom:24px;">
-                        <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
-                        <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
-                    </svg>
-                    <h1 style="font-size:26px;font-weight:700;margin-bottom:10px;">${exerciseName}</h1>
-                    <p style="color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:8px;line-height:1.5;">
-                        Tap the button below to place this exercise in your room
-                    </p>
-                    <p id="status-text" style="color:rgba(255,255,255,0.4);font-size:13px;margin-bottom:0;">
-                        Loading model...
-                    </p>
+                <div class="title-bar">
+                    <h1>${exerciseName}</h1>
+                </div>
 
-                    <button id="launch-btn" class="ar-launch-btn" disabled>
-                        ⏳ Loading Model...
-                    </button>
-
-                    <div class="ar-tips" style="position:static;margin-top:32px;">
-                        <div class="ar-tip">
-                            <div class="ar-tip-icon">☝️</div>
-                            <span class="ar-tip-label">Drag<br>to move</span>
-                        </div>
-                        <div class="ar-tip">
-                            <div class="ar-tip-icon">🤏</div>
-                            <span class="ar-tip-label">Pinch<br>to resize</span>
-                        </div>
-                        <div class="ar-tip">
-                            <div class="ar-tip-icon">✌️</div>
-                            <span class="ar-tip-label">Twist<br>to rotate</span>
-                        </div>
+                <div class="ar-tips">
+                    <div class="ar-tip">
+                        <div class="ar-tip-icon">☝️</div>
+                        <span class="ar-tip-label">Drag<br>to move</span>
                     </div>
+                    <div class="ar-tip">
+                        <div class="ar-tip-icon">🤏</div>
+                        <span class="ar-tip-label">Pinch<br>to resize</span>
+                    </div>
+                    <div class="ar-tip">
+                        <div class="ar-tip-icon">✌️</div>
+                        <span class="ar-tip-label">Twist<br>to rotate</span>
+                    </div>
+                </div>
+
+                <div class="progress-bar" id="progress-bar">
+                    <div class="fill" id="progress-fill"></div>
+                </div>
+
+                <div class="loading-overlay" id="loading-overlay">
+                    <div class="spinner"></div>
+                    <div class="loading-text">Loading 3D model...</div>
                 </div>
 
                 <div class="debug-info" id="debug-info">Loading...</div>
@@ -235,8 +279,8 @@
 
             // References
             const viewer = document.getElementById('viewer');
-            const launchBtn = document.getElementById('launch-btn');
-            const statusText = document.getElementById('status-text');
+            const progressFill = document.getElementById('progress-fill');
+            const loadingOverlay = document.getElementById('loading-overlay');
             const debugInfo = document.getElementById('debug-info');
 
             // Initial debug info
@@ -247,23 +291,17 @@
             // Progress
             viewer.addEventListener('progress', (event) => {
                 const pct = Math.round(event.detail.totalProgress * 100);
-                statusText.textContent = 'Loading model... ' + pct + '%';
-                launchBtn.textContent = '⏳ Loading... ' + pct + '%';
+                progressFill.style.width = pct + '%';
             });
 
-            // Loaded - enable AR button
+            // Loaded
             viewer.addEventListener('load', () => {
-                statusText.textContent = 'Model ready! Tap to launch AR.';
-                launchBtn.textContent = '🔮 View in AR';
-                launchBtn.disabled = false;
+                progressFill.style.width = '100%';
+                loadingOverlay.classList.add('hidden');
+                setTimeout(() => {
+                    document.getElementById('progress-bar').style.display = 'none';
+                }, 500);
                 debugInfo.textContent += ' | Loaded ✓';
-            });
-
-            // Our visible button triggers model-viewer's hidden AR button
-            launchBtn.addEventListener('click', () => {
-                debugInfo.textContent += ' | AR tap...';
-                // Activate AR through model-viewer's API
-                viewer.activateAR();
             });
 
             // AR status
@@ -274,11 +312,12 @@
             // Errors
             viewer.addEventListener('error', (event) => {
                 debugInfo.textContent += ' | ERR: ' + (event.detail?.message || event.message || 'unknown');
-                statusText.textContent = 'Failed to load model. Try refreshing.';
-                statusText.style.color = '#ff6b6b';
-                launchBtn.textContent = '🔄 Refresh';
-                launchBtn.disabled = false;
-                launchBtn.onclick = () => location.reload();
+                loadingOverlay.innerHTML = `
+                    <div style="color: #ff6b6b; text-align: center; padding: 20px;">
+                        <p style="font-size: 18px; margin-bottom: 12px;">Failed to load model</p>
+                        <p style="font-size: 13px; color: rgba(255,255,255,0.5);">Try refreshing the page</p>
+                    </div>
+                `;
             });
         }
     </script>
