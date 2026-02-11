@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View in AR - FlexFrame</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            padding: 20px;
+        }
+        .container {
+            text-align: center;
+            max-width: 400px;
+        }
+        .icon { margin-bottom: 24px; }
+        h1 { font-size: 28px; font-weight: 700; margin-bottom: 12px; }
+        p { color: rgba(255,255,255,0.7); font-size: 16px; margin-bottom: 32px; line-height: 1.5; }
+        .ar-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            padding: 18px 48px;
+            border-radius: 14px;
+            font-size: 19px;
+            font-weight: 700;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(74, 158, 255, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+            -webkit-tap-highlight-color: rgba(74, 158, 255, 0.3);
+        }
+        .ar-button:active { transform: scale(0.96); }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(74, 158, 255, 0.35); }
+            50% { box-shadow: 0 8px 40px rgba(74, 158, 255, 0.7); }
+        }
+        .loading { display: none; margin-top: 24px; }
+        .loading.show { display: block; }
+        .spinner {
+            width: 40px; height: 40px;
+            border: 3px solid rgba(255,255,255,0.2);
+            border-top-color: #4a9eff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 16px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .ar-tips {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .ar-tip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 90px;
+        }
+        .ar-tip-icon {
+            width: 44px; height: 44px;
+            border-radius: 12px;
+            background: rgba(74, 158, 255, 0.12);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+        }
+        .ar-tip-label {
+            font-size: 11px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.3;
+            text-align: center;
+        }
+        .device-info {
+            margin-top: 32px;
+            padding: 16px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.5);
+            text-align: left;
+            word-break: break-all;
+        }
+        .error { color: #ff6b6b; margin-top: 16px; display: none; }
+        .error.show { display: block; }
+        #ar-link { position: absolute; opacity: 0; pointer-events: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="icon">
+            <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+                <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+            </svg>
+        </div>
+        <h1 id="page-title">View in Augmented Reality</h1>
+        <p id="device-message">Detecting your device...</p>
+
+        <div class="ar-tips" id="ar-tips" style="display:none;">
+            <div class="ar-tip">
+                <div class="ar-tip-icon">☝️</div>
+                <span class="ar-tip-label">One finger<br>drag to move</span>
+            </div>
+            <div class="ar-tip">
+                <div class="ar-tip-icon">🤏</div>
+                <span class="ar-tip-label">Pinch<br>to resize</span>
+            </div>
+            <div class="ar-tip">
+                <div class="ar-tip-icon">✌️</div>
+                <span class="ar-tip-label">Two finger<br>twist to rotate</span>
+            </div>
+        </div>
+
+        <button id="launch-ar" class="ar-button" style="display: none;">
+            🔮 View in AR
+        </button>
+
+        <div class="loading" id="loading">
+            <div class="spinner"></div>
+            <p>Launching AR...</p>
+        </div>
+
+        <p class="error" id="error"></p>
+        <div class="device-info" id="device-info"></div>
+    </div>
+
+    <!-- Hidden AR Quick Look link for iOS -->
+    <a id="ar-link" rel="ar" href="#">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1">
+    </a>
+
+    <script>
+        // Parse URL parameters
+        var params = new URLSearchParams(window.location.search);
+        var glbUrl = params.get('glb');
+        var usdzUrl = params.get('usdz');
+        var title = params.get('title') || 'Exercise';
+        var exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, function(l) { return l.toUpperCase(); });
+
+        // Branding parameters
+        var logoUrl = params.get('logo');
+        var websiteUrl = params.get('website') || 'https://thegymmanagerblog.com';
+        var companyName = params.get('company') || 'FlexFrame';
+        var callToAction = params.get('cta') || 'Visit ' + companyName;
+
+        // DOM elements
+        var deviceMessage = document.getElementById('device-message');
+        var launchButton = document.getElementById('launch-ar');
+        var loading = document.getElementById('loading');
+        var error = document.getElementById('error');
+        var deviceInfo = document.getElementById('device-info');
+        var arLink = document.getElementById('ar-link');
+        var arTips = document.getElementById('ar-tips');
+
+        // Set title
+        document.getElementById('page-title').textContent = exerciseName;
+
+        // Detect device type
+        function getDeviceType() {
+            var ua = navigator.userAgent.toLowerCase();
+            if (/iphone|ipad|ipod/.test(ua)) return 'ios';
+            if (/android/.test(ua)) return 'android';
+            return 'desktop';
+        }
+
+        // Build iOS AR URL with branding
+        function buildIOSArUrl(baseUrl) {
+            var hashParams = [];
+            if (websiteUrl) {
+                hashParams.push('callToAction=' + encodeURIComponent(callToAction));
+                hashParams.push('checkoutTitle=' + encodeURIComponent(companyName));
+                hashParams.push('checkoutSubtitle=' + encodeURIComponent('Tap to visit website'));
+                hashParams.push('canonicalWebPageURL=' + encodeURIComponent(websiteUrl));
+            }
+            if (logoUrl) {
+                hashParams.push('custom=' + encodeURIComponent(logoUrl));
+            }
+            if (hashParams.length > 0) {
+                return baseUrl + '#' + hashParams.join('&');
+            }
+            return baseUrl;
+        }
+
+        // Build Android Scene Viewer URL with branding
+        function buildAndroidArUrl(fileUrl) {
+            // Decode first to avoid double-encoding (%20 → %2520)
+            var cleanUrl = decodeURIComponent(fileUrl);
+            var sceneViewerParams = [
+                'file=' + encodeURIComponent(cleanUrl),
+                'mode=ar_only',
+                'title=' + encodeURIComponent(exerciseName),
+                'resizable=false'
+            ];
+            if (websiteUrl) {
+                sceneViewerParams.push('link=' + encodeURIComponent(websiteUrl));
+                sceneViewerParams.push('linkText=' + encodeURIComponent(callToAction));
+            }
+            return 'intent://arvr.google.com/scene-viewer/1.0?' +
+                sceneViewerParams.join('&') +
+                '#Intent;scheme=https;package=com.google.ar.core;' +
+                'action=android.intent.action.VIEW;' +
+                'S.browser_fallback_url=' + encodeURIComponent(cleanUrl) + ';end;';
+        }
+
+        var deviceType = getDeviceType();
+
+        // Build comprehensive debug info
+        var debugLines = [];
+        debugLines.push('<b>Device:</b> ' + deviceType.toUpperCase());
+        debugLines.push('<b>UserAgent:</b> ' + navigator.userAgent.substring(0, 80));
+        debugLines.push('<b>GLB param:</b> ' + (glbUrl ? '✓ present' : '✗ MISSING'));
+        debugLines.push('<b>USDZ param:</b> ' + (usdzUrl ? '✓ present' : '✗ MISSING'));
+        if (glbUrl) {
+            debugLines.push('<b>GLB URL:</b> ' + glbUrl);
+            var testClean = decodeURIComponent(glbUrl);
+            debugLines.push('<b>Decoded GLB:</b> ' + testClean);
+        }
+
+        // Update device info with debug
+        deviceInfo.innerHTML = debugLines.join('<br>');
+
+        // Configure based on device
+        if (!glbUrl && !usdzUrl) {
+            deviceMessage.textContent = 'No AR model available';
+            error.textContent = 'Error: No model URLs provided';
+            error.classList.add('show');
+
+        } else if (deviceType === 'ios') {
+            if (usdzUrl) {
+                deviceMessage.textContent = 'Tap the button below to place this exercise in your room';
+                launchButton.style.display = 'inline-block';
+                arTips.style.display = 'flex';
+                arLink.href = buildIOSArUrl(usdzUrl);
+
+                launchButton.addEventListener('click', function() {
+                    loading.classList.add('show');
+                    arLink.click();
+                    setTimeout(function() { loading.classList.remove('show'); }, 2000);
+                });
+            } else if (glbUrl) {
+                deviceMessage.textContent = 'iOS detected, but only GLB available.';
+                launchButton.style.display = 'inline-block';
+                launchButton.textContent = '🔮 Try AR (GLB)';
+                arLink.href = buildIOSArUrl(glbUrl);
+
+                launchButton.addEventListener('click', function() {
+                    arLink.click();
+                });
+            }
+
+        } else if (deviceType === 'android') {
+            if (glbUrl) {
+                deviceMessage.textContent = 'Tap the button below to place this exercise in your room';
+                launchButton.style.display = 'inline-block';
+                arTips.style.display = 'flex';
+
+                var intentUrl = buildAndroidArUrl(glbUrl);
+                debugLines.push('<br><b>--- Intent URL ---</b>');
+                debugLines.push(intentUrl.substring(0, 200) + '...');
+                deviceInfo.innerHTML = debugLines.join('<br>');
+
+                // Add a test GLB download link
+                var testLink = document.createElement('a');
+                testLink.href = decodeURIComponent(glbUrl);
+                testLink.target = '_blank';
+                testLink.style.cssText = 'display:block;margin-top:12px;color:#4a9eff;font-size:13px;';
+                testLink.textContent = '🔗 Test: Open GLB URL directly';
+                deviceInfo.appendChild(testLink);
+
+                launchButton.addEventListener('click', function() {
+                    loading.classList.add('show');
+                    window.location.href = intentUrl;
+                    setTimeout(function() { loading.classList.remove('show'); }, 3000);
+                });
+            } else {
+                deviceMessage.textContent = 'Android detected, but no GLB model available.';
+                error.textContent = 'GLB model required for Android AR';
+                error.classList.add('show');
+            }
+
+        } else {
+            // Desktop
+            deviceMessage.textContent = 'Please open this page on your mobile device to view in AR.';
+            deviceInfo.innerHTML += '<br><br>📱 This link is designed for mobile AR viewing.';
+        }
+    </script>
+</body>
+</html>
