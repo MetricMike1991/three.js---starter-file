@@ -199,11 +199,10 @@ export class ARHandler {
 
         console.log('[FlexFrame AR] Launching Android AR via ar-viewer.html');
 
-        // Open in a NEW tab so the heavy Three.js app doesn't hog memory
-        // This gives model-viewer a clean browser context, same as QR code scanning
+        // Redirect to the ar-viewer.html page which uses model-viewer with WebXR
         const arPageUrl = this.generateARPageUrl();
-        console.log('[FlexFrame AR] Opening in new tab:', arPageUrl);
-        window.open(arPageUrl, '_blank');
+        console.log('[FlexFrame AR] Navigating to:', arPageUrl);
+        window.location.href = arPageUrl;
     }
 
     /**
