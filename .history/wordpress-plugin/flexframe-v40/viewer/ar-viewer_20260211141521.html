@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View in AR - FlexFrame</title>
+    <!-- Google model-viewer: handles WebXR AR in-browser -->
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: white;
+            overflow: hidden;
+        }
+
+        /* Top bar */
+        .top-bar {
+            text-align: center;
+            padding: 16px 20px 8px;
+            flex-shrink: 0;
+        }
+        .top-bar h1 { font-size: 20px; font-weight: 700; }
+        .top-bar p { color: rgba(255,255,255,0.6); font-size: 13px; margin-top: 4px; }
+
+        /* Model viewer fills remaining space */
+        model-viewer {
+            flex: 1;
+            width: 100%;
+            min-height: 0;
+            background: rgba(255,255,255,0.03);
+            --poster-color: transparent;
+        }
+
+        /* Style the built-in AR button from model-viewer */
+        model-viewer::part(default-ar-button) {
+            /* Hide the default tiny button — we use a custom slot button */
+            display: none;
+        }
+
+        /* Custom AR button inside model-viewer via slot */
+        #custom-ar-btn {
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            padding: 14px 36px;
+            border-radius: 12px;
+            font-size: 17px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            box-shadow: 0 6px 20px rgba(74, 158, 255, 0.4);
+            white-space: nowrap;
+            z-index: 100;
+            letter-spacing: 0.3px;
+        }
+        #custom-ar-btn:active { transform: translateX(-50%) scale(0.95); }
+
+        /* iOS fallback link (hidden) */
+        #ios-ar-link { position: absolute; opacity: 0; pointer-events: none; }
+
+        /* Debug panel at bottom */
+        .debug {
+            flex-shrink: 0;
+            padding: 10px 16px;
+            background: rgba(0,0,0,0.4);
+            font-size: 11px;
+            color: rgba(255,255,255,0.45);
+            text-align: left;
+            word-break: break-all;
+            max-height: 120px;
+            overflow-y: auto;
+        }
+
+        /* Loading overlay */
+        .loading-overlay {
+            display: none;
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(26, 26, 46, 0.85);
+            z-index: 200;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .loading-overlay.show { display: flex; }
+        .spinner {
+            width: 44px; height: 44px;
+            border: 3px solid rgba(255,255,255,0.15);
+            border-top-color: #4a9eff;
+            border-radius: 50%;
+            animation: spin 0.9s linear infinite;
+            margin-bottom: 16px;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-overlay p { color: rgba(255,255,255,0.7); font-size: 15px; }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <h1 id="page-title">View in AR</h1>
+        <p id="subtitle">Loading model...</p>
+    </div>
+
+    <!--
+        model-viewer: 3D preview + AR launcher
+        ar-modes="webxr scene-viewer quick-look"
+        WebXR = in-browser AR (works on this device!)
+        scene-viewer = Google Scene Viewer fallback
+        quick-look = iOS AR Quick Look
+    -->
+    <model-viewer
+        id="viewer"
+        ar
+        ar-modes="webxr scene-viewer quick-look"
+        camera-controls
+        touch-action="pan-y"
+        auto-rotate
+        shadow-intensity="1"
+        environment-image="neutral"
+        loading="eager"
+    >
+        <button slot="ar-button" id="custom-ar-btn">
+            ✨ View in Your Room
+        </button>
+    </model-viewer>
+
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="spinner"></div>
+        <p>Starting AR...</p>
+    </div>
+
+    <!-- Hidden iOS Quick Look link -->
+    <a id="ios-ar-link" rel="ar" href="#">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1">
+    </a>
+
+    <div class="debug" id="debug">Initializing...</div>
+
+    <script type="module">
+        // ============================================================
+        // URL Parameters
+        // ============================================================
+        const params = new URLSearchParams(window.location.search);
+        const glbUrl = params.get('glb');
+        const usdzUrl = params.get('usdz');
+        const title = params.get('title') || 'Exercise';
+        const exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+        // DOM
+        const viewer = document.getElementById('viewer');
+        const pageTitle = document.getElementById('page-title');
+        const subtitle = document.getElementById('subtitle');
+        const debugDiv = document.getElementById('debug');
+        const loadingOverlay = document.getElementById('loading-overlay');
+
+        function log(msg) {
+            console.log('[AR]', msg);
+            debugDiv.innerHTML += '<br>' + msg;
+            debugDiv.scrollTop = debugDiv.scrollHeight;
+        }
+
+        function getDevice() {
+            const ua = navigator.userAgent || '';
+            if (/iPad|iPhone|iPod/.test(ua)) return 'ios';
+            if (/android/i.test(ua)) return 'android';
+            return 'desktop';
+        }
+
+        const device = getDevice();
+        pageTitle.textContent = exerciseName;
+
+        log('<b>Device:</b> ' + device);
+        log('<b>GLB:</b> ' + (glbUrl ? decodeURIComponent(glbUrl.split('/').pop()) : 'NONE'));
+        log('<b>USDZ:</b> ' + (usdzUrl ? 'yes' : 'no'));
+
+        // Check WebXR support
+        if (navigator.xr) {
+            navigator.xr.isSessionSupported('immersive-ar').then(supported => {
+                log('<b>WebXR AR:</b> ' + (supported ? '✓ SUPPORTED' : '✗ not supported'));
+            }).catch(e => {
+                log('<b>WebXR check error:</b> ' + e.message);
+            });
+        } else {
+            log('<b>WebXR:</b> ✗ navigator.xr not available');
+        }
+
+        // ============================================================
+        // Set model source
+        // ============================================================
+        if (!glbUrl && !usdzUrl) {
+            subtitle.textContent = 'No AR model available.';
+            log('<span style="color:#ff6b6b"><b>Error:</b> No model URLs</span>');
+        } else {
+            if (glbUrl) {
+                viewer.setAttribute('src', glbUrl);
+                log('<b>Set src:</b> ' + glbUrl);
+            }
+            if (usdzUrl) {
+                viewer.setAttribute('ios-src', usdzUrl);
+            }
+
+            subtitle.textContent = 'Loading 3D model...';
+
+            // ============================================================
+            // Event listeners
+            // ============================================================
+            viewer.addEventListener('load', () => {
+                log('<b style="color:#4CAF50">✓ Model loaded!</b>');
+                subtitle.textContent = 'Tap the button below to place it in your room.';
+            });
+
+            viewer.addEventListener('error', (e) => {
+                const msg = e.detail ? (e.detail.type || e.detail) : 'unknown';
+                log('<span style="color:#ff6b6b"><b>Model error:</b> ' + msg + '</span>');
+                subtitle.textContent = 'Failed to load model.';
+            });
+
+            viewer.addEventListener('ar-status', (e) => {
+                const status = e.detail.status;
+                log('<b>AR status:</b> ' + status);
+                if (status === 'session-started') {
+                    log('<b style="color:#4CAF50">✓ AR session started!</b>');
+                    loadingOverlay.classList.remove('show');
+                } else if (status === 'not-presenting') {
+                    loadingOverlay.classList.remove('show');
+                } else if (status === 'failed') {
+                    log('<span style="color:#ff6b6b"><b>AR failed.</b> Your device may not support WebXR AR.</span>');
+                    loadingOverlay.classList.remove('show');
+                    subtitle.textContent = 'AR is not available on this device.';
+                }
+            });
+
+            viewer.addEventListener('ar-tracking', (e) => {
+                log('<b>AR tracking:</b> ' + e.detail.status);
+            });
+
+            // Show loading overlay when AR button is tapped
+            const arBtn = document.getElementById('custom-ar-btn');
+            if (arBtn) {
+                arBtn.addEventListener('click', () => {
+                    log('<b>AR button tapped</b>');
+                    loadingOverlay.classList.add('show');
+                    // model-viewer handles the actual AR launch
+                });
+            }
+
+            log('<b>Mode:</b> model-viewer (WebXR primary, Scene Viewer fallback)');
+        }
+    </script>
+</body>
+</html>
