@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View in AR - FlexFrame</title>
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
+    <!-- Google Model Viewer - handles Scene Viewer / AR Quick Look / WebXR automatically -->
+    <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"></script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: #1a1a2e;
+            min-height: 100vh;
+            color: white;
+            overflow: hidden;
+        }
+
+        model-viewer {
+            width: 1px;
+            height: 1px;
+            position: absolute;
+            top: 0; left: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Custom AR button - full screen tap target */
+        .ar-launch-btn {
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white;
+            border: none;
+            border-radius: 14px;
+            padding: 18px 48px;
+            font-size: 19px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 8px 28px rgba(74, 158, 255, 0.4);
+            animation: pulse 2s ease-in-out infinite;
+            -webkit-tap-highlight-color: rgba(74, 158, 255, 0.3);
+            white-space: nowrap;
+            margin-top: 32px;
+        }
+        .ar-launch-btn:active { transform: scale(0.96); }
+        .ar-launch-btn:disabled {
+            opacity: 0.5;
+            animation: none;
+        }
+
+        /* Hidden slot button inside model-viewer */
+        .ar-button {
+            position: absolute;
+            top: 0; left: 0;
+            opacity: 0;
+            pointer-events: none;
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 8px 24px rgba(74, 158, 255, 0.35); }
+            50% { box-shadow: 0 8px 40px rgba(74, 158, 255, 0.7); }
+        }
+
+        /* Tips row */
+        .ar-tips {
+            position: absolute;
+            bottom: 24px;
+            left: 0; right: 0;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            z-index: 10;
+        }
+        .ar-tip {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+        }
+        .ar-tip-icon {
+            width: 40px; height: 40px;
+            border-radius: 10px;
+            background: rgba(74, 158, 255, 0.15);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+        .ar-tip-label {
+            font-size: 10px;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        /* Debug info */
+        .debug-info {
+            position: absolute;
+            bottom: 4px;
+            left: 8px; right: 8px;
+            padding: 8px;
+            background: rgba(0,0,0,0.6);
+            border-radius: 6px;
+            font-size: 10px;
+            color: rgba(255,255,255,0.35);
+            z-index: 20;
+            word-break: break-all;
+            max-height: 80px;
+            overflow-y: auto;
+        }
+
+        /* Desktop message */
+        .desktop-msg {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            text-align: center;
+            padding: 40px;
+        }
+        .desktop-msg svg { margin-bottom: 24px; }
+        .desktop-msg h1 { font-size: 28px; margin-bottom: 12px; }
+        .desktop-msg p { color: rgba(255,255,255,0.6); font-size: 16px; line-height: 1.5; }
+    </style>
+</head>
+<body>
+    <div id="app"></div>
+
+    <script type="module">
+        // Parse URL parameters
+        const params = new URLSearchParams(window.location.search);
+        const glbUrl = params.get('glb');
+        const usdzUrl = params.get('usdz');
+        const title = params.get('title') || 'Exercise';
+        const exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+        // Branding
+        const websiteUrl = params.get('website') || 'https://thegymmanagerblog.com';
+        const companyName = params.get('company') || 'FlexFrame';
+        const callToAction = params.get('cta') || 'Visit ' + companyName;
+
+        // Detect device
+        const ua = navigator.userAgent.toLowerCase();
+        const isIOS = /iphone|ipad|ipod/.test(ua);
+        const isAndroid = /android/.test(ua);
+        const isMobile = isIOS || isAndroid;
+
+        const app = document.getElementById('app');
+
+        if (!isMobile) {
+            // Desktop fallback
+            app.innerHTML = `
+                <div class="desktop-msg">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none">
+                        <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+                        <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+                    </svg>
+                    <h1>${exerciseName}</h1>
+                    <p>Please open this page on your mobile device to view in augmented reality.</p>
+                </div>
+            `;
+        } else if (!glbUrl) {
+            app.innerHTML = `
+                <div class="desktop-msg">
+                    <h1>No Model Available</h1>
+                    <p>No AR model URL was provided.</p>
+                </div>
+            `;
+        } else {
+            // ---- MOBILE: Use <model-viewer> for AR ----
+            // model-viewer handles Scene Viewer (Android) and AR Quick Look (iOS) internally.
+            // It constructs the intent:// URL correctly, no manual encoding needed.
+
+            const cleanGlbUrl = decodeURIComponent(glbUrl);
+            const cleanUsdzUrl = usdzUrl ? decodeURIComponent(usdzUrl) : null;
+
+            // Build model-viewer HTML
+            let iosSrcAttr = cleanUsdzUrl ? ` ios-src="${cleanUsdzUrl}"` : '';
+
+            app.innerHTML = `
+                <!-- Hidden model-viewer: only used to trigger AR via its built-in Scene Viewer support -->
+                <model-viewer
+                    id="viewer"
+                    src="${cleanGlbUrl}"
+                    ar
+                    ar-modes="scene-viewer webxr quick-look"
+                    ar-scale="auto"
+                    autoplay
+                    loading="eager"
+                    ${iosSrcAttr}
+                >
+                    <button slot="ar-button" class="ar-button">AR</button>
+                </model-viewer>
+
+                <!-- Visible landing page -->
+                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100vh;text-align:center;padding:20px;">
+                    <svg width="64" height="64" viewBox="0 0 24 24" fill="none" style="margin-bottom:24px;">
+                        <path d="M3 4v6h2V6h4V4H3zm18 0h-6v2h4v4h2V4zM3 20v-6h2v4h4v2H3zm18 0h-6v-2h4v-4h2v6z" fill="#4a9eff"/>
+                        <path d="M12 8l-4 6h3v4h2v-4h3l-4-6z" fill="#4a9eff"/>
+                    </svg>
+                    <h1 style="font-size:26px;font-weight:700;margin-bottom:10px;">${exerciseName}</h1>
+                    <p style="color:rgba(255,255,255,0.6);font-size:15px;margin-bottom:8px;line-height:1.5;">
+                        Tap the button below to place this exercise in your room
+                    </p>
+                    <p id="status-text" style="color:rgba(255,255,255,0.4);font-size:13px;margin-bottom:0;">
+                        Loading model...
+                    </p>
+
+                    <button id="launch-btn" class="ar-launch-btn" disabled>
+                        ⏳ Loading Model...
+                    </button>
+
+                    <div class="ar-tips" style="position:static;margin-top:32px;">
+                        <div class="ar-tip">
+                            <div class="ar-tip-icon">☝️</div>
+                            <span class="ar-tip-label">Drag<br>to move</span>
+                        </div>
+                        <div class="ar-tip">
+                            <div class="ar-tip-icon">🤏</div>
+                            <span class="ar-tip-label">Pinch<br>to resize</span>
+                        </div>
+                        <div class="ar-tip">
+                            <div class="ar-tip-icon">✌️</div>
+                            <span class="ar-tip-label">Twist<br>to rotate</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="debug-info" id="debug-info">Loading...</div>
+            `;
+
+            // References
+            const viewer = document.getElementById('viewer');
+            const launchBtn = document.getElementById('launch-btn');
+            const statusText = document.getElementById('status-text');
+            const debugInfo = document.getElementById('debug-info');
+
+            // Initial debug info
+            debugInfo.textContent = (isIOS ? 'iOS' : 'Android') +
+                ' | GLB: ' + cleanGlbUrl.substring(cleanGlbUrl.lastIndexOf('/') + 1) +
+                (cleanUsdzUrl ? ' | USDZ: ✓' : '');
+
+            // Progress
+            viewer.addEventListener('progress', (event) => {
+                const pct = Math.round(event.detail.totalProgress * 100);
+                statusText.textContent = 'Loading model... ' + pct + '%';
+                launchBtn.textContent = '⏳ Loading... ' + pct + '%';
+            });
+
+            // Loaded - enable AR button
+            viewer.addEventListener('load', () => {
+                statusText.textContent = 'Model ready! Tap to launch AR.';
+                launchBtn.textContent = '🔮 View in AR';
+                launchBtn.disabled = false;
+                debugInfo.textContent += ' | Loaded ✓';
+            });
+
+            // Our visible button triggers model-viewer's hidden AR button
+            launchBtn.addEventListener('click', () => {
+                debugInfo.textContent += ' | AR tap...';
+                // Activate AR through model-viewer's API
+                viewer.activateAR();
+            });
+
+            // AR status
+            viewer.addEventListener('ar-status', (event) => {
+                debugInfo.textContent += ' | AR: ' + event.detail.status;
+            });
+
+            // Errors
+            viewer.addEventListener('error', (event) => {
+                debugInfo.textContent += ' | ERR: ' + (event.detail?.message || event.message || 'unknown');
+                statusText.textContent = 'Failed to load model. Try refreshing.';
+                statusText.style.color = '#ff6b6b';
+                launchBtn.textContent = '🔄 Refresh';
+                launchBtn.disabled = false;
+                launchBtn.onclick = () => location.reload();
+            });
+        }
+    </script>
+</body>
+</html>
