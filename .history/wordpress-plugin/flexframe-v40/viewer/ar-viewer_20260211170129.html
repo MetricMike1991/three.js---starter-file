@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View in AR - FlexFrame</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            overflow-x: hidden;
+            padding: 24px;
+        }
+
+        .ar-icon { margin-bottom: 20px; }
+        .ar-icon img {
+            width: 220px;
+            height: auto;
+            border-radius: 16px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+        h1 { font-size: 24px; font-weight: 700; margin-bottom: 6px; text-align: center; }
+        .subtitle { color: rgba(255,255,255,0.6); font-size: 14px; margin-bottom: 24px; text-align: center; line-height: 1.5; }
+
+        .gestures { width: 100%; max-width: 340px; margin-bottom: 28px; display: none; }
+        .gesture {
+            display: flex; align-items: center; gap: 16px;
+            padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.08);
+        }
+        .gesture:last-child { border-bottom: none; }
+        .gesture-icon {
+            width: 52px; height: 52px; flex-shrink: 0;
+            background: rgba(74, 158, 255, 0.12); border-radius: 14px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .gesture-title { font-size: 15px; font-weight: 600; margin-bottom: 3px; }
+        .gesture-desc { font-size: 12px; color: rgba(255,255,255,0.5); line-height: 1.4; }
+
+        .ar-button {
+            background: linear-gradient(135deg, #4a9eff 0%, #2d7dd2 100%);
+            color: white; padding: 16px 48px; border-radius: 14px;
+            font-size: 18px; font-weight: 600; border: none; cursor: pointer;
+            box-shadow: 0 8px 28px rgba(74, 158, 255, 0.35);
+            letter-spacing: 0.3px; display: none;
+        }
+        .ar-button:active { transform: scale(0.96); }
+        .ar-button.show { display: inline-block; }
+
+        .loading-msg { margin-top: 20px; display: none; align-items: center; gap: 12px; }
+        .loading-msg.show { display: flex; }
+        .spinner {
+            width: 24px; height: 24px;
+            border: 2.5px solid rgba(255,255,255,0.15);
+            border-top-color: #4a9eff; border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .loading-msg span { color: rgba(255,255,255,0.6); font-size: 14px; }
+
+        .error-msg { color: #ff6b6b; font-size: 14px; margin-top: 16px; display: none; text-align: center; }
+        .error-msg.show { display: block; }
+
+        model-viewer {
+            position: absolute; width: 1px; height: 1px;
+            opacity: 0; pointer-events: none; overflow: hidden;
+        }
+        #ios-ar-link { position: absolute; opacity: 0; pointer-events: none; }
+
+        .debug {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            padding: 8px 12px; background: rgba(0,0,0,0.5);
+            font-size: 10px; color: rgba(255,255,255,0.35);
+            text-align: left; word-break: break-all;
+            max-height: 80px; overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <!-- AR promo image -->
+    <div class="ar-icon" id="ar-icon">
+        <img src="https://FlexFrame.b-cdn.net/AR.jpg" alt="View in AR" />
+    </div>
+
+    <h1 id="page-title">View in AR</h1>
+    <p class="subtitle" id="subtitle">Loading model...</p>
+
+    <div class="gestures" id="gestures">
+        <div class="gesture">
+            <div class="gesture-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <circle cx="10" cy="14" r="2.5" stroke="#4a9eff" stroke-width="1.5" fill="none"/>
+                    <circle cx="16" cy="10" r="2.5" stroke="#4a9eff" stroke-width="1.5" fill="none"/>
+                    <path d="M10 11.5V7M16 7.5V4" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="gesture-text">
+                <div class="gesture-title">2 Fingers — Rotate & Scale</div>
+                <div class="gesture-desc">Pinch to resize the model. Twist two fingers to rotate it in place.</div>
+            </div>
+        </div>
+        <div class="gesture">
+            <div class="gesture-icon">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+                    <circle cx="12" cy="13" r="2.5" stroke="#4a9eff" stroke-width="1.5" fill="none"/>
+                    <path d="M12 10.5V5" stroke="#4a9eff" stroke-width="1.5" stroke-linecap="round"/>
+                    <path d="M8 18h8" stroke="rgba(255,255,255,0.3)" stroke-width="1" stroke-dasharray="2 2"/>
+                    <path d="M9 20l3-2 3 2" stroke="rgba(255,255,255,0.3)" stroke-width="1" fill="none"/>
+                </svg>
+            </div>
+            <div class="gesture-text">
+                <div class="gesture-title">1 Finger — Reposition</div>
+                <div class="gesture-desc">Tap and drag the white indicator on the floor to move the model around your room.</div>
+            </div>
+        </div>
+    </div>
+
+    <button class="ar-button" id="launch-btn">✨ View in Your Room</button>
+
+    <div class="loading-msg" id="loading-msg">
+        <div class="spinner"></div>
+        <span id="loading-text">Loading model...</span>
+    </div>
+
+    <p class="error-msg" id="error-msg"></p>
+
+    <model-viewer id="viewer" ar ar-modes="webxr scene-viewer quick-look" autoplay loading="eager"></model-viewer>
+
+    <a id="ios-ar-link" rel="ar" href="#">
+        <img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" width="1" height="1">
+    </a>
+
+    <div class="debug" id="debug"></div>
+
+    <script type="module">
+        const params = new URLSearchParams(window.location.search);
+        const glbUrl = params.get('glb');
+        const usdzUrl = params.get('usdz');
+        const title = params.get('title') || 'Exercise';
+        const exerciseName = title.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+        const viewer = document.getElementById('viewer');
+        const pageTitle = document.getElementById('page-title');
+        const subtitle = document.getElementById('subtitle');
+        const gesturesDiv = document.getElementById('gestures');
+        const launchBtn = document.getElementById('launch-btn');
+        const loadingMsg = document.getElementById('loading-msg');
+        const loadingText = document.getElementById('loading-text');
+        const errorMsg = document.getElementById('error-msg');
+        const debugDiv = document.getElementById('debug');
+
+        let modelLoaded = false;
+
+        function log(msg) {
+            console.log('[AR]', msg);
+            debugDiv.innerHTML += (debugDiv.innerHTML ? '<br>' : '') + msg;
+            debugDiv.scrollTop = debugDiv.scrollHeight;
+        }
+
+        function showError(msg) {
+            errorMsg.textContent = msg;
+            errorMsg.classList.add('show');
+        }
+
+        function getDevice() {
+            const ua = navigator.userAgent || '';
+            if (/iPad|iPhone|iPod/.test(ua)) return 'ios';
+            if (/android/i.test(ua)) return 'android';
+            return 'desktop';
+        }
+
+        function isChromeOnAndroid() {
+            const ua = navigator.userAgent || '';
+            return /android/i.test(ua) && /Chrome/i.test(ua) && !/SamsungBrowser/i.test(ua);
+        }
+
+        function isSamsungBrowser() {
+            return /SamsungBrowser/i.test(navigator.userAgent || '');
+        }
+
+        function openInSamsungInternet() {
+            // Use intent to open the current page in Samsung Internet browser
+            const url = window.location.href;
+            const intentUrl = 'intent://' + url.replace(/^https?:\/\//, '') +
+                '#Intent;scheme=https;package=com.sec.android.app.sbrowser;end;';
+            window.location.href = intentUrl;
+        }
+
+        const device = getDevice();
+        const chromeAndroid = isChromeOnAndroid();
+        pageTitle.textContent = exerciseName;
+        log(device + ' | Chrome: ' + chromeAndroid + ' | Samsung: ' + isSamsungBrowser());
+
+        // ============================================================
+        // Chrome on Android: skip model-viewer entirely
+        // Just show gesture guide + button that opens Samsung Internet
+        // ============================================================
+        if (chromeAndroid && glbUrl) {
+            subtitle.textContent = 'Ready! Review the controls, then tap the button below.';
+            gesturesDiv.style.display = 'block';
+            launchBtn.classList.add('show');
+            log('Chrome detected — AR button will open Samsung Internet');
+
+            launchBtn.addEventListener('click', () => {
+                log('Opening in Samsung Internet...');
+                loadingText.textContent = 'Opening Samsung Internet...';
+                loadingMsg.classList.add('show');
+                openInSamsungInternet();
+            });
+
+        // ============================================================
+        // Samsung Internet / iOS / other: use model-viewer normally
+        // ============================================================
+        } else if (glbUrl || usdzUrl) {
+            if (glbUrl) viewer.setAttribute('src', glbUrl);
+            if (usdzUrl) viewer.setAttribute('ios-src', usdzUrl);
+
+            loadingMsg.classList.add('show');
+            subtitle.textContent = 'Preparing your AR experience...';
+
+            viewer.addEventListener('load', () => {
+                modelLoaded = true;
+                log('✓ Model loaded');
+                loadingMsg.classList.remove('show');
+                subtitle.textContent = 'Ready! Review the controls, then tap the button below.';
+                gesturesDiv.style.display = 'block';
+                launchBtn.classList.add('show');
+            });
+
+            viewer.addEventListener('error', (e) => {
+                const msg = e.detail ? (e.detail.type || e.detail) : 'unknown';
+                log('✗ Error: ' + msg);
+                loadingMsg.classList.remove('show');
+                subtitle.textContent = 'Failed to load model.';
+                showError('Could not load the 3D model.');
+            });
+
+            viewer.addEventListener('ar-status', (e) => {
+                const status = e.detail.status;
+                log('AR: ' + status);
+                if (status === 'session-started' || status === 'not-presenting') {
+                    loadingMsg.classList.remove('show');
+                } else if (status === 'failed') {
+                    loadingMsg.classList.remove('show');
+                    showError('AR could not start on this device.');
+                }
+            });
+
+            launchBtn.addEventListener('click', () => {
+                if (!modelLoaded) return;
+                log('Launching AR...');
+                loadingText.textContent = 'Starting AR...';
+                loadingMsg.classList.add('show');
+                viewer.activateAR();
+            });
+
+        // ============================================================
+        // No model
+        // ============================================================
+        } else {
+            subtitle.textContent = 'No AR model available.';
+            showError('No model URLs provided.');
+        }
+    </script>
+</body>
+</html>
