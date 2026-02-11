@@ -219,51 +219,19 @@
 
         } else if (deviceType === 'android') {
             if (glbUrl) {
-                // Build all three URL variants
-                var httpsUrl = buildSceneViewerHttpsUrl(glbUrl);
-                var intentArCore = buildIntentArCore(glbUrl);
-                var intentGoogleApp = buildIntentGoogleApp(glbUrl);
+                deviceMessage.textContent = 'Tap the button to place this exercise in your room.';
+                launchButton.style.display = 'inline-block';
 
-                debugLines.push('<br><b>Method:</b> 3 buttons below');
+                // Build the intent URL once
+                var intentUrl = buildAndroidArUrl(glbUrl);
+                debugLines.push('<br><b>Intent (start):</b> ' + intentUrl.substring(0, 120) + '...');
                 deviceInfo.innerHTML = debugLines.join('<br>');
 
-                deviceMessage.textContent = 'Try each button to find which AR method works on your device:';
-
-                // Hide the original button, we'll make 3 custom ones
-                launchButton.style.display = 'none';
-
-                // Create 3 buttons for the 3 methods
-                var btnContainer = document.createElement('div');
-                btnContainer.style.cssText = 'display:flex;flex-direction:column;gap:12px;margin-top:16px;align-items:center;';
-
-                var btn1 = document.createElement('button');
-                btn1.textContent = '① HTTPS Link (Recommended)';
-                btn1.style.cssText = 'padding:14px 28px;font-size:16px;font-weight:bold;border:none;border-radius:12px;background:#4CAF50;color:white;cursor:pointer;width:280px;';
-                btn1.addEventListener('click', function() {
-                    deviceInfo.innerHTML += '<br><b>Trying:</b> HTTPS link...';
-                    window.location.href = httpsUrl;
+                launchButton.addEventListener('click', function() {
+                    loading.classList.add('show');
+                    window.location.href = intentUrl;
+                    setTimeout(function() { loading.classList.remove('show'); }, 3000);
                 });
-
-                var btn2 = document.createElement('button');
-                btn2.textContent = '② Intent → ARCore';
-                btn2.style.cssText = 'padding:14px 28px;font-size:16px;font-weight:bold;border:none;border-radius:12px;background:#2196F3;color:white;cursor:pointer;width:280px;';
-                btn2.addEventListener('click', function() {
-                    deviceInfo.innerHTML += '<br><b>Trying:</b> Intent ARCore...';
-                    window.location.href = intentArCore;
-                });
-
-                var btn3 = document.createElement('button');
-                btn3.textContent = '③ Intent → Google App (v33)';
-                btn3.style.cssText = 'padding:14px 28px;font-size:16px;font-weight:bold;border:none;border-radius:12px;background:#FF9800;color:white;cursor:pointer;width:280px;';
-                btn3.addEventListener('click', function() {
-                    deviceInfo.innerHTML += '<br><b>Trying:</b> Intent Google App...';
-                    window.location.href = intentGoogleApp;
-                });
-
-                btnContainer.appendChild(btn1);
-                btnContainer.appendChild(btn2);
-                btnContainer.appendChild(btn3);
-                launchButton.parentNode.insertBefore(btnContainer, launchButton);
             } else {
                 deviceMessage.textContent = 'Android detected, but no GLB model available.';
                 error.textContent = 'GLB model required for Android AR';
