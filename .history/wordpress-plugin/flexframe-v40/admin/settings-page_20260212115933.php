@@ -31,7 +31,7 @@ function flexframe_create_viewer_page() {
     // Security check
     check_ajax_referer('flexframe_create_page', 'nonce');
     
-    if (!current_user_can('manage_flexframe')) {
+    if (!current_user_can('manage_options')) {
         wp_send_json_error(array('message' => 'Permission denied'));
     }
     
@@ -3482,7 +3482,6 @@ function flexframe_settings_page() {
                 
                 <div class="flexframe-button-row">
                     <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
-                    <?php if ($is_admin_user) : ?>
                     <button type="button" class="button button-secondary" id="flexframe-export-settings" style="margin-left: 10px;">
                         <span class="dashicons dashicons-clipboard" style="vertical-align: middle; margin-right: 5px;"></span>
                         <?php _e('Export Settings to Clipboard', 'flexframe-viewer'); ?>
@@ -3490,7 +3489,6 @@ function flexframe_settings_page() {
                     <span id="export-success-message" style="display: none; color: #00a32a; margin-left: 10px; line-height: 30px;">
                         ✓ <?php _e('Settings copied to clipboard!', 'flexframe-viewer'); ?>
                     </span>
-                    <?php endif; ?>
                 </div>
             </form>
         </div>
@@ -9535,249 +9533,6 @@ function flexframe_settings_page() {
             // Reload the page to get fresh server-rendered list
             location.reload();
         }
-        
-        // ========== Step 7: Client Access JS ==========
-        
-        // Auto-generate username from display name
-        $('#flexframe_client_name').on('input', function() {
-            var name = $(this).val();
-            var username = name.toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, '')
-                .replace(/\s+/g, '')
-                .substring(0, 30);
-            $('#flexframe_client_username').val(username);
-        });
-        
-        // Generate random password
-        function generatePassword(length) {
-            length = length || 16;
-            var chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
-            var password = '';
-            for (var i = 0; i < length; i++) {
-                password += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
-            return password;
-        }
-        
-        $('#generate-password-btn').on('click', function() {
-            $('#flexframe_client_password').val(generatePassword(16));
-        });
-        
-        // Auto-generate password on page load if field is empty
-        if ($('#flexframe_client_password').length && !$('#flexframe_client_password').val()) {
-            $('#flexframe_client_password').val(generatePassword(16));
-        }
-        
-        // Copy login URL to clipboard
-        $('#copy-login-url').on('click', function() {
-            var url = $('#client-login-url').text();
-            navigator.clipboard.writeText(url).then(function() {
-                var $btn = $('#copy-login-url');
-                $btn.find('.dashicons').removeClass('dashicons-clipboard').addClass('dashicons-yes');
-                setTimeout(function() {
-                    $btn.find('.dashicons').removeClass('dashicons-yes').addClass('dashicons-clipboard');
-                }, 1500);
-            });
-        });
-        
-        // Create Login Page
-        $('#create-login-page-btn').on('click', function() {
-            var $btn = $(this);
-            $btn.prop('disabled', true).text('Creating...');
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_create_login_page',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>'
-                },
-                success: function(response) {
-                    if (response.success) {
-                        location.reload();
-                    } else {
-                        alert(response.data.message);
-                        $btn.prop('disabled', false).text('Create Login Page');
-                    }
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.prop('disabled', false).text('Create Login Page');
-                }
-            });
-        });
-        
-        // Create Client Account
-        $('#create-client-btn').on('click', function() {
-            var $btn = $(this);
-            var displayName = $('#flexframe_client_name').val().trim();
-            var email = $('#flexframe_client_email').val().trim();
-            var username = $('#flexframe_client_username').val().trim();
-            var password = $('#flexframe_client_password').val().trim();
-            
-            if (!displayName || !email || !username || !password) {
-                alert('All fields are required.');
-                return;
-            }
-            
-            $btn.prop('disabled', true);
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_create_client_account',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    display_name: displayName,
-                    email: email,
-                    username: username,
-                    password: password
-                },
-                success: function(response) {
-                    if (response.success) {
-                        // Show credentials summary before clearing
-                        var loginUrl = $('#client-login-url').text();
-                        var summary = 'Account created!\n\n' +
-                            'Login URL: ' + loginUrl + '\n' +
-                            'Username: ' + username + '\n' +
-                            'Password: ' + password + '\n\n' +
-                            'Copy these credentials now — the password won\'t be shown again.';
-                        
-                        if (confirm(summary + '\n\nClick OK to copy credentials to clipboard.')) {
-                            navigator.clipboard.writeText(
-                                'Login URL: ' + loginUrl + '\n' +
-                                'Username: ' + username + '\n' +
-                                'Password: ' + password
-                            ).catch(function() {});
-                        }
-                        
-                        location.reload();
-                    } else {
-                        alert(response.data.message);
-                        $btn.prop('disabled', false);
-                    }
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.prop('disabled', false);
-                }
-            });
-        });
-        
-        // Reset Client Password (opens modal)
-        $(document).on('click', '.client-reset-pw-btn', function() {
-            var userId = $(this).data('user-id');
-            var userName = $(this).data('name');
-            var newPw = generatePassword(16);
-            
-            var modalHtml = '<div class="flexframe-modal-overlay">' +
-                '<div class="flexframe-modal">' +
-                    '<h3><span class="dashicons dashicons-lock" style="margin-right: 6px;"></span>Reset Password for ' + $('<span>').text(userName).html() + '</h3>' +
-                    '<div class="modal-field">' +
-                        '<label>New Password</label>' +
-                        '<input type="text" id="modal-new-password" value="' + newPw + '" />' +
-                    '</div>' +
-                    '<div class="modal-actions">' +
-                        '<button type="button" class="button modal-cancel-btn">Cancel</button>' +
-                        '<button type="button" class="button button-primary modal-confirm-reset-btn" data-user-id="' + userId + '">Reset Password</button>' +
-                    '</div>' +
-                '</div>' +
-            '</div>';
-            
-            $('body').append(modalHtml);
-        });
-        
-        // Close modal
-        $(document).on('click', '.modal-cancel-btn, .flexframe-modal-overlay', function(e) {
-            if (e.target === this) {
-                $('.flexframe-modal-overlay').remove();
-            }
-        });
-        
-        // Confirm password reset
-        $(document).on('click', '.modal-confirm-reset-btn', function() {
-            var $btn = $(this);
-            var userId = $btn.data('user-id');
-            var newPassword = $('#modal-new-password').val().trim();
-            
-            if (!newPassword) {
-                alert('Password cannot be empty.');
-                return;
-            }
-            
-            $btn.prop('disabled', true).text('Resetting...');
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_reset_client_password',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    user_id: userId,
-                    new_password: newPassword
-                },
-                success: function(response) {
-                    if (response.success) {
-                        if (confirm(response.data.message + '\n\nNew password: ' + newPassword + '\n\nClick OK to copy to clipboard.')) {
-                            navigator.clipboard.writeText(newPassword).catch(function() {});
-                        }
-                        $('.flexframe-modal-overlay').remove();
-                    } else {
-                        alert(response.data.message);
-                        $btn.prop('disabled', false).text('Reset Password');
-                    }
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.prop('disabled', false).text('Reset Password');
-                }
-            });
-        });
-        
-        // Delete Client Account
-        $(document).on('click', '.client-delete-btn', function() {
-            var $btn = $(this);
-            var userId = $btn.data('user-id');
-            var userName = $btn.data('name');
-            
-            if (!confirm('Are you sure you want to permanently delete the account for "' + userName + '"?\n\nThis cannot be undone.')) {
-                return;
-            }
-            
-            $btn.prop('disabled', true);
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_delete_client_account',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    user_id: userId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $btn.closest('tr').fadeOut(300, function() {
-                            $(this).remove();
-                            if ($('.client-accounts-table tbody tr').length === 0) {
-                                $('#flexframe-client-accounts-list').html(
-                                    '<div class="client-empty-state">' +
-                                    '<span class="dashicons dashicons-admin-users"></span>' +
-                                    '<p>No client accounts created yet. Create your first one above!</p>' +
-                                    '</div>'
-                                );
-                            }
-                        });
-                    } else {
-                        alert(response.data.message);
-                        $btn.prop('disabled', false);
-                    }
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.prop('disabled', false);
-                }
-            });
-        });
     });
     </script>
     <?php

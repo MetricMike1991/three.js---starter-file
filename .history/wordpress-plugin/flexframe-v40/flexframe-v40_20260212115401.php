@@ -145,9 +145,9 @@ function flexframe_redirect_client_away_from_dashboard() {
     global $pagenow;
     $current_page = isset($_GET['page']) ? $_GET['page'] : '';
     
-    // Allow FlexFrame settings, profile, AJAX, and options.php (form save)
+    // Allow FlexFrame settings, profile, and AJAX
     $allowed_pages = array('flexframe-settings');
-    $allowed_pagenow = array('admin-ajax.php', 'options.php', 'profile.php', 'async-upload.php', 'media-upload.php', 'upload.php');
+    $allowed_pagenow = array('admin-ajax.php', 'profile.php', 'async-upload.php', 'media-upload.php', 'upload.php');
     
     if (in_array($current_page, $allowed_pages)) return;
     if (in_array($pagenow, $allowed_pagenow)) return;
@@ -3983,7 +3983,7 @@ function flexframe_save_primary_color() {
     check_ajax_referer('flexframe_settings_nonce', 'nonce');
     
     // Check if user has permission
-    if (!current_user_can('manage_flexframe')) {
+    if (!current_user_can('manage_options')) {
         wp_send_json_error('Insufficient permissions');
         return;
     }

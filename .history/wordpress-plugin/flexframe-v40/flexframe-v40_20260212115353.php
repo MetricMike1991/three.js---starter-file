@@ -145,9 +145,9 @@ function flexframe_redirect_client_away_from_dashboard() {
     global $pagenow;
     $current_page = isset($_GET['page']) ? $_GET['page'] : '';
     
-    // Allow FlexFrame settings, profile, AJAX, and options.php (form save)
+    // Allow FlexFrame settings, profile, and AJAX
     $allowed_pages = array('flexframe-settings');
-    $allowed_pagenow = array('admin-ajax.php', 'options.php', 'profile.php', 'async-upload.php', 'media-upload.php', 'upload.php');
+    $allowed_pagenow = array('admin-ajax.php', 'profile.php', 'async-upload.php', 'media-upload.php', 'upload.php');
     
     if (in_array($current_page, $allowed_pages)) return;
     if (in_array($pagenow, $allowed_pagenow)) return;
@@ -3983,7 +3983,7 @@ function flexframe_save_primary_color() {
     check_ajax_referer('flexframe_settings_nonce', 'nonce');
     
     // Check if user has permission
-    if (!current_user_can('manage_flexframe')) {
+    if (!current_user_can('manage_options')) {
         wp_send_json_error('Insufficient permissions');
         return;
     }
@@ -4437,12 +4437,6 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), 'flexframe_add_se
  * Plugin activation
  */
 function flexframe_activate() {
-    // Setup roles and capabilities
-    flexframe_setup_roles();
-    
-    // Create the branded login page
-    flexframe_ensure_login_page();
-    
     // Set default options
     add_option('flexframe_logo_url', '');
     add_option('flexframe_logo_threshold', 0.95);
@@ -4454,9 +4448,6 @@ function flexframe_activate() {
     add_option('flexframe_use_logo_loader', false);
     add_option('flexframe_logo_loader_animation', 'pulse');
     add_option('flexframe_logo_loader_size', 80);
-    
-    // Flush rewrite rules for login page
-    flush_rewrite_rules();
 }
 register_activation_hook(__FILE__, 'flexframe_activate');
 

@@ -31,7 +31,7 @@ function flexframe_create_viewer_page() {
     // Security check
     check_ajax_referer('flexframe_create_page', 'nonce');
     
-    if (!current_user_can('manage_flexframe')) {
+    if (!current_user_can('manage_options')) {
         wp_send_json_error(array('message' => 'Permission denied'));
     }
     
@@ -1792,6 +1792,7 @@ function flexframe_settings_page() {
                             </div>
                             
                             <!-- Quick Create Button -->
+                            <?php if ($is_admin_user) : ?>
                             <div class="flexframe-create-page-row">
                                 <button type="button" id="flexframe-create-viewer-page" class="button button-primary button-hero">
                                     <span class="dashicons dashicons-plus-alt" style="margin-top: 5px; margin-right: 5px;"></span>
@@ -1802,6 +1803,7 @@ function flexframe_settings_page() {
                             <p class="description" style="margin-top: 8px;">
                                 <?php _e('Click to automatically create a new page with the FlexFrame viewer shortcode.', 'flexframe-viewer'); ?>
                             </p>
+                            <?php endif; ?>
                         </div>
                         
                         <!-- Viewer Page URL Section -->

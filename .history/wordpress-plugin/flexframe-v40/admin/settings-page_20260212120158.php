@@ -31,7 +31,7 @@ function flexframe_create_viewer_page() {
     // Security check
     check_ajax_referer('flexframe_create_page', 'nonce');
     
-    if (!current_user_can('manage_flexframe')) {
+    if (!current_user_can('manage_options')) {
         wp_send_json_error(array('message' => 'Permission denied'));
     }
     

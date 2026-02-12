@@ -31,7 +31,7 @@ function flexframe_create_viewer_page() {
     // Security check
     check_ajax_referer('flexframe_create_page', 'nonce');
     
-    if (!current_user_can('manage_flexframe')) {
+    if (!current_user_can('manage_options')) {
         wp_send_json_error(array('message' => 'Permission denied'));
     }
     
@@ -3482,7 +3482,6 @@ function flexframe_settings_page() {
                 
                 <div class="flexframe-button-row">
                     <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
-                    <?php if ($is_admin_user) : ?>
                     <button type="button" class="button button-secondary" id="flexframe-export-settings" style="margin-left: 10px;">
                         <span class="dashicons dashicons-clipboard" style="vertical-align: middle; margin-right: 5px;"></span>
                         <?php _e('Export Settings to Clipboard', 'flexframe-viewer'); ?>
@@ -3490,7 +3489,6 @@ function flexframe_settings_page() {
                     <span id="export-success-message" style="display: none; color: #00a32a; margin-left: 10px; line-height: 30px;">
                         ✓ <?php _e('Settings copied to clipboard!', 'flexframe-viewer'); ?>
                     </span>
-                    <?php endif; ?>
                 </div>
             </form>
         </div>
