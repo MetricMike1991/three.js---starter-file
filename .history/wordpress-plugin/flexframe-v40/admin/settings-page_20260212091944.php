@@ -363,7 +363,6 @@ function flexframe_create_demo_page() {
     $demo_name = isset($_POST['demo_name']) ? sanitize_text_field($_POST['demo_name']) : '';
     $demo_slug = isset($_POST['demo_slug']) ? sanitize_title($_POST['demo_slug']) : '';
     $theme_preset = isset($_POST['theme_preset']) ? sanitize_text_field($_POST['theme_preset']) : '';
-    $demo_logo_url = isset($_POST['demo_logo_url']) ? esc_url_raw($_POST['demo_logo_url']) : '';
     
     if (empty($demo_name) || empty($demo_slug)) {
         wp_send_json_error(array('message' => 'Demo name and URL slug are required.'));
@@ -424,9 +423,6 @@ function flexframe_create_demo_page() {
     update_post_meta($page_id, '_flexframe_demo_page', '1');
     update_post_meta($page_id, '_flexframe_demo_preset', $theme_preset);
     update_post_meta($page_id, '_flexframe_demo_name', $demo_name);
-    if (!empty($demo_logo_url)) {
-        update_post_meta($page_id, '_flexframe_demo_logo_url', $demo_logo_url);
-    }
     
     // Track demo pages in an option for easy retrieval
     $demo_pages = get_option('flexframe_demo_pages', array());
@@ -434,7 +430,6 @@ function flexframe_create_demo_page() {
         'name' => $demo_name,
         'slug' => $demo_slug,
         'theme_preset' => $theme_preset,
-        'logo_url' => $demo_logo_url,
         'created' => current_time('mysql'),
         'url' => get_permalink($page_id),
     );
@@ -477,24 +472,15 @@ function flexframe_update_demo_theme() {
     // Update the theme
     update_post_meta($page_id, '_flexframe_demo_preset', $theme_preset);
     
-    // Update logo if provided
-    $demo_logo_url = isset($_POST['demo_logo_url']) ? esc_url_raw($_POST['demo_logo_url']) : null;
-    if ($demo_logo_url !== null) {
-        update_post_meta($page_id, '_flexframe_demo_logo_url', $demo_logo_url);
-    }
-    
     // Update the tracked demo pages option
     $demo_pages = get_option('flexframe_demo_pages', array());
     if (isset($demo_pages[$page_id])) {
         $demo_pages[$page_id]['theme_preset'] = $theme_preset;
-        if ($demo_logo_url !== null) {
-            $demo_pages[$page_id]['logo_url'] = $demo_logo_url;
-        }
         update_option('flexframe_demo_pages', $demo_pages);
     }
     
     wp_send_json_success(array(
-        'message' => 'Settings updated successfully!',
+        'message' => 'Theme updated successfully!',
         'demo_pages' => $demo_pages
     ));
 }
@@ -2913,25 +2899,6 @@ function flexframe_settings_page() {
                                             <?php endif; ?>
                                         </select>
                                     </div>
-                                    <div class="demo-form-field">
-                                        <label><?php _e('Logo', 'flexframe-viewer'); ?></label>
-                                        <div class="demo-logo-upload-wrapper">
-                                            <input type="hidden" id="flexframe_demo_logo_url" value="" />
-                                            <div class="demo-logo-preview" id="demo-logo-preview" style="display:none;">
-                                                <img src="" alt="Demo Logo" id="demo-logo-preview-img" />
-                                                <button type="button" class="demo-logo-remove-btn" id="demo-logo-remove" title="<?php _e('Remove logo', 'flexframe-viewer'); ?>">
-                                                    <span class="dashicons dashicons-no-alt"></span>
-                                                </button>
-                                            </div>
-                                            <button type="button" class="button" id="demo-logo-upload-btn">
-                                                <span class="dashicons dashicons-upload" style="margin-top: 4px;"></span>
-                                                <?php _e('Upload Logo', 'flexframe-viewer'); ?>
-                                            </button>
-                                            <p class="description"><?php _e('Optional. Leave empty to use global logo.', 'flexframe-viewer'); ?></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="demo-form-row">
                                     <div class="demo-form-field demo-form-action">
                                         <button type="button" id="flexframe-create-demo-page" class="button button-primary">
                                             <span class="dashicons dashicons-plus-alt" style="margin-top: 4px;"></span>
@@ -2961,7 +2928,6 @@ function flexframe_settings_page() {
                                         <thead>
                                             <tr>
                                                 <th><?php _e('Name', 'flexframe-viewer'); ?></th>
-                                                <th><?php _e('Logo', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('URL', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('Theme', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('Actions', 'flexframe-viewer'); ?></th>
@@ -2987,28 +2953,6 @@ function flexframe_settings_page() {
                                             <tr data-page-id="<?php echo esc_attr($page_id); ?>">
                                                 <td class="demo-name-cell">
                                                     <strong><?php echo esc_html($demo['name']); ?></strong>
-                                                </td>
-                                                <td class="demo-logo-cell">
-                                                    <?php 
-                                                    $demo_logo = isset($demo['logo_url']) ? $demo['logo_url'] : '';
-                                                    if (!empty($demo_logo)) : ?>
-                                                        <div class="demo-table-logo-wrapper" data-page-id="<?php echo esc_attr($page_id); ?>">
-                                                            <img src="<?php echo esc_url($demo_logo); ?>" alt="Logo" class="demo-table-logo-img" />
-                                                            <button type="button" class="demo-table-logo-change" title="<?php _e('Change logo', 'flexframe-viewer'); ?>">
-                                                                <span class="dashicons dashicons-edit"></span>
-                                                            </button>
-                                                            <button type="button" class="demo-table-logo-remove" data-page-id="<?php echo esc_attr($page_id); ?>" title="<?php _e('Remove logo (use global)', 'flexframe-viewer'); ?>">
-                                                                <span class="dashicons dashicons-no-alt"></span>
-                                                            </button>
-                                                        </div>
-                                                    <?php else : ?>
-                                                        <div class="demo-table-logo-wrapper no-logo" data-page-id="<?php echo esc_attr($page_id); ?>">
-                                                            <button type="button" class="button button-small demo-table-logo-change" title="<?php _e('Upload logo', 'flexframe-viewer'); ?>">
-                                                                <span class="dashicons dashicons-format-image" style="margin-top: 3px;"></span>
-                                                            </button>
-                                                            <span class="demo-uses-global"><?php _e('Global', 'flexframe-viewer'); ?></span>
-                                                        </div>
-                                                    <?php endif; ?>
                                                 </td>
                                                 <td class="demo-url-cell">
                                                     <a href="<?php echo esc_url($demo_url); ?>" target="_blank" title="<?php _e('Open demo page', 'flexframe-viewer'); ?>">
@@ -5544,117 +5488,6 @@ function flexframe_settings_page() {
             background: #00a32a !important;
             border-color: #00a32a !important;
             color: #fff !important;
-        }
-        
-        /* Demo Logo Upload (Create Form) */
-        .demo-logo-upload-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .demo-logo-upload-wrapper .description {
-            font-size: 12px;
-            color: #666;
-            margin: 0;
-        }
-        .demo-logo-preview {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            background: linear-gradient(45deg, #ccc 25%, transparent 25%),
-                        linear-gradient(-45deg, #ccc 25%, transparent 25%),
-                        linear-gradient(45deg, transparent 75%, #ccc 75%),
-                        linear-gradient(-45deg, transparent 75%, #ccc 75%);
-            background-size: 12px 12px;
-            background-position: 0 0, 0 6px, 6px -6px, -6px 0px;
-            border: 1px solid #c3c4c7;
-            border-radius: 6px;
-            padding: 4px;
-            overflow: hidden;
-        }
-        .demo-logo-preview img {
-            max-width: 60px;
-            max-height: 40px;
-            object-fit: contain;
-            display: block;
-        }
-        .demo-logo-remove-btn {
-            position: absolute;
-            top: -4px;
-            right: -4px;
-            background: #d63638;
-            color: #fff;
-            border: none;
-            border-radius: 50%;
-            width: 18px;
-            height: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            padding: 0;
-            line-height: 1;
-        }
-        .demo-logo-remove-btn .dashicons {
-            font-size: 12px;
-            width: 12px;
-            height: 12px;
-        }
-        
-        /* Demo Logo in Table Rows */
-        .demo-logo-cell {
-            width: 90px;
-        }
-        .demo-table-logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            position: relative;
-        }
-        .demo-table-logo-wrapper .demo-table-logo-img {
-            max-width: 48px;
-            max-height: 32px;
-            object-fit: contain;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 2px;
-            background: linear-gradient(45deg, #eee 25%, transparent 25%),
-                        linear-gradient(-45deg, #eee 25%, transparent 25%),
-                        linear-gradient(45deg, transparent 75%, #eee 75%),
-                        linear-gradient(-45deg, transparent 75%, #eee 75%);
-            background-size: 8px 8px;
-            background-position: 0 0, 0 4px, 4px -4px, -4px 0px;
-        }
-        .demo-table-logo-wrapper .demo-table-logo-change,
-        .demo-table-logo-wrapper .demo-table-logo-remove {
-            background: none;
-            border: none;
-            cursor: pointer;
-            padding: 0;
-            color: #666;
-            display: flex;
-            align-items: center;
-        }
-        .demo-table-logo-wrapper .demo-table-logo-change:hover {
-            color: #2271b1;
-        }
-        .demo-table-logo-wrapper .demo-table-logo-remove:hover {
-            color: #d63638;
-        }
-        .demo-table-logo-wrapper .demo-table-logo-change .dashicons,
-        .demo-table-logo-wrapper .demo-table-logo-remove .dashicons {
-            font-size: 14px;
-            width: 14px;
-            height: 14px;
-        }
-        .demo-table-logo-wrapper.no-logo {
-            gap: 6px;
-        }
-        .demo-uses-global {
-            font-size: 11px;
-            color: #999;
-            font-style: italic;
         }
     </style>
     
@@ -8572,281 +8405,6 @@ function flexframe_settings_page() {
                 }, 3000);
             });
         });
-        
-        // ========== Step 6: Gym Demo Pages ==========
-        
-        // Demo logo uploader (create form)
-        var demoLogoUploader;
-        $('#demo-logo-upload-btn').on('click', function(e) {
-            e.preventDefault();
-            if (demoLogoUploader) {
-                demoLogoUploader.open();
-                return;
-            }
-            demoLogoUploader = wp.media({
-                title: '<?php _e('Select Demo Logo', 'flexframe-viewer'); ?>',
-                button: { text: '<?php _e('Use this logo', 'flexframe-viewer'); ?>' },
-                library: { type: 'image' },
-                multiple: false
-            });
-            demoLogoUploader.on('select', function() {
-                var attachment = demoLogoUploader.state().get('selection').first().toJSON();
-                $('#flexframe_demo_logo_url').val(attachment.url);
-                $('#demo-logo-preview-img').attr('src', attachment.url);
-                $('#demo-logo-preview').show();
-            });
-            demoLogoUploader.open();
-        });
-        
-        // Remove demo logo (create form)
-        $('#demo-logo-remove').on('click', function(e) {
-            e.preventDefault();
-            $('#flexframe_demo_logo_url').val('');
-            $('#demo-logo-preview-img').attr('src', '');
-            $('#demo-logo-preview').hide();
-        });
-        
-        // Change/upload logo for existing demo page (table row)
-        $(document).on('click', '.demo-table-logo-change', function(e) {
-            e.preventDefault();
-            var $wrapper = $(this).closest('.demo-table-logo-wrapper');
-            var pageId = $wrapper.data('page-id');
-            
-            var rowLogoUploader = wp.media({
-                title: '<?php _e('Select Demo Logo', 'flexframe-viewer'); ?>',
-                button: { text: '<?php _e('Use this logo', 'flexframe-viewer'); ?>' },
-                library: { type: 'image' },
-                multiple: false
-            });
-            rowLogoUploader.on('select', function() {
-                var attachment = rowLogoUploader.state().get('selection').first().toJSON();
-                // Save via AJAX
-                var themePreset = $wrapper.closest('tr').find('.demo-theme-select').val();
-                $.ajax({
-                    url: ajaxurl,
-                    type: 'POST',
-                    data: {
-                        action: 'flexframe_update_demo_theme',
-                        nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                        page_id: pageId,
-                        theme_preset: themePreset,
-                        demo_logo_url: attachment.url
-                    },
-                    success: function(response) {
-                        if (response.success) {
-                            // Update the cell UI
-                            $wrapper.removeClass('no-logo');
-                            if ($wrapper.find('.demo-table-logo-img').length) {
-                                $wrapper.find('.demo-table-logo-img').attr('src', attachment.url);
-                            } else {
-                                $wrapper.html(
-                                    '<img src="' + attachment.url + '" alt="Logo" class="demo-table-logo-img" />' +
-                                    '<button type="button" class="demo-table-logo-change" title="Change logo"><span class="dashicons dashicons-edit"></span></button>' +
-                                    '<button type="button" class="demo-table-logo-remove" data-page-id="' + pageId + '" title="Remove logo"><span class="dashicons dashicons-no-alt"></span></button>'
-                                );
-                            }
-                            $wrapper.find('.demo-uses-global').remove();
-                        }
-                    }
-                });
-            });
-            rowLogoUploader.open();
-        });
-        
-        // Remove logo from existing demo page (table row)
-        $(document).on('click', '.demo-table-logo-remove', function(e) {
-            e.preventDefault();
-            var $btn = $(this);
-            var pageId = $btn.data('page-id');
-            var $wrapper = $btn.closest('.demo-table-logo-wrapper');
-            var themePreset = $wrapper.closest('tr').find('.demo-theme-select').val();
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_update_demo_theme',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    page_id: pageId,
-                    theme_preset: themePreset,
-                    demo_logo_url: ''
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $wrapper.addClass('no-logo');
-                        $wrapper.html(
-                            '<button type="button" class="button button-small demo-table-logo-change" title="Upload logo"><span class="dashicons dashicons-format-image" style="margin-top: 3px;"></span></button>' +
-                            '<span class="demo-uses-global">Global</span>'
-                        );
-                    }
-                }
-            });
-        });
-        
-        // Auto-generate slug from name
-        $('#flexframe_demo_name').on('input', function() {
-            var name = $(this).val();
-            var slug = name.toLowerCase()
-                .replace(/[^a-z0-9\s-]/g, '')
-                .replace(/\s+/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '');
-            $('#flexframe_demo_slug').val(slug);
-        });
-        
-        // Create Demo Page
-        $('#flexframe-create-demo-page').on('click', function() {
-            var $btn = $(this);
-            var $status = $('#flexframe-demo-create-status');
-            var demoName = $('#flexframe_demo_name').val().trim();
-            var demoSlug = $('#flexframe_demo_slug').val().trim();
-            var themePreset = $('#flexframe_demo_theme').val();
-            var demoLogoUrl = $('#flexframe_demo_logo_url').val();
-            
-            if (!demoName) {
-                $status.html('<span style="color: #d63638;">✗ Please enter a demo name.</span>');
-                return;
-            }
-            if (!demoSlug) {
-                $status.html('<span style="color: #d63638;">✗ Please enter a URL slug.</span>');
-                return;
-            }
-            if (!themePreset) {
-                $status.html('<span style="color: #d63638;">✗ Please select a theme.</span>');
-                return;
-            }
-            
-            $btn.prop('disabled', true).html('<span class="dashicons dashicons-update spin" style="margin-top: 4px;"></span> Creating...');
-            $status.html('<span style="color: #666;">Creating demo page...</span>');
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_create_demo_page',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    demo_name: demoName,
-                    demo_slug: demoSlug,
-                    theme_preset: themePreset,
-                    demo_logo_url: demoLogoUrl
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $status.html('<span style="color: #00a32a;">✓ ' + response.data.message + '</span>');
-                        // Clear form
-                        $('#flexframe_demo_name').val('');
-                        $('#flexframe_demo_slug').val('');
-                        $('#flexframe_demo_theme').val('');
-                        $('#flexframe_demo_logo_url').val('');
-                        $('#demo-logo-preview-img').attr('src', '');
-                        $('#demo-logo-preview').hide();
-                        // Refresh demo list
-                        refreshDemoPagesList(response.data.demo_pages);
-                    } else {
-                        $status.html('<span style="color: #d63638;">✗ ' + response.data.message + '</span>');
-                    }
-                    $btn.prop('disabled', false).html('<span class="dashicons dashicons-plus-alt" style="margin-top: 4px;"></span> Create Demo Page');
-                },
-                error: function() {
-                    $status.html('<span style="color: #d63638;">✗ An error occurred. Please try again.</span>');
-                    $btn.prop('disabled', false).html('<span class="dashicons dashicons-plus-alt" style="margin-top: 4px;"></span> Create Demo Page');
-                }
-            });
-        });
-        
-        // Update Demo Page Theme
-        $(document).on('click', '.demo-update-theme-btn', function() {
-            var $btn = $(this);
-            var pageId = $btn.data('page-id');
-            var themePreset = $btn.closest('td').find('.demo-theme-select').val();
-            
-            $btn.prop('disabled', true).html('<span class="dashicons dashicons-update spin" style="margin-top: 3px;"></span>');
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_update_demo_theme',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    page_id: pageId,
-                    theme_preset: themePreset
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $btn.addClass('updated').html('<span class="dashicons dashicons-yes" style="margin-top: 3px;"></span> Saved');
-                        setTimeout(function() {
-                            $btn.removeClass('updated').html('<span class="dashicons dashicons-update" style="margin-top: 3px;"></span> Apply');
-                        }, 2000);
-                    } else {
-                        alert(response.data.message);
-                    }
-                    $btn.prop('disabled', false);
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.prop('disabled', false).html('<span class="dashicons dashicons-update" style="margin-top: 3px;"></span> Apply');
-                }
-            });
-        });
-        
-        // Delete Demo Page
-        $(document).on('click', '.demo-delete-btn', function() {
-            var $btn = $(this);
-            var pageId = $btn.data('page-id');
-            var demoName = $btn.data('name');
-            
-            if (!confirm('Are you sure you want to delete the demo page "' + demoName + '"? This will move the page to trash.')) {
-                return;
-            }
-            
-            $btn.prop('disabled', true);
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_delete_demo_page',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    page_id: pageId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $btn.closest('tr').fadeOut(300, function() {
-                            $(this).remove();
-                            // If no more rows, show empty state
-                            if ($('.demo-pages-table tbody tr').length === 0) {
-                                refreshDemoPagesList({});
-                            }
-                        });
-                    } else {
-                        alert(response.data.message);
-                        $btn.prop('disabled', false);
-                    }
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.prop('disabled', false);
-                }
-            });
-        });
-        
-        // Helper: Refresh the demo pages list HTML
-        function refreshDemoPagesList(demoPages) {
-            var $list = $('#flexframe-demo-pages-list');
-            
-            if (!demoPages || Object.keys(demoPages).length === 0) {
-                $list.html(
-                    '<div class="demo-empty-state">' +
-                    '<span class="dashicons dashicons-store"></span>' +
-                    '<p>No demo pages created yet. Create your first one above!</p>' +
-                    '</div>'
-                );
-                return;
-            }
-            
-            // Reload the page to get fresh server-rendered list
-            location.reload();
-        }
     });
     </script>
     <?php

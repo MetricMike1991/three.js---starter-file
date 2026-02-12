@@ -55,14 +55,6 @@ function flexframe_maybe_apply_demo_overrides() {
     $is_demo = get_post_meta($post->ID, '_flexframe_demo_page', true);
     if (!$is_demo) return;
     
-    // Override logo if demo page has a custom logo (works regardless of theme preset)
-    $demo_logo_url = get_post_meta($post->ID, '_flexframe_demo_logo_url', true);
-    if (!empty($demo_logo_url)) {
-        add_filter('pre_option_flexframe_logo_url', function() use ($demo_logo_url) {
-            return $demo_logo_url;
-        });
-    }
-    
     $preset_key = get_post_meta($post->ID, '_flexframe_demo_preset', true);
     if (empty($preset_key) || $preset_key === 'current') return; // 'current' = use global settings as-is
     
