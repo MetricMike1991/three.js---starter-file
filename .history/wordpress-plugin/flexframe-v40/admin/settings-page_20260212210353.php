@@ -1762,7 +1762,7 @@ function flexframe_settings_page() {
             </div>
 
             <!-- Client Welcome Hero -->
-            <div class="flexframe-client-welcome">
+            <div class="flexframe-client-welcome">>
                 <div class="welcome-content">
                     <?php if (!empty($logo_url)) : ?>
                         <div class="welcome-logo">

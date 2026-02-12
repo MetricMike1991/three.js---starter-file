@@ -1728,13 +1728,14 @@ function flexframe_settings_page() {
     $thumbnail_label_opacity = get_option('flexframe_thumbnail_label_opacity', 0.1);
     
     ?>
-    <div class="wrap"<?php if ($is_client_user) : $client_primary = !empty($primary_color) ? $primary_color : '#2271b1'; ?> style="--client-accent: <?php echo esc_attr($client_primary); ?>;"<?php endif; ?>>
+    <div class="wrap">
         <?php if ($is_client_user) : 
             $current_user = wp_get_current_user();
             $client_display_name = !empty($current_user->display_name) ? $current_user->display_name : $current_user->user_login;
+            $client_primary = !empty($primary_color) ? $primary_color : '#2271b1';
         ?>
             <!-- Client Top Navigation Bar -->
-            <div class="flexframe-client-topbar">
+            <div class="flexframe-client-topbar" style="--client-accent: <?php echo esc_attr($client_primary); ?>;">
                 <div class="topbar-brand">
                     <?php if (!empty($logo_url)) : ?>
                         <img src="<?php echo esc_url($logo_url); ?>" alt="Logo" class="topbar-logo" />
@@ -1762,7 +1763,7 @@ function flexframe_settings_page() {
             </div>
 
             <!-- Client Welcome Hero -->
-            <div class="flexframe-client-welcome">
+            <div class="flexframe-client-welcome" style="--client-accent: <?php echo esc_attr($client_primary); ?>;">
                 <div class="welcome-content">
                     <?php if (!empty($logo_url)) : ?>
                         <div class="welcome-logo">
@@ -6355,25 +6356,6 @@ function flexframe_settings_page() {
             
             $section.toggleClass('collapsed');
             $content.slideToggle(200);
-        });
-        
-        // Quick-link pills in welcome hero — scroll to & expand step
-        $('.quick-link[data-scroll-step]').on('click', function() {
-            var stepNum = $(this).data('scroll-step');
-            var $header = $('.flexframe-step-header[data-step="' + stepNum + '"]');
-            if (!$header.length) return;
-            var $section = $header.closest('.flexframe-step-section');
-            
-            // Expand if collapsed
-            if ($section.hasClass('collapsed')) {
-                $section.removeClass('collapsed');
-                $section.find('.flexframe-step-content').slideDown(200);
-            }
-            
-            // Smooth scroll into view
-            $('html, body').animate({
-                scrollTop: $section.offset().top - 70
-            }, 400);
         });
         
         // Manual theme settings toggle (Step 5)

@@ -1734,7 +1734,7 @@ function flexframe_settings_page() {
             $client_display_name = !empty($current_user->display_name) ? $current_user->display_name : $current_user->user_login;
         ?>
             <!-- Client Top Navigation Bar -->
-            <div class="flexframe-client-topbar">
+            <div class="flexframe-client-topbar">>
                 <div class="topbar-brand">
                     <?php if (!empty($logo_url)) : ?>
                         <img src="<?php echo esc_url($logo_url); ?>" alt="Logo" class="topbar-logo" />
@@ -1762,7 +1762,7 @@ function flexframe_settings_page() {
             </div>
 
             <!-- Client Welcome Hero -->
-            <div class="flexframe-client-welcome">
+            <div class="flexframe-client-welcome" style="--client-accent: <?php echo esc_attr($client_primary); ?>;">
                 <div class="welcome-content">
                     <?php if (!empty($logo_url)) : ?>
                         <div class="welcome-logo">
