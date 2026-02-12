@@ -5590,12 +5590,6 @@ function flexframe_settings_page() {
             padding: 0 8px;
             min-height: 28px;
         }
-        .demo-refresh-btn .dashicons.spin {
-            animation: flexframe-spin 1s linear infinite;
-        }
-        @keyframes flexframe-spin {
-            100% { transform: rotate(360deg); }
-        }
         .demo-update-theme-btn.updated {
             background: #00a32a !important;
             border-color: #00a32a !important;

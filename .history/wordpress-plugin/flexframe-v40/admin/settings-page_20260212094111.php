@@ -5590,12 +5590,6 @@ function flexframe_settings_page() {
             padding: 0 8px;
             min-height: 28px;
         }
-        .demo-refresh-btn .dashicons.spin {
-            animation: flexframe-spin 1s linear infinite;
-        }
-        @keyframes flexframe-spin {
-            100% { transform: rotate(360deg); }
-        }
         .demo-update-theme-btn.updated {
             background: #00a32a !important;
             border-color: #00a32a !important;
@@ -8841,48 +8835,6 @@ function flexframe_settings_page() {
                 error: function() {
                     alert('An error occurred. Please try again.');
                     $btn.prop('disabled', false).html('<span class="dashicons dashicons-update" style="margin-top: 3px;"></span> Apply');
-                }
-            });
-        });
-        
-        // Refresh Demo Page Snapshot (re-capture current settings)
-        $(document).on('click', '.demo-refresh-btn', function() {
-            var $btn = $(this);
-            var pageId = $btn.data('page-id');
-            
-            if (!confirm('This will update the demo page to use your CURRENT global settings (Steps 1-5). The demo page\'s theme selection will still be applied on top. Continue?')) {
-                return;
-            }
-            
-            $btn.prop('disabled', true).find('.dashicons').addClass('spin');
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_refresh_demo_snapshot',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    page_id: pageId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $btn.find('.dashicons').removeClass('spin');
-                        // Brief success flash
-                        $btn.closest('tr').css('background-color', '#e7f5e7');
-                        setTimeout(function() {
-                            $btn.closest('tr').css('background-color', '');
-                            $btn.prop('disabled', false);
-                        }, 1500);
-                    } else {
-                        alert(response.data.message);
-                        $btn.find('.dashicons').removeClass('spin');
-                        $btn.prop('disabled', false);
-                    }
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.find('.dashicons').removeClass('spin');
-                    $btn.prop('disabled', false);
                 }
             });
         });

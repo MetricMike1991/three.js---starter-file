@@ -510,44 +510,6 @@ function flexframe_update_demo_theme() {
 add_action('wp_ajax_flexframe_update_demo_theme', 'flexframe_update_demo_theme');
 
 /**
- * AJAX handler to refresh a demo page's snapshot to current global settings
- * This lets the admin intentionally push latest settings to a demo page.
- */
-function flexframe_refresh_demo_snapshot() {
-    if (!isset($_POST['nonce']) || !wp_verify_nonce($_POST['nonce'], 'flexframe_settings_nonce')) {
-        wp_send_json_error(array('message' => 'Security check failed.'));
-    }
-    
-    if (!current_user_can('manage_options')) {
-        wp_send_json_error(array('message' => 'Permission denied.'));
-    }
-    
-    $page_id = isset($_POST['page_id']) ? absint($_POST['page_id']) : 0;
-    
-    if (empty($page_id)) {
-        wp_send_json_error(array('message' => 'Page ID is required.'));
-    }
-    
-    $is_demo = get_post_meta($page_id, '_flexframe_demo_page', true);
-    if (!$is_demo) {
-        wp_send_json_error(array('message' => 'This is not a demo page.'));
-    }
-    
-    // Get the current preset and logo for this demo page
-    $theme_preset = get_post_meta($page_id, '_flexframe_demo_preset', true);
-    $demo_logo_url = get_post_meta($page_id, '_flexframe_demo_logo_url', true);
-    
-    // Rebuild the snapshot from current global settings + the demo's preset & logo
-    $snapshot = flexframe_build_demo_snapshot($theme_preset ?: 'current', $demo_logo_url);
-    update_post_meta($page_id, '_flexframe_demo_snapshot', $snapshot);
-    
-    wp_send_json_success(array(
-        'message' => 'Demo page snapshot refreshed to current settings!',
-    ));
-}
-add_action('wp_ajax_flexframe_refresh_demo_snapshot', 'flexframe_refresh_demo_snapshot');
-
-/**
  * AJAX handler to delete a gym demo page
  */
 function flexframe_delete_demo_page() {
@@ -5590,12 +5552,6 @@ function flexframe_settings_page() {
             padding: 0 8px;
             min-height: 28px;
         }
-        .demo-refresh-btn .dashicons.spin {
-            animation: flexframe-spin 1s linear infinite;
-        }
-        @keyframes flexframe-spin {
-            100% { transform: rotate(360deg); }
-        }
         .demo-update-theme-btn.updated {
             background: #00a32a !important;
             border-color: #00a32a !important;
@@ -8841,48 +8797,6 @@ function flexframe_settings_page() {
                 error: function() {
                     alert('An error occurred. Please try again.');
                     $btn.prop('disabled', false).html('<span class="dashicons dashicons-update" style="margin-top: 3px;"></span> Apply');
-                }
-            });
-        });
-        
-        // Refresh Demo Page Snapshot (re-capture current settings)
-        $(document).on('click', '.demo-refresh-btn', function() {
-            var $btn = $(this);
-            var pageId = $btn.data('page-id');
-            
-            if (!confirm('This will update the demo page to use your CURRENT global settings (Steps 1-5). The demo page\'s theme selection will still be applied on top. Continue?')) {
-                return;
-            }
-            
-            $btn.prop('disabled', true).find('.dashicons').addClass('spin');
-            
-            $.ajax({
-                url: ajaxurl,
-                type: 'POST',
-                data: {
-                    action: 'flexframe_refresh_demo_snapshot',
-                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
-                    page_id: pageId
-                },
-                success: function(response) {
-                    if (response.success) {
-                        $btn.find('.dashicons').removeClass('spin');
-                        // Brief success flash
-                        $btn.closest('tr').css('background-color', '#e7f5e7');
-                        setTimeout(function() {
-                            $btn.closest('tr').css('background-color', '');
-                            $btn.prop('disabled', false);
-                        }, 1500);
-                    } else {
-                        alert(response.data.message);
-                        $btn.find('.dashicons').removeClass('spin');
-                        $btn.prop('disabled', false);
-                    }
-                },
-                error: function() {
-                    alert('An error occurred. Please try again.');
-                    $btn.find('.dashicons').removeClass('spin');
-                    $btn.prop('disabled', false);
                 }
             });
         });
