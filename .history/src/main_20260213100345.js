@@ -4061,7 +4061,7 @@ class ThreeJSApp {
                         const preset = presets[mat.name.toUpperCase()];
                         
                         // Apply preset values
-                        if (preset.color && mat.color) mat.color.set(preset.color);
+                        if (preset.color) mat.color.set(preset.color);
                         mat.opacity = preset.opacity;
                         mat.transparent = preset.transparent;
                         mat.metalness = preset.metalness;
@@ -4121,7 +4121,7 @@ class ThreeJSApp {
                 materials.forEach(mat => {
                     if (mat.name && mat.name.toUpperCase() === 'SKIN') {
                         // Apply custom settings from WordPress
-                        if (skinSettings.color && mat.color) {
+                        if (skinSettings.color) {
                             mat.color.set(skinSettings.color);
                         }
                         if (skinSettings.opacity !== undefined) {
@@ -4270,7 +4270,7 @@ class ThreeJSApp {
                             mat.sheenRoughness = parseFloat(settings.sheenRoughness);
                         }
 
-                        if (settings.sheenColor && mat.sheenColor) {
+                        if (settings.sheenColor) {
                             mat.sheenColor.set(settings.sheenColor);
                         }
 
@@ -4307,7 +4307,7 @@ class ThreeJSApp {
 
                         if (settings.normalMapEnabled !== undefined && settings.normalMapEnabled !== null) {
                             // If normal map is disabled, set normalScale to 0
-                            if (!settings.normalMapEnabled && mat.normalMap && mat.normalScale) {
+                            if (!settings.normalMapEnabled && mat.normalMap) {
                                 mat.normalScale.set(0, 0);
                             }
                         }

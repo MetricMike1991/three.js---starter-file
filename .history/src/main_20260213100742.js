@@ -4270,7 +4270,7 @@ class ThreeJSApp {
                             mat.sheenRoughness = parseFloat(settings.sheenRoughness);
                         }
 
-                        if (settings.sheenColor && mat.sheenColor) {
+                        if (settings.sheenColor) {
                             mat.sheenColor.set(settings.sheenColor);
                         }
 
@@ -4307,7 +4307,7 @@ class ThreeJSApp {
 
                         if (settings.normalMapEnabled !== undefined && settings.normalMapEnabled !== null) {
                             // If normal map is disabled, set normalScale to 0
-                            if (!settings.normalMapEnabled && mat.normalMap && mat.normalScale) {
+                            if (!settings.normalMapEnabled && mat.normalMap) {
                                 mat.normalScale.set(0, 0);
                             }
                         }
