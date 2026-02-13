@@ -3164,17 +3164,14 @@ class ThreeJSApp {
                     const preset = window.flexframeSettings.materialPreset || 'default';
                     const isCustomTheme = preset.startsWith('custom:');
                     
-                    if (mode === 'custom' && window.flexframeSettings.skinSettings) {
-                        console.log('Pre-applying Custom SKIN settings...');
+                    // Always apply skin settings when we have them (custom mode OR custom theme preset)
+                    if (window.flexframeSettings.skinSettings && (mode === 'custom' || isCustomTheme)) {
+                        console.log('Pre-applying Custom SKIN settings...', window.flexframeSettings.skinSettings);
                         this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
-                    } else if (isCustomTheme && window.flexframeSettings.skinSettings) {
-                        // Custom theme preset — apply saved skin settings
-                        console.log('Applying custom theme SKIN settings:', window.flexframeSettings.skinSettings);
-                        this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
-                    } else if (mode === 'preset') {
+                    } else if (mode === 'preset' && !isCustomTheme) {
                         console.log('Material Preset setting:', preset);
                         
-                        // Built-in themes use their own hardcoded skin settings
+                        // 'default', 'dark', 'light' all use the same material settings
                         if (preset === 'default' || preset === 'dark' || preset === 'light' || preset === 'preset1') {
                             console.log('Pre-applying Default Material Preset...');
                             this.applyMaterialPreset1();

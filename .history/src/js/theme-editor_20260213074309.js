@@ -256,15 +256,15 @@ class ThemeEditor {
             particlesOpacity: ws.particleSettings?.opacity ?? 1,
             particlesSpeed: ws.particleSettings?.speed ?? 0.5,
             
-            // Skin Material Settings - read from skinSettings (same source the model uses)
-            skinColor: ws.skinSettings?.color || '#ccdef5',
-            skinOpacity: ws.skinSettings?.opacity ?? 1,
-            skinRoughness: ws.skinSettings?.roughness ?? 0,
-            skinMetalness: ws.skinSettings?.metalness ?? 0,
-            skinTransmission: ws.skinSettings?.transmission ?? 1,
-            skinThickness: ws.skinSettings?.thickness ?? 0,
-            skinIor: ws.skinSettings?.ior ?? 1,
-            skinEnvIntensity: ws.skinSettings?.envMapIntensity ?? 2.29,
+            // Skin Material Settings
+            skinColor: ws.materialSettings?.skinColor || '#ffdbac',
+            skinOpacity: ws.materialSettings?.skinOpacity ?? 0.4,
+            skinRoughness: ws.materialSettings?.skinRoughness ?? 0.7,
+            skinMetalness: ws.materialSettings?.skinMetalness ?? 0,
+            skinTransmission: ws.materialSettings?.skinTransmission ?? 0,
+            skinThickness: ws.materialSettings?.skinThickness ?? 0,
+            skinIor: ws.materialSettings?.skinIor ?? 1.5,
+            skinEnvIntensity: ws.materialSettings?.skinEnvIntensity ?? 1,
             
             // Equipment Material Settings - read from equipmentMaterials (PHP uses uppercase keys)
             barbellColor: ws.equipmentMaterials?.BARBELL?.color || '#808080',

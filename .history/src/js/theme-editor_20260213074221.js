@@ -256,61 +256,61 @@ class ThemeEditor {
             particlesOpacity: ws.particleSettings?.opacity ?? 1,
             particlesSpeed: ws.particleSettings?.speed ?? 0.5,
             
-            // Skin Material Settings - read from skinSettings (same source the model uses)
-            skinColor: ws.skinSettings?.color || '#ccdef5',
-            skinOpacity: ws.skinSettings?.opacity ?? 1,
-            skinRoughness: ws.skinSettings?.roughness ?? 0,
-            skinMetalness: ws.skinSettings?.metalness ?? 0,
-            skinTransmission: ws.skinSettings?.transmission ?? 1,
-            skinThickness: ws.skinSettings?.thickness ?? 0,
-            skinIor: ws.skinSettings?.ior ?? 1,
-            skinEnvIntensity: ws.skinSettings?.envMapIntensity ?? 2.29,
+            // Skin Material Settings
+            skinColor: ws.materialSettings?.skinColor || '#ffdbac',
+            skinOpacity: ws.materialSettings?.skinOpacity ?? 0.4,
+            skinRoughness: ws.materialSettings?.skinRoughness ?? 0.7,
+            skinMetalness: ws.materialSettings?.skinMetalness ?? 0,
+            skinTransmission: ws.materialSettings?.skinTransmission ?? 0,
+            skinThickness: ws.materialSettings?.skinThickness ?? 0,
+            skinIor: ws.materialSettings?.skinIor ?? 1.5,
+            skinEnvIntensity: ws.materialSettings?.skinEnvIntensity ?? 1,
             
-            // Equipment Material Settings - read from equipmentMaterials (PHP uses uppercase keys)
-            barbellColor: ws.equipmentMaterials?.BARBELL?.color || '#808080',
-            barbellOpacity: ws.equipmentMaterials?.BARBELL?.opacity ?? 1,
-            barbellMetalness: ws.equipmentMaterials?.BARBELL?.metalness ?? 0.8,
-            barbellRoughness: ws.equipmentMaterials?.BARBELL?.roughness ?? 0.3,
+            // Equipment Material Settings
+            barbellColor: ws.materialSettings?.barbellColor || '#808080',
+            barbellOpacity: ws.materialSettings?.barbellOpacity ?? 1,
+            barbellMetalness: ws.materialSettings?.barbellMetalness ?? 0.8,
+            barbellRoughness: ws.materialSettings?.barbellRoughness ?? 0.3,
             
-            bumperColor: ws.equipmentMaterials?.BUMPER?.color || '#808080',
-            bumperOpacity: ws.equipmentMaterials?.BUMPER?.opacity ?? 1,
-            bumperMetalness: ws.equipmentMaterials?.BUMPER?.metalness ?? 0,
-            bumperRoughness: ws.equipmentMaterials?.BUMPER?.roughness ?? 0.8,
+            bumperColor: ws.materialSettings?.bumperColor || '#808080',
+            bumperOpacity: ws.materialSettings?.bumperOpacity ?? 1,
+            bumperMetalness: ws.materialSettings?.bumperMetalness ?? 0,
+            bumperRoughness: ws.materialSettings?.bumperRoughness ?? 0.8,
             
-            cableColor: ws.equipmentMaterials?.CABLE?.color || '#808080',
-            cableOpacity: ws.equipmentMaterials?.CABLE?.opacity ?? 1,
-            cableMetalness: ws.equipmentMaterials?.CABLE?.metalness ?? 0.5,
-            cableRoughness: ws.equipmentMaterials?.CABLE?.roughness ?? 0.4,
+            cableColor: ws.materialSettings?.cableColor || '#808080',
+            cableOpacity: ws.materialSettings?.cableOpacity ?? 1,
+            cableMetalness: ws.materialSettings?.cableMetalness ?? 0.5,
+            cableRoughness: ws.materialSettings?.cableRoughness ?? 0.4,
             
-            chromeColor: ws.equipmentMaterials?.CHROME?.color || '#cccccc',
-            chromeOpacity: ws.equipmentMaterials?.CHROME?.opacity ?? 1,
-            chromeMetalness: ws.equipmentMaterials?.CHROME?.metalness ?? 1,
-            chromeRoughness: ws.equipmentMaterials?.CHROME?.roughness ?? 0.1,
+            chromeColor: ws.materialSettings?.chromeColor || '#cccccc',
+            chromeOpacity: ws.materialSettings?.chromeOpacity ?? 1,
+            chromeMetalness: ws.materialSettings?.chromeMetalness ?? 1,
+            chromeRoughness: ws.materialSettings?.chromeRoughness ?? 0.1,
             
-            color1Color: ws.equipmentMaterials?.COLOR1?.color || ws.primaryColor || '#4a9eff',
-            color1Opacity: ws.equipmentMaterials?.COLOR1?.opacity ?? 1,
-            color1Metalness: ws.equipmentMaterials?.COLOR1?.metalness ?? 0.5,
-            color1Roughness: ws.equipmentMaterials?.COLOR1?.roughness ?? 0.5,
+            color1Color: ws.materialSettings?.color1Color || ws.primaryColor || '#4a9eff',
+            color1Opacity: ws.materialSettings?.color1Opacity ?? 1,
+            color1Metalness: ws.materialSettings?.color1Metalness ?? 0.5,
+            color1Roughness: ws.materialSettings?.color1Roughness ?? 0.5,
             
-            metalColor: ws.equipmentMaterials?.METAL?.color || '#b0b0b0',
-            metalOpacity: ws.equipmentMaterials?.METAL?.opacity ?? 1,
-            metalMetalness: ws.equipmentMaterials?.METAL?.metalness ?? 0.9,
-            metalRoughness: ws.equipmentMaterials?.METAL?.roughness ?? 0.3,
+            metalColor: ws.materialSettings?.metalColor || '#b0b0b0',
+            metalOpacity: ws.materialSettings?.metalOpacity ?? 1,
+            metalMetalness: ws.materialSettings?.metalMetalness ?? 0.9,
+            metalRoughness: ws.materialSettings?.metalRoughness ?? 0.3,
             
-            padColor: ws.equipmentMaterials?.PAD?.color || '#1a1a1a',
-            padOpacity: ws.equipmentMaterials?.PAD?.opacity ?? 1,
-            padMetalness: ws.equipmentMaterials?.PAD?.metalness ?? 0,
-            padRoughness: ws.equipmentMaterials?.PAD?.roughness ?? 0.9,
+            padColor: ws.materialSettings?.padColor || '#1a1a1a',
+            padOpacity: ws.materialSettings?.padOpacity ?? 1,
+            padMetalness: ws.materialSettings?.padMetalness ?? 0,
+            padRoughness: ws.materialSettings?.padRoughness ?? 0.9,
             
-            plasticColor: ws.equipmentMaterials?.PLASTIC?.color || '#808080',
-            plasticOpacity: ws.equipmentMaterials?.PLASTIC?.opacity ?? 1,
-            plasticMetalness: ws.equipmentMaterials?.PLASTIC?.metalness ?? 0,
-            plasticRoughness: ws.equipmentMaterials?.PLASTIC?.roughness ?? 0.6,
+            plasticColor: ws.materialSettings?.plasticColor || '#808080',
+            plasticOpacity: ws.materialSettings?.plasticOpacity ?? 1,
+            plasticMetalness: ws.materialSettings?.plasticMetalness ?? 0,
+            plasticRoughness: ws.materialSettings?.plasticRoughness ?? 0.6,
             
-            rubberColor: ws.equipmentMaterials?.RUBBER?.color || '#1a1a1a',
-            rubberOpacity: ws.equipmentMaterials?.RUBBER?.opacity ?? 1,
-            rubberMetalness: ws.equipmentMaterials?.RUBBER?.metalness ?? 0,
-            rubberRoughness: ws.equipmentMaterials?.RUBBER?.roughness ?? 0.95
+            rubberColor: ws.materialSettings?.rubberColor || '#1a1a1a',
+            rubberOpacity: ws.materialSettings?.rubberOpacity ?? 1,
+            rubberMetalness: ws.materialSettings?.rubberMetalness ?? 0,
+            rubberRoughness: ws.materialSettings?.rubberRoughness ?? 0.95
         };
 
         // Update all inputs with current values
@@ -1032,13 +1032,6 @@ class ThemeEditor {
             this.updateSkinMaterial();
         }
         
-        // Equipment material settings (barbell, bumper, cable, chrome, color1, metal, pad, plastic, rubber)
-        const equipmentPrefixes = ['barbell', 'bumper', 'cable', 'chrome', 'color1', 'metal', 'pad', 'plastic', 'rubber'];
-        const matchedEquipment = equipmentPrefixes.find(prefix => key.toLowerCase().startsWith(prefix));
-        if (matchedEquipment && window.model) {
-            this.updateEquipmentMaterial(matchedEquipment);
-        }
-        
         // Player styling
         if (key.startsWith('player')) {
             console.log('Theme Editor: Updating player styling for', key, value);
@@ -1513,43 +1506,6 @@ class ThemeEditor {
                         if (mat.envMapIntensity !== undefined) {
                             mat.envMapIntensity = envIntensity;
                         }
-                        mat.needsUpdate = true;
-                    }
-                });
-            }
-        });
-    }
-
-    updateEquipmentMaterial(matKey) {
-        if (!window.model) return;
-        
-        // Build camelCase property names from matKey (e.g. 'barbell' -> 'barbellColor')
-        const colorKey = matKey + 'Color';
-        const opacityKey = matKey + 'Opacity';
-        const metalnessKey = matKey + 'Metalness';
-        const roughnessKey = matKey + 'Roughness';
-        
-        const color = this.currentSettings[colorKey];
-        const opacity = this.currentSettings[opacityKey];
-        const metalness = this.currentSettings[metalnessKey];
-        const roughness = this.currentSettings[roughnessKey];
-        
-        // Material name in model is uppercase (e.g. 'BARBELL', 'BUMPER', 'COLOR1')
-        const targetName = matKey.toUpperCase();
-        
-        window.model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                const materials = Array.isArray(child.material) ? child.material : [child.material];
-                
-                materials.forEach(mat => {
-                    if (mat.name && mat.name.toUpperCase() === targetName) {
-                        if (color) mat.color.set(color);
-                        if (opacity !== undefined) {
-                            mat.opacity = opacity;
-                            mat.transparent = opacity < 1;
-                        }
-                        if (metalness !== undefined) mat.metalness = metalness;
-                        if (roughness !== undefined) mat.roughness = roughness;
                         mat.needsUpdate = true;
                     }
                 });

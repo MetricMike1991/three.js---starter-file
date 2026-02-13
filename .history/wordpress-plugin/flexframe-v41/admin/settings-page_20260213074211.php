@@ -7356,22 +7356,18 @@ function flexframe_settings_page() {
             
             // Apply the preset settings to form fields
             if (isCustomTheme) {
-                // Load custom preset via AJAX, then submit form when done
-                loadCustomPreset(presetId, function() {
-                    setTimeout(function() {
-                        console.log('[Theme Apply] Custom preset loaded, submitting form...');
-                        $('#submit').click();
-                    }, 100);
-                });
+                // Load custom preset via AJAX
+                loadCustomPreset(presetId);
             } else {
                 // Apply built-in preset (synchronous)
                 applyBuiltInPreset(presetId);
-                // Submit form after brief delay to allow settings to populate
-                setTimeout(function() {
-                    console.log('[Theme Apply] Built-in preset applied, submitting form...');
-                    $('#submit').click();
-                }, 200);
             }
+            
+            // Submit form after brief delay to allow settings to populate
+            setTimeout(function() {
+                console.log('[Theme Apply] Submitting form to save settings...');
+                $('#submit').click();
+            }, isCustomTheme ? 800 : 200);
         });
         
         // Set initial description on page load
@@ -7397,7 +7393,7 @@ function flexframe_settings_page() {
         }
         
         // Load custom preset from server
-        function loadCustomPreset(presetId, callback) {
+        function loadCustomPreset(presetId) {
             console.log('[Theme Load] Loading custom theme ID:', presetId);
             $.ajax({
                 url: ajaxurl,
@@ -7416,11 +7412,9 @@ function flexframe_settings_page() {
                     } else {
                         console.error('[Theme Load] Failed to load theme:', response);
                     }
-                    if (typeof callback === 'function') callback();
                 },
                 error: function(xhr, status, error) {
                     console.error('[Theme Load] AJAX error:', error);
-                    if (typeof callback === 'function') callback();
                 }
             });
         }
@@ -7920,39 +7914,23 @@ function flexframe_settings_page() {
                 $('#flexframe_thumbnail_label_opacity').siblings('.opacity-value').text(settings.thumbnail_label_opacity);
             }
             
-            // Material Settings (with undefined guards)
-            if (settings.skin_color !== undefined) {
-                $('#flexframe_skin_color').val(settings.skin_color);
-                $('#flexframe_skin_color').siblings('.color-hex').text(settings.skin_color);
-            }
-            if (settings.skin_opacity !== undefined) {
-                $('#flexframe_skin_opacity').val(settings.skin_opacity);
-                $('#flexframe_skin_opacity').siblings('.range-value').text(settings.skin_opacity);
-            }
-            if (settings.skin_roughness !== undefined) {
-                $('#flexframe_skin_roughness').val(settings.skin_roughness);
-                $('#flexframe_skin_roughness').siblings('.range-value').text(settings.skin_roughness);
-            }
-            if (settings.skin_metalness !== undefined) {
-                $('#flexframe_skin_metalness').val(settings.skin_metalness);
-                $('#flexframe_skin_metalness').siblings('.range-value').text(settings.skin_metalness);
-            }
-            if (settings.skin_transmission !== undefined) {
-                $('#flexframe_skin_transmission').val(settings.skin_transmission);
-                $('#flexframe_skin_transmission').siblings('.range-value').text(settings.skin_transmission);
-            }
-            if (settings.skin_thickness !== undefined) {
-                $('#flexframe_skin_thickness').val(settings.skin_thickness);
-                $('#flexframe_skin_thickness').siblings('.range-value').text(settings.skin_thickness);
-            }
-            if (settings.skin_ior !== undefined) {
-                $('#flexframe_skin_ior').val(settings.skin_ior);
-                $('#flexframe_skin_ior').siblings('.range-value').text(settings.skin_ior);
-            }
-            if (settings.skin_env_intensity !== undefined) {
-                $('#flexframe_skin_env_intensity').val(settings.skin_env_intensity);
-                $('#flexframe_skin_env_intensity').siblings('.range-value').text(settings.skin_env_intensity);
-            }
+            // Material Settings
+            $('#flexframe_skin_color').val(settings.skin_color);
+            $('#flexframe_skin_color').siblings('.color-hex').text(settings.skin_color);
+            $('#flexframe_skin_opacity').val(settings.skin_opacity);
+            $('#flexframe_skin_opacity').siblings('.range-value').text(settings.skin_opacity);
+            $('#flexframe_skin_roughness').val(settings.skin_roughness);
+            $('#flexframe_skin_roughness').siblings('.range-value').text(settings.skin_roughness);
+            $('#flexframe_skin_metalness').val(settings.skin_metalness);
+            $('#flexframe_skin_metalness').siblings('.range-value').text(settings.skin_metalness);
+            $('#flexframe_skin_transmission').val(settings.skin_transmission);
+            $('#flexframe_skin_transmission').siblings('.range-value').text(settings.skin_transmission);
+            $('#flexframe_skin_thickness').val(settings.skin_thickness);
+            $('#flexframe_skin_thickness').siblings('.range-value').text(settings.skin_thickness);
+            $('#flexframe_skin_ior').val(settings.skin_ior);
+            $('#flexframe_skin_ior').siblings('.range-value').text(settings.skin_ior);
+            $('#flexframe_skin_env_intensity').val(settings.skin_env_intensity);
+            $('#flexframe_skin_env_intensity').siblings('.range-value').text(settings.skin_env_intensity);
             
             // Scene Background Settings (if present - for backwards compatibility)
             if (settings.bg_gradient_top !== undefined) {

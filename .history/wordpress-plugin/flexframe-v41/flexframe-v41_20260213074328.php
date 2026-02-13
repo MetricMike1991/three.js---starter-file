@@ -3898,7 +3898,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Bagti6rB.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DVGaurh-.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -4086,14 +4086,14 @@ function flexframe_enqueue_assets() {
             'lightingSettings' => $lighting_settings,
             'particleSettings' => $particle_settings,
             'materialSettings' => array(
-                'skinColor' => get_option('flexframe_skin_color', '#ccdef5'),
-                'skinOpacity' => floatval(get_option('flexframe_skin_opacity', 1)),
-                'skinRoughness' => floatval(get_option('flexframe_skin_roughness', 0)),
+                'skinColor' => get_option('flexframe_skin_color', '#ffdbac'),
+                'skinOpacity' => floatval(get_option('flexframe_skin_opacity', 0.4)),
+                'skinRoughness' => floatval(get_option('flexframe_skin_roughness', 0.7)),
                 'skinMetalness' => floatval(get_option('flexframe_skin_metalness', 0)),
-                'skinTransmission' => floatval(get_option('flexframe_skin_transmission', 1)),
+                'skinTransmission' => floatval(get_option('flexframe_skin_transmission', 0)),
                 'skinThickness' => floatval(get_option('flexframe_skin_thickness', 0)),
-                'skinIor' => floatval(get_option('flexframe_skin_ior', 1)),
-                'skinEnvIntensity' => floatval(get_option('flexframe_skin_env_intensity', 2.29))
+                'skinIor' => floatval(get_option('flexframe_skin_ior', 1.5)),
+                'skinEnvIntensity' => floatval(get_option('flexframe_skin_env_intensity', 1))
             ),
             'menuBackgroundColor' => $menu_bg_color,
             'menuBackgroundOpacity' => $menu_bg_opacity,

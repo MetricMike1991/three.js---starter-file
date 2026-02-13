@@ -3164,17 +3164,10 @@ class ThreeJSApp {
                     const preset = window.flexframeSettings.materialPreset || 'default';
                     const isCustomTheme = preset.startsWith('custom:');
                     
-                    if (mode === 'custom' && window.flexframeSettings.skinSettings) {
-                        console.log('Pre-applying Custom SKIN settings...');
-                        this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
-                    } else if (isCustomTheme && window.flexframeSettings.skinSettings) {
-                        // Custom theme preset — apply saved skin settings
-                        console.log('Applying custom theme SKIN settings:', window.flexframeSettings.skinSettings);
-                        this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
-                    } else if (mode === 'preset') {
+                    // Apply base material preset first (for built-in themes)
+                    if (mode === 'preset' && !isCustomTheme) {
                         console.log('Material Preset setting:', preset);
                         
-                        // Built-in themes use their own hardcoded skin settings
                         if (preset === 'default' || preset === 'dark' || preset === 'light' || preset === 'preset1') {
                             console.log('Pre-applying Default Material Preset...');
                             this.applyMaterialPreset1();
@@ -3182,6 +3175,12 @@ class ThreeJSApp {
                             console.log('Pre-applying WP Preset...');
                             this.applyWPPreset();
                         }
+                    }
+                    
+                    // Always apply WordPress skin settings on top (they override preset defaults)
+                    if (window.flexframeSettings.skinSettings) {
+                        console.log('Applying WordPress SKIN settings:', window.flexframeSettings.skinSettings);
+                        this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
                     }
                     
                     // Apply equipment material settings if any are enabled

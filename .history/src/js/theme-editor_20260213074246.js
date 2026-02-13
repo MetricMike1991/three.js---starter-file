@@ -256,15 +256,15 @@ class ThemeEditor {
             particlesOpacity: ws.particleSettings?.opacity ?? 1,
             particlesSpeed: ws.particleSettings?.speed ?? 0.5,
             
-            // Skin Material Settings - read from skinSettings (same source the model uses)
-            skinColor: ws.skinSettings?.color || '#ccdef5',
-            skinOpacity: ws.skinSettings?.opacity ?? 1,
-            skinRoughness: ws.skinSettings?.roughness ?? 0,
-            skinMetalness: ws.skinSettings?.metalness ?? 0,
-            skinTransmission: ws.skinSettings?.transmission ?? 1,
-            skinThickness: ws.skinSettings?.thickness ?? 0,
-            skinIor: ws.skinSettings?.ior ?? 1,
-            skinEnvIntensity: ws.skinSettings?.envMapIntensity ?? 2.29,
+            // Skin Material Settings
+            skinColor: ws.materialSettings?.skinColor || '#ffdbac',
+            skinOpacity: ws.materialSettings?.skinOpacity ?? 0.4,
+            skinRoughness: ws.materialSettings?.skinRoughness ?? 0.7,
+            skinMetalness: ws.materialSettings?.skinMetalness ?? 0,
+            skinTransmission: ws.materialSettings?.skinTransmission ?? 0,
+            skinThickness: ws.materialSettings?.skinThickness ?? 0,
+            skinIor: ws.materialSettings?.skinIor ?? 1.5,
+            skinEnvIntensity: ws.materialSettings?.skinEnvIntensity ?? 1,
             
             // Equipment Material Settings - read from equipmentMaterials (PHP uses uppercase keys)
             barbellColor: ws.equipmentMaterials?.BARBELL?.color || '#808080',
@@ -1032,13 +1032,6 @@ class ThemeEditor {
             this.updateSkinMaterial();
         }
         
-        // Equipment material settings (barbell, bumper, cable, chrome, color1, metal, pad, plastic, rubber)
-        const equipmentPrefixes = ['barbell', 'bumper', 'cable', 'chrome', 'color1', 'metal', 'pad', 'plastic', 'rubber'];
-        const matchedEquipment = equipmentPrefixes.find(prefix => key.toLowerCase().startsWith(prefix));
-        if (matchedEquipment && window.model) {
-            this.updateEquipmentMaterial(matchedEquipment);
-        }
-        
         // Player styling
         if (key.startsWith('player')) {
             console.log('Theme Editor: Updating player styling for', key, value);
@@ -1513,43 +1506,6 @@ class ThemeEditor {
                         if (mat.envMapIntensity !== undefined) {
                             mat.envMapIntensity = envIntensity;
                         }
-                        mat.needsUpdate = true;
-                    }
-                });
-            }
-        });
-    }
-
-    updateEquipmentMaterial(matKey) {
-        if (!window.model) return;
-        
-        // Build camelCase property names from matKey (e.g. 'barbell' -> 'barbellColor')
-        const colorKey = matKey + 'Color';
-        const opacityKey = matKey + 'Opacity';
-        const metalnessKey = matKey + 'Metalness';
-        const roughnessKey = matKey + 'Roughness';
-        
-        const color = this.currentSettings[colorKey];
-        const opacity = this.currentSettings[opacityKey];
-        const metalness = this.currentSettings[metalnessKey];
-        const roughness = this.currentSettings[roughnessKey];
-        
-        // Material name in model is uppercase (e.g. 'BARBELL', 'BUMPER', 'COLOR1')
-        const targetName = matKey.toUpperCase();
-        
-        window.model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                const materials = Array.isArray(child.material) ? child.material : [child.material];
-                
-                materials.forEach(mat => {
-                    if (mat.name && mat.name.toUpperCase() === targetName) {
-                        if (color) mat.color.set(color);
-                        if (opacity !== undefined) {
-                            mat.opacity = opacity;
-                            mat.transparent = opacity < 1;
-                        }
-                        if (metalness !== undefined) mat.metalness = metalness;
-                        if (roughness !== undefined) mat.roughness = roughness;
                         mat.needsUpdate = true;
                     }
                 });
