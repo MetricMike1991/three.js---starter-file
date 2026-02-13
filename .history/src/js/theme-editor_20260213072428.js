@@ -2205,8 +2205,7 @@ class ThemeEditor {
                 filter: hue-rotate(var(--flexframe-hue-rotation, 0deg)) !important;
             }
             /* Exercise default thumbnail hue rotation (not user-uploaded) */
-            .thumbnail-item img.default-thumbnail,
-            .info-suggested-card img.default-thumbnail {
+            .thumbnail-item img.default-thumbnail {
                 filter: hue-rotate(var(--flexframe-hue-rotation, 0deg)) !important;
             }
             
