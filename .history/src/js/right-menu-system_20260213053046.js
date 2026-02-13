@@ -81,16 +81,9 @@ class RightMenuDropdown {
      *   - Label:value pairs: "Primary: Glutes, Quads"
      *   - Paragraphs separated by \n\n
      *   - Simple line breaks: \n
-     *   - Flat sentence lists: "Benefit one. Benefit two. Benefit three." (auto-bulleted)
-     *   - Inline label pairs: "Primary: X, Y. Secondary: A, B." (auto-split)
      */
     formatContent(text) {
         if (!text) return '';
-        
-        // Pre-process: if text has no \n at all, try to intelligently add structure
-        if (!text.includes('\n')) {
-            text = this._autoStructure(text);
-        }
         
         // Split into lines
         const lines = text.split('\n');
@@ -122,7 +115,7 @@ class RightMenuDropdown {
                 return;
             }
             
-            // Bullet list item: "- text" or "• text"
+            // Bullet list item: "- text"
             const ulMatch = trimmed.match(/^[-•]\s+(.+)/);
             if (ulMatch) {
                 if (!inUL) {
@@ -150,50 +143,6 @@ class RightMenuDropdown {
         
         closeLists();
         return html;
-    }
-    
-    /**
-     * Auto-structures flat text that has no \n markers.
-     * Detects patterns like:
-     *   - Multiple "Label: value" pairs separated by periods → split onto separate lines
-     *   - 3+ sentences that look like a list of benefits → bullet list
-     *   - Long paragraph → break into readable chunks
-     */
-    _autoStructure(text) {
-        // Pattern 1: Multiple "Label: stuff." inline (e.g. "Primary: X, Y. Secondary: A, B.")
-        // Check if text contains 2+ "Word: " patterns
-        const labelParts = text.match(/[A-Z][a-zA-Z\s&\/]+:\s+[^.]+\./g);
-        if (labelParts && labelParts.length >= 2) {
-            return labelParts.map(p => p.trim().replace(/\.$/, '')).join('\n\n');
-        }
-        
-        // Pattern 2: Sentences that look like a list of short benefits/points
-        // Split on ". " but keep periods that are part of abbreviations (e.g., "lbs.")
-        const sentences = text.split(/\.\s+/).filter(s => s.trim().length > 0);
-        
-        if (sentences.length >= 3) {
-            // Check if sentences are short enough to be list items (avg < 100 chars)
-            const avgLen = sentences.reduce((sum, s) => sum + s.length, 0) / sentences.length;
-            if (avgLen < 100) {
-                // Convert to bullet list
-                return sentences.map(s => {
-                    const clean = s.trim().replace(/\.$/, '');
-                    return `- ${clean}`;
-                }).join('\n');
-            }
-        }
-        
-        // Pattern 3: Long paragraph — break into chunks at sentence boundaries
-        if (text.length > 150 && sentences.length >= 2) {
-            return sentences.map(s => {
-                const clean = s.trim();
-                // Re-add period if it was removed by split (except last which may not have had one)
-                return clean.endsWith('.') ? clean : clean + '.';
-            }).join('\n\n');
-        }
-        
-        // No transformation needed
-        return text;
     }
 
     renderInfoItems() {
