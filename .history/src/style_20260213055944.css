@@ -123,8 +123,8 @@
 
 .info-suggested-card:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 12px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.4);
-    border-color: rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.5);
+    box-shadow: 0 0 12px rgba(74, 158, 255, 0.4);
+    border-color: rgba(74, 158, 255, 0.5);
 }
 
 .info-suggested-card:active {

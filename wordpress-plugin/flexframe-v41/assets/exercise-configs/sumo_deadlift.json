@@ -76,6 +76,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["conventional_deadlift", "romanian_deadlift_rdl"],
       "sections": [
         {
           "heading": "Similar Exercises",

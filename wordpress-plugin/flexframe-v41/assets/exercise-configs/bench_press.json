@@ -146,6 +146,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["incline_barbell_bench_press", "flat_dumbbell_chest_press"],
       "sections": [
         {
           "heading": "Similar Exercises",

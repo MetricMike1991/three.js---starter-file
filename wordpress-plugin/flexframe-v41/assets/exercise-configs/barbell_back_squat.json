@@ -145,6 +145,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_goblet_squat", "hack_squat"],
       "sections": [
         {
           "heading": "Similar Exercises",

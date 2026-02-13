@@ -163,6 +163,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["sumo_deadlift", "romanian_deadlift_rdl"],
       "sections": [
         {
           "heading": "Similar Exercises",

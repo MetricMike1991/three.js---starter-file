@@ -223,7 +223,7 @@ class RightMenuDropdown {
         
         const heading = document.createElement('div');
         heading.className = 'info-suggested-heading';
-        heading.textContent = 'Suitable Alternative Exercises';
+        heading.textContent = 'Try These Exercises';
         container.appendChild(heading);
         
         const cardsRow = document.createElement('div');
@@ -514,8 +514,10 @@ class RightMenuDropdown {
             return;
         }
         
-        // Track mobile suggested exercises to render at the end
-        let mobileSuggestedIds = null;
+        // Render suggested exercise thumbnails at the top if provided
+        if (suggestedExerciseIds && suggestedExerciseIds.length > 0) {
+            this.renderSuggestedExercises(suggestedExerciseIds);
+        }
         
         // Track section boundaries for mobile sticky header
         let currentSectionTitle = '';
@@ -523,9 +525,8 @@ class RightMenuDropdown {
         sections.forEach(section => {
             // Handle suggested exercises marker (for mobile consolidated menu)
             if (section.type === 'suggestedExercises') {
-                // Store for rendering at the bottom
                 if (section.exerciseIds && section.exerciseIds.length > 0) {
-                    mobileSuggestedIds = section.exerciseIds;
+                    this.renderSuggestedExercises(section.exerciseIds);
                 }
                 return;
             }
@@ -559,12 +560,6 @@ class RightMenuDropdown {
             
             this.grid.appendChild(itemDiv);
         });
-        
-        // Render suggested exercise thumbnails at the very bottom
-        const idsToRender = suggestedExerciseIds || mobileSuggestedIds;
-        if (idsToRender && idsToRender.length > 0) {
-            this.renderSuggestedExercises(idsToRender);
-        }
         
         // Set up scroll detection for mobile menu to update button text
         if (this.menuType === 'info' && this.scrollContainer) {

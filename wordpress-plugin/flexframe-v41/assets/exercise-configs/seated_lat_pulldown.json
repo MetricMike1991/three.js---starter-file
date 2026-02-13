@@ -182,6 +182,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_pull_up", "cable_lat_pull_down_station"],
       "sections": [
         {
           "heading": "Similar Exercises",

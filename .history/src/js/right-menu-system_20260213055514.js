@@ -196,100 +196,6 @@ class RightMenuDropdown {
         return text;
     }
 
-    /**
-     * Renders clickable exercise suggestion cards at the top of the grid.
-     * Looks up exercises from the loaded catalogue via the menu system.
-     */
-    renderSuggestedExercises(exerciseIds) {
-        if (!this.grid || !exerciseIds || exerciseIds.length === 0) return;
-        
-        // Get the loaded exercises from the menu system
-        const allExercises = this._getExerciseCatalogue();
-        if (!allExercises || allExercises.length === 0) {
-            console.warn('[RightMenu] No exercise catalogue available for suggestions');
-            return;
-        }
-        
-        // Look up each suggested exercise
-        const foundExercises = exerciseIds
-            .map(id => allExercises.find(ex => ex.id === id))
-            .filter(Boolean);
-        
-        if (foundExercises.length === 0) return;
-        
-        // Create the suggestions container
-        const container = document.createElement('div');
-        container.className = 'info-suggested-exercises';
-        
-        const heading = document.createElement('div');
-        heading.className = 'info-suggested-heading';
-        heading.textContent = 'Suitable Alternative Exercises';
-        container.appendChild(heading);
-        
-        const cardsRow = document.createElement('div');
-        cardsRow.className = 'info-suggested-cards';
-        
-        foundExercises.forEach(exercise => {
-            const card = document.createElement('div');
-            card.className = 'info-suggested-card';
-            card.dataset.exerciseId = exercise.id;
-            
-            // Thumbnail image (with fallback)
-            const thumbUrl = exercise.thumbnailUrl || '';
-            const imgHTML = thumbUrl 
-                ? `<img src="${thumbUrl}" alt="${exercise.name}" loading="lazy">`
-                : `<div class="info-suggested-placeholder"><svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg></div>`;
-            
-            card.innerHTML = `
-                <div class="info-suggested-thumb">${imgHTML}</div>
-                <div class="info-suggested-name">${exercise.name}</div>
-            `;
-            
-            // Click handler - dispatch the same event the thumbnail menu uses
-            card.addEventListener('click', (e) => {
-                e.stopPropagation();
-                this._loadSuggestedExercise(exercise);
-            });
-            
-            cardsRow.appendChild(card);
-        });
-        
-        container.appendChild(cardsRow);
-        this.grid.appendChild(container);
-    }
-    
-    /**
-     * Gets the exercise catalogue from the loaded menu system.
-     */
-    _getExerciseCatalogue() {
-        // Try the multi-thumbnail menu system first
-        if (window.menuManager && window.menuManager.menus) {
-            const exercisesMenu = window.menuManager.menus.exercises;
-            if (exercisesMenu && exercisesMenu.allExercises) {
-                return exercisesMenu.allExercises;
-            }
-            // Also check search menu which loads the same data
-            const searchMenu = window.menuManager.menus.search;
-            if (searchMenu && searchMenu.allExercises) {
-                return searchMenu.allExercises;
-            }
-        }
-        return null;
-    }
-    
-    /**
-     * Dispatches the exercise selection event to load the exercise.
-     */
-    _loadSuggestedExercise(exercise) {
-        console.log('[RightMenu] Loading suggested exercise:', exercise.name);
-        
-        // Dispatch the same event that the thumbnail menu uses
-        const event = new CustomEvent('exercisesSelected', {
-            detail: { item: exercise, menuType: 'suggested' }
-        });
-        document.dispatchEvent(event);
-    }
-
     renderInfoItems() {
         if (!this.grid) return;
 
@@ -514,22 +420,15 @@ class RightMenuDropdown {
             return;
         }
         
-        // Track mobile suggested exercises to render at the end
-        let mobileSuggestedIds = null;
+        // Render suggested exercise thumbnails at the top if provided
+        if (suggestedExerciseIds && suggestedExerciseIds.length > 0) {
+            this.renderSuggestedExercises(suggestedExerciseIds);
+        }
         
         // Track section boundaries for mobile sticky header
         let currentSectionTitle = '';
         
         sections.forEach(section => {
-            // Handle suggested exercises marker (for mobile consolidated menu)
-            if (section.type === 'suggestedExercises') {
-                // Store for rendering at the bottom
-                if (section.exerciseIds && section.exerciseIds.length > 0) {
-                    mobileSuggestedIds = section.exerciseIds;
-                }
-                return;
-            }
-            
             const itemDiv = document.createElement('div');
             
             // Check if this is a header section
@@ -559,12 +458,6 @@ class RightMenuDropdown {
             
             this.grid.appendChild(itemDiv);
         });
-        
-        // Render suggested exercise thumbnails at the very bottom
-        const idsToRender = suggestedExerciseIds || mobileSuggestedIds;
-        if (idsToRender && idsToRender.length > 0) {
-            this.renderSuggestedExercises(idsToRender);
-        }
         
         // Set up scroll detection for mobile menu to update button text
         if (this.menuType === 'info' && this.scrollContainer) {
@@ -734,11 +627,8 @@ export class RightMenuSystem {
     }
     
     // Update menu content from exercise config
-    updateFromConfig(configTabs, currentExercise = null) {
+    updateFromConfig(configTabs) {
         console.log('Updating right menu from config:', configTabs);
-        
-        // Auto-find suggested exercises from the catalogue
-        const suggestedIds = this._findSuggestedExercises(configTabs, currentExercise);
         
         // Update desktop menus (4 separate menus)
         const tabMapping = {
@@ -757,10 +647,9 @@ export class RightMenuSystem {
                     this.menus[menuId].updateTitle(tabData.title);
                 }
                 
-                // Update the content (pass suggested exercises for alternativeExercises tab)
+                // Update the content
                 if (tabData.sections && Array.isArray(tabData.sections)) {
-                    const suggested = (tabKey === 'alternativeExercises') ? suggestedIds : null;
-                    this.menus[menuId].updateContent(tabData.sections, suggested);
+                    this.menus[menuId].updateContent(tabData.sections);
                 }
             }
         });
@@ -776,8 +665,6 @@ export class RightMenuSystem {
             { key: 'alternativeExercises', title: 'Alternative Exercises' }
         ];
         
-        // Track suggested exercises for the alternatives section in mobile menu
-        
         tabOrder.forEach(({ key, title }) => {
             const tabData = configTabs[key];
             if (tabData && tabData.sections && Array.isArray(tabData.sections)) {
@@ -787,13 +674,6 @@ export class RightMenuSystem {
                     type: 'header',
                     content: ''
                 });
-                // For alternative exercises, inject suggested exercise cards
-                if (key === 'alternativeExercises' && suggestedIds && suggestedIds.length > 0) {
-                    consolidatedSections.push({
-                        type: 'suggestedExercises',
-                        exerciseIds: suggestedIds
-                    });
-                }
                 // Add all sections from this tab
                 consolidatedSections.push(...tabData.sections);
             }
@@ -804,89 +684,6 @@ export class RightMenuSystem {
             this.menus.info.updateTitle('Exercise Info');
             this.menus.info.updateContent(consolidatedSections);
         }
-    }
-    
-    /**
-     * Find suggested exercises: uses config's suggestedExercises if present,
-     * otherwise auto-finds related exercises from the loaded catalogue.
-     */
-    _findSuggestedExercises(configTabs, currentExercise) {
-        // Priority 1: Check if config has explicit suggestedExercises
-        const altTab = configTabs?.alternativeExercises;
-        if (altTab?.suggestedExercises && altTab.suggestedExercises.length > 0) {
-            console.log('[RightMenu] Using config suggestedExercises:', altTab.suggestedExercises);
-            return altTab.suggestedExercises;
-        }
-        
-        // Priority 2: Auto-find from catalogue based on muscle group
-        if (!currentExercise) return null;
-        
-        const catalogue = this._getExerciseCatalogue();
-        if (!catalogue || catalogue.length === 0) return null;
-        
-        const currentId = currentExercise.id;
-        const currentMuscles = currentExercise.muscleGroup || [];
-        const currentEquipment = currentExercise.equipment || [];
-        
-        // Score each exercise by relevance
-        const scored = catalogue
-            .filter(ex => ex.id !== currentId) // Exclude current exercise
-            .map(ex => {
-                let score = 0;
-                const exMuscles = ex.muscleGroup || [];
-                const exEquipment = ex.equipment || [];
-                
-                // Same muscle group = high score
-                currentMuscles.forEach(m => {
-                    if (exMuscles.includes(m)) score += 3;
-                });
-                
-                // Same equipment = bonus
-                currentEquipment.forEach(e => {
-                    if (exEquipment.includes(e)) score += 1;
-                });
-                
-                // Has a thumbnail = bonus (looks better)
-                if (ex.thumbnailUrl) score += 2;
-                
-                // Has a configUrl = bonus (actually loadable with full config)
-                if (ex.configUrl) score += 3;
-                
-                return { exercise: ex, score };
-            })
-            .filter(item => item.score > 0)
-            .sort((a, b) => b.score - a.score);
-        
-        // Pick top 2, but try to get variety (different exercises)
-        const suggestions = [];
-        for (const item of scored) {
-            if (suggestions.length >= 2) break;
-            suggestions.push(item.exercise.id);
-        }
-        
-        if (suggestions.length > 0) {
-            console.log('[RightMenu] Auto-found suggested exercises:', suggestions);
-        }
-        
-        return suggestions.length > 0 ? suggestions : null;
-    }
-    
-    /**
-     * Gets the exercise catalogue from the loaded menu system.
-     * (Class-level helper used by _findSuggestedExercises)
-     */
-    _getExerciseCatalogue() {
-        if (window.menuManager && window.menuManager.menus) {
-            const exercisesMenu = window.menuManager.menus.exercises;
-            if (exercisesMenu && exercisesMenu.allExercises) {
-                return exercisesMenu.allExercises;
-            }
-            const searchMenu = window.menuManager.menus.search;
-            if (searchMenu && searchMenu.allExercises) {
-                return searchMenu.allExercises;
-            }
-        }
-        return null;
     }
 
     // Copy settings to clipboard
