@@ -5350,8 +5350,8 @@ class ThreeJSApp {
             },
             'XMUSCLE': {
                 color: '#ffffff',
-                opacity: 1,
-                transparent: false,
+                opacity: 0.94,
+                transparent: true,
                 metalness: 0,
                 roughness: 0,
                 transmission: 0,
