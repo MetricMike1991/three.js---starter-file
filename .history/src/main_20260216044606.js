@@ -254,15 +254,8 @@ class ThreeJSApp {
                     
                     // Load the 3D model if URL is provided
                     if (this.modelUrlSQ) {
-                        // If test model is active, override the model URL
-                        const ws = window.flexframeSettings;
-                        if (ws?.testModelUrl && ws?.testModelEnabled) {
-                            console.log('🧪 [Model Tester] Overriding exercise model with test model');
-                            this._isTestModel = true;
-                            await this.loadModel(ws.testModelUrl);
-                        } else {
-                            await this.loadModel(this.modelUrlSQ);
-                        }
+                        // console.log('Loading SQ model from config:', this.modelUrlSQ);
+                        await this.loadModel(this.modelUrlSQ);
                     }
                     
                     // Apply camera settings
@@ -510,7 +503,7 @@ class ThreeJSApp {
      * Show the Model Inspector panel with material analysis
      */
     showModelInspector(model, modelUrl) {
-        console.log('[Model Inspector] Analyzing model...');
+        console.log('🧪 [Model Inspector] Analyzing model...');
         
         // Collect all mesh and material data
         const meshes = [];
@@ -520,20 +513,20 @@ class ThreeJSApp {
         
         // Known material names that get theme mapping
         const themeMappedNames = {
-            'MUSCLE': { section: 'Preset Only' },
-            'SKIN': { section: 'Skin Material' },
-            'SKELETON': { section: 'Preset Only' },
-            'BARBELL': { section: 'Barbell Material' },
-            'BUMPER': { section: 'Bumper Plates' },
-            'CABLE': { section: 'Cable Material' },
-            'CHROME': { section: 'Chrome Material' },
-            'COLOR_1': { section: 'Brand Color' },
-            'COLOR1': { section: 'Brand Color' },
-            'METAL': { section: 'Metal Material' },
-            'PAD': { section: 'Pad / Cushion' },
-            'PLASTIC': { section: 'Plastic Material' },
-            'RUBBER': { section: 'Rubber Material' },
-            'LOGO': { section: 'Logo (Step 2)' }
+            'MUSCLE': { section: 'Preset Only', icon: '🔴' },
+            'SKIN': { section: 'Skin Material', icon: '👤' },
+            'SKELETON': { section: 'Preset Only', icon: '🦴' },
+            'BARBELL': { section: 'Barbell Material', icon: '🏋️' },
+            'BUMPER': { section: 'Bumper Plates', icon: '⚫' },
+            'CABLE': { section: 'Cable Material', icon: '🔗' },
+            'CHROME': { section: 'Chrome Material', icon: '✨' },
+            'COLOR_1': { section: 'Brand Color', icon: '🎨' },
+            'COLOR1': { section: 'Brand Color', icon: '🎨' },
+            'METAL': { section: 'Metal Material', icon: '🔩' },
+            'PAD': { section: 'Pad / Cushion', icon: '🛋️' },
+            'PLASTIC': { section: 'Plastic Material', icon: '📦' },
+            'RUBBER': { section: 'Rubber Material', icon: '⬛' },
+            'LOGO': { section: 'Logo (Step 2)', icon: '🏷️' }
         };
         
         model.traverse((child) => {
@@ -580,18 +573,19 @@ class ThreeJSApp {
         panel.innerHTML = `
             <div class="fmi-header">
                 <div class="fmi-title">
+                    <span class="fmi-icon">🧪</span>
                     <span>Model Inspector</span>
                     <span class="fmi-badge">TEST MODE</span>
                 </div>
                 <div class="fmi-header-actions">
-                    <button class="fmi-btn fmi-copy-btn" title="Copy report to clipboard">Copy</button>
+                    <button class="fmi-btn fmi-copy-btn" title="Copy report to clipboard">📋</button>
                     <button class="fmi-btn fmi-minimize-btn" title="Minimize">−</button>
-                    <button class="fmi-btn fmi-close-btn" title="Close">X</button>
+                    <button class="fmi-btn fmi-close-btn" title="Close">✕</button>
                 </div>
             </div>
             <div class="fmi-body">
                 <div class="fmi-section">
-                    <div class="fmi-section-title">Model Overview</div>
+                    <div class="fmi-section-title">📊 Model Overview</div>
                     <div class="fmi-stats-grid">
                         <div class="fmi-stat">
                             <span class="fmi-stat-value">${meshes.length}</span>
@@ -617,7 +611,7 @@ class ThreeJSApp {
                 </div>
                 
                 <div class="fmi-section">
-                    <div class="fmi-section-title">Materials (${materialsMap.size})</div>
+                    <div class="fmi-section-title">🎨 Materials (${materialsMap.size})</div>
                     <div class="fmi-materials-list">
                         ${Array.from(materialsMap.entries()).map(([name, data]) => {
                             const upperName = name.toUpperCase();
@@ -626,9 +620,10 @@ class ThreeJSApp {
                             const matType = data.material.type || 'Unknown';
                             
                             return `
-                                <div class="fmi-material-card ${themeMatch ? 'fmi-mapped' : 'fmi-unmapped'}" data-material-name="${name}">
+                                <div class="fmi-material-card ${themeMatch ? 'fmi-mapped' : 'fmi-unmapped'}">
                                     <div class="fmi-mat-header">
                                         <div class="fmi-mat-name-row">
+                                            ${themeMatch ? `<span class="fmi-mat-icon">${themeMatch.icon}</span>` : '<span class="fmi-mat-icon">⬜</span>'}
                                             <code class="fmi-mat-name">${name}</code>
                                             ${themeMatch ? `<span class="fmi-mat-badge fmi-badge-mapped">→ ${themeMatch.section}</span>` : '<span class="fmi-mat-badge fmi-badge-default">Default GLB</span>'}
                                         </div>
@@ -645,9 +640,9 @@ class ThreeJSApp {
                                         ${data.material.metalness !== undefined ? `<span class="fmi-mat-detail">Metal: ${data.material.metalness.toFixed(2)}</span>` : ''}
                                         ${data.material.transmission ? `<span class="fmi-mat-detail">Trans: ${data.material.transmission.toFixed(2)}</span>` : ''}
                                         ${data.material.opacity < 1 ? `<span class="fmi-mat-detail">Opacity: ${data.material.opacity.toFixed(2)}</span>` : ''}
-                                        ${data.material.map ? '<span class="fmi-mat-detail fmi-has-texture">ColorMap</span>' : ''}
-                                        ${data.material.normalMap ? '<span class="fmi-mat-detail fmi-has-texture">NormalMap</span>' : ''}
-                                        ${data.material.bumpMap ? '<span class="fmi-mat-detail fmi-has-texture">BumpMap</span>' : ''}
+                                        ${data.material.map ? '<span class="fmi-mat-detail fmi-has-texture">🖼️ ColorMap</span>' : ''}
+                                        ${data.material.normalMap ? '<span class="fmi-mat-detail fmi-has-texture">🗺️ NormalMap</span>' : ''}
+                                        ${data.material.bumpMap ? '<span class="fmi-mat-detail fmi-has-texture">🔲 BumpMap</span>' : ''}
                                     </div>
                                 </div>
                             `;
@@ -656,7 +651,7 @@ class ThreeJSApp {
                 </div>
                 
                 <div class="fmi-section fmi-meshes-section">
-                    <div class="fmi-section-title fmi-meshes-toggle">Meshes (${meshes.length}) <span class="fmi-toggle-hint">click to expand</span></div>
+                    <div class="fmi-section-title fmi-meshes-toggle">🔷 Meshes (${meshes.length}) <span class="fmi-toggle-hint">click to expand</span></div>
                     <div class="fmi-meshes-list" style="display:none;">
                         ${meshes.map(m => `
                             <div class="fmi-mesh-row">
@@ -714,7 +709,7 @@ class ThreeJSApp {
                 font-size: 13px;
                 color: #fff;
             }
-
+            .fmi-icon { font-size: 16px; }
             .fmi-badge {
                 font-size: 9px;
                 padding: 2px 6px;
@@ -730,9 +725,8 @@ class ThreeJSApp {
                 background: rgba(255,255,255,0.1);
                 border: none;
                 color: #999;
-                min-width: 26px;
+                width: 26px;
                 height: 26px;
-                padding: 0 6px;
                 border-radius: 6px;
                 cursor: pointer;
                 font-size: 12px;
@@ -817,17 +811,7 @@ class ThreeJSApp {
                 border: 1px solid rgba(255,255,255,0.08);
                 border-radius: 8px;
                 padding: 8px 10px;
-                transition: border-color 0.15s, background 0.15s;
-                cursor: pointer;
-                user-select: none;
-            }
-            .fmi-material-card:hover {
-                background: rgba(255,255,255,0.06);
-            }
-            .fmi-material-card.fmi-selected {
-                background: rgba(74, 158, 255, 0.12);
-                border-color: rgba(74, 158, 255, 0.6);
-                box-shadow: 0 0 8px rgba(74, 158, 255, 0.15);
+                transition: border-color 0.15s;
             }
             .fmi-material-card.fmi-mapped {
                 border-left: 3px solid rgba(74, 158, 255, 0.5);
@@ -842,7 +826,7 @@ class ThreeJSApp {
                 gap: 6px;
                 flex-wrap: wrap;
             }
-
+            .fmi-mat-icon { font-size: 14px; }
             .fmi-mat-name {
                 font-weight: 600;
                 font-size: 12px;
@@ -926,92 +910,7 @@ class ThreeJSApp {
         document.body.appendChild(panel);
         
         // Event handlers
-        
-        // --- Material highlight state ---
-        let selectedMaterialName = null;
-        const originalMaterialStates = new Map();
-        
-        // Store original material properties for every mesh
-        model.traverse((child) => {
-            if (child.isMesh) {
-                const mats = Array.isArray(child.material) ? child.material : [child.material];
-                mats.forEach(mat => {
-                    if (mat && !originalMaterialStates.has(mat)) {
-                        originalMaterialStates.set(mat, {
-                            emissive: mat.emissive ? mat.emissive.clone() : null,
-                            opacity: mat.opacity,
-                            transparent: mat.transparent,
-                            depthWrite: mat.depthWrite
-                        });
-                    }
-                });
-            }
-        });
-        
-        const restoreAllMaterials = () => {
-            originalMaterialStates.forEach((orig, mat) => {
-                if (orig.emissive) mat.emissive.copy(orig.emissive);
-                mat.opacity = orig.opacity;
-                mat.transparent = orig.transparent;
-                mat.depthWrite = orig.depthWrite;
-                mat.needsUpdate = true;
-            });
-        };
-        
-        const highlightMaterial = (materialName) => {
-            // First restore everything
-            restoreAllMaterials();
-            
-            if (materialName === selectedMaterialName) {
-                // Deselect — already restored above
-                selectedMaterialName = null;
-                panel.querySelectorAll('.fmi-material-card').forEach(c => c.classList.remove('fmi-selected'));
-                return;
-            }
-            
-            selectedMaterialName = materialName;
-            
-            // Update card selection UI
-            panel.querySelectorAll('.fmi-material-card').forEach(c => {
-                c.classList.toggle('fmi-selected', c.dataset.materialName === materialName);
-            });
-            
-            // Dim all materials, then brighten the selected one
-            model.traverse((child) => {
-                if (child.isMesh) {
-                    const mats = Array.isArray(child.material) ? child.material : [child.material];
-                    mats.forEach(mat => {
-                        if (!mat) return;
-                        const name = mat.name || 'Unnamed';
-                        if (name === materialName) {
-                            // Highlight: add emissive glow
-                            if (mat.emissive) {
-                                mat.emissive.setRGB(0.15, 0.35, 0.65);
-                            }
-                            mat.opacity = 1;
-                            mat.transparent = false;
-                            mat.depthWrite = true;
-                        } else {
-                            // Dim: make semi-transparent
-                            mat.opacity = 0.15;
-                            mat.transparent = true;
-                            mat.depthWrite = false;
-                        }
-                        mat.needsUpdate = true;
-                    });
-                }
-            });
-        };
-        
-        // Add click handlers to material cards
-        panel.querySelectorAll('.fmi-material-card').forEach(card => {
-            card.addEventListener('click', () => {
-                highlightMaterial(card.dataset.materialName);
-            });
-        });
-        
         panel.querySelector('.fmi-close-btn').addEventListener('click', () => {
-            restoreAllMaterials();
             panel.remove();
             style.remove();
         });
@@ -1053,8 +952,8 @@ class ThreeJSApp {
             
             navigator.clipboard.writeText(report).then(() => {
                 const btn = panel.querySelector('.fmi-copy-btn');
-                btn.textContent = 'Done';
-                setTimeout(() => btn.textContent = 'Copy', 1500);
+                btn.textContent = '✅';
+                setTimeout(() => btn.textContent = '📋', 1500);
             });
         });
         
@@ -1093,7 +992,7 @@ class ThreeJSApp {
             panel.style.transition = '';
         });
         
-        console.log('[Model Inspector] Panel created with', materialsMap.size, 'materials and', meshes.length, 'meshes');
+        console.log('🧪 [Model Inspector] Panel created with', materialsMap.size, 'materials and', meshes.length, 'meshes');
     }
 
     async waitForDefaultSettings() {

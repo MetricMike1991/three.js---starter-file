@@ -3737,21 +3737,10 @@ function flexframe_settings_page() {
                                 </div>
                                 <p class="model-tester-instructions">
                                     <span class="dashicons dashicons-info"></span>
-                                    <?php _e('Save settings, then click the button below to open the viewer. The test model will load with a <strong>Model Inspector</strong> panel showing all materials, mesh info, and file details.', 'flexframe-viewer'); ?>
+                                    <?php _e('Save settings and open the viewer page. The test model will load with a <strong>Model Inspector</strong> panel.', 'flexframe-viewer'); ?>
                                 </p>
                             </div>
                             <?php endif; ?>
-                            
-                            <!-- Open Viewer Button -->
-                            <div class="model-tester-open-viewer">
-                                <a href="<?php echo esc_url($viewer_page_url); ?>" target="_blank" class="button button-hero button-primary" id="flexframe-open-test-viewer">
-                                    <span class="dashicons dashicons-visibility" style="margin-top: 8px; margin-right: 4px;"></span>
-                                    <?php _e('Open Viewer to Test Model', 'flexframe-viewer'); ?>
-                                </a>
-                                <p class="description" style="margin-top: 8px;">
-                                    <?php _e('Make sure to <strong>Save Settings</strong> first, then click above to open the viewer in a new tab. The Model Inspector overlay will appear automatically.', 'flexframe-viewer'); ?>
-                                </p>
-                            </div>
                             
                             <!-- Material Name Reference -->
                             <div class="model-tester-reference">
@@ -5724,21 +5713,6 @@ function flexframe_settings_page() {
             flex-shrink: 0;
             margin-top: 1px;
             color: #2271b1;
-        }
-        .model-tester-open-viewer {
-            margin: 20px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border: 1px solid #86efac;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .model-tester-open-viewer .button-hero {
-            display: inline-flex;
-            align-items: center;
-            font-size: 15px;
-            padding: 8px 24px;
-            height: auto;
         }
         .model-tester-reference {
             margin-top: 20px;

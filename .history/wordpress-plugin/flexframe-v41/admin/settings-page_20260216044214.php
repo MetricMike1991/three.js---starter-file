@@ -3652,18 +3652,18 @@ function flexframe_settings_page() {
                         <div class="flexframe-model-tester-section">
                             <!-- Enable/Disable Toggle -->
                             <div class="model-tester-toggle-row">
-                                <label class="toggle-switch">
+                                <label class="flexframe-toggle-switch">
                                     <input type="checkbox" 
                                            id="flexframe_test_model_enabled" 
                                            name="flexframe_test_model_enabled" 
                                            value="1" 
-                                           <?php checked(1, get_option('flexframe_test_model_enabled', 0)); ?> />
+                                           <?php checked(get_option('flexframe_test_model_enabled', false)); ?> />
                                     <span class="toggle-slider"></span>
                                 </label>
-                                <div style="display:flex; flex-direction:column; gap:2px;">
+                                <span class="toggle-label">
                                     <strong><?php _e('Enable Test Model', 'flexframe-viewer'); ?></strong>
-                                    <span class="description" style="font-size:12px; color:#757575;"><?php _e('When enabled, the test model loads in the viewer instead of the CDN model', 'flexframe-viewer'); ?></span>
-                                </div>
+                                    <span class="description"><?php _e('When enabled, the test model loads in the viewer instead of the CDN model', 'flexframe-viewer'); ?></span>
+                                </span>
                             </div>
                             
                             <!-- Upload Section -->
@@ -3675,16 +3675,13 @@ function flexframe_settings_page() {
                                            name="flexframe_test_model_url" 
                                            value="<?php echo esc_attr(get_option('flexframe_test_model_url', '')); ?>" 
                                            class="regular-text" 
-                                           placeholder="https://yoursite.com/wp-content/uploads/model.glb" />
+                                           placeholder="<?php _e('https://yoursite.com/wp-content/uploads/model.glb', 'flexframe-viewer'); ?>" />
                                     <button type="button" class="button button-primary" id="flexframe_upload_test_model_button">
                                         <span class="dashicons dashicons-upload" style="margin-top: 4px;"></span>
                                         <?php _e('Upload GLB', 'flexframe-viewer'); ?>
                                     </button>
-                                    <?php 
-                                    $current_test_url = get_option('flexframe_test_model_url', '');
-                                    $remove_style = empty($current_test_url) ? 'display:none;' : '';
-                                    ?>
-                                    <button type="button" class="button button-secondary" id="flexframe_remove_test_model_button" style="<?php echo $remove_style; ?>">
+                                    <button type="button" class="button button-secondary" id="flexframe_remove_test_model_button" 
+                                            style="<?php echo empty(get_option('flexframe_test_model_url', '')) ? 'display:none;' : ''; ?>">
                                         <span class="dashicons dashicons-no" style="margin-top: 4px;"></span>
                                         <?php _e('Remove', 'flexframe-viewer'); ?>
                                     </button>
@@ -3694,22 +3691,23 @@ function flexframe_settings_page() {
                             
                             <!-- Model Info Preview -->
                             <?php 
-                            $test_model_url_val = get_option('flexframe_test_model_url', '');
-                            if (!empty($test_model_url_val)) : 
-                                $attachment_id_val = attachment_url_to_postid($test_model_url_val);
-                                $file_size_str = '';
-                                $upload_date_str = '';
-                                if ($attachment_id_val) {
-                                    $file_path_val = get_attached_file($attachment_id_val);
-                                    if ($file_path_val && file_exists($file_path_val)) {
-                                        $bytes_val = filesize($file_path_val);
-                                        if ($bytes_val >= 1048576) {
-                                            $file_size_str = round($bytes_val / 1048576, 2) . ' MB';
+                            $test_model_url = get_option('flexframe_test_model_url', '');
+                            if (!empty($test_model_url)) : 
+                                // Try to get file size from attachment
+                                $attachment_id = attachment_url_to_postid($test_model_url);
+                                $file_size = '';
+                                $upload_date = '';
+                                if ($attachment_id) {
+                                    $file_path = get_attached_file($attachment_id);
+                                    if ($file_path && file_exists($file_path)) {
+                                        $bytes = filesize($file_path);
+                                        if ($bytes >= 1048576) {
+                                            $file_size = round($bytes / 1048576, 2) . ' MB';
                                         } else {
-                                            $file_size_str = round($bytes_val / 1024, 2) . ' KB';
+                                            $file_size = round($bytes / 1024, 2) . ' KB';
                                         }
                                     }
-                                    $upload_date_str = get_the_date('M j, Y', $attachment_id_val);
+                                    $upload_date = get_the_date('M j, Y \a\t g:i a', $attachment_id);
                                 }
                             ?>
                             <div class="model-tester-info-card">
@@ -3720,38 +3718,27 @@ function flexframe_settings_page() {
                                 <div class="model-info-details">
                                     <div class="model-info-row">
                                         <span class="info-label"><?php _e('URL:', 'flexframe-viewer'); ?></span>
-                                        <code class="info-value model-url-truncate"><?php echo esc_html($test_model_url_val); ?></code>
+                                        <code class="info-value model-url-truncate"><?php echo esc_html($test_model_url); ?></code>
                                     </div>
-                                    <?php if (!empty($file_size_str)) : ?>
+                                    <?php if ($file_size) : ?>
                                     <div class="model-info-row">
                                         <span class="info-label"><?php _e('File Size:', 'flexframe-viewer'); ?></span>
-                                        <span class="info-value"><?php echo esc_html($file_size_str); ?></span>
+                                        <span class="info-value"><?php echo esc_html($file_size); ?></span>
                                     </div>
                                     <?php endif; ?>
-                                    <?php if (!empty($upload_date_str)) : ?>
+                                    <?php if ($upload_date) : ?>
                                     <div class="model-info-row">
                                         <span class="info-label"><?php _e('Uploaded:', 'flexframe-viewer'); ?></span>
-                                        <span class="info-value"><?php echo esc_html($upload_date_str); ?></span>
+                                        <span class="info-value"><?php echo esc_html($upload_date); ?></span>
                                     </div>
                                     <?php endif; ?>
                                 </div>
                                 <p class="model-tester-instructions">
                                     <span class="dashicons dashicons-info"></span>
-                                    <?php _e('Save settings, then click the button below to open the viewer. The test model will load with a <strong>Model Inspector</strong> panel showing all materials, mesh info, and file details.', 'flexframe-viewer'); ?>
+                                    <?php _e('Save settings and open the viewer page. The test model will load automatically with a <strong>Model Inspector</strong> panel showing all materials, mesh counts, file size, and which materials are mapped to theme settings.', 'flexframe-viewer'); ?>
                                 </p>
                             </div>
                             <?php endif; ?>
-                            
-                            <!-- Open Viewer Button -->
-                            <div class="model-tester-open-viewer">
-                                <a href="<?php echo esc_url($viewer_page_url); ?>" target="_blank" class="button button-hero button-primary" id="flexframe-open-test-viewer">
-                                    <span class="dashicons dashicons-visibility" style="margin-top: 8px; margin-right: 4px;"></span>
-                                    <?php _e('Open Viewer to Test Model', 'flexframe-viewer'); ?>
-                                </a>
-                                <p class="description" style="margin-top: 8px;">
-                                    <?php _e('Make sure to <strong>Save Settings</strong> first, then click above to open the viewer in a new tab. The Model Inspector overlay will appear automatically.', 'flexframe-viewer'); ?>
-                                </p>
-                            </div>
                             
                             <!-- Material Name Reference -->
                             <div class="model-tester-reference">
@@ -5619,174 +5606,6 @@ function flexframe_settings_page() {
         }
         .qr-copy-btn:hover {
             background: #008a20;
-        }
-        
-        /* ========== Step 8: Model Tester ========== */
-        .flexframe-model-tester-section {
-            padding: 0;
-        }
-        .model-tester-toggle-row {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            padding: 16px 20px;
-            background: #f9f9f9;
-            border: 1px solid #e2e4e7;
-            border-radius: 8px;
-            margin-bottom: 20px;
-        }
-        .model-tester-toggle-row .toggle-label {
-            display: flex;
-            flex-direction: column;
-            gap: 2px;
-        }
-        .model-tester-toggle-row .toggle-label .description {
-            font-size: 12px;
-            color: #757575;
-        }
-        .model-tester-upload-section {
-            margin-bottom: 20px;
-        }
-        .model-tester-upload-section label {
-            display: block;
-            margin-bottom: 8px;
-        }
-        .model-tester-input-row {
-            display: flex;
-            gap: 8px;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-        .model-tester-input-row .regular-text {
-            flex: 1;
-            min-width: 200px;
-        }
-        .model-tester-info-card {
-            background: linear-gradient(135deg, #f0f6fc 0%, #e7f3ff 100%);
-            border: 1px solid #c3d9ed;
-            border-left: 4px solid #2271b1;
-            border-radius: 6px;
-            padding: 16px 20px;
-            margin-bottom: 20px;
-        }
-        .model-info-header {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            margin-bottom: 12px;
-            color: #1d2327;
-        }
-        .model-info-header .dashicons {
-            color: #2271b1;
-        }
-        .model-info-details {
-            display: flex;
-            flex-direction: column;
-            gap: 6px;
-            margin-bottom: 12px;
-        }
-        .model-info-row {
-            display: flex;
-            gap: 8px;
-            align-items: baseline;
-            font-size: 13px;
-        }
-        .model-info-row .info-label {
-            font-weight: 600;
-            color: #50575e;
-            min-width: 80px;
-        }
-        .model-info-row .info-value {
-            color: #1d2327;
-        }
-        .model-url-truncate {
-            max-width: 500px;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            white-space: nowrap;
-            display: inline-block;
-            vertical-align: bottom;
-            font-size: 12px;
-            padding: 2px 6px;
-            background: rgba(0,0,0,0.05);
-            border-radius: 3px;
-        }
-        .model-tester-instructions {
-            display: flex;
-            align-items: flex-start;
-            gap: 6px;
-            margin: 0;
-            font-size: 13px;
-            color: #50575e;
-            line-height: 1.5;
-        }
-        .model-tester-instructions .dashicons {
-            flex-shrink: 0;
-            margin-top: 1px;
-            color: #2271b1;
-        }
-        .model-tester-open-viewer {
-            margin: 20px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border: 1px solid #86efac;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .model-tester-open-viewer .button-hero {
-            display: inline-flex;
-            align-items: center;
-            font-size: 15px;
-            padding: 8px 24px;
-            height: auto;
-        }
-        .model-tester-reference {
-            margin-top: 20px;
-            border: 1px solid #e2e4e7;
-            border-radius: 8px;
-            overflow: hidden;
-        }
-        .reference-toggle {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 16px;
-            background: #f9f9f9;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-        .reference-toggle:hover {
-            background: #f0f0f1;
-        }
-        .reference-toggle .dashicons {
-            color: #2271b1;
-        }
-        .reference-toggle .toggle-hint {
-            font-size: 12px;
-            color: #757575;
-        }
-        .reference-content {
-            padding: 16px;
-        }
-        .material-reference-table {
-            font-size: 13px;
-        }
-        .material-reference-table th {
-            background: #f0f0f1;
-            font-weight: 600;
-            padding: 8px 12px;
-        }
-        .material-reference-table td {
-            padding: 8px 12px;
-            vertical-align: middle;
-        }
-        .material-reference-table code {
-            background: #2271b1;
-            color: #fff;
-            padding: 2px 8px;
-            border-radius: 3px;
-            font-size: 12px;
-            font-weight: 600;
         }
         
         /* Step 5: UI Settings Styles */
@@ -10302,66 +10121,6 @@ function flexframe_settings_page() {
                     $btn.prop('disabled', false);
                 }
             });
-        });
-        
-        // ========== Step 8: Model Tester ==========
-        
-        // GLB Upload button
-        var glbUploader;
-        $('#flexframe_upload_test_model_button').on('click', function(e) {
-            e.preventDefault();
-            
-            if (glbUploader) {
-                glbUploader.open();
-                return;
-            }
-            
-            glbUploader = wp.media({
-                title: 'Select GLB Model File',
-                button: { text: 'Use this model' },
-                multiple: false
-            });
-            
-            glbUploader.on('select', function() {
-                var attachment = glbUploader.state().get('selection').first().toJSON();
-                var url = attachment.url;
-                
-                // Accept any .glb file regardless of mime type detection
-                if (!url.toLowerCase().endsWith('.glb')) {
-                    alert('Please select a .glb file.');
-                    return;
-                }
-                
-                $('#flexframe_test_model_url').val(url);
-                $('#flexframe_remove_test_model_button').show();
-                
-                // Auto-enable the test model toggle
-                $('#flexframe_test_model_enabled').prop('checked', true);
-            });
-            
-            glbUploader.open();
-        });
-        
-        // Remove test model
-        $('#flexframe_remove_test_model_button').on('click', function(e) {
-            e.preventDefault();
-            $('#flexframe_test_model_url').val('');
-            $('#flexframe_test_model_enabled').prop('checked', false);
-            $(this).hide();
-        });
-        
-        // Also allow pasting a URL directly - show/hide remove button
-        $('#flexframe_test_model_url').on('input', function() {
-            if ($(this).val()) {
-                $('#flexframe_remove_test_model_button').show();
-            } else {
-                $('#flexframe_remove_test_model_button').hide();
-            }
-        });
-        
-        // Material reference toggle
-        $('#model-tester-reference-toggle').on('click', function() {
-            $('#model-tester-reference-content').slideToggle(200);
         });
     });
     </script>

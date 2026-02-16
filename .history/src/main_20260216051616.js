@@ -626,7 +626,7 @@ class ThreeJSApp {
                             const matType = data.material.type || 'Unknown';
                             
                             return `
-                                <div class="fmi-material-card ${themeMatch ? 'fmi-mapped' : 'fmi-unmapped'}" data-material-name="${name}">
+                                <div class="fmi-material-card ${themeMatch ? 'fmi-mapped' : 'fmi-unmapped'}">
                                     <div class="fmi-mat-header">
                                         <div class="fmi-mat-name-row">
                                             <code class="fmi-mat-name">${name}</code>
@@ -817,17 +817,7 @@ class ThreeJSApp {
                 border: 1px solid rgba(255,255,255,0.08);
                 border-radius: 8px;
                 padding: 8px 10px;
-                transition: border-color 0.15s, background 0.15s;
-                cursor: pointer;
-                user-select: none;
-            }
-            .fmi-material-card:hover {
-                background: rgba(255,255,255,0.06);
-            }
-            .fmi-material-card.fmi-selected {
-                background: rgba(74, 158, 255, 0.12);
-                border-color: rgba(74, 158, 255, 0.6);
-                box-shadow: 0 0 8px rgba(74, 158, 255, 0.15);
+                transition: border-color 0.15s;
             }
             .fmi-material-card.fmi-mapped {
                 border-left: 3px solid rgba(74, 158, 255, 0.5);
@@ -926,92 +916,7 @@ class ThreeJSApp {
         document.body.appendChild(panel);
         
         // Event handlers
-        
-        // --- Material highlight state ---
-        let selectedMaterialName = null;
-        const originalMaterialStates = new Map();
-        
-        // Store original material properties for every mesh
-        model.traverse((child) => {
-            if (child.isMesh) {
-                const mats = Array.isArray(child.material) ? child.material : [child.material];
-                mats.forEach(mat => {
-                    if (mat && !originalMaterialStates.has(mat)) {
-                        originalMaterialStates.set(mat, {
-                            emissive: mat.emissive ? mat.emissive.clone() : null,
-                            opacity: mat.opacity,
-                            transparent: mat.transparent,
-                            depthWrite: mat.depthWrite
-                        });
-                    }
-                });
-            }
-        });
-        
-        const restoreAllMaterials = () => {
-            originalMaterialStates.forEach((orig, mat) => {
-                if (orig.emissive) mat.emissive.copy(orig.emissive);
-                mat.opacity = orig.opacity;
-                mat.transparent = orig.transparent;
-                mat.depthWrite = orig.depthWrite;
-                mat.needsUpdate = true;
-            });
-        };
-        
-        const highlightMaterial = (materialName) => {
-            // First restore everything
-            restoreAllMaterials();
-            
-            if (materialName === selectedMaterialName) {
-                // Deselect — already restored above
-                selectedMaterialName = null;
-                panel.querySelectorAll('.fmi-material-card').forEach(c => c.classList.remove('fmi-selected'));
-                return;
-            }
-            
-            selectedMaterialName = materialName;
-            
-            // Update card selection UI
-            panel.querySelectorAll('.fmi-material-card').forEach(c => {
-                c.classList.toggle('fmi-selected', c.dataset.materialName === materialName);
-            });
-            
-            // Dim all materials, then brighten the selected one
-            model.traverse((child) => {
-                if (child.isMesh) {
-                    const mats = Array.isArray(child.material) ? child.material : [child.material];
-                    mats.forEach(mat => {
-                        if (!mat) return;
-                        const name = mat.name || 'Unnamed';
-                        if (name === materialName) {
-                            // Highlight: add emissive glow
-                            if (mat.emissive) {
-                                mat.emissive.setRGB(0.15, 0.35, 0.65);
-                            }
-                            mat.opacity = 1;
-                            mat.transparent = false;
-                            mat.depthWrite = true;
-                        } else {
-                            // Dim: make semi-transparent
-                            mat.opacity = 0.15;
-                            mat.transparent = true;
-                            mat.depthWrite = false;
-                        }
-                        mat.needsUpdate = true;
-                    });
-                }
-            });
-        };
-        
-        // Add click handlers to material cards
-        panel.querySelectorAll('.fmi-material-card').forEach(card => {
-            card.addEventListener('click', () => {
-                highlightMaterial(card.dataset.materialName);
-            });
-        });
-        
         panel.querySelector('.fmi-close-btn').addEventListener('click', () => {
-            restoreAllMaterials();
             panel.remove();
             style.remove();
         });

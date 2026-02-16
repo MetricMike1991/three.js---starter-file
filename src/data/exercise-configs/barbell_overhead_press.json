@@ -1,0 +1,96 @@
+{
+  "exerciseId": "barbell_overhead_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20OIverhead%20Press%20GLB%20SD.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20Overhead%20Press%20HD.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20OIverhead%20Press%20GLB%20SD.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20Overhead%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0928264698826224, 1.1184336317012207, -1.689669951455272],
+    "rotation": [-2.826385058746882, -0.5484591956480145, -2.973193896810562],
+    "target": [-0.0036100299903389977, 0.565767120940778, 0.0052148703225515305]
+  },
+  "cameraHQ": {
+    "position": [1.1612606573002884, 1.2361629110311865, 1.636909712653463],
+    "rotation": [-0.3672402811371892, 0.5822741812172891, 0.20847767969647304],
+    "target": [-0.003693570291971901, 0.6009086457552157, -0.014423876727463675]
+  },
+  "customTextures": {},
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Overhead Press, also known as the Standing Military Press, is one of the most effective compound exercises for building upper body pressing strength.\n\nIt involves pressing a loaded barbell from shoulder height to full arm extension overhead while standing.\n\nThis exercise is a cornerstone of strength training, developing powerful shoulders, a strong core, and total upper body stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strong, well-developed shoulders and deltoids\n- Develops upper body pressing strength and power\n- Engages the core for full-body stabilisation\n- Improves overhead mobility and shoulder health\n- Strengthens the triceps as a secondary mover\n- Enhances athletic performance for pushing and throwing\n- Builds a strong and stable upper back\n- Carries over to bench press and other pressing movements"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Lateral Deltoids, Triceps\n\nSecondary: Upper Chest (Clavicular Head), Trapezius, Serratus Anterior, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Position a barbell on a squat rack at approximately shoulder height.\n2. Step underneath the barbell and grip it with hands just outside shoulder-width.\n3. Rest the barbell across the front of your shoulders (front rack position).\n4. Unrack the bar and take one or two small steps back.\n5. Stand with feet shoulder-width apart, toes pointed slightly outward.\n6. Brace your core tightly and squeeze your glutes.\n7. Keep your chest up and elbows slightly in front of the bar.\n8. Take a deep breath before pressing."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Press the barbell upward in a slight backward arc.\n3. As the bar passes your forehead, push your head through (forward) under the bar.\n4. Continue pressing until your arms are fully extended overhead.\n5. Lock out with the bar directly over your mid-foot.\n6. Shoulders should be shrugged up slightly at the top.\n7. Pause briefly at the top with full control.\n8. Slowly lower the barbell back to the front rack position on your shoulders.\n9. Do not allow the bar to rest or bounce off your shoulders — move directly into the next repetition."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Excessive lower back arching (flaring the ribcage)\n- Not bracing the core before each rep\n- Pressing the bar forward instead of straight up\n- Not pushing the head through at the top of the press\n- Using leg drive to push the weight (turning it into a push press)\n- Flaring elbows too far out to the sides\n- Gripping the bar too wide or too narrow\n- Incomplete range of motion at the top\n- Letting the bar drift forward away from the body"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Squat Rack or Power Rack (for unracking at shoulder height)\n- Optional: Lifting Belt (for heavier loads)\n- Optional: Wrist Wraps (for wrist support)\n- Recommended: Flat-soled shoes for a stable base"
+        },
+        {
+          "heading": "Rack Setup",
+          "content": "1. Set the barbell on the rack at approximately shoulder height.\n2. The bar should sit comfortably across the front of your shoulders when you step under it.\n3. If the rack is too high, you'll have to tip-toe to unrack — lower it.\n4. If the rack is too low, you'll waste energy squatting the bar up — raise it.\n5. Ensure the rack is on a flat, stable surface.\n6. Load equal weight on both sides and use collars to secure the plates."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Hands just outside shoulder-width, full grip around the bar (thumbs wrapped).\n2. Wrist Position: Wrists should be straight or only slightly extended, bar resting in the heel of the palm.\n3. Elbow Position: Slightly in front of the bar in the starting position.\n4. Stance: Feet shoulder-width apart, toes slightly out.\n5. Core: Braced tightly throughout — imagine someone is about to punch your stomach.\n6. Glutes: Squeezed to prevent lower back arching.\n7. Head: Neutral — pull the chin back slightly so the bar can travel straight up."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_dumbbell_shoulder_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Dumbbell Shoulder Press: Seated variation with dumbbells for independent arm work\n- Barbell Seated Shoulder Press: Seated barbell pressing for more shoulder isolation\n- Push Press: Uses leg drive to press heavier loads overhead\n- Dumbbell Standing Overhead Press: Unilateral version for balance and stability\n- Arnold Press: Rotational dumbbell press for full deltoid engagement\n- Landmine Press: Angled pressing for those with shoulder mobility limitations"
+        },
+        {
+          "heading": "Overhead Press Variations",
+          "content": "Strict Press: Standard standing barbell overhead press with no leg drive\nPush Press: Uses a slight dip and drive from the legs to assist the press\nZ Press: Seated on the floor with legs extended — removes all leg assistance\nBehind the Neck Press: Starts from behind the head (requires excellent mobility)\nSingle Arm Dumbbell Press: Unilateral pressing for imbalance correction\nKettlebell Press: Offset loading challenges core stability"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Try landmine press or seated dumbbell press\nLower Back Pain: Perform seated overhead press or use a belt for support\nWrist Pain: Check grip width and wrist angle, try wrist wraps\nNeck Discomfort: Ensure bar path is correct and head position is neutral\nNo Barbell: Use dumbbells, kettlebells, or resistance bands\nLearning Stage: Start with light weight, master the bar path before adding load\nShoulder Impingement: Try neutral grip dumbbell press or landmine press"
+        }
+      ]
+    }
+  }
+}

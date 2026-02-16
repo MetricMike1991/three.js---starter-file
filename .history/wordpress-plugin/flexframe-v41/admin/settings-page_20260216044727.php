@@ -3652,18 +3652,18 @@ function flexframe_settings_page() {
                         <div class="flexframe-model-tester-section">
                             <!-- Enable/Disable Toggle -->
                             <div class="model-tester-toggle-row">
-                                <label class="toggle-switch">
+                                <label class="flexframe-toggle-switch">
                                     <input type="checkbox" 
                                            id="flexframe_test_model_enabled" 
                                            name="flexframe_test_model_enabled" 
                                            value="1" 
-                                           <?php checked(1, get_option('flexframe_test_model_enabled', 0)); ?> />
+                                           <?php checked(get_option('flexframe_test_model_enabled', false)); ?> />
                                     <span class="toggle-slider"></span>
                                 </label>
-                                <div style="display:flex; flex-direction:column; gap:2px;">
+                                <span class="toggle-label">
                                     <strong><?php _e('Enable Test Model', 'flexframe-viewer'); ?></strong>
-                                    <span class="description" style="font-size:12px; color:#757575;"><?php _e('When enabled, the test model loads in the viewer instead of the CDN model', 'flexframe-viewer'); ?></span>
-                                </div>
+                                    <span class="description"><?php _e('When enabled, the test model loads in the viewer instead of the CDN model', 'flexframe-viewer'); ?></span>
+                                </span>
                             </div>
                             
                             <!-- Upload Section -->
@@ -3675,16 +3675,13 @@ function flexframe_settings_page() {
                                            name="flexframe_test_model_url" 
                                            value="<?php echo esc_attr(get_option('flexframe_test_model_url', '')); ?>" 
                                            class="regular-text" 
-                                           placeholder="https://yoursite.com/wp-content/uploads/model.glb" />
+                                           placeholder="<?php _e('https://yoursite.com/wp-content/uploads/model.glb', 'flexframe-viewer'); ?>" />
                                     <button type="button" class="button button-primary" id="flexframe_upload_test_model_button">
                                         <span class="dashicons dashicons-upload" style="margin-top: 4px;"></span>
                                         <?php _e('Upload GLB', 'flexframe-viewer'); ?>
                                     </button>
-                                    <?php 
-                                    $current_test_url = get_option('flexframe_test_model_url', '');
-                                    $remove_style = empty($current_test_url) ? 'display:none;' : '';
-                                    ?>
-                                    <button type="button" class="button button-secondary" id="flexframe_remove_test_model_button" style="<?php echo $remove_style; ?>">
+                                    <button type="button" class="button button-secondary" id="flexframe_remove_test_model_button" 
+                                            style="<?php echo empty(get_option('flexframe_test_model_url', '')) ? 'display:none;' : ''; ?>">
                                         <span class="dashicons dashicons-no" style="margin-top: 4px;"></span>
                                         <?php _e('Remove', 'flexframe-viewer'); ?>
                                     </button>
@@ -3694,22 +3691,23 @@ function flexframe_settings_page() {
                             
                             <!-- Model Info Preview -->
                             <?php 
-                            $test_model_url_val = get_option('flexframe_test_model_url', '');
-                            if (!empty($test_model_url_val)) : 
-                                $attachment_id_val = attachment_url_to_postid($test_model_url_val);
-                                $file_size_str = '';
-                                $upload_date_str = '';
-                                if ($attachment_id_val) {
-                                    $file_path_val = get_attached_file($attachment_id_val);
-                                    if ($file_path_val && file_exists($file_path_val)) {
-                                        $bytes_val = filesize($file_path_val);
-                                        if ($bytes_val >= 1048576) {
-                                            $file_size_str = round($bytes_val / 1048576, 2) . ' MB';
+                            $test_model_url = get_option('flexframe_test_model_url', '');
+                            if (!empty($test_model_url)) : 
+                                // Try to get file size from attachment
+                                $attachment_id = attachment_url_to_postid($test_model_url);
+                                $file_size = '';
+                                $upload_date = '';
+                                if ($attachment_id) {
+                                    $file_path = get_attached_file($attachment_id);
+                                    if ($file_path && file_exists($file_path)) {
+                                        $bytes = filesize($file_path);
+                                        if ($bytes >= 1048576) {
+                                            $file_size = round($bytes / 1048576, 2) . ' MB';
                                         } else {
-                                            $file_size_str = round($bytes_val / 1024, 2) . ' KB';
+                                            $file_size = round($bytes / 1024, 2) . ' KB';
                                         }
                                     }
-                                    $upload_date_str = get_the_date('M j, Y', $attachment_id_val);
+                                    $upload_date = get_the_date('M j, Y \a\t g:i a', $attachment_id);
                                 }
                             ?>
                             <div class="model-tester-info-card">
@@ -3720,38 +3718,27 @@ function flexframe_settings_page() {
                                 <div class="model-info-details">
                                     <div class="model-info-row">
                                         <span class="info-label"><?php _e('URL:', 'flexframe-viewer'); ?></span>
-                                        <code class="info-value model-url-truncate"><?php echo esc_html($test_model_url_val); ?></code>
+                                        <code class="info-value model-url-truncate"><?php echo esc_html($test_model_url); ?></code>
                                     </div>
-                                    <?php if (!empty($file_size_str)) : ?>
+                                    <?php if ($file_size) : ?>
                                     <div class="model-info-row">
                                         <span class="info-label"><?php _e('File Size:', 'flexframe-viewer'); ?></span>
-                                        <span class="info-value"><?php echo esc_html($file_size_str); ?></span>
+                                        <span class="info-value"><?php echo esc_html($file_size); ?></span>
                                     </div>
                                     <?php endif; ?>
-                                    <?php if (!empty($upload_date_str)) : ?>
+                                    <?php if ($upload_date) : ?>
                                     <div class="model-info-row">
                                         <span class="info-label"><?php _e('Uploaded:', 'flexframe-viewer'); ?></span>
-                                        <span class="info-value"><?php echo esc_html($upload_date_str); ?></span>
+                                        <span class="info-value"><?php echo esc_html($upload_date); ?></span>
                                     </div>
                                     <?php endif; ?>
                                 </div>
                                 <p class="model-tester-instructions">
                                     <span class="dashicons dashicons-info"></span>
-                                    <?php _e('Save settings, then click the button below to open the viewer. The test model will load with a <strong>Model Inspector</strong> panel showing all materials, mesh info, and file details.', 'flexframe-viewer'); ?>
+                                    <?php _e('Save settings and open the viewer page. The test model will load automatically with a <strong>Model Inspector</strong> panel showing all materials, mesh counts, file size, and which materials are mapped to theme settings.', 'flexframe-viewer'); ?>
                                 </p>
                             </div>
                             <?php endif; ?>
-                            
-                            <!-- Open Viewer Button -->
-                            <div class="model-tester-open-viewer">
-                                <a href="<?php echo esc_url($viewer_page_url); ?>" target="_blank" class="button button-hero button-primary" id="flexframe-open-test-viewer">
-                                    <span class="dashicons dashicons-visibility" style="margin-top: 8px; margin-right: 4px;"></span>
-                                    <?php _e('Open Viewer to Test Model', 'flexframe-viewer'); ?>
-                                </a>
-                                <p class="description" style="margin-top: 8px;">
-                                    <?php _e('Make sure to <strong>Save Settings</strong> first, then click above to open the viewer in a new tab. The Model Inspector overlay will appear automatically.', 'flexframe-viewer'); ?>
-                                </p>
-                            </div>
                             
                             <!-- Material Name Reference -->
                             <div class="model-tester-reference">
@@ -5724,21 +5711,6 @@ function flexframe_settings_page() {
             flex-shrink: 0;
             margin-top: 1px;
             color: #2271b1;
-        }
-        .model-tester-open-viewer {
-            margin: 20px 0;
-            padding: 20px;
-            background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
-            border: 1px solid #86efac;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .model-tester-open-viewer .button-hero {
-            display: inline-flex;
-            align-items: center;
-            font-size: 15px;
-            padding: 8px 24px;
-            height: auto;
         }
         .model-tester-reference {
             margin-top: 20px;
@@ -10319,6 +10291,7 @@ function flexframe_settings_page() {
             glbUploader = wp.media({
                 title: 'Select GLB Model File',
                 button: { text: 'Use this model' },
+                library: { type: ['model/gltf-binary', 'application/octet-stream'] },
                 multiple: false
             });
             
