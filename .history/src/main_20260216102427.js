@@ -3482,13 +3482,15 @@ class ThreeJSApp {
                                 if (mat.name) {
                                     // console.log('Found material:', mat.name);
                                     
-                                    // Convert MUSCLE materials to MeshPhysicalMaterial for sheen support
-                                    if (mat.name.toUpperCase() === 'MUSCLE' && mat.type !== 'MeshPhysicalMaterial') {
+                                    // Convert MUSCLE / XMUSCLE materials to MeshPhysicalMaterial for sheen support
+                                    if ((mat.name.toUpperCase() === 'MUSCLE' || mat.name.toUpperCase() === 'XMUSCLE') && mat.type !== 'MeshPhysicalMaterial') {
+                                        // Check if we already converted this material
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
                                             
+                                            // Create new MeshPhysicalMaterial with default MUSCLE settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
                                                 map: mat.map,
@@ -3502,57 +3504,22 @@ class ThreeJSApp {
                                                 transparent: true,
                                                 side: THREE.DoubleSide,
                                                 depthWrite: true,
+                                                // Sheen settings for realistic muscle appearance
                                                 sheen: 0.3,
                                                 sheenRoughness: 0.45,
                                                 sheenColor: new THREE.Color(0xeb0a0a)
                                             });
                                             
+                                            // Copy the name
                                             physicalMat.name = mat.name;
+                                            
+                                            // Apply bump map from color texture with default scale
                                             if (mat.map) {
                                                 physicalMat.bumpMap = mat.map;
                                                 physicalMat.bumpScale = 10.2;
                                             }
-                                            convertedMaterials.set(mat.name, physicalMat);
-                                            newMats.push(physicalMat);
-                                        }
-                                    }
-                                    // Convert XMUSCLE to MeshPhysicalMaterial (keeps GLB textures, HD-specific defaults)
-                                    else if (mat.name.toUpperCase() === 'XMUSCLE' && mat.type !== 'MeshPhysicalMaterial') {
-                                        if (convertedMaterials.has(mat.name)) {
-                                            newMats.push(convertedMaterials.get(mat.name));
-                                        } else {
-                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
                                             
-                                            const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xffffff),
-                                                map: mat.map,
-                                                normalMap: mat.normalMap,
-                                                roughness: 0,
-                                                metalness: 0,
-                                                emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 1.14,
-                                                emissiveMap: mat.emissiveMap,
-                                                opacity: 0.94,
-                                                transparent: true,
-                                                alphaTest: 0,
-                                                side: THREE.DoubleSide,
-                                                depthWrite: true,
-                                                depthTest: true,
-                                                blending: THREE.NormalBlending,
-                                                envMapIntensity: 1,
-                                                transmission: 0,
-                                                thickness: 0,
-                                                ior: 1.5,
-                                                sheen: 0.3,
-                                                sheenRoughness: 0.45,
-                                                sheenColor: new THREE.Color(0xeb0a0a)
-                                            });
-                                            
-                                            physicalMat.name = mat.name;
-                                            if (mat.map) {
-                                                physicalMat.bumpMap = mat.map;
-                                                physicalMat.bumpScale = 14.2;
-                                            }
+                                            // Store the converted material
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -3622,13 +3589,15 @@ class ThreeJSApp {
                                             newMats.push(physicalMat);
                                         }
                                     }
-                                    // Convert SKELETON materials to MeshPhysicalMaterial
-                                    else if (mat.name.toUpperCase() === 'SKELETON' && mat.type !== 'MeshPhysicalMaterial') {
+                                    // Convert SKELETON / XSKELETON materials to MeshPhysicalMaterial
+                                    else if ((mat.name.toUpperCase() === 'SKELETON' || mat.name.toUpperCase() === 'XSKELETON') && mat.type !== 'MeshPhysicalMaterial') {
+                                        // Check if we already converted this material
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial`);
                                             
+                                            // Create new MeshPhysicalMaterial with custom settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
                                                 map: mat.map,
@@ -3648,52 +3617,16 @@ class ThreeJSApp {
                                                 envMapIntensity: 1
                                             });
                                             
+                                            // Copy the name
                                             physicalMat.name = mat.name;
+                                            
+                                            // Apply bump map from color texture
                                             if (mat.map) {
                                                 physicalMat.bumpMap = mat.map;
                                                 physicalMat.bumpScale = 1;
                                             }
-                                            convertedMaterials.set(mat.name, physicalMat);
-                                            newMats.push(physicalMat);
-                                        }
-                                    }
-                                    // Convert XSKELETON to MeshPhysicalMaterial (keeps GLB textures, HD-specific defaults)
-                                    else if (mat.name.toUpperCase() === 'XSKELETON' && mat.type !== 'MeshPhysicalMaterial') {
-                                        if (convertedMaterials.has(mat.name)) {
-                                            newMats.push(convertedMaterials.get(mat.name));
-                                        } else {
-                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial`);
                                             
-                                            const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xffffff),
-                                                map: mat.map,
-                                                normalMap: mat.normalMap,
-                                                roughness: 0.99,
-                                                metalness: 0,
-                                                emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 1,
-                                                emissiveMap: mat.emissiveMap,
-                                                opacity: 0.93,
-                                                transparent: false,
-                                                alphaTest: 0,
-                                                side: THREE.DoubleSide,
-                                                depthWrite: true,
-                                                depthTest: true,
-                                                blending: THREE.NormalBlending,
-                                                envMapIntensity: 1,
-                                                transmission: 0,
-                                                thickness: 0,
-                                                ior: 1.5,
-                                                sheen: 0,
-                                                sheenRoughness: 1,
-                                                sheenColor: new THREE.Color(0x000000)
-                                            });
-                                            
-                                            physicalMat.name = mat.name;
-                                            if (mat.map) {
-                                                physicalMat.bumpMap = mat.map;
-                                                physicalMat.bumpScale = 1;
-                                            }
+                                            // Store the converted material
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -3748,45 +3681,54 @@ class ThreeJSApp {
                                             newMats.push(physicalMat);
                                         }
                                     }
-                                    // Convert XCLEAR to MeshPhysicalMaterial (keeps GLB map, HD-specific defaults)
+                                    // Convert XCLEAR materials to MeshPhysicalMaterial
+                                    // Same transmission/transparency as SKIN but KEEPS the opacity/alpha mask from GLB
                                     else if (mat.name.toUpperCase() === 'XCLEAR') {
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
-                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Clear)`);
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Clear = SKIN transmission + opacity mask)`);
                                             
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
-                                                color: new THREE.Color(0xffffff),
+                                                color: new THREE.Color(0xccdef5),
+                                                // KEEP the opacity/alpha mask from GLB
                                                 map: mat.map,
-                                                normalMap: mat.normalMap,
                                                 alphaMap: mat.alphaMap || null,
-                                                roughness: 0.42,
+                                                normalMap: mat.normalMap,
+                                                roughness: 0,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
-                                                emissiveIntensity: 0,
+                                                emissiveIntensity: 1,
                                                 opacity: 1,
                                                 transparent: true,
-                                                alphaTest: 0,
                                                 side: THREE.FrontSide,
                                                 depthWrite: false,
                                                 depthTest: true,
-                                                blending: THREE.NormalBlending,
-                                                transmission: 0,
-                                                thickness: 0.85,
-                                                ior: 1.06,
+                                                blending: THREE.CustomBlending,
+                                                alphaTest: 0.01,
+                                                // Same refraction/transmission as SKIN
+                                                transmission: 1,
+                                                thickness: 0,
+                                                ior: 1,
                                                 envMapIntensity: 2.29,
                                                 sheen: 0,
-                                                sheenRoughness: 0,
-                                                sheenColor: new THREE.Color(0x000000),
-                                                clearcoat: 0.47,
-                                                clearcoatRoughness: 0,
-                                                specularIntensity: 0.61,
-                                                specularColor: new THREE.Color(0xffffff),
-                                                attenuationDistance: 90,
-                                                attenuationColor: new THREE.Color(0xffffff)
+                                                sheenRoughness: 1,
+                                                sheenColor: new THREE.Color(0x000000)
                                             });
                                             
                                             physicalMat.name = mat.name;
+                                            
+                                            console.log(`✅ ${mat.name} XCLEAR Material Applied (SKIN transmission + opacity mask):`, {
+                                                color: '#' + physicalMat.color.getHexString(),
+                                                transmission: physicalMat.transmission,
+                                                ior: physicalMat.ior,
+                                                envMapIntensity: physicalMat.envMapIntensity,
+                                                hasMap: !!physicalMat.map,
+                                                hasAlphaMap: !!physicalMat.alphaMap,
+                                                hasNormalMap: !!physicalMat.normalMap,
+                                                alphaTest: physicalMat.alphaTest
+                                            });
+                                            
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -4195,74 +4137,6 @@ class ThreeJSApp {
                     materialsElement.classList.add('materials-folder-main');
                 }
             }, 10);
-            
-            // "Copy All HD Settings" button — copies XMUSCLE, XSKELETON, XCLEAR settings at once
-            const hdMaterialNames = ['XMUSCLE', 'XSKELETON', 'XCLEAR'];
-            const hasAnyHD = hdMaterialNames.some(n => materials.has(n));
-            if (hasAnyHD) {
-                const copyAllHD = {
-                    copyAllHDSettings: () => {
-                        let output = '';
-                        hdMaterialNames.forEach(matName => {
-                            const mat = materials.get(matName);
-                            if (!mat) return;
-                            
-                            const hasTextures = mat.map || mat.normalMap || mat.emissiveMap || mat.bumpMap || mat.alphaMap;
-                            
-                            output += `Material Name: "${matName}"\n\n`;
-                            output += `Settings:\n`;
-                            if (mat.color) output += `- Color: #${mat.color.getHexString()}\n`;
-                            if (mat.opacity !== undefined) output += `- Opacity: ${mat.opacity}\n`;
-                            if (mat.transparent !== undefined) output += `- Transparent: ${mat.transparent}\n`;
-                            if (mat.alphaTest !== undefined) output += `- Alpha Test: ${mat.alphaTest}\n`;
-                            if (mat.side !== undefined) {
-                                const sideNames = { 0: 'FrontSide', 1: 'BackSide', 2: 'DoubleSide' };
-                                output += `- Side: ${sideNames[mat.side] || mat.side}\n`;
-                            }
-                            if (mat.depthWrite !== undefined) output += `- Depth Write: ${mat.depthWrite}\n`;
-                            if (mat.metalness !== undefined) output += `- Metalness: ${mat.metalness}\n`;
-                            if (mat.roughness !== undefined) output += `- Roughness: ${mat.roughness}\n`;
-                            if (mat.emissive) output += `- Emissive: #${mat.emissive.getHexString()}\n`;
-                            if (mat.emissiveIntensity !== undefined) output += `- Emissive Intensity: ${mat.emissiveIntensity}\n`;
-                            if (mat.sheen !== undefined) output += `- Sheen: ${mat.sheen}\n`;
-                            if (mat.sheenRoughness !== undefined) output += `- Sheen Roughness: ${mat.sheenRoughness}\n`;
-                            if (mat.sheenColor) output += `- Sheen Color: #${mat.sheenColor.getHexString()}\n`;
-                            if (mat.bumpScale !== undefined) output += `- Bump Scale: ${mat.bumpScale}\n`;
-                            if (mat.transmission !== undefined) output += `- Transmission: ${mat.transmission}\n`;
-                            if (mat.thickness !== undefined) output += `- Thickness: ${mat.thickness}\n`;
-                            if (mat.ior !== undefined) output += `- IOR: ${mat.ior}\n`;
-                            if (mat.envMapIntensity !== undefined) output += `- Env Map Intensity: ${mat.envMapIntensity}\n`;
-                            if (mat.blending !== undefined) {
-                                const blendingNames = { 0: 'NoBlending', 1: 'NormalBlending', 2: 'AdditiveBlending', 3: 'SubtractiveBlending', 4: 'MultiplyBlending', 5: 'CustomBlending' };
-                                output += `- Blending: ${blendingNames[mat.blending] || mat.blending}\n`;
-                            }
-                            if (mat.depthTest !== undefined) output += `- Depth Test: ${mat.depthTest}\n`;
-                            if (mat.clearcoat !== undefined && mat.clearcoat > 0) output += `- Clearcoat: ${mat.clearcoat}\n`;
-                            if (mat.clearcoatRoughness !== undefined && mat.clearcoat > 0) output += `- Clearcoat Roughness: ${mat.clearcoatRoughness}\n`;
-                            if (mat.specularIntensity !== undefined && mat.specularIntensity !== 1) output += `- Specular Intensity: ${mat.specularIntensity}\n`;
-                            if (mat.specularColor) output += `- Specular Color: #${mat.specularColor.getHexString()}\n`;
-                            if (mat.attenuationDistance !== undefined && isFinite(mat.attenuationDistance)) output += `- Attenuation Distance: ${mat.attenuationDistance}\n`;
-                            if (mat.attenuationColor) output += `- Attenuation Color: #${mat.attenuationColor.getHexString()}\n`;
-                            if (hasTextures) {
-                                output += `\nNote: Has texture maps (`;
-                                const maps = [];
-                                if (mat.map) maps.push('map');
-                                if (mat.normalMap) maps.push('normalMap');
-                                if (mat.emissiveMap) maps.push('emissiveMap');
-                                if (mat.bumpMap) maps.push('bumpMap');
-                                if (mat.alphaMap) maps.push('alphaMap');
-                                output += maps.join(', ') + `)\n`;
-                            }
-                            output += `\n---\n\n`;
-                        });
-                        
-                        navigator.clipboard.writeText(output.trim()).then(() => {
-                            console.log('📋 All HD material settings copied to clipboard (XMUSCLE, XSKELETON, XCLEAR)');
-                        });
-                    }
-                };
-                this.materialsFolder.add(copyAllHD, 'copyAllHDSettings').name('📋 Copy All HD Settings');
-            }
             
             materials.forEach((material, name) => {
                 const matFolder = this.trackFolder(this.materialsFolder.addFolder(name));
@@ -5350,7 +5224,7 @@ class ThreeJSApp {
             },
             'XMUSCLE': {
                 color: '#ffffff',
-                opacity: 0.94,
+                opacity: 1,
                 transparent: true,
                 metalness: 0,
                 roughness: 0,
@@ -5365,8 +5239,8 @@ class ThreeJSApp {
             },
             'XSKELETON': {
                 color: '#ffffff',
-                opacity: 0.93,
-                transparent: false,
+                opacity: 1,
+                transparent: true,
                 metalness: 0,
                 roughness: 0.99,
                 transmission: 0,
@@ -5441,20 +5315,21 @@ class ThreeJSApp {
                 envMapIntensity: 1
             },
             'XCLEAR': {
-                color: '#ffffff',
+                // Same as SKIN transmission but preserves opacity mask
+                color: '#ccdef5',
                 opacity: 1,
                 transparent: true,
                 metalness: 0,
-                roughness: 0.42,
-                transmission: 0,
-                thickness: 0.85,
-                ior: 1.06,
+                roughness: 0,
+                transmission: 1,
+                thickness: 0,
+                ior: 1,
                 side: THREE.FrontSide,
-                blending: THREE.NormalBlending,
+                blending: THREE.CustomBlending,
                 depthWrite: false,
                 depthTest: true,
                 envMapIntensity: 2.29,
-                _preserveTextures: true // Keep GLB map texture
+                _preserveTextures: true // Keep the opacity/alpha mask from GLB
             }
         };
         

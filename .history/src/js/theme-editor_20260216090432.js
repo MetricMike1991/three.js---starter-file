@@ -1027,10 +1027,9 @@ class ThemeEditor {
             }
         }
         
-        // Skin material settings — also update XCLEAR (same transmission settings)
+        // Skin material settings
         if (key.startsWith('skin') && window.model) {
             this.updateSkinMaterial();
-            this.updateXClearMaterial();
         }
         
         // Equipment material settings (barbell, bumper, cable, chrome, color1, metal, pad, plastic, rubber)
@@ -1039,21 +1038,9 @@ class ThemeEditor {
         if (matchedEquipment && window.model) {
             this.updateEquipmentMaterial(matchedEquipment);
             
-            // When color1 (brand color) changes, also update XCLOTHES/aiBodyGirl/XCOLOR material color
+            // When color1 (brand color) changes, also update XCLOTHES material color
             if (matchedEquipment === 'color1' && key === 'color1Color') {
                 this.updateXClothesMaterialColor(value);
-                this.updateHDMaterialColor('XCOLOR', value);
-            }
-            
-            // When equipment material changes, also update the HD X-prefixed counterpart
-            const hdMaterialMap = {
-                'metal': 'XMETAL',
-                'rubber': 'XRUBBER',
-                'bumper': 'XBUMPER'
-            };
-            const hdTarget = hdMaterialMap[matchedEquipment];
-            if (hdTarget) {
-                this.updateHDEquipmentMaterial(hdTarget, matchedEquipment);
             }
         }
         
@@ -1561,123 +1548,6 @@ class ThemeEditor {
                 
                 materials.forEach(mat => {
                     if (mat.name && mat.name.toUpperCase() === targetName) {
-                        if (color) mat.color.set(color);
-                        if (opacity !== undefined) {
-                            mat.opacity = opacity;
-                            mat.transparent = opacity < 1;
-                        }
-                        if (metalness !== undefined) mat.metalness = metalness;
-                        if (roughness !== undefined) mat.roughness = roughness;
-                        mat.needsUpdate = true;
-                    }
-                });
-            }
-        });
-    }
-
-    /**
-     * Update XCLEAR material (HD Clear = SKIN transmission + opacity mask)
-     * Applies same transmission/transparency settings as SKIN, but preserves the opacity mask.
-     */
-    updateXClearMaterial() {
-        if (!window.model) return;
-        
-        const skinColor = this.currentSettings.skinColor;
-        const roughness = this.currentSettings.skinRoughness;
-        const metalness = this.currentSettings.skinMetalness;
-        const transmission = this.currentSettings.skinTransmission;
-        const thickness = this.currentSettings.skinThickness;
-        const ior = this.currentSettings.skinIor;
-        const envIntensity = this.currentSettings.skinEnvIntensity;
-        
-        window.model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                const materials = Array.isArray(child.material) ? child.material : [child.material];
-                
-                materials.forEach(mat => {
-                    if (mat.name && mat.name.toUpperCase() === 'XCLEAR') {
-                        mat.color.set(skinColor);
-                        mat.roughness = roughness;
-                        mat.metalness = metalness;
-                        if (mat.transmission !== undefined) mat.transmission = transmission;
-                        if (mat.thickness !== undefined) mat.thickness = thickness;
-                        if (mat.ior !== undefined) mat.ior = ior;
-                        if (mat.envMapIntensity !== undefined) mat.envMapIntensity = envIntensity;
-                        // Do NOT touch map, alphaMap, normalMap — keep the opacity mask
-                        mat.needsUpdate = true;
-                    }
-                });
-            }
-        });
-    }
-
-    /**
-     * Update XCLOTHES and aiBodyGirl material colors (HD model clothes/body)
-     * Only changes the material color — textures (roughness, normal, grayscale map) are preserved.
-     * White areas in the grayscale texture become the given color, black stays black.
-     */
-    updateXClothesMaterialColor(color) {
-        if (!window.model || !color) return;
-        
-        const targetNames = ['XCLOTHES', 'AIBODYGIRL'];
-        
-        window.model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                const materials = Array.isArray(child.material) ? child.material : [child.material];
-                
-                materials.forEach(mat => {
-                    if (mat.name && targetNames.includes(mat.name.toUpperCase())) {
-                        mat.color.set(color);
-                        mat.needsUpdate = true;
-                    }
-                });
-            }
-        });
-    }
-
-    /**
-     * Update a single HD material's color by name (e.g. XCOLOR)
-     */
-    updateHDMaterialColor(targetName, color) {
-        if (!window.model || !color) return;
-        
-        window.model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                const materials = Array.isArray(child.material) ? child.material : [child.material];
-                
-                materials.forEach(mat => {
-                    if (mat.name && mat.name.toUpperCase() === targetName) {
-                        mat.color.set(color);
-                        mat.needsUpdate = true;
-                    }
-                });
-            }
-        });
-    }
-
-    /**
-     * Update an HD X-prefixed equipment material (XMETAL, XRUBBER, XBUMPER)
-     * Uses the same settings as the non-X counterpart from the theme editor
-     */
-    updateHDEquipmentMaterial(hdName, sourceKey) {
-        if (!window.model) return;
-        
-        const colorKey = sourceKey + 'Color';
-        const opacityKey = sourceKey + 'Opacity';
-        const metalnessKey = sourceKey + 'Metalness';
-        const roughnessKey = sourceKey + 'Roughness';
-        
-        const color = this.currentSettings[colorKey];
-        const opacity = this.currentSettings[opacityKey];
-        const metalness = this.currentSettings[metalnessKey];
-        const roughness = this.currentSettings[roughnessKey];
-        
-        window.model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                const materials = Array.isArray(child.material) ? child.material : [child.material];
-                
-                materials.forEach(mat => {
-                    if (mat.name && mat.name.toUpperCase() === hdName) {
                         if (color) mat.color.set(color);
                         if (opacity !== undefined) {
                             mat.opacity = opacity;

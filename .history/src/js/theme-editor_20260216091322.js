@@ -1027,10 +1027,9 @@ class ThemeEditor {
             }
         }
         
-        // Skin material settings — also update XCLEAR (same transmission settings)
+        // Skin material settings
         if (key.startsWith('skin') && window.model) {
             this.updateSkinMaterial();
-            this.updateXClearMaterial();
         }
         
         // Equipment material settings (barbell, bumper, cable, chrome, color1, metal, pad, plastic, rubber)
@@ -1568,42 +1567,6 @@ class ThemeEditor {
                         }
                         if (metalness !== undefined) mat.metalness = metalness;
                         if (roughness !== undefined) mat.roughness = roughness;
-                        mat.needsUpdate = true;
-                    }
-                });
-            }
-        });
-    }
-
-    /**
-     * Update XCLEAR material (HD Clear = SKIN transmission + opacity mask)
-     * Applies same transmission/transparency settings as SKIN, but preserves the opacity mask.
-     */
-    updateXClearMaterial() {
-        if (!window.model) return;
-        
-        const skinColor = this.currentSettings.skinColor;
-        const roughness = this.currentSettings.skinRoughness;
-        const metalness = this.currentSettings.skinMetalness;
-        const transmission = this.currentSettings.skinTransmission;
-        const thickness = this.currentSettings.skinThickness;
-        const ior = this.currentSettings.skinIor;
-        const envIntensity = this.currentSettings.skinEnvIntensity;
-        
-        window.model.traverse((child) => {
-            if (child.isMesh && child.material) {
-                const materials = Array.isArray(child.material) ? child.material : [child.material];
-                
-                materials.forEach(mat => {
-                    if (mat.name && mat.name.toUpperCase() === 'XCLEAR') {
-                        mat.color.set(skinColor);
-                        mat.roughness = roughness;
-                        mat.metalness = metalness;
-                        if (mat.transmission !== undefined) mat.transmission = transmission;
-                        if (mat.thickness !== undefined) mat.thickness = thickness;
-                        if (mat.ior !== undefined) mat.ior = ior;
-                        if (mat.envMapIntensity !== undefined) mat.envMapIntensity = envIntensity;
-                        // Do NOT touch map, alphaMap, normalMap — keep the opacity mask
                         mat.needsUpdate = true;
                     }
                 });
