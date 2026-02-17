@@ -180,7 +180,6 @@
             reps: '10',
             rest: 60,
             weight: '',
-            rir: '2',
             notes: '',
             groupId: null,
             order: workoutExercises.length,
@@ -443,7 +442,6 @@
             reps: options.reps || '10',
             rest: options.rest || 60,
             weight: options.weight || '',
-            rir: options.rir || '2',
             notes: options.notes || '',
             groupId: options.groupId || null,
             order: workoutExercises.length,
@@ -639,17 +637,8 @@
                         </div>
                         <span class="ffwb-card-stat-divider">·</span>
                         <div class="ffwb-card-stat">
-                            <label title="Reps In Reserve — how many reps you could still do. 'Train To Failure' = 0 reps left in the tank.">RIR ⓘ</label>
-                            <select class="ffwb-input ffwb-input-rir" ${isReadOnly ? 'disabled' : ''} title="Reps In Reserve: how close to muscular failure you should train. Lower RIR = harder.">
-                                ${[
-                                    {v: '0', t: 'Train To Failure'},
-                                    {v: '1', t: '1 RIR'},
-                                    {v: '2', t: '2 RIR'},
-                                    {v: '3', t: '3 RIR'},
-                                    {v: '4', t: '4 RIR'},
-                                    {v: '5', t: '5 RIR'}
-                                ].map(o => `<option value="${o.v}" ${o.v == exercise.rir ? 'selected' : ''}>${o.t}</option>`).join('')}
-                            </select>
+                            <label>Weight</label>
+                            <input type="text" class="ffwb-input ffwb-input-weight" value="${exercise.weight}" placeholder="—" maxlength="10" ${isReadOnly ? 'readonly' : ''}>
                         </div>
                     </div>
                     <div class="ffwb-card-expand-row">
@@ -924,8 +913,7 @@
                 sets: parseInt(e.sets) || 3,
                 reps: e.reps,
                 rest: parseInt(e.rest) || 60,
-                rir: e.rir || '2',
-                weight: e.weight || '',
+                weight: e.weight,
                 notes: e.notes,
                 groupId: e.groupId,
                 order: e.order,
@@ -1013,7 +1001,6 @@
                         reps: ex.reps,
                         rest: ex.rest,
                         weight: ex.weight || '',
-                        rir: ex.rir || '2',
                         notes: ex.notes || '',
                         groupId: ex.groupId || null,
                         order: ex.order,
@@ -1265,7 +1252,7 @@
         ex.sets = card.querySelector('.ffwb-input-sets')?.value || 3;
         ex.reps = card.querySelector('.ffwb-input-reps')?.value || '10';
         ex.rest = card.querySelector('.ffwb-input-rest')?.value || 60;
-        ex.rir = card.querySelector('.ffwb-input-rir')?.value || '2';
+        ex.weight = card.querySelector('.ffwb-input-weight')?.value || '';
         ex.notes = card.querySelector('.ffwb-input-notes')?.value || '';
         updateStats();
     }

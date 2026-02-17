@@ -639,8 +639,8 @@
 }
 
 .ffwb-card-thumb {
-    width: 90px;
-    height: 90px;
+    width: 64px;
+    height: 64px;
     border-radius: var(--ffwb-radius-sm);
     overflow: hidden;
     cursor: pointer;
@@ -937,10 +937,6 @@ select.ffwb-input option {
 .ffwb-input-weight {
     width: 64px;
     text-align: center;
-}
-
-.ffwb-input-rir {
-    width: 130px;
 }
 
 /* ─── Card Expand ───────────────────────────────────────── */
@@ -1336,7 +1332,7 @@ select.ffwb-input option {
         font-size: 13px;
     }
 
-    .ffwb-input-reps, .ffwb-input-rir {
+    .ffwb-input-reps, .ffwb-input-weight {
         width: 54px;
         padding: 5px 4px;
         font-size: 13px;
