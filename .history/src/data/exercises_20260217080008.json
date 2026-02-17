@@ -6,6 +6,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet shoulder-width apart, holding a barbell across your upper back.",
       "step2": "Keeping your chest up and core engaged, bend at the knees and lower your body until your thighs are parallel to the ground.",
@@ -16,10 +17,11 @@
   {
     "id": "conventional_deadlift",
     "name": "Conventional Deadlift",
-    "thumbnailUrl": "",
-    "configUrl": "",
+    "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/conventionaldeadliftthumb.webp",
+    "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/conventional_deadlift.json",
     "muscleGroup": ["Glutes"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet hip-width apart, shins close to the barbell, and hands gripping the bar just outside your legs.",
       "step2": "Keeping your chest up and core engaged, drive through your heels and lift the bar up off the ground, straightening your legs and standing up tall.",
@@ -30,10 +32,11 @@
   {
     "id": "barbell_overhead_press",
     "name": "Barbell Overhead Press",
-    "thumbnailUrl": "",
-    "configUrl": "",
-    "muscleGroup": ["Delts"],
+    "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/barbelloverheadpressthumb.webp",
+    "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/barbell_overhead_press.json",
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Position a barbell on a squat rack at shoulder height. Brace your core throughout the movement.",
       "step2": "Step underneath the barbell and grab onto it with shoulder-width hand placement.",
@@ -44,10 +47,11 @@
   {
     "id": "romanian_deadlift_rdl",
     "name": "Romanian Deadlift RDL",
-    "thumbnailUrl": "",
-    "configUrl": "",
-    "muscleGroup": ["Glutes"],
+    "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/04.%20Romanian%20Deadlift%20RDL%20Thumbnail.webp",
+    "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/romanian_deadlift_rdl.json",
+    "muscleGroup": ["Hamstrings"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Standing tall with a tight core and flat back, hold a barbell or a pair of dumbbells in front of you. Hands should be slightly wider than shoulder-width.",
       "step2": "Maintaining a tight core and flat back, bend your knees slightly and push your hips back.",
@@ -62,6 +66,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand straight holding a barbell with an underhand grip, your hands shoulder width apart and your arms fully extended towards the floor.",
       "step2": "Keep your elbows close to your sides. Your palms should be facing away from you. This is the start position.",
@@ -72,10 +77,11 @@
   {
     "id": "sumo_deadlift",
     "name": "The Sumo Deadlift",
-    "thumbnailUrl": "",
-    "configUrl": "",
+    "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/TheSumoDeadliftThumb.webp",
+    "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/sumo_deadlift.json",
     "muscleGroup": ["Glutes"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Place a loaded barbell in front of you. Position your feet wider than shoulder width. Have your toes pointing out away from the body. Tighten the core and straighten the lower back.",
       "step2": "Bend at the knees, lowering your hips down above parallel. Take hold of the barbell with an overhand grip at shoulder width.",
@@ -90,6 +96,7 @@
     "configUrl": "",
     "muscleGroup": ["Delts"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your back straight, feet shoulder width apart, while holding a dumbbell in each hand with a neutral grip.",
       "step2": "Hold your arms fully extended by your side, with your palms facing in to your body.",
@@ -104,6 +111,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Holding a dumbbell in each hand, stand with your feet shoulder width apart.",
       "step2": "Let your arms hang by your side with your palms facing in to the side of your body.",
@@ -118,6 +126,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Holding a dumbbell in each hand, stand with your feet shoulder width apart.",
       "step2": "Let your arms hang by your side with your palms facing in to the side of your body.",
@@ -132,6 +141,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand straight holding a dumbbell in each hand with a neutral grip.",
       "step2": "Keep your arms fully extended with your palms facing in to your sides.",
@@ -146,6 +156,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet shoulder width apart while holding a light dumbbell to your chest. You should hold the dumbbell by one end between your hands, with the other end extending down your torso. This is the start position.",
       "step2": "Squat down keeping your slightly arched and pushing your hips back.",
@@ -160,6 +171,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet hip-width apart, holding a dumbbell in each hand.",
       "step2": "Take a big step forward with one foot, lowering your body until your back knee is hovering above the ground while keeping your chest up and core engaged.",
@@ -174,6 +186,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Stand tall with your feet hip-width apart.",
       "step2": "Take a big step forward with your right foot, lowering your body into a lunge position. Keep your front knee directly above your ankle and your back knee hovering just above the ground.",
@@ -188,6 +201,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet shoulder-width apart, hands at your sides, or in front of your chest.",
       "step2": "Keeping your chest up and core engaged, bend at the knees and lower your body until your thighs are parallel to the ground.",
@@ -202,6 +216,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand a few feet in front of a bench or elevated platform, facing away from it.",
       "step2": "Place one foot behind you on the bench, laces down, and one foot in front of you.",
@@ -216,6 +231,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Lie flat on your back on a bench and position your feet flat on the floor on either side of the bench.",
       "step2": "With a dumbbell in each hand, extend your arms over head until fully extended. Your palms should face one another and your hands should be close together.",
@@ -230,6 +246,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Lie flat on a bench with a dumbbell in each hand, palms facing forward and elbows bent.",
       "step2": "Push the dumbbells upward until your arms are fully extended while keeping your shoulder blades down and back.",
@@ -244,6 +261,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Set an incline bench to a comfortable angle, typically between 30 to 45 degrees.",
       "step2": "Sit on the bench with a dumbbell in each hand, resting them on your thighs. Slowly lie back on the bench, maintaining a tight core and a neutral spine.",
@@ -258,6 +276,7 @@
     "configUrl": "",
     "muscleGroup": ["Delts"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on a bench with a dumbbell in each hand, palms facing forward and elbows bent at 90 degrees.",
       "step2": "Push the dumbbells upward until your arms are fully extended while keeping your shoulder blades down and back.",
@@ -272,6 +291,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Lie flat on a bench with a barbell in your hands, hands slightly wider than shoulder-width apart and elbows bent.",
       "step2": "Push the barbell upward until your arms are fully extended while keeping your shoulder blades down and back.",
@@ -286,6 +306,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit into the machine with your back pressed fully against the back pad and your feet positioned just outside shoulder width and pointed slightly out.",
       "step2": "Press the push plate away from you with your legs and undo the safety bar using the handles. You should fully extend your legs without locking out at your knees.",
@@ -300,6 +321,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Set incline bench, lie back with feet grounded and back, shoulders, and head in contact with the bench.",
       "step2": "Grip barbell with wider-than-shoulder-width grip, palms forward, unrack and hold above chest as starting position.",
@@ -314,6 +336,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Lie flat on a decline bench with a barbell in your hands, hands slightly wider than shoulder-width apart and elbows bent.",
       "step2": "Push the barbell upward until your arms are fully extended while keeping your shoulder blades down and back.",
@@ -328,6 +351,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Hang from a pull-up bar with your palms facing away from you, hands slightly wider than shoulder-width apart.",
       "step2": "Engage your shoulder blades and pull your body up until your chin clears the bar.",
@@ -342,6 +366,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on a bench with a barbell in front of you, hands slightly wider than shoulder-width apart, and palms facing forward.",
       "step2": "Lift the barbell up to shoulder level, while keeping your core engaged and your elbows directly beneath your wrists.",
@@ -356,6 +381,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Position your hips against the front of the largest pad.",
       "step2": "Grip the handles and position one leg on the foot plate.",
@@ -370,6 +396,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the seat with your upper chest just above the horizontal handles.",
       "step2": "Grasp the handles using a wide overhand grip and place your elbows out to the sides just below your shoulders.",
@@ -384,6 +411,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit at a low-row machine with your feet firmly planted on the platform, knees slightly bent, and grasp the handles with both hands.",
       "step2": "Keep your back straight, chest up, and shoulder blades down and back as you pull the handles toward your body, squeezing your shoulder blades together.",
@@ -398,6 +426,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the height of the seat so that your thighs are touching the provided pads and your body is locked in place.",
       "step2": "Grasp each handle with an overhand grip so that your palms are facing away from your body.",
@@ -412,6 +441,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat to the starting position so your hands are just above shoulder height.",
       "step2": "Brace your core and press your hands above your head while pressing your back into the back support.",
@@ -426,6 +456,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat position so you can place the back of your upper arm (Tricep area) flat against the pad.",
       "step2": "Grip the Handles.",
@@ -440,6 +471,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit into position.",
       "step2": "Position your feet on the platform. Higher up emphasizes more glutes while a lower foot position will emphasize your quads.",
@@ -454,6 +486,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat position so you can fit underneath the leg pads.",
       "step2": "Grip the handles while maintain a neutral spine position and shoulders pinned back. (Do not round the shoulders forward).",
@@ -468,6 +501,7 @@
     "configUrl": "",
     "muscleGroup": ["Hamstrings"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the foot plate position so the roller pad is positioned just above the ankle on the calf muscle.",
       "step2": "Grip the handles on the side you are standing on the foot plate. Position your thigh so that it is flat against the leg pad. This will have your leg angled slightly forward so that your leg can reach its full range of motion and hamstring length in each rep.",
@@ -482,6 +516,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit at a low-row machine with your feet firmly planted on the platform, knees slightly bent, and grasp the handles with both hands.",
       "step2": "Keep your back straight, chest up, and shoulder blades down and back as you pull the handles toward your body, squeezing your shoulder blades together.",
@@ -496,6 +531,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the foot plate (Or Pad Position) so that your hip crease is at the top of the pad.",
       "step2": "You should be able to bend at the hips.",
@@ -510,6 +546,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Sit at a preacher curl bench with an EZ bar in your hands, palms facing upward and hands shoulder-width apart.",
       "step2": "Place the back of your arms on the pad and keep your chest up, core engaged, and shoulder blades down and back.",
@@ -524,6 +561,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the back pad of the seat so your knees are just in front of the bottom seat pad.",
       "step2": "Position the roller pad so it is on the shin just above the ankles.",
@@ -538,6 +576,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Start in a plank position with your hands placed slightly wider than shoulder-width apart and your feet together.",
       "step2": "Lower your body by bending your elbows and keeping them close to your sides until your chest nearly touches the ground.",
@@ -552,6 +591,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Position your hands just outside your chest in line with your nipple line.",
       "step2": "From the floor, press yourself up until your arms are fully extended. Maintain a straight back position from your shoulders down through your knees.",
@@ -566,6 +606,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Place your hands on an elevated surface, such as a bench, with your hands slightly wider than shoulder-width apart and your feet together.",
       "step2": "Lower your body by bending your elbows and keeping them close to your sides until your chest nearly touches the bench.",
@@ -580,6 +621,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Start with your hands in line with chest. Keep them close into your body.",
       "step2": "With a straight back, plank like, position press yourself up until your arms are fully extended.",
@@ -594,6 +636,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Place both hands on the medicine ball directly under your chest.",
       "step2": "Press yourself up until your arms are fully extended while maintaining a neutral spine, straight back position.",
@@ -608,6 +651,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Stand in front of a high box or bench with your feet shoulder-width apart.",
       "step2": "Place one foot on top of the box or bench, keeping your knee in line with your toes.",
@@ -622,6 +666,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Start with holding the kettlebell handle and hugging the kettlebell into your chest in the \"Front Rack\" Position.",
       "step2": "With your elbow under the KB you should begin to move the Kettlebell out to the side around your shoulder and then begin to press the KB.",
@@ -636,6 +681,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Grip the handle of the kettlebell with both hands. Stand straight with the KB between your legs around hip height. Your arms will remain fully extended for the duration of the movement.",
       "step2": "Hinge at the hips and allow your hips to drift backward as the kettlebell goes lower to the floor. Maintain a neutral spine and pelvic position.",
@@ -650,6 +696,7 @@
     "configUrl": "",
     "muscleGroup": ["Hamstrings"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet hip-width apart, holding a kettlebell in one hand with an overhand grip.",
       "step2": "Lift one leg off the ground behind you and hinge forward at the hips, keeping your back straight and the kettlebell close to your body.",
@@ -664,6 +711,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet shoulder-width apart, holding two kettlebells in front of your body with an overhand grip.",
       "step2": "Hinge forward at the hips, keeping your back straight and the kettlebells hanging toward the ground.",
@@ -678,6 +726,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet shoulder-width apart, holding two dumbbells in front of your body with an overhand grip.",
       "step2": "Hinge forward at the hips, keeping your back straight and the dumbbells hanging toward the ground.",
@@ -692,6 +741,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet shoulder-width apart, holding a kettlebell with both hands in front of your body.",
       "step2": "Hinge forward at the hips, pushing your glutes back and keeping your back straight.",
@@ -706,6 +756,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Position your feet just outside shoulder width. Your back should be positioned on the edge of a bench around your shoulder blade height.",
       "step2": "Maintaining a neutral spine and with the Kettlebell resting on your hips you should hinge at the hips. Your hips and Kettlebell will drop closer to the floor.",
@@ -720,6 +771,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the ground with your back against a bench, holding a dumbbell on your hips with your hands.",
       "step2": "Place your feet flat on the ground with your knees bent at a 90-degree angle.",
@@ -734,6 +786,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the ground with your back against a bench, with your hands on your hips or out to the sides.",
       "step2": "Place your feet flat on the ground with your knees bent at a 90-degree angle.",
@@ -748,6 +801,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the ground with your back against a bench, with one foot flat on the ground and the other leg extended straight out.",
       "step2": "Hold a dumbbell on your hip or keep your hands on your hips.",
@@ -762,6 +816,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the ground with your upper back against a bench and a barbell placed over your hips.",
       "step2": "Roll the barbell up onto your lap and lean back against the bench, holding the barbell with both hands.",
@@ -776,6 +831,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Stand facing the cable machine with a rope attachment attached to the high pulley.",
       "step2": "Grasp each end of the rope with an overhand grip and bring your hands to the sides of your head.",
@@ -790,6 +846,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the pulley to the bottom position. Using the straight bar or EZ bar attachment and an underhand grip, face into the machine.",
       "step2": "Take a step back so the weight stack is not touching. Your arms should be fully straight.",
@@ -804,6 +861,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Stand facing away from the cable machine with an EZ bar attachment attached to the low pulley.",
       "step2": "Grasp the EZ bar with an underhand grip and extend your arms straight down.",
@@ -818,6 +876,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Attach a rope or straight bar to the low pulley of a cable machine.",
       "step2": "Stand facing away from the machine and grasp the rope or bar with both hands, palms facing up.",
@@ -832,6 +891,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Set the pulleys on a cable machine to the highest position and attach a handle to each one.",
       "step2": "Stand with one foot in front of the other and grasp a handle in each hand.",
@@ -846,6 +906,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Attach an ankle cuff to a cable machine and set the pulley to the lowest position.",
       "step2": "Strap the cuff around one ankle and stand facing the machine.",
@@ -860,6 +921,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Using two dumbbells and a flat bench lay down flat with your arms extended in the air directly above your shoulders.",
       "step2": "In an arching motion, with a constant slight bend in the elbow, lower the dumbbells down by your sides.",
@@ -874,6 +936,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Dumbbell"],
+    "type": "Strength",
     "information": {
       "step1": "Place one hand and one knee on the edge of a flat bench. Hold a dumbbell in the opposite hand. Keep a straight back position.",
       "step2": "With your upper arm parallel to the floor and elbow at a 90 degree angle you should start to extend your arm holding the dumbbell.",
@@ -888,6 +951,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Place one hand and one knee on the edge of a flat bench. Hold a dumbbell in the opposite hand. Keep a straight back position.",
       "step2": "Start with the dumbbell hanging directly under your shoulder.",
@@ -902,6 +966,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Place your back flat against the pad and your shoulders under the upper pads. Place your feet about shoulder width apart and pointed slightly outwards.",
       "step2": "Grip the safety catch handles and then press up into a full standing position. Bring the handles together.",
@@ -916,6 +981,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Load a plate onto a hip drive machine and position yourself facing the machine with your back against the pad.",
       "step2": "Place your feet shoulder-width apart and firmly on the platform in front of you.",
@@ -930,6 +996,7 @@
     "configUrl": "",
     "muscleGroup": ["Hamstrings"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Position yourself face down on a glute ham raise machine with your feet firmly secured under the footpads and your thighs resting on the thigh pads.",
       "step2": "Cross your arms over your chest and engage your glutes and hamstrings to lift your torso upward until your body forms a straight line from head to heels.",
@@ -944,6 +1011,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the back pad of the seat so your knees are just in front of the bottom seat pad.",
       "step2": "Position the roller pad so it is on the shin just above the ankles. Select your weight using the pin.",
@@ -958,6 +1026,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Begin by holding a kettlebell in each hand at your sides, with your feet hip-width apart.",
       "step2": "Take a step forward with your right leg, lowering your body into a lunge position.",
@@ -972,6 +1041,7 @@
     "configUrl": "",
     "muscleGroup": ["Quads"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the machine with your back pressed flat against the seat. Position your feet slightly outside shoulder width and point your feet slightly outwards.",
       "step2": "Use the lever to slide the seat into a lower position.",
@@ -986,6 +1056,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Attach a straight bar or rope to the high pulley of a cable machine.",
       "step2": "Stand facing the machine and grasp the bar or rope with an overhand grip, hands shoulder-width apart.",
@@ -1000,6 +1071,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat of the cable-loaded seated shoulder press machine to your height and select the appropriate weight.",
       "step2": "Sit down and grasp the handles of the machine with an overhand grip, hands shoulder-width apart.",
@@ -1014,6 +1086,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat of the seated close cable row machine to your height and select the appropriate weight.",
       "step2": "Sit down and grasp the handles with a neutral grip (palms facing each other).",
@@ -1028,6 +1101,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the roller pads so you can fully sit down on the seat pad with your legs tucked comfortably under the rollers.",
       "step2": "Grip the handles wider than shoulder width before taking a seat with your arms stretched overhead.",
@@ -1042,6 +1116,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with feet shoulder-width apart, and grasp the EZ barbell with an underhand grip, hands slightly wider than shoulder-width apart.",
       "step2": "Keep your elbows close to your sides, and curl the barbell up towards your shoulders, contracting your biceps.",
@@ -1056,6 +1131,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Your back should be positioned on the edge of the pad around your shoulder blade height. You are starting with a loaded barbell across your hips in a hip hinge position.",
       "step2": "Maintaining a neutral spine and with your hands gripping the barbell press the barbell up using your hips.",
@@ -1070,6 +1146,7 @@
     "configUrl": "",
     "muscleGroup": ["Chest"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat position so the handles are in line with your nipple line.",
       "step2": "Grip the handles even on both sides and position your elbows back and in line with the same height as the handles of the machine.",
@@ -1084,6 +1161,7 @@
     "configUrl": "",
     "muscleGroup": ["Hamstrings"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the machine with your back against the pad and your legs straight out in front of you.",
       "step2": "Hook your heels under the ankle pads and grasp the handles on either side of the seat for stability.",
@@ -1098,6 +1176,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the weight of the machine and kneel on the knee pad.",
       "step2": "Grip the pull-up bar with your hands about shoulder-width apart and hang down with your arms fully extended.",
@@ -1112,6 +1191,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the weight on the machine and stand on the footrests or kneel on the knee pad.",
       "step2": "Place your hands on the handles and push yourself up until your arms are fully extended.",
@@ -1126,6 +1206,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the weight on the machine and sit on the seat with your legs on the pads.",
       "step2": "Grasp the handles on either side of the seat for support.",
@@ -1140,6 +1221,7 @@
     "configUrl": "",
     "muscleGroup": ["Adductors"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the machine to your desired weight and sit on the seat with your back pressed against the pad and feet flat on the platform.",
       "step2": "Slowly squeeze your thighs together, bringing your legs towards the center, pause for a moment, and then slowly release to return to the starting position.",
@@ -1154,6 +1236,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit into position with your back firmly against the back pad. Adjust the seat height so your elbow is fully bent when you grip the handles.",
       "step2": "Keep your shoulders pulled back as you grip the handles.",
@@ -1168,6 +1251,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat height so the back of your arms are flush with the upper pad.",
       "step2": "Grip the handles with your arms fully straight. Use an underhand grip position.",
@@ -1182,6 +1266,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the seat with your feet firmly planted on the footrests, and adjust the chest pad so that it is snug against your chest.",
       "step2": "Reach forward and grasp the narrow grip handle with an overhand grip.",
@@ -1196,6 +1281,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat of the rear delt row machine to your height and select the appropriate weight.",
       "step2": "Sit down and place your chest against the pad, with your feet flat on the footrests and your hands on the handles.",
@@ -1210,6 +1296,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the upper roller pad so that it is in line with your shoulder blades.",
       "step2": "Sit into position and press your lower back against the lower pad position and put your feet on the foot rest. Grip the handles or cross your arms.",
@@ -1224,6 +1311,7 @@
     "configUrl": "",
     "muscleGroup": ["Biceps"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit into position and adjust the seat so that you can reach the handles with a straight arm in the starting position.",
       "step2": "Bending only at the elbow joint curl the weight up towards your face following the motion of the machine.",
@@ -1238,6 +1326,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Position yourself on the chest-supported T-bar row machine with your chest against the pad and your feet securely planted on the ground.",
       "step2": "Grip the handles with an overhand grip and pull the weight towards your chest, keeping your elbows close to your body.",
@@ -1252,6 +1341,7 @@
     "configUrl": "",
     "muscleGroup": ["Abs"],
     "equipment": ["Body Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Lie down on your back with your knees bent and feet flat on the ground.",
       "step2": "Place your hands behind your head, keeping your elbows out to the side.",
@@ -1266,6 +1356,7 @@
     "configUrl": "",
     "muscleGroup": ["Abs"],
     "equipment": ["Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Adjust the seat and foot pads of the abdominal crunch machine to fit your body.",
       "step2": "Grasp the handles or place your hands on the designated hand grips.",
@@ -1280,6 +1371,7 @@
     "configUrl": "",
     "muscleGroup": ["Abs"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Deadhang from a pull up bar leaving enough space to swing your legs to the front of your body.",
       "step2": "Crunch to the front of your body by raising your legs and rotating your pelvis upward. A posterior pelvic tilt.",
@@ -1294,6 +1386,7 @@
     "configUrl": "",
     "muscleGroup": ["Glutes"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Position the front of your hips at the front of the Glute Ham Raise machine.",
       "step2": "Lay over the round pad and grip onto the part of the GHR machine that would usually support your legs.",
@@ -1308,6 +1401,7 @@
     "configUrl": "",
     "muscleGroup": ["Triceps"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Assume the regular bench press set up. You will need less load than your regular bench press weight.",
       "step2": "Position your hands on the barbell more narrow than your regular width. Shoulder width or slightly more narrow.",
@@ -1322,6 +1416,7 @@
     "configUrl": "",
     "muscleGroup": ["Quad"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Hold a kettlebell by the horns at chest level with your elbows pointing down.",
       "step2": "Stand with your feet shoulder-width apart and your toes pointing slightly outwards.",
@@ -1336,6 +1431,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Kettlebell"],
+    "type": "Strength",
     "information": {
       "step1": "Begin by standing with your feet shoulder-width apart and holding a kettlebell in both hands in front of your thighs.",
       "step2": "Keeping your elbows close to your body, lift the kettlebell up towards your chin, leading with your elbows.",
@@ -1350,6 +1446,7 @@
     "configUrl": "",
     "muscleGroup": ["Shoulder"],
     "equipment": ["Barbell"],
+    "type": "Strength",
     "information": {
       "step1": "Stand with your feet shoulder-width apart and hold the EZ bar with an overhand grip, hands slightly closer than shoulder-width apart.",
       "step2": "Keep your elbows close to your body and lift the barbell straight up towards your chin, leading with your elbows.",
@@ -1364,6 +1461,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Lie face down on a stability ball with your feet on the ground and hands behind your head.",
       "step2": "Squeeze your glutes and lift your upper body off the ball until your body forms a straight line.",
@@ -1378,6 +1476,7 @@
     "configUrl": "",
     "muscleGroup": ["Back"],
     "equipment": ["Cable Machine"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the machine with your feet flat on the footrests and grasp the handles with an overhand grip.",
       "step2": "Sit with your back straight and shoulders down and back.",
@@ -1392,6 +1491,7 @@
     "configUrl": "",
     "muscleGroup": ["Core"],
     "equipment": ["Free Weight"],
+    "type": "Strength",
     "information": {
       "step1": "Sit on the Roman chair with your forearms resting on the armrests and your back against the pad.",
       "step2": "Engage your core muscles and lift your knees towards your chest, exhaling as you contract your abs.",

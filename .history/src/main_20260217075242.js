@@ -3953,11 +3953,10 @@ class ThreeJSApp {
                                             newMats.push(physicalMat);
                                         }
                                     }
-                                    // XBODY materials - force depthWrite on + roughness 0.5
+                                    // XBODY materials - force depthWrite on
                                     else if (mat.name.includes('XBODY')) {
                                         mat.depthWrite = true;
-                                        mat.roughness = 0.5;
-                                        console.log(`✅ ${mat.name} - depthWrite forced ON, roughness set to 0.5`);
+                                        console.log(`✅ ${mat.name} - depthWrite forced ON`);
                                         newMats.push(mat);
                                     } else {
                                         newMats.push(mat);
@@ -5466,8 +5465,7 @@ class ThreeJSApp {
             },
             'XBODY': {
                 depthWrite: true,
-                roughness: 0.5,
-                _preserveTextures: true // Keep all GLB textures, only force depthWrite + roughness
+                _preserveTextures: true // Keep all GLB textures, only force depthWrite
             }
         };
         
@@ -5485,7 +5483,6 @@ class ThreeJSApp {
                         if (preset._preserveTextures) {
                             if (preset.color && mat.color) mat.color.set(preset.color);
                             if (preset.depthWrite !== undefined) mat.depthWrite = preset.depthWrite;
-                            if (preset.roughness !== undefined) mat.roughness = preset.roughness;
                             mat.needsUpdate = true;
                             appliedCount++;
                             return; // Skip full property override

@@ -47,9 +47,9 @@
   {
     "id": "romanian_deadlift_rdl",
     "name": "Romanian Deadlift RDL",
-    "thumbnailUrl": "",
-    "configUrl": "",
-    "muscleGroup": ["Glutes"],
+    "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/04.%20Romanian%20Deadlift%20RDL%20Thumbnail.webp",
+    "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/romanian_deadlift_rdl.json",
+    "muscleGroup": ["Hamstrings"],
     "equipment": ["Barbell"],
     "type": "Strength",
     "information": {
