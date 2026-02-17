@@ -1065,16 +1065,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 0;
-    position: relative;
-    z-index: 10;
+    padding: 4px 0;
     opacity: 0;
     transition: opacity 0.2s;
-}
-
-.ffwb-unlink-zone .ffwb-link-btn {
-    position: absolute;
-    top: -16px;
 }
 
 .ffwb-group-cards:hover .ffwb-unlink-zone {
