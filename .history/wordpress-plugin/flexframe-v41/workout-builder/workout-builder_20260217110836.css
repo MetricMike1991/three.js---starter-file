@@ -563,14 +563,6 @@
     border-color: rgba(255, 255, 255, 0.15);
 }
 
-.ffwb-card:not(.ffwb-card-readonly) {
-    cursor: grab;
-}
-
-.ffwb-card:not(.ffwb-card-readonly):active {
-    cursor: grabbing;
-}
-
 .ffwb-card.ffwb-dragging {
     opacity: 0.5;
     transform: scale(0.98);
@@ -598,7 +590,10 @@
     border-radius: 2px;
 }
 
-
+.ffwb-card.ffwb-snap-highlight {
+    border-color: var(--ffwb-primary) !important;
+    box-shadow: 0 0 16px rgba(var(--ffwb-primary-rgb), 0.35);
+}
 
 .ffwb-card-inner {
     display: flex;
@@ -819,7 +814,28 @@
     color: #ff6b6b;
 }
 
+.ffwb-card-drag-handle {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    color: var(--ffwb-text-muted);
+    font-size: 16px;
+    border-radius: 6px;
+    transition: background 0.15s;
+    user-select: none;
+}
 
+.ffwb-card-drag-handle:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--ffwb-text);
+}
+
+.ffwb-card-drag-handle:active {
+    cursor: grabbing;
+}
 
 /* ─── Card Stats ────────────────────────────────────────── */
 .ffwb-card-stats {
@@ -1269,7 +1285,9 @@
         font-size: 13px;
     }
 
-
+    .ffwb-card-drag-handle {
+        display: none; /* Hide drag handle on small screens */
+    }
 
     .ffwb-group-wrapper {
         padding-left: 16px;

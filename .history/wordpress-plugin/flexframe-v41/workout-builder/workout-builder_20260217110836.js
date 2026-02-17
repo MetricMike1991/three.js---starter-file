@@ -579,6 +579,9 @@
                         <div class="ffwb-card-actions">
                             <button class="ffwb-card-btn ffwb-card-btn-dup" title="Duplicate (Ctrl+D)">⧉</button>
                             <button class="ffwb-card-btn ffwb-card-btn-del" title="Remove">✕</button>
+                            <div class="ffwb-card-drag-handle" draggable="true" title="Drag to reorder">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M3 15h18v-2H3v2zm0 4h18v-2H3v2zm0-8h18V9H3v2zm0-6v2h18V5H3z"/></svg>
+                            </div>
                         </div>
                         ` : ''}
                     </div>
@@ -748,12 +751,13 @@
         renderExerciseList();
     }
 
-    // ─── Drag & Drop (Reorder Only) ───────────────────────────
+    // ─── Drag & Drop (PC) ────────────────────────────────────
     function bindDragEvents(card, uid) {
+        const handle = card.querySelector('.ffwb-card-drag-handle');
+        
         card.addEventListener('dragstart', (e) => {
-            // Don't drag from inputs/buttons
-            const tag = e.target.tagName;
-            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'SELECT') {
+            // Only allow drag from handle
+            if (handle && !handle.contains(e.target) && e.target !== handle) {
                 e.preventDefault();
                 return;
             }
@@ -775,6 +779,7 @@
 
             const rect = card.getBoundingClientRect();
             const midY = rect.top + rect.height / 2;
+            const snapZone = 30;
 
             clearDropIndicators();
 
@@ -783,10 +788,16 @@
             } else {
                 card.classList.add('ffwb-drop-below');
             }
+
+            // Snap zone detection for grouping
+            const distFromEdge = Math.min(e.clientY - rect.top, rect.bottom - e.clientY);
+            if (distFromEdge < snapZone) {
+                card.classList.add('ffwb-snap-highlight');
+            }
         });
 
         card.addEventListener('dragleave', () => {
-            card.classList.remove('ffwb-drop-above', 'ffwb-drop-below');
+            card.classList.remove('ffwb-drop-above', 'ffwb-drop-below', 'ffwb-snap-highlight');
         });
 
         card.addEventListener('drop', (e) => {
@@ -799,6 +810,8 @@
 
             const rect = card.getBoundingClientRect();
             const midY = rect.top + rect.height / 2;
+            const snapZone = 30;
+            const distFromEdge = Math.min(e.clientY - rect.top, rect.bottom - e.clientY);
 
             // Remove dragged from array
             const [dragged] = workoutExercises.splice(dragIdx, 1);
@@ -807,6 +820,19 @@
             const newDropIdx = workoutExercises.findIndex(ex => ex.uid === uid);
             const insertIdx = e.clientY < midY ? newDropIdx : newDropIdx + 1;
             workoutExercises.splice(insertIdx, 0, dragged);
+
+            // Snap grouping
+            if (distFromEdge < snapZone) {
+                const targetEx = workoutExercises.find(ex => ex.uid === uid);
+                if (targetEx) {
+                    const groupId = targetEx.groupId || 'group-' + (++groupCounter);
+                    targetEx.groupId = groupId;
+                    dragged.groupId = groupId;
+                }
+            } else {
+                // Dropped into a gap — make standalone
+                dragged.groupId = null;
+            }
 
             reindexOrders();
             renderExerciseList();
@@ -817,8 +843,8 @@
     }
 
     function clearDropIndicators() {
-        exerciseList.querySelectorAll('.ffwb-drop-above, .ffwb-drop-below').forEach(el => {
-            el.classList.remove('ffwb-drop-above', 'ffwb-drop-below');
+        exerciseList.querySelectorAll('.ffwb-drop-above, .ffwb-drop-below, .ffwb-snap-highlight').forEach(el => {
+            el.classList.remove('ffwb-drop-above', 'ffwb-drop-below', 'ffwb-snap-highlight');
         });
     }
 
