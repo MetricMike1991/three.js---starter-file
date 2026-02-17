@@ -1,0 +1,185 @@
+<?php
+/**
+ * FlexFrame Workout Builder - Shortcode & Script Enqueue
+ * Usage: [flexframe_workout_builder]
+ * Share page detects ?w=HASH parameter automatically
+ */
+
+if (!defined('ABSPATH')) exit;
+
+/**
+ * Enqueue workout builder assets
+ */
+function flexframe_enqueue_workout_builder_assets() {
+    global $post;
+    
+    // Only load on pages with our shortcode
+    if (!is_a($post, 'WP_Post') || !has_shortcode($post->post_content, 'flexframe_workout_builder')) {
+        return;
+    }
+
+    $plugin_url = FLEXFRAME_PLUGIN_URL . 'workout-builder/';
+
+    // Main builder CSS
+    wp_enqueue_style(
+        'flexframe-workout-builder',
+        $plugin_url . 'workout-builder.css',
+        array(),
+        FLEXFRAME_VERSION
+    );
+
+    // Print CSS
+    wp_enqueue_style(
+        'flexframe-workout-print',
+        $plugin_url . 'workout-print.css',
+        array('flexframe-workout-builder'),
+        FLEXFRAME_VERSION,
+        'print'
+    );
+
+    // Main builder JS
+    wp_enqueue_script(
+        'flexframe-workout-builder',
+        $plugin_url . 'workout-builder.js',
+        array(),
+        FLEXFRAME_VERSION,
+        true
+    );
+
+    // Pass settings to JS
+    $primary_color = get_option('flexframe_primary_color', '#ec2f2c');
+    $primary_color_mode = get_option('flexframe_primary_color_mode', 'default');
+    $logo_url = get_option('flexframe_logo_url', '');
+    $exercises_cdn = 'https://FlexFrame.b-cdn.net/Exercise%20Catalogue%20For%20Menus%20%26%20Thumbnails/exercises.json';
+
+    wp_localize_script('flexframe-workout-builder', 'flexframeWorkoutSettings', array(
+        'restUrl'       => esc_url_raw(rest_url('flexframe/v1/')),
+        'nonce'         => wp_create_nonce('wp_rest'),
+        'isLoggedIn'    => is_user_logged_in(),
+        'userId'        => get_current_user_id(),
+        'userName'      => is_user_logged_in() ? wp_get_current_user()->display_name : '',
+        'primaryColor'  => ($primary_color_mode === 'custom' && $primary_color) ? $primary_color : '#ec2f2c',
+        'logoUrl'       => $logo_url,
+        'exercisesCdn'  => $exercises_cdn,
+        'siteUrl'       => home_url('/'),
+        'shareHash'     => isset($_GET['w']) ? sanitize_text_field($_GET['w']) : '',
+    ));
+}
+add_action('wp_enqueue_scripts', 'flexframe_enqueue_workout_builder_assets');
+
+/**
+ * Workout Builder Shortcode
+ */
+function flexframe_workout_builder_shortcode($atts) {
+    $atts = shortcode_atts(array(), $atts, 'flexframe_workout_builder');
+
+    $settings = array(
+        'primaryColor' => get_option('flexframe_primary_color_mode', 'default') === 'custom' 
+            ? get_option('flexframe_primary_color', '#ec2f2c') 
+            : '#ec2f2c',
+        'logoUrl' => get_option('flexframe_logo_url', ''),
+    );
+
+    ob_start();
+    ?>
+    <div id="flexframe-workout-builder" 
+         class="ffwb" 
+         style="--ffwb-primary: <?php echo esc_attr($settings['primaryColor']); ?>;"
+         data-share-hash="<?php echo isset($_GET['w']) ? esc_attr($_GET['w']) : ''; ?>">
+        
+        <!-- Header -->
+        <div class="ffwb-header">
+            <div class="ffwb-header-left">
+                <?php if ($settings['logoUrl']): ?>
+                    <img src="<?php echo esc_url($settings['logoUrl']); ?>" alt="Logo" class="ffwb-logo">
+                <?php endif; ?>
+                <div class="ffwb-title-area">
+                    <input type="text" class="ffwb-workout-name" placeholder="Workout Name..." maxlength="100">
+                    <span class="ffwb-author-label"></span>
+                </div>
+            </div>
+            <div class="ffwb-header-right">
+                <button class="ffwb-btn ffwb-btn-icon ffwb-btn-print" title="Print Workout">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 8H5c-1.66 0-3 1.34-3 3v6h4v4h12v-4h4v-6c0-1.66-1.34-3-3-3zm-3 11H8v-5h8v5zm3-7c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1zm-1-9H6v4h12V3z"/></svg>
+                </button>
+                <button class="ffwb-btn ffwb-btn-secondary ffwb-btn-save" title="Save Workout">Save</button>
+                <button class="ffwb-btn ffwb-btn-primary ffwb-btn-share" title="Save & Share">Share</button>
+            </div>
+        </div>
+
+        <!-- Share banner (shown when viewing a shared workout) -->
+        <div class="ffwb-share-banner" style="display:none;">
+            <span class="ffwb-share-banner-text"></span>
+            <div class="ffwb-share-banner-actions">
+                <button class="ffwb-btn ffwb-btn-small ffwb-btn-copy-workout">📋 Copy to My Workouts</button>
+                <button class="ffwb-btn ffwb-btn-small ffwb-btn-print">🖨️ Print</button>
+            </div>
+        </div>
+
+        <!-- Exercise search / add bar -->
+        <div class="ffwb-search-bar">
+            <div class="ffwb-search-input-wrap">
+                <svg class="ffwb-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" class="ffwb-search-input" placeholder="Search exercises to add...">
+            </div>
+            <div class="ffwb-search-results" style="display:none;"></div>
+        </div>
+
+        <!-- Exercise list (the builder area) -->
+        <div class="ffwb-exercise-list">
+            <div class="ffwb-empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" opacity="0.3"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+                <p>Search for exercises above to start building your workout</p>
+            </div>
+        </div>
+
+        <!-- Footer stats -->
+        <div class="ffwb-footer">
+            <span class="ffwb-stat ffwb-stat-exercises">0 exercises</span>
+            <span class="ffwb-stat-divider">·</span>
+            <span class="ffwb-stat ffwb-stat-duration">~0 min</span>
+        </div>
+
+        <!-- Save/Share modal -->
+        <div class="ffwb-modal ffwb-modal-share" style="display:none;">
+            <div class="ffwb-modal-backdrop"></div>
+            <div class="ffwb-modal-content">
+                <button class="ffwb-modal-close">&times;</button>
+                <h3 class="ffwb-modal-title">✅ Workout Saved!</h3>
+                <div class="ffwb-share-link-wrap">
+                    <label>Share Link:</label>
+                    <div class="ffwb-share-link-row">
+                        <input type="text" class="ffwb-share-link-input" readonly>
+                        <button class="ffwb-btn ffwb-btn-primary ffwb-btn-copy-link">📋 Copy</button>
+                    </div>
+                </div>
+                <div class="ffwb-share-qr"></div>
+                <div class="ffwb-modal-actions">
+                    <button class="ffwb-btn ffwb-btn-secondary ffwb-btn-modal-print">🖨️ Print</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Print-only layout (hidden on screen, visible on print) -->
+    <div id="flexframe-workout-print" class="ffwb-print-layout" style="display:none;">
+        <div class="ffwb-print-header">
+            <?php if ($settings['logoUrl']): ?>
+                <img src="<?php echo esc_url($settings['logoUrl']); ?>" alt="Logo" class="ffwb-print-logo">
+            <?php endif; ?>
+            <div class="ffwb-print-title"></div>
+            <div class="ffwb-print-date">Date: ___ / ___ / ___</div>
+        </div>
+        <div class="ffwb-print-exercises"></div>
+        <div class="ffwb-print-footer">
+            <div class="ffwb-print-notes">
+                <strong>Notes:</strong>
+                <div class="ffwb-print-notes-lines"></div>
+            </div>
+            <div class="ffwb-print-qr"></div>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+add_shortcode('flexframe_workout_builder', 'flexframe_workout_builder_shortcode');

@@ -4689,9 +4689,6 @@ function flexframe_activate() {
     // Create the branded login page
     flexframe_ensure_login_page();
     
-    // Register workout post type and flush rewrite rules
-    flexframe_register_workout_post_type();
-    
     // Set default options
     add_option('flexframe_logo_url', '');
     add_option('flexframe_logo_threshold', 0.95);
