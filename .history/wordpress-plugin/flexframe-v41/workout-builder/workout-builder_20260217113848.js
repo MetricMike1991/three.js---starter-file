@@ -583,8 +583,7 @@
                                 }
                             </div>
                             <div class="ffwb-flip-back">
-                                <img class="ffwb-qr-img" src="" alt="QR" style="width:100%;height:100%;object-fit:contain;display:none;">
-                                <span class="ffwb-qr-loading" style="font-size:10px;color:#999;">Loading…</span>
+                                <canvas class="ffwb-qr-canvas" width="80" height="80"></canvas>
                             </div>
                         </div>
                     </div>
@@ -1317,30 +1316,17 @@
     }
 
     function generateQRForCard(card, exercise) {
-        const img = card.querySelector('.ffwb-qr-img');
-        const loadingLabel = card.querySelector('.ffwb-qr-loading');
-        if (!img) return;
-        // Don't regenerate if already loaded
-        if (img.src && img.style.display !== 'none') return;
-
-        const viewerUrl = (window.flexframeWorkoutSettings?.viewerPageUrl || '').replace(/\/$/, '');
-        const exId = exercise.exerciseId;
-        if (!viewerUrl || !exId) {
-            if (loadingLabel) loadingLabel.textContent = 'No link';
-            return;
-        }
-        const sep = viewerUrl.indexOf('?') !== -1 ? '&' : '?';
-        const targetUrl = viewerUrl + sep + 'exercise=' + exId;
-        const qrApiUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=' + encodeURIComponent(targetUrl);
-
-        img.onload = () => {
-            img.style.display = 'block';
-            if (loadingLabel) loadingLabel.style.display = 'none';
-        };
-        img.onerror = () => {
-            if (loadingLabel) loadingLabel.textContent = 'QR failed';
-        };
-        img.src = qrApiUrl;
+        // Simple QR placeholder — in production use a QR library
+        const canvas = card.querySelector('.ffwb-qr-canvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(0, 0, 80, 80);
+        ctx.fillStyle = '#000';
+        ctx.font = '8px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('QR Code', 40, 35);
+        ctx.fillText(exercise.name.substring(0, 15), 40, 50);
     }
 
     function debounce(fn, ms) {
