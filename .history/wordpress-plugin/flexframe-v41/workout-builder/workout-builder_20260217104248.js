@@ -383,6 +383,9 @@
                     <div class="ffwb-finder-item-name">${ex.name}</div>
                     <div class="ffwb-finder-item-meta">${(ex.muscleGroup || []).join(', ')}</div>
                 </div>
+                <div class="ffwb-finder-item-add" title="Select exercise">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                </div>
             </div>
         `).join('');
 
