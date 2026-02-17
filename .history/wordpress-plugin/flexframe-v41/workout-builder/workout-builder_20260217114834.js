@@ -1166,18 +1166,6 @@
             `;
         }
 
-        // Build QR code URL for this exercise
-        let qrHtml = '';
-        if (exercise.exerciseId) {
-            const viewerBase = (window.flexframeWorkoutSettings?.viewerPageUrl || '').replace(/\/$/, '');
-            if (viewerBase) {
-                const sep = viewerBase.indexOf('?') !== -1 ? '&' : '?';
-                const exUrl = viewerBase + sep + 'exercise=' + exercise.exerciseId;
-                const qrSrc = 'https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=' + encodeURIComponent(exUrl);
-                qrHtml = `<div class="ffwb-print-exercise-qr"><img src="${qrSrc}" alt="QR"></div>`;
-            }
-        }
-
         div.innerHTML = `
             <div class="ffwb-print-exercise-header">
                 <div class="ffwb-print-exercise-thumb">
@@ -1188,7 +1176,7 @@
                 </div>
                 <div class="ffwb-print-exercise-title">${label}. ${exercise.name || '(Unassigned)'}</div>
                 <div class="ffwb-print-exercise-rest">Rest: ${exercise.rest}s</div>
-                ${qrHtml}
+                ${exercise.exerciseId ? `<div class="ffwb-print-exercise-qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=${encodeURIComponent((() => { const v = (window.flexframeWorkoutSettings?.viewerPageUrl || '').replace(/\/$/, ''); const s = v.indexOf('?') !== -1 ? '&' : '?'; return v + s + 'exercise=' + exercise.exerciseId; })())}" alt="QR"></div>` : ''}
             </div>
             <table class="ffwb-print-table">
                 <thead>
