@@ -237,6 +237,7 @@
         card.configUrl = catalogueExercise.configUrl || '';
         closeFinder();
         renderExerciseList();
+        showToast('✅ ' + catalogueExercise.name + ' assigned!');
     }
 
     function initFinder() {
@@ -424,6 +425,7 @@
                     addExercise(exercise);
                     el.classList.add('ffwb-finder-item-added');
                     setTimeout(() => el.classList.remove('ffwb-finder-item-added'), 600);
+                    showToast('✅ ' + exercise.name + ' added!');
                 }
             });
         });
