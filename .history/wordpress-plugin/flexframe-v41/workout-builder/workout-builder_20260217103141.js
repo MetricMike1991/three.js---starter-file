@@ -849,15 +849,6 @@
             return;
         }
 
-        // Check for unassigned cards
-        const unassigned = workoutExercises.filter(e => !e.exerciseId);
-        if (unassigned.length > 0) {
-            showToast(`${unassigned.length} exercise${unassigned.length > 1 ? 's' : ''} still need to be assigned`);
-            // Highlight the first unassigned card
-            openFinderForCard(unassigned[0].uid);
-            return;
-        }
-
         if (!SETTINGS.isLoggedIn) {
             showToast('Please log in to save workouts');
             return;
@@ -1119,7 +1110,7 @@
                         : `<div class="ffwb-print-thumb-placeholder">${label}</div>`
                     }
                 </div>
-                <div class="ffwb-print-exercise-title">${label}. ${exercise.name || '(Unassigned)'}</div>
+                <div class="ffwb-print-exercise-title">${label}. ${exercise.name}</div>
                 <div class="ffwb-print-exercise-rest">Rest: ${exercise.rest}s</div>
             </div>
             <table class="ffwb-print-table">

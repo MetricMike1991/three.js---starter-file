@@ -1119,7 +1119,7 @@
                         : `<div class="ffwb-print-thumb-placeholder">${label}</div>`
                     }
                 </div>
-                <div class="ffwb-print-exercise-title">${label}. ${exercise.name || '(Unassigned)'}</div>
+                <div class="ffwb-print-exercise-title">${label}. ${exercise.name}</div>
                 <div class="ffwb-print-exercise-rest">Rest: ${exercise.rest}s</div>
             </div>
             <table class="ffwb-print-table">
