@@ -1195,32 +1195,6 @@
         padding: 8px 12px;
         font-size: 12px;
     }
-
-    /* Finder mobile: stacked layout */
-    .ffwb-finder-panel {
-        max-height: 80vh;
-    }
-
-    .ffwb-finder-body {
-        flex-direction: column;
-    }
-
-    .ffwb-finder-sidebar {
-        width: 100%;
-        border-right: none;
-        border-bottom: 1px solid var(--ffwb-card-border);
-        max-height: 180px;
-        padding: 8px;
-    }
-
-    .ffwb-filter-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .ffwb-finder-item-thumb {
-        width: 36px;
-        height: 36px;
-    }
 }
 
 @media screen and (max-width: 380px) {

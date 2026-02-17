@@ -19,24 +19,10 @@
     let groupCounter = 0;       // For generating group IDs
     let autosaveTimer = null;
 
-    // Finder / filter state
-    let finderOpen = false;
-    let finderSearchQuery = '';
-    let selectedTypeFilter = null;      // 'Strength' | 'Cardio' | null
-    let selectedMuscleFilter = null;    // single select
-    let selectedEquipmentFilter = null; // single select
-    let finderFilteredResults = [];
-
     // ─── DOM References ──────────────────────────────────────
-    let root, exerciseList, emptyState;
+    let root, searchInput, searchResults, exerciseList, emptyState;
     let workoutNameInput, statExercises, statDuration;
     let shareModal, shareBanner;
-
-    // Finder DOM refs
-    let finderToggleBtn, finderPanel, finderSearchInput, finderSearchClear;
-    let finderCloseBtn, finderResultsGrid, finderResultsCount;
-    let finderNoResults, finderClearFiltersBtn;
-    let finderTypeGrid, finderMusclesGrid, finderEquipmentGrid;
 
     // ─── Init ────────────────────────────────────────────────
     document.addEventListener('DOMContentLoaded', init);
@@ -65,6 +51,8 @@
     }
 
     function cacheDom() {
+        searchInput = root.querySelector('.ffwb-search-input');
+        searchResults = root.querySelector('.ffwb-search-results');
         exerciseList = root.querySelector('.ffwb-exercise-list');
         emptyState = root.querySelector('.ffwb-empty-state');
         workoutNameInput = root.querySelector('.ffwb-workout-name');
@@ -72,20 +60,6 @@
         statDuration = root.querySelector('.ffwb-stat-duration');
         shareModal = root.querySelector('.ffwb-modal-share');
         shareBanner = root.querySelector('.ffwb-share-banner');
-
-        // Finder panel refs
-        finderToggleBtn = root.querySelector('.ffwb-finder-toggle-btn');
-        finderPanel = root.querySelector('.ffwb-finder-panel');
-        finderSearchInput = root.querySelector('.ffwb-finder-search');
-        finderSearchClear = root.querySelector('.ffwb-finder-search-clear');
-        finderCloseBtn = root.querySelector('.ffwb-finder-close-btn');
-        finderResultsGrid = root.querySelector('.ffwb-finder-results-grid');
-        finderResultsCount = root.querySelector('.ffwb-finder-results-count');
-        finderNoResults = root.querySelector('.ffwb-finder-no-results');
-        finderClearFiltersBtn = root.querySelector('.ffwb-finder-clear-filters');
-        finderTypeGrid = root.querySelector('.ffwb-filter-type-grid');
-        finderMusclesGrid = root.querySelector('.ffwb-filter-muscles-grid');
-        finderEquipmentGrid = root.querySelector('.ffwb-filter-equipment-grid');
     }
 
     function applyPrimaryColor() {
@@ -104,49 +78,21 @@
             const res = await fetch(SETTINGS.exercisesCdn);
             exerciseCatalogue = await res.json();
             console.log(`[Workout Builder] Loaded ${exerciseCatalogue.length} exercises from catalogue`);
-            initFinder();
         } catch (err) {
             console.error('[Workout Builder] Failed to load exercise catalogue:', err);
         }
     }
 
-    // ─── Events ─────────────────────────────────────────────
+    // ─── Search ──────────────────────────────────────────────
     function bindEvents() {
-        // Finder panel toggle
-        finderToggleBtn?.addEventListener('click', toggleFinder);
-        finderCloseBtn?.addEventListener('click', () => closeFinder());
-        finderSearchInput?.addEventListener('input', debounce(onFinderSearch, 200));
-        finderSearchClear?.addEventListener('click', () => {
-            finderSearchInput.value = '';
-            finderSearchQuery = '';
-            finderSearchClear.style.display = 'none';
-            filterAndRenderResults();
+        // Search
+        searchInput.addEventListener('input', debounce(handleSearch, 200));
+        searchInput.addEventListener('focus', () => {
+            if (searchInput.value.length >= 2) handleSearch();
         });
-        finderClearFiltersBtn?.addEventListener('click', clearAllFilters);
-
-        // Exercise list drag-over glow (for drag from finder)
-        exerciseList.addEventListener('dragover', (e) => {
-            if (dragState && dragState.fromFinder) {
-                e.preventDefault();
-                e.dataTransfer.dropEffect = 'copy';
-                exerciseList.classList.add('ffwb-drop-glow');
-            }
-        });
-        exerciseList.addEventListener('dragleave', (e) => {
-            if (!exerciseList.contains(e.relatedTarget)) {
-                exerciseList.classList.remove('ffwb-drop-glow');
-            }
-        });
-        exerciseList.addEventListener('drop', (e) => {
-            exerciseList.classList.remove('ffwb-drop-glow');
-            if (dragState && dragState.fromFinder) {
-                e.preventDefault();
-                const exercise = exerciseCatalogue.find(ex => ex.id === dragState.exerciseId);
-                if (exercise) {
-                    addExercise(exercise);
-                    showToast('✅ ' + exercise.name + ' added!');
-                }
-                dragState = null;
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.ffwb-search-bar')) {
+                searchResults.style.display = 'none';
             }
         });
 
@@ -165,240 +111,51 @@
         shareBanner?.querySelector('.ffwb-btn-copy-workout')?.addEventListener('click', copyWorkoutToMine);
     }
 
-    // ─── Exercise Finder Panel ────────────────────────────────
-    const MUSCLES = ['Chest','Back','Shoulders','Biceps','Triceps','Abs','Quads','Glutes','Hamstrings','Calves'];
-    const EQUIPMENT = ['Barbell','Dumbbell','Cables','Machines','Kettlebell','Body Weight'];
-    const MUSCLE_ICONS = {Chest:'🫁',Back:'🔙',Shoulders:'🤷',Biceps:'💪',Triceps:'💪',Abs:'🎯',Quads:'🦵',Glutes:'🍑',Hamstrings:'🦵',Calves:'🦶'};
-    const EQUIP_ICONS = {Barbell:'🏋️',Dumbbell:'🏋️',Cables:'⚡',Machines:'⚙️',Kettlebell:'🔔','Body Weight':'🤸'};
-    const CARDIO_KEYWORDS = ['treadmill','bike','elliptical','rower','jump rope','stair','rowing','cardio','run','jog','sprint','cycle'];
-
-    function toggleFinder() {
-        finderOpen = !finderOpen;
-        finderPanel.style.display = finderOpen ? 'flex' : 'none';
-        finderToggleBtn.classList.toggle('ffwb-finder-active', finderOpen);
-        if (finderOpen && window.innerWidth > 768) {
-            setTimeout(() => finderSearchInput.focus(), 150);
-        }
-    }
-
-    function closeFinder() {
-        finderOpen = false;
-        finderPanel.style.display = 'none';
-        finderToggleBtn.classList.remove('ffwb-finder-active');
-    }
-
-    function initFinder() {
-        if (!finderTypeGrid) return;
-        buildFilterSection(finderTypeGrid, ['Strength','Cardio'], 'type');
-        buildFilterSection(finderMusclesGrid, MUSCLES, 'muscle');
-        buildFilterSection(finderEquipmentGrid, EQUIPMENT, 'equipment');
-        filterAndRenderResults();
-    }
-
-    function buildFilterSection(container, items, filterType) {
-        container.innerHTML = '';
-        items.forEach(item => {
-            const card = document.createElement('div');
-            card.className = 'ffwb-filter-card';
-            card.dataset.value = item;
-            card.dataset.filterType = filterType;
-
-            let icon = '';
-            if (filterType === 'type') icon = item === 'Strength' ? '🏋️' : '🏃';
-            else if (filterType === 'muscle') icon = MUSCLE_ICONS[item] || '💪';
-            else icon = EQUIP_ICONS[item] || '⚡';
-
-            card.innerHTML = `<span class="ffwb-filter-icon">${icon}</span><span class="ffwb-filter-label">${item}</span>`;
-
-            card.addEventListener('click', () => {
-                handleFilterClick(card, item, filterType, container);
-            });
-
-            container.appendChild(card);
-        });
-    }
-
-    function handleFilterClick(card, value, filterType, container) {
-        const isSelected = card.classList.contains('ffwb-filter-selected');
-
-        // Clear same-type selections (single select per category)
-        container.querySelectorAll('.ffwb-filter-card').forEach(c => c.classList.remove('ffwb-filter-selected'));
-
-        if (isSelected) {
-            // Deselect
-            if (filterType === 'type') selectedTypeFilter = null;
-            else if (filterType === 'muscle') selectedMuscleFilter = null;
-            else selectedEquipmentFilter = null;
-        } else {
-            // Select
-            card.classList.add('ffwb-filter-selected');
-            if (filterType === 'type') {
-                selectedTypeFilter = value;
-                // Cardio: clear muscle & equipment filters
-                if (value === 'Cardio') {
-                    selectedMuscleFilter = null;
-                    selectedEquipmentFilter = null;
-                    finderMusclesGrid.querySelectorAll('.ffwb-filter-card').forEach(c => c.classList.remove('ffwb-filter-selected'));
-                    finderEquipmentGrid.querySelectorAll('.ffwb-filter-card').forEach(c => c.classList.remove('ffwb-filter-selected'));
-                }
-            }
-            else if (filterType === 'muscle') selectedMuscleFilter = value;
-            else selectedEquipmentFilter = value;
-        }
-
-        updateClearFiltersBtn();
-        filterAndRenderResults();
-    }
-
-    function clearAllFilters() {
-        selectedTypeFilter = null;
-        selectedMuscleFilter = null;
-        selectedEquipmentFilter = null;
-        finderSearchQuery = '';
-        if (finderSearchInput) finderSearchInput.value = '';
-        if (finderSearchClear) finderSearchClear.style.display = 'none';
-        root.querySelectorAll('.ffwb-filter-card').forEach(c => c.classList.remove('ffwb-filter-selected'));
-        updateClearFiltersBtn();
-        filterAndRenderResults();
-    }
-
-    function updateClearFiltersBtn() {
-        const hasFilters = selectedTypeFilter || selectedMuscleFilter || selectedEquipmentFilter || finderSearchQuery;
-        if (finderClearFiltersBtn) finderClearFiltersBtn.style.display = hasFilters ? 'inline-block' : 'none';
-    }
-
-    function onFinderSearch() {
-        finderSearchQuery = finderSearchInput.value.trim().toLowerCase();
-        finderSearchClear.style.display = finderSearchQuery ? 'block' : 'none';
-        updateClearFiltersBtn();
-        filterAndRenderResults();
-    }
-
-    function getExerciseType(exercise) {
-        const isCardio = CARDIO_KEYWORDS.some(kw =>
-            exercise.name.toLowerCase().includes(kw) ||
-            (exercise.equipment || []).some(e => e.toLowerCase().includes(kw))
-        );
-        return isCardio ? 'Cardio' : 'Strength';
-    }
-
-    function filterAndRenderResults() {
-        let results = exerciseCatalogue.slice();
-
-        // Type filter
-        if (selectedTypeFilter) {
-            results = results.filter(ex => getExerciseType(ex) === selectedTypeFilter);
-        }
-
-        // Muscle filter
-        if (selectedMuscleFilter) {
-            results = results.filter(ex => {
-                const muscles = new Set();
-                (ex.muscleGroup || []).forEach(m => muscles.add(m));
-                if (ex.information?.primaryMuscle) muscles.add(ex.information.primaryMuscle);
-                (ex.information?.secondaryMuscles || []).forEach(m => muscles.add(m));
-                return muscles.has(selectedMuscleFilter);
-            });
-        }
-
-        // Equipment filter
-        if (selectedEquipmentFilter) {
-            results = results.filter(ex =>
-                (ex.equipment || []).includes(selectedEquipmentFilter)
-            );
-        }
-
-        // Text search
-        if (finderSearchQuery && finderSearchQuery.length >= 2) {
-            results = results.filter(ex =>
-                ex.name.toLowerCase().includes(finderSearchQuery) ||
-                (ex.muscleGroup || []).some(m => m.toLowerCase().includes(finderSearchQuery)) ||
-                (ex.equipment || []).some(e => e.toLowerCase().includes(finderSearchQuery))
-            );
-        }
-
-        finderFilteredResults = results;
-        renderFinderResults();
-    }
-
-    function renderFinderResults() {
-        if (!finderResultsGrid) return;
-        const results = finderFilteredResults;
-
-        // Count label
-        const hasFilters = selectedTypeFilter || selectedMuscleFilter || selectedEquipmentFilter || finderSearchQuery;
-        finderResultsCount.textContent = hasFilters 
-            ? `${results.length} exercise${results.length !== 1 ? 's' : ''} found`
-            : `All exercises (${results.length})`;
-
-        if (results.length === 0) {
-            finderResultsGrid.innerHTML = '';
-            finderNoResults.style.display = 'flex';
+    function handleSearch() {
+        const query = searchInput.value.trim().toLowerCase();
+        if (query.length < 2) {
+            searchResults.style.display = 'none';
             return;
         }
-        finderNoResults.style.display = 'none';
 
-        finderResultsGrid.innerHTML = results.map(ex => `
-            <div class="ffwb-finder-item" data-exercise-id="${ex.id}" draggable="true">
-                <div class="ffwb-finder-item-thumb">
-                    ${ex.thumbnailUrl
-                        ? `<img src="${ex.thumbnailUrl}" alt="${ex.name}" loading="lazy">`
-                        : `<div class="ffwb-finder-item-placeholder">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
-                           </div>`
-                    }
+        const matches = exerciseCatalogue.filter(ex => 
+            ex.name.toLowerCase().includes(query) ||
+            (ex.muscleGroup && ex.muscleGroup.some(m => m.toLowerCase().includes(query))) ||
+            (ex.equipment && ex.equipment.some(e => e.toLowerCase().includes(query)))
+        ).slice(0, 12);
+
+        if (matches.length === 0) {
+            searchResults.innerHTML = '<div class="ffwb-search-empty">No exercises found</div>';
+        } else {
+            searchResults.innerHTML = matches.map(ex => `
+                <div class="ffwb-search-result" data-exercise-id="${ex.id}">
+                    <div class="ffwb-search-result-thumb">
+                        ${ex.thumbnailUrl 
+                            ? `<img src="${ex.thumbnailUrl}" alt="${ex.name}" loading="lazy">` 
+                            : `<div class="ffwb-search-result-placeholder">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+                               </div>`
+                        }
+                    </div>
+                    <div class="ffwb-search-result-info">
+                        <div class="ffwb-search-result-name">${ex.name}</div>
+                        <div class="ffwb-search-result-meta">${(ex.muscleGroup || []).join(', ')}</div>
+                    </div>
                 </div>
-                <div class="ffwb-finder-item-info">
-                    <div class="ffwb-finder-item-name">${ex.name}</div>
-                    <div class="ffwb-finder-item-meta">${(ex.muscleGroup || []).join(', ')}</div>
-                </div>
-                <div class="ffwb-finder-item-add" title="Add to workout">
-                    <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                </div>
-            </div>
-        `).join('');
+            `).join('');
+        }
 
-        // Bind click + drag
-        finderResultsGrid.querySelectorAll('.ffwb-finder-item').forEach(el => {
-            const exId = el.dataset.exerciseId;
+        searchResults.style.display = 'block';
 
-            // Click to add
-            el.querySelector('.ffwb-finder-item-add')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const exercise = exerciseCatalogue.find(c => c.id === exId);
-                if (exercise) {
-                    addExercise(exercise);
-                    el.classList.add('ffwb-finder-item-added');
-                    setTimeout(() => el.classList.remove('ffwb-finder-item-added'), 600);
-                    showToast('✅ ' + exercise.name + ' added!');
-                }
-            });
-
-            // Also click anywhere on the item to add
+        // Bind click handlers
+        searchResults.querySelectorAll('.ffwb-search-result').forEach(el => {
             el.addEventListener('click', () => {
-                const exercise = exerciseCatalogue.find(c => c.id === exId);
-                if (exercise) {
-                    addExercise(exercise);
-                    el.classList.add('ffwb-finder-item-added');
-                    setTimeout(() => el.classList.remove('ffwb-finder-item-added'), 600);
-                    showToast('✅ ' + exercise.name + ' added!');
-                }
-            });
-
-            // Drag from finder (desktop)
-            el.addEventListener('dragstart', (e) => {
-                dragState = { fromFinder: true, exerciseId: exId };
-                e.dataTransfer.effectAllowed = 'copy';
-                e.dataTransfer.setData('text/plain', exId);
-                el.classList.add('ffwb-finder-item-dragging');
-                // Add glow to exercise list
-                setTimeout(() => exerciseList.classList.add('ffwb-drop-glow'), 0);
-            });
-
-            el.addEventListener('dragend', () => {
-                el.classList.remove('ffwb-finder-item-dragging');
-                exerciseList.classList.remove('ffwb-drop-glow');
-                dragState = null;
+                const exId = el.dataset.exerciseId;
+                const exercise = exerciseCatalogue.find(e => e.id === exId);
+                if (exercise) addExercise(exercise);
+                searchResults.style.display = 'none';
+                searchInput.value = '';
+                searchInput.focus();
             });
         });
     }
@@ -910,7 +667,7 @@
             workoutNameInput.value = data.name;
             if (isReadOnly) {
                 workoutNameInput.readOnly = true;
-                root.querySelectorAll('.ffwb-btn-save, .ffwb-btn-share, .ffwb-finder').forEach(el => el.style.display = 'none');
+                root.querySelectorAll('.ffwb-btn-save, .ffwb-btn-share, .ffwb-search-bar').forEach(el => el.style.display = 'none');
             }
 
             // Show share banner
@@ -959,7 +716,7 @@
         workoutHash = null;
         workoutNameInput.readOnly = false;
         workoutNameInput.value += ' (Copy)';
-        root.querySelectorAll('.ffwb-btn-save, .ffwb-btn-share, .ffwb-finder').forEach(el => el.style.display = '');
+        root.querySelectorAll('.ffwb-btn-save, .ffwb-btn-share, .ffwb-search-bar').forEach(el => el.style.display = '');
         shareBanner.style.display = 'none';
         renderExerciseList();
         showToast('Workout copied! You can now edit and save it.');
@@ -1135,11 +892,10 @@
         document.addEventListener('keydown', (e) => {
             if (isReadOnly) return;
             
-            // Ctrl+N — open finder / focus search
+            // Ctrl+N — focus search
             if ((e.ctrlKey || e.metaKey) && e.key === 'n') {
                 e.preventDefault();
-                if (!finderOpen) toggleFinder();
-                else finderSearchInput.focus();
+                searchInput.focus();
             }
             // Ctrl+S — save
             if ((e.ctrlKey || e.metaKey) && e.key === 's') {

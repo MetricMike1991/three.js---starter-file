@@ -116,51 +116,13 @@ function flexframe_workout_builder_shortcode($atts) {
             </div>
         </div>
 
-        <!-- Exercise Finder Panel -->
-        <div class="ffwb-finder">
-            <button class="ffwb-btn ffwb-btn-primary ffwb-finder-toggle-btn">
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                Add Exercise
-            </button>
-            <div class="ffwb-finder-panel" style="display:none;">
-                <div class="ffwb-finder-topbar">
-                    <div class="ffwb-finder-search-wrap">
-                        <svg class="ffwb-finder-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                        <input type="text" class="ffwb-finder-search" placeholder="Search by name, muscle, or equipment...">
-                        <button class="ffwb-finder-search-clear" title="Clear search" style="display:none;">&times;</button>
-                    </div>
-                    <button class="ffwb-finder-close-btn" title="Close">&times;</button>
-                </div>
-                <div class="ffwb-finder-body">
-                    <div class="ffwb-finder-sidebar">
-                        <div class="ffwb-filter-section">
-                            <div class="ffwb-filter-title">Type</div>
-                            <div class="ffwb-filter-grid ffwb-filter-type-grid"></div>
-                        </div>
-                        <div class="ffwb-filter-section">
-                            <div class="ffwb-filter-title">Muscles</div>
-                            <div class="ffwb-filter-grid ffwb-filter-muscles-grid"></div>
-                        </div>
-                        <div class="ffwb-filter-section">
-                            <div class="ffwb-filter-title">Equipment</div>
-                            <div class="ffwb-filter-grid ffwb-filter-equipment-grid"></div>
-                        </div>
-                    </div>
-                    <div class="ffwb-finder-results">
-                        <div class="ffwb-finder-results-header">
-                            <span class="ffwb-finder-results-count">All exercises</span>
-                            <button class="ffwb-btn ffwb-btn-small ffwb-finder-clear-filters" style="display:none;">Clear All</button>
-                        </div>
-                        <div class="ffwb-finder-results-scroll">
-                            <div class="ffwb-finder-results-grid"></div>
-                            <div class="ffwb-finder-no-results" style="display:none;">
-                                <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
-                                <p>No exercises match your filters</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Exercise search / add bar -->
+        <div class="ffwb-search-bar">
+            <div class="ffwb-search-input-wrap">
+                <svg class="ffwb-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
+                <input type="text" class="ffwb-search-input" placeholder="Search exercises to add...">
             </div>
+            <div class="ffwb-search-results" style="display:none;"></div>
         </div>
 
         <!-- Exercise list (the builder area) -->
