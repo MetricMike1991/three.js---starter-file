@@ -554,9 +554,9 @@
 
     function createCardElement(exercise, number, subLabel, groupId) {
         const card = document.createElement('div');
-        card.className = 'ffwb-card' + (isReadOnly ? ' ffwb-card-readonly' : '') + (groupId ? ' ffwb-card-grouped' : '');
+        card.className = 'ffwb-card' + (isReadOnly ? ' ffwb-card-readonly' : '');
         card.dataset.uid = exercise.uid;
-        if (!isReadOnly && !groupId) card.draggable = true;
+        if (!isReadOnly) card.draggable = true;
 
         const label = subLabel ? `${number}${subLabel}` : `${number}`;
         const isUnassigned = !exercise.exerciseId;
@@ -664,10 +664,8 @@
                 input.addEventListener('change', () => syncCardToState(exercise.uid, card));
             });
 
-            // Drag events (only for ungrouped cards)
-            if (!groupId) {
-                bindDragEvents(card, exercise.uid);
-            }
+            // Drag events
+            bindDragEvents(card, exercise.uid);
         }
 
         // Expand/collapse
