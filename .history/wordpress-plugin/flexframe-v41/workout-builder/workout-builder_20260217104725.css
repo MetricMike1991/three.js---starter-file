@@ -1031,8 +1031,8 @@
 }
 
 .ffwb-link-btn {
-    width: 32px;
-    height: 32px;
+    width: 28px;
+    height: 28px;
     border-radius: 50%;
     background: var(--ffwb-card-bg);
     border: 1px solid var(--ffwb-card-border);
@@ -1044,6 +1044,7 @@
     transition: all 0.2s;
     z-index: 5;
     position: relative;
+    top: -2px;
 }
 
 .ffwb-link-btn:hover,
@@ -1058,20 +1059,6 @@
     background: rgba(var(--ffwb-primary-rgb), 0.2);
     border-color: var(--ffwb-primary);
     color: var(--ffwb-primary);
-}
-
-/* Unlink zone inside grouped cards */
-.ffwb-unlink-zone {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 4px 0;
-    opacity: 0;
-    transition: opacity 0.2s;
-}
-
-.ffwb-group-cards:hover .ffwb-unlink-zone {
-    opacity: 1;
 }
 
 /* ─── Footer Stats ──────────────────────────────────────── */
