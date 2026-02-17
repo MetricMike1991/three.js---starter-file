@@ -942,35 +942,6 @@ select.ffwb-input option {
 /* ─── Card Expand ───────────────────────────────────────── */
 .ffwb-card-expand-row {
     margin-top: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.ffwb-btn-learn3d {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
-    padding: 4px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    color: var(--ffwb-primary);
-    background: rgba(var(--ffwb-primary-rgb), 0.1);
-    border: 1px solid rgba(var(--ffwb-primary-rgb), 0.25);
-    border-radius: 20px;
-    text-decoration: none;
-    cursor: pointer;
-    transition: all 0.2s;
-    white-space: nowrap;
-}
-
-.ffwb-btn-learn3d:hover {
-    background: rgba(var(--ffwb-primary-rgb), 0.2);
-    border-color: var(--ffwb-primary);
-    color: var(--ffwb-primary);
-    transform: scale(1.03);
 }
 
 .ffwb-card-expand-btn {

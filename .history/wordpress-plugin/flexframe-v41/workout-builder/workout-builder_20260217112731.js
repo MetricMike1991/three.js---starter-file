@@ -642,10 +642,6 @@
                         </div>
                     </div>
                     <div class="ffwb-card-expand-row">
-                        ${!isUnassigned && exercise.exerciseId ? `<a class="ffwb-btn-learn3d" href="#" data-exercise-id="${exercise.exerciseId}" target="_blank" rel="noopener noreferrer" title="Learn how to perform this exercise in 3D">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            Learn in 3D
-                        </a>` : ''}
                         <button class="ffwb-card-expand-btn">▼ More</button>
                     </div>
                     <div class="ffwb-card-expanded" style="display:none;">
@@ -667,18 +663,6 @@
             card.querySelector('.ffwb-card-name-pick')?.addEventListener('click', (e) => {
                 e.stopPropagation();
                 openFinderForCard(exercise.uid);
-            });
-
-            // Learn in 3D link
-            card.querySelector('.ffwb-btn-learn3d')?.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-                const exId = e.currentTarget.dataset.exerciseId;
-                const viewerUrl = (window.flexframeWorkoutSettings?.viewerPageUrl || '').replace(/\/$/, '');
-                if (viewerUrl && exId) {
-                    const sep = viewerUrl.indexOf('?') !== -1 ? '&' : '?';
-                    window.open(viewerUrl + sep + 'exercise=' + exId, '_blank');
-                }
             });
 
             card.querySelector('.ffwb-card-btn-dup')?.addEventListener('click', (e) => {
