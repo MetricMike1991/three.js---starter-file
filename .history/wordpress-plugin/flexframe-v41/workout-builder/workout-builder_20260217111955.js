@@ -605,35 +605,20 @@
                     <div class="ffwb-card-stats">
                         <div class="ffwb-card-stat">
                             <label>Sets</label>
-                            <select class="ffwb-input ffwb-input-sets" ${isReadOnly ? 'disabled' : ''}>
-                                ${[1,2,3,4,5,6,7,8,9,10].map(v => `<option value="${v}" ${v == exercise.sets ? 'selected' : ''}>${v}</option>`).join('')}
-                            </select>
+                            <input type="number" class="ffwb-input ffwb-input-sets" value="${exercise.sets}" min="1" max="20" ${isReadOnly ? 'readonly' : ''}>
                         </div>
                         <span class="ffwb-card-stat-x">×</span>
                         <div class="ffwb-card-stat">
                             <label>Reps</label>
-                            <select class="ffwb-input ffwb-input-reps" ${isReadOnly ? 'disabled' : ''}>
-                                ${[1,2,3,4,5,6,7,8,9,10,12,15,20,25,30,'AMRAP'].map(v => `<option value="${v}" ${v == exercise.reps ? 'selected' : ''}>${v}</option>`).join('')}
-                            </select>
+                            <input type="text" class="ffwb-input ffwb-input-reps" value="${exercise.reps}" maxlength="10" ${isReadOnly ? 'readonly' : ''}>
                         </div>
                         <span class="ffwb-card-stat-divider">·</span>
                         <div class="ffwb-card-stat">
                             <label>Rest</label>
-                            <select class="ffwb-input ffwb-input-rest" ${isReadOnly ? 'disabled' : ''}>
-                                ${[
-                                    {v: 0, t: 'No Rest'},
-                                    {v: 10, t: '10 Seconds'},
-                                    {v: 20, t: '20 Seconds'},
-                                    {v: 30, t: '30 Seconds'},
-                                    {v: 45, t: '45 Seconds'},
-                                    {v: 60, t: '60 Seconds'},
-                                    {v: 90, t: '90 Seconds'},
-                                    {v: 120, t: '2 Mins'},
-                                    {v: 180, t: '3 Mins'},
-                                    {v: 300, t: '5 Mins'},
-                                    {v: 600, t: '10 Mins'}
-                                ].map(o => `<option value="${o.v}" ${o.v == exercise.rest ? 'selected' : ''}>${o.t}</option>`).join('')}
-                            </select>
+                            <div class="ffwb-rest-wrap">
+                                <input type="number" class="ffwb-input ffwb-input-rest" value="${exercise.rest}" min="0" max="600" step="15" ${isReadOnly ? 'readonly' : ''}>
+                                <span class="ffwb-rest-unit">s</span>
+                            </div>
                         </div>
                         <span class="ffwb-card-stat-divider">·</span>
                         <div class="ffwb-card-stat">
