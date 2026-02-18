@@ -1071,12 +1071,6 @@ select.ffwb-input option {
     font-family: inherit;
     font-size: clamp(13px, 3.5vw, 15px);
     font-weight: 700;
-    color: var(--ffwb-text);
-}
-
-.ffwb-input-notes:focus {
-    color: var(--ffwb-text);
-    background: var(--ffwb-input-bg);
 }
 
 /* ─── Group / Superset ──────────────────────────────────── */

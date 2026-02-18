@@ -26,7 +26,6 @@
     margin: 0 auto;
     padding: 16px;
     min-height: 100vh;
-    overflow: visible;
     box-sizing: border-box;
 }
 
@@ -69,20 +68,18 @@
     display: block;
     width: 100%;
     background: transparent;
-    border: 1px solid var(--ffwb-input-border);
-    border-radius: var(--ffwb-radius);
+    border: none;
+    border-bottom: 2px solid var(--ffwb-input-border);
     color: var(--ffwb-text);
     font-size: clamp(16px, 4vw, 22px);
     font-weight: 700;
-    padding: 8px 12px;
+    padding: 4px 0;
     outline: none;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s;
 }
 
 .ffwb-workout-name:focus {
     border-color: var(--ffwb-primary);
-    background: rgba(255, 255, 255, 0.95);
-    color: #111;
 }
 
 .ffwb-workout-name.ffwb-input-error {
@@ -182,97 +179,23 @@
 
 /* ─── Exercise Finder Panel ─────────────────────────────── */
 .ffwb-finder {
-    margin-top: 0;
     margin-bottom: 16px;
 }
 
-/* Ghost card placeholder — looks like an empty exercise slot */
-.ffwb-add-card {
-    border: 2px dashed rgba(var(--ffwb-primary-rgb), 0.25);
-    border-radius: var(--ffwb-radius);
-    background: rgba(var(--ffwb-primary-rgb), 0.02);
-    cursor: pointer;
-    transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease, transform 0.15s ease;
-    margin-bottom: var(--ffwb-gap);
-}
-
-.ffwb-add-card-inner {
+.ffwb-finder-toggle-btn {
     display: flex;
     align-items: center;
-    gap: 14px;
-    padding: 20px 24px;
-}
-
-.ffwb-add-card-icon {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    border: 2px dashed rgba(var(--ffwb-primary-rgb), 0.3);
-    display: flex;
-    align-items: center;
+    gap: 6px;
+    width: 100%;
     justify-content: center;
-    color: rgba(var(--ffwb-primary-rgb), 0.4);
-    transition: border-color 0.25s, color 0.25s, background 0.25s, transform 0.3s;
-    flex-shrink: 0;
-}
-
-.ffwb-add-card-label {
-    font-size: 15px;
+    padding: 12px;
+    font-size: 14px;
     font-weight: 600;
-    color: rgba(var(--ffwb-primary-rgb), 0.4);
-    letter-spacing: 0.02em;
-    transition: color 0.25s;
-}
-
-.ffwb-add-card:hover {
-    border-color: rgba(var(--ffwb-primary-rgb), 0.55);
-    background: rgba(var(--ffwb-primary-rgb), 0.06);
-    box-shadow: 0 0 24px rgba(var(--ffwb-primary-rgb), 0.12);
-}
-
-.ffwb-add-card:hover .ffwb-add-card-icon {
-    border-color: var(--ffwb-primary);
-    color: var(--ffwb-primary);
-    background: rgba(var(--ffwb-primary-rgb), 0.1);
-    transform: rotate(90deg);
-}
-
-.ffwb-add-card:hover .ffwb-add-card-label {
-    color: var(--ffwb-primary);
-}
-
-.ffwb-add-card:active {
-    transform: scale(0.98);
-}
-
-/* Card appearing animation */
-@keyframes ffwb-card-enter {
-    0% {
-        opacity: 0;
-        transform: translateY(12px) scale(0.96);
-        max-height: 0;
-        margin-bottom: 0;
-        padding: 0;
-    }
-    40% {
-        max-height: 300px;
-        margin-bottom: var(--ffwb-gap);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-        max-height: 300px;
-    }
-}
-
-.ffwb-card-entering {
-    animation: ffwb-card-enter 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 .ffwb-finder-toggle-btn.ffwb-finder-active {
+    background: rgba(var(--ffwb-primary-rgb), 0.2);
     border-color: var(--ffwb-primary);
-    background: rgba(var(--ffwb-primary-rgb), 0.06);
-    box-shadow: 0 0 24px rgba(var(--ffwb-primary-rgb), 0.12);
 }
 
 .ffwb-finder-panel {
@@ -615,11 +538,24 @@
     flex-direction: column;
     gap: 0;
     min-height: 200px;
-    max-height: none !important;
-    overflow: visible !important;
-    overflow-y: visible !important;
-    padding: 4px 0 4px 0;
-    min-height: 0;
+    overflow-y: visible;
+    padding: 4px 0;
+}
+
+.ffwb-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: var(--ffwb-text-muted);
+    text-align: center;
+    gap: 12px;
+}
+
+.ffwb-empty-state p {
+    font-size: 14px;
+    max-width: 280px;
 }
 
 /* ─── Exercise Card ─────────────────────────────────────── */
@@ -1069,14 +1005,6 @@ select.ffwb-input option {
     resize: vertical;
     min-height: 40px;
     font-family: inherit;
-    font-size: clamp(13px, 3.5vw, 15px);
-    font-weight: 700;
-    color: var(--ffwb-text);
-}
-
-.ffwb-input-notes:focus {
-    color: var(--ffwb-text);
-    background: var(--ffwb-input-bg);
 }
 
 /* ─── Group / Superset ──────────────────────────────────── */

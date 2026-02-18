@@ -1468,13 +1468,6 @@ function flexframe_register_settings() {
         'default' => ''
     ));
     
-    // Workout builder page URL (Step 9)
-    register_setting('flexframe_settings_group', 'flexframe_workout_page_url', array(
-        'type' => 'string',
-        'sanitize_callback' => 'esc_url_raw',
-        'default' => ''
-    ));
-    
     // ========== UI Settings (Step 5) ==========
     
     // Loading Spinner

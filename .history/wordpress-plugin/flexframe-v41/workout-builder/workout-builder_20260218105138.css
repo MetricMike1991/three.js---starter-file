@@ -69,20 +69,18 @@
     display: block;
     width: 100%;
     background: transparent;
-    border: 1px solid var(--ffwb-input-border);
-    border-radius: var(--ffwb-radius);
+    border: none;
+    border-bottom: 2px solid var(--ffwb-input-border);
     color: var(--ffwb-text);
     font-size: clamp(16px, 4vw, 22px);
     font-weight: 700;
-    padding: 8px 12px;
+    padding: 4px 0;
     outline: none;
-    transition: border-color 0.2s, background 0.2s;
+    transition: border-color 0.2s;
 }
 
 .ffwb-workout-name:focus {
     border-color: var(--ffwb-primary);
-    background: rgba(255, 255, 255, 0.95);
-    color: #111;
 }
 
 .ffwb-workout-name.ffwb-input-error {
@@ -619,7 +617,22 @@
     overflow: visible !important;
     overflow-y: visible !important;
     padding: 4px 0 4px 0;
-    min-height: 0;
+}
+
+.ffwb-empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 20px;
+    color: var(--ffwb-text-muted);
+    text-align: center;
+    gap: 12px;
+}
+
+.ffwb-empty-state p {
+    font-size: 14px;
+    max-width: 280px;
 }
 
 /* ─── Exercise Card ─────────────────────────────────────── */
@@ -1069,14 +1082,6 @@ select.ffwb-input option {
     resize: vertical;
     min-height: 40px;
     font-family: inherit;
-    font-size: clamp(13px, 3.5vw, 15px);
-    font-weight: 700;
-    color: var(--ffwb-text);
-}
-
-.ffwb-input-notes:focus {
-    color: var(--ffwb-text);
-    background: var(--ffwb-input-bg);
 }
 
 /* ─── Group / Superset ──────────────────────────────────── */

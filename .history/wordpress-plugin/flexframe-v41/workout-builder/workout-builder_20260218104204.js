@@ -29,7 +29,7 @@
     let finderTargetUid = null;   // Which card the finder is assigning to
 
     // ─── DOM References ──────────────────────────────────────
-    let root, exerciseList;
+    let root, exerciseList, emptyState;
     let workoutNameInput, statExercises, statDuration;
     let shareModal, shareBanner;
 
@@ -67,7 +67,7 @@
 
     function cacheDom() {
         exerciseList = root.querySelector('.ffwb-exercise-list');
-        // emptyState removed — ghost card is the CTA
+        emptyState = root.querySelector('.ffwb-empty-state');
         workoutNameInput = root.querySelector('.ffwb-workout-name');
         statExercises = root.querySelector('.ffwb-stat-exercises');
         statDuration = root.querySelector('.ffwb-stat-duration');
@@ -188,15 +188,6 @@
         workoutExercises.push(card);
         renderExerciseList();
         updateStats();
-
-        // Animate the newly added card
-        const newCard = exerciseList.querySelector(`.ffwb-card[data-uid="${uid}"]`);
-        if (newCard) {
-            newCard.classList.add('ffwb-card-entering');
-            newCard.addEventListener('animationend', () => {
-                newCard.classList.remove('ffwb-card-entering');
-            }, { once: true });
-        }
         scrollToBottom();
     }
 
@@ -441,9 +432,8 @@
 
     // ─── Exercise Cards ──────────────────────────────────────
     function addExercise(catalogueExercise, options = {}) {
-        const uid = generateUid();
         const card = {
-            uid,
+            uid: generateUid(),
             exerciseId: catalogueExercise.id,
             name: catalogueExercise.name,
             thumbnailUrl: catalogueExercise.thumbnailUrl || '',
@@ -462,15 +452,6 @@
         workoutExercises.push(card);
         renderExerciseList();
         updateStats();
-
-        // Animate the newly added card
-        const newCard = exerciseList.querySelector(`.ffwb-card[data-uid="${uid}"]`);
-        if (newCard) {
-            newCard.classList.add('ffwb-card-entering');
-            newCard.addEventListener('animationend', () => {
-                newCard.classList.remove('ffwb-card-entering');
-            }, { once: true });
-        }
         scrollToBottom();
     }
 
@@ -499,12 +480,14 @@
     }
 
     function renderExerciseList() {
-        // Remove all cards
+        // Remove all cards (keep empty state)
         exerciseList.querySelectorAll('.ffwb-card, .ffwb-group-wrapper, .ffwb-link-zone').forEach(el => el.remove());
 
         if (workoutExercises.length === 0) {
+            emptyState.style.display = 'flex';
             return;
         }
+        emptyState.style.display = 'none';
 
         // Group exercises
         const groups = buildGroups();
@@ -1195,15 +1178,6 @@
             }
         }
 
-        // Build notes HTML if the exercise has notes
-        let notesHtml = '';
-        if (exercise.notes && exercise.notes.trim()) {
-            notesHtml = `<div class="ffwb-print-exercise-notes"><strong>Notes:</strong> ${exercise.notes.trim()}</div>`;
-        }
-
-        // Build RIR label
-        const rirLabel = exercise.rir == '0' ? 'Train To Failure' : `${exercise.rir} RIR`;
-
         div.innerHTML = `
             <div class="ffwb-print-exercise-header">
                 <div class="ffwb-print-exercise-thumb">
@@ -1213,7 +1187,7 @@
                     }
                 </div>
                 <div class="ffwb-print-exercise-title">${label}. ${exercise.name || '(Unassigned)'}</div>
-                <div class="ffwb-print-exercise-rest">Rest: ${exercise.rest}s · ${rirLabel}</div>
+                <div class="ffwb-print-exercise-rest">Rest: ${exercise.rest}s</div>
                 ${qrHtml}
             </div>
             <table class="ffwb-print-table">
@@ -1228,7 +1202,6 @@
                 </thead>
                 <tbody>${rows}</tbody>
             </table>
-            ${notesHtml}
         `;
 
         return div;

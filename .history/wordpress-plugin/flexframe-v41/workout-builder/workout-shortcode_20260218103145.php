@@ -123,19 +123,12 @@ function flexframe_workout_builder_shortcode($atts) {
             </div>
         </div>
 
-        <!-- Exercise list (the builder area) -->
-        <div class="ffwb-exercise-list"></div>
-
-        <!-- Add Exercise ghost card (sits below the list) -->
+        <!-- Exercise Finder Panel -->
         <div class="ffwb-finder">
-            <div class="ffwb-add-card ffwb-finder-toggle-btn">
-                <div class="ffwb-add-card-inner">
-                    <div class="ffwb-add-card-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                    </div>
-                    <span class="ffwb-add-card-label">Add Exercise</span>
-                </div>
-            </div>
+            <button class="ffwb-btn ffwb-btn-primary ffwb-finder-toggle-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                Add Exercise
+            </button>
             <div class="ffwb-finder-panel" style="display:none;">
                 <div class="ffwb-finder-topbar">
                     <div class="ffwb-finder-search-wrap">
@@ -174,6 +167,14 @@ function flexframe_workout_builder_shortcode($atts) {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Exercise list (the builder area) -->
+        <div class="ffwb-exercise-list">
+            <div class="ffwb-empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" opacity="0.3"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+                <p>Search for exercises above to start building your workout</p>
             </div>
         </div>
 
@@ -227,54 +228,3 @@ function flexframe_workout_builder_shortcode($atts) {
     return ob_get_clean();
 }
 add_shortcode('flexframe_workout_builder', 'flexframe_workout_builder_shortcode');
-
-/**
- * Generate full-screen CSS for dedicated workout builder pages.
- * Hides WordPress headers, footers, sidebars, and admin bar.
- */
-function flexframe_get_workout_fullscreen_css() {
-    return '
-        /* ===== FlexFrame Workout Builder Full-Screen Mode ===== */
-        html, body {
-            margin: 0 !important;
-            padding: 0 !important;
-            height: auto !important;
-            overflow-x: hidden !important;
-            overflow-y: auto !important;
-        }
-        /* Hide WordPress header, footer, sidebar, navigation, admin bar */
-        header, footer, aside, nav,
-        .site-header, .site-footer, .site-sidebar, .site-navigation,
-        .wp-site-header, .wp-site-footer, .wp-site-navigation,
-        #masthead, #colophon, #secondary, #site-navigation,
-        .main-navigation, .footer-navigation,
-        .widget-area, .sidebar, .site-info,
-        .entry-header, .entry-footer, .entry-meta,
-        .post-navigation, .comments-area,
-        .page-header, .page-title, .entry-title,
-        .wp-block-post-title, .wp-block-latest-posts,
-        .wp-block-query, .wp-block-template-part,
-        .has-global-padding > .wp-block-template-part,
-        #wpadminbar,
-        .breadcrumb, .breadcrumbs,
-        .skip-link {
-            display: none !important;
-        }
-        /* Make content area full width */
-        main, .site-main, .site-content, .content-area,
-        .entry-content, article, .page, .type-page,
-        .wp-block-group, .wp-site-blocks,
-        .is-layout-constrained, .is-layout-flow {
-            width: 100% !important;
-            max-width: 100% !important;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-        /* Ensure workout builder fills the screen */
-        #flexframe-workout-builder {
-            min-height: 100vh !important;
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-    ';
-}

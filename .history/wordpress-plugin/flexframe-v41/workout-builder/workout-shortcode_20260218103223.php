@@ -123,19 +123,12 @@ function flexframe_workout_builder_shortcode($atts) {
             </div>
         </div>
 
-        <!-- Exercise list (the builder area) -->
-        <div class="ffwb-exercise-list"></div>
-
-        <!-- Add Exercise ghost card (sits below the list) -->
+        <!-- Exercise Finder Panel -->
         <div class="ffwb-finder">
-            <div class="ffwb-add-card ffwb-finder-toggle-btn">
-                <div class="ffwb-add-card-inner">
-                    <div class="ffwb-add-card-icon">
-                        <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
-                    </div>
-                    <span class="ffwb-add-card-label">Add Exercise</span>
-                </div>
-            </div>
+            <button class="ffwb-btn ffwb-btn-primary ffwb-finder-toggle-btn">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+                Add Exercise
+            </button>
             <div class="ffwb-finder-panel" style="display:none;">
                 <div class="ffwb-finder-topbar">
                     <div class="ffwb-finder-search-wrap">
@@ -174,6 +167,14 @@ function flexframe_workout_builder_shortcode($atts) {
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+
+        <!-- Exercise list (the builder area) -->
+        <div class="ffwb-exercise-list">
+            <div class="ffwb-empty-state">
+                <svg width="48" height="48" viewBox="0 0 24 24" fill="currentColor" opacity="0.3"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+                <p>Search for exercises above to start building your workout</p>
             </div>
         </div>
 
@@ -238,9 +239,9 @@ function flexframe_get_workout_fullscreen_css() {
         html, body {
             margin: 0 !important;
             padding: 0 !important;
-            height: auto !important;
             overflow-x: hidden !important;
-            overflow-y: auto !important;
+            height: 100% !important;
+            width: 100% !important;
         }
         /* Hide WordPress header, footer, sidebar, navigation, admin bar */
         header, footer, aside, nav,

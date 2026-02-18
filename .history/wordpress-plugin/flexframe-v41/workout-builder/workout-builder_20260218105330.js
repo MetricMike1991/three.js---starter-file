@@ -1195,15 +1195,6 @@
             }
         }
 
-        // Build notes HTML if the exercise has notes
-        let notesHtml = '';
-        if (exercise.notes && exercise.notes.trim()) {
-            notesHtml = `<div class="ffwb-print-exercise-notes"><strong>Notes:</strong> ${exercise.notes.trim()}</div>`;
-        }
-
-        // Build RIR label
-        const rirLabel = exercise.rir == '0' ? 'Train To Failure' : `${exercise.rir} RIR`;
-
         div.innerHTML = `
             <div class="ffwb-print-exercise-header">
                 <div class="ffwb-print-exercise-thumb">
@@ -1213,7 +1204,7 @@
                     }
                 </div>
                 <div class="ffwb-print-exercise-title">${label}. ${exercise.name || '(Unassigned)'}</div>
-                <div class="ffwb-print-exercise-rest">Rest: ${exercise.rest}s · ${rirLabel}</div>
+                <div class="ffwb-print-exercise-rest">Rest: ${exercise.rest}s</div>
                 ${qrHtml}
             </div>
             <table class="ffwb-print-table">
@@ -1228,7 +1219,6 @@
                 </thead>
                 <tbody>${rows}</tbody>
             </table>
-            ${notesHtml}
         `;
 
         return div;
