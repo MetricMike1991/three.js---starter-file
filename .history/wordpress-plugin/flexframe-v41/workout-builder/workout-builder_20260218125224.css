@@ -68,22 +68,22 @@
 .ffwb-workout-name {
     display: block;
     width: 100%;
-    background: transparent !important;
-    border: 1px solid var(--ffwb-input-border) !important;
-    border-radius: var(--ffwb-radius) !important;
-    color: var(--ffwb-text) !important;
-    font-size: clamp(16px, 4vw, 22px) !important;
+    background: transparent;
+    border: 1px solid var(--ffwb-input-border);
+    border-radius: var(--ffwb-radius);
+    color: var(--ffwb-text);
+    font-size: clamp(16px, 4vw, 22px);
     font-weight: 700;
-    padding: 8px 12px !important;
-    outline: none !important;
-    transition: border-color 0.25s, box-shadow 0.25s, background 0.25s, color 0.25s;
+    padding: 8px 12px;
+    outline: none;
+    transition: border-color 0.25s, box-shadow 0.25s;
 }
 
 .ffwb-workout-name:focus {
-    border-color: var(--ffwb-primary) !important;
-    background: #ffffff !important;
-    color: #1a1a1a !important;
-    box-shadow: 0 0 0 3px rgba(var(--ffwb-primary-rgb), 0.25), 0 0 12px rgba(var(--ffwb-primary-rgb), 0.15) !important;
+    border-color: var(--ffwb-primary);
+    background: #ffffff;
+    color: #1a1a1a;
+    box-shadow: 0 0 0 3px rgba(var(--ffwb-primary-rgb), 0.25), 0 0 12px rgba(var(--ffwb-primary-rgb), 0.15);
 }
 
 .ffwb-workout-name.ffwb-input-error {
