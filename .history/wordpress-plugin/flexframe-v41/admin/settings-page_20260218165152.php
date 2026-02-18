@@ -4321,13 +4321,13 @@ function flexframe_settings_page() {
                                     <table class="wp-list-table widefat fixed striped" id="flexframe-saved-workouts-table" style="margin-bottom: 12px;">
                                         <thead>
                                             <tr>
-                                                <th style="width: 18%;">Workout Name</th>
-                                                <th style="width: 10%;">Author</th>
-                                                <th style="width: 6%;">Exercises</th>
-                                                <th style="width: 6%;">Views</th>
-                                                <th style="width: 5%;">Likes</th>
+                                                <th style="width: 20%;">Workout Name</th>
+                                                <th style="width: 12%;">Author</th>
+                                                <th style="width: 7%;">Exercises</th>
+                                                <th style="width: 7%;">Views</th>
+                                                <th style="width: 6%;">Likes</th>
                                                 <th style="width: 8%;">Visibility</th>
-                                                <th style="width: 17%;">Share Link</th>
+                                                <th style="width: 16%;">Share Link</th>
                                                 <th style="width: 11%;">Created</th>
                                                 <th style="width: 11%;">Last Active</th>
                                                 <th style="width: 8%;">Actions</th>
@@ -11184,7 +11184,7 @@ function flexframe_settings_page() {
                     }
                 },
                 error: function() {
-                    $wkTbody.html('<tr><td colspan="10" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
+                    $wkTbody.html('<tr><td colspan="9" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
                 }
             });
         }

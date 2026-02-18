@@ -4321,20 +4321,18 @@ function flexframe_settings_page() {
                                     <table class="wp-list-table widefat fixed striped" id="flexframe-saved-workouts-table" style="margin-bottom: 12px;">
                                         <thead>
                                             <tr>
-                                                <th style="width: 18%;">Workout Name</th>
-                                                <th style="width: 10%;">Author</th>
-                                                <th style="width: 6%;">Exercises</th>
-                                                <th style="width: 6%;">Views</th>
-                                                <th style="width: 5%;">Likes</th>
-                                                <th style="width: 8%;">Visibility</th>
-                                                <th style="width: 17%;">Share Link</th>
-                                                <th style="width: 11%;">Created</th>
-                                                <th style="width: 11%;">Last Active</th>
-                                                <th style="width: 8%;">Actions</th>
+                                                <th style="width: 22%;">Workout Name</th>
+                                                <th style="width: 14%;">Author</th>
+                                                <th style="width: 8%;">Exercises</th>
+                                                <th style="width: 10%;">Visibility</th>
+                                                <th style="width: 16%;">Share Link</th>
+                                                <th style="width: 12%;">Created</th>
+                                                <th style="width: 12%;">Last Active</th>
+                                                <th style="width: 6%;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td colspan="10" style="text-align: center; padding: 20px; color: #666;">Click "Refresh" to load saved workouts.</td></tr>
+                                            <tr><td colspan="8" style="text-align: center; padding: 20px; color: #666;">Click "Refresh" to load saved workouts.</td></tr>
                                         </tbody>
                                     </table>
                                     <div id="flexframe-workout-pagination" style="text-align: center;"></div>
@@ -11119,7 +11117,7 @@ function flexframe_settings_page() {
 
         function loadSavedWorkouts(page) {
             savedWorkoutsPage = page;
-            $wkTbody.html('<tr><td colspan="10" style="text-align:center;padding:20px;color:#666;">Loading...</td></tr>');
+            $wkTbody.html('<tr><td colspan="8" style="text-align:center;padding:20px;color:#666;">Loading...</td></tr>');
 
             $.ajax({
                 url: ajaxurl,
@@ -11127,14 +11125,14 @@ function flexframe_settings_page() {
                 data: { action: 'flexframe_get_saved_workouts', page_num: page },
                 success: function(response) {
                     if (!response.success) {
-                        $wkTbody.html('<tr><td colspan="10" style="text-align:center;color:#d63638;">Error loading data.</td></tr>');
+                        $wkTbody.html('<tr><td colspan="8" style="text-align:center;color:#d63638;">Error loading data.</td></tr>');
                         return;
                     }
                     var d = response.data;
                     $wkTotal.text(d.total + ' saved workout' + (d.total !== 1 ? 's' : ''));
 
                     if (d.rows.length === 0) {
-                        $wkTbody.html('<tr><td colspan="10" style="text-align:center;padding:20px;color:#666;">No saved workouts yet.</td></tr>');
+                        $wkTbody.html('<tr><td colspan="8" style="text-align:center;padding:20px;color:#666;">No saved workouts yet.</td></tr>');
                         $wkPagination.empty();
                         return;
                     }
@@ -11151,8 +11149,6 @@ function flexframe_settings_page() {
                         html += '<td><strong>' + $('<span>').text(row.name || 'Untitled').html() + '</strong></td>';
                         html += '<td>' + $('<span>').text(row.author).html() + '</td>';
                         html += '<td style="text-align:center;">' + row.exerciseCount + '</td>';
-                        html += '<td style="text-align:center;font-weight:700;">' + (row.viewCount || 0) + '</td>';
-                        html += '<td style="text-align:center;font-weight:700;color:#e74c3c;">' + (row.likeCount || 0) + '</td>';
                         html += '<td>' + visLabel + '</td>';
                         html += '<td>';
                         if (row.hash && row.visibility === 'public') {
@@ -11184,7 +11180,7 @@ function flexframe_settings_page() {
                     }
                 },
                 error: function() {
-                    $wkTbody.html('<tr><td colspan="10" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
+                    $wkTbody.html('<tr><td colspan="8" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
                 }
             });
         }

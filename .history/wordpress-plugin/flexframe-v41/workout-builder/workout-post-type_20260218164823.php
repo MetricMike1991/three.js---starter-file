@@ -130,13 +130,6 @@ function flexframe_register_workout_api() {
             return is_user_logged_in();
         },
     ));
-
-    // Like a workout (public — uses hash)
-    register_rest_route('flexframe/v1', '/workouts/like/(?P<hash>[a-zA-Z0-9]+)', array(
-        'methods'  => 'POST',
-        'callback' => 'flexframe_like_workout',
-        'permission_callback' => '__return_true',
-    ));
 }
 add_action('rest_api_init', 'flexframe_register_workout_api');
 
@@ -332,8 +325,6 @@ function flexframe_get_shared_workout($request) {
     $tags = get_post_meta($post->ID, '_flexframe_workout_tags', true);
     $duration = get_post_meta($post->ID, '_flexframe_workout_estimated_duration', true);
 
-    $like_count = intval(get_post_meta($post->ID, '_flexframe_workout_like_count', true));
-
     return rest_ensure_response(array(
         'id'                => $post->ID,
         'hash'              => $hash,
@@ -345,30 +336,6 @@ function flexframe_get_shared_workout($request) {
         'estimatedDuration' => intval($duration),
         'visibility'        => 'public',
         'readOnly'          => true,
-        'likeCount'         => $like_count,
-    ));
-}
-
-/**
- * Like a workout by hash (public)
- */
-function flexframe_like_workout($request) {
-    $hash = sanitize_text_field($request['hash']);
-    $post = flexframe_get_workout_by_hash($hash);
-
-    if (!$post) {
-        return new WP_Error('not_found', 'Workout not found', array('status' => 404));
-    }
-
-    if ($post->post_status !== 'publish') {
-        return new WP_Error('not_available', 'This workout is not publicly shared', array('status' => 403));
-    }
-
-    $likes = intval(get_post_meta($post->ID, '_flexframe_workout_like_count', true));
-    update_post_meta($post->ID, '_flexframe_workout_like_count', $likes + 1);
-
-    return rest_ensure_response(array(
-        'likeCount' => $likes + 1,
     ));
 }
 
@@ -770,7 +737,6 @@ function flexframe_ajax_get_saved_workouts() {
             'visibility'    => $visibility ?: 'private',
             'exerciseCount' => is_array($exercises) ? count($exercises) : 0,
             'viewCount'     => $view_count,
-            'likeCount'     => intval(get_post_meta($post->ID, '_flexframe_workout_like_count', true)),
             'duration'      => intval($duration),
             'created'       => $post->post_date,
             'lastAccessed'  => $last_accessed ?: $post->post_date,
