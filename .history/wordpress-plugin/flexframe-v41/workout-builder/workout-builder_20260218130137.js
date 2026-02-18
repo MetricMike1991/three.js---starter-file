@@ -815,8 +815,7 @@
         });
 
         // Thumbnail click: open finder if unassigned, otherwise flip to QR
-        card.querySelector('.ffwb-flip-container')?.addEventListener('click', (e) => {
-            e.stopPropagation();
+        card.querySelector('.ffwb-flip-container')?.addEventListener('click', () => {
             if (!exercise.exerciseId) {
                 openFinderForCard(exercise.uid);
                 return;
@@ -828,14 +827,6 @@
                 generateQRForCard(card, exercise);
             }
         });
-
-        // Also make the whole thumb-wrap clickable for unassigned cards
-        if (!exercise.exerciseId) {
-            card.querySelector('.ffwb-card-thumb-wrap')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                openFinderForCard(exercise.uid);
-            });
-        }
 
         return card;
     }

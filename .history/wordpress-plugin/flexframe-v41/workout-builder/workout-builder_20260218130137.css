@@ -739,15 +739,6 @@
 .ffwb-flip-back {
     transform: rotateY(180deg);
     background: #fff;
-    pointer-events: none;
-}
-
-.ffwb-flip-inner.ffwb-flipped .ffwb-flip-back {
-    pointer-events: auto;
-}
-
-.ffwb-flip-inner.ffwb-flipped .ffwb-flip-front {
-    pointer-events: none;
 }
 
 .ffwb-flip-front img {

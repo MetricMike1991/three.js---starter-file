@@ -91,11 +91,6 @@ function flexframe_workout_builder_shortcode($atts) {
         'logoUrl' => get_option('flexframe_logo_url', ''),
     );
 
-    // Fix mixed content: ensure logo URL uses HTTPS if site does
-    if ($settings['logoUrl'] && is_ssl()) {
-        $settings['logoUrl'] = str_replace('http://', 'https://', $settings['logoUrl']);
-    }
-
     ob_start();
     ?>
     <div id="flexframe-workout-builder" 
