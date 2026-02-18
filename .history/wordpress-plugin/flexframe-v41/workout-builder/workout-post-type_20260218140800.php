@@ -16,7 +16,7 @@ function flexframe_get_workout_share_url($hash) {
         $base = home_url('/workout/');
     }
     $sep = (strpos($base, '?') !== false) ? '&' : '?';
-    return rtrim($base, '/') . $sep . 'workout=' . $hash;
+    return rtrim($base, '/') . $sep . 'w=' . $hash;
 }
 
 /**

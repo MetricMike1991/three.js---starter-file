@@ -2,7 +2,7 @@
 /**
  * FlexFrame Workout Builder - Shortcode & Script Enqueue
  * Usage: [flexframe_workout_builder]
- * Share page detects ?workout=HASH parameter automatically
+ * Share page detects ?w=HASH parameter automatically
  */
 
 if (!defined('ABSPATH')) exit;
@@ -63,7 +63,7 @@ function flexframe_enqueue_workout_builder_assets() {
     wp_enqueue_script(
         'flexframe-workout-builder',
         $plugin_url . 'workout-builder.js',
-        array('jspdf', 'jspdf-autotable'),
+        array(),
         FLEXFRAME_VERSION,
         true
     );
@@ -88,7 +88,7 @@ function flexframe_enqueue_workout_builder_assets() {
         'logoUrl'       => $logo_url,
         'exercisesCdn'  => $exercises_cdn,
         'siteUrl'       => home_url('/'),
-        'shareHash'     => isset($_GET['workout']) ? sanitize_text_field($_GET['workout']) : '',
+        'shareHash'     => isset($_GET['w']) ? sanitize_text_field($_GET['w']) : '',
         'viewerPageUrl' => get_option('flexframe_viewer_page_url', ''),
     ));
 }
@@ -117,7 +117,7 @@ function flexframe_workout_builder_shortcode($atts) {
     <div id="flexframe-workout-builder" 
          class="ffwb" 
          style="--ffwb-primary: <?php echo esc_attr($settings['primaryColor']); ?>;"
-         data-share-hash="<?php echo isset($_GET['workout']) ? esc_attr($_GET['workout']) : ''; ?>">
+         data-share-hash="<?php echo isset($_GET['w']) ? esc_attr($_GET['w']) : ''; ?>">
         
         <!-- Logo -->
         <?php if ($settings['logoUrl']): ?>

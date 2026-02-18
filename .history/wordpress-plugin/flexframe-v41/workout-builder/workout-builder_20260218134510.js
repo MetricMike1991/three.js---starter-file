@@ -134,7 +134,7 @@
         shareModal?.querySelector('.ffwb-modal-backdrop')?.addEventListener('click', closeShareModal);
         shareModal?.querySelector('.ffwb-modal-close')?.addEventListener('click', closeShareModal);
         shareModal?.querySelector('.ffwb-btn-copy-link')?.addEventListener('click', copyShareLink);
-        shareModal?.querySelector('.ffwb-btn-modal-pdf')?.addEventListener('click', downloadWorkoutPDF);
+        shareModal?.querySelector('.ffwb-btn-modal-print')?.addEventListener('click', printWorkout);
 
         // Share banner actions
         shareBanner?.querySelector('.ffwb-btn-copy-workout')?.addEventListener('click', copyWorkoutToMine);
@@ -1251,282 +1251,64 @@
         }
     }
 
-    // ─── PDF Download ──────────────────────────────────────────
-    async function downloadWorkoutPDF() {
-        if (typeof window.jspdf === 'undefined') {
-            showToast('⚠️ PDF library not loaded. Please refresh.');
-            return;
-        }
+    // ─── Print ───────────────────────────────────────────────
+    function printWorkout() {
+        const printLayout = document.getElementById('flexframe-workout-print');
+        if (!printLayout) return;
 
-        showToast('📄 Generating PDF…');
+        printLayout.style.display = 'block';
 
-        const { jsPDF } = window.jspdf;
-        const doc = new jsPDF('p', 'mm', 'a4');
-        const pw = 210, ph = 297, m = 15;
-        const cw = pw - 2 * m;
-        let y = m;
+        // Build print header
+        printLayout.querySelector('.ffwb-print-title').textContent = 
+            workoutNameInput.value || 'Untitled Workout';
 
-        // ── helpers ──
-        function needsPage(h) {
-            if (y + h > ph - m) { doc.addPage(); y = m; return true; }
-            return false;
-        }
+        // Build print exercises
+        const container = printLayout.querySelector('.ffwb-print-exercises');
+        container.innerHTML = '';
 
-        function imgToBase64(url) {
-            if (!url) return Promise.resolve(null);
-            return new Promise(resolve => {
-                const img = new Image();
-                img.crossOrigin = 'anonymous';
-                img.onload = () => {
-                    try {
-                        const c = document.createElement('canvas');
-                        c.width = img.naturalWidth;
-                        c.height = img.naturalHeight;
-                        c.getContext('2d').drawImage(img, 0, 0);
-                        resolve(c.toDataURL('image/png'));
-                    } catch { resolve(null); }
-                };
-                img.onerror = () => resolve(null);
-                img.src = url;
-            });
-        }
-
-        // ── preload all images in parallel ──
-        const viewerBase = (window.flexframeWorkoutSettings?.viewerPageUrl || '').replace(/\/$/, '');
-        const logoUrl = window.flexframeWorkoutSettings?.logoUrl;
-        const imageJobs = {};
-
-        if (logoUrl) imageJobs.logo = imgToBase64(logoUrl);
-
-        workoutExercises.forEach(ex => {
-            if (ex.thumbnailUrl) imageJobs['thumb_' + ex.uid] = imgToBase64(ex.thumbnailUrl);
-            if (ex.exerciseId && viewerBase) {
-                const sep = viewerBase.indexOf('?') !== -1 ? '&' : '?';
-                const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='
-                    + encodeURIComponent(viewerBase + sep + 'exercise=' + ex.exerciseId);
-                imageJobs['qr_' + ex.uid] = imgToBase64(qrUrl);
-            }
-        });
-
-        const keys = Object.keys(imageJobs);
-        const vals = await Promise.all(Object.values(imageJobs));
-        const img = {};
-        keys.forEach((k, i) => { img[k] = vals[i]; });
-
-        // ── HEADER ──
-        const title = (workoutNameInput.value || 'Untitled Workout').toUpperCase();
-        let hx = m;
-        if (img.logo) {
-            try { doc.addImage(img.logo, 'PNG', m, y, 10, 10); hx = m + 14; } catch {}
-        }
-
-        doc.setFontSize(16);
-        doc.setFont(undefined, 'bold');
-        doc.text(title, hx, y + 7);
-
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'normal');
-        doc.setTextColor(80);
-        doc.text('Date: ___ / ___ / ___', pw - m, y + 7, { align: 'right' });
-        doc.setTextColor(0);
-
-        y += 14;
-        doc.setDrawColor(0);
-        doc.setLineWidth(0.5);
-        doc.line(m, y, pw - m, y);
-        y += 8;
-
-        // ── EXERCISES ──
         const groups = buildGroups();
-        let exNum = 1;
+        let exerciseNumber = 1;
 
-        for (const group of groups) {
-            const isGroup = group.length > 1;
-            const groupLabel = group.length === 2 ? 'SUPERSET'
-                : group.length === 3 ? 'TRISET' : 'GIANT SET';
+        groups.forEach(group => {
+            if (group.length > 1) {
+                const groupLabel = group.length === 2 ? 'SUPERSET' : group.length === 3 ? 'TRISET' : 'GIANT SET';
+                const groupDiv = document.createElement('div');
+                groupDiv.className = 'ffwb-print-group';
+                groupDiv.innerHTML = `<div class="ffwb-print-group-label">── ${groupLabel} ──</div>`;
 
-            if (isGroup) {
-                needsPage(8);
-                doc.setFontSize(9);
-                doc.setFont(undefined, 'bold');
-                doc.setTextColor(100);
-                doc.text('── ' + groupLabel + ' ──', pw / 2, y, { align: 'center' });
-                doc.setTextColor(0);
-                y += 6;
-            }
-
-            for (let gi = 0; gi < group.length; gi++) {
-                const exercise = group[gi];
-                const label = isGroup
-                    ? exNum + String.fromCharCode(97 + gi)
-                    : '' + exNum;
-                const sets = parseInt(exercise.sets) || 3;
-
-                // estimate height and page-break if needed
-                const estH = 18 + (sets + 1) * 7 + (exercise.notes ? 10 : 0) + 8;
-                needsPage(estH);
-                const exStartY = y;
-
-                // thumbnail
-                const thumbSize = 12;
-                let textX = m;
-                const thumbData = img['thumb_' + exercise.uid];
-                if (thumbData) {
-                    try { doc.addImage(thumbData, 'JPEG', m, y, thumbSize, thumbSize); textX = m + thumbSize + 3; } catch {}
-                }
-
-                // QR area
-                const qrSize = 18;
-                const qrData = img['qr_' + exercise.uid];
-                const hasQR = !!qrData;
-                const tableRight = m + (hasQR ? qrSize + 5 : 0);
-
-                // exercise URL
-                let exUrl = '';
-                if (exercise.exerciseId && viewerBase) {
-                    const sep = viewerBase.indexOf('?') !== -1 ? '&' : '?';
-                    exUrl = viewerBase + sep + 'exercise=' + exercise.exerciseId;
-                }
-
-                // exercise name
-                doc.setFontSize(11);
-                doc.setFont(undefined, 'bold');
-                doc.setTextColor(0);
-                doc.text(label + '. ' + (exercise.name || '(Unassigned)'), textX, y + 5);
-
-                // rest + RIR
-                const rirLabel = exercise.rir == '0' ? 'Train To Failure' : exercise.rir + ' RIR';
-                doc.setFontSize(9);
-                doc.setFont(undefined, 'normal');
-                doc.setTextColor(100);
-                doc.text('Rest: ' + exercise.rest + 's · ' + rirLabel, textX, y + 10);
-                doc.setTextColor(0);
-
-                y += 14;
-
-                // sets table via autoTable
-                const tBody = [];
-                for (let s = 1; s <= sets; s++) {
-                    tBody.push(['' + s, exercise.reps || '', '', exercise.weight || '', '']);
-                }
-
-                doc.autoTable({
-                    startY: y,
-                    margin: { left: m, right: tableRight },
-                    head: [['Set', 'Target', 'Actual', 'Weight', 'Notes']],
-                    body: tBody,
-                    styles: { fontSize: 9, cellPadding: 2, lineWidth: 0.1, lineColor: [180, 180, 180], textColor: [0, 0, 0] },
-                    headStyles: { fillColor: [240, 240, 240], textColor: [0, 0, 0], fontStyle: 'bold', fontSize: 8 },
-                    columnStyles: {
-                        0: { halign: 'center', cellWidth: 12 },
-                        1: { halign: 'center', cellWidth: 18 },
-                        2: { cellWidth: 18 },
-                        3: { cellWidth: 22 },
-                    },
-                    theme: 'grid',
+                group.forEach((ex, i) => {
+                    const sub = String.fromCharCode(97 + i);
+                    groupDiv.appendChild(createPrintExercise(ex, `${exerciseNumber}${sub}`));
+                    if (i < group.length - 1) {
+                        const arrow = document.createElement('div');
+                        arrow.className = 'ffwb-print-arrow';
+                        arrow.textContent = '→ straight into ↓';
+                        groupDiv.appendChild(arrow);
+                    }
                 });
 
-                y = doc.lastAutoTable.finalY;
+                const restLine = document.createElement('div');
+                restLine.className = 'ffwb-print-rest';
+                restLine.textContent = `Rest: ${group[group.length - 1].rest}s after ${groupLabel.toLowerCase()}`;
+                groupDiv.appendChild(restLine);
 
-                // QR code image (right-aligned alongside table)
-                if (hasQR) {
-                    try {
-                        const qrX = pw - m - qrSize;
-                        const qrY = exStartY;
-                        doc.addImage(qrData, 'PNG', qrX, qrY, qrSize, qrSize);
-                        if (exUrl) doc.link(qrX, qrY, qrSize, qrSize, { url: exUrl });
-                    } catch {}
-                }
-
-                // clickable "Learn in 3D" link under QR (or at right if no QR)
-                if (exUrl) {
-                    const linkText = 'Learn in 3D \u2192';
-                    doc.setFontSize(7);
-                    doc.setFont(undefined, 'bold');
-                    doc.setTextColor(0, 128, 0);
-                    const linkW = doc.getTextWidth(linkText);
-                    if (hasQR) {
-                        const linkX = pw - m - qrSize / 2 - linkW / 2;
-                        const linkY = exStartY + qrSize + 3;
-                        doc.text(linkText, linkX, linkY);
-                        doc.link(linkX, linkY - 3, linkW, 4, { url: exUrl });
-                    } else {
-                        const linkX = pw - m - linkW;
-                        doc.text(linkText, linkX, exStartY + 5);
-                        doc.link(linkX, exStartY + 1, linkW, 5, { url: exUrl });
-                    }
-                    doc.setTextColor(0);
-                }
-
-                // exercise notes
-                if (exercise.notes && exercise.notes.trim()) {
-                    y += 3;
-                    doc.setFontSize(8);
-                    doc.setFont(undefined, 'italic');
-                    doc.setTextColor(80);
-                    const noteLines = doc.splitTextToSize('Notes: ' + exercise.notes.trim(), cw - 4);
-                    doc.text(noteLines, m + 2, y + 3);
-                    y += noteLines.length * 4 + 3;
-                    doc.setTextColor(0);
-                    doc.setFont(undefined, 'normal');
-                }
-
-                y += 6;
-
-                // arrow between grouped exercises
-                if (isGroup && gi < group.length - 1) {
-                    doc.setFontSize(8);
-                    doc.setFont(undefined, 'italic');
-                    doc.setTextColor(130);
-                    doc.text('\u2192 straight into \u2193', pw / 2, y, { align: 'center' });
-                    doc.setTextColor(0);
-                    doc.setFont(undefined, 'normal');
-                    y += 5;
-                }
+                container.appendChild(groupDiv);
+            } else {
+                container.appendChild(createPrintExercise(group[0], `${exerciseNumber}`));
             }
+            exerciseNumber++;
+        });
 
-            // group rest line
-            if (isGroup) {
-                doc.setFontSize(8);
-                doc.setFont(undefined, 'italic');
-                doc.setTextColor(100);
-                doc.text('Rest: ' + group[group.length - 1].rest + 's after ' + groupLabel.toLowerCase(),
-                    pw / 2, y, { align: 'center' });
-                doc.setTextColor(0);
-                doc.setFont(undefined, 'normal');
-                y += 6;
-            }
+        // Build print footer
+        const notesLines = printLayout.querySelector('.ffwb-print-notes-lines');
+        notesLines.innerHTML = Array(3).fill('<div class="ffwb-print-line"></div>').join('');
 
-            exNum++;
-        }
-
-        // ── FOOTER ──
-        needsPage(30);
-        y += 4;
-        doc.setDrawColor(180);
-        doc.setLineWidth(0.1);
-        doc.line(m, y, pw - m, y);
-        y += 6;
-
-        doc.setFontSize(10);
-        doc.setFont(undefined, 'bold');
-        doc.setTextColor(0);
-        doc.text('Notes:', m, y);
-        y += 4;
-
-        for (let i = 0; i < 3; i++) {
-            y += 8;
-            doc.setDrawColor(200);
-            doc.setLineWidth(0.1);
-            doc.line(m, y, pw - m, y);
-        }
-
-        // ── SAVE ──
-        const filename = (workoutNameInput.value || 'workout')
-            .replace(/[^a-zA-Z0-9\s]/g, '')
-            .replace(/\s+/g, '_') + '.pdf';
-        doc.save(filename);
-        showToast('✅ PDF downloaded!');
+        // Trigger print
+        setTimeout(() => {
+            window.print();
+            // Hide print layout after print dialog closes
+            setTimeout(() => { printLayout.style.display = 'none'; }, 500);
+        }, 200);
     }
 
     function createPrintExercise(exercise, label) {

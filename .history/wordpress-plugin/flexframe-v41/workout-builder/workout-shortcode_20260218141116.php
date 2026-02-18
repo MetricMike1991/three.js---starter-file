@@ -2,7 +2,7 @@
 /**
  * FlexFrame Workout Builder - Shortcode & Script Enqueue
  * Usage: [flexframe_workout_builder]
- * Share page detects ?workout=HASH parameter automatically
+ * Share page detects ?w=HASH parameter automatically
  */
 
 if (!defined('ABSPATH')) exit;
