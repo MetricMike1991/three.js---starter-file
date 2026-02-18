@@ -254,7 +254,6 @@ function flexframe_get_workout_fullscreen_css() {
             height: auto !important;
             overflow-x: hidden !important;
             overflow-y: auto !important;
-            background: #1a1a1a !important;
         }
         /* Hide WordPress header, footer, sidebar, navigation, admin bar */
         header, footer, aside, nav,
@@ -288,15 +287,13 @@ function flexframe_get_workout_fullscreen_css() {
             border: none !important;
             border-radius: 0 !important;
             box-shadow: none !important;
+            background: transparent !important;
         }
         /* Ensure workout builder fills the screen */
         #flexframe-workout-builder {
             min-height: 100vh !important;
             width: 100% !important;
             max-width: 100% !important;
-            border-radius: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
         }
     ';
 }

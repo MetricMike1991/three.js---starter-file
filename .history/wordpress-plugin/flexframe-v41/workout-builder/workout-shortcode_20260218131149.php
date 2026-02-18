@@ -294,9 +294,6 @@ function flexframe_get_workout_fullscreen_css() {
             min-height: 100vh !important;
             width: 100% !important;
             max-width: 100% !important;
-            border-radius: 0 !important;
-            border: none !important;
-            box-shadow: none !important;
         }
     ';
 }
