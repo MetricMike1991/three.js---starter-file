@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.428');
+define('FLEXFRAME_VERSION', '1.41.427');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -4740,13 +4740,10 @@ add_action('flexframe_cleanup_stale_workouts', 'flexframe_delete_stale_workouts'
 function flexframe_delete_stale_workouts() {
     $cutoff = date('Y-m-d H:i:s', strtotime('-30 days'));
 
-    // Only target guest/anonymous workouts (post_author = 0)
-    // Logged-in user workouts are kept indefinitely
     $stale = get_posts(array(
         'post_type'      => 'flexframe_workout',
         'post_status'    => 'any',
         'posts_per_page' => 100,
-        'author'         => 0,
         'meta_query'     => array(
             'relation' => 'OR',
             // last_accessed exists and is older than 30 days
