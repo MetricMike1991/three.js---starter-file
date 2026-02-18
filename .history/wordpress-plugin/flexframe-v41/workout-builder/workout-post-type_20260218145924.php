@@ -451,7 +451,7 @@ function flexframe_create_email_captures_table() {
     $table = $wpdb->prefix . 'flexframe_email_captures';
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE $table (
+    $sql = "CREATE TABLE IF NOT EXISTS $table (
         id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
         email varchar(255) NOT NULL,
         marketing_consent tinyint(1) NOT NULL DEFAULT 0,
@@ -460,18 +460,12 @@ function flexframe_create_email_captures_table() {
         workout_hash varchar(20) DEFAULT '',
         ip_address varchar(45) DEFAULT '',
         captured_at datetime DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY  (id),
+        PRIMARY KEY (id),
         KEY email (email)
     ) $charset_collate;";
 
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta($sql);
-
-    // Safety: add day_pass_requested column if missing (table existed before this column was added)
-    $col = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'day_pass_requested'");
-    if (empty($col)) {
-        $wpdb->query("ALTER TABLE $table ADD COLUMN day_pass_requested tinyint(1) NOT NULL DEFAULT 0 AFTER marketing_consent");
-    }
 }
 
 /**

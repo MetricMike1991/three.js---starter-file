@@ -135,7 +135,6 @@
         shareModal?.querySelector('.ffwb-modal-close')?.addEventListener('click', closeShareModal);
         shareModal?.querySelector('.ffwb-btn-copy-link')?.addEventListener('click', copyShareLink);
         shareModal?.querySelector('.ffwb-btn-modal-pdf')?.addEventListener('click', downloadWorkoutPDF);
-        bindShareModalEvents();
 
         // Share banner actions
         shareBanner?.querySelector('.ffwb-btn-edit-workout')?.addEventListener('click', editSharedWorkout);
@@ -1088,7 +1087,7 @@
             return;
         }
 
-        if (!SETTINGS.isLoggedIn && visibility === 'private') {
+        if (!SETTINGS.isLoggedIn) {
             showToast('Please log in to save workouts');
             return;
         }
@@ -1115,14 +1114,7 @@
 
         try {
             let res;
-            if (!SETTINGS.isLoggedIn && visibility === 'public') {
-                // Anonymous share — use public endpoint
-                res = await fetch(SETTINGS.restUrl + 'workouts/share', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                });
-            } else if (workoutId) {
+            if (workoutId) {
                 // Update existing
                 res = await fetch(SETTINGS.restUrl + 'workouts/' + workoutId, {
                     method: 'PUT',
@@ -1153,7 +1145,7 @@
             if (visibility === 'public') {
                 showShareModal(data.shareUrl);
             } else {
-                showToast('<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> Workout saved!');
+                showToast('✅ Workout saved!');
             }
 
             // Clear autosave
@@ -1228,11 +1220,9 @@
         workoutHash = null;
         workoutNameInput.readOnly = false;
 
-        // Show save/share if logged in, show share for everyone
+        // Show save/share if logged in, hide if not
         if (SETTINGS.isLoggedIn) {
             root.querySelectorAll('.ffwb-btn-save, .ffwb-btn-share').forEach(el => el.style.display = '');
-        } else {
-            root.querySelector('.ffwb-btn-share').style.display = '';
         }
         root.querySelector('.ffwb-finder').style.display = '';
 
@@ -1306,11 +1296,11 @@
     // ─── PDF Download ──────────────────────────────────────────
     async function downloadWorkoutPDF() {
         if (typeof window.jspdf === 'undefined') {
-            showToast('<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px"><path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/></svg> PDF library not loaded. Please refresh.');
+            showToast('⚠️ PDF library not loaded. Please refresh.');
             return;
         }
 
-        showToast('<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg> Generating PDF…');
+        showToast('📄 Generating PDF…');
 
         const { jsPDF } = window.jspdf;
         const doc = new jsPDF('p', 'mm', 'a4');
@@ -1578,7 +1568,7 @@
             .replace(/[^a-zA-Z0-9\s]/g, '')
             .replace(/\s+/g, '_') + '.pdf';
         doc.save(filename);
-        showToast('<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg> PDF downloaded!');
+        showToast('✅ PDF downloaded!');
     }
 
     function createPrintExercise(exercise, label) {
@@ -1651,112 +1641,20 @@
     }
 
     // ─── Share Modal ─────────────────────────────────────────
-    let pendingShareUrl = '';
-
     function showShareModal(shareUrl) {
         if (!shareModal) return;
-        pendingShareUrl = shareUrl;
-
-        const stepEmail = shareModal.querySelector('.ffwb-share-step-email');
-        const stepLink  = shareModal.querySelector('.ffwb-share-step-link');
-
-        // Logged-in users skip the email capture — go straight to link
-        if (SETTINGS.isLoggedIn) {
-            stepEmail.style.display = 'none';
-            stepLink.style.display  = 'block';
-            stepLink.querySelector('.ffwb-share-link-input').value = pendingShareUrl;
-            shareModal.style.display = 'flex';
-            return;
-        }
-
-        // Non-logged-in users: show email step
-        stepEmail.style.display = 'block';
-        stepLink.style.display  = 'none';
-
-        // Clear previous inputs
-        const emailInput = shareModal.querySelector('.ffwb-share-email-input');
-        const consentBox = shareModal.querySelector('.ffwb-share-consent-check');
-        const dayPassBox = shareModal.querySelector('.ffwb-share-daypass-check');
-        const getBtn     = shareModal.querySelector('.ffwb-btn-get-link');
-        const errSpan    = shareModal.querySelector('.ffwb-share-email-error');
-        emailInput.value = '';
-        consentBox.checked = false;
-        if (dayPassBox) dayPassBox.checked = false;
-        getBtn.disabled = true;
-        errSpan.style.display = 'none';
-
         shareModal.style.display = 'flex';
+        shareModal.querySelector('.ffwb-share-link-input').value = shareUrl;
     }
 
     function closeShareModal() {
         if (shareModal) shareModal.style.display = 'none';
     }
 
-    function validateShareForm() {
-        const emailInput = shareModal.querySelector('.ffwb-share-email-input');
-        const consentBox = shareModal.querySelector('.ffwb-share-consent-check');
-        const getBtn     = shareModal.querySelector('.ffwb-btn-get-link');
-
-        const emailValid = emailInput.value.trim() && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailInput.value.trim());
-        getBtn.disabled = !(emailValid && consentBox.checked);
-    }
-
-    function bindShareModalEvents() {
-        if (!shareModal) return;
-
-        const emailInput = shareModal.querySelector('.ffwb-share-email-input');
-        const consentBox = shareModal.querySelector('.ffwb-share-consent-check');
-        const getBtn     = shareModal.querySelector('.ffwb-btn-get-link');
-
-        emailInput?.addEventListener('input', validateShareForm);
-        consentBox?.addEventListener('change', validateShareForm);
-
-        getBtn?.addEventListener('click', async () => {
-            const email   = emailInput.value.trim();
-            const consent = consentBox.checked;
-            const dayPassBox = shareModal.querySelector('.ffwb-share-daypass-check');
-            const dayPass = dayPassBox ? dayPassBox.checked : false;
-            const errSpan = shareModal.querySelector('.ffwb-share-email-error');
-
-            getBtn.disabled = true;
-            getBtn.textContent = 'Submitting…';
-
-            try {
-                const res = await fetch(SETTINGS.restUrl + 'email-capture', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        email,
-                        marketingConsent: consent,
-                        dayPassRequested: dayPass,
-                        workoutName: workoutNameInput.value || 'Untitled Workout',
-                        workoutHash: workoutHash || '',
-                    }),
-                });
-
-                const data = await res.json();
-                if (!res.ok) throw new Error(data.message || 'Failed');
-
-                // Switch to link step
-                shareModal.querySelector('.ffwb-share-step-email').style.display = 'none';
-                const stepLink = shareModal.querySelector('.ffwb-share-step-link');
-                stepLink.style.display = 'block';
-                stepLink.querySelector('.ffwb-share-link-input').value = pendingShareUrl;
-
-            } catch (err) {
-                errSpan.textContent = err.message || 'Something went wrong';
-                errSpan.style.display = 'block';
-                getBtn.disabled = false;
-            }
-
-            getBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg> Get Share Link';
-        });
-    }
-
     function copyShareLink() {
         const input = shareModal.querySelector('.ffwb-share-link-input');
         navigator.clipboard.writeText(input.value).then(() => {
-            showToast('Link copied!');
+            showToast('📋 Link copied!');
         });
     }
 
@@ -1982,7 +1880,7 @@
             toast.className = 'ffwb-toast';
             root.appendChild(toast);
         }
-        toast.innerHTML = message;
+        toast.textContent = message;
         toast.classList.add('ffwb-toast-show');
         setTimeout(() => toast.classList.remove('ffwb-toast-show'), 3000);
     }

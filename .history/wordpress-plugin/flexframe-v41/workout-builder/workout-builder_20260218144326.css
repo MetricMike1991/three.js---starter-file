@@ -1470,16 +1470,6 @@ select.ffwb-input option {
     color: var(--ffwb-primary);
 }
 
-.ffwb-share-daypass {
-    background: rgba(var(--ffwb-primary-rgb, 236, 47, 44), 0.06);
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 20px;
-}
-.ffwb-share-daypass span {
-    font-size: 12px;
-}
-
 .ffwb-btn-get-link {
     width: 100%;
     padding: 12px;

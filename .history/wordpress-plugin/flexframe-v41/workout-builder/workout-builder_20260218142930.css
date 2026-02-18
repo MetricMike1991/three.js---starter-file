@@ -1364,8 +1364,7 @@ select.ffwb-input option {
     font-size: 18px;
     font-weight: 700;
     color: var(--ffwb-text);
-    margin: 0 0 8px;
-    text-align: center;
+    margin: 0 0 20px;
 }
 
 .ffwb-share-link-wrap label {
@@ -1456,28 +1455,6 @@ select.ffwb-input option {
     accent-color: var(--ffwb-primary);
     width: 16px;
     height: 16px;
-}
-
-.ffwb-privacy-link {
-    color: var(--ffwb-primary);
-    text-decoration: underline;
-    font-weight: 600;
-}
-.ffwb-privacy-link:hover {
-    opacity: 0.8;
-}
-.ffwb-privacy-link:visited {
-    color: var(--ffwb-primary);
-}
-
-.ffwb-share-daypass {
-    background: rgba(var(--ffwb-primary-rgb, 236, 47, 44), 0.06);
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 20px;
-}
-.ffwb-share-daypass span {
-    font-size: 12px;
 }
 
 .ffwb-btn-get-link {

@@ -81,13 +81,6 @@ function flexframe_register_workout_api() {
         },
     ));
 
-    // Save & share workout (public — allows anonymous users)
-    register_rest_route('flexframe/v1', '/workouts/share', array(
-        'methods'  => 'POST',
-        'callback' => 'flexframe_save_workout_public',
-        'permission_callback' => '__return_true',
-    ));
-
     // Update workout
     register_rest_route('flexframe/v1', '/workouts/(?P<id>\d+)', array(
         'methods'  => 'PUT',
@@ -186,59 +179,6 @@ function flexframe_save_workout($request) {
         'shareUrl'   => flexframe_get_workout_share_url($hash),
         'exercises'  => $params['exercises'],
         'visibility' => $visibility,
-    ));
-}
-
-/**
- * Save & share a workout (public — allows anonymous users)
- */
-function flexframe_save_workout_public($request) {
-    $params = $request->get_json_params();
-
-    if (empty($params['name'])) {
-        return new WP_Error('missing_name', 'Workout name is required', array('status' => 400));
-    }
-
-    if (empty($params['exercises']) || !is_array($params['exercises'])) {
-        return new WP_Error('missing_exercises', 'At least one exercise is required', array('status' => 400));
-    }
-
-    $post_id = wp_insert_post(array(
-        'post_title'  => sanitize_text_field($params['name']),
-        'post_type'   => 'flexframe_workout',
-        'post_status' => 'publish',
-        'post_author' => get_current_user_id() ?: 0,
-    ));
-
-    if (is_wp_error($post_id)) {
-        return $post_id;
-    }
-
-    $hash = flexframe_generate_workout_hash();
-    while (flexframe_get_workout_by_hash($hash)) {
-        $hash = flexframe_generate_workout_hash();
-    }
-
-    update_post_meta($post_id, '_flexframe_workout_data', wp_json_encode($params['exercises']));
-    update_post_meta($post_id, '_flexframe_workout_hash', $hash);
-    update_post_meta($post_id, '_flexframe_workout_tags', array());
-    update_post_meta($post_id, '_flexframe_workout_visibility', 'public');
-    update_post_meta($post_id, '_flexframe_workout_estimated_duration', isset($params['estimatedDuration']) ? intval($params['estimatedDuration']) : 0);
-
-    $author_name = 'Guest';
-    if (is_user_logged_in()) {
-        $author = get_userdata(get_current_user_id());
-        $author_name = $author ? $author->display_name : 'Unknown';
-    }
-
-    return rest_ensure_response(array(
-        'id'         => $post_id,
-        'hash'       => $hash,
-        'name'       => $params['name'],
-        'author'     => $author_name,
-        'shareUrl'   => flexframe_get_workout_share_url($hash),
-        'exercises'  => $params['exercises'],
-        'visibility' => 'public',
     ));
 }
 
@@ -451,27 +391,20 @@ function flexframe_create_email_captures_table() {
     $table = $wpdb->prefix . 'flexframe_email_captures';
     $charset_collate = $wpdb->get_charset_collate();
 
-    $sql = "CREATE TABLE $table (
+    $sql = "CREATE TABLE IF NOT EXISTS $table (
         id bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT,
         email varchar(255) NOT NULL,
         marketing_consent tinyint(1) NOT NULL DEFAULT 0,
-        day_pass_requested tinyint(1) NOT NULL DEFAULT 0,
         workout_name varchar(255) DEFAULT '',
         workout_hash varchar(20) DEFAULT '',
         ip_address varchar(45) DEFAULT '',
         captured_at datetime DEFAULT CURRENT_TIMESTAMP,
-        PRIMARY KEY  (id),
+        PRIMARY KEY (id),
         KEY email (email)
     ) $charset_collate;";
 
     require_once ABSPATH . 'wp-admin/includes/upgrade.php';
     dbDelta($sql);
-
-    // Safety: add day_pass_requested column if missing (table existed before this column was added)
-    $col = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'day_pass_requested'");
-    if (empty($col)) {
-        $wpdb->query("ALTER TABLE $table ADD COLUMN day_pass_requested tinyint(1) NOT NULL DEFAULT 0 AFTER marketing_consent");
-    }
 }
 
 /**
@@ -490,7 +423,6 @@ function flexframe_handle_email_capture($request) {
     $params = $request->get_json_params();
     $email  = isset($params['email']) ? sanitize_email($params['email']) : '';
     $consent = !empty($params['marketingConsent']) ? 1 : 0;
-    $day_pass = !empty($params['dayPassRequested']) ? 1 : 0;
     $workout_name = isset($params['workoutName']) ? sanitize_text_field($params['workoutName']) : '';
     $workout_hash = isset($params['workoutHash']) ? sanitize_text_field($params['workoutHash']) : '';
 
@@ -507,12 +439,11 @@ function flexframe_handle_email_capture($request) {
     $wpdb->insert($table, array(
         'email'             => $email,
         'marketing_consent' => $consent,
-        'day_pass_requested'=> $day_pass,
         'workout_name'      => $workout_name,
         'workout_hash'      => $workout_hash,
         'ip_address'        => sanitize_text_field($_SERVER['REMOTE_ADDR'] ?? ''),
         'captured_at'       => current_time('mysql'),
-    ), array('%s', '%d', '%d', '%s', '%s', '%s', '%s'));
+    ), array('%s', '%d', '%s', '%s', '%s', '%s'));
 
     return rest_ensure_response(array('success' => true));
 }
@@ -568,13 +499,12 @@ function flexframe_ajax_export_email_captures() {
     header('Content-Disposition: attachment; filename=flexframe-email-captures-' . date('Y-m-d') . '.csv');
 
     $out = fopen('php://output', 'w');
-    fputcsv($out, array('Email', 'Marketing Consent', 'Day Pass Requested', 'Workout Name', 'Workout Hash', 'IP Address', 'Captured At'));
+    fputcsv($out, array('Email', 'Marketing Consent', 'Workout Name', 'Workout Hash', 'IP Address', 'Captured At'));
 
     foreach ($rows as $row) {
         fputcsv($out, array(
             $row->email,
             $row->marketing_consent ? 'Yes' : 'No',
-            $row->day_pass_requested ? 'Yes' : 'No',
             $row->workout_name,
             $row->workout_hash,
             $row->ip_address,

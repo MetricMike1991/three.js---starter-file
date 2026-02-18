@@ -90,7 +90,6 @@ function flexframe_enqueue_workout_builder_assets() {
         'siteUrl'       => home_url('/'),
         'shareHash'     => isset($_GET['workout']) ? sanitize_text_field($_GET['workout']) : '',
         'viewerPageUrl' => get_option('flexframe_viewer_page_url', ''),
-        'privacyPolicyUrl' => get_option('flexframe_privacy_policy_url', ''),
     ));
 }
 add_action('wp_enqueue_scripts', 'flexframe_enqueue_workout_builder_assets');
@@ -234,58 +233,17 @@ function flexframe_workout_builder_shortcode($atts) {
             <div class="ffwb-modal-backdrop"></div>
             <div class="ffwb-modal-content">
                 <button class="ffwb-modal-close">&times;</button>
-
-                <!-- Step 1: Email capture -->
-                <div class="ffwb-share-step ffwb-share-step-email">
-                    <div class="ffwb-modal-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--ffwb-primary)"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+                <h3 class="ffwb-modal-title">✅ Workout Saved!</h3>
+                <div class="ffwb-share-link-wrap">
+                    <label>Share Link:</label>
+                    <div class="ffwb-share-link-row">
+                        <input type="text" class="ffwb-share-link-input" readonly>
+                        <button class="ffwb-btn ffwb-btn-primary ffwb-btn-copy-link">📋 Copy</button>
                     </div>
-                    <h3 class="ffwb-modal-title">Workout Saved!</h3>
-                    <p class="ffwb-modal-subtitle">Enter your email to get a shareable link.</p>
-
-                    <div class="ffwb-share-email-field">
-                        <label for="ffwb-share-email">Email Address</label>
-                        <input type="email" id="ffwb-share-email" class="ffwb-share-email-input" placeholder="you@example.com" autocomplete="email">
-                        <span class="ffwb-share-email-error" style="display:none;"></span>
-                    </div>
-
-                    <label class="ffwb-share-consent">
-                        <input type="checkbox" class="ffwb-share-consent-check">
-                        <span>I agree to receive workout updates and marketing communications. You can unsubscribe at any time. By sharing, you also consent to your email being stored in accordance with our <a href="<?php echo esc_url(get_option('flexframe_privacy_policy_url', '#')); ?>" target="_blank" class="ffwb-privacy-link">privacy policy</a>.</span>
-                    </label>
-
-                    <label class="ffwb-share-consent ffwb-share-daypass">
-                        <input type="checkbox" class="ffwb-share-daypass-check">
-                        <span>I'd like to request a <strong>free day pass</strong> for the gym!</span>
-                    </label>
-
-                    <button class="ffwb-btn ffwb-btn-primary ffwb-btn-get-link" disabled>
-                        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
-                        Get Share Link
-                    </button>
                 </div>
-
-                <!-- Step 2: Share link (shown after email submitted) -->
-                <div class="ffwb-share-step ffwb-share-step-link" style="display:none;">
-                    <div class="ffwb-modal-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="var(--ffwb-primary)"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
-                    </div>
-                    <h3 class="ffwb-modal-title">Your Share Link</h3>
-                    <div class="ffwb-share-link-wrap">
-                        <div class="ffwb-share-link-row">
-                            <input type="text" class="ffwb-share-link-input" readonly>
-                            <button class="ffwb-btn ffwb-btn-primary ffwb-btn-copy-link">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
-                                Copy
-                            </button>
-                        </div>
-                    </div>
-                    <div class="ffwb-modal-actions">
-                        <button class="ffwb-btn ffwb-btn-secondary ffwb-btn-modal-pdf">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/></svg>
-                            Save PDF
-                        </button>
-                    </div>
+                <div class="ffwb-share-qr"></div>
+                <div class="ffwb-modal-actions">
+                    <button class="ffwb-btn ffwb-btn-secondary ffwb-btn-modal-pdf">📄 Save PDF</button>
                 </div>
             </div>
         </div>

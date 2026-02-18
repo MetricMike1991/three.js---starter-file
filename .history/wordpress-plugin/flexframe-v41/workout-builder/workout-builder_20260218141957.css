@@ -1364,8 +1364,7 @@ select.ffwb-input option {
     font-size: 18px;
     font-weight: 700;
     color: var(--ffwb-text);
-    margin: 0 0 8px;
-    text-align: center;
+    margin: 0 0 20px;
 }
 
 .ffwb-share-link-wrap label {
@@ -1391,122 +1390,15 @@ select.ffwb-input option {
     outline: none;
 }
 
-.ffwb-modal-icon {
+.ffwb-share-qr {
+    margin: 20px 0;
     text-align: center;
-    margin-bottom: 8px;
-}
-
-.ffwb-modal-subtitle {
-    font-size: 13px;
-    color: var(--ffwb-text-muted);
-    margin: 0 0 20px;
-    text-align: center;
-}
-
-.ffwb-share-email-field {
-    margin-bottom: 16px;
-}
-
-.ffwb-share-email-field label {
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--ffwb-text-muted);
-    display: block;
-    margin-bottom: 6px;
-}
-
-.ffwb-share-email-input {
-    width: 100%;
-    padding: 10px 12px;
-    background: var(--ffwb-input-bg);
-    border: 1px solid var(--ffwb-input-border);
-    border-radius: var(--ffwb-radius-sm);
-    color: var(--ffwb-text);
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s;
-    box-sizing: border-box;
-}
-
-.ffwb-share-email-input:focus {
-    border-color: var(--ffwb-primary);
-}
-
-.ffwb-share-email-error {
-    font-size: 12px;
-    color: #e74c3c;
-    margin-top: 4px;
-    display: block;
-}
-
-.ffwb-share-consent {
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--ffwb-text-muted);
-    line-height: 1.4;
-    margin-bottom: 20px;
-    cursor: pointer;
-}
-
-.ffwb-share-consent input[type="checkbox"] {
-    margin-top: 2px;
-    flex-shrink: 0;
-    accent-color: var(--ffwb-primary);
-    width: 16px;
-    height: 16px;
-}
-
-.ffwb-privacy-link {
-    color: var(--ffwb-primary);
-    text-decoration: underline;
-    font-weight: 600;
-}
-.ffwb-privacy-link:hover {
-    opacity: 0.8;
-}
-.ffwb-privacy-link:visited {
-    color: var(--ffwb-primary);
-}
-
-.ffwb-share-daypass {
-    background: rgba(var(--ffwb-primary-rgb, 236, 47, 44), 0.06);
-    border-radius: 8px;
-    padding: 10px 12px;
-    margin-bottom: 20px;
-}
-.ffwb-share-daypass span {
-    font-size: 12px;
-}
-
-.ffwb-btn-get-link {
-    width: 100%;
-    padding: 12px;
-    font-size: 14px;
-    font-weight: 700;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-}
-
-.ffwb-btn-get-link:disabled {
-    opacity: 0.4;
-    cursor: not-allowed;
 }
 
 .ffwb-modal-actions {
     display: flex;
     gap: 8px;
     justify-content: center;
-    margin-top: 16px;
-}
-
-.ffwb-modal-actions .ffwb-btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 5px;
 }
 
 /* ─── Toast ─────────────────────────────────────────────── */

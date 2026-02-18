@@ -254,11 +254,6 @@ function flexframe_workout_builder_shortcode($atts) {
                         <span>I agree to receive workout updates and marketing communications. You can unsubscribe at any time. By sharing, you also consent to your email being stored in accordance with our <a href="<?php echo esc_url(get_option('flexframe_privacy_policy_url', '#')); ?>" target="_blank" class="ffwb-privacy-link">privacy policy</a>.</span>
                     </label>
 
-                    <label class="ffwb-share-consent ffwb-share-daypass">
-                        <input type="checkbox" class="ffwb-share-daypass-check">
-                        <span>I'd like to request a <strong>free day pass</strong> for the gym!</span>
-                    </label>
-
                     <button class="ffwb-btn ffwb-btn-primary ffwb-btn-get-link" disabled>
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M3.9 12c0-1.71 1.39-3.1 3.1-3.1h4V7H7c-2.76 0-5 2.24-5 5s2.24 5 5 5h4v-1.9H7c-1.71 0-3.1-1.39-3.1-3.1zM8 13h8v-2H8v2zm9-6h-4v1.9h4c1.71 0 3.1 1.39 3.1 3.1s-1.39 3.1-3.1 3.1h-4V17h4c2.76 0 5-2.24 5-5s-2.24-5-5-5z"/></svg>
                         Get Share Link

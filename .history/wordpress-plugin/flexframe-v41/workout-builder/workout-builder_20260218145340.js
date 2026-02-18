@@ -1088,7 +1088,7 @@
             return;
         }
 
-        if (!SETTINGS.isLoggedIn && visibility === 'private') {
+        if (!SETTINGS.isLoggedIn) {
             showToast('Please log in to save workouts');
             return;
         }
@@ -1115,14 +1115,7 @@
 
         try {
             let res;
-            if (!SETTINGS.isLoggedIn && visibility === 'public') {
-                // Anonymous share — use public endpoint
-                res = await fetch(SETTINGS.restUrl + 'workouts/share', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload),
-                });
-            } else if (workoutId) {
+            if (workoutId) {
                 // Update existing
                 res = await fetch(SETTINGS.restUrl + 'workouts/' + workoutId, {
                     method: 'PUT',
@@ -1228,11 +1221,9 @@
         workoutHash = null;
         workoutNameInput.readOnly = false;
 
-        // Show save/share if logged in, show share for everyone
+        // Show save/share if logged in, hide if not
         if (SETTINGS.isLoggedIn) {
             root.querySelectorAll('.ffwb-btn-save, .ffwb-btn-share').forEach(el => el.style.display = '');
-        } else {
-            root.querySelector('.ffwb-btn-share').style.display = '';
         }
         root.querySelector('.ffwb-finder').style.display = '';
 
@@ -1657,31 +1648,19 @@
         if (!shareModal) return;
         pendingShareUrl = shareUrl;
 
+        // Reset to email step
         const stepEmail = shareModal.querySelector('.ffwb-share-step-email');
         const stepLink  = shareModal.querySelector('.ffwb-share-step-link');
-
-        // Logged-in users skip the email capture — go straight to link
-        if (SETTINGS.isLoggedIn) {
-            stepEmail.style.display = 'none';
-            stepLink.style.display  = 'block';
-            stepLink.querySelector('.ffwb-share-link-input').value = pendingShareUrl;
-            shareModal.style.display = 'flex';
-            return;
-        }
-
-        // Non-logged-in users: show email step
         stepEmail.style.display = 'block';
         stepLink.style.display  = 'none';
 
         // Clear previous inputs
         const emailInput = shareModal.querySelector('.ffwb-share-email-input');
         const consentBox = shareModal.querySelector('.ffwb-share-consent-check');
-        const dayPassBox = shareModal.querySelector('.ffwb-share-daypass-check');
         const getBtn     = shareModal.querySelector('.ffwb-btn-get-link');
         const errSpan    = shareModal.querySelector('.ffwb-share-email-error');
         emailInput.value = '';
         consentBox.checked = false;
-        if (dayPassBox) dayPassBox.checked = false;
         getBtn.disabled = true;
         errSpan.style.display = 'none';
 
@@ -1714,8 +1693,6 @@
         getBtn?.addEventListener('click', async () => {
             const email   = emailInput.value.trim();
             const consent = consentBox.checked;
-            const dayPassBox = shareModal.querySelector('.ffwb-share-daypass-check');
-            const dayPass = dayPassBox ? dayPassBox.checked : false;
             const errSpan = shareModal.querySelector('.ffwb-share-email-error');
 
             getBtn.disabled = true;
@@ -1728,7 +1705,6 @@
                     body: JSON.stringify({
                         email,
                         marketingConsent: consent,
-                        dayPassRequested: dayPass,
                         workoutName: workoutNameInput.value || 'Untitled Workout',
                         workoutHash: workoutHash || '',
                     }),

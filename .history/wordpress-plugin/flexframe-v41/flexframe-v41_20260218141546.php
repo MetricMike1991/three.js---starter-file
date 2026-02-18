@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.421');
+define('FLEXFRAME_VERSION', '1.41.415');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -4691,9 +4691,6 @@ function flexframe_activate() {
     
     // Register workout post type and flush rewrite rules
     flexframe_register_workout_post_type();
-    
-    // Create email captures table
-    flexframe_create_email_captures_table();
     
     // Set default options
     add_option('flexframe_logo_url', '');

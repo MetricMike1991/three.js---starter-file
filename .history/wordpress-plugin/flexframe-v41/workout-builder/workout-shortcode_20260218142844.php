@@ -90,7 +90,6 @@ function flexframe_enqueue_workout_builder_assets() {
         'siteUrl'       => home_url('/'),
         'shareHash'     => isset($_GET['workout']) ? sanitize_text_field($_GET['workout']) : '',
         'viewerPageUrl' => get_option('flexframe_viewer_page_url', ''),
-        'privacyPolicyUrl' => get_option('flexframe_privacy_policy_url', ''),
     ));
 }
 add_action('wp_enqueue_scripts', 'flexframe_enqueue_workout_builder_assets');
@@ -251,12 +250,7 @@ function flexframe_workout_builder_shortcode($atts) {
 
                     <label class="ffwb-share-consent">
                         <input type="checkbox" class="ffwb-share-consent-check">
-                        <span>I agree to receive workout updates and marketing communications. You can unsubscribe at any time. By sharing, you also consent to your email being stored in accordance with our <a href="<?php echo esc_url(get_option('flexframe_privacy_policy_url', '#')); ?>" target="_blank" class="ffwb-privacy-link">privacy policy</a>.</span>
-                    </label>
-
-                    <label class="ffwb-share-consent ffwb-share-daypass">
-                        <input type="checkbox" class="ffwb-share-daypass-check">
-                        <span>I'd like to request a <strong>free day pass</strong> for the gym!</span>
+                        <span>I agree to receive workout updates and marketing communications. You can unsubscribe at any time. By sharing, you also consent to your email being stored in accordance with our privacy policy.</span>
                     </label>
 
                     <button class="ffwb-btn ffwb-btn-primary ffwb-btn-get-link" disabled>
