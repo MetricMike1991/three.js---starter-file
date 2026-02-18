@@ -575,7 +575,7 @@
         const card = document.createElement('div');
         card.className = 'ffwb-card' + (isReadOnly ? ' ffwb-card-readonly' : '') + (groupId ? ' ffwb-card-grouped' : '');
         card.dataset.uid = exercise.uid;
-        // draggable is NOT set here – bindDragEvents enables it only on mousedown outside form fields
+        if (!isReadOnly && !groupId) card.draggable = true;
 
         const label = subLabel ? `${number}${subLabel}` : `${number}`;
         const isUnassigned = !exercise.exerciseId;
@@ -883,17 +883,19 @@
 
     // ─── Drag & Drop (Reorder Only) ───────────────────────────
     function bindDragEvents(card, uid) {
-        // Card starts NON-draggable. Only becomes draggable on mousedown
-        // outside of form elements. This avoids the browser intercepting
-        // clicks on <select>, <input>, etc.
+        // Toggle draggable off when interacting with form elements
         card.addEventListener('mousedown', (e) => {
-            if (!e.target.closest('select, input, textarea, button, a, label')) {
-                card.draggable = true;
+            const el = e.target.closest('select, input, textarea, button, a');
+            if (el) {
+                card.draggable = false;
             }
         });
-        // Reset to non-draggable after interaction
-        card.addEventListener('mouseup',  () => { card.draggable = false; });
-        card.addEventListener('mouseleave', () => { card.draggable = false; });
+        card.addEventListener('mouseup', () => {
+            card.draggable = true;
+        });
+        card.addEventListener('mouseleave', () => {
+            card.draggable = true;
+        });
 
         card.addEventListener('dragstart', (e) => {
             dragState = { uid };

@@ -76,12 +76,13 @@
     font-weight: 700;
     padding: 8px 12px;
     outline: none;
-    transition: border-color 0.25s, box-shadow 0.25s;
+    transition: border-color 0.2s, background 0.2s;
 }
 
 .ffwb-workout-name:focus {
     border-color: var(--ffwb-primary);
-    box-shadow: 0 0 0 3px rgba(var(--ffwb-primary-rgb), 0.25), inset 0 0 8px rgba(var(--ffwb-primary-rgb), 0.1);
+    background: rgba(255, 255, 255, 0.95);
+    color: #111;
 }
 
 .ffwb-workout-name.ffwb-input-error {
@@ -949,9 +950,6 @@ select.ffwb-input {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    position: relative;
-    z-index: 2;
-    pointer-events: auto !important;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6' fill='%23999'%3E%3Cpath d='M0 0l5 6 5-6z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right 6px center;
@@ -1358,33 +1356,25 @@ select.ffwb-input option {
 }
 
 /* ─── Swipe-to-reveal actions (mobile) ───────────────────── */
-
-/* Hide mobile-only RIR on desktop */
-.ffwb-card-rir-mobile {
-    display: none;
-}
-
 .ffwb-card {
-    overflow: visible;
+    overflow: hidden;
 }
 
 .ffwb-swipe-content {
     position: relative;
     z-index: 1;
     background: var(--ffwb-card-bg);
-    border-radius: inherit;
+    will-change: transform;
 }
 
 .ffwb-swipe-actions {
     position: absolute;
-    top: 4px;
-    right: 4px;
-    bottom: 4px;
+    top: 0;
+    right: 0;
+    bottom: 0;
     width: 140px;
     display: none;
     z-index: 0;
-    border-radius: 0 var(--ffwb-radius) var(--ffwb-radius) 0;
-    overflow: hidden;
 }
 
 .ffwb-swipe-btn {
@@ -1429,45 +1419,9 @@ select.ffwb-input option {
         display: flex;
     }
 
-    /* Clip swipe content on mobile only */
-    .ffwb-card {
-        overflow: hidden;
-    }
-
     /* Hide desktop action buttons */
     .ffwb-card-actions {
         display: none !important;
-    }
-
-    /* Move RIR to More dropdown on mobile */
-    .ffwb-rir-inline {
-        display: none !important;
-    }
-
-    .ffwb-card-rir-mobile {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 10px;
-        padding-bottom: 10px;
-        border-bottom: 1px solid var(--ffwb-card-border);
-    }
-
-    .ffwb-card-rir-mobile label {
-        font-size: 11px;
-        color: var(--ffwb-text-muted);
-        white-space: nowrap;
-    }
-
-    .ffwb-card-rir-mobile .ffwb-input-rir-mobile {
-        background: var(--ffwb-input-bg);
-        border: 1px solid transparent;
-        border-radius: 6px;
-        color: var(--ffwb-text);
-        font-size: 13px;
-        font-weight: 600;
-        padding: 5px 8px;
-        outline: none;
     }
 
     .ffwb-header {
@@ -1497,15 +1451,9 @@ select.ffwb-input option {
         gap: 4px;
     }
 
-    .ffwb-input-sets {
+    .ffwb-input-sets, .ffwb-input-rest {
         width: 46px;
         padding: 5px 4px;
-        font-size: 13px;
-    }
-
-    .ffwb-input-rest {
-        width: 90px;
-        padding: 5px 6px;
         font-size: 13px;
     }
 

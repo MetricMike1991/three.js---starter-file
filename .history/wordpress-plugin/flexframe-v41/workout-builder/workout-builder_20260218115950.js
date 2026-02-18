@@ -575,7 +575,7 @@
         const card = document.createElement('div');
         card.className = 'ffwb-card' + (isReadOnly ? ' ffwb-card-readonly' : '') + (groupId ? ' ffwb-card-grouped' : '');
         card.dataset.uid = exercise.uid;
-        // draggable is NOT set here – bindDragEvents enables it only on mousedown outside form fields
+        if (!isReadOnly && !groupId) card.draggable = true;
 
         const label = subLabel ? `${number}${subLabel}` : `${number}`;
         const isUnassigned = !exercise.exerciseId;
@@ -883,26 +883,22 @@
 
     // ─── Drag & Drop (Reorder Only) ───────────────────────────
     function bindDragEvents(card, uid) {
-        // Card starts NON-draggable. Only becomes draggable on mousedown
-        // outside of form elements. This avoids the browser intercepting
-        // clicks on <select>, <input>, etc.
-        card.addEventListener('mousedown', (e) => {
-            if (!e.target.closest('select, input, textarea, button, a, label')) {
-                card.draggable = true;
-            }
-        });
-        // Reset to non-draggable after interaction
-        card.addEventListener('mouseup',  () => { card.draggable = false; });
-        card.addEventListener('mouseleave', () => { card.draggable = false; });
+        // Make only the thumbnail area the drag handle
+        const dragHandle = card.querySelector('.ffwb-card-thumb-wrap');
+        if (dragHandle) {
+            dragHandle.setAttribute('draggable', 'true');
+            dragHandle.style.cursor = 'grab';
+        }
 
-        card.addEventListener('dragstart', (e) => {
+        // Use the drag handle to initiate drag on the whole card visually
+        dragHandle?.addEventListener('dragstart', (e) => {
             dragState = { uid };
             card.classList.add('ffwb-dragging');
             e.dataTransfer.effectAllowed = 'move';
             e.dataTransfer.setData('text/plain', uid);
         });
 
-        card.addEventListener('dragend', () => {
+        dragHandle?.addEventListener('dragend', () => {
             card.classList.remove('ffwb-dragging');
             clearDropIndicators();
             dragState = null;

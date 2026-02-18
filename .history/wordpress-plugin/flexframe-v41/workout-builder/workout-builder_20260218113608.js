@@ -575,7 +575,7 @@
         const card = document.createElement('div');
         card.className = 'ffwb-card' + (isReadOnly ? ' ffwb-card-readonly' : '') + (groupId ? ' ffwb-card-grouped' : '');
         card.dataset.uid = exercise.uid;
-        // draggable is NOT set here – bindDragEvents enables it only on mousedown outside form fields
+        if (!isReadOnly && !groupId) card.draggable = true;
 
         const label = subLabel ? `${number}${subLabel}` : `${number}`;
         const isUnassigned = !exercise.exerciseId;
@@ -883,19 +883,13 @@
 
     // ─── Drag & Drop (Reorder Only) ───────────────────────────
     function bindDragEvents(card, uid) {
-        // Card starts NON-draggable. Only becomes draggable on mousedown
-        // outside of form elements. This avoids the browser intercepting
-        // clicks on <select>, <input>, etc.
-        card.addEventListener('mousedown', (e) => {
-            if (!e.target.closest('select, input, textarea, button, a, label')) {
-                card.draggable = true;
-            }
-        });
-        // Reset to non-draggable after interaction
-        card.addEventListener('mouseup',  () => { card.draggable = false; });
-        card.addEventListener('mouseleave', () => { card.draggable = false; });
-
         card.addEventListener('dragstart', (e) => {
+            // Don't drag from inputs/buttons
+            const tag = e.target.tagName;
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'SELECT') {
+                e.preventDefault();
+                return;
+            }
             dragState = { uid };
             card.classList.add('ffwb-dragging');
             e.dataTransfer.effectAllowed = 'move';
@@ -1409,12 +1403,6 @@
         let startX = 0, startY = 0, currentX = 0, swiping = false, dirLocked = false, isHorizontal = false;
 
         content.addEventListener('touchstart', (e) => {
-            // Don't interfere with form elements (selects, inputs, textareas, buttons)
-            const tag = e.target.tagName;
-            if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'A') {
-                swiping = false;
-                return;
-            }
             // Close any other open card
             if (currentlySwipedCard && currentlySwipedCard !== card) {
                 closeSwipe(currentlySwipedCard);

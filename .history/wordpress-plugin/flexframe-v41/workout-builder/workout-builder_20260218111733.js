@@ -575,7 +575,7 @@
         const card = document.createElement('div');
         card.className = 'ffwb-card' + (isReadOnly ? ' ffwb-card-readonly' : '') + (groupId ? ' ffwb-card-grouped' : '');
         card.dataset.uid = exercise.uid;
-        // draggable is NOT set here – bindDragEvents enables it only on mousedown outside form fields
+        if (!isReadOnly && !groupId) card.draggable = true;
 
         const label = subLabel ? `${number}${subLabel}` : `${number}`;
         const isUnassigned = !exercise.exerciseId;
@@ -665,8 +665,8 @@
                                 ].map(o => `<option value="${o.v}" ${o.v == exercise.rest ? 'selected' : ''}>${o.t}</option>`).join('')}
                             </select>
                         </div>
-                        <span class="ffwb-card-stat-divider ffwb-rir-inline">·</span>
-                        <div class="ffwb-card-stat ffwb-rir-inline">
+                        <span class="ffwb-card-stat-divider">·</span>
+                        <div class="ffwb-card-stat">
                             <label title="Reps In Reserve — how many reps you could still do. 'Train To Failure' = 0 reps left in the tank.">RIR ⓘ</label>
                             <select class="ffwb-input ffwb-input-rir" ${isReadOnly ? 'disabled' : ''} title="Reps In Reserve: how close to muscular failure you should train. Lower RIR = harder.">
                                 ${[
@@ -688,19 +688,6 @@
                         <button class="ffwb-card-expand-btn">▼ More</button>
                     </div>
                     <div class="ffwb-card-expanded" style="display:none;">
-                        <div class="ffwb-card-rir-mobile">
-                            <label title="Reps In Reserve">RIR ⓘ</label>
-                            <select class="ffwb-input ffwb-input-rir-mobile" ${isReadOnly ? 'disabled' : ''} title="Reps In Reserve">
-                                ${[
-                                    {v: '0', t: 'Train To Failure'},
-                                    {v: '1', t: '1 RIR'},
-                                    {v: '2', t: '2 RIR'},
-                                    {v: '3', t: '3 RIR'},
-                                    {v: '4', t: '4 RIR'},
-                                    {v: '5', t: '5 RIR'}
-                                ].map(o => `<option value="${o.v}" ${o.v == exercise.rir ? 'selected' : ''}>${o.t}</option>`).join('')}
-                            </select>
-                        </div>
                         <div class="ffwb-card-muscles">
                             <strong>Muscles:</strong> ${exercise.muscleGroup.join(', ') || 'N/A'}
                         </div>
@@ -746,20 +733,6 @@
             card.querySelectorAll('.ffwb-input').forEach(input => {
                 input.addEventListener('change', () => syncCardToState(exercise.uid, card));
             });
-
-            // Sync inline RIR ↔ mobile RIR
-            const rirInline = card.querySelector('.ffwb-input-rir');
-            const rirMobile = card.querySelector('.ffwb-input-rir-mobile');
-            if (rirInline && rirMobile) {
-                rirInline.addEventListener('change', () => {
-                    rirMobile.value = rirInline.value;
-                    syncCardToState(exercise.uid, card);
-                });
-                rirMobile.addEventListener('change', () => {
-                    rirInline.value = rirMobile.value;
-                    syncCardToState(exercise.uid, card);
-                });
-            }
 
             // Drag events (only for ungrouped cards)
             if (!groupId) {
@@ -883,19 +856,13 @@
 
     // ─── Drag & Drop (Reorder Only) ───────────────────────────
     function bindDragEvents(card, uid) {
-        // Card starts NON-draggable. Only becomes draggable on mousedown
-        // outside of form elements. This avoids the browser intercepting
-        // clicks on <select>, <input>, etc.
-        card.addEventListener('mousedown', (e) => {
-            if (!e.target.closest('select, input, textarea, button, a, label')) {
-                card.draggable = true;
-            }
-        });
-        // Reset to non-draggable after interaction
-        card.addEventListener('mouseup',  () => { card.draggable = false; });
-        card.addEventListener('mouseleave', () => { card.draggable = false; });
-
         card.addEventListener('dragstart', (e) => {
+            // Don't drag from inputs/buttons
+            const tag = e.target.tagName;
+            if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'SELECT') {
+                e.preventDefault();
+                return;
+            }
             dragState = { uid };
             card.classList.add('ffwb-dragging');
             e.dataTransfer.effectAllowed = 'move';
@@ -1363,7 +1330,7 @@
         ex.sets = card.querySelector('.ffwb-input-sets')?.value || 3;
         ex.reps = card.querySelector('.ffwb-input-reps')?.value || '10';
         ex.rest = card.querySelector('.ffwb-input-rest')?.value || 60;
-        ex.rir = card.querySelector('.ffwb-input-rir')?.value || card.querySelector('.ffwb-input-rir-mobile')?.value || '2';
+        ex.rir = card.querySelector('.ffwb-input-rir')?.value || '2';
         ex.notes = card.querySelector('.ffwb-input-notes')?.value || '';
         updateStats();
     }
@@ -1409,12 +1376,6 @@
         let startX = 0, startY = 0, currentX = 0, swiping = false, dirLocked = false, isHorizontal = false;
 
         content.addEventListener('touchstart', (e) => {
-            // Don't interfere with form elements (selects, inputs, textareas, buttons)
-            const tag = e.target.tagName;
-            if (tag === 'SELECT' || tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'BUTTON' || tag === 'A') {
-                swiping = false;
-                return;
-            }
             // Close any other open card
             if (currentlySwipedCard && currentlySwipedCard !== card) {
                 closeSwipe(currentlySwipedCard);
