@@ -710,31 +710,11 @@
                         </div>
                     </div>
                 </div>
-                ${!isReadOnly && !groupId ? `
-                <div class="ffwb-card-reorder">
-                    <button class="ffwb-reorder-btn ffwb-reorder-up" data-uid="${exercise.uid}" title="Move up">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
-                    </button>
-                    <button class="ffwb-reorder-btn ffwb-reorder-down" data-uid="${exercise.uid}" title="Move down">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-                    </button>
-                </div>
-                ` : ''}
             </div>
         `;
 
         // Bind card events
         if (!isReadOnly) {
-            // Mobile reorder buttons
-            card.querySelector('.ffwb-reorder-up')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                moveExercise(exercise.uid, -1);
-            });
-            card.querySelector('.ffwb-reorder-down')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                moveExercise(exercise.uid, 1);
-            });
-
             // Clickable name to open finder
             card.querySelector('.ffwb-card-name-pick')?.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -974,67 +954,114 @@
             dragState = null;
         });
 
+        // ─── Touch-based drag reorder (mobile) ───────────────
+        let tStartX = 0, tStartY = 0, tDirLocked = false, tIsDragging = false;
+        let tClone = null, tOffsetY = 0;
+
+        card.addEventListener('touchstart', (e) => {
+            // Skip form elements — let them handle their own touch
+            if (e.target.closest('select, input, textarea, button, a, label, .ffwb-swipe-actions')) {
+                tStartX = 0; tStartY = 0;
+                return;
+            }
+            const t = e.touches[0];
+            tStartX = t.clientX;
+            tStartY = t.clientY;
+            tDirLocked = false;
+            tIsDragging = false;
+        }, { passive: true });
+
+        card.addEventListener('touchmove', (e) => {
+            if (tStartX === 0 && tStartY === 0) return;
+            const t = e.touches[0];
+            const dx = t.clientX - tStartX;
+            const dy = t.clientY - tStartY;
+
+            // Direction lock
+            if (!tDirLocked) {
+                if (Math.abs(dx) > 10 || Math.abs(dy) > 10) {
+                    tDirLocked = true;
+                    if (Math.abs(dx) >= Math.abs(dy)) {
+                        // Horizontal → swipe handler owns this, we bail
+                        tStartX = 0; tStartY = 0;
+                        return;
+                    }
+                    // Vertical → start drag reorder
+                    tIsDragging = true;
+                    dragState = { uid };
+                    const rect = card.getBoundingClientRect();
+                    tOffsetY = t.clientY - rect.top;
+
+                    tClone = card.cloneNode(true);
+                    tClone.className = 'ffwb-card ffwb-drag-clone';
+                    tClone.style.cssText = `
+                        position:fixed; top:${rect.top}px; left:${rect.left}px;
+                        width:${rect.width}px; z-index:100000;
+                        opacity:0.9; transform:scale(1.02);
+                        box-shadow:0 8px 32px rgba(0,0,0,0.35);
+                        pointer-events:none; transition:none;
+                    `;
+                    document.body.appendChild(tClone);
+                    card.classList.add('ffwb-dragging');
+                }
+                return;
+            }
+
+            if (!tIsDragging) return;
+            e.preventDefault();
+
+            // Move clone
+            tClone.style.top = (t.clientY - tOffsetY) + 'px';
+
+            // Find drop target
+            clearDropIndicators();
+            const allCards = exerciseList.querySelectorAll('.ffwb-card:not(.ffwb-dragging)');
+            for (const c of allCards) {
+                const r = c.getBoundingClientRect();
+                if (t.clientY > r.top && t.clientY < r.bottom) {
+                    c.classList.add(t.clientY < r.top + r.height / 2 ? 'ffwb-drop-above' : 'ffwb-drop-below');
+                    break;
+                }
+            }
+        }, { passive: false });
+
+        card.addEventListener('touchend', () => {
+            if (!tIsDragging) {
+                tStartX = 0; tStartY = 0;
+                return;
+            }
+
+            // Perform drop
+            const target = exerciseList.querySelector('.ffwb-drop-above, .ffwb-drop-below');
+            if (target) {
+                const isAbove = target.classList.contains('ffwb-drop-above');
+                const dropUid = target.dataset.uid;
+                const dragIdx = workoutExercises.findIndex(ex => ex.uid === uid);
+                if (dragIdx >= 0) {
+                    const [dragged] = workoutExercises.splice(dragIdx, 1);
+                    const newDropIdx = workoutExercises.findIndex(ex => ex.uid === dropUid);
+                    workoutExercises.splice(isAbove ? newDropIdx : newDropIdx + 1, 0, dragged);
+                    reindexOrders();
+                    renderExerciseList();
+                    updateStats();
+                }
+            }
+
+            // Clean up
+            card.classList.remove('ffwb-dragging');
+            clearDropIndicators();
+            if (tClone) { tClone.remove(); tClone = null; }
+            dragState = null;
+            tIsDragging = false;
+            tDirLocked = false;
+            tStartX = 0; tStartY = 0;
+        });
     }
 
     function clearDropIndicators() {
         exerciseList.querySelectorAll('.ffwb-drop-above, .ffwb-drop-below').forEach(el => {
             el.classList.remove('ffwb-drop-above', 'ffwb-drop-below');
         });
-    }
-
-    // ─── Mobile Reorder (Up / Down Buttons) ───────────────
-    function moveExercise(uid, direction) {
-        const idx = workoutExercises.findIndex(ex => ex.uid === uid);
-        const newIdx = idx + direction;
-        if (idx < 0 || newIdx < 0 || newIdx >= workoutExercises.length) return;
-
-        // Get the two cards that will swap
-        const cards = exerciseList.querySelectorAll('.ffwb-card');
-        const cardA = cards[idx];   // the card being moved
-        const cardB = cards[newIdx]; // the card in the target position
-        if (!cardA || !cardB) return;
-
-        // Measure positions before swap
-        const rectA = cardA.getBoundingClientRect();
-        const rectB = cardB.getBoundingClientRect();
-        const deltaA = rectB.top - rectA.top;
-        const deltaB = rectA.top - rectB.top;
-
-        // Animate both cards simultaneously (FLIP technique)
-        cardA.style.transition = 'none';
-        cardB.style.transition = 'none';
-        cardA.style.transform = `translateY(${deltaA}px)`;
-        cardB.style.transform = `translateY(${deltaB}px)`;
-        cardA.style.zIndex = '10';
-
-        // Force reflow then animate to final position
-        cardA.offsetHeight;
-        const dur = '0.3s cubic-bezier(0.22, 1, 0.36, 1)';
-        cardA.style.transition = `transform ${dur}`;
-        cardB.style.transition = `transform ${dur}`;
-        cardA.style.transform = 'translateY(0)';
-        cardB.style.transform = 'translateY(0)';
-
-        // After animation, commit the swap in data and re-render
-        setTimeout(() => {
-            cardA.style.transition = '';
-            cardA.style.transform = '';
-            cardA.style.zIndex = '';
-            cardB.style.transition = '';
-            cardB.style.transform = '';
-
-            // Preserve scroll position across re-render
-            const scrollY = window.scrollY;
-
-            // Swap in array
-            [workoutExercises[idx], workoutExercises[newIdx]] = [workoutExercises[newIdx], workoutExercises[idx]];
-            reindexOrders();
-            renderExerciseList();
-            updateStats();
-
-            // Restore scroll position
-            window.scrollTo(0, scrollY);
-        }, 300);
     }
 
     // ─── Save / Load ─────────────────────────────────────────

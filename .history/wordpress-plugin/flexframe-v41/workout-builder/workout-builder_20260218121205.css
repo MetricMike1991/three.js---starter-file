@@ -644,13 +644,8 @@
 }
 
 .ffwb-card.ffwb-dragging {
-    opacity: 0.3;
-    transform: scale(0.97);
-}
-
-/* ─── Mobile Reorder Buttons ────────────────────────────── */
-.ffwb-card-reorder {
-    display: none;
+    opacity: 0.5;
+    transform: scale(0.98);
 }
 
 .ffwb-card.ffwb-drop-above::before {
@@ -1442,40 +1437,6 @@ select.ffwb-input option {
     /* Hide desktop action buttons */
     .ffwb-card-actions {
         display: none !important;
-    }
-
-    /* Show mobile reorder buttons */
-    .ffwb-card-reorder {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        gap: 4px;
-        flex-shrink: 0;
-        margin-left: auto;
-        padding-left: 6px;
-    }
-
-    .ffwb-reorder-btn {
-        width: 32px;
-        height: 32px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(255, 255, 255, 0.08);
-        border: 1px solid rgba(255, 255, 255, 0.12);
-        border-radius: 8px;
-        color: var(--ffwb-text-muted);
-        cursor: pointer;
-        transition: all 0.15s;
-        padding: 0;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .ffwb-reorder-btn:active {
-        background: rgba(var(--ffwb-primary-rgb), 0.25);
-        border-color: var(--ffwb-primary);
-        color: var(--ffwb-primary);
-        transform: scale(0.92);
     }
 
     /* Move RIR to More dropdown on mobile */

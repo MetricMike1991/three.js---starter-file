@@ -1023,17 +1023,11 @@
             cardB.style.transition = '';
             cardB.style.transform = '';
 
-            // Preserve scroll position across re-render
-            const scrollY = window.scrollY;
-
             // Swap in array
             [workoutExercises[idx], workoutExercises[newIdx]] = [workoutExercises[newIdx], workoutExercises[idx]];
             reindexOrders();
             renderExerciseList();
             updateStats();
-
-            // Restore scroll position
-            window.scrollTo(0, scrollY);
         }, 300);
     }
 

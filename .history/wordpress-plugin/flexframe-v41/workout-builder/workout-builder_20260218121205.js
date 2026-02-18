@@ -710,31 +710,11 @@
                         </div>
                     </div>
                 </div>
-                ${!isReadOnly && !groupId ? `
-                <div class="ffwb-card-reorder">
-                    <button class="ffwb-reorder-btn ffwb-reorder-up" data-uid="${exercise.uid}" title="Move up">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/></svg>
-                    </button>
-                    <button class="ffwb-reorder-btn ffwb-reorder-down" data-uid="${exercise.uid}" title="Move down">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/></svg>
-                    </button>
-                </div>
-                ` : ''}
             </div>
         `;
 
         // Bind card events
         if (!isReadOnly) {
-            // Mobile reorder buttons
-            card.querySelector('.ffwb-reorder-up')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                moveExercise(exercise.uid, -1);
-            });
-            card.querySelector('.ffwb-reorder-down')?.addEventListener('click', (e) => {
-                e.stopPropagation();
-                moveExercise(exercise.uid, 1);
-            });
-
             // Clickable name to open finder
             card.querySelector('.ffwb-card-name-pick')?.addEventListener('click', (e) => {
                 e.stopPropagation();
@@ -973,68 +953,12 @@
             clearDropIndicators();
             dragState = null;
         });
-
     }
 
     function clearDropIndicators() {
         exerciseList.querySelectorAll('.ffwb-drop-above, .ffwb-drop-below').forEach(el => {
             el.classList.remove('ffwb-drop-above', 'ffwb-drop-below');
         });
-    }
-
-    // ─── Mobile Reorder (Up / Down Buttons) ───────────────
-    function moveExercise(uid, direction) {
-        const idx = workoutExercises.findIndex(ex => ex.uid === uid);
-        const newIdx = idx + direction;
-        if (idx < 0 || newIdx < 0 || newIdx >= workoutExercises.length) return;
-
-        // Get the two cards that will swap
-        const cards = exerciseList.querySelectorAll('.ffwb-card');
-        const cardA = cards[idx];   // the card being moved
-        const cardB = cards[newIdx]; // the card in the target position
-        if (!cardA || !cardB) return;
-
-        // Measure positions before swap
-        const rectA = cardA.getBoundingClientRect();
-        const rectB = cardB.getBoundingClientRect();
-        const deltaA = rectB.top - rectA.top;
-        const deltaB = rectA.top - rectB.top;
-
-        // Animate both cards simultaneously (FLIP technique)
-        cardA.style.transition = 'none';
-        cardB.style.transition = 'none';
-        cardA.style.transform = `translateY(${deltaA}px)`;
-        cardB.style.transform = `translateY(${deltaB}px)`;
-        cardA.style.zIndex = '10';
-
-        // Force reflow then animate to final position
-        cardA.offsetHeight;
-        const dur = '0.3s cubic-bezier(0.22, 1, 0.36, 1)';
-        cardA.style.transition = `transform ${dur}`;
-        cardB.style.transition = `transform ${dur}`;
-        cardA.style.transform = 'translateY(0)';
-        cardB.style.transform = 'translateY(0)';
-
-        // After animation, commit the swap in data and re-render
-        setTimeout(() => {
-            cardA.style.transition = '';
-            cardA.style.transform = '';
-            cardA.style.zIndex = '';
-            cardB.style.transition = '';
-            cardB.style.transform = '';
-
-            // Preserve scroll position across re-render
-            const scrollY = window.scrollY;
-
-            // Swap in array
-            [workoutExercises[idx], workoutExercises[newIdx]] = [workoutExercises[newIdx], workoutExercises[idx]];
-            reindexOrders();
-            renderExerciseList();
-            updateStats();
-
-            // Restore scroll position
-            window.scrollTo(0, scrollY);
-        }, 300);
     }
 
     // ─── Save / Load ─────────────────────────────────────────
