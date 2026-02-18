@@ -459,16 +459,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
-    padding: 0;
+    gap: 2px;
+    padding: 6px 4px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid transparent;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
     user-select: none;
-    overflow: hidden;
-    position: relative;
 }
 
 .ffwb-filter-card:hover {
@@ -485,20 +483,6 @@
 .ffwb-filter-icon {
     font-size: 16px;
     line-height: 1;
-    padding: 6px 4px 2px;
-}
-
-.ffwb-filter-thumb-img {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    display: block;
-    filter: hue-rotate(var(--ffwb-hue-rotation, 0deg));
-    transition: transform 0.2s;
-}
-
-.ffwb-filter-card:hover .ffwb-filter-thumb-img {
-    transform: scale(1.05);
 }
 
 .ffwb-filter-label {
@@ -511,7 +495,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    padding: 3px 4px 4px;
 }
 
 /* Finder results */
@@ -1740,97 +1723,30 @@ select.ffwb-input option {
         font-size: 12px;
     }
 
-    /* Finder mobile: keep side-by-side like 3D viewer (filters left, results right) */
+    /* Finder mobile: stacked layout */
     .ffwb-finder-panel {
-        width: 96vw;
-        max-width: none;
-        max-height: 85vh;
-        height: 80vh;
+        max-height: 80vh;
     }
 
     .ffwb-finder-body {
-        flex-direction: row;
-        flex: 1;
-        min-height: 0;
+        flex-direction: column;
     }
 
     .ffwb-finder-sidebar {
-        width: 42%;
-        max-width: 170px;
-        flex-shrink: 0;
-        border-right: 1px solid var(--ffwb-card-border);
-        border-bottom: none;
-        max-height: none;
-        height: 100%;
-        overflow-y: auto;
-        padding: 8px 6px;
-        direction: rtl;           /* scrollbar on inner edge */
-    }
-
-    .ffwb-finder-sidebar > * {
-        direction: ltr;
-    }
-
-    .ffwb-finder-results {
-        flex: 1;
-        min-width: 0;
-        overflow: hidden;
-    }
-
-    .ffwb-finder-results-scroll {
-        flex: 1;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
+        width: 100%;
+        border-right: none;
+        border-bottom: 1px solid var(--ffwb-card-border);
+        max-height: 180px;
+        padding: 8px;
     }
 
     .ffwb-filter-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .ffwb-filter-card {
-        padding: 0;
-    }
-
-    .ffwb-filter-icon {
-        font-size: 14px;
-        padding: 5px 3px 2px;
-    }
-
-    .ffwb-filter-label {
-        font-size: 8px;
-        padding: 2px 3px 3px;
-    }
-
-    .ffwb-filter-title {
-        font-size: 10px;
-        margin-bottom: 4px;
-    }
-
-    .ffwb-filter-section {
-        margin-bottom: 8px;
-    }
-
-    .ffwb-finder-item {
-        padding: 5px 6px;
-        gap: 8px;
+        grid-template-columns: repeat(3, 1fr);
     }
 
     .ffwb-finder-item-thumb {
         width: 36px;
         height: 36px;
-    }
-
-    .ffwb-finder-item-name {
-        font-size: 12px;
-    }
-
-    .ffwb-finder-item-meta {
-        font-size: 10px;
-    }
-
-    .ffwb-finder-search {
-        font-size: 14px;
-        padding: 8px 30px 8px 32px;
     }
 }
 

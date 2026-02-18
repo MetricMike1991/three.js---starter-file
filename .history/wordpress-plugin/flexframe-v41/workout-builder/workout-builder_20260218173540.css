@@ -459,16 +459,14 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 0;
-    padding: 0;
+    gap: 2px;
+    padding: 6px 4px;
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid transparent;
     border-radius: 6px;
     cursor: pointer;
     transition: all 0.2s;
     user-select: none;
-    overflow: hidden;
-    position: relative;
 }
 
 .ffwb-filter-card:hover {
@@ -485,20 +483,6 @@
 .ffwb-filter-icon {
     font-size: 16px;
     line-height: 1;
-    padding: 6px 4px 2px;
-}
-
-.ffwb-filter-thumb-img {
-    width: 100%;
-    aspect-ratio: 1;
-    object-fit: cover;
-    display: block;
-    filter: hue-rotate(var(--ffwb-hue-rotation, 0deg));
-    transition: transform 0.2s;
-}
-
-.ffwb-filter-card:hover .ffwb-filter-thumb-img {
-    transform: scale(1.05);
 }
 
 .ffwb-filter-label {
@@ -511,7 +495,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
     max-width: 100%;
-    padding: 3px 4px 4px;
 }
 
 /* Finder results */
@@ -1788,17 +1771,15 @@ select.ffwb-input option {
     }
 
     .ffwb-filter-card {
-        padding: 0;
+        padding: 5px 3px;
     }
 
     .ffwb-filter-icon {
         font-size: 14px;
-        padding: 5px 3px 2px;
     }
 
     .ffwb-filter-label {
         font-size: 8px;
-        padding: 2px 3px 3px;
     }
 
     .ffwb-filter-title {
