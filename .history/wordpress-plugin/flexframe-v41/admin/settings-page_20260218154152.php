@@ -4271,18 +4271,17 @@ function flexframe_settings_page() {
                             <table class="wp-list-table widefat fixed striped" id="flexframe-email-captures-table" style="margin-bottom: 12px;">
                                 <thead>
                                     <tr>
-                                        <th style="width: 20%;">Email</th>
-                                        <th style="width: 7%;">Consent</th>
-                                        <th style="width: 7%;">Day Pass</th>
-                                        <th style="width: 7%;">Workouts</th>
-                                        <th style="width: 25%;">Workout Links</th>
-                                        <th style="width: 12%;">Last Workout</th>
-                                        <th style="width: 13%;">Last Active</th>
-                                        <th style="width: 9%;">Actions</th>
+                                        <th style="width: 25%;">Email</th>
+                                        <th style="width: 9%;">Consent</th>
+                                        <th style="width: 9%;">Day Pass</th>
+                                        <th style="width: 9%;">Workouts</th>
+                                        <th style="width: 16%;">Last Workout</th>
+                                        <th style="width: 18%;">Last Active</th>
+                                        <th style="width: 14%;">Actions</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr><td colspan="8" style="text-align: center; padding: 20px; color: #666;">Click "Refresh" to load email captures.</td></tr>
+                                    <tr><td colspan="7" style="text-align: center; padding: 20px; color: #666;">Click "Refresh" to load email captures.</td></tr>
                                 </tbody>
                             </table>
                             <div id="flexframe-email-pagination" style="text-align: center;"></div>
@@ -10923,14 +10922,14 @@ function flexframe_settings_page() {
                 data: { action: 'flexframe_get_email_captures', page_num: page },
                 success: function(response) {
                     if (!response.success) {
-                        $tbody.html('<tr><td colspan="8" style="text-align:center;color:#d63638;">Error loading data.</td></tr>');
+                        $tbody.html('<tr><td colspan="7" style="text-align:center;color:#d63638;">Error loading data.</td></tr>');
                         return;
                     }
                     var d = response.data;
                     $total.text(d.total + ' total email' + (d.total !== 1 ? 's' : '') + ' captured');
 
                     if (d.rows.length === 0) {
-                        $tbody.html('<tr><td colspan="8" style="text-align:center;padding:20px;color:#666;">No email captures yet.</td></tr>');
+                        $tbody.html('<tr><td colspan="7" style="text-align:center;padding:20px;color:#666;">No email captures yet.</td></tr>');
                         $pagination.empty();
                         return;
                     }
@@ -10942,24 +10941,6 @@ function flexframe_settings_page() {
                         html += '<td>' + (parseInt(row.marketing_consent) ? '<span style="color:#00a32a;">Yes</span>' : '<span style="color:#d63638;">No</span>') + '</td>';
                         html += '<td>' + (parseInt(row.day_pass_requested) ? '<span style="color:#00a32a;">Yes</span>' : '<span style="color:#888;">No</span>') + '</td>';
                         html += '<td style="text-align:center;font-weight:700;">' + (parseInt(row.workout_count) || 1) + '</td>';
-
-                        // Workout Links column — clickable list
-                        var linksHtml = '—';
-                        try {
-                            var links = JSON.parse(row.workout_links || '[]');
-                            if (links.length > 0) {
-                                var baseUrl = d.workoutBaseUrl || '';
-                                linksHtml = '<div style="max-height:80px;overflow-y:auto;font-size:12px;line-height:1.6;">';
-                                $.each(links, function(li, lnk) {
-                                    var url = baseUrl + (lnk.hash || '');
-                                    var name = lnk.name || 'Workout';
-                                    linksHtml += '<a href="' + url + '" target="_blank" style="display:block;color:#2271b1;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="' + $('<span>').text(name).html() + '">' + $('<span>').text(name).html() + '</a>';
-                                });
-                                linksHtml += '</div>';
-                            }
-                        } catch(e) { linksHtml = '—'; }
-                        html += '<td>' + linksHtml + '</td>';
-
                         html += '<td>' + $('<span>').text(row.workout_name || '—').html() + '</td>';
                         html += '<td>' + $('<span>').text(row.captured_at || '').html() + '</td>';
                         html += '<td><button type="button" class="button button-small flexframe-delete-email-capture" data-id="' + row.id + '" style="color:#d63638;">Delete</button></td>';
@@ -10983,7 +10964,7 @@ function flexframe_settings_page() {
                     }
                 },
                 error: function() {
-                    $tbody.html('<tr><td colspan="8" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
+                    $tbody.html('<tr><td colspan="5" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
                 }
             });
         }

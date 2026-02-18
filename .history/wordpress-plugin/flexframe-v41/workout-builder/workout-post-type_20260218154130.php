@@ -457,7 +457,6 @@ function flexframe_create_email_captures_table() {
         marketing_consent tinyint(1) NOT NULL DEFAULT 0,
         day_pass_requested tinyint(1) NOT NULL DEFAULT 0,
         workout_count int(11) NOT NULL DEFAULT 1,
-        workout_links text DEFAULT '',
         workout_name varchar(255) DEFAULT '',
         workout_hash varchar(20) DEFAULT '',
         ip_address varchar(45) DEFAULT '',
@@ -477,10 +476,6 @@ function flexframe_create_email_captures_table() {
     $col2 = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'workout_count'");
     if (empty($col2)) {
         $wpdb->query("ALTER TABLE $table ADD COLUMN workout_count int(11) NOT NULL DEFAULT 1 AFTER day_pass_requested");
-    }
-    $col3 = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'workout_links'");
-    if (empty($col3)) {
-        $wpdb->query("ALTER TABLE $table ADD COLUMN workout_links text DEFAULT '' AFTER workout_count");
     }
 }
 
@@ -518,32 +513,14 @@ function flexframe_handle_email_capture($request) {
     $existing = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE email = %s", $email));
 
     if ($existing) {
-        // Build up the workout links list
-        $links = json_decode($existing->workout_links ?? '[]', true);
-        if (!is_array($links)) $links = array();
-        // Add this workout if hash is provided and not already in list
-        if (!empty($workout_hash)) {
-            $already = false;
-            foreach ($links as $link) {
-                if (isset($link['hash']) && $link['hash'] === $workout_hash) {
-                    $already = true;
-                    break;
-                }
-            }
-            if (!$already) {
-                $links[] = array('name' => $workout_name, 'hash' => $workout_hash);
-            }
-        }
-
-        // Update existing record: bump workout count, update links
+        // Update existing record: bump workout count, update day pass if requested
         $update_data = array(
             'workout_count'  => intval($existing->workout_count) + 1,
-            'workout_links'  => wp_json_encode($links),
             'workout_name'   => $workout_name,
             'workout_hash'   => $workout_hash,
             'captured_at'    => current_time('mysql'),
         );
-        $update_format = array('%d', '%s', '%s', '%s', '%s');
+        $update_format = array('%d', '%s', '%s', '%s');
 
         // Upgrade consent to true if they check it this time (never downgrade)
         if ($consent && !$existing->marketing_consent) {
@@ -559,24 +536,17 @@ function flexframe_handle_email_capture($request) {
 
         $wpdb->update($table, $update_data, array('id' => $existing->id), $update_format, array('%d'));
     } else {
-        // Build initial workout links
-        $initial_links = array();
-        if (!empty($workout_hash)) {
-            $initial_links[] = array('name' => $workout_name, 'hash' => $workout_hash);
-        }
-
         // New email — insert
         $wpdb->insert($table, array(
             'email'             => $email,
             'marketing_consent' => $consent,
             'day_pass_requested'=> $day_pass,
             'workout_count'     => 1,
-            'workout_links'     => wp_json_encode($initial_links),
             'workout_name'      => $workout_name,
             'workout_hash'      => $workout_hash,
             'ip_address'        => sanitize_text_field($_SERVER['REMOTE_ADDR'] ?? ''),
             'captured_at'       => current_time('mysql'),
-        ), array('%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s'));
+        ), array('%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s'));
     }
 
     return rest_ensure_response(array('success' => true));
@@ -607,11 +577,10 @@ function flexframe_ajax_get_email_captures() {
     ));
 
     wp_send_json_success(array(
-        'rows'       => $rows,
-        'total'      => $total,
-        'page'       => $page,
-        'pages'      => ceil($total / $per_page),
-        'workoutBaseUrl' => flexframe_get_workout_share_url(''),
+        'rows'     => $rows,
+        'total'    => $total,
+        'page'     => $page,
+        'pages'    => ceil($total / $per_page),
     ));
 }
 add_action('wp_ajax_flexframe_get_email_captures', 'flexframe_ajax_get_email_captures');
@@ -634,24 +603,14 @@ function flexframe_ajax_export_email_captures() {
     header('Content-Disposition: attachment; filename=flexframe-email-captures-' . date('Y-m-d') . '.csv');
 
     $out = fopen('php://output', 'w');
-    fputcsv($out, array('Email', 'Marketing Consent', 'Day Pass Requested', 'Workouts Shared', 'Workout Links', 'Last Workout', 'IP Address', 'Last Activity'));
+    fputcsv($out, array('Email', 'Marketing Consent', 'Day Pass Requested', 'Workouts Shared', 'Last Workout', 'IP Address', 'Last Activity'));
 
     foreach ($rows as $row) {
-        // Format workout links as readable list
-        $links = json_decode($row->workout_links ?? '[]', true);
-        $link_strs = array();
-        if (is_array($links)) {
-            foreach ($links as $link) {
-                $url = flexframe_get_workout_share_url($link['hash'] ?? '');
-                $link_strs[] = ($link['name'] ?? 'Untitled') . ' - ' . $url;
-            }
-        }
         fputcsv($out, array(
             $row->email,
             $row->marketing_consent ? 'Yes' : 'No',
             $row->day_pass_requested ? 'Yes' : 'No',
             $row->workout_count ?? 1,
-            implode(' | ', $link_strs),
             $row->workout_name,
             $row->ip_address,
             $row->captured_at,

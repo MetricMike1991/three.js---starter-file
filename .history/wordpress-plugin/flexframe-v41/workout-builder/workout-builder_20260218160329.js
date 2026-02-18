@@ -1287,14 +1287,6 @@
             }
         });
 
-        // Workout share QR — use the pendingShareUrl if available
-        const workoutShareUrl = pendingShareUrl || '';
-        if (workoutShareUrl) {
-            const shareQrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=300x300&data='
-                + encodeURIComponent(workoutShareUrl);
-            imageJobs['workoutShareQr'] = imgToBase64(shareQrUrl);
-        }
-
         const keys = Object.keys(imageJobs);
         const vals = await Promise.all(Object.values(imageJobs));
         const img = {};
@@ -1506,54 +1498,6 @@
             doc.setDrawColor(200);
             doc.setLineWidth(0.1);
             doc.line(m, y, pw - m, y);
-        }
-
-        // ── SHARE THIS WORKOUT (QR + URL) ──
-        if (workoutShareUrl) {
-            needsPage(55);
-            y += 6;
-            doc.setDrawColor(180);
-            doc.setLineWidth(0.1);
-            doc.line(m, y, pw - m, y);
-            y += 8;
-
-            const shareQrSize = 30;
-            const shareQrX = m;
-            const shareTextX = m + shareQrSize + 8;
-
-            // QR code
-            if (img.workoutShareQr) {
-                try {
-                    doc.addImage(img.workoutShareQr, 'PNG', shareQrX, y, shareQrSize, shareQrSize);
-                    doc.link(shareQrX, y, shareQrSize, shareQrSize, { url: workoutShareUrl });
-                } catch {}
-            }
-
-            // Text next to QR
-            doc.setFontSize(12);
-            doc.setFont(undefined, 'bold');
-            doc.setTextColor(0);
-            doc.text('Share This Workout', shareTextX, y + 6);
-
-            doc.setFontSize(9);
-            doc.setFont(undefined, 'normal');
-            doc.setTextColor(80);
-            doc.text('Scan the QR code or visit the link below to', shareTextX, y + 13);
-            doc.text('load this workout on any device.', shareTextX, y + 18);
-
-            doc.setFontSize(8);
-            doc.setFont(undefined, 'normal');
-            doc.setTextColor(0, 100, 200);
-            // Truncate URL for display if needed, but keep full link
-            const displayUrl = workoutShareUrl.length > 60
-                ? workoutShareUrl.substring(0, 57) + '...'
-                : workoutShareUrl;
-            doc.text(displayUrl, shareTextX, y + 25);
-            const urlW = doc.getTextWidth(displayUrl);
-            doc.link(shareTextX, y + 22, urlW, 4, { url: workoutShareUrl });
-            doc.setTextColor(0);
-
-            y += shareQrSize + 6;
         }
 
         // ── SAVE ──
