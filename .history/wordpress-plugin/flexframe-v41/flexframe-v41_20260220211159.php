@@ -1096,7 +1096,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BKRDQ8PR.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-2qfYeZnd.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -2771,10 +2771,8 @@ function flexframe_enqueue_assets() {
                 position: fixed !important;
                 bottom: 0 !important;
                 left: 0 !important;
-                right: auto !important;
-                width: 100vw !important;
-                max-width: 100vw !important;
-                box-sizing: border-box !important;
+                right: 0 !important;
+                width: 100% !important;
                 z-index: 100000 !important;
                 visibility: visible !important;
                 display: block !important;
@@ -3923,7 +3921,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B5UsfZCM.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Chr-Fs78.js',
             array(),
             FLEXFRAME_VERSION,
             true

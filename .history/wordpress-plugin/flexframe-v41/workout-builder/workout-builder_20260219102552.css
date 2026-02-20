@@ -53,15 +53,9 @@
     display: flex !important;
     gap: 12px !important;
     padding: 12px !important;
+    background: transparent !important;
     border: none !important;
     margin: 0 !important;
-}
-
-#flexframe-workout-builder .ffwb-swipe-content {
-    background: var(--ffwb-card-bg) !important;
-    border-radius: inherit !important;
-    position: relative !important;
-    z-index: 1 !important;
 }
 
 #flexframe-workout-builder .ffwb-card-thumb img,

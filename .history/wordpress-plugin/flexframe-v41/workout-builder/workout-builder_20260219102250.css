@@ -53,15 +53,9 @@
     display: flex !important;
     gap: 12px !important;
     padding: 12px !important;
+    background: transparent !important;
     border: none !important;
     margin: 0 !important;
-}
-
-#flexframe-workout-builder .ffwb-swipe-content {
-    background: var(--ffwb-card-bg) !important;
-    border-radius: inherit !important;
-    position: relative !important;
-    z-index: 1 !important;
 }
 
 #flexframe-workout-builder .ffwb-card-thumb img,
@@ -1846,20 +1840,9 @@ select.ffwb-input option {
     }
 
     /* Clip swipe content on mobile only */
-    .ffwb-card,
-    #flexframe-workout-builder .ffwb-card {
-        overflow: hidden !important;
-        border: 2px solid var(--ffwb-primary) !important;
-    }
-
-    #flexframe-workout-builder .ffwb-card-thumb {
-        width: 52px !important;
-        height: 52px !important;
-    }
-
-    #flexframe-workout-builder .ffwb-card-inner {
-        gap: 8px !important;
-        padding: 10px !important;
+    .ffwb-card {
+        overflow: hidden;
+        border: 2px solid var(--ffwb-primary);
     }
 
     /* Hide desktop action buttons */

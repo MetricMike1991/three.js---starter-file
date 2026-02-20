@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.442');
+define('FLEXFRAME_VERSION', '1.41.441');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -1096,7 +1096,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BKRDQ8PR.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-2qfYeZnd.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -2303,6 +2303,11 @@ function flexframe_enqueue_assets() {
                 .thumbnail-scroll-controls {
                     font-size: 10px !important;
                 }
+                /* Smaller background logo on mobile */
+                .flexframe-bg-watermark {
+                    width: 120px !important;
+                    max-width: 40vw !important;
+                }
                 /* Animation player always visible */
                 .animation-player {
                     transform: translateY(0) !important;
@@ -2538,6 +2543,11 @@ function flexframe_enqueue_assets() {
                 .thumbnail-scroll-controls {
                     font-size: 9px !important;
                 }
+                /* Even smaller background logo on small screens */
+                .flexframe-bg-watermark {
+                    width: 100px !important;
+                    max-width: 35vw !important;
+                }
                 .animation-player {
                     padding: 4px 6px !important;
                 }
@@ -2771,10 +2781,8 @@ function flexframe_enqueue_assets() {
                 position: fixed !important;
                 bottom: 0 !important;
                 left: 0 !important;
-                right: auto !important;
-                width: 100vw !important;
-                max-width: 100vw !important;
-                box-sizing: border-box !important;
+                right: 0 !important;
+                width: 100% !important;
                 z-index: 100000 !important;
                 visibility: visible !important;
                 display: block !important;
@@ -3923,7 +3931,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B5UsfZCM.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Chr-Fs78.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -4634,75 +4642,109 @@ function flexframe_viewer_shortcode($atts) {
         
         if ($bg_logo_enabled && !empty($logo_url)) :
         ?>
-        <!-- Logo Watermark v<?php echo FLEXFRAME_VERSION; ?> body-fixed -->
+        <!-- Logo Watermark v<?php echo FLEXFRAME_VERSION; ?> JS-positioned -->
+        <div id="flexframe-watermark-wrap">
+            <div id="flexframe-watermark">
+                <img id="flexframe-watermark-img" src="<?php echo esc_url($logo_url); ?>" alt="" draggable="false" />
+            </div>
+        </div>
         <script>
         (function(){
-            // CREATE elements entirely in JS and append to BODY
-            // This bypasses ALL theme containers, wrappers, and CSS limitations
-            var wrap = document.createElement('div');
-            wrap.id = 'flexframe-watermark-wrap';
-            var wm = document.createElement('div');
-            wm.id = 'flexframe-watermark';
-            var img = document.createElement('img');
-            img.id = 'flexframe-watermark-img';
-            img.src = <?php echo wp_json_encode(esc_url($logo_url)); ?>;
-            img.alt = '';
-            img.draggable = false;
-            wm.appendChild(img);
-            wrap.appendChild(wm);
-            // Append to BODY - completely outside any theme wrapper
-            document.body.appendChild(wrap);
+            // Apply all styles via JS - cannot be overridden by any CSS
+            var wrap = document.getElementById('flexframe-watermark-wrap');
+            var wm = document.getElementById('flexframe-watermark');
+            var img = document.getElementById('flexframe-watermark-img');
+            if (!wrap || !wm || !img) return;
             
-            // Config from WordPress settings
-            var posX = <?php echo intval($bg_logo_pos_x); ?>;
-            var posYcss = <?php echo intval($bg_logo_pos_y_css); ?>;
-            var logoSize = <?php echo intval($bg_logo_size); ?>;
-            var logoOpacity = <?php echo floatval($bg_logo_opacity); ?>;
-            
-            // Style the wrapper - FIXED to viewport, covers entire screen
             var ws = wrap.style;
-            ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:9998;overflow:hidden;box-sizing:border-box;';
+            ws.position = 'absolute';
+            ws.top = '0';
+            ws.left = '0';
+            ws.right = '0';
+            ws.bottom = '0';
+            ws.width = '100%';
+            ws.height = '100%';
+            ws.margin = '0';
+            ws.padding = '0';
+            ws.pointerEvents = 'none';
+            ws.zIndex = '1';
+            ws.overflow = 'hidden';
+            ws.boxSizing = 'border-box';
             
-            // Style the watermark div
             var s = wm.style;
-            s.cssText = 'position:absolute;top:'+posYcss+'%;left:'+posX+'%;transform:translate(-50%,-50%);-webkit-transform:translate(-50%,-50%);width:'+logoSize+'px;max-width:'+logoSize+'px;height:auto;opacity:'+logoOpacity+';pointer-events:none;margin:0;padding:0;float:none;display:block;right:auto;bottom:auto;border:none;background:none;';
+            s.position = 'absolute';
+            s.top = '<?php echo esc_js($bg_logo_pos_y_css); ?>%';
+            s.left = '<?php echo esc_js($bg_logo_pos_x); ?>%';
+            s.transform = 'translate(-50%, -50%)';
+            s.WebkitTransform = 'translate(-50%, -50%)';
+            s.width = '<?php echo esc_js($bg_logo_size); ?>px';
+            s.maxWidth = '<?php echo esc_js($bg_logo_size); ?>px';
+            s.height = 'auto';
+            s.opacity = '<?php echo esc_js($bg_logo_opacity); ?>';
+            s.pointerEvents = 'none';
+            s.margin = '0';
+            s.padding = '0';
+            s.cssFloat = 'none';
+            s.display = 'block';
+            s.right = 'auto';
+            s.bottom = 'auto';
+            s.border = 'none';
+            s.background = 'none';
             
-            // Style the image
             var is = img.style;
-            is.cssText = 'width:100%;height:auto;max-width:100%;display:block;pointer-events:none;margin:0;padding:0;float:none;position:static;transform:none;-webkit-transform:none;border:none;background:none;';
+            is.width = '100%';
+            is.height = 'auto';
+            is.maxWidth = '100%';
+            is.display = 'block';
+            is.pointerEvents = 'none';
+            is.margin = '0';
+            is.padding = '0';
+            is.cssFloat = 'none';
+            is.position = 'static';
+            is.transform = 'none';
+            is.WebkitTransform = 'none';
+            is.border = 'none';
+            is.background = 'none';
             
             // Responsive: smaller on mobile
             function adjustSize() {
                 var vw = window.innerWidth;
                 if (vw <= 480) {
                     s.width = Math.min(100, vw * 0.35) + 'px';
-                    s.maxWidth = Math.min(100, vw * 0.35) + 'px';
+                    s.maxWidth = '35vw';
                 } else if (vw <= 768) {
                     s.width = Math.min(120, vw * 0.4) + 'px';
-                    s.maxWidth = Math.min(120, vw * 0.4) + 'px';
+                    s.maxWidth = '40vw';
                 } else {
-                    s.width = logoSize + 'px';
-                    s.maxWidth = logoSize + 'px';
+                    s.width = '<?php echo esc_js($bg_logo_size); ?>px';
+                    s.maxWidth = '<?php echo esc_js($bg_logo_size); ?>px';
                 }
             }
             adjustSize();
             window.addEventListener('resize', adjustSize);
             
-            // Nuclear guard: re-apply all styles every 2 seconds
-            // This defeats any theme JS that might override styles after load
-            setInterval(function() {
-                ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:9998;overflow:hidden;box-sizing:border-box;';
-                s.position = 'absolute';
-                s.top = posYcss + '%';
-                s.left = posX + '%';
-                s.transform = 'translate(-50%,-50%)';
-                s.WebkitTransform = 'translate(-50%,-50%)';
-                s.opacity = logoOpacity;
-                s.pointerEvents = 'none';
-                s.margin = '0';
-                s.padding = '0';
-                adjustSize();
-            }, 2000);
+            // Guard: re-apply if anything mutates the styles
+            if (typeof MutationObserver !== 'undefined') {
+                var locked = false;
+                var obs = new MutationObserver(function(muts) {
+                    if (locked) return;
+                    locked = true;
+                    // Re-apply critical positioning
+                    ws.position = 'absolute';
+                    ws.top = '0'; ws.left = '0'; ws.right = '0'; ws.bottom = '0';
+                    ws.width = '100%'; ws.height = '100%';
+                    ws.pointerEvents = 'none'; ws.zIndex = '1';
+                    s.position = 'absolute';
+                    s.top = '<?php echo esc_js($bg_logo_pos_y_css); ?>%';
+                    s.left = '<?php echo esc_js($bg_logo_pos_x); ?>%';
+                    s.transform = 'translate(-50%, -50%)';
+                    s.WebkitTransform = 'translate(-50%, -50%)';
+                    s.pointerEvents = 'none';
+                    adjustSize();
+                    setTimeout(function(){ locked = false; }, 50);
+                });
+                obs.observe(wrap, { attributes: true, attributeFilter: ['style'], subtree: true });
+            }
         })();
         </script>
         <?php endif; ?>
