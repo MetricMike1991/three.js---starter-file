@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v41
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.444
+ * Version: 1.41.318
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.444');
+define('FLEXFRAME_VERSION', '1.41.442');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -4204,18 +4204,7 @@ add_action('wp_enqueue_scripts', 'flexframe_enqueue_assets');
 function flexframe_dashboard_enqueue() {
     global $post;
     
-    // ONLY apply to pages that contain EXACTLY the [flexframe_dashboard] shortcode
-    if (!is_a($post, 'WP_Post')) {
-        return;
-    }
-    
-    // Strict check: only match [flexframe_dashboard] not [flexframe_viewer] etc
-    if (!has_shortcode($post->post_content, 'flexframe_dashboard')) {
-        return;
-    }
-    
-    // Extra safety: make sure this page does NOT have the viewer or workout shortcodes
-    if (has_shortcode($post->post_content, 'flexframe_viewer') || has_shortcode($post->post_content, 'flexframe_workout_builder')) {
+    if (!is_a($post, 'WP_Post') || !has_shortcode($post->post_content, 'flexframe_dashboard')) {
         return;
     }
     
@@ -4226,63 +4215,61 @@ function flexframe_dashboard_enqueue() {
     wp_enqueue_style('flexframe-dashboard-style');
     
     $dashboard_css = '
-        /* CRITICAL: Prevent overflow - ONLY on dashboard pages */
-        body.flexframe-dashboard-active {
+        /* CRITICAL: Prevent overflow */
+        html, body {
             overflow: hidden !important;
             margin: 0 !important;
             padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
         }
     ';
     
     if ($is_dashboard_page) {
         $dashboard_css .= '
             /* Full-screen dashboard - hide all WordPress elements */
-            body.flexframe-dashboard-active header,
-            body.flexframe-dashboard-active footer,
-            body.flexframe-dashboard-active aside,
-            body.flexframe-dashboard-active nav:not(#flexframe-dashboard nav),
-            body.flexframe-dashboard-active .header,
-            body.flexframe-dashboard-active .footer,
-            body.flexframe-dashboard-active .sidebar,
-            body.flexframe-dashboard-active .site-header,
-            body.flexframe-dashboard-active .site-footer,
-            body.flexframe-dashboard-active .site-navigation,
-            body.flexframe-dashboard-active .site-branding,
-            body.flexframe-dashboard-active .wp-site-header,
-            body.flexframe-dashboard-active .wp-site-footer,
-            body.flexframe-dashboard-active .wp-site-navigation,
-            body.flexframe-dashboard-active #masthead,
-            body.flexframe-dashboard-active #colophon,
-            body.flexframe-dashboard-active #secondary,
-            body.flexframe-dashboard-active #site-navigation,
-            body.flexframe-dashboard-active .main-navigation,
-            body.flexframe-dashboard-active .footer-navigation,
-            body.flexframe-dashboard-active .widget-area,
-            body.flexframe-dashboard-active .site-info,
-            body.flexframe-dashboard-active .entry-header,
-            body.flexframe-dashboard-active .entry-footer,
-            body.flexframe-dashboard-active .entry-meta,
-            body.flexframe-dashboard-active .post-navigation,
-            body.flexframe-dashboard-active .comments-area,
-            body.flexframe-dashboard-active .page-header,
-            body.flexframe-dashboard-active .page-title,
-            body.flexframe-dashboard-active .entry-title,
-            body.flexframe-dashboard-active .wp-block-post-title,
-            body.flexframe-dashboard-active #wpadminbar,
-            body.flexframe-dashboard-active .breadcrumb,
-            body.flexframe-dashboard-active .breadcrumbs,
-            body.flexframe-dashboard-active .skip-link {
+            header, footer, aside, nav, .header, .footer, .sidebar,
+            .site-header, .site-footer, .site-navigation, .site-branding,
+            .wp-site-header, .wp-site-footer, .wp-site-navigation,
+            #masthead, #colophon, #secondary, #site-navigation,
+            .main-navigation, .footer-navigation,
+            .widget-area, .sidebar, .site-info,
+            .entry-header, .entry-footer, .entry-meta,
+            .post-navigation, .comments-area,
+            .page-header, .page-title, .entry-title,
+            .wp-block-post-title, .wp-block-latest-posts,
+            .wp-block-query, .wp-block-template-part,
+            .has-global-padding > .wp-block-template-part,
+            #wpadminbar,
+            .breadcrumb, .breadcrumbs,
+            .skip-link {
                 display: none !important;
+            }
+            /* Make content area full screen */
+            main, .site-main, .site-content, .content-area,
+            .entry-content, article, .page, .type-page,
+            .wp-block-group, .wp-site-blocks,
+            .is-layout-constrained, .is-layout-flow {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 100% !important;
+                max-height: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
             }
         ';
     }
     
     wp_add_inline_style('flexframe-dashboard-style', $dashboard_css);
-    
-    // Add body class via JS to avoid affecting other pages
-    add_action('wp_footer', function() {
-        echo "<script>document.body.classList.add('flexframe-dashboard-active');</script>";
-    }, 1);
     
     // Add viewport meta for mobile
     add_action('wp_head', 'flexframe_add_viewport_meta', 1);
@@ -4812,23 +4799,9 @@ function flexframe_dashboard_shortcode($atts) {
     $logo_url = esc_url(get_option('flexframe_logo_url', ''));
     $primary_color = esc_attr(get_option('flexframe_primary_color', '#3b99e3'));
     $tagline = esc_html(get_option('flexframe_dashboard_tagline', 'Your Fitness Journey Starts Here'));
-    
-    // Button settings
-    $btn1_enabled = get_option('flexframe_dash_btn1_enabled', true);
-    $btn1_label   = esc_html(get_option('flexframe_dash_btn1_label', 'Exercise Viewer'));
-    $btn1_url     = esc_url(get_option('flexframe_dash_btn1_url', ''));
-    
-    $btn2_enabled = get_option('flexframe_dash_btn2_enabled', true);
-    $btn2_label   = esc_html(get_option('flexframe_dash_btn2_label', 'Workout Builder'));
-    $btn2_url     = esc_url(get_option('flexframe_dash_btn2_url', ''));
-    
-    $btn3_enabled = get_option('flexframe_dash_btn3_enabled', true);
-    $btn3_label   = esc_html(get_option('flexframe_dash_btn3_label', 'Visit Our Website'));
-    $btn3_url     = esc_url(get_option('flexframe_dash_btn3_url', ''));
-    
-    $login_enabled = get_option('flexframe_dash_login_enabled', true);
-    $login_label   = esc_html(get_option('flexframe_dash_login_label', 'Client Login'));
-    $login_url     = esc_url(get_option('flexframe_dash_login_url', ''));
+    $gym_website_url = esc_url(get_option('flexframe_gym_website_url', ''));
+    $viewer_page_url = esc_url(get_option('flexframe_viewer_page_url', ''));
+    $workout_page_url = esc_url(get_option('flexframe_workout_page_url', ''));
     
     // Background colors from theme settings
     $bg_top = esc_attr(get_option('flexframe_bg_gradient_top', '#3865ad'));
@@ -4846,29 +4819,6 @@ function flexframe_dashboard_shortcode($atts) {
             update_option('flexframe_dashboard_page_url', $current_url);
         }
     }
-    
-    // Check if any button is active
-    $has_buttons = ($btn1_enabled && !empty($btn1_url)) || ($btn2_enabled && !empty($btn2_url)) || ($btn3_enabled && !empty($btn3_url)) || ($login_enabled && !empty($login_url));
-    
-    // Common button style
-    $btn_style = "
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        gap: 12px;
-        padding: 16px 24px;
-        background: rgba({$r}, {$g}, {$b}, 0.15);
-        border: 1px solid rgba({$r}, {$g}, {$b}, 0.35);
-        border-radius: 14px;
-        color: #ffffff;
-        text-decoration: none;
-        font-size: 16px;
-        font-weight: 600;
-        letter-spacing: 0.3px;
-        transition: all 0.3s ease;
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
-    ";
     
     ob_start();
     ?>
@@ -4941,35 +4891,86 @@ function flexframe_dashboard_shortcode($atts) {
                 max-width: 340px;
                 animation: ffdb-fadeInUp 0.8s ease-out 0.5s both;
             ">
-                <?php if ($btn1_enabled && !empty($btn1_url)) : ?>
-                <a href="<?php echo $btn1_url; ?>" class="ffdb-nav-btn" style="<?php echo $btn_style; ?>">
+                <?php if (!empty($viewer_page_url)) : ?>
+                <a href="<?php echo $viewer_page_url; ?>" class="ffdb-nav-btn" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    padding: 16px 24px;
+                    background: rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.15);
+                    border: 1px solid rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.35);
+                    border-radius: 14px;
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: 0.3px;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                ">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
                     </svg>
-                    <?php echo $btn1_label; ?>
+                    Exercise Viewer
                 </a>
                 <?php endif; ?>
                 
-                <?php if ($btn2_enabled && !empty($btn2_url)) : ?>
-                <a href="<?php echo $btn2_url; ?>" class="ffdb-nav-btn" style="<?php echo $btn_style; ?>">
+                <?php if (!empty($workout_page_url)) : ?>
+                <a href="<?php echo $workout_page_url; ?>" class="ffdb-nav-btn" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    padding: 16px 24px;
+                    background: rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.15);
+                    border: 1px solid rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.35);
+                    border-radius: 14px;
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: 0.3px;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                ">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <rect x="3" y="3" width="7" height="7" rx="1.5"/>
                         <rect x="14" y="3" width="7" height="7" rx="1.5"/>
                         <rect x="3" y="14" width="7" height="7" rx="1.5"/>
                         <path d="M17.5 14v7M14 17.5h7"/>
                     </svg>
-                    <?php echo $btn2_label; ?>
+                    Workout Builder
                 </a>
                 <?php endif; ?>
                 
-                <?php if ($btn3_enabled && !empty($btn3_url)) : ?>
-                <a href="<?php echo $btn3_url; ?>" class="ffdb-nav-btn" target="_blank" rel="noopener" style="<?php echo $btn_style; ?>">
+                <?php if (!empty($gym_website_url)) : ?>
+                <a href="<?php echo $gym_website_url; ?>" class="ffdb-nav-btn" target="_blank" rel="noopener" style="
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 12px;
+                    padding: 16px 24px;
+                    background: rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.15);
+                    border: 1px solid rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.35);
+                    border-radius: 14px;
+                    color: #ffffff;
+                    text-decoration: none;
+                    font-size: 16px;
+                    font-weight: 600;
+                    letter-spacing: 0.3px;
+                    transition: all 0.3s ease;
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                ">
                     <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <circle cx="12" cy="12" r="10"/>
                         <line x1="2" y1="12" x2="22" y2="12"/>
                         <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
                     </svg>
-                    <?php echo $btn3_label; ?>
+                    Visit Our Website
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="opacity:0.5;">
                         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
                         <polyline points="15 3 21 3 21 9"/>
@@ -4977,21 +4978,11 @@ function flexframe_dashboard_shortcode($atts) {
                     </svg>
                 </a>
                 <?php endif; ?>
-                
-                <?php if ($login_enabled && !empty($login_url)) : ?>
-                <a href="<?php echo $login_url; ?>" class="ffdb-nav-btn" style="<?php echo $btn_style; ?>">
-                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
-                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-                    </svg>
-                    <?php echo $login_label; ?>
-                </a>
-                <?php endif; ?>
             </div>
             
-            <?php if (!$has_buttons) : ?>
+            <?php if (empty($viewer_page_url) && empty($workout_page_url) && empty($gym_website_url)) : ?>
             <p style="opacity: 0.6; font-size: 14px; margin-top: 16px;">
-                Configure navigation buttons in FlexFrame Settings → Step 10.
+                Configure navigation links in FlexFrame Settings → Step 10.
             </p>
             <?php endif; ?>
         </div>

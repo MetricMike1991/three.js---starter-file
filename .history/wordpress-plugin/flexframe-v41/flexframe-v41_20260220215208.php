@@ -4204,18 +4204,7 @@ add_action('wp_enqueue_scripts', 'flexframe_enqueue_assets');
 function flexframe_dashboard_enqueue() {
     global $post;
     
-    // ONLY apply to pages that contain EXACTLY the [flexframe_dashboard] shortcode
-    if (!is_a($post, 'WP_Post')) {
-        return;
-    }
-    
-    // Strict check: only match [flexframe_dashboard] not [flexframe_viewer] etc
-    if (!has_shortcode($post->post_content, 'flexframe_dashboard')) {
-        return;
-    }
-    
-    // Extra safety: make sure this page does NOT have the viewer or workout shortcodes
-    if (has_shortcode($post->post_content, 'flexframe_viewer') || has_shortcode($post->post_content, 'flexframe_workout_builder')) {
+    if (!is_a($post, 'WP_Post') || !has_shortcode($post->post_content, 'flexframe_dashboard')) {
         return;
     }
     
@@ -4226,63 +4215,61 @@ function flexframe_dashboard_enqueue() {
     wp_enqueue_style('flexframe-dashboard-style');
     
     $dashboard_css = '
-        /* CRITICAL: Prevent overflow - ONLY on dashboard pages */
-        body.flexframe-dashboard-active {
+        /* CRITICAL: Prevent overflow */
+        html, body {
             overflow: hidden !important;
             margin: 0 !important;
             padding: 0 !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-width: 100% !important;
+            max-height: 100% !important;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
         }
     ';
     
     if ($is_dashboard_page) {
         $dashboard_css .= '
             /* Full-screen dashboard - hide all WordPress elements */
-            body.flexframe-dashboard-active header,
-            body.flexframe-dashboard-active footer,
-            body.flexframe-dashboard-active aside,
-            body.flexframe-dashboard-active nav:not(#flexframe-dashboard nav),
-            body.flexframe-dashboard-active .header,
-            body.flexframe-dashboard-active .footer,
-            body.flexframe-dashboard-active .sidebar,
-            body.flexframe-dashboard-active .site-header,
-            body.flexframe-dashboard-active .site-footer,
-            body.flexframe-dashboard-active .site-navigation,
-            body.flexframe-dashboard-active .site-branding,
-            body.flexframe-dashboard-active .wp-site-header,
-            body.flexframe-dashboard-active .wp-site-footer,
-            body.flexframe-dashboard-active .wp-site-navigation,
-            body.flexframe-dashboard-active #masthead,
-            body.flexframe-dashboard-active #colophon,
-            body.flexframe-dashboard-active #secondary,
-            body.flexframe-dashboard-active #site-navigation,
-            body.flexframe-dashboard-active .main-navigation,
-            body.flexframe-dashboard-active .footer-navigation,
-            body.flexframe-dashboard-active .widget-area,
-            body.flexframe-dashboard-active .site-info,
-            body.flexframe-dashboard-active .entry-header,
-            body.flexframe-dashboard-active .entry-footer,
-            body.flexframe-dashboard-active .entry-meta,
-            body.flexframe-dashboard-active .post-navigation,
-            body.flexframe-dashboard-active .comments-area,
-            body.flexframe-dashboard-active .page-header,
-            body.flexframe-dashboard-active .page-title,
-            body.flexframe-dashboard-active .entry-title,
-            body.flexframe-dashboard-active .wp-block-post-title,
-            body.flexframe-dashboard-active #wpadminbar,
-            body.flexframe-dashboard-active .breadcrumb,
-            body.flexframe-dashboard-active .breadcrumbs,
-            body.flexframe-dashboard-active .skip-link {
+            header, footer, aside, nav, .header, .footer, .sidebar,
+            .site-header, .site-footer, .site-navigation, .site-branding,
+            .wp-site-header, .wp-site-footer, .wp-site-navigation,
+            #masthead, #colophon, #secondary, #site-navigation,
+            .main-navigation, .footer-navigation,
+            .widget-area, .sidebar, .site-info,
+            .entry-header, .entry-footer, .entry-meta,
+            .post-navigation, .comments-area,
+            .page-header, .page-title, .entry-title,
+            .wp-block-post-title, .wp-block-latest-posts,
+            .wp-block-query, .wp-block-template-part,
+            .has-global-padding > .wp-block-template-part,
+            #wpadminbar,
+            .breadcrumb, .breadcrumbs,
+            .skip-link {
                 display: none !important;
+            }
+            /* Make content area full screen */
+            main, .site-main, .site-content, .content-area,
+            .entry-content, article, .page, .type-page,
+            .wp-block-group, .wp-site-blocks,
+            .is-layout-constrained, .is-layout-flow {
+                width: 100% !important;
+                max-width: 100% !important;
+                height: 100% !important;
+                max-height: 100% !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                overflow: hidden !important;
+                position: fixed !important;
+                top: 0 !important;
+                left: 0 !important;
             }
         ';
     }
     
     wp_add_inline_style('flexframe-dashboard-style', $dashboard_css);
-    
-    // Add body class via JS to avoid affecting other pages
-    add_action('wp_footer', function() {
-        echo "<script>document.body.classList.add('flexframe-dashboard-active');</script>";
-    }, 1);
     
     // Add viewport meta for mobile
     add_action('wp_head', 'flexframe_add_viewport_meta', 1);

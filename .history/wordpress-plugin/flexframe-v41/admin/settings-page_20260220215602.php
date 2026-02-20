@@ -4678,10 +4678,11 @@ function flexframe_settings_page() {
                                                placeholder="Client Login" />
                                     </div>
                                     <div style="flex: 2; min-width: 300px;">
-                                        <label for="flexframe_dash_login_url" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
-                                        <input type="url" id="flexframe_dash_login_url" name="flexframe_dash_login_url" 
-                                               value="<?php echo esc_attr($login_url); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="https://yoursite.com/login/" />
+                                        <label style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
+                                        <input type="text" disabled 
+                                               value="<?php echo esc_attr(wp_login_url()); ?>" class="regular-text" style="width: 100%; background: #f0f0f0;"
+                                               title="<?php _e('Automatically links to your WordPress login page', 'flexframe-viewer'); ?>" />
+                                        <p class="description" style="margin-top: 4px; font-size: 11px;"><?php _e('Automatically links to your WordPress login page.', 'flexframe-viewer'); ?></p>
                                     </div>
                                 </div>
                             </div>

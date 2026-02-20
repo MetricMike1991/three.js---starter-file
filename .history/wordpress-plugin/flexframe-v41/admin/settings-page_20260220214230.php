@@ -1878,7 +1878,7 @@ function flexframe_register_settings() {
         'default' => ''
     ));
     
-    // Button 4: Client Login
+    // Button 4: Admin Login
     register_setting('flexframe_settings_group', 'flexframe_dash_login_enabled', array(
         'type' => 'boolean',
         'sanitize_callback' => 'rest_sanitize_boolean',
@@ -1887,12 +1887,7 @@ function flexframe_register_settings() {
     register_setting('flexframe_settings_group', 'flexframe_dash_login_label', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_text_field',
-        'default' => 'Client Login'
-    ));
-    register_setting('flexframe_settings_group', 'flexframe_dash_login_url', array(
-        'type' => 'string',
-        'sanitize_callback' => 'esc_url_raw',
-        'default' => ''
+        'default' => 'Admin Login'
     ));
     
     // ========== UI Settings (Step 5) ==========
@@ -4505,8 +4500,7 @@ function flexframe_settings_page() {
                 $btn3_url     = get_option('flexframe_dash_btn3_url', '');
                 
                 $login_enabled = get_option('flexframe_dash_login_enabled', true);
-                $login_label   = get_option('flexframe_dash_login_label', 'Client Login');
-                $login_url     = get_option('flexframe_dash_login_url', '');
+                $login_label   = get_option('flexframe_dash_login_label', 'Admin Login');
                 ?>
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="10">
@@ -4585,10 +4579,10 @@ function flexframe_settings_page() {
                             <!-- Button 1: Exercise Viewer -->
                             <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
                                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
+                                    <label class="flexframe-toggle-switch" style="flex-shrink: 0;">
                                         <input type="hidden" name="flexframe_dash_btn1_enabled" value="0">
                                         <input type="checkbox" name="flexframe_dash_btn1_enabled" value="1" <?php checked($btn1_enabled); ?>>
-                                        <span class="toggle-slider"></span>
+                                        <span class="flexframe-toggle-slider"></span>
                                     </label>
                                     <strong style="font-size: 14px;">🏋️ <?php _e('Button 1: Exercise Viewer', 'flexframe-viewer'); ?></strong>
                                 </div>
@@ -4611,10 +4605,10 @@ function flexframe_settings_page() {
                             <!-- Button 2: Workout Builder -->
                             <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
                                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
+                                    <label class="flexframe-toggle-switch" style="flex-shrink: 0;">
                                         <input type="hidden" name="flexframe_dash_btn2_enabled" value="0">
                                         <input type="checkbox" name="flexframe_dash_btn2_enabled" value="1" <?php checked($btn2_enabled); ?>>
-                                        <span class="toggle-slider"></span>
+                                        <span class="flexframe-toggle-slider"></span>
                                     </label>
                                     <strong style="font-size: 14px;">📋 <?php _e('Button 2: Workout Builder', 'flexframe-viewer'); ?></strong>
                                 </div>
@@ -4637,10 +4631,10 @@ function flexframe_settings_page() {
                             <!-- Button 3: Gym Website -->
                             <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
                                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
+                                    <label class="flexframe-toggle-switch" style="flex-shrink: 0;">
                                         <input type="hidden" name="flexframe_dash_btn3_enabled" value="0">
                                         <input type="checkbox" name="flexframe_dash_btn3_enabled" value="1" <?php checked($btn3_enabled); ?>>
-                                        <span class="toggle-slider"></span>
+                                        <span class="flexframe-toggle-slider"></span>
                                     </label>
                                     <strong style="font-size: 14px;">🌐 <?php _e('Button 3: Visit Website', 'flexframe-viewer'); ?></strong>
                                 </div>
@@ -4663,25 +4657,26 @@ function flexframe_settings_page() {
                             <!-- Button 4: Admin Login -->
                             <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
                                 <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
+                                    <label class="flexframe-toggle-switch" style="flex-shrink: 0;">
                                         <input type="hidden" name="flexframe_dash_login_enabled" value="0">
                                         <input type="checkbox" name="flexframe_dash_login_enabled" value="1" <?php checked($login_enabled); ?>>
-                                        <span class="toggle-slider"></span>
+                                        <span class="flexframe-toggle-slider"></span>
                                     </label>
-                                    <strong style="font-size: 14px;">🔒 <?php _e('Button 4: Client Login', 'flexframe-viewer'); ?></strong>
+                                    <strong style="font-size: 14px;">🔒 <?php _e('Button 4: Admin Login', 'flexframe-viewer'); ?></strong>
                                 </div>
                                 <div style="display: flex; gap: 12px; flex-wrap: wrap;">
                                     <div style="flex: 1; min-width: 200px;">
                                         <label for="flexframe_dash_login_label" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('Label:', 'flexframe-viewer'); ?></label>
                                         <input type="text" id="flexframe_dash_login_label" name="flexframe_dash_login_label" 
                                                value="<?php echo esc_attr($login_label); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="Client Login" />
+                                               placeholder="Admin Login" />
                                     </div>
                                     <div style="flex: 2; min-width: 300px;">
-                                        <label for="flexframe_dash_login_url" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
-                                        <input type="url" id="flexframe_dash_login_url" name="flexframe_dash_login_url" 
-                                               value="<?php echo esc_attr($login_url); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="https://yoursite.com/login/" />
+                                        <label style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
+                                        <input type="text" disabled 
+                                               value="<?php echo esc_attr(wp_login_url()); ?>" class="regular-text" style="width: 100%; background: #f0f0f0;"
+                                               title="<?php _e('Automatically links to your WordPress login page', 'flexframe-viewer'); ?>" />
+                                        <p class="description" style="margin-top: 4px; font-size: 11px;"><?php _e('Automatically links to your WordPress login page.', 'flexframe-viewer'); ?></p>
                                     </div>
                                 </div>
                             </div>

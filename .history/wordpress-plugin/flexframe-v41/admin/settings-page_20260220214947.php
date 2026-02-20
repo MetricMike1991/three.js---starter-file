@@ -1889,11 +1889,6 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'sanitize_text_field',
         'default' => 'Client Login'
     ));
-    register_setting('flexframe_settings_group', 'flexframe_dash_login_url', array(
-        'type' => 'string',
-        'sanitize_callback' => 'esc_url_raw',
-        'default' => ''
-    ));
     
     // ========== UI Settings (Step 5) ==========
     
@@ -4506,7 +4501,6 @@ function flexframe_settings_page() {
                 
                 $login_enabled = get_option('flexframe_dash_login_enabled', true);
                 $login_label   = get_option('flexframe_dash_login_label', 'Client Login');
-                $login_url     = get_option('flexframe_dash_login_url', '');
                 ?>
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="10">
@@ -4678,10 +4672,11 @@ function flexframe_settings_page() {
                                                placeholder="Client Login" />
                                     </div>
                                     <div style="flex: 2; min-width: 300px;">
-                                        <label for="flexframe_dash_login_url" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
-                                        <input type="url" id="flexframe_dash_login_url" name="flexframe_dash_login_url" 
-                                               value="<?php echo esc_attr($login_url); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="https://yoursite.com/login/" />
+                                        <label style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
+                                        <input type="text" disabled 
+                                               value="<?php echo esc_attr(wp_login_url()); ?>" class="regular-text" style="width: 100%; background: #f0f0f0;"
+                                               title="<?php _e('Automatically links to your WordPress login page', 'flexframe-viewer'); ?>" />
+                                        <p class="description" style="margin-top: 4px; font-size: 11px;"><?php _e('Automatically links to your WordPress login page.', 'flexframe-viewer'); ?></p>
                                     </div>
                                 </div>
                             </div>

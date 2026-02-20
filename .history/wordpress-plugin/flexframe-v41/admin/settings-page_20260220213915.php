@@ -1878,7 +1878,7 @@ function flexframe_register_settings() {
         'default' => ''
     ));
     
-    // Button 4: Client Login
+    // Button 4: Admin Login
     register_setting('flexframe_settings_group', 'flexframe_dash_login_enabled', array(
         'type' => 'boolean',
         'sanitize_callback' => 'rest_sanitize_boolean',
@@ -1887,12 +1887,7 @@ function flexframe_register_settings() {
     register_setting('flexframe_settings_group', 'flexframe_dash_login_label', array(
         'type' => 'string',
         'sanitize_callback' => 'sanitize_text_field',
-        'default' => 'Client Login'
-    ));
-    register_setting('flexframe_settings_group', 'flexframe_dash_login_url', array(
-        'type' => 'string',
-        'sanitize_callback' => 'esc_url_raw',
-        'default' => ''
+        'default' => 'Admin Login'
     ));
     
     // ========== UI Settings (Step 5) ==========
@@ -4489,24 +4484,8 @@ function flexframe_settings_page() {
                 <!-- Step 10: Dashboard Page -->
                 <?php
                 $dashboard_page_url = get_option('flexframe_dashboard_page_url', '');
+                $gym_website_url = get_option('flexframe_gym_website_url', '');
                 $dashboard_tagline = get_option('flexframe_dashboard_tagline', 'Your Fitness Journey Starts Here');
-                
-                // Button settings
-                $btn1_enabled = get_option('flexframe_dash_btn1_enabled', true);
-                $btn1_label   = get_option('flexframe_dash_btn1_label', 'Exercise Viewer');
-                $btn1_url     = get_option('flexframe_dash_btn1_url', '');
-                
-                $btn2_enabled = get_option('flexframe_dash_btn2_enabled', true);
-                $btn2_label   = get_option('flexframe_dash_btn2_label', 'Workout Builder');
-                $btn2_url     = get_option('flexframe_dash_btn2_url', '');
-                
-                $btn3_enabled = get_option('flexframe_dash_btn3_enabled', true);
-                $btn3_label   = get_option('flexframe_dash_btn3_label', 'Visit Our Website');
-                $btn3_url     = get_option('flexframe_dash_btn3_url', '');
-                
-                $login_enabled = get_option('flexframe_dash_login_enabled', true);
-                $login_label   = get_option('flexframe_dash_login_label', 'Client Login');
-                $login_url     = get_option('flexframe_dash_login_url', '');
                 ?>
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="10">
@@ -4519,10 +4498,9 @@ function flexframe_settings_page() {
                     </div>
                     <div class="flexframe-step-content" style="display: none;">
                         <p class="step-description">
-                            <?php _e('Create a branded full-screen dashboard page that serves as the main hub for your fitness app. It displays your logo, uses your theme colors, and provides configurable navigation buttons.', 'flexframe-viewer'); ?>
+                            <?php _e('Create a branded full-screen dashboard page that serves as the main hub for your fitness app. It displays your logo, uses your theme colors, and provides navigation to the Exercise Viewer, Workout Builder, and your gym website.', 'flexframe-viewer'); ?>
                         </p>
                         
-                        <!-- Dashboard Setup -->
                         <div class="custom-panel-section">
                             <div class="custom-panel-header">
                                 <span class="getting-started-icon">🏠</span>
@@ -4551,9 +4529,16 @@ function flexframe_settings_page() {
                             <p class="description" style="margin-top: 8px;">
                                 <?php _e('Click to automatically create a new full-screen dashboard page.', 'flexframe-viewer'); ?>
                             </p>
+                        </div>
+                        
+                        <!-- Dashboard Page URL -->
+                        <div class="custom-panel-section">
+                            <div class="custom-panel-header">
+                                <span class="getting-started-icon">🔗</span>
+                                <h3><?php _e('Page URLs', 'flexframe-viewer'); ?></h3>
+                            </div>
                             
-                            <!-- Dashboard Page URL -->
-                            <div class="flexframe-viewer-url-setting" style="margin-top: 20px;">
+                            <div class="flexframe-viewer-url-setting">
                                 <label for="flexframe_dashboard_page_url"><strong><?php _e('Dashboard Page URL:', 'flexframe-viewer'); ?></strong></label>
                                 <div class="url-input-row">
                                     <input type="url" id="flexframe_dashboard_page_url" name="flexframe_dashboard_page_url" 
@@ -4570,120 +4555,18 @@ function flexframe_settings_page() {
                                     <?php endif; ?>
                                 </p>
                             </div>
-                        </div>
-                        
-                        <!-- Navigation Buttons -->
-                        <div class="custom-panel-section">
-                            <div class="custom-panel-header">
-                                <span class="getting-started-icon">🔗</span>
-                                <h3><?php _e('Navigation Buttons', 'flexframe-viewer'); ?></h3>
-                            </div>
-                            <p class="description" style="margin-bottom: 16px;">
-                                <?php _e('Toggle buttons on or off and assign custom URLs and labels for each navigation button on the dashboard.', 'flexframe-viewer'); ?>
-                            </p>
                             
-                            <!-- Button 1: Exercise Viewer -->
-                            <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
-                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
-                                        <input type="hidden" name="flexframe_dash_btn1_enabled" value="0">
-                                        <input type="checkbox" name="flexframe_dash_btn1_enabled" value="1" <?php checked($btn1_enabled); ?>>
-                                        <span class="toggle-slider"></span>
-                                    </label>
-                                    <strong style="font-size: 14px;">🏋️ <?php _e('Button 1: Exercise Viewer', 'flexframe-viewer'); ?></strong>
+                            <div class="flexframe-viewer-url-setting" style="margin-top: 20px;">
+                                <label for="flexframe_gym_website_url"><strong><?php _e('Gym Website URL:', 'flexframe-viewer'); ?></strong></label>
+                                <div class="url-input-row">
+                                    <input type="url" id="flexframe_gym_website_url" name="flexframe_gym_website_url" 
+                                           value="<?php echo esc_attr($gym_website_url); ?>" 
+                                           class="regular-text"
+                                           placeholder="https://www.yourgym.com/" />
                                 </div>
-                                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <label for="flexframe_dash_btn1_label" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('Label:', 'flexframe-viewer'); ?></label>
-                                        <input type="text" id="flexframe_dash_btn1_label" name="flexframe_dash_btn1_label" 
-                                               value="<?php echo esc_attr($btn1_label); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="Exercise Viewer" />
-                                    </div>
-                                    <div style="flex: 2; min-width: 300px;">
-                                        <label for="flexframe_dash_btn1_url" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
-                                        <input type="url" id="flexframe_dash_btn1_url" name="flexframe_dash_btn1_url" 
-                                               value="<?php echo esc_attr($btn1_url); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="https://yoursite.com/exercise-viewer/" />
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Button 2: Workout Builder -->
-                            <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
-                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
-                                        <input type="hidden" name="flexframe_dash_btn2_enabled" value="0">
-                                        <input type="checkbox" name="flexframe_dash_btn2_enabled" value="1" <?php checked($btn2_enabled); ?>>
-                                        <span class="toggle-slider"></span>
-                                    </label>
-                                    <strong style="font-size: 14px;">📋 <?php _e('Button 2: Workout Builder', 'flexframe-viewer'); ?></strong>
-                                </div>
-                                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <label for="flexframe_dash_btn2_label" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('Label:', 'flexframe-viewer'); ?></label>
-                                        <input type="text" id="flexframe_dash_btn2_label" name="flexframe_dash_btn2_label" 
-                                               value="<?php echo esc_attr($btn2_label); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="Workout Builder" />
-                                    </div>
-                                    <div style="flex: 2; min-width: 300px;">
-                                        <label for="flexframe_dash_btn2_url" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
-                                        <input type="url" id="flexframe_dash_btn2_url" name="flexframe_dash_btn2_url" 
-                                               value="<?php echo esc_attr($btn2_url); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="https://yoursite.com/workout-builder/" />
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Button 3: Gym Website -->
-                            <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
-                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
-                                        <input type="hidden" name="flexframe_dash_btn3_enabled" value="0">
-                                        <input type="checkbox" name="flexframe_dash_btn3_enabled" value="1" <?php checked($btn3_enabled); ?>>
-                                        <span class="toggle-slider"></span>
-                                    </label>
-                                    <strong style="font-size: 14px;">🌐 <?php _e('Button 3: Visit Website', 'flexframe-viewer'); ?></strong>
-                                </div>
-                                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <label for="flexframe_dash_btn3_label" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('Label:', 'flexframe-viewer'); ?></label>
-                                        <input type="text" id="flexframe_dash_btn3_label" name="flexframe_dash_btn3_label" 
-                                               value="<?php echo esc_attr($btn3_label); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="Visit Our Website" />
-                                    </div>
-                                    <div style="flex: 2; min-width: 300px;">
-                                        <label for="flexframe_dash_btn3_url" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
-                                        <input type="url" id="flexframe_dash_btn3_url" name="flexframe_dash_btn3_url" 
-                                               value="<?php echo esc_attr($btn3_url); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="https://www.yourgym.com/" />
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <!-- Button 4: Admin Login -->
-                            <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px; margin-bottom: 12px;">
-                                <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">
-                                    <label class="toggle-switch" style="flex-shrink: 0;">
-                                        <input type="hidden" name="flexframe_dash_login_enabled" value="0">
-                                        <input type="checkbox" name="flexframe_dash_login_enabled" value="1" <?php checked($login_enabled); ?>>
-                                        <span class="toggle-slider"></span>
-                                    </label>
-                                    <strong style="font-size: 14px;">🔒 <?php _e('Button 4: Client Login', 'flexframe-viewer'); ?></strong>
-                                </div>
-                                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-                                    <div style="flex: 1; min-width: 200px;">
-                                        <label for="flexframe_dash_login_label" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('Label:', 'flexframe-viewer'); ?></label>
-                                        <input type="text" id="flexframe_dash_login_label" name="flexframe_dash_login_label" 
-                                               value="<?php echo esc_attr($login_label); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="Client Login" />
-                                    </div>
-                                    <div style="flex: 2; min-width: 300px;">
-                                        <label for="flexframe_dash_login_url" style="display: block; margin-bottom: 4px; font-size: 12px; color: #666;"><?php _e('URL:', 'flexframe-viewer'); ?></label>
-                                        <input type="url" id="flexframe_dash_login_url" name="flexframe_dash_login_url" 
-                                               value="<?php echo esc_attr($login_url); ?>" class="regular-text" style="width: 100%;"
-                                               placeholder="https://yoursite.com/login/" />
-                                    </div>
-                                </div>
+                                <p class="description">
+                                    <?php _e('The main gym/business website URL. This will appear as a navigation button on the dashboard.', 'flexframe-viewer'); ?>
+                                </p>
                             </div>
                         </div>
                         
@@ -4710,7 +4593,7 @@ function flexframe_settings_page() {
                             <div style="margin-top: 20px; padding: 16px; background: #f0f6fc; border-left: 4px solid #2271b1; border-radius: 4px;">
                                 <p style="margin: 0; font-size: 13px; color: #1d2327;">
                                     <strong><?php _e('Note:', 'flexframe-viewer'); ?></strong>
-                                    <?php _e('The dashboard automatically uses your logo (Step 2), primary color (Step 3), and background settings (Step 6).', 'flexframe-viewer'); ?>
+                                    <?php _e('The dashboard automatically uses your logo (Step 2), primary color (Step 3), and background settings (Step 6). The Exercise Viewer and Workout Builder navigation buttons only appear if those pages have been created.', 'flexframe-viewer'); ?>
                                 </p>
                             </div>
                         </div>
