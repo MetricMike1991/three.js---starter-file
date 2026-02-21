@@ -2721,7 +2721,7 @@ class ThreeJSApp {
         const style = document.createElement('style');
         style.textContent = `
             .screenshot-panel {
-                position: fixed;
+                position: absolute;
                 top: 10px;
                 right: 10px;
                 background: rgba(30, 30, 30, 0.95);
@@ -2934,7 +2934,7 @@ class ThreeJSApp {
         const style = document.createElement('style');
         style.textContent = `
             .screenshot-frame-panel {
-                position: fixed;
+                position: absolute;
                 pointer-events: none;
                 border: 2px solid #4a9eff;
                 background: rgba(74, 158, 255, 0.1);
@@ -3013,29 +3013,36 @@ class ThreeJSApp {
     updateScreenshotFramePanel(width, height) {
         if (!this.screenshotFramePanel) return;
         
-        // Use viewport dimensions (frame is position:fixed)
-        const vw = window.innerWidth;
-        const vh = window.innerHeight;
+        // Use the canvas element for accurate positioning (accounts for any container offsets)
+        const canvas = this.renderer?.domElement;
+        const container = document.getElementById('flexframe-viewer-container');
+        if (!canvas && !container) return;
         
-        // Calculate scale to fit frame in viewport while maintaining aspect ratio
+        const ref = canvas || container;
+        const refRect = ref.getBoundingClientRect();
+        const containerRect = container ? container.getBoundingClientRect() : refRect;
+        const containerWidth = refRect.width;
+        const containerHeight = refRect.height;
+        
+        // Calculate scale to fit frame in container while maintaining aspect ratio
         const targetAspect = width / height;
-        const viewportAspect = vw / vh;
+        const containerAspect = containerWidth / containerHeight;
         
         let frameWidth, frameHeight;
         
-        if (targetAspect > viewportAspect) {
+        if (targetAspect > containerAspect) {
             // Width limited
-            frameWidth = Math.min(width, vw * 0.8);
+            frameWidth = Math.min(width, containerWidth * 0.8);
             frameHeight = frameWidth / targetAspect;
         } else {
             // Height limited
-            frameHeight = Math.min(height, vh * 0.8);
+            frameHeight = Math.min(height, containerHeight * 0.8);
             frameWidth = frameHeight * targetAspect;
         }
         
-        // Center the frame in the viewport
-        const left = (vw - frameWidth) / 2;
-        const top = (vh - frameHeight) / 2;
+        // Center the frame
+        const left = (containerWidth - frameWidth) / 2;
+        const top = (containerHeight - frameHeight) / 2;
         
         this.screenshotFramePanel.style.width = `${frameWidth}px`;
         this.screenshotFramePanel.style.height = `${frameHeight}px`;
