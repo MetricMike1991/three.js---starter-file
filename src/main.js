@@ -2589,9 +2589,6 @@ class ThreeJSApp {
                 if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
                 guiVisible = !guiVisible;
                 this.gui.domElement.style.display = guiVisible ? 'block' : 'none';
-                // Sync debug button state
-                const dbgBtn = document.getElementById('ffx-debug-gui-btn');
-                if (dbgBtn) dbgBtn.classList.toggle('ffx-debug-active', guiVisible);
             }
         });
 
@@ -2608,100 +2605,6 @@ class ThreeJSApp {
         `;
         document.head.appendChild(guiStyle);
 
-        // ─── Mobile Debug Button ─────────────────────────────────
-        // Floating button so you can toggle the material GUI on phones
-        this._setupMobileDebugButton(guiVisible);
-    }
-
-    /**
-     * Add a small floating debug 🔧 button (bottom-right, below fullscreen).
-     * Tapping it shows/hides the lil-gui panel with mobile-friendly styling.
-     */
-    _setupMobileDebugButton() {
-        // Inject mobile-friendly GUI overrides
-        const mobileCSS = document.createElement('style');
-        mobileCSS.textContent = `
-            /* ── Debug toggle button ─────────────────── */
-            #ffx-debug-gui-btn {
-                position: fixed;
-                bottom: 130px;
-                right: 16px;
-                z-index: 100000;
-                width: 40px;
-                height: 40px;
-                border-radius: 50%;
-                border: 1px solid rgba(255,255,255,0.15);
-                background: rgba(30,30,30,0.85);
-                color: #aaa;
-                font-size: 18px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                backdrop-filter: blur(8px);
-                -webkit-backdrop-filter: blur(8px);
-                box-shadow: 0 2px 10px rgba(0,0,0,0.4);
-                transition: background 0.2s, color 0.2s, border-color 0.2s;
-                touch-action: manipulation;
-                -webkit-tap-highlight-color: transparent;
-            }
-            #ffx-debug-gui-btn.ffx-debug-active {
-                background: rgba(74,158,255,0.25);
-                color: #4a9eff;
-                border-color: rgba(74,158,255,0.5);
-            }
-            /* ── Mobile-friendly lil-gui overrides ──── */
-            @media (max-width: 768px) {
-                .lil-gui.root {
-                    position: fixed !important;
-                    top: 0 !important;
-                    right: 0 !important;
-                    bottom: 0 !important;
-                    width: 82vw !important;
-                    max-width: 340px !important;
-                    max-height: 100vh !important;
-                    overflow-y: auto !important;
-                    -webkit-overflow-scrolling: touch;
-                    z-index: 99999 !important;
-                    font-size: 13px !important;
-                    border-radius: 0 !important;
-                    box-shadow: -4px 0 20px rgba(0,0,0,0.5) !important;
-                }
-                .lil-gui.root > .title {
-                    position: sticky;
-                    top: 0;
-                    z-index: 1;
-                }
-                .lil-gui .children {
-                    padding-bottom: 80px !important;
-                }
-            }
-        `;
-        document.head.appendChild(mobileCSS);
-
-        const btn = document.createElement('button');
-        btn.id = 'ffx-debug-gui-btn';
-        btn.innerHTML = '🔧';
-        btn.title = 'Toggle Material Debug GUI';
-        document.body.appendChild(btn);
-
-        let guiVisible = false;
-        const toggle = () => {
-            guiVisible = !guiVisible;
-            this.gui.domElement.style.display = guiVisible ? 'block' : 'none';
-            btn.classList.toggle('ffx-debug-active', guiVisible);
-        };
-
-        // Touch + click (WebView safe)
-        let touchMoved = false;
-        btn.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
-        btn.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
-        btn.addEventListener('touchend', (e) => {
-            if (touchMoved) return;
-            e.preventDefault();
-            toggle();
-        });
-        btn.addEventListener('click', toggle);
     }
 
     updateGroundMode(mode) {

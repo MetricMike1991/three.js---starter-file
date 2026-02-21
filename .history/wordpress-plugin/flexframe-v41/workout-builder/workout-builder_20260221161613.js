@@ -1476,48 +1476,11 @@
                         c.width = img.naturalWidth;
                         c.height = img.naturalHeight;
                         const ctx = c.getContext('2d');
-                        ctx.drawImage(img, 0, 0);
-
                         if (applyHue) {
-                            const hueStr = getComputedStyle(root).getPropertyValue('--ffwb-hue-rotation').trim();
-                            const angle = parseFloat(hueStr) || 0;
-                            if (angle !== 0) {
-                                try {
-                                    const imageData = ctx.getImageData(0, 0, c.width, c.height);
-                                    const d = imageData.data;
-                                    const rad = angle * Math.PI / 180;
-                                    const cos = Math.cos(rad), sin = Math.sin(rad);
-                                    const m00 = 0.213 + 0.787 * cos - 0.213 * sin;
-                                    const m01 = 0.715 - 0.715 * cos - 0.715 * sin;
-                                    const m02 = 0.072 - 0.072 * cos + 0.928 * sin;
-                                    const m10 = 0.213 - 0.213 * cos + 0.143 * sin;
-                                    const m11 = 0.715 + 0.285 * cos + 0.140 * sin;
-                                    const m12 = 0.072 - 0.072 * cos - 0.283 * sin;
-                                    const m20 = 0.213 - 0.213 * cos - 0.787 * sin;
-                                    const m21 = 0.715 - 0.715 * cos + 0.715 * sin;
-                                    const m22 = 0.072 + 0.928 * cos + 0.072 * sin;
-                                    for (let i = 0; i < d.length; i += 4) {
-                                        const r = d[i], g = d[i+1], b = d[i+2];
-                                        d[i]   = Math.min(255, Math.max(0, r*m00 + g*m01 + b*m02));
-                                        d[i+1] = Math.min(255, Math.max(0, r*m10 + g*m11 + b*m12));
-                                        d[i+2] = Math.min(255, Math.max(0, r*m20 + g*m21 + b*m22));
-                                    }
-                                    ctx.putImageData(imageData, 0, 0);
-                                } catch (hueErr) {
-                                    // CORS may block getImageData — fall back to ctx.filter
-                                    console.warn('[PDF] getImageData blocked by CORS, trying ctx.filter fallback', hueErr);
-                                    const c2 = document.createElement('canvas');
-                                    c2.width = img.naturalWidth;
-                                    c2.height = img.naturalHeight;
-                                    const ctx2 = c2.getContext('2d');
-                                    ctx2.filter = 'hue-rotate(' + angle + 'deg)';
-                                    ctx2.drawImage(img, 0, 0);
-                                    resolve(c2.toDataURL('image/png'));
-                                    return;
-                                }
-                            }
+                            const hue = getComputedStyle(root).getPropertyValue('--ffwb-hue-rotation').trim() || '0deg';
+                            ctx.filter = 'hue-rotate(' + hue + ')';
                         }
-
+                        ctx.drawImage(img, 0, 0);
                         resolve(c.toDataURL('image/png'));
                     } catch { resolve(null); }
                 };
