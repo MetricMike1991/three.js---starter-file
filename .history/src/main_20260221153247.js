@@ -3,7 +3,52 @@
  * Organized modular architecture for better maintainability
  */
 
-console.log('[FlexFrame Build] main.js v28.4 loaded - AR Support - Build timestamp:', new Date().toISOString());
+const BUILD_TIMESTAMP = __BUILD_TIMESTAMP__;
+const BUILD_NUMBER = __BUILD_NUMBER__;
+console.log('[FlexFrame Build] main.js v28.4 loaded - AR Support - Build #' + BUILD_NUMBER + ' - ' + BUILD_TIMESTAMP);
+
+// Samsung Internet detection (user-agent contains "SamsungBrowser")
+const IS_SAMSUNG_INTERNET = /SamsungBrowser/i.test(navigator.userAgent);
+if (IS_SAMSUNG_INTERNET) console.log('📱 Samsung Internet detected');
+
+// Keyboard shortcut to check build timestamp (Press 'L')
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'l' || e.key === 'L') {
+        // Don't trigger if typing in an input
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        
+        console.log('%c═══════════════════════════════════════════════════════', 'color: #4CAF50; font-weight: bold;');
+        console.log('%c🔍 FLEXFRAME BUILD INFO', 'color: #4CAF50; font-size: 16px; font-weight: bold;');
+        console.log('%c═══════════════════════════════════════════════════════', 'color: #4CAF50; font-weight: bold;');
+        console.log('%c📦 Version:', 'color: #2196F3; font-weight: bold;', 'v28.4 - AR Support');
+        console.log('%c🔢 Build Number:', 'color: #2196F3; font-weight: bold;', '#' + BUILD_NUMBER);
+        console.log('%c🕒 Build Timestamp:', 'color: #2196F3; font-weight: bold;', BUILD_TIMESTAMP);
+        console.log('%c📅 Build Date:', 'color: #2196F3; font-weight: bold;', new Date(BUILD_TIMESTAMP).toLocaleString());
+        console.log('%c⏱️  Time Ago:', 'color: #2196F3; font-weight: bold;', getTimeAgo(BUILD_TIMESTAMP));
+        if (window.flexframeSettings && window.flexframeSettings.pluginUrl) {
+            console.log('%c🔗 Plugin URL:', 'color: #2196F3; font-weight: bold;', window.flexframeSettings.pluginUrl);
+            console.log('%c📂 Plugin Version:', 'color: #2196F3; font-weight: bold;', window.flexframeSettings.pluginVersion || 'N/A');
+        }
+        console.log('%c═══════════════════════════════════════════════════════', 'color: #4CAF50; font-weight: bold;');
+    }
+});
+
+// Helper function to calculate time ago
+function getTimeAgo(timestamp) {
+    const now = new Date();
+    const buildDate = new Date(timestamp);
+    const diffMs = now - buildDate;
+    const diffSecs = Math.floor(diffMs / 1000);
+    const diffMins = Math.floor(diffSecs / 60);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+    
+    if (diffSecs < 60) return `${diffSecs} seconds ago`;
+    if (diffMins < 60) return `${diffMins} minutes ago`;
+    if (diffHours < 24) return `${diffHours} hours ago`;
+    return `${diffDays} days ago`;
+}
+
 
 // Helper function to resolve asset paths for WordPress plugin
 export function getAssetUrl(path) {
@@ -34,6 +79,7 @@ import { MultiThumbnailMenuSystem } from './js/multi-thumbnail-menu.js';
 import { RightMenuSystem } from './js/right-menu-system.js';
 import { arHandler } from './js/ar-handler.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import ThemeEditor from './js/theme-editor.js';
 
 /**
  * Application Class
@@ -126,6 +172,9 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
+        // Initialize Theme Editor (press T to open)
+        this.themeEditor = new ThemeEditor(this);
+        
         // Setup screenshot button callback
         this.setupScreenshotButton();
         
@@ -150,6 +199,12 @@ class ThreeJSApp {
         console.log('✅ window.menuManager set:', window.menuManager);
         window.rightMenuManager = this.rightMenuSystem;
         
+        // Setup mobile search close button
+        this.setupMobileSearchCloseButton();
+        
+        // Setup mobile fullscreen button
+        this.setupFullscreenButton();
+        
         // Listen for thumbnail selection events
         document.addEventListener('thumbnailSelected', (e) => {
             console.log('Thumbnail selected:', e.detail.thumbnail);
@@ -160,6 +215,10 @@ class ThreeJSApp {
         document.addEventListener('exercisesSelected', async (e) => {
             const exercise = e.detail.item;
             this.currentExerciseName = exercise.name;
+            this.currentExerciseId = exercise.id || '';
+            
+            // Show "Add to Workout" button if workout page is configured
+            this.showAddToWorkoutButton(exercise);
             
             // Update screenshot panel filename if it exists
             if (this.screenshotPanel) {
@@ -179,6 +238,7 @@ class ThreeJSApp {
                     const resolvedConfigUrl = getAssetUrl(exercise.configUrl.replace('./', ''));
                     const configUrlWithCache = resolvedConfigUrl + cacheBuster;
                     const response = await fetch(configUrlWithCache);
+                    if (!response.ok) throw new Error(`Config fetch failed: ${response.status}`);
                     const config = await response.json();
                     // console.log('Exercise config loaded:', config);
                     // console.log('📋 Config customTextures:', config.customTextures);
@@ -186,8 +246,8 @@ class ThreeJSApp {
                     // Store full config for quality switching
                     this.currentConfig = config;
                     
-                    // Update AR handler with new config
-                    arHandler.updateConfig(config);
+                    // Update AR handler with new config + thumbnail
+                    arHandler.updateConfig(config, exercise.thumbnailUrl);
                     
                     // Store config temporarily to apply after model loads
                     this.pendingModelConfig = config.model;
@@ -196,14 +256,23 @@ class ThreeJSApp {
                     this.modelUrlSQ = config.modelUrl || config.modelUrlSQ;
                     this.modelUrlHQ = config.modelUrlHQ;
                     this.currentModelQuality = 'SQ';
+                    this.isQualitySwitching = false; // Reset quality switch lock
+                    this.isModelLoading = false; // Reset model loading lock
                     
                     // Update quality toggle button visibility
                     this.updateQualityButtonVisibility();
                     
                     // Load the 3D model if URL is provided
                     if (this.modelUrlSQ) {
-                        // console.log('Loading SQ model from config:', this.modelUrlSQ);
-                        await this.loadModel(this.modelUrlSQ);
+                        // If test model is active, override the model URL
+                        const ws = window.flexframeSettings;
+                        if (ws?.testModelUrl && ws?.testModelEnabled) {
+                            console.log('🧪 [Model Tester] Overriding exercise model with test model');
+                            this._isTestModel = true;
+                            await this.loadModel(ws.testModelUrl);
+                        } else {
+                            await this.loadModel(this.modelUrlSQ);
+                        }
                     }
                     
                     // Apply camera settings
@@ -231,7 +300,7 @@ class ThreeJSApp {
                     
                     // Update right menu tabs with config data
                     if (config.rightMenuTabs && window.rightMenuManager) {
-                        window.rightMenuManager.updateFromConfig(config.rightMenuTabs);
+                        window.rightMenuManager.updateFromConfig(config.rightMenuTabs, exercise);
                     }
                 } catch (error) {
                     console.error('Failed to load exercise config:', error);
@@ -336,31 +405,10 @@ class ThreeJSApp {
         // Check for exercise in URL and auto-select it
         this.checkUrlForExercise();
         
-        // Reveal menus after initialization is complete (they start hidden to prevent FOUC)
-        this.revealMenus();
+        // Check for test model from WordPress settings
+        this.checkForTestModel();
         
         this.animate();
-    }
-    
-    /**
-     * Reveal menus after initialization is complete
-     * Menus start hidden with inline styles to prevent FOUC (Flash of Unstyled Content)
-     */
-    revealMenus() {
-        const leftMenu = document.querySelector('.thumbnail-grid-container');
-        const rightMenu = document.querySelector('.thumbnail-grid-container-right');
-        
-        // Use setTimeout to ensure CSS has loaded first
-        setTimeout(() => {
-            if (leftMenu) {
-                leftMenu.style.display = '';
-            }
-            
-            if (rightMenu) {
-                rightMenu.style.display = '';
-            }
-            console.log('[FlexFrame] Menus revealed after initialization');
-        }, 50);
     }
     
     /**
@@ -446,6 +494,628 @@ class ThreeJSApp {
         console.warn('⚠️ Timed out waiting for exercises to load for URL preload');
     }
 
+    /**
+     * Check if a test model URL is set from WordPress and load it
+     */
+    async checkForTestModel() {
+        const ws = window.flexframeSettings;
+        if (!ws?.testModelUrl || !ws?.testModelEnabled) return;
+        
+        console.log('🧪 [Model Tester] Test model URL detected:', ws.testModelUrl);
+        
+        // Mark the next load as a test model so the inspector shows
+        this._isTestModel = true;
+        this._testModelUrl = ws.testModelUrl;
+        
+        // Load the test model directly
+        try {
+            await this.loadModel(ws.testModelUrl);
+        } catch (error) {
+            console.error('🧪 [Model Tester] Failed to load test model:', error);
+            this._isTestModel = false;
+        }
+    }
+
+    /**
+     * Show the Model Inspector panel with material analysis
+     */
+    showModelInspector(model, modelUrl) {
+        console.log('[Model Inspector] Analyzing model...');
+        
+        // Collect all mesh and material data
+        const meshes = [];
+        const materialsMap = new Map();
+        let totalVertices = 0;
+        let totalTriangles = 0;
+        
+        // Known material names that get theme mapping
+        const themeMappedNames = {
+            'MUSCLE': { section: 'Preset Only' },
+            'SKIN': { section: 'Skin Material' },
+            'SKELETON': { section: 'Preset Only' },
+            'BARBELL': { section: 'Barbell Material' },
+            'BUMPER': { section: 'Bumper Plates' },
+            'CABLE': { section: 'Cable Material' },
+            'CHROME': { section: 'Chrome Material' },
+            'COLOR_1': { section: 'Brand Color' },
+            'COLOR1': { section: 'Brand Color' },
+            'METAL': { section: 'Metal Material' },
+            'PAD': { section: 'Pad / Cushion' },
+            'PLASTIC': { section: 'Plastic Material' },
+            'RUBBER': { section: 'Rubber Material' },
+            'XCLOTHES': { section: 'HD Clothes (Primary Color)' },
+            'AIBODYGIRL': { section: 'HD Body (Primary Color)' },
+            'XMUSCLE': { section: 'HD Muscle (= MUSCLE)' },
+            'XSKELETON': { section: 'HD Skeleton (= SKELETON)' },
+            'XCOLOR': { section: 'HD Color (= COLOR_1)' },
+            'XMETAL': { section: 'HD Metal (= METAL)' },
+            'XRUBBER': { section: 'HD Rubber (= RUBBER)' },
+            'XBUMPER': { section: 'HD Bumper (= BUMPER)' },
+            'XCLEAR': { section: 'HD Clear (= SKIN transmission)' },
+            'XBODY': { section: 'HD Body (depthWrite ON)' },
+            'LOGO': { section: 'Logo (Step 2)' }
+        };
+        
+        model.traverse((child) => {
+            if (child.isMesh) {
+                const geo = child.geometry;
+                const vCount = geo.attributes.position ? geo.attributes.position.count : 0;
+                const tCount = geo.index ? geo.index.count / 3 : vCount / 3;
+                totalVertices += vCount;
+                totalTriangles += Math.floor(tCount);
+                
+                const mats = Array.isArray(child.material) ? child.material : [child.material];
+                mats.forEach(mat => {
+                    if (mat) {
+                        const name = mat.name || 'Unnamed';
+                        if (!materialsMap.has(name)) {
+                            materialsMap.set(name, {
+                                material: mat,
+                                meshCount: 0,
+                                vertices: 0
+                            });
+                        }
+                        const entry = materialsMap.get(name);
+                        entry.meshCount++;
+                        entry.vertices += vCount;
+                    }
+                });
+                
+                meshes.push({
+                    name: child.name || 'Unnamed Mesh',
+                    materialName: mats.map(m => m?.name || 'Unnamed').join(', '),
+                    vertices: vCount,
+                    triangles: Math.floor(tCount)
+                });
+            }
+        });
+        
+        // Remove existing inspector if any
+        const existing = document.getElementById('flexframe-model-inspector');
+        if (existing) existing.remove();
+        
+        // Build the inspector panel
+        const panel = document.createElement('div');
+        panel.id = 'flexframe-model-inspector';
+        panel.innerHTML = `
+            <div class="fmi-header">
+                <div class="fmi-title">
+                    <span>Model Inspector</span>
+                    <span class="fmi-badge">TEST MODE</span>
+                </div>
+                <div class="fmi-header-actions">
+                    <button class="fmi-btn fmi-copy-btn" title="Copy report to clipboard">Copy</button>
+                    <button class="fmi-btn fmi-minimize-btn" title="Minimize">−</button>
+                    <button class="fmi-btn fmi-close-btn" title="Close">X</button>
+                </div>
+            </div>
+            <div class="fmi-body">
+                <div class="fmi-section">
+                    <div class="fmi-section-title">Model Overview</div>
+                    <div class="fmi-stats-grid">
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${meshes.length}</span>
+                            <span class="fmi-stat-label">Meshes</span>
+                        </div>
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${materialsMap.size}</span>
+                            <span class="fmi-stat-label">Materials</span>
+                        </div>
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${totalVertices.toLocaleString()}</span>
+                            <span class="fmi-stat-label">Vertices</span>
+                        </div>
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${totalTriangles.toLocaleString()}</span>
+                            <span class="fmi-stat-label">Triangles</span>
+                        </div>
+                    </div>
+                    <div class="fmi-url-row">
+                        <span class="fmi-url-label">Source:</span>
+                        <code class="fmi-url">${modelUrl}</code>
+                    </div>
+                </div>
+                
+                <div class="fmi-section">
+                    <div class="fmi-section-title">Materials (${materialsMap.size})</div>
+                    <div class="fmi-materials-list">
+                        ${Array.from(materialsMap.entries()).map(([name, data]) => {
+                            const upperName = name.toUpperCase();
+                            const themeMatch = themeMappedNames[upperName];
+                            const colorHex = data.material.color ? '#' + data.material.color.getHexString() : 'N/A';
+                            const matType = data.material.type || 'Unknown';
+                            
+                            return `
+                                <div class="fmi-material-card ${themeMatch ? 'fmi-mapped' : 'fmi-unmapped'}" data-material-name="${name}">
+                                    <div class="fmi-mat-header">
+                                        <div class="fmi-mat-name-row">
+                                            <code class="fmi-mat-name">${name}</code>
+                                            ${themeMatch ? `<span class="fmi-mat-badge fmi-badge-mapped">→ ${themeMatch.section}</span>` : '<span class="fmi-mat-badge fmi-badge-default">Default GLB</span>'}
+                                        </div>
+                                    </div>
+                                    <div class="fmi-mat-details">
+                                        <div class="fmi-mat-detail">
+                                            <span class="fmi-color-swatch" style="background:${colorHex}"></span>
+                                            <span>Color: ${colorHex}</span>
+                                        </div>
+                                        <span class="fmi-mat-detail">Type: ${matType.replace('Mesh', '').replace('Material', '')}</span>
+                                        <span class="fmi-mat-detail">Meshes: ${data.meshCount}</span>
+                                        <span class="fmi-mat-detail">Verts: ${data.vertices.toLocaleString()}</span>
+                                        ${data.material.roughness !== undefined ? `<span class="fmi-mat-detail">Rough: ${data.material.roughness.toFixed(2)}</span>` : ''}
+                                        ${data.material.metalness !== undefined ? `<span class="fmi-mat-detail">Metal: ${data.material.metalness.toFixed(2)}</span>` : ''}
+                                        ${data.material.transmission ? `<span class="fmi-mat-detail">Trans: ${data.material.transmission.toFixed(2)}</span>` : ''}
+                                        ${data.material.opacity < 1 ? `<span class="fmi-mat-detail">Opacity: ${data.material.opacity.toFixed(2)}</span>` : ''}
+                                        ${data.material.map ? '<span class="fmi-mat-detail fmi-has-texture">ColorMap</span>' : ''}
+                                        ${data.material.normalMap ? '<span class="fmi-mat-detail fmi-has-texture">NormalMap</span>' : ''}
+                                        ${data.material.bumpMap ? '<span class="fmi-mat-detail fmi-has-texture">BumpMap</span>' : ''}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+                
+                <div class="fmi-section fmi-meshes-section">
+                    <div class="fmi-section-title fmi-meshes-toggle">Meshes (${meshes.length}) <span class="fmi-toggle-hint">click to expand</span></div>
+                    <div class="fmi-meshes-list" style="display:none;">
+                        ${meshes.map(m => `
+                            <div class="fmi-mesh-row">
+                                <span class="fmi-mesh-name">${m.name}</span>
+                                <span class="fmi-mesh-mat">${m.materialName}</span>
+                                <span class="fmi-mesh-stat">${m.vertices.toLocaleString()} v / ${m.triangles.toLocaleString()} t</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add styles
+        const style = document.createElement('style');
+        style.id = 'flexframe-model-inspector-styles';
+        style.textContent = `
+            #flexframe-model-inspector {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                width: 380px;
+                max-height: 85vh;
+                background: rgba(15, 15, 20, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(74, 158, 255, 0.3);
+                border-radius: 12px;
+                color: #e0e0e0;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-size: 12px;
+                z-index: 10000;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            #flexframe-model-inspector.fmi-minimized .fmi-body { display: none; }
+            #flexframe-model-inspector.fmi-minimized { max-height: none; }
+            
+            .fmi-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 14px;
+                background: rgba(74, 158, 255, 0.1);
+                border-bottom: 1px solid rgba(74, 158, 255, 0.2);
+                cursor: move;
+                flex-shrink: 0;
+            }
+            .fmi-title {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                font-size: 13px;
+                color: #fff;
+            }
+
+            .fmi-badge {
+                font-size: 9px;
+                padding: 2px 6px;
+                background: rgba(255, 165, 0, 0.2);
+                color: #ffa500;
+                border: 1px solid rgba(255, 165, 0, 0.3);
+                border-radius: 4px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+            .fmi-header-actions { display: flex; gap: 4px; }
+            .fmi-btn {
+                background: rgba(255,255,255,0.1);
+                border: none;
+                color: #999;
+                min-width: 26px;
+                height: 26px;
+                padding: 0 6px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.15s;
+            }
+            .fmi-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+            
+            .fmi-body {
+                overflow-y: auto;
+                padding: 0;
+                flex: 1;
+            }
+            .fmi-body::-webkit-scrollbar { width: 6px; }
+            .fmi-body::-webkit-scrollbar-track { background: transparent; }
+            .fmi-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+            
+            .fmi-section {
+                padding: 12px 14px;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .fmi-section:last-child { border-bottom: none; }
+            .fmi-section-title {
+                font-weight: 600;
+                font-size: 12px;
+                color: #aaa;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            
+            .fmi-stats-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            .fmi-stat {
+                text-align: center;
+                padding: 8px 4px;
+                background: rgba(255,255,255,0.04);
+                border-radius: 8px;
+                border: 1px solid rgba(255,255,255,0.06);
+            }
+            .fmi-stat-value {
+                display: block;
+                font-size: 16px;
+                font-weight: 700;
+                color: #4a9eff;
+            }
+            .fmi-stat-label {
+                display: block;
+                font-size: 10px;
+                color: #777;
+                margin-top: 2px;
+            }
+            .fmi-url-row {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 11px;
+            }
+            .fmi-url-label { color: #777; flex-shrink: 0; }
+            .fmi-url {
+                background: rgba(255,255,255,0.05);
+                padding: 3px 8px;
+                border-radius: 4px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: #888;
+                font-size: 10px;
+                flex: 1;
+                min-width: 0;
+            }
+            
+            .fmi-materials-list { display: flex; flex-direction: column; gap: 6px; }
+            .fmi-material-card {
+                background: rgba(255,255,255,0.03);
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 8px;
+                padding: 8px 10px;
+                transition: border-color 0.15s, background 0.15s;
+                cursor: pointer;
+                user-select: none;
+            }
+            .fmi-material-card:hover {
+                background: rgba(255,255,255,0.06);
+            }
+            .fmi-material-card.fmi-selected {
+                background: rgba(74, 158, 255, 0.12);
+                border-color: rgba(74, 158, 255, 0.6);
+                box-shadow: 0 0 8px rgba(74, 158, 255, 0.15);
+            }
+            .fmi-material-card.fmi-mapped {
+                border-left: 3px solid rgba(74, 158, 255, 0.5);
+            }
+            .fmi-material-card.fmi-unmapped {
+                border-left: 3px solid rgba(255,255,255,0.1);
+            }
+            .fmi-mat-header { margin-bottom: 6px; }
+            .fmi-mat-name-row {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+            .fmi-mat-name {
+                font-weight: 600;
+                font-size: 12px;
+                color: #fff;
+                background: rgba(255,255,255,0.08);
+                padding: 2px 8px;
+                border-radius: 4px;
+            }
+            .fmi-mat-badge {
+                font-size: 10px;
+                padding: 1px 6px;
+                border-radius: 4px;
+                font-weight: 500;
+            }
+            .fmi-badge-mapped {
+                background: rgba(74, 158, 255, 0.15);
+                color: #4a9eff;
+                border: 1px solid rgba(74, 158, 255, 0.25);
+            }
+            .fmi-badge-default {
+                background: rgba(255,255,255,0.05);
+                color: #666;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            .fmi-mat-details {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px 10px;
+            }
+            .fmi-mat-detail {
+                font-size: 11px;
+                color: #888;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+            .fmi-has-texture { color: #6bc46b; }
+            .fmi-color-swatch {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 3px;
+                border: 1px solid rgba(255,255,255,0.2);
+                flex-shrink: 0;
+            }
+            
+            .fmi-meshes-toggle { cursor: pointer; }
+            .fmi-meshes-toggle:hover { color: #ccc; }
+            .fmi-toggle-hint { font-size: 10px; color: #555; font-weight: 400; text-transform: none; letter-spacing: 0; }
+            .fmi-meshes-list { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+            .fmi-mesh-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 8px;
+                padding: 4px 8px;
+                background: rgba(255,255,255,0.02);
+                border-radius: 4px;
+                font-size: 11px;
+            }
+            .fmi-mesh-name { color: #ccc; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            .fmi-mesh-mat { color: #666; font-size: 10px; }
+            .fmi-mesh-stat { color: #555; font-size: 10px; flex-shrink: 0; }
+            
+            @media (max-width: 500px) {
+                #flexframe-model-inspector {
+                    width: calc(100% - 20px);
+                    top: 5px;
+                    right: 10px;
+                    max-height: 60vh;
+                }
+                .fmi-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+        `;
+        
+        // Remove old styles if any
+        const oldStyle = document.getElementById('flexframe-model-inspector-styles');
+        if (oldStyle) oldStyle.remove();
+        
+        document.head.appendChild(style);
+        document.body.appendChild(panel);
+        
+        // Event handlers
+        
+        // --- Material highlight state ---
+        let selectedMaterialName = null;
+        const originalMaterialStates = new Map();
+        
+        // Store original material properties for every mesh
+        model.traverse((child) => {
+            if (child.isMesh) {
+                const mats = Array.isArray(child.material) ? child.material : [child.material];
+                mats.forEach(mat => {
+                    if (mat && !originalMaterialStates.has(mat)) {
+                        originalMaterialStates.set(mat, {
+                            emissive: mat.emissive ? mat.emissive.clone() : null,
+                            opacity: mat.opacity,
+                            transparent: mat.transparent,
+                            depthWrite: mat.depthWrite
+                        });
+                    }
+                });
+            }
+        });
+        
+        const restoreAllMaterials = () => {
+            originalMaterialStates.forEach((orig, mat) => {
+                if (orig.emissive) mat.emissive.copy(orig.emissive);
+                mat.opacity = orig.opacity;
+                mat.transparent = orig.transparent;
+                mat.depthWrite = orig.depthWrite;
+                mat.needsUpdate = true;
+            });
+        };
+        
+        const highlightMaterial = (materialName) => {
+            // First restore everything
+            restoreAllMaterials();
+            
+            if (materialName === selectedMaterialName) {
+                // Deselect — already restored above
+                selectedMaterialName = null;
+                panel.querySelectorAll('.fmi-material-card').forEach(c => c.classList.remove('fmi-selected'));
+                return;
+            }
+            
+            selectedMaterialName = materialName;
+            
+            // Update card selection UI
+            panel.querySelectorAll('.fmi-material-card').forEach(c => {
+                c.classList.toggle('fmi-selected', c.dataset.materialName === materialName);
+            });
+            
+            // Dim all materials, then brighten the selected one
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    const mats = Array.isArray(child.material) ? child.material : [child.material];
+                    mats.forEach(mat => {
+                        if (!mat) return;
+                        const name = mat.name || 'Unnamed';
+                        if (name === materialName) {
+                            // Highlight: add emissive glow
+                            if (mat.emissive) {
+                                mat.emissive.setRGB(0.15, 0.35, 0.65);
+                            }
+                            mat.opacity = 1;
+                            mat.transparent = false;
+                            mat.depthWrite = true;
+                        } else {
+                            // Dim: make semi-transparent
+                            mat.opacity = 0.15;
+                            mat.transparent = true;
+                            mat.depthWrite = false;
+                        }
+                        mat.needsUpdate = true;
+                    });
+                }
+            });
+        };
+        
+        // Add click handlers to material cards
+        panel.querySelectorAll('.fmi-material-card').forEach(card => {
+            card.addEventListener('click', () => {
+                highlightMaterial(card.dataset.materialName);
+            });
+        });
+        
+        panel.querySelector('.fmi-close-btn').addEventListener('click', () => {
+            restoreAllMaterials();
+            panel.remove();
+            style.remove();
+        });
+        
+        panel.querySelector('.fmi-minimize-btn').addEventListener('click', () => {
+            panel.classList.toggle('fmi-minimized');
+            const btn = panel.querySelector('.fmi-minimize-btn');
+            btn.textContent = panel.classList.contains('fmi-minimized') ? '+' : '−';
+        });
+        
+        // Copy report
+        panel.querySelector('.fmi-copy-btn').addEventListener('click', () => {
+            let report = `MODEL INSPECTOR REPORT\n`;
+            report += `======================\n`;
+            report += `Source: ${modelUrl}\n`;
+            report += `Meshes: ${meshes.length}\n`;
+            report += `Materials: ${materialsMap.size}\n`;
+            report += `Vertices: ${totalVertices.toLocaleString()}\n`;
+            report += `Triangles: ${totalTriangles.toLocaleString()}\n\n`;
+            report += `MATERIALS:\n`;
+            report += `----------\n`;
+            materialsMap.forEach((data, name) => {
+                const upperName = name.toUpperCase();
+                const themeMatch = themeMappedNames[upperName];
+                const colorHex = data.material.color ? '#' + data.material.color.getHexString() : 'N/A';
+                report += `• ${name}`;
+                if (themeMatch) report += ` → ${themeMatch.section}`;
+                else report += ` (default GLB)`;
+                report += `\n  Color: ${colorHex} | Type: ${data.material.type} | Meshes: ${data.meshCount} | Verts: ${data.vertices.toLocaleString()}`;
+                if (data.material.roughness !== undefined) report += ` | Rough: ${data.material.roughness.toFixed(2)}`;
+                if (data.material.metalness !== undefined) report += ` | Metal: ${data.material.metalness.toFixed(2)}`;
+                report += `\n`;
+            });
+            report += `\nMESHES:\n`;
+            report += `-------\n`;
+            meshes.forEach(m => {
+                report += `• ${m.name} — ${m.materialName} (${m.vertices} v / ${m.triangles} t)\n`;
+            });
+            
+            navigator.clipboard.writeText(report).then(() => {
+                const btn = panel.querySelector('.fmi-copy-btn');
+                btn.textContent = 'Done';
+                setTimeout(() => btn.textContent = 'Copy', 1500);
+            });
+        });
+        
+        // Mesh list toggle
+        panel.querySelector('.fmi-meshes-toggle').addEventListener('click', () => {
+            const list = panel.querySelector('.fmi-meshes-list');
+            const hint = panel.querySelector('.fmi-toggle-hint');
+            if (list.style.display === 'none') {
+                list.style.display = '';
+                hint.textContent = 'click to collapse';
+            } else {
+                list.style.display = 'none';
+                hint.textContent = 'click to expand';
+            }
+        });
+        
+        // Draggable header
+        let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
+        const header = panel.querySelector('.fmi-header');
+        header.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.fmi-btn')) return;
+            isDragging = true;
+            const rect = panel.getBoundingClientRect();
+            dragOffsetX = e.clientX - rect.left;
+            dragOffsetY = e.clientY - rect.top;
+            panel.style.transition = 'none';
+        });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            panel.style.left = (e.clientX - dragOffsetX) + 'px';
+            panel.style.top = (e.clientY - dragOffsetY) + 'px';
+            panel.style.right = 'auto';
+        });
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            panel.style.transition = '';
+        });
+        
+        console.log('[Model Inspector] Panel created with', materialsMap.size, 'materials and', meshes.length, 'meshes');
+    }
+
     async waitForDefaultSettings() {
         // Wait for settings manager to load default settings
         while (!this.settingsManager.getDefaultSettings()) {
@@ -470,14 +1140,23 @@ class ThreeJSApp {
         const loader = document.getElementById('model-loader');
         if (!loader) return;
 
-        // Hide all spinners
+        const ws = window.flexframeSettings || {};
+        const useLogoLoader = ws.uiSettings?.useLogoLoader ?? false;
+        const logoWrapper = loader.querySelector('.logo-loader-wrapper');
         const allSpinners = loader.querySelectorAll('.spinner-box');
-        allSpinners.forEach(spinner => spinner.style.display = 'none');
 
-        // Show selected spinner
-        const selectedSpinner = loader.querySelector(`[data-spinner="${this.loaderParams.spinnerStyle}"]`);
-        if (selectedSpinner) {
-            selectedSpinner.style.display = 'flex';
+        if (useLogoLoader && logoWrapper) {
+            // Logo loader mode - hide all spinners, show logo
+            allSpinners.forEach(spinner => spinner.style.display = 'none');
+            logoWrapper.style.display = '';
+        } else {
+            // Spinner mode - hide logo, show selected spinner
+            if (logoWrapper) logoWrapper.style.display = 'none';
+            allSpinners.forEach(spinner => spinner.style.display = 'none');
+            const selectedSpinner = loader.querySelector(`[data-spinner="${this.loaderParams.spinnerStyle}"]`);
+            if (selectedSpinner) {
+                selectedSpinner.style.display = 'flex';
+            }
         }
     }
 
@@ -519,9 +1198,10 @@ class ThreeJSApp {
         
         // Apply player settings
         if (uiSettings.player) {
-            // Apply always visible setting
-            const alwaysVisible = uiSettings.player.alwaysVisible === true;
-            console.log('[FlexFrame UI] Player always visible setting:', alwaysVisible);
+            // Apply always visible setting - but disable on mobile
+            const isMobile = window.innerWidth <= 768;
+            const alwaysVisible = isMobile ? false : (uiSettings.player.alwaysVisible === true);
+            console.log('[FlexFrame UI] Player always visible setting:', alwaysVisible, 'isMobile:', isMobile);
             
             if (this.animationPlayer) {
                 this.animationPlayer.setAlwaysVisible(alwaysVisible);
@@ -869,7 +1549,12 @@ class ThreeJSApp {
 
     setupGround() {
         // Textures
-        const fadeTexture = this.textureLoader.load(getAssetUrl('textures/gradients/3.jpg'));
+        const fadeTexture = this.textureLoader.load(
+            getAssetUrl('textures/gradients/3.jpg'),
+            undefined,
+            undefined,
+            (err) => console.warn('[Ground] Gradient texture failed to load:', err)
+        );
         fadeTexture.wrapS = THREE.ClampToEdgeWrapping;
         fadeTexture.wrapT = THREE.ClampToEdgeWrapping;
         fadeTexture.needsUpdate = true;
@@ -1900,8 +2585,13 @@ class ThreeJSApp {
         
         window.addEventListener('keydown', (event) => {
             if (event.key === 'h' || event.key === 'H') {
+                // Don't trigger if typing in an input
+                if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
                 guiVisible = !guiVisible;
                 this.gui.domElement.style.display = guiVisible ? 'block' : 'none';
+                // Sync debug button state
+                const dbgBtn = document.getElementById('ffx-debug-gui-btn');
+                if (dbgBtn) dbgBtn.classList.toggle('ffx-debug-active', guiVisible);
             }
         });
 
@@ -1917,6 +2607,101 @@ class ThreeJSApp {
             }
         `;
         document.head.appendChild(guiStyle);
+
+        // ─── Mobile Debug Button ─────────────────────────────────
+        // Floating button so you can toggle the material GUI on phones
+        this._setupMobileDebugButton(guiVisible);
+    }
+
+    /**
+     * Add a small floating debug 🔧 button (bottom-right, below fullscreen).
+     * Tapping it shows/hides the lil-gui panel with mobile-friendly styling.
+     */
+    _setupMobileDebugButton() {
+        // Inject mobile-friendly GUI overrides
+        const mobileCSS = document.createElement('style');
+        mobileCSS.textContent = `
+            /* ── Debug toggle button ─────────────────── */
+            #ffx-debug-gui-btn {
+                position: fixed;
+                bottom: 130px;
+                right: 16px;
+                z-index: 100000;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                border: 1px solid rgba(255,255,255,0.15);
+                background: rgba(30,30,30,0.85);
+                color: #aaa;
+                font-size: 18px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+                transition: background 0.2s, color 0.2s, border-color 0.2s;
+                touch-action: manipulation;
+                -webkit-tap-highlight-color: transparent;
+            }
+            #ffx-debug-gui-btn.ffx-debug-active {
+                background: rgba(74,158,255,0.25);
+                color: #4a9eff;
+                border-color: rgba(74,158,255,0.5);
+            }
+            /* ── Mobile-friendly lil-gui overrides ──── */
+            @media (max-width: 768px) {
+                .lil-gui.root {
+                    position: fixed !important;
+                    top: 0 !important;
+                    right: 0 !important;
+                    bottom: 0 !important;
+                    width: 82vw !important;
+                    max-width: 340px !important;
+                    max-height: 100vh !important;
+                    overflow-y: auto !important;
+                    -webkit-overflow-scrolling: touch;
+                    z-index: 99999 !important;
+                    font-size: 13px !important;
+                    border-radius: 0 !important;
+                    box-shadow: -4px 0 20px rgba(0,0,0,0.5) !important;
+                }
+                .lil-gui.root > .title {
+                    position: sticky;
+                    top: 0;
+                    z-index: 1;
+                }
+                .lil-gui .children {
+                    padding-bottom: 80px !important;
+                }
+            }
+        `;
+        document.head.appendChild(mobileCSS);
+
+        const btn = document.createElement('button');
+        btn.id = 'ffx-debug-gui-btn';
+        btn.innerHTML = '🔧';
+        btn.title = 'Toggle Material Debug GUI';
+        document.body.appendChild(btn);
+
+        let guiVisible = false;
+        const toggle = () => {
+            guiVisible = !guiVisible;
+            this.gui.domElement.style.display = guiVisible ? 'block' : 'none';
+            btn.classList.toggle('ffx-debug-active', guiVisible);
+        };
+
+        // Touch + click (WebView safe)
+        let touchMoved = false;
+        btn.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
+        btn.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
+        btn.addEventListener('touchend', (e) => {
+            if (touchMoved) return;
+            e.preventDefault();
+            toggle();
+        });
+        btn.addEventListener('click', toggle);
     }
 
     updateGroundMode(mode) {
@@ -2558,11 +3343,16 @@ class ThreeJSApp {
         console.log('[Quality Debug] modelUrlSQ:', this.modelUrlSQ);
         console.log('[Quality Debug] modelUrlHQ:', this.modelUrlHQ);
         
+        // Check if WordPress admin has disabled the HD button
+        const wpHDButtonEnabled = window.flexframeSettings?.showHDButton !== false;
+        console.log('[Quality Debug] WordPress showHDButton setting:', wpHDButtonEnabled);
+        
         if (qualityBtn) {
-            // Show button only if both SQ and HQ models exist
-            if (this.modelUrlSQ && this.modelUrlHQ) {
+            // Show button only if both SQ and HQ models exist AND WordPress setting allows it
+            if (this.modelUrlSQ && this.modelUrlHQ && wpHDButtonEnabled) {
                 console.log('[Quality Debug] ✅ Both models exist, showing button');
-                qualityBtn.style.display = 'flex';
+                // Use setProperty with !important to override any PHP-injected CSS
+                qualityBtn.style.setProperty('display', 'flex', 'important');
                 if (qualityText) {
                     // Show the quality you'll switch TO, not what's currently loaded (HD/SD for button display)
                     const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
@@ -2573,8 +3363,8 @@ class ThreeJSApp {
                 // Start pulsate animation only when HQ is available to switch to
                 this.startQualityButtonPulsate();
             } else {
-                console.log('[Quality Debug] ❌ Missing model URLs, hiding button');
-                qualityBtn.style.display = 'none';
+                console.log('[Quality Debug] ❌ Missing model URLs or WP disabled, hiding button');
+                qualityBtn.style.setProperty('display', 'none', 'important');
                 this.stopQualityButtonPulsate();
             }
         } else {
@@ -2620,79 +3410,197 @@ class ThreeJSApp {
         }
     }
     
+    /**
+     * Show/update the "Add to Workout" floating button when an exercise is selected.
+     */
+    showAddToWorkoutButton(exercise) {
+        const ws = window.flexframeSettings;
+        const workoutUrl = ws?.workoutPageUrl;
+        
+        // Only show if workout page URL is configured
+        if (!workoutUrl) return;
+        
+        // Get user's primary color
+        const primaryColor = ws?.primaryColor || '#4a9eff';
+        
+        // Helper: hex to rgb components
+        const hexToRgb = (hex) => {
+            const h = hex.replace('#', '');
+            return {
+                r: parseInt(h.substring(0, 2), 16),
+                g: parseInt(h.substring(2, 4), 16),
+                b: parseInt(h.substring(4, 6), 16),
+            };
+        };
+        const pc = hexToRgb(primaryColor);
+        
+        let btn = document.getElementById('ffx-add-to-workout-btn');
+        
+        if (!btn) {
+            btn = document.createElement('a');
+            btn.id = 'ffx-add-to-workout-btn';
+            btn.setAttribute('title', 'Add Exercise to Workout');
+            
+            // Style the button
+            Object.assign(btn.style, {
+                position: 'fixed',
+                bottom: '20px',
+                left: '16px',
+                zIndex: '100000',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '10px 16px',
+                background: 'rgba(0, 0, 0, 0.65)',
+                border: `1px solid ${primaryColor}`,
+                borderRadius: '12px',
+                color: '#ffffff',
+                textDecoration: 'none',
+                fontSize: '13px',
+                fontWeight: '600',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                cursor: 'pointer',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease',
+                opacity: '0',
+                transform: 'translateY(10px)',
+                boxShadow: `0 4px 16px rgba(${pc.r},${pc.g},${pc.b},0.35)`,
+                letterSpacing: '0.3px',
+            });
+            
+            // SVG icon (plus in circle)
+            btn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="16"/>
+                    <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+                <span>Add to Workout</span>
+            `;
+            
+            // Hover effects
+            btn.addEventListener('mouseenter', () => {
+                btn.style.background = 'rgba(0, 0, 0, 0.85)';
+                btn.style.borderColor = primaryColor;
+                btn.style.transform = 'translateY(-2px)';
+                btn.style.boxShadow = `0 6px 24px rgba(${pc.r},${pc.g},${pc.b},0.5)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.background = 'rgba(0, 0, 0, 0.65)';
+                btn.style.borderColor = primaryColor;
+                btn.style.transform = 'translateY(0)';
+                btn.style.boxShadow = `0 4px 16px rgba(${pc.r},${pc.g},${pc.b},0.35)`;
+            });
+            
+            // Append to the viewer container so it stays scoped
+            const container = document.getElementById('flexframe-viewer-container') || document.body;
+            container.appendChild(btn);
+            
+            // Animate in
+            requestAnimationFrame(() => {
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateY(0)';
+            });
+        }
+        
+        // Update the link with the current exercise ID
+        const exerciseId = exercise.id || exercise.name?.toLowerCase().replace(/\s+/g, '_') || '';
+        const separator = workoutUrl.includes('?') ? '&' : '?';
+        btn.href = `${workoutUrl}${separator}add_exercise=${encodeURIComponent(exerciseId)}`;
+        btn.target = '_blank';
+        btn.rel = 'noopener';
+    }
+    
     async switchModelQuality() {
         if (!this.modelUrlSQ || !this.modelUrlHQ) return;
         
-        // Toggle quality
-        this.currentModelQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
-        const modelUrl = this.currentModelQuality === 'SQ' ? this.modelUrlSQ : this.modelUrlHQ;
-        
-        console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
-        
-        // Update button text to show the NEXT quality you can switch to (HD/SD for button display)
-        const qualityText = document.getElementById('quality-text');
-        if (qualityText) {
-            const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
-            qualityText.textContent = nextQuality;
+        // Prevent clicking while any model is loading or already switching
+        if (this.isQualitySwitching || this.isModelLoading) {
+            console.log('[Quality] Model loading or already switching, ignoring click');
+            return;
         }
         
-        // Restart pulsate animation with new quality
-        this.startQualityButtonPulsate();
+        // Set lock and disable button
+        this.isQualitySwitching = true;
+        const qualityBtn = document.getElementById('quality-toggle-btn');
+        if (qualityBtn) {
+            qualityBtn.disabled = true;
+            qualityBtn.style.opacity = '0.5';
+            qualityBtn.style.cursor = 'wait';
+        }
         
-        // Get quality-specific settings if available
-        console.log('[HQ Debug] currentConfig:', this.currentConfig);
-        console.log('[HQ Debug] Has cameraHQ?', !!this.currentConfig?.cameraHQ);
-        console.log('[HQ Debug] cameraHQ value:', this.currentConfig?.cameraHQ);
-        
-        if (this.currentModelQuality === 'HQ' && (this.currentConfig?.modelHQ || this.currentConfig?.cameraHQ)) {
-            console.log('[HQ Debug] ✅ Entering HQ branch');
-            const hqModelSettings = this.currentConfig.modelHQ;
-            const hqCameraSettings = this.currentConfig.cameraHQ || hqModelSettings?.camera;
-            console.log('[HQ Debug] hqCameraSettings:', hqCameraSettings);
+        try {
+            // Toggle quality
+            this.currentModelQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
+            const modelUrl = this.currentModelQuality === 'SQ' ? this.modelUrlSQ : this.modelUrlHQ;
             
-            // Set pending model config for HQ
-            if (hqModelSettings?.model) {
-                this.pendingModelConfig = hqModelSettings.model;
+            console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
+            
+            // Update button text to show the NEXT quality you can switch to (HD/SD for button display)
+            const qualityText = document.getElementById('quality-text');
+            if (qualityText) {
+                const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
+                qualityText.textContent = nextQuality;
             }
             
-            // Reload model with HQ settings
-            await this.loadModel(modelUrl);
-            console.log('[HQ Debug] Model loaded, now applying camera settings');
+            // Restart pulsate animation with new quality
+            this.startQualityButtonPulsate();
             
-            // Apply HQ camera settings (from cameraHQ or modelHQ.camera)
-            if (hqCameraSettings) {
-                console.log('[HQ Debug] Applying HQ camera position:', hqCameraSettings.position);
-                const camera = this.cameraManager.getCamera();
-                if (hqCameraSettings.position) {
-                    camera.position.set(...hqCameraSettings.position);
-                }
-                if (hqCameraSettings.rotation) {
-                    camera.rotation.set(...hqCameraSettings.rotation);
-                }
-                if (hqCameraSettings.target) {
-                    this.cameraManager.getControls().target.set(...hqCameraSettings.target);
-                }
-                this.cameraManager.getControls().update();
+            // Get quality-specific settings if available
+            console.log('[HQ Debug] currentConfig:', this.currentConfig);
+            console.log('[HQ Debug] Has cameraHQ?', !!this.currentConfig?.cameraHQ);
+            console.log('[HQ Debug] cameraHQ value:', this.currentConfig?.cameraHQ);
+            
+            if (this.currentModelQuality === 'HQ' && (this.currentConfig?.modelHQ || this.currentConfig?.cameraHQ)) {
+                console.log('[HQ Debug] ✅ Entering HQ branch');
+                const hqModelSettings = this.currentConfig.modelHQ;
+                const hqCameraSettings = this.currentConfig.cameraHQ || hqModelSettings?.camera;
+                console.log('[HQ Debug] hqCameraSettings:', hqCameraSettings);
                 
-                // Update original state for spacebar reset
-                this.cameraManager.updateOriginalState(
-                    hqCameraSettings.position,
-                    hqCameraSettings.rotation,
-                    hqCameraSettings.target
-                );
-            }
-        } else {
-            // Use default/SQ settings
-            if (this.currentConfig?.model) {
-                this.pendingModelConfig = this.currentConfig.model;
-            }
-            
-            // Reload model
-            await this.loadModel(modelUrl);
-            
-            // Apply default camera settings
-            if (this.currentConfig?.camera) {
-                const camera = this.cameraManager.getCamera();
+                // Set pending model config for HQ
+                if (hqModelSettings?.model) {
+                    this.pendingModelConfig = hqModelSettings.model;
+                }
+                
+                // Reload model with HQ settings
+                await this.loadModel(modelUrl);
+                console.log('[HQ Debug] Model loaded, now applying camera settings');
+                
+                // Apply HQ camera settings (from cameraHQ or modelHQ.camera)
+                if (hqCameraSettings) {
+                    console.log('[HQ Debug] Applying HQ camera position:', hqCameraSettings.position);
+                    const camera = this.cameraManager.getCamera();
+                    if (hqCameraSettings.position) {
+                        camera.position.set(...hqCameraSettings.position);
+                    }
+                    if (hqCameraSettings.rotation) {
+                        camera.rotation.set(...hqCameraSettings.rotation);
+                    }
+                    if (hqCameraSettings.target) {
+                        this.cameraManager.getControls().target.set(...hqCameraSettings.target);
+                    }
+                    this.cameraManager.getControls().update();
+                    
+                    // Update original state for spacebar reset
+                    this.cameraManager.updateOriginalState(
+                        hqCameraSettings.position,
+                        hqCameraSettings.rotation,
+                        hqCameraSettings.target
+                    );
+                }
+            } else {
+                // Use default/SQ settings
+                if (this.currentConfig?.model) {
+                    this.pendingModelConfig = this.currentConfig.model;
+                }
+                
+                // Reload model
+                await this.loadModel(modelUrl);
+                
+                // Apply default camera settings
+                if (this.currentConfig?.camera) {
+                    const camera = this.cameraManager.getCamera();
                 if (this.currentConfig.camera.position) {
                     camera.position.set(...this.currentConfig.camera.position);
                 }
@@ -2712,6 +3620,18 @@ class ThreeJSApp {
                 );
             }
         }
+        } finally {
+            // Release lock and re-enable button after a short delay
+            setTimeout(() => {
+                this.isQualitySwitching = false;
+                const qualityBtn = document.getElementById('quality-toggle-btn');
+                if (qualityBtn) {
+                    qualityBtn.disabled = false;
+                    qualityBtn.style.opacity = '1';
+                    qualityBtn.style.cursor = 'pointer';
+                }
+            }, 500); // 500ms cooldown after model loads
+        }
     }
     
     loadModel(modelUrl = getAssetUrl('models/exercise.glb')) {
@@ -2722,6 +3642,10 @@ class ThreeJSApp {
             this.updateLoaderSpinner();
             loader.style.display = 'flex';
         }
+        
+        // Set loading flag and disable quality button
+        this.isModelLoading = true;
+        this._setQualityButtonEnabled(false);
         
         // Clean up existing GUI folders
         if (this.modelFolder) {
@@ -2781,14 +3705,12 @@ class ThreeJSApp {
                                     // console.log('Found material:', mat.name);
                                     
                                     // Convert MUSCLE materials to MeshPhysicalMaterial for sheen support
-                                    if (mat.name.includes('MUSCLE') && mat.type !== 'MeshPhysicalMaterial') {
-                                        // Check if we already converted this material
+                                    if (mat.name.toUpperCase() === 'MUSCLE' && mat.type !== 'MeshPhysicalMaterial') {
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
                                             
-                                            // Create new MeshPhysicalMaterial with default MUSCLE settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
                                                 map: mat.map,
@@ -2802,22 +3724,57 @@ class ThreeJSApp {
                                                 transparent: true,
                                                 side: THREE.DoubleSide,
                                                 depthWrite: true,
-                                                // Sheen settings for realistic muscle appearance
                                                 sheen: 0.3,
                                                 sheenRoughness: 0.45,
                                                 sheenColor: new THREE.Color(0xeb0a0a)
                                             });
                                             
-                                            // Copy the name
                                             physicalMat.name = mat.name;
-                                            
-                                            // Apply bump map from color texture with default scale
                                             if (mat.map) {
                                                 physicalMat.bumpMap = mat.map;
                                                 physicalMat.bumpScale = 10.2;
                                             }
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XMUSCLE to MeshPhysicalMaterial (keeps GLB textures, HD-specific defaults)
+                                    else if (mat.name.toUpperCase() === 'XMUSCLE' && mat.type !== 'MeshPhysicalMaterial') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
                                             
-                                            // Store the converted material
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(0xffffff),
+                                                map: mat.map,
+                                                normalMap: mat.normalMap,
+                                                roughness: 0,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0xe91616),
+                                                emissiveIntensity: 0,
+                                                emissiveMap: mat.emissiveMap,
+                                                opacity: 1,
+                                                transparent: false,
+                                                alphaTest: 0,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                envMapIntensity: 1,
+                                                transmission: 0,
+                                                thickness: 0,
+                                                ior: 1.5,
+                                                sheen: 0,
+                                                sheenRoughness: 0.45,
+                                                sheenColor: new THREE.Color(0xeb0a0a)
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            if (mat.map) {
+                                                physicalMat.bumpMap = mat.map;
+                                                physicalMat.bumpScale = 14.2;
+                                            }
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -2888,14 +3845,12 @@ class ThreeJSApp {
                                         }
                                     }
                                     // Convert SKELETON materials to MeshPhysicalMaterial
-                                    else if (mat.name.includes('SKELETON') && mat.type !== 'MeshPhysicalMaterial') {
-                                        // Check if we already converted this material
+                                    else if (mat.name.toUpperCase() === 'SKELETON' && mat.type !== 'MeshPhysicalMaterial') {
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial`);
                                             
-                                            // Create new MeshPhysicalMaterial with custom settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
                                                 map: mat.map,
@@ -2915,16 +3870,52 @@ class ThreeJSApp {
                                                 envMapIntensity: 1
                                             });
                                             
-                                            // Copy the name
                                             physicalMat.name = mat.name;
-                                            
-                                            // Apply bump map from color texture
                                             if (mat.map) {
                                                 physicalMat.bumpMap = mat.map;
                                                 physicalMat.bumpScale = 1;
                                             }
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XSKELETON to MeshPhysicalMaterial (keeps GLB textures, HD-specific defaults)
+                                    else if (mat.name.toUpperCase() === 'XSKELETON' && mat.type !== 'MeshPhysicalMaterial') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial`);
                                             
-                                            // Store the converted material
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(0xffffff),
+                                                map: mat.map,
+                                                normalMap: mat.normalMap,
+                                                roughness: 0.99,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 1,
+                                                emissiveMap: mat.emissiveMap,
+                                                opacity: 0.93,
+                                                transparent: false,
+                                                alphaTest: 0,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                envMapIntensity: 1,
+                                                transmission: 0,
+                                                thickness: 0,
+                                                ior: 1.5,
+                                                sheen: 0,
+                                                sheenRoughness: 1,
+                                                sheenColor: new THREE.Color(0x000000)
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            if (mat.map) {
+                                                physicalMat.bumpMap = mat.map;
+                                                physicalMat.bumpScale = 1;
+                                            }
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -2975,6 +3966,155 @@ class ThreeJSApp {
                                             });
                                             
                                             // Store the converted material
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XCLEAR to MeshPhysicalMaterial (keeps GLB map, HD-specific defaults)
+                                    else if (mat.name.toUpperCase() === 'XCLEAR') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Clear)`);
+                                            
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(0xffffff),
+                                                map: mat.map,
+                                                normalMap: mat.normalMap,
+                                                alphaMap: mat.alphaMap || null,
+                                                roughness: 0.42,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 0,
+                                                opacity: 1,
+                                                transparent: true,
+                                                alphaTest: 0,
+                                                side: THREE.FrontSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                transmission: 0,
+                                                thickness: 0.85,
+                                                ior: 1.06,
+                                                envMapIntensity: 2.29,
+                                                sheen: 0,
+                                                sheenRoughness: 0,
+                                                sheenColor: new THREE.Color(0x000000),
+                                                clearcoat: 0.28,
+                                                clearcoatRoughness: 0.14,
+                                                specularIntensity: 0.61,
+                                                specularColor: new THREE.Color(0xffffff),
+                                                attenuationDistance: 90,
+                                                attenuationColor: new THREE.Color(0xffffff)
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XCOLOR materials to MeshPhysicalMaterial (same as COLOR_1)
+                                    else if (mat.name.toUpperCase() === 'XCOLOR') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Color = COLOR_1)`);
+                                            
+                                            const useCustomColor = window.flexframeSettings?.primaryColorMode === 'custom';
+                                            const primaryColor = useCustomColor && window.flexframeSettings?.primaryColor 
+                                                ? window.flexframeSettings.primaryColor 
+                                                : '#ff0000';
+                                            
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(primaryColor),
+                                                roughness: 0.2152357035754776,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 1,
+                                                opacity: 1,
+                                                transparent: false,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                alphaTest: 0,
+                                                envMapIntensity: 1,
+                                                sheen: 0,
+                                                sheenRoughness: 1,
+                                                sheenColor: new THREE.Color(0x000000),
+                                                transmission: 0,
+                                                thickness: 0,
+                                                ior: 1.5
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            
+                                            console.log(`✅ ${mat.name} XCOLOR Material Applied (= COLOR_1):`, {
+                                                color: '#' + physicalMat.color.getHexString(),
+                                                roughness: physicalMat.roughness,
+                                                metalness: physicalMat.metalness
+                                            });
+                                            
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XCLOTHES / aiBodyGirl materials to MeshPhysicalMaterial
+                                    // Keeps GLB textures (roughness, normal/bump, grayscale color map)
+                                    // Sets material color to primary color so white trim = primary, black = stays black
+                                    else if (mat.name.toUpperCase() === 'XCLOTHES' || mat.name.toUpperCase() === 'AIBODYGIRL') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Clothes/Body)`);
+                                            
+                                            // Get primary color for the trim
+                                            const useCustomColor = window.flexframeSettings?.primaryColorMode === 'custom';
+                                            const primaryColor = useCustomColor && window.flexframeSettings?.primaryColor 
+                                                ? window.flexframeSettings.primaryColor 
+                                                : '#ff0000';
+                                            
+                                            // Create MeshPhysicalMaterial — KEEP all texture maps from GLB
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(primaryColor), // Multiplied with grayscale texture: white->primary, black->black
+                                                map: mat.map,                         // Grayscale color texture from GLB
+                                                normalMap: mat.normalMap,             // Normal/bump map from GLB
+                                                roughnessMap: mat.roughnessMap || null, // Roughness map from GLB
+                                                roughness: mat.roughness !== undefined ? mat.roughness : 0.5,
+                                                metalness: mat.metalness !== undefined ? mat.metalness : 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 1,
+                                                opacity: 1,
+                                                transparent: false,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                alphaTest: 0,
+                                                envMapIntensity: 1
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            
+                                            // Apply bump map from color texture if available
+                                            if (mat.bumpMap) {
+                                                physicalMat.bumpMap = mat.bumpMap;
+                                                physicalMat.bumpScale = mat.bumpScale || 1;
+                                            } else if (mat.map) {
+                                                physicalMat.bumpMap = mat.map;
+                                                physicalMat.bumpScale = 1;
+                                            }
+                                            
+                                            console.log(`✅ ${mat.name} HD Primary Color Material Applied:`, {
+                                                color: '#' + physicalMat.color.getHexString(),
+                                                hasMap: !!physicalMat.map,
+                                                hasNormalMap: !!physicalMat.normalMap,
+                                                hasRoughnessMap: !!physicalMat.roughnessMap,
+                                                hasBumpMap: !!physicalMat.bumpMap,
+                                                roughness: physicalMat.roughness,
+                                                metalness: physicalMat.metalness
+                                            });
+                                            
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -3033,6 +4173,30 @@ class ThreeJSApp {
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
+                                    }
+                                    // XBODY materials - force depthWrite on
+                                    else if (mat.name.includes('XBODY')) {
+                                        mat.depthWrite = true;
+                                        mat.roughness = 0.5;
+                                        if (IS_SAMSUNG_INTERNET) {
+                                            if (mat.normalMap) { mat.normalMap = null; }
+                                            if (mat.roughnessMap) { mat.roughnessMap = null; }
+                                            mat.needsUpdate = true;
+                                            console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5, normalMap+roughnessMap removed (Samsung Internet)`);
+                                        } else {
+                                            console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5`);
+                                        }
+                                        newMats.push(mat);
+                                    }
+                                    // XHEAD materials - Samsung Internet: remove normalMap + roughnessMap
+                                    else if (mat.name.toUpperCase().includes('XHEAD')) {
+                                        if (IS_SAMSUNG_INTERNET) {
+                                            if (mat.normalMap) { mat.normalMap = null; }
+                                            if (mat.roughnessMap) { mat.roughnessMap = null; }
+                                            mat.needsUpdate = true;
+                                            console.log(`✅ ${mat.name} - normalMap+roughnessMap removed (Samsung Internet)`);
+                                        }
+                                        newMats.push(mat);
                                     } else {
                                         newMats.push(mat);
                                     }
@@ -3090,15 +4254,20 @@ class ThreeJSApp {
                 // Apply material presets BEFORE adding to scene to prevent flash
                 if (window.flexframeSettings) {
                     const mode = window.flexframeSettings.materialMode || 'preset';
+                    const preset = window.flexframeSettings.materialPreset || 'default';
+                    const isCustomTheme = preset.startsWith('custom:');
                     
                     if (mode === 'custom' && window.flexframeSettings.skinSettings) {
                         console.log('Pre-applying Custom SKIN settings...');
                         this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
-                    } else if (mode === 'preset' && window.flexframeSettings.materialPreset) {
-                        const preset = window.flexframeSettings.materialPreset;
+                    } else if (isCustomTheme && window.flexframeSettings.skinSettings) {
+                        // Custom theme preset — apply saved skin settings
+                        console.log('Applying custom theme SKIN settings:', window.flexframeSettings.skinSettings);
+                        this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
+                    } else if (mode === 'preset') {
                         console.log('Material Preset setting:', preset);
                         
-                        // 'default', 'dark', 'light' all use the same material settings
+                        // Built-in themes use their own hardcoded skin settings
                         if (preset === 'default' || preset === 'dark' || preset === 'light' || preset === 'preset1') {
                             console.log('Pre-applying Default Material Preset...');
                             this.applyMaterialPreset1();
@@ -3106,6 +4275,12 @@ class ThreeJSApp {
                             console.log('Pre-applying WP Preset...');
                             this.applyWPPreset();
                         }
+                    }
+                    
+                    // Apply equipment material settings if any are enabled
+                    if (window.flexframeSettings.equipmentMaterials) {
+                        console.log('Applying Equipment Material Settings...');
+                        this.applyEquipmentMaterials(model, window.flexframeSettings.equipmentMaterials);
                     }
                 }
                 
@@ -3144,6 +4319,16 @@ class ThreeJSApp {
                 // Complete progress
                 this.updateLoadProgress(100);
                 
+                // Show Model Inspector if this is a test model
+                if (this._isTestModel) {
+                    this.showModelInspector(model, modelUrl);
+                    this._isTestModel = false;
+                }
+                
+                // Clear loading flag and re-enable quality button
+                this.isModelLoading = false;
+                this._setQualityButtonEnabled(true);
+                
                 // Resolve the promise when model is fully loaded
                 resolve(model);
             },
@@ -3165,10 +4350,30 @@ class ThreeJSApp {
                 if (loader) {
                     loader.style.display = 'none';
                 }
+                // Clear loading flag and re-enable quality button
+                this.isModelLoading = false;
+                this._setQualityButtonEnabled(true);
+                
                 reject(error);
             }
         );
         }); // Close the Promise
+    }
+    
+    _setQualityButtonEnabled(enabled) {
+        const qualityBtn = document.getElementById('quality-toggle-btn');
+        if (!qualityBtn) return;
+        if (enabled) {
+            qualityBtn.disabled = false;
+            qualityBtn.style.opacity = '1';
+            qualityBtn.style.cursor = 'pointer';
+            qualityBtn.style.pointerEvents = 'auto';
+        } else {
+            qualityBtn.disabled = true;
+            qualityBtn.style.opacity = '0.5';
+            qualityBtn.style.cursor = 'wait';
+            qualityBtn.style.pointerEvents = 'none';
+        }
     }
 
     setupModelGUI(model) {
@@ -3260,6 +4465,74 @@ class ThreeJSApp {
                     materialsElement.classList.add('materials-folder-main');
                 }
             }, 10);
+            
+            // "Copy All HD Settings" button — copies XMUSCLE, XSKELETON, XCLEAR settings at once
+            const hdMaterialNames = ['XMUSCLE', 'XSKELETON', 'XCLEAR'];
+            const hasAnyHD = hdMaterialNames.some(n => materials.has(n));
+            if (hasAnyHD) {
+                const copyAllHD = {
+                    copyAllHDSettings: () => {
+                        let output = '';
+                        hdMaterialNames.forEach(matName => {
+                            const mat = materials.get(matName);
+                            if (!mat) return;
+                            
+                            const hasTextures = mat.map || mat.normalMap || mat.emissiveMap || mat.bumpMap || mat.alphaMap;
+                            
+                            output += `Material Name: "${matName}"\n\n`;
+                            output += `Settings:\n`;
+                            if (mat.color) output += `- Color: #${mat.color.getHexString()}\n`;
+                            if (mat.opacity !== undefined) output += `- Opacity: ${mat.opacity}\n`;
+                            if (mat.transparent !== undefined) output += `- Transparent: ${mat.transparent}\n`;
+                            if (mat.alphaTest !== undefined) output += `- Alpha Test: ${mat.alphaTest}\n`;
+                            if (mat.side !== undefined) {
+                                const sideNames = { 0: 'FrontSide', 1: 'BackSide', 2: 'DoubleSide' };
+                                output += `- Side: ${sideNames[mat.side] || mat.side}\n`;
+                            }
+                            if (mat.depthWrite !== undefined) output += `- Depth Write: ${mat.depthWrite}\n`;
+                            if (mat.metalness !== undefined) output += `- Metalness: ${mat.metalness}\n`;
+                            if (mat.roughness !== undefined) output += `- Roughness: ${mat.roughness}\n`;
+                            if (mat.emissive) output += `- Emissive: #${mat.emissive.getHexString()}\n`;
+                            if (mat.emissiveIntensity !== undefined) output += `- Emissive Intensity: ${mat.emissiveIntensity}\n`;
+                            if (mat.sheen !== undefined) output += `- Sheen: ${mat.sheen}\n`;
+                            if (mat.sheenRoughness !== undefined) output += `- Sheen Roughness: ${mat.sheenRoughness}\n`;
+                            if (mat.sheenColor) output += `- Sheen Color: #${mat.sheenColor.getHexString()}\n`;
+                            if (mat.bumpScale !== undefined) output += `- Bump Scale: ${mat.bumpScale}\n`;
+                            if (mat.transmission !== undefined) output += `- Transmission: ${mat.transmission}\n`;
+                            if (mat.thickness !== undefined) output += `- Thickness: ${mat.thickness}\n`;
+                            if (mat.ior !== undefined) output += `- IOR: ${mat.ior}\n`;
+                            if (mat.envMapIntensity !== undefined) output += `- Env Map Intensity: ${mat.envMapIntensity}\n`;
+                            if (mat.blending !== undefined) {
+                                const blendingNames = { 0: 'NoBlending', 1: 'NormalBlending', 2: 'AdditiveBlending', 3: 'SubtractiveBlending', 4: 'MultiplyBlending', 5: 'CustomBlending' };
+                                output += `- Blending: ${blendingNames[mat.blending] || mat.blending}\n`;
+                            }
+                            if (mat.depthTest !== undefined) output += `- Depth Test: ${mat.depthTest}\n`;
+                            if (mat.clearcoat !== undefined && mat.clearcoat > 0) output += `- Clearcoat: ${mat.clearcoat}\n`;
+                            if (mat.clearcoatRoughness !== undefined && mat.clearcoat > 0) output += `- Clearcoat Roughness: ${mat.clearcoatRoughness}\n`;
+                            if (mat.specularIntensity !== undefined && mat.specularIntensity !== 1) output += `- Specular Intensity: ${mat.specularIntensity}\n`;
+                            if (mat.specularColor) output += `- Specular Color: #${mat.specularColor.getHexString()}\n`;
+                            if (mat.attenuationDistance !== undefined && isFinite(mat.attenuationDistance)) output += `- Attenuation Distance: ${mat.attenuationDistance}\n`;
+                            if (mat.attenuationColor) output += `- Attenuation Color: #${mat.attenuationColor.getHexString()}\n`;
+                            if (hasTextures) {
+                                output += `\nNote: Has texture maps (`;
+                                const maps = [];
+                                if (mat.map) maps.push('map');
+                                if (mat.normalMap) maps.push('normalMap');
+                                if (mat.emissiveMap) maps.push('emissiveMap');
+                                if (mat.bumpMap) maps.push('bumpMap');
+                                if (mat.alphaMap) maps.push('alphaMap');
+                                output += maps.join(', ') + `)\n`;
+                            }
+                            output += `\n---\n\n`;
+                        });
+                        
+                        navigator.clipboard.writeText(output.trim()).then(() => {
+                            console.log('📋 All HD material settings copied to clipboard (XMUSCLE, XSKELETON, XCLEAR)');
+                        });
+                    }
+                };
+                this.materialsFolder.add(copyAllHD, 'copyAllHDSettings').name('📋 Copy All HD Settings');
+            }
             
             materials.forEach((material, name) => {
                 const matFolder = this.trackFolder(this.materialsFolder.addFolder(name));
@@ -3588,6 +4861,680 @@ class ThreeJSApp {
                         .onChange((value) => shadowBlurParams.setShadowBlur(value));
                 }
                 
+                // Extensive controls for XCLEAR materials (SKIN transmission + opacity mask)
+                if (name.toUpperCase() === 'XCLEAR') {
+                    // Show texture map info
+                    const mapInfo = {
+                        hasColorMap: !!material.map,
+                        hasAlphaMap: !!material.alphaMap,
+                        hasNormalMap: !!material.normalMap
+                    };
+                    
+                    // Alpha Map toggle
+                    if (!material._originalAlphaMap) {
+                        material._originalAlphaMap = material.alphaMap;
+                    }
+                    if (!material._originalColorMap) {
+                        material._originalColorMap = material.map;
+                    }
+                    
+                    const xclearMapParams = {
+                        useColorMap: !!material.map,
+                        useAlphaMap: !!material.alphaMap
+                    };
+                    
+                    matFolder.add(xclearMapParams, 'useColorMap')
+                        .name('🎨 Color Map')
+                        .onChange((value) => {
+                            material.map = value ? material._originalColorMap : null;
+                            material.needsUpdate = true;
+                        });
+                    
+                    matFolder.add(xclearMapParams, 'useAlphaMap')
+                        .name('🔲 Alpha/Opacity Map')
+                        .onChange((value) => {
+                            material.alphaMap = value ? material._originalAlphaMap : null;
+                            material.needsUpdate = true;
+                        });
+                    
+                    // Show alpha map thumbnail if available
+                    const alphaSource = material.alphaMap || material._originalAlphaMap;
+                    if (alphaSource) {
+                        setTimeout(() => {
+                            const folderElement = matFolder.domElement;
+                            if (folderElement) {
+                                const thumbDiv = document.createElement('div');
+                                thumbDiv.className = 'material-texture-thumbnail';
+                                
+                                const label = document.createElement('div');
+                                label.textContent = 'Alpha/Opacity Map:';
+                                label.style.fontSize = '11px';
+                                label.style.marginBottom = '4px';
+                                label.style.color = '#aaa';
+                                
+                                const img = document.createElement('img');
+                                if (alphaSource.image) {
+                                    const canvas = document.createElement('canvas');
+                                    canvas.width = 64;
+                                    canvas.height = 64;
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.drawImage(alphaSource.image, 0, 0, 64, 64);
+                                    img.src = canvas.toDataURL();
+                                }
+                                img.alt = 'Alpha map texture';
+                                
+                                thumbDiv.appendChild(label);
+                                thumbDiv.appendChild(img);
+                                folderElement.appendChild(thumbDiv);
+                            }
+                        }, 100);
+                    }
+                    
+                    // Show color map thumbnail if available
+                    const colorSource = material.map || material._originalColorMap;
+                    if (colorSource) {
+                        setTimeout(() => {
+                            const folderElement = matFolder.domElement;
+                            if (folderElement) {
+                                const thumbDiv = document.createElement('div');
+                                thumbDiv.className = 'material-texture-thumbnail';
+                                
+                                const label = document.createElement('div');
+                                label.textContent = 'Color Map:';
+                                label.style.fontSize = '11px';
+                                label.style.marginBottom = '4px';
+                                label.style.color = '#aaa';
+                                
+                                const img = document.createElement('img');
+                                if (colorSource.image) {
+                                    const canvas = document.createElement('canvas');
+                                    canvas.width = 64;
+                                    canvas.height = 64;
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.drawImage(colorSource.image, 0, 0, 64, 64);
+                                    img.src = canvas.toDataURL();
+                                }
+                                img.alt = 'Color map texture';
+                                
+                                thumbDiv.appendChild(label);
+                                thumbDiv.appendChild(img);
+                                folderElement.appendChild(thumbDiv);
+                            }
+                        }, 100);
+                    }
+                    
+                    // Side rendering 
+                    const sideOptions = { 'Front': THREE.FrontSide, 'Back': THREE.BackSide, 'Double': THREE.DoubleSide };
+                    matFolder.add(material, 'side', sideOptions)
+                        .name('Face Culling')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Blending modes
+                    const blendingOptions = { 
+                        'Normal': THREE.NormalBlending, 
+                        'Additive': THREE.AdditiveBlending, 
+                        'Subtractive': THREE.SubtractiveBlending,
+                        'Multiply': THREE.MultiplyBlending,
+                        'Custom': THREE.CustomBlending
+                    };
+                    matFolder.add(material, 'blending', blendingOptions)
+                        .name('Blending Mode')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Depth controls
+                    matFolder.add(material, 'depthWrite')
+                        .name('Depth Write')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'depthTest')
+                        .name('Depth Test')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Transparency controls
+                    matFolder.add(material, 'opacity', 0, 1, 0.01)
+                        .name('Opacity')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'transparent')
+                        .name('Transparent')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'alphaTest', 0, 1, 0.01)
+                        .name('Alpha Test')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Transmission (glass) controls
+                    if (material.transmission !== undefined) {
+                        matFolder.add(material, 'transmission', 0, 1, 0.01)
+                            .name('🪟 Transmission')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'thickness', 0, 5, 0.01)
+                            .name('Thickness')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'ior', 1, 2.333, 0.01)
+                            .name('IOR (Refraction)')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'envMapIntensity', 0, 5, 0.01)
+                            .name('Env Map Intensity')
+                            .onChange(() => material.needsUpdate = true);
+                    }
+                    
+                    // Sheen controls
+                    if (material.sheen !== undefined) {
+                        matFolder.add(material, 'sheen', 0, 1, 0.01)
+                            .name('Sheen')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'sheenRoughness', 0, 1, 0.01)
+                            .name('Sheen Roughness')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        const sheenColorParams = {
+                            sheenColor: material.sheenColor ? material.sheenColor.getHex() : 0x000000
+                        };
+                        matFolder.addColor(sheenColorParams, 'sheenColor')
+                            .name('Sheen Color')
+                            .onChange((value) => {
+                                if (!material.sheenColor) material.sheenColor = new THREE.Color();
+                                material.sheenColor.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                    }
+                    
+                    // Clearcoat controls
+                    if (material.clearcoat !== undefined) {
+                        matFolder.add(material, 'clearcoat', 0, 1, 0.01)
+                            .name('Clearcoat')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'clearcoatRoughness', 0, 1, 0.01)
+                            .name('Clearcoat Roughness')
+                            .onChange(() => material.needsUpdate = true);
+                    }
+                    
+                    // Specular controls
+                    if (material.specularIntensity !== undefined) {
+                        matFolder.add(material, 'specularIntensity', 0, 2, 0.01)
+                            .name('Specular Intensity')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        const specColorParams = {
+                            specularColor: material.specularColor ? material.specularColor.getHex() : 0xffffff
+                        };
+                        matFolder.addColor(specColorParams, 'specularColor')
+                            .name('Specular Color')
+                            .onChange((value) => {
+                                if (!material.specularColor) material.specularColor = new THREE.Color();
+                                material.specularColor.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                    }
+                    
+                    // Attenuation (colored glass absorption)
+                    if (material.attenuationDistance !== undefined) {
+                        matFolder.add(material, 'attenuationDistance', 0, 100, 0.1)
+                            .name('Attenuation Dist')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        const attenColorParams = {
+                            attenuationColor: material.attenuationColor ? material.attenuationColor.getHex() : 0xffffff
+                        };
+                        matFolder.addColor(attenColorParams, 'attenuationColor')
+                            .name('Attenuation Color')
+                            .onChange((value) => {
+                                if (!material.attenuationColor) material.attenuationColor = new THREE.Color();
+                                material.attenuationColor.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                    }
+                    
+                    // Emissive controls
+                    if (material.emissive) {
+                        const emParams = { emissive: material.emissive.getHex() };
+                        matFolder.addColor(emParams, 'emissive')
+                            .name('Emissive Color')
+                            .onChange((value) => {
+                                material.emissive.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                        matFolder.add(material, 'emissiveIntensity', 0, 3, 0.01)
+                            .name('Emissive Intensity')
+                            .onChange(() => material.needsUpdate = true);
+                    }
+                    
+                    // Alpha to coverage (MSAA-based — great for alpha masks)
+                    matFolder.add(material, 'alphaToCoverage')
+                        .name('Alpha To Coverage')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Premultiplied alpha
+                    matFolder.add(material, 'premultipliedAlpha')
+                        .name('Premultiplied Alpha')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Tone mapped
+                    matFolder.add(material, 'toneMapped')
+                        .name('Tone Mapped')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Wireframe (for debugging geometry/mask)
+                    matFolder.add(material, 'wireframe')
+                        .name('Wireframe')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Flat shading
+                    matFolder.add(material, 'flatShading')
+                        .name('Flat Shading')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Render order (controls transparency sort order)
+                    const renderOrderParams = { renderOrder: 0 };
+                    matFolder.add(renderOrderParams, 'renderOrder', -10, 10, 1)
+                        .name('Render Order')
+                        .onChange((value) => {
+                            if (window.model) {
+                                window.model.traverse((child) => {
+                                    if (child.isMesh && child.material) {
+                                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                                        if (mats.some(m => m.name === name)) {
+                                            child.renderOrder = value;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    
+                    // Custom blending factors (only relevant when blending = CustomBlending)
+                    const blendSrcOptions = {
+                        'SrcAlpha': THREE.SrcAlphaFactor,
+                        'One': THREE.OneFactor,
+                        'Zero': THREE.ZeroFactor,
+                        'DstColor': THREE.DstColorFactor,
+                        'OneMinusSrcAlpha': THREE.OneMinusSrcAlphaFactor,
+                        'SrcColor': THREE.SrcColorFactor,
+                        'OneMinusDstColor': THREE.OneMinusDstColorFactor
+                    };
+                    const blendDstOptions = {
+                        'OneMinusSrcAlpha': THREE.OneMinusSrcAlphaFactor,
+                        'One': THREE.OneFactor,
+                        'Zero': THREE.ZeroFactor,
+                        'SrcColor': THREE.SrcColorFactor,
+                        'SrcAlpha': THREE.SrcAlphaFactor,
+                        'DstColor': THREE.DstColorFactor,
+                        'OneMinusSrcColor': THREE.OneMinusSrcColorFactor
+                    };
+                    const blendEqOptions = {
+                        'Add': THREE.AddEquation,
+                        'Subtract': THREE.SubtractEquation,
+                        'ReverseSubtract': THREE.ReverseSubtractEquation,
+                        'Min': THREE.MinEquation,
+                        'Max': THREE.MaxEquation
+                    };
+                    
+                    matFolder.add(material, 'blendSrc', blendSrcOptions)
+                        .name('Blend Src')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'blendDst', blendDstOptions)
+                        .name('Blend Dst')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'blendEquation', blendEqOptions)
+                        .name('Blend Equation')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Visible toggle
+                    matFolder.add(material, 'visible')
+                        .name('Visible')
+                        .onChange(() => {});
+                    
+                    // Cast shadows
+                    const xclearShadowParams = {
+                        castShadow: true,
+                        receiveShadow: true
+                    };
+                    matFolder.add(xclearShadowParams, 'castShadow')
+                        .name('Cast Shadows')
+                        .onChange((value) => {
+                            if (window.model) {
+                                window.model.traverse((child) => {
+                                    if (child.isMesh && child.material) {
+                                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                                        if (mats.some(m => m.name === name)) {
+                                            child.castShadow = value;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    matFolder.add(xclearShadowParams, 'receiveShadow')
+                        .name('Receive Shadows')
+                        .onChange((value) => {
+                            if (window.model) {
+                                window.model.traverse((child) => {
+                                    if (child.isMesh && child.material) {
+                                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                                        if (mats.some(m => m.name === name)) {
+                                            child.receiveShadow = value;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                }
+                
+                // ─── Super-comprehensive XBODY debug controls ─────────
+                if (name.toUpperCase().includes('XBODY') || name.toUpperCase() === 'XCLEAR' || name.toUpperCase().includes('XHEAD')) {
+
+                    // ── 📋 Copy Current State for quick sharing ──
+                    const xbodyCopy = {
+                        copyState: () => {
+                            const s = [];
+                            s.push(`XBODY Material State (${new Date().toLocaleTimeString()})`);
+                            s.push(`type: ${material.type}`);
+                            if (material.color) s.push(`color: #${material.color.getHexString()}`);
+                            s.push(`opacity: ${material.opacity}`);
+                            s.push(`transparent: ${material.transparent}`);
+                            s.push(`alphaTest: ${material.alphaTest}`);
+                            s.push(`side: ${['Front','Back','Double'][material.side]}`);
+                            s.push(`depthWrite: ${material.depthWrite}`);
+                            s.push(`depthTest: ${material.depthTest}`);
+                            s.push(`wireframe: ${material.wireframe}`);
+                            s.push(`flatShading: ${material.flatShading}`);
+                            if (material.metalness !== undefined) s.push(`metalness: ${material.metalness}`);
+                            if (material.roughness !== undefined) s.push(`roughness: ${material.roughness}`);
+                            s.push(`--- Maps ---`);
+                            s.push(`map: ${!!material.map}`);
+                            s.push(`normalMap: ${!!material.normalMap}`);
+                            if (material.normalMap && material.normalScale) s.push(`normalScale: ${material.normalScale.x}, ${material.normalScale.y}`);
+                            s.push(`normalMapType: ${material.normalMapType === 0 ? 'TangentSpace' : 'ObjectSpace'}`);
+                            s.push(`bumpMap: ${!!material.bumpMap}`);
+                            if (material.bumpMap) s.push(`bumpScale: ${material.bumpScale}`);
+                            s.push(`aoMap: ${!!material.aoMap}`);
+                            if (material.aoMap) s.push(`aoMapIntensity: ${material.aoMapIntensity}`);
+                            s.push(`roughnessMap: ${!!material.roughnessMap}`);
+                            s.push(`metalnessMap: ${!!material.metalnessMap}`);
+                            s.push(`emissiveMap: ${!!material.emissiveMap}`);
+                            s.push(`displacementMap: ${!!material.displacementMap}`);
+                            if (material.displacementMap) {
+                                s.push(`displacementScale: ${material.displacementScale}`);
+                                s.push(`displacementBias: ${material.displacementBias}`);
+                            }
+                            s.push(`envMap: ${!!material.envMap}`);
+                            if (material.envMapIntensity !== undefined) s.push(`envMapIntensity: ${material.envMapIntensity}`);
+                            s.push(`--- UV ---`);
+                            if (material.map) {
+                                const t = material.map;
+                                s.push(`map.flipY: ${t.flipY}`);
+                                s.push(`map.offset: ${t.offset.x}, ${t.offset.y}`);
+                                s.push(`map.repeat: ${t.repeat.x}, ${t.repeat.y}`);
+                                s.push(`map.rotation: ${t.rotation}`);
+                                s.push(`map.wrapS: ${t.wrapS} (1000=Repeat,1001=Clamp,1002=Mirror)`);
+                                s.push(`map.wrapT: ${t.wrapT}`);
+                                s.push(`map.colorSpace: ${t.colorSpace}`);
+                                s.push(`map.channel: ${t.channel}`);
+                            }
+                            if (material.normalMap) {
+                                const t = material.normalMap;
+                                s.push(`normalMap.flipY: ${t.flipY}`);
+                                s.push(`normalMap.offset: ${t.offset.x}, ${t.offset.y}`);
+                                s.push(`normalMap.repeat: ${t.repeat.x}, ${t.repeat.y}`);
+                                s.push(`normalMap.rotation: ${t.rotation}`);
+                                s.push(`normalMap.wrapS: ${t.wrapS}`);
+                                s.push(`normalMap.wrapT: ${t.wrapT}`);
+                                s.push(`normalMap.colorSpace: ${t.colorSpace}`);
+                                s.push(`normalMap.channel: ${t.channel}`);
+                            }
+                            if (material.transmission !== undefined) {
+                                s.push(`--- Physical ---`);
+                                s.push(`transmission: ${material.transmission}`);
+                                s.push(`thickness: ${material.thickness}`);
+                                s.push(`ior: ${material.ior}`);
+                                s.push(`sheen: ${material.sheen}`);
+                                s.push(`sheenRoughness: ${material.sheenRoughness}`);
+                                s.push(`clearcoat: ${material.clearcoat}`);
+                                s.push(`clearcoatRoughness: ${material.clearcoatRoughness}`);
+                                s.push(`specularIntensity: ${material.specularIntensity}`);
+                            }
+                            const txt = s.join('\n');
+                            navigator.clipboard.writeText(txt).then(() => {
+                                console.log('📋 XBODY state copied:\n' + txt);
+                            });
+                        }
+                    };
+                    matFolder.add(xbodyCopy, 'copyState').name('📋 Copy Full State');
+
+                    // ── Texture Map Toggles ──
+                    if (!material._origMap) material._origMap = material.map;
+                    if (!material._origNormalMap) material._origNormalMap = material.normalMap;
+                    if (!material._origBumpMap) material._origBumpMap = material.bumpMap;
+                    if (!material._origAoMap) material._origAoMap = material.aoMap;
+                    if (!material._origRoughnessMap) material._origRoughnessMap = material.roughnessMap;
+                    if (!material._origMetalnessMap) material._origMetalnessMap = material.metalnessMap;
+                    if (!material._origEmissiveMap) material._origEmissiveMap = material.emissiveMap;
+                    if (!material._origDisplacementMap) material._origDisplacementMap = material.displacementMap;
+                    if (!material._origAlphaMap) material._origAlphaMap = material.alphaMap;
+
+                    const mapToggles = {
+                        colorMap: !!material.map,
+                        normalMap: !!material.normalMap,
+                        bumpMap: !!material.bumpMap,
+                        aoMap: !!material.aoMap,
+                        roughnessMap: !!material.roughnessMap,
+                        metalnessMap: !!material.metalnessMap,
+                        emissiveMap: !!material.emissiveMap,
+                        displacementMap: !!material.displacementMap,
+                        alphaMap: !!material.alphaMap
+                    };
+                    const mapSub = matFolder.addFolder('🗺️ Texture Maps');
+                    const mapToggleHandler = (key, origKey) => (v) => {
+                        material[key] = v ? material[origKey] : null;
+                        material.needsUpdate = true;
+                    };
+                    mapSub.add(mapToggles, 'colorMap').name('Color Map').onChange(mapToggleHandler('map', '_origMap'));
+                    mapSub.add(mapToggles, 'normalMap').name('Normal Map').onChange(mapToggleHandler('normalMap', '_origNormalMap'));
+                    mapSub.add(mapToggles, 'bumpMap').name('Bump Map').onChange(mapToggleHandler('bumpMap', '_origBumpMap'));
+                    mapSub.add(mapToggles, 'aoMap').name('AO Map').onChange(mapToggleHandler('aoMap', '_origAoMap'));
+                    mapSub.add(mapToggles, 'roughnessMap').name('Roughness Map').onChange(mapToggleHandler('roughnessMap', '_origRoughnessMap'));
+                    mapSub.add(mapToggles, 'metalnessMap').name('Metalness Map').onChange(mapToggleHandler('metalnessMap', '_origMetalnessMap'));
+                    mapSub.add(mapToggles, 'emissiveMap').name('Emissive Map').onChange(mapToggleHandler('emissiveMap', '_origEmissiveMap'));
+                    mapSub.add(mapToggles, 'displacementMap').name('Displacement Map').onChange(mapToggleHandler('displacementMap', '_origDisplacementMap'));
+                    mapSub.add(mapToggles, 'alphaMap').name('Alpha Map').onChange(mapToggleHandler('alphaMap', '_origAlphaMap'));
+
+                    // ── Texture Map Thumbnails ──
+                    const mapNames = [
+                        ['Color Map', material.map || material._origMap],
+                        ['Normal Map', material.normalMap || material._origNormalMap],
+                        ['Bump Map', material.bumpMap || material._origBumpMap],
+                        ['AO Map', material.aoMap || material._origAoMap],
+                        ['Roughness Map', material.roughnessMap || material._origRoughnessMap],
+                        ['Metalness Map', material.metalnessMap || material._origMetalnessMap],
+                        ['Emissive Map', material.emissiveMap || material._origEmissiveMap],
+                        ['Displacement Map', material.displacementMap || material._origDisplacementMap],
+                        ['Alpha Map', material.alphaMap || material._origAlphaMap]
+                    ];
+                    setTimeout(() => {
+                        const el = mapSub.domElement;
+                        if (!el) return;
+                        mapNames.forEach(([label, tex]) => {
+                            if (!tex || !tex.image) return;
+                            const div = document.createElement('div');
+                            div.className = 'material-texture-thumbnail';
+                            const lbl = document.createElement('div');
+                            lbl.textContent = label + ':';
+                            lbl.style.cssText = 'font-size:11px;margin-bottom:4px;color:#aaa;';
+                            const canvas = document.createElement('canvas');
+                            canvas.width = 64; canvas.height = 64;
+                            try {
+                                const ctx = canvas.getContext('2d');
+                                ctx.drawImage(tex.image, 0, 0, 64, 64);
+                                const img = document.createElement('img');
+                                img.src = canvas.toDataURL();
+                                img.alt = label;
+                                div.appendChild(lbl);
+                                div.appendChild(img);
+                                el.appendChild(div);
+                            } catch(e) { /* cross-origin texture */ }
+                        });
+                    }, 200);
+
+                    // ── Normal Map Controls ──
+                    if (material.normalMap || material._origNormalMap) {
+                        const normalSub = matFolder.addFolder('🧭 Normal Map');
+                        
+                        // Normal scale X and Y (independent axes)
+                        if (material.normalScale) {
+                            normalSub.add(material.normalScale, 'x', -5, 5, 0.01)
+                                .name('Normal Scale X')
+                                .onChange(() => material.needsUpdate = true);
+                            normalSub.add(material.normalScale, 'y', -5, 5, 0.01)
+                                .name('Normal Scale Y')
+                                .onChange(() => material.needsUpdate = true);
+                        }
+
+                        // Normal map type
+                        const normalTypeOptions = {
+                            'Tangent Space': THREE.TangentSpaceNormalMap,
+                            'Object Space': THREE.ObjectSpaceNormalMap
+                        };
+                        normalSub.add(material, 'normalMapType', normalTypeOptions)
+                            .name('Normal Map Type')
+                            .onChange(() => material.needsUpdate = true);
+
+                        // Flip Y (common Samsung Internet issue)
+                        const nTex = material.normalMap || material._origNormalMap;
+                        if (nTex) {
+                            normalSub.add(nTex, 'flipY')
+                                .name('Flip Y')
+                                .onChange(() => { nTex.needsUpdate = true; material.needsUpdate = true; });
+                            
+                            // UV offset/repeat/rotation on the normal map
+                            normalSub.add(nTex.offset, 'x', -2, 2, 0.01).name('UV Offset X').onChange(() => material.needsUpdate = true);
+                            normalSub.add(nTex.offset, 'y', -2, 2, 0.01).name('UV Offset Y').onChange(() => material.needsUpdate = true);
+                            normalSub.add(nTex.repeat, 'x', -4, 4, 0.01).name('UV Repeat X').onChange(() => material.needsUpdate = true);
+                            normalSub.add(nTex.repeat, 'y', -4, 4, 0.01).name('UV Repeat Y').onChange(() => material.needsUpdate = true);
+                            normalSub.add(nTex, 'rotation', -Math.PI, Math.PI, 0.01).name('UV Rotation').onChange(() => material.needsUpdate = true);
+
+                            // UV channel
+                            normalSub.add(nTex, 'channel', { 'UV0': 0, 'UV1': 1 })
+                                .name('UV Channel')
+                                .onChange(() => material.needsUpdate = true);
+
+                            // Wrapping
+                            const wrapOptions = { 'Repeat': THREE.RepeatWrapping, 'Clamp': THREE.ClampToEdgeWrapping, 'Mirror': THREE.MirroredRepeatWrapping };
+                            normalSub.add(nTex, 'wrapS', wrapOptions).name('Wrap S').onChange(() => { nTex.needsUpdate = true; material.needsUpdate = true; });
+                            normalSub.add(nTex, 'wrapT', wrapOptions).name('Wrap T').onChange(() => { nTex.needsUpdate = true; material.needsUpdate = true; });
+
+                            // Color space (normal maps should be LinearSRGBColorSpace)
+                            const csOptions = { 'Linear': THREE.LinearSRGBColorSpace, 'sRGB': THREE.SRGBColorSpace, 'None': '' };
+                            normalSub.add(nTex, 'colorSpace', csOptions).name('Color Space')
+                                .onChange(() => { nTex.needsUpdate = true; material.needsUpdate = true; });
+
+                            // Filtering
+                            const filterOptions = { 'Linear': THREE.LinearFilter, 'Nearest': THREE.NearestFilter, 'LinearMipmap': THREE.LinearMipmapLinearFilter };
+                            normalSub.add(nTex, 'minFilter', filterOptions).name('Min Filter').onChange(() => { nTex.needsUpdate = true; material.needsUpdate = true; });
+                            normalSub.add(nTex, 'magFilter', { 'Linear': THREE.LinearFilter, 'Nearest': THREE.NearestFilter }).name('Mag Filter').onChange(() => { nTex.needsUpdate = true; material.needsUpdate = true; });
+                            normalSub.add(nTex, 'generateMipmaps').name('Generate Mipmaps').onChange(() => { nTex.needsUpdate = true; material.needsUpdate = true; });
+                        }
+                    }
+
+                    // ── Bump Map Controls ──
+                    if (material.bumpMap || material._origBumpMap) {
+                        const bumpSub = matFolder.addFolder('⛰️ Bump Map');
+                        bumpSub.add(material, 'bumpScale', -5, 5, 0.01).name('Bump Scale').onChange(() => material.needsUpdate = true);
+                        const bTex = material.bumpMap || material._origBumpMap;
+                        if (bTex) {
+                            bumpSub.add(bTex, 'flipY').name('Flip Y').onChange(() => { bTex.needsUpdate = true; material.needsUpdate = true; });
+                            bumpSub.add(bTex.offset, 'x', -2, 2, 0.01).name('UV Offset X').onChange(() => material.needsUpdate = true);
+                            bumpSub.add(bTex.offset, 'y', -2, 2, 0.01).name('UV Offset Y').onChange(() => material.needsUpdate = true);
+                            bumpSub.add(bTex.repeat, 'x', -4, 4, 0.01).name('UV Repeat X').onChange(() => material.needsUpdate = true);
+                            bumpSub.add(bTex.repeat, 'y', -4, 4, 0.01).name('UV Repeat Y').onChange(() => material.needsUpdate = true);
+                        }
+                    }
+
+                    // ── Color Map UV Controls ──
+                    if (material.map || material._origMap) {
+                        const uvSub = matFolder.addFolder('🎨 Color Map UV');
+                        const cTex = material.map || material._origMap;
+                        if (cTex) {
+                            uvSub.add(cTex, 'flipY').name('Flip Y').onChange(() => { cTex.needsUpdate = true; material.needsUpdate = true; });
+                            uvSub.add(cTex.offset, 'x', -2, 2, 0.01).name('UV Offset X').onChange(() => material.needsUpdate = true);
+                            uvSub.add(cTex.offset, 'y', -2, 2, 0.01).name('UV Offset Y').onChange(() => material.needsUpdate = true);
+                            uvSub.add(cTex.repeat, 'x', -4, 4, 0.01).name('UV Repeat X').onChange(() => material.needsUpdate = true);
+                            uvSub.add(cTex.repeat, 'y', -4, 4, 0.01).name('UV Repeat Y').onChange(() => material.needsUpdate = true);
+                            uvSub.add(cTex, 'rotation', -Math.PI, Math.PI, 0.01).name('UV Rotation').onChange(() => material.needsUpdate = true);
+                            uvSub.add(cTex, 'channel', { 'UV0': 0, 'UV1': 1 }).name('UV Channel').onChange(() => material.needsUpdate = true);
+                            const csOpts = { 'Linear': THREE.LinearSRGBColorSpace, 'sRGB': THREE.SRGBColorSpace, 'None': '' };
+                            uvSub.add(cTex, 'colorSpace', csOpts).name('Color Space').onChange(() => { cTex.needsUpdate = true; material.needsUpdate = true; });
+                        }
+                    }
+
+                    // ── AO Map ──
+                    if (material.aoMapIntensity !== undefined) {
+                        matFolder.add(material, 'aoMapIntensity', 0, 5, 0.01).name('AO Intensity').onChange(() => material.needsUpdate = true);
+                    }
+
+                    // ── Displacement ──
+                    if (material.displacementScale !== undefined) {
+                        matFolder.add(material, 'displacementScale', -2, 2, 0.001).name('Displacement Scale').onChange(() => material.needsUpdate = true);
+                        matFolder.add(material, 'displacementBias', -2, 2, 0.001).name('Displacement Bias').onChange(() => material.needsUpdate = true);
+                    }
+
+                    // ── Blending ──
+                    const xbBlendOptions = {
+                        'Normal': THREE.NormalBlending,
+                        'Additive': THREE.AdditiveBlending,
+                        'Subtractive': THREE.SubtractiveBlending,
+                        'Multiply': THREE.MultiplyBlending,
+                        'Custom': THREE.CustomBlending,
+                        'No Blending': THREE.NoBlending
+                    };
+                    matFolder.add(material, 'blending', xbBlendOptions).name('Blending').onChange(() => material.needsUpdate = true);
+
+                    // ── Depth ──
+                    matFolder.add(material, 'depthTest').name('Depth Test').onChange(() => material.needsUpdate = true);
+
+                    // ── Physical Material Properties (if applicable) ──
+                    if (material.type === 'MeshPhysicalMaterial' || material.type === 'MeshStandardMaterial') {
+                        const physSub = matFolder.addFolder('⚡ Physical');
+                        if (material.envMapIntensity !== undefined) physSub.add(material, 'envMapIntensity', 0, 5, 0.01).name('Env Map Intensity').onChange(() => material.needsUpdate = true);
+                        if (material.transmission !== undefined) physSub.add(material, 'transmission', 0, 1, 0.01).name('Transmission').onChange(() => material.needsUpdate = true);
+                        if (material.thickness !== undefined) physSub.add(material, 'thickness', 0, 5, 0.01).name('Thickness').onChange(() => material.needsUpdate = true);
+                        if (material.ior !== undefined) physSub.add(material, 'ior', 1, 2.5, 0.01).name('IOR').onChange(() => material.needsUpdate = true);
+                        if (material.sheen !== undefined) physSub.add(material, 'sheen', 0, 1, 0.01).name('Sheen').onChange(() => material.needsUpdate = true);
+                        if (material.sheenRoughness !== undefined) physSub.add(material, 'sheenRoughness', 0, 1, 0.01).name('Sheen Roughness').onChange(() => material.needsUpdate = true);
+                        if (material.clearcoat !== undefined) physSub.add(material, 'clearcoat', 0, 1, 0.01).name('Clearcoat').onChange(() => material.needsUpdate = true);
+                        if (material.clearcoatRoughness !== undefined) physSub.add(material, 'clearcoatRoughness', 0, 1, 0.01).name('Clearcoat Rough').onChange(() => material.needsUpdate = true);
+                        if (material.specularIntensity !== undefined) physSub.add(material, 'specularIntensity', 0, 3, 0.01).name('Specular Int').onChange(() => material.needsUpdate = true);
+                    }
+
+                    // ── Wireframe / Debug ──
+                    matFolder.add(material, 'wireframe').name('Wireframe').onChange(() => material.needsUpdate = true);
+                    matFolder.add(material, 'flatShading').name('Flat Shading').onChange(() => { material.needsUpdate = true; });
+                    matFolder.add(material, 'visible').name('Visible');
+                    if (material.alphaToCoverage !== undefined) matFolder.add(material, 'alphaToCoverage').name('Alpha To Coverage').onChange(() => material.needsUpdate = true);
+                    if (material.premultipliedAlpha !== undefined) matFolder.add(material, 'premultipliedAlpha').name('Premultiplied Alpha').onChange(() => material.needsUpdate = true);
+                    matFolder.add(material, 'toneMapped').name('Tone Mapped').onChange(() => material.needsUpdate = true);
+
+                    // ── Mesh-level controls (castShadow, receiveShadow, renderOrder) ──
+                    const xbMesh = { castShadow: true, receiveShadow: true, renderOrder: 0 };
+                    const xbApplyMesh = (prop, value) => {
+                        if (!window.model) return;
+                        window.model.traverse(c => {
+                            if (c.isMesh && c.material) {
+                                const ms = Array.isArray(c.material) ? c.material : [c.material];
+                                if (ms.some(m => m.name === name)) c[prop] = value;
+                            }
+                        });
+                    };
+                    matFolder.add(xbMesh, 'castShadow').name('Cast Shadows').onChange(v => xbApplyMesh('castShadow', v));
+                    matFolder.add(xbMesh, 'receiveShadow').name('Receive Shadows').onChange(v => xbApplyMesh('receiveShadow', v));
+                    matFolder.add(xbMesh, 'renderOrder', -10, 10, 1).name('Render Order').onChange(v => xbApplyMesh('renderOrder', v));
+                }
+                
                 // Add "Copy Settings" button at the bottom of each material folder
                 const copyParams = {
                     copySettings: () => {
@@ -3743,7 +5690,10 @@ class ThreeJSApp {
                 
                 mats.forEach((mat) => {
                     if (mat.name === 'LOGO') {
-                        console.log('✅ Found LOGO material - applying texture...');
+                        console.log('✅ Found LOGO material - hiding until texture loads...');
+                        
+                        // Hide material immediately to prevent flash of blank material
+                        mat.visible = false;
                         
                         // Dispose old texture if exists
                         if (mat.map) {
@@ -3831,10 +5781,16 @@ class ThreeJSApp {
                             mat.depthWrite = false;
                             
                             mat.needsUpdate = true;
+                            
+                            // Show material now that texture is loaded
+                            mat.visible = true;
+                            
                             console.log('✅ LOGO texture applied successfully with border:', borderEnabled, 'size:', borderSize, 'displaySize:', displaySize);
                         };
                         img.onerror = (error) => {
                             console.error('❌ Error loading LOGO texture:', error);
+                            // Show material even on error so it's not invisible forever
+                            mat.visible = true;
                         };
                         img.src = cacheBustedUrl;
                     }
@@ -3956,6 +5912,133 @@ class ThreeJSApp {
                 depthWrite: true,
                 depthTest: true,
                 envMapIntensity: 1
+            },
+            'XCLOTHES': {
+                // Only color is applied from preset — textures are preserved from GLB
+                color: (window.flexframeSettings?.primaryColorMode === 'custom' && window.flexframeSettings?.primaryColor) 
+                    ? window.flexframeSettings.primaryColor 
+                    : '#ff0000',
+                _preserveTextures: true // Flag: do NOT clear maps for this material
+            },
+            'AIBODYGIRL': {
+                // Same as XCLOTHES — primary color tint over grayscale texture
+                color: (window.flexframeSettings?.primaryColorMode === 'custom' && window.flexframeSettings?.primaryColor) 
+                    ? window.flexframeSettings.primaryColor 
+                    : '#ff0000',
+                _preserveTextures: true
+            },
+            'XMUSCLE': {
+                color: '#ffffff',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XSKELETON': {
+                color: '#ffffff',
+                opacity: 0.93,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.99,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XCOLOR': {
+                color: (window.flexframeSettings?.primaryColorMode === 'custom' && window.flexframeSettings?.primaryColor) 
+                    ? window.flexframeSettings.primaryColor 
+                    : '#ff0000',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.215,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XMETAL': {
+                color: '#151515',
+                opacity: 1,
+                transparent: false,
+                metalness: 0.85,
+                roughness: 0.36,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XRUBBER': {
+                color: '#1a1a1a',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.95,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XBUMPER': {
+                color: '#808080',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.8,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XCLEAR': {
+                color: '#ffffff',
+                opacity: 1,
+                transparent: true,
+                metalness: 0,
+                roughness: 0.42,
+                transmission: 0,
+                thickness: 0.85,
+                ior: 1.06,
+                side: THREE.FrontSide,
+                blending: THREE.NormalBlending,
+                depthWrite: false,
+                depthTest: true,
+                envMapIntensity: 2.29,
+                _preserveTextures: true // Keep GLB map texture
+            },
+            'XBODY': {
+                depthWrite: true,
+                roughness: 0.5,
+                _preserveTextures: true
             }
         };
         
@@ -3969,8 +6052,18 @@ class ThreeJSApp {
                     if (mat.name && presets[mat.name.toUpperCase()]) {
                         const preset = presets[mat.name.toUpperCase()];
                         
+                        // XCLOTHES / _preserveTextures: only apply color, keep all GLB textures & properties
+                        if (preset._preserveTextures) {
+                            if (preset.color && mat.color) mat.color.set(preset.color);
+                            if (preset.depthWrite !== undefined) mat.depthWrite = preset.depthWrite;
+                            if (preset.roughness !== undefined) mat.roughness = preset.roughness;
+                            mat.needsUpdate = true;
+                            appliedCount++;
+                            return; // Skip full property override
+                        }
+                        
                         // Apply preset values
-                        if (preset.color) mat.color.set(preset.color);
+                        if (preset.color && mat.color) mat.color.set(preset.color);
                         mat.opacity = preset.opacity;
                         mat.transparent = preset.transparent;
                         mat.metalness = preset.metalness;
@@ -4030,7 +6123,7 @@ class ThreeJSApp {
                 materials.forEach(mat => {
                     if (mat.name && mat.name.toUpperCase() === 'SKIN') {
                         // Apply custom settings from WordPress
-                        if (skinSettings.color) {
+                        if (skinSettings.color && mat.color) {
                             mat.color.set(skinSettings.color);
                         }
                         if (skinSettings.opacity !== undefined) {
@@ -4073,6 +6166,176 @@ class ThreeJSApp {
         }
     }
 
+    /**
+     * Apply equipment material settings from WordPress admin
+     * @param {Object} model - The loaded 3D model
+     * @param {Object} equipmentMaterials - Settings object for each equipment material
+     */
+    applyEquipmentMaterials(model, equipmentMaterials) {
+        if (!model || !equipmentMaterials) {
+            console.log('No model or equipment materials to apply');
+            return;
+        }
+
+        console.log('Equipment Materials from WordPress:', equipmentMaterials);
+
+        // Map material names in the model to settings keys (PHP sends uppercase keys)
+        const materialMapping = {
+            'BARBELL': 'BARBELL',
+            'BUMPER': 'COLOR1',
+            'CABLE': 'CABLE',
+            'CHROME': 'CHROME',
+            'COLOR_1': 'COLOR1',
+            'COLOR1': 'COLOR1',
+            'METAL': 'METAL',
+            'PAD': 'PAD',
+            'PLASTIC': 'PLASTIC',
+            'RUBBER': 'RUBBER',
+            'XCLOTHES': 'XCLOTHES',
+            'AIBODYGIRL': 'AIBODYGIRL',
+            'XCOLOR': 'COLOR1',
+            'XMETAL': 'METAL',
+            'XRUBBER': 'RUBBER',
+            'XBUMPER': 'COLOR1',
+            'XCLEAR': 'XCLEAR'
+        };
+
+        model.traverse((child) => {
+            if (child.isMesh && child.material) {
+                const materials = Array.isArray(child.material) ? child.material : [child.material];
+                
+                materials.forEach(mat => {
+                    if (!mat.name) return;
+                    
+                    const matNameUpper = mat.name.toUpperCase();
+                    const settingsKey = materialMapping[matNameUpper];
+                    
+                    if (settingsKey && equipmentMaterials[settingsKey]) {
+                        const settings = equipmentMaterials[settingsKey];
+                        
+                        // Check if this material is enabled
+                        if (!settings.enabled) {
+                            console.log(`Equipment material ${matNameUpper} is disabled, skipping`);
+                            return;
+                        }
+
+                        console.log(`Applying equipment settings to ${matNameUpper}:`, settings);
+
+                        // Apply basic properties
+                        if (settings.color && mat.color) {
+                            mat.color.set(settings.color);
+                        }
+
+                        if (settings.opacity !== undefined && settings.opacity !== null) {
+                            mat.opacity = parseFloat(settings.opacity);
+                            mat.transparent = mat.opacity < 1;
+                        }
+
+                        if (settings.metalness !== undefined && settings.metalness !== null) {
+                            mat.metalness = parseFloat(settings.metalness);
+                        }
+
+                        if (settings.roughness !== undefined && settings.roughness !== null) {
+                            mat.roughness = parseFloat(settings.roughness);
+                        }
+
+                        // Clearcoat
+                        if (settings.clearcoat !== undefined && settings.clearcoat !== null) {
+                            mat.clearcoat = parseFloat(settings.clearcoat);
+                        }
+
+                        if (settings.clearcoatRoughness !== undefined && settings.clearcoatRoughness !== null) {
+                            mat.clearcoatRoughness = parseFloat(settings.clearcoatRoughness);
+                        }
+
+                        // Emission
+                        if (settings.emissiveColor && mat.emissive) {
+                            mat.emissive.set(settings.emissiveColor);
+                        }
+
+                        if (settings.emissiveIntensity !== undefined && settings.emissiveIntensity !== null) {
+                            mat.emissiveIntensity = parseFloat(settings.emissiveIntensity);
+                        }
+
+                        // Transmission (glass-like)
+                        if (settings.transmission !== undefined && settings.transmission !== null) {
+                            mat.transmission = parseFloat(settings.transmission);
+                        }
+
+                        if (settings.thickness !== undefined && settings.thickness !== null) {
+                            mat.thickness = parseFloat(settings.thickness);
+                        }
+
+                        if (settings.ior !== undefined && settings.ior !== null) {
+                            mat.ior = parseFloat(settings.ior);
+                        }
+
+                        // Sheen
+                        if (settings.sheen !== undefined && settings.sheen !== null) {
+                            mat.sheen = parseFloat(settings.sheen);
+                        }
+
+                        if (settings.sheenRoughness !== undefined && settings.sheenRoughness !== null) {
+                            mat.sheenRoughness = parseFloat(settings.sheenRoughness);
+                        }
+
+                        if (settings.sheenColor && mat.sheenColor) {
+                            mat.sheenColor.set(settings.sheenColor);
+                        }
+
+                        // Environment map intensity
+                        if (settings.envMapIntensity !== undefined && settings.envMapIntensity !== null) {
+                            mat.envMapIntensity = parseFloat(settings.envMapIntensity);
+                        }
+
+                        // Blending mode
+                        if (settings.blending) {
+                            switch (settings.blending) {
+                                case 'normal':
+                                    mat.blending = THREE.NormalBlending;
+                                    break;
+                                case 'additive':
+                                    mat.blending = THREE.AdditiveBlending;
+                                    break;
+                                case 'subtractive':
+                                    mat.blending = THREE.SubtractiveBlending;
+                                    break;
+                                case 'multiply':
+                                    mat.blending = THREE.MultiplyBlending;
+                                    break;
+                            }
+                        }
+
+                        // Bump and normal map toggles
+                        if (settings.bumpMapEnabled !== undefined && settings.bumpMapEnabled !== null) {
+                            // If bump map is disabled, set bumpScale to 0
+                            if (!settings.bumpMapEnabled && mat.bumpMap) {
+                                mat.bumpScale = 0;
+                            }
+                        }
+
+                        if (settings.normalMapEnabled !== undefined && settings.normalMapEnabled !== null) {
+                            // If normal map is disabled, set normalScale to 0
+                            if (!settings.normalMapEnabled && mat.normalMap && mat.normalScale) {
+                                mat.normalScale.set(0, 0);
+                            }
+                        }
+
+                        if (settings.colorMapEnabled !== undefined && settings.colorMapEnabled !== null) {
+                            // If color map is disabled, remove it
+                            if (!settings.colorMapEnabled && mat.map) {
+                                mat.map = null;
+                            }
+                        }
+
+                        mat.needsUpdate = true;
+                        console.log(`✅ Equipment material settings applied to: ${matNameUpper}`);
+                    }
+                });
+            }
+        });
+    }
+
     setupEventListeners() {
         // Window resize
         window.addEventListener('resize', () => {
@@ -4082,6 +6345,13 @@ class ThreeJSApp {
             this.cameraManager.handleResize();
             this.renderer.setSize(this.sizes.width, this.sizes.height);
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            
+            // Disable always-visible on mobile, re-enable on desktop
+            if (this.animationPlayer && this.uiSettings?.player) {
+                const isMobile = window.innerWidth <= 768;
+                const shouldBeAlwaysVisible = isMobile ? false : (this.uiSettings.player.alwaysVisible === true);
+                this.animationPlayer.setAlwaysVisible(shouldBeAlwaysVisible);
+            }
         });
 
         // Click interactions
@@ -4655,7 +6925,244 @@ class ThreeJSApp {
         // customFolder.open();
         // screenshotFolder.open();
     }
+    
+    setupMobileSearchCloseButton() {
+        const searchCloseBtn = document.getElementById('searchCloseBtnMobile');
+        const searchDropdown = document.getElementById('searchDropdown');
+        const searchToggle = document.getElementById('searchToggle');
+        
+        if (!searchCloseBtn || !searchDropdown || !searchToggle) return;
+        
+        // Get menu background color from flexframeSettings
+        const settings = window.flexframeSettings || {};
+        const menuBg = settings.menuBackgroundColor || '#000000';
+        const menuBgOpacity = settings.menuBackgroundOpacity || 0.9;
+        
+        // Convert hex to RGB
+        const hexToRgb = (hex) => {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : {r: 0, g: 0, b: 0};
+        };
+        
+        const rgb = hexToRgb(menuBg);
+        const bgColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${menuBgOpacity})`;
+        const bgColorHover = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${Math.min(menuBgOpacity + 0.1, 1)})`;
+        
+        // Apply inline styles to override theme CSS
+        searchCloseBtn.style.setProperty('background', bgColor, 'important');
+        searchCloseBtn.style.setProperty('background-color', bgColor, 'important');
+        
+        // Add hover effect
+        searchCloseBtn.addEventListener('mouseenter', () => {
+            searchCloseBtn.style.setProperty('background', bgColorHover, 'important');
+            searchCloseBtn.style.setProperty('background-color', bgColorHover, 'important');
+        });
+        searchCloseBtn.addEventListener('mouseleave', () => {
+            searchCloseBtn.style.setProperty('background', bgColor, 'important');
+            searchCloseBtn.style.setProperty('background-color', bgColor, 'important');
+        });
+        
+        // Function to update close button position based on dropdown
+        const updateCloseButtonPosition = () => {
+            if (searchDropdown.classList.contains('show')) {
+                const dropdownRect = searchDropdown.getBoundingClientRect();
+                const bottom = dropdownRect.bottom;
+                searchCloseBtn.style.top = `${bottom + 10}px`;
+                searchCloseBtn.style.display = 'flex';
+            } else {
+                searchCloseBtn.style.display = 'none';
+            }
+        };
+        
+        // Observe dropdown state changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    updateCloseButtonPosition();
+                }
+            });
+        });
+        
+        observer.observe(searchDropdown, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+        
+        // Close button click handler
+        searchCloseBtn.addEventListener('click', () => {
+            if (this.multiThumbnailMenuSystem && this.multiThumbnailMenuSystem.menus.search) {
+                this.multiThumbnailMenuSystem.menus.search.closeMenu();
+            }
+        });
+        
+        // Initial check
+        updateCloseButtonPosition();
+    }
+    
+    // Setup mobile fullscreen button
+    setupFullscreenButton() {
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        if (!fullscreenBtn) return;
+        
+        const enterIcon = fullscreenBtn.querySelector('.fullscreen-enter-icon');
+        const exitIcon = fullscreenBtn.querySelector('.fullscreen-exit-icon');
+        
+        const updateIcons = () => {
+            const isFullscreen = document.fullscreenElement || 
+                                 document.webkitFullscreenElement || 
+                                 document.mozFullScreenElement ||
+                                 document.msFullscreenElement;
+            
+            if (enterIcon && exitIcon) {
+                enterIcon.style.display = isFullscreen ? 'none' : 'block';
+                exitIcon.style.display = isFullscreen ? 'block' : 'none';
+            }
+        };
+        
+        const enterFullscreen = () => {
+            const elem = document.documentElement;
+            // Try with navigationUI option for better mobile support
+            const options = { navigationUI: 'hide' };
+            
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen(options).catch(() => {
+                    // Fallback without options
+                    elem.requestFullscreen();
+                });
+            } else if (elem.webkitRequestFullscreen) {
+                // iOS Safari doesn't support fullscreen API, but try anyway
+                elem.webkitRequestFullscreen();
+            } else if (elem.webkitEnterFullscreen) {
+                // Alternative for iOS video elements
+                elem.webkitEnterFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        };
+        
+        const exitFullscreen = () => {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        };
+        
+        fullscreenBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent auto-fullscreen from interfering
+            if (!document.fullscreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement &&
+                !document.msFullscreenElement) {
+                enterFullscreen();
+            } else {
+                exitFullscreen();
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', updateIcons);
+        document.addEventListener('webkitfullscreenchange', updateIcons);
+        document.addEventListener('mozfullscreenchange', updateIcons);
+        document.addEventListener('MSFullscreenChange', updateIcons);
+        
+        // Adjust fullscreen button position based on animation player visibility (desktop only)
+        const updateButtonPosition = () => {
+            const workoutBtn = document.getElementById('ffx-add-to-workout-btn');
+            if (window.innerWidth > 768) {
+                const animationPlayer = document.querySelector('.animation-player');
+                const isPlayerVisible = animationPlayer && animationPlayer.classList.contains('visible');
+                fullscreenBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
+                if (workoutBtn) workoutBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
+            } else {
+                // On mobile, clear inline style to let CSS handle it (50px)
+                fullscreenBtn.style.bottom = '';
+                if (workoutBtn) workoutBtn.style.bottom = '';
+            }
+        };
+        
+        // Watch for animation player visibility changes
+        const animationPlayer = document.querySelector('.animation-player');
+        if (animationPlayer) {
+            const observer = new MutationObserver(updateButtonPosition);
+            observer.observe(animationPlayer, { attributes: true, attributeFilter: ['class'] });
+        }
+        
+        // Also update on window resize
+        window.addEventListener('resize', updateButtonPosition);
+        
+        // Initial position check
+        updateButtonPosition();
+        
+        // Auto-enter fullscreen on first user interaction (required by browsers)
+        // Browsers require a user gesture - we listen for ANY interaction
+        // Check if WordPress setting enables auto-fullscreen
+        if (window.flexframeSettings?.autoFullscreen) {
+            const autoEnterFullscreen = (e) => {
+                // Don't auto-fullscreen if clicking the fullscreen button itself
+                if (e.target?.closest?.('#fullscreen-btn')) return;
+                
+                // Remove all listeners immediately to prevent multiple triggers
+                document.removeEventListener('click', autoEnterFullscreen);
+                document.removeEventListener('touchstart', autoEnterFullscreen);
+                document.removeEventListener('touchend', autoEnterFullscreen);
+                document.removeEventListener('keydown', autoEnterFullscreen);
+                document.removeEventListener('pointerdown', autoEnterFullscreen);
+                document.removeEventListener('mousedown', autoEnterFullscreen);
+                
+                // Delay fullscreen slightly so the original click action completes first
+                setTimeout(() => {
+                    enterFullscreen();
+                }, 50);
+            };
+            // Listen for any user interaction
+            document.addEventListener('click', autoEnterFullscreen);
+            document.addEventListener('touchstart', autoEnterFullscreen, { passive: true });
+            document.addEventListener('touchend', autoEnterFullscreen, { passive: true });
+            document.addEventListener('keydown', autoEnterFullscreen);
+            document.addEventListener('pointerdown', autoEnterFullscreen);
+            document.addEventListener('mousedown', autoEnterFullscreen);
+        }
+    }
 }
 
-// Initialize the application
-const app = new ThreeJSApp();
+// Initialize the application - wait for canvas element to exist in DOM
+function startApp() {
+    const canvas = document.querySelector('canvas.webgl');
+    if (canvas) {
+        console.log('[FlexFrame] Canvas found, initializing app');
+        const app = new ThreeJSApp();
+        return;
+    }
+    // Canvas not found yet - poll until it appears (themes/page builders may inject content late)
+    console.warn('[FlexFrame] Canvas not found yet, waiting for DOM...');
+    let attempts = 0;
+    const maxAttempts = 100; // 10 seconds max
+    const interval = setInterval(() => {
+        attempts++;
+        if (document.querySelector('canvas.webgl')) {
+            clearInterval(interval);
+            console.log('[FlexFrame] Canvas found after ' + (attempts * 100) + 'ms, initializing app');
+            const app = new ThreeJSApp();
+        } else if (attempts >= maxAttempts) {
+            clearInterval(interval);
+            console.error('[FlexFrame] Canvas element with class "webgl" not found after 10 seconds. Make sure the [flexframe_viewer] shortcode is on this page.');
+        }
+    }, 100);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startApp);
+} else {
+    startApp();
+}

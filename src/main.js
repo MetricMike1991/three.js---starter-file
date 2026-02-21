@@ -257,6 +257,7 @@ class ThreeJSApp {
                     this.modelUrlHQ = config.modelUrlHQ;
                     this.currentModelQuality = 'SQ';
                     this.isQualitySwitching = false; // Reset quality switch lock
+                    this.isModelLoading = false; // Reset model loading lock
                     
                     // Update quality toggle button visibility
                     this.updateQualityButtonVisibility();
@@ -3514,9 +3515,9 @@ class ThreeJSApp {
     async switchModelQuality() {
         if (!this.modelUrlSQ || !this.modelUrlHQ) return;
         
-        // Prevent spam clicking - check if already switching
-        if (this.isQualitySwitching) {
-            console.log('[Quality] Already switching quality, ignoring click');
+        // Prevent clicking while any model is loading or already switching
+        if (this.isQualitySwitching || this.isModelLoading) {
+            console.log('[Quality] Model loading or already switching, ignoring click');
             return;
         }
         
@@ -3641,6 +3642,10 @@ class ThreeJSApp {
             this.updateLoaderSpinner();
             loader.style.display = 'flex';
         }
+        
+        // Set loading flag and disable quality button
+        this.isModelLoading = true;
+        this._setQualityButtonEnabled(false);
         
         // Clean up existing GUI folders
         if (this.modelFolder) {
@@ -4320,6 +4325,10 @@ class ThreeJSApp {
                     this._isTestModel = false;
                 }
                 
+                // Clear loading flag and re-enable quality button
+                this.isModelLoading = false;
+                this._setQualityButtonEnabled(true);
+                
                 // Resolve the promise when model is fully loaded
                 resolve(model);
             },
@@ -4341,10 +4350,30 @@ class ThreeJSApp {
                 if (loader) {
                     loader.style.display = 'none';
                 }
+                // Clear loading flag and re-enable quality button
+                this.isModelLoading = false;
+                this._setQualityButtonEnabled(true);
+                
                 reject(error);
             }
         );
         }); // Close the Promise
+    }
+    
+    _setQualityButtonEnabled(enabled) {
+        const qualityBtn = document.getElementById('quality-toggle-btn');
+        if (!qualityBtn) return;
+        if (enabled) {
+            qualityBtn.disabled = false;
+            qualityBtn.style.opacity = '1';
+            qualityBtn.style.cursor = 'pointer';
+            qualityBtn.style.pointerEvents = 'auto';
+        } else {
+            qualityBtn.disabled = true;
+            qualityBtn.style.opacity = '0.5';
+            qualityBtn.style.cursor = 'wait';
+            qualityBtn.style.pointerEvents = 'none';
+        }
     }
 
     setupModelGUI(model) {
