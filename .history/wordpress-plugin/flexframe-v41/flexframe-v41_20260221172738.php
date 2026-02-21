@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v41
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.468
+ * Version: 1.41.467
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.468');
+define('FLEXFRAME_VERSION', '1.41.467');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -3097,6 +3097,7 @@ function flexframe_enqueue_assets() {
                 position: fixed !important;
                 top: 0 !important;
                 left: 0 !important;
+                z-index: 9999 !important;
             }
             /* Ensure FlexFrame container is full screen */
             #flexframe-viewer-container {
@@ -5083,10 +5084,8 @@ function flexframe_viewer_shortcode($atts) {
             img.draggable = false;
             wm.appendChild(img);
             wrap.appendChild(wm);
-            // Append inside viewer container (shares stacking context with UI)
-            // position:fixed still uses viewport coords, but stacks within container's context
-            var vc = document.getElementById('flexframe-viewer-container');
-            (vc || document.body).appendChild(wrap);
+            // Append to BODY — positioned via viewport percentages
+            document.body.appendChild(wrap);
             
             // Config from WordPress settings
             var posX = <?php echo intval($bg_logo_pos_x); ?>;
@@ -5096,7 +5095,7 @@ function flexframe_viewer_shortcode($atts) {
             
             // Style the wrapper - FIXED to viewport, covers entire screen
             var ws = wrap.style;
-            ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:1;overflow:hidden;box-sizing:border-box;';
+            ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:9998;overflow:hidden;box-sizing:border-box;';
             
             // Style the watermark div
             var s = wm.style;
@@ -5126,7 +5125,7 @@ function flexframe_viewer_shortcode($atts) {
             // Nuclear guard: re-apply all styles every 2 seconds
             // This defeats any theme JS that might override styles after load
             setInterval(function() {
-                ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:1;overflow:hidden;box-sizing:border-box;';
+                ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:9998;overflow:hidden;box-sizing:border-box;';
                 s.position = 'absolute';
                 s.top = posYcss + '%';
                 s.left = posX + '%';

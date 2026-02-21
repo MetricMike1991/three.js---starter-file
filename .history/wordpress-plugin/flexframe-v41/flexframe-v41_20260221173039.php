@@ -5096,7 +5096,7 @@ function flexframe_viewer_shortcode($atts) {
             
             // Style the wrapper - FIXED to viewport, covers entire screen
             var ws = wrap.style;
-            ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:1;overflow:hidden;box-sizing:border-box;';
+            ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:9998;overflow:hidden;box-sizing:border-box;';
             
             // Style the watermark div
             var s = wm.style;
