@@ -3,7 +3,48 @@
  * Organized modular architecture for better maintainability
  */
 
-console.log('[FlexFrame Build] main.js v28.4 loaded - AR Support - Build timestamp:', new Date().toISOString());
+const BUILD_TIMESTAMP = __BUILD_TIMESTAMP__;
+const BUILD_NUMBER = __BUILD_NUMBER__;
+console.log('[FlexFrame Build] main.js v28.4 loaded - AR Support - Build #' + BUILD_NUMBER + ' - ' + BUILD_TIMESTAMP);
+
+// Keyboard shortcut to check build timestamp (Press 'L')
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'l' || e.key === 'L') {
+        // Don't trigger if typing in an input
+        if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+        
+        console.log('%c═══════════════════════════════════════════════════════', 'color: #4CAF50; font-weight: bold;');
+        console.log('%c🔍 FLEXFRAME BUILD INFO', 'color: #4CAF50; font-size: 16px; font-weight: bold;');
+        console.log('%c═══════════════════════════════════════════════════════', 'color: #4CAF50; font-weight: bold;');
+        console.log('%c📦 Version:', 'color: #2196F3; font-weight: bold;', 'v28.4 - AR Support');
+        console.log('%c🔢 Build Number:', 'color: #2196F3; font-weight: bold;', '#' + BUILD_NUMBER);
+        console.log('%c🕒 Build Timestamp:', 'color: #2196F3; font-weight: bold;', BUILD_TIMESTAMP);
+        console.log('%c📅 Build Date:', 'color: #2196F3; font-weight: bold;', new Date(BUILD_TIMESTAMP).toLocaleString());
+        console.log('%c⏱️  Time Ago:', 'color: #2196F3; font-weight: bold;', getTimeAgo(BUILD_TIMESTAMP));
+        if (window.flexframeSettings && window.flexframeSettings.pluginUrl) {
+            console.log('%c🔗 Plugin URL:', 'color: #2196F3; font-weight: bold;', window.flexframeSettings.pluginUrl);
+            console.log('%c📂 Plugin Version:', 'color: #2196F3; font-weight: bold;', window.flexframeSettings.pluginVersion || 'N/A');
+        }
+        console.log('%c═══════════════════════════════════════════════════════', 'color: #4CAF50; font-weight: bold;');
+    }
+});
+
+// Helper function to calculate time ago
+function getTimeAgo(timestamp) {
+    const now = new Date();
+    const buildDate = new Date(timestamp);
+    const diffMs = now - buildDate;
+    const diffSecs = Math.floor(diffMs / 1000);
+    const diffMins = Math.floor(diffSecs / 60);
+    const diffHours = Math.floor(diffMins / 60);
+    const diffDays = Math.floor(diffHours / 24);
+    
+    if (diffSecs < 60) return `${diffSecs} seconds ago`;
+    if (diffMins < 60) return `${diffMins} minutes ago`;
+    if (diffHours < 24) return `${diffHours} hours ago`;
+    return `${diffDays} days ago`;
+}
+
 
 // Helper function to resolve asset paths for WordPress plugin
 export function getAssetUrl(path) {
@@ -34,6 +75,7 @@ import { MultiThumbnailMenuSystem } from './js/multi-thumbnail-menu.js';
 import { RightMenuSystem } from './js/right-menu-system.js';
 import { arHandler } from './js/ar-handler.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import ThemeEditor from './js/theme-editor.js';
 
 /**
  * Application Class
@@ -126,6 +168,9 @@ class ThreeJSApp {
         this.settingsManager = new SettingsManager();
         this.animationPlayer = new AnimationPlayer();
         
+        // Initialize Theme Editor (press T to open)
+        this.themeEditor = new ThemeEditor(this);
+        
         // Setup screenshot button callback
         this.setupScreenshotButton();
         
@@ -150,6 +195,12 @@ class ThreeJSApp {
         console.log('✅ window.menuManager set:', window.menuManager);
         window.rightMenuManager = this.rightMenuSystem;
         
+        // Setup mobile search close button
+        this.setupMobileSearchCloseButton();
+        
+        // Setup mobile fullscreen button
+        this.setupFullscreenButton();
+        
         // Listen for thumbnail selection events
         document.addEventListener('thumbnailSelected', (e) => {
             console.log('Thumbnail selected:', e.detail.thumbnail);
@@ -160,6 +211,19 @@ class ThreeJSApp {
         document.addEventListener('exercisesSelected', async (e) => {
             const exercise = e.detail.item;
             this.currentExerciseName = exercise.name;
+            this.currentExerciseId = exercise.id || '';
+            
+            // Show "Add to Workout" button if workout page is configured
+            this.showAddToWorkoutButton(exercise);
+            
+            // Update screenshot panel filename if it exists
+            if (this.screenshotPanel) {
+                const filenameInput = this.screenshotPanel.querySelector('#ss-filename');
+                if (filenameInput) {
+                    filenameInput.value = exercise.name;
+                }
+            }
+            
             // console.log('Exercise selected, loading config:', exercise.name);
             
             if (exercise.configUrl) {
@@ -177,8 +241,8 @@ class ThreeJSApp {
                     // Store full config for quality switching
                     this.currentConfig = config;
                     
-                    // Update AR handler with new config
-                    arHandler.updateConfig(config);
+                    // Update AR handler with new config + thumbnail
+                    arHandler.updateConfig(config, exercise.thumbnailUrl);
                     
                     // Store config temporarily to apply after model loads
                     this.pendingModelConfig = config.model;
@@ -187,14 +251,22 @@ class ThreeJSApp {
                     this.modelUrlSQ = config.modelUrl || config.modelUrlSQ;
                     this.modelUrlHQ = config.modelUrlHQ;
                     this.currentModelQuality = 'SQ';
+                    this.isQualitySwitching = false; // Reset quality switch lock
                     
                     // Update quality toggle button visibility
                     this.updateQualityButtonVisibility();
                     
                     // Load the 3D model if URL is provided
                     if (this.modelUrlSQ) {
-                        // console.log('Loading SQ model from config:', this.modelUrlSQ);
-                        await this.loadModel(this.modelUrlSQ);
+                        // If test model is active, override the model URL
+                        const ws = window.flexframeSettings;
+                        if (ws?.testModelUrl && ws?.testModelEnabled) {
+                            console.log('🧪 [Model Tester] Overriding exercise model with test model');
+                            this._isTestModel = true;
+                            await this.loadModel(ws.testModelUrl);
+                        } else {
+                            await this.loadModel(this.modelUrlSQ);
+                        }
                     }
                     
                     // Apply camera settings
@@ -222,7 +294,7 @@ class ThreeJSApp {
                     
                     // Update right menu tabs with config data
                     if (config.rightMenuTabs && window.rightMenuManager) {
-                        window.rightMenuManager.updateFromConfig(config.rightMenuTabs);
+                        window.rightMenuManager.updateFromConfig(config.rightMenuTabs, exercise);
                     }
                 } catch (error) {
                     console.error('Failed to load exercise config:', error);
@@ -327,6 +399,9 @@ class ThreeJSApp {
         // Check for exercise in URL and auto-select it
         this.checkUrlForExercise();
         
+        // Check for test model from WordPress settings
+        this.checkForTestModel();
+        
         this.animate();
     }
     
@@ -413,6 +488,628 @@ class ThreeJSApp {
         console.warn('⚠️ Timed out waiting for exercises to load for URL preload');
     }
 
+    /**
+     * Check if a test model URL is set from WordPress and load it
+     */
+    async checkForTestModel() {
+        const ws = window.flexframeSettings;
+        if (!ws?.testModelUrl || !ws?.testModelEnabled) return;
+        
+        console.log('🧪 [Model Tester] Test model URL detected:', ws.testModelUrl);
+        
+        // Mark the next load as a test model so the inspector shows
+        this._isTestModel = true;
+        this._testModelUrl = ws.testModelUrl;
+        
+        // Load the test model directly
+        try {
+            await this.loadModel(ws.testModelUrl);
+        } catch (error) {
+            console.error('🧪 [Model Tester] Failed to load test model:', error);
+            this._isTestModel = false;
+        }
+    }
+
+    /**
+     * Show the Model Inspector panel with material analysis
+     */
+    showModelInspector(model, modelUrl) {
+        console.log('[Model Inspector] Analyzing model...');
+        
+        // Collect all mesh and material data
+        const meshes = [];
+        const materialsMap = new Map();
+        let totalVertices = 0;
+        let totalTriangles = 0;
+        
+        // Known material names that get theme mapping
+        const themeMappedNames = {
+            'MUSCLE': { section: 'Preset Only' },
+            'SKIN': { section: 'Skin Material' },
+            'SKELETON': { section: 'Preset Only' },
+            'BARBELL': { section: 'Barbell Material' },
+            'BUMPER': { section: 'Bumper Plates' },
+            'CABLE': { section: 'Cable Material' },
+            'CHROME': { section: 'Chrome Material' },
+            'COLOR_1': { section: 'Brand Color' },
+            'COLOR1': { section: 'Brand Color' },
+            'METAL': { section: 'Metal Material' },
+            'PAD': { section: 'Pad / Cushion' },
+            'PLASTIC': { section: 'Plastic Material' },
+            'RUBBER': { section: 'Rubber Material' },
+            'XCLOTHES': { section: 'HD Clothes (Primary Color)' },
+            'AIBODYGIRL': { section: 'HD Body (Primary Color)' },
+            'XMUSCLE': { section: 'HD Muscle (= MUSCLE)' },
+            'XSKELETON': { section: 'HD Skeleton (= SKELETON)' },
+            'XCOLOR': { section: 'HD Color (= COLOR_1)' },
+            'XMETAL': { section: 'HD Metal (= METAL)' },
+            'XRUBBER': { section: 'HD Rubber (= RUBBER)' },
+            'XBUMPER': { section: 'HD Bumper (= BUMPER)' },
+            'XCLEAR': { section: 'HD Clear (= SKIN transmission)' },
+            'XBODY': { section: 'HD Body (depthWrite ON)' },
+            'LOGO': { section: 'Logo (Step 2)' }
+        };
+        
+        model.traverse((child) => {
+            if (child.isMesh) {
+                const geo = child.geometry;
+                const vCount = geo.attributes.position ? geo.attributes.position.count : 0;
+                const tCount = geo.index ? geo.index.count / 3 : vCount / 3;
+                totalVertices += vCount;
+                totalTriangles += Math.floor(tCount);
+                
+                const mats = Array.isArray(child.material) ? child.material : [child.material];
+                mats.forEach(mat => {
+                    if (mat) {
+                        const name = mat.name || 'Unnamed';
+                        if (!materialsMap.has(name)) {
+                            materialsMap.set(name, {
+                                material: mat,
+                                meshCount: 0,
+                                vertices: 0
+                            });
+                        }
+                        const entry = materialsMap.get(name);
+                        entry.meshCount++;
+                        entry.vertices += vCount;
+                    }
+                });
+                
+                meshes.push({
+                    name: child.name || 'Unnamed Mesh',
+                    materialName: mats.map(m => m?.name || 'Unnamed').join(', '),
+                    vertices: vCount,
+                    triangles: Math.floor(tCount)
+                });
+            }
+        });
+        
+        // Remove existing inspector if any
+        const existing = document.getElementById('flexframe-model-inspector');
+        if (existing) existing.remove();
+        
+        // Build the inspector panel
+        const panel = document.createElement('div');
+        panel.id = 'flexframe-model-inspector';
+        panel.innerHTML = `
+            <div class="fmi-header">
+                <div class="fmi-title">
+                    <span>Model Inspector</span>
+                    <span class="fmi-badge">TEST MODE</span>
+                </div>
+                <div class="fmi-header-actions">
+                    <button class="fmi-btn fmi-copy-btn" title="Copy report to clipboard">Copy</button>
+                    <button class="fmi-btn fmi-minimize-btn" title="Minimize">−</button>
+                    <button class="fmi-btn fmi-close-btn" title="Close">X</button>
+                </div>
+            </div>
+            <div class="fmi-body">
+                <div class="fmi-section">
+                    <div class="fmi-section-title">Model Overview</div>
+                    <div class="fmi-stats-grid">
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${meshes.length}</span>
+                            <span class="fmi-stat-label">Meshes</span>
+                        </div>
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${materialsMap.size}</span>
+                            <span class="fmi-stat-label">Materials</span>
+                        </div>
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${totalVertices.toLocaleString()}</span>
+                            <span class="fmi-stat-label">Vertices</span>
+                        </div>
+                        <div class="fmi-stat">
+                            <span class="fmi-stat-value">${totalTriangles.toLocaleString()}</span>
+                            <span class="fmi-stat-label">Triangles</span>
+                        </div>
+                    </div>
+                    <div class="fmi-url-row">
+                        <span class="fmi-url-label">Source:</span>
+                        <code class="fmi-url">${modelUrl}</code>
+                    </div>
+                </div>
+                
+                <div class="fmi-section">
+                    <div class="fmi-section-title">Materials (${materialsMap.size})</div>
+                    <div class="fmi-materials-list">
+                        ${Array.from(materialsMap.entries()).map(([name, data]) => {
+                            const upperName = name.toUpperCase();
+                            const themeMatch = themeMappedNames[upperName];
+                            const colorHex = data.material.color ? '#' + data.material.color.getHexString() : 'N/A';
+                            const matType = data.material.type || 'Unknown';
+                            
+                            return `
+                                <div class="fmi-material-card ${themeMatch ? 'fmi-mapped' : 'fmi-unmapped'}" data-material-name="${name}">
+                                    <div class="fmi-mat-header">
+                                        <div class="fmi-mat-name-row">
+                                            <code class="fmi-mat-name">${name}</code>
+                                            ${themeMatch ? `<span class="fmi-mat-badge fmi-badge-mapped">→ ${themeMatch.section}</span>` : '<span class="fmi-mat-badge fmi-badge-default">Default GLB</span>'}
+                                        </div>
+                                    </div>
+                                    <div class="fmi-mat-details">
+                                        <div class="fmi-mat-detail">
+                                            <span class="fmi-color-swatch" style="background:${colorHex}"></span>
+                                            <span>Color: ${colorHex}</span>
+                                        </div>
+                                        <span class="fmi-mat-detail">Type: ${matType.replace('Mesh', '').replace('Material', '')}</span>
+                                        <span class="fmi-mat-detail">Meshes: ${data.meshCount}</span>
+                                        <span class="fmi-mat-detail">Verts: ${data.vertices.toLocaleString()}</span>
+                                        ${data.material.roughness !== undefined ? `<span class="fmi-mat-detail">Rough: ${data.material.roughness.toFixed(2)}</span>` : ''}
+                                        ${data.material.metalness !== undefined ? `<span class="fmi-mat-detail">Metal: ${data.material.metalness.toFixed(2)}</span>` : ''}
+                                        ${data.material.transmission ? `<span class="fmi-mat-detail">Trans: ${data.material.transmission.toFixed(2)}</span>` : ''}
+                                        ${data.material.opacity < 1 ? `<span class="fmi-mat-detail">Opacity: ${data.material.opacity.toFixed(2)}</span>` : ''}
+                                        ${data.material.map ? '<span class="fmi-mat-detail fmi-has-texture">ColorMap</span>' : ''}
+                                        ${data.material.normalMap ? '<span class="fmi-mat-detail fmi-has-texture">NormalMap</span>' : ''}
+                                        ${data.material.bumpMap ? '<span class="fmi-mat-detail fmi-has-texture">BumpMap</span>' : ''}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+                
+                <div class="fmi-section fmi-meshes-section">
+                    <div class="fmi-section-title fmi-meshes-toggle">Meshes (${meshes.length}) <span class="fmi-toggle-hint">click to expand</span></div>
+                    <div class="fmi-meshes-list" style="display:none;">
+                        ${meshes.map(m => `
+                            <div class="fmi-mesh-row">
+                                <span class="fmi-mesh-name">${m.name}</span>
+                                <span class="fmi-mesh-mat">${m.materialName}</span>
+                                <span class="fmi-mesh-stat">${m.vertices.toLocaleString()} v / ${m.triangles.toLocaleString()} t</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            </div>
+        `;
+        
+        // Add styles
+        const style = document.createElement('style');
+        style.id = 'flexframe-model-inspector-styles';
+        style.textContent = `
+            #flexframe-model-inspector {
+                position: fixed;
+                top: 10px;
+                right: 10px;
+                width: 380px;
+                max-height: 85vh;
+                background: rgba(15, 15, 20, 0.95);
+                backdrop-filter: blur(20px);
+                border: 1px solid rgba(74, 158, 255, 0.3);
+                border-radius: 12px;
+                color: #e0e0e0;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                font-size: 12px;
+                z-index: 10000;
+                box-shadow: 0 8px 32px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.05);
+                overflow: hidden;
+                display: flex;
+                flex-direction: column;
+            }
+            #flexframe-model-inspector.fmi-minimized .fmi-body { display: none; }
+            #flexframe-model-inspector.fmi-minimized { max-height: none; }
+            
+            .fmi-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 14px;
+                background: rgba(74, 158, 255, 0.1);
+                border-bottom: 1px solid rgba(74, 158, 255, 0.2);
+                cursor: move;
+                flex-shrink: 0;
+            }
+            .fmi-title {
+                display: flex;
+                align-items: center;
+                gap: 8px;
+                font-weight: 600;
+                font-size: 13px;
+                color: #fff;
+            }
+
+            .fmi-badge {
+                font-size: 9px;
+                padding: 2px 6px;
+                background: rgba(255, 165, 0, 0.2);
+                color: #ffa500;
+                border: 1px solid rgba(255, 165, 0, 0.3);
+                border-radius: 4px;
+                font-weight: 700;
+                letter-spacing: 0.5px;
+            }
+            .fmi-header-actions { display: flex; gap: 4px; }
+            .fmi-btn {
+                background: rgba(255,255,255,0.1);
+                border: none;
+                color: #999;
+                min-width: 26px;
+                height: 26px;
+                padding: 0 6px;
+                border-radius: 6px;
+                cursor: pointer;
+                font-size: 12px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: all 0.15s;
+            }
+            .fmi-btn:hover { background: rgba(255,255,255,0.2); color: #fff; }
+            
+            .fmi-body {
+                overflow-y: auto;
+                padding: 0;
+                flex: 1;
+            }
+            .fmi-body::-webkit-scrollbar { width: 6px; }
+            .fmi-body::-webkit-scrollbar-track { background: transparent; }
+            .fmi-body::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.15); border-radius: 3px; }
+            
+            .fmi-section {
+                padding: 12px 14px;
+                border-bottom: 1px solid rgba(255,255,255,0.06);
+            }
+            .fmi-section:last-child { border-bottom: none; }
+            .fmi-section-title {
+                font-weight: 600;
+                font-size: 12px;
+                color: #aaa;
+                margin-bottom: 10px;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+            
+            .fmi-stats-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 8px;
+                margin-bottom: 10px;
+            }
+            .fmi-stat {
+                text-align: center;
+                padding: 8px 4px;
+                background: rgba(255,255,255,0.04);
+                border-radius: 8px;
+                border: 1px solid rgba(255,255,255,0.06);
+            }
+            .fmi-stat-value {
+                display: block;
+                font-size: 16px;
+                font-weight: 700;
+                color: #4a9eff;
+            }
+            .fmi-stat-label {
+                display: block;
+                font-size: 10px;
+                color: #777;
+                margin-top: 2px;
+            }
+            .fmi-url-row {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                font-size: 11px;
+            }
+            .fmi-url-label { color: #777; flex-shrink: 0; }
+            .fmi-url {
+                background: rgba(255,255,255,0.05);
+                padding: 3px 8px;
+                border-radius: 4px;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
+                color: #888;
+                font-size: 10px;
+                flex: 1;
+                min-width: 0;
+            }
+            
+            .fmi-materials-list { display: flex; flex-direction: column; gap: 6px; }
+            .fmi-material-card {
+                background: rgba(255,255,255,0.03);
+                border: 1px solid rgba(255,255,255,0.08);
+                border-radius: 8px;
+                padding: 8px 10px;
+                transition: border-color 0.15s, background 0.15s;
+                cursor: pointer;
+                user-select: none;
+            }
+            .fmi-material-card:hover {
+                background: rgba(255,255,255,0.06);
+            }
+            .fmi-material-card.fmi-selected {
+                background: rgba(74, 158, 255, 0.12);
+                border-color: rgba(74, 158, 255, 0.6);
+                box-shadow: 0 0 8px rgba(74, 158, 255, 0.15);
+            }
+            .fmi-material-card.fmi-mapped {
+                border-left: 3px solid rgba(74, 158, 255, 0.5);
+            }
+            .fmi-material-card.fmi-unmapped {
+                border-left: 3px solid rgba(255,255,255,0.1);
+            }
+            .fmi-mat-header { margin-bottom: 6px; }
+            .fmi-mat-name-row {
+                display: flex;
+                align-items: center;
+                gap: 6px;
+                flex-wrap: wrap;
+            }
+
+            .fmi-mat-name {
+                font-weight: 600;
+                font-size: 12px;
+                color: #fff;
+                background: rgba(255,255,255,0.08);
+                padding: 2px 8px;
+                border-radius: 4px;
+            }
+            .fmi-mat-badge {
+                font-size: 10px;
+                padding: 1px 6px;
+                border-radius: 4px;
+                font-weight: 500;
+            }
+            .fmi-badge-mapped {
+                background: rgba(74, 158, 255, 0.15);
+                color: #4a9eff;
+                border: 1px solid rgba(74, 158, 255, 0.25);
+            }
+            .fmi-badge-default {
+                background: rgba(255,255,255,0.05);
+                color: #666;
+                border: 1px solid rgba(255,255,255,0.1);
+            }
+            .fmi-mat-details {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 6px 10px;
+            }
+            .fmi-mat-detail {
+                font-size: 11px;
+                color: #888;
+                display: flex;
+                align-items: center;
+                gap: 4px;
+            }
+            .fmi-has-texture { color: #6bc46b; }
+            .fmi-color-swatch {
+                display: inline-block;
+                width: 12px;
+                height: 12px;
+                border-radius: 3px;
+                border: 1px solid rgba(255,255,255,0.2);
+                flex-shrink: 0;
+            }
+            
+            .fmi-meshes-toggle { cursor: pointer; }
+            .fmi-meshes-toggle:hover { color: #ccc; }
+            .fmi-toggle-hint { font-size: 10px; color: #555; font-weight: 400; text-transform: none; letter-spacing: 0; }
+            .fmi-meshes-list { display: flex; flex-direction: column; gap: 2px; margin-top: 8px; }
+            .fmi-mesh-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 8px;
+                padding: 4px 8px;
+                background: rgba(255,255,255,0.02);
+                border-radius: 4px;
+                font-size: 11px;
+            }
+            .fmi-mesh-name { color: #ccc; flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+            .fmi-mesh-mat { color: #666; font-size: 10px; }
+            .fmi-mesh-stat { color: #555; font-size: 10px; flex-shrink: 0; }
+            
+            @media (max-width: 500px) {
+                #flexframe-model-inspector {
+                    width: calc(100% - 20px);
+                    top: 5px;
+                    right: 10px;
+                    max-height: 60vh;
+                }
+                .fmi-stats-grid { grid-template-columns: repeat(2, 1fr); }
+            }
+        `;
+        
+        // Remove old styles if any
+        const oldStyle = document.getElementById('flexframe-model-inspector-styles');
+        if (oldStyle) oldStyle.remove();
+        
+        document.head.appendChild(style);
+        document.body.appendChild(panel);
+        
+        // Event handlers
+        
+        // --- Material highlight state ---
+        let selectedMaterialName = null;
+        const originalMaterialStates = new Map();
+        
+        // Store original material properties for every mesh
+        model.traverse((child) => {
+            if (child.isMesh) {
+                const mats = Array.isArray(child.material) ? child.material : [child.material];
+                mats.forEach(mat => {
+                    if (mat && !originalMaterialStates.has(mat)) {
+                        originalMaterialStates.set(mat, {
+                            emissive: mat.emissive ? mat.emissive.clone() : null,
+                            opacity: mat.opacity,
+                            transparent: mat.transparent,
+                            depthWrite: mat.depthWrite
+                        });
+                    }
+                });
+            }
+        });
+        
+        const restoreAllMaterials = () => {
+            originalMaterialStates.forEach((orig, mat) => {
+                if (orig.emissive) mat.emissive.copy(orig.emissive);
+                mat.opacity = orig.opacity;
+                mat.transparent = orig.transparent;
+                mat.depthWrite = orig.depthWrite;
+                mat.needsUpdate = true;
+            });
+        };
+        
+        const highlightMaterial = (materialName) => {
+            // First restore everything
+            restoreAllMaterials();
+            
+            if (materialName === selectedMaterialName) {
+                // Deselect — already restored above
+                selectedMaterialName = null;
+                panel.querySelectorAll('.fmi-material-card').forEach(c => c.classList.remove('fmi-selected'));
+                return;
+            }
+            
+            selectedMaterialName = materialName;
+            
+            // Update card selection UI
+            panel.querySelectorAll('.fmi-material-card').forEach(c => {
+                c.classList.toggle('fmi-selected', c.dataset.materialName === materialName);
+            });
+            
+            // Dim all materials, then brighten the selected one
+            model.traverse((child) => {
+                if (child.isMesh) {
+                    const mats = Array.isArray(child.material) ? child.material : [child.material];
+                    mats.forEach(mat => {
+                        if (!mat) return;
+                        const name = mat.name || 'Unnamed';
+                        if (name === materialName) {
+                            // Highlight: add emissive glow
+                            if (mat.emissive) {
+                                mat.emissive.setRGB(0.15, 0.35, 0.65);
+                            }
+                            mat.opacity = 1;
+                            mat.transparent = false;
+                            mat.depthWrite = true;
+                        } else {
+                            // Dim: make semi-transparent
+                            mat.opacity = 0.15;
+                            mat.transparent = true;
+                            mat.depthWrite = false;
+                        }
+                        mat.needsUpdate = true;
+                    });
+                }
+            });
+        };
+        
+        // Add click handlers to material cards
+        panel.querySelectorAll('.fmi-material-card').forEach(card => {
+            card.addEventListener('click', () => {
+                highlightMaterial(card.dataset.materialName);
+            });
+        });
+        
+        panel.querySelector('.fmi-close-btn').addEventListener('click', () => {
+            restoreAllMaterials();
+            panel.remove();
+            style.remove();
+        });
+        
+        panel.querySelector('.fmi-minimize-btn').addEventListener('click', () => {
+            panel.classList.toggle('fmi-minimized');
+            const btn = panel.querySelector('.fmi-minimize-btn');
+            btn.textContent = panel.classList.contains('fmi-minimized') ? '+' : '−';
+        });
+        
+        // Copy report
+        panel.querySelector('.fmi-copy-btn').addEventListener('click', () => {
+            let report = `MODEL INSPECTOR REPORT\n`;
+            report += `======================\n`;
+            report += `Source: ${modelUrl}\n`;
+            report += `Meshes: ${meshes.length}\n`;
+            report += `Materials: ${materialsMap.size}\n`;
+            report += `Vertices: ${totalVertices.toLocaleString()}\n`;
+            report += `Triangles: ${totalTriangles.toLocaleString()}\n\n`;
+            report += `MATERIALS:\n`;
+            report += `----------\n`;
+            materialsMap.forEach((data, name) => {
+                const upperName = name.toUpperCase();
+                const themeMatch = themeMappedNames[upperName];
+                const colorHex = data.material.color ? '#' + data.material.color.getHexString() : 'N/A';
+                report += `• ${name}`;
+                if (themeMatch) report += ` → ${themeMatch.section}`;
+                else report += ` (default GLB)`;
+                report += `\n  Color: ${colorHex} | Type: ${data.material.type} | Meshes: ${data.meshCount} | Verts: ${data.vertices.toLocaleString()}`;
+                if (data.material.roughness !== undefined) report += ` | Rough: ${data.material.roughness.toFixed(2)}`;
+                if (data.material.metalness !== undefined) report += ` | Metal: ${data.material.metalness.toFixed(2)}`;
+                report += `\n`;
+            });
+            report += `\nMESHES:\n`;
+            report += `-------\n`;
+            meshes.forEach(m => {
+                report += `• ${m.name} — ${m.materialName} (${m.vertices} v / ${m.triangles} t)\n`;
+            });
+            
+            navigator.clipboard.writeText(report).then(() => {
+                const btn = panel.querySelector('.fmi-copy-btn');
+                btn.textContent = 'Done';
+                setTimeout(() => btn.textContent = 'Copy', 1500);
+            });
+        });
+        
+        // Mesh list toggle
+        panel.querySelector('.fmi-meshes-toggle').addEventListener('click', () => {
+            const list = panel.querySelector('.fmi-meshes-list');
+            const hint = panel.querySelector('.fmi-toggle-hint');
+            if (list.style.display === 'none') {
+                list.style.display = '';
+                hint.textContent = 'click to collapse';
+            } else {
+                list.style.display = 'none';
+                hint.textContent = 'click to expand';
+            }
+        });
+        
+        // Draggable header
+        let isDragging = false, dragOffsetX = 0, dragOffsetY = 0;
+        const header = panel.querySelector('.fmi-header');
+        header.addEventListener('mousedown', (e) => {
+            if (e.target.closest('.fmi-btn')) return;
+            isDragging = true;
+            const rect = panel.getBoundingClientRect();
+            dragOffsetX = e.clientX - rect.left;
+            dragOffsetY = e.clientY - rect.top;
+            panel.style.transition = 'none';
+        });
+        document.addEventListener('mousemove', (e) => {
+            if (!isDragging) return;
+            panel.style.left = (e.clientX - dragOffsetX) + 'px';
+            panel.style.top = (e.clientY - dragOffsetY) + 'px';
+            panel.style.right = 'auto';
+        });
+        document.addEventListener('mouseup', () => {
+            isDragging = false;
+            panel.style.transition = '';
+        });
+        
+        console.log('[Model Inspector] Panel created with', materialsMap.size, 'materials and', meshes.length, 'meshes');
+    }
+
     async waitForDefaultSettings() {
         // Wait for settings manager to load default settings
         while (!this.settingsManager.getDefaultSettings()) {
@@ -437,14 +1134,23 @@ class ThreeJSApp {
         const loader = document.getElementById('model-loader');
         if (!loader) return;
 
-        // Hide all spinners
+        const ws = window.flexframeSettings || {};
+        const useLogoLoader = ws.uiSettings?.useLogoLoader ?? false;
+        const logoWrapper = loader.querySelector('.logo-loader-wrapper');
         const allSpinners = loader.querySelectorAll('.spinner-box');
-        allSpinners.forEach(spinner => spinner.style.display = 'none');
 
-        // Show selected spinner
-        const selectedSpinner = loader.querySelector(`[data-spinner="${this.loaderParams.spinnerStyle}"]`);
-        if (selectedSpinner) {
-            selectedSpinner.style.display = 'flex';
+        if (useLogoLoader && logoWrapper) {
+            // Logo loader mode - hide all spinners, show logo
+            allSpinners.forEach(spinner => spinner.style.display = 'none');
+            logoWrapper.style.display = '';
+        } else {
+            // Spinner mode - hide logo, show selected spinner
+            if (logoWrapper) logoWrapper.style.display = 'none';
+            allSpinners.forEach(spinner => spinner.style.display = 'none');
+            const selectedSpinner = loader.querySelector(`[data-spinner="${this.loaderParams.spinnerStyle}"]`);
+            if (selectedSpinner) {
+                selectedSpinner.style.display = 'flex';
+            }
         }
     }
 
@@ -486,9 +1192,10 @@ class ThreeJSApp {
         
         // Apply player settings
         if (uiSettings.player) {
-            // Apply always visible setting
-            const alwaysVisible = uiSettings.player.alwaysVisible === true;
-            console.log('[FlexFrame UI] Player always visible setting:', alwaysVisible);
+            // Apply always visible setting - but disable on mobile
+            const isMobile = window.innerWidth <= 768;
+            const alwaysVisible = isMobile ? false : (uiSettings.player.alwaysVisible === true);
+            console.log('[FlexFrame UI] Player always visible setting:', alwaysVisible, 'isMobile:', isMobile);
             
             if (this.animationPlayer) {
                 this.animationPlayer.setAlwaysVisible(alwaysVisible);
@@ -510,10 +1217,15 @@ class ThreeJSApp {
             }
         }
         
-        // Apply spinner color if available
-        if (uiSettings.spinnerColor) {
-            this.updateSpinnerColor(uiSettings.spinnerColor);
-        }
+        // Apply spinner color - use primary color as the default
+        const primaryColor = window.flexframeSettings?.primaryColor || '#4a9eff';
+        const spinnerColor = uiSettings.spinnerColor || primaryColor;
+        this.updateSpinnerColor(spinnerColor);
+        
+        // Always update progress bar with primary color (not spinner color)
+        this.updateProgressBarColor(primaryColor);
+        
+        console.log('[FlexFrame UI] Spinner color:', spinnerColor, ', Progress bar color (primary):', primaryColor);
     }
     
     applyWordPressSceneSettings() {
@@ -602,27 +1314,88 @@ class ThreeJSApp {
     }
     
     updateSpinnerColor(color) {
-        // Update CSS for all spinner types
+        // Update CSS for all spinner types in the model-loader
         const style = document.createElement('style');
         style.id = 'flexframe-spinner-color';
+        
+        // Generate rgba versions for gradients
+        const hexToRgba = (hex, alpha) => {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        };
+        
         style.textContent = `
-            .loading-overlay .spinner-box .spinner-circle {
-                border-top-color: ${color} !important;
+            /* COOL SPINNER (original) */
+            #model-loader .loader-spinner {
+                background: conic-gradient(
+                    from 0deg,
+                    transparent 0%,
+                    ${hexToRgba(color, 0.3)} 30%,
+                    ${hexToRgba(color, 0.8)} 60%,
+                    ${color} 80%,
+                    ${color} 100%
+                ) !important;
             }
-            .loading-overlay .spinner-box .spinner-dots span {
+            #model-loader .loader-spinner::before {
+                box-shadow: inset 0 0 10px ${hexToRgba(color, 0.3)} !important;
+            }
+            
+            /* GRADIENT SPINNER (circle-border) */
+            #model-loader .circle-border {
+                background: linear-gradient(0deg, ${hexToRgba(color, 0.1)} 33%, ${color} 100%) !important;
+            }
+            
+            /* GRADIENT CIRCLE PLANES (leo-border) */
+            #model-loader .leo-border-1 {
+                background: linear-gradient(0deg, ${hexToRgba(color, 0.1)} 33%, ${color} 100%) !important;
+            }
+            #model-loader .leo-border-2 {
+                background: linear-gradient(0deg, ${hexToRgba(color, 0.1)} 33%, ${color} 100%) !important;
+            }
+            
+            /* SPINNING SQUARES (configure-border) */
+            #model-loader .configure-border-1 {
+                background: ${color} !important;
+            }
+            #model-loader .configure-border-2 {
+                background: ${color} !important;
+            }
+            
+            /* LOADING DOTS (pulse-bubble) */
+            #model-loader .pulse-bubble {
                 background-color: ${color} !important;
             }
-            .loading-overlay .spinner-box .spinner-bars span {
+            
+            /* SOLAR SYSTEM (planets) */
+            #model-loader .planet {
                 background-color: ${color} !important;
             }
-            .loading-overlay .spinner-box .spinner-pulse {
+            #model-loader .sun {
                 background-color: ${color} !important;
             }
-            .loading-overlay .spinner-box .spinner-ripple span {
+            
+            /* SPINNER ORBITS */
+            #model-loader .blue-orbit {
+                border-color: ${hexToRgba(color, 0.65)} !important;
+            }
+            #model-loader .green-orbit {
+                border-color: ${hexToRgba(color, 0.65)} !important;
+            }
+            #model-loader .red-orbit {
+                border-color: ${hexToRgba(color, 0.65)} !important;
+            }
+            
+            /* THREE QUARTER SPINNER */
+            #model-loader .three-quarter-spinner {
                 border-color: ${color} !important;
+                border-top-color: transparent !important;
             }
-            .loading-overlay .spinner-box .cool-loader .loading-spinner {
-                border-top-color: ${color} !important;
+            
+            /* Loader text color */
+            #model-loader .loader-text {
+                color: ${color} !important;
             }
         `;
         
@@ -631,6 +1404,57 @@ class ThreeJSApp {
         if (existing) existing.remove();
         
         document.head.appendChild(style);
+        console.log('[FlexFrame] Spinner color updated to:', color);
+    }
+    
+    updateProgressBarColor(color) {
+        // Update progress bar and loading text with primary color
+        const style = document.createElement('style');
+        style.id = 'flexframe-progress-color';
+        
+        // Generate rgba versions for gradients
+        const hexToRgba = (hex, alpha) => {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            return `rgba(${r}, ${g}, ${b}, ${alpha})`;
+        };
+        
+        style.textContent = `
+            /* LOGO LOADER - Progress bar and text */
+            .logo-progress-bar {
+                background: linear-gradient(90deg, ${hexToRgba(color, 0.5)}, ${color}) !important;
+            }
+            .logo-progress-text {
+                color: ${color} !important;
+            }
+            
+            /* Indeterminate progress animation */
+            @keyframes indeterminateProgress {
+                0% { 
+                    width: 30%;
+                    margin-left: 0%;
+                    background: linear-gradient(90deg, ${hexToRgba(color, 0.3)}, ${color});
+                }
+                50% { 
+                    width: 50%;
+                    margin-left: 25%;
+                    background: linear-gradient(90deg, ${color}, ${hexToRgba(color, 0.3)});
+                }
+                100% { 
+                    width: 30%;
+                    margin-left: 70%;
+                    background: linear-gradient(90deg, ${hexToRgba(color, 0.3)}, ${color});
+                }
+            }
+        `;
+        
+        // Remove existing style if present
+        const existing = document.getElementById('flexframe-progress-color');
+        if (existing) existing.remove();
+        
+        document.head.appendChild(style);
+        console.log('[FlexFrame] Progress bar color updated to:', color);
     }
     
     setupCanvasInteraction() {
@@ -1809,10 +2633,13 @@ class ThreeJSApp {
      * Setup screenshot button in animation player
      */
     setupScreenshotButton() {
+        // Create the screenshot panel first (always)
+        this.createScreenshotPanel();
+        
         if (this.animationPlayer) {
-            // Set the screenshot callback
+            // Set the screenshot callback to toggle the screenshot panel
             this.animationPlayer.setScreenshotCallback(() => {
-                this.takeUserScreenshot();
+                this.toggleScreenshotPanel();
             });
             
             // Check WordPress settings for screenshot button visibility
@@ -1822,33 +2649,533 @@ class ThreeJSApp {
     }
     
     /**
-     * Take a screenshot for the end user
+     * Create the screenshot panel UI
      */
-    async takeUserScreenshot() {
-        const renderer = this.sceneManager.getRenderer();
+    createScreenshotPanel() {
+        // Remove existing panel if any
+        const existing = document.querySelector('.screenshot-panel');
+        if (existing) existing.remove();
+        
+        // Create panel container
+        const panel = document.createElement('div');
+        panel.className = 'screenshot-panel';
+        panel.innerHTML = `
+            <div class="screenshot-panel-header">
+                <span>Screenshot Settings</span>
+                <button class="screenshot-panel-close">✕</button>
+            </div>
+            <div class="screenshot-panel-content">
+                <div class="screenshot-presets">
+                    <button class="ss-preset-btn" id="ss-preset-thumbnail">Thumbnail</button>
+                    <button class="ss-preset-btn" id="ss-preset-hd">HD</button>
+                </div>
+                <div class="screenshot-row">
+                    <label>Width</label>
+                    <input type="number" id="ss-width" value="800" min="100" max="4096">
+                </div>
+                <div class="screenshot-row">
+                    <label>Height</label>
+                    <input type="number" id="ss-height" value="800" min="100" max="4096">
+                </div>
+                <div class="screenshot-row">
+                    <label>Format</label>
+                    <select id="ss-format">
+                        <option value="png">PNG</option>
+                        <option value="jpg">JPG</option>
+                        <option value="webp">WebP</option>
+                    </select>
+                </div>
+                <div class="screenshot-row checkbox-row">
+                    <label>Transparent Background</label>
+                    <input type="checkbox" id="ss-transparent">
+                </div>
+                <div class="screenshot-row checkbox-row">
+                    <label>Show Floor Shadow</label>
+                    <input type="checkbox" id="ss-floor-shadow">
+                </div>
+                <div class="screenshot-row">
+                    <label>Filename</label>
+                    <input type="text" id="ss-filename" value="screenshot">
+                </div>
+                <div class="screenshot-buttons">
+                    <button class="ss-btn ss-custom">Take Screenshot</button>
+                </div>
+            </div>
+        `;
+        
+        // Add styles
+        const style = document.createElement('style');
+        style.textContent = `
+            .screenshot-panel {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                background: rgba(30, 30, 30, 0.95);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 12px;
+                padding: 0;
+                min-width: 280px;
+                z-index: 10000;
+                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+                color: #fff;
+                display: none;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            }
+            .screenshot-panel.visible {
+                display: block;
+            }
+            .screenshot-panel-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 12px 16px;
+                background: rgba(255, 255, 255, 0.1);
+                border-radius: 12px 12px 0 0;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+                font-weight: 600;
+            }
+            .screenshot-panel-close {
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 18px;
+                cursor: pointer;
+                opacity: 0.7;
+                padding: 4px 8px;
+                border-radius: 4px;
+            }
+            .screenshot-panel-close:hover {
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.1);
+            }
+            .screenshot-panel-content {
+                padding: 16px;
+            }
+            .screenshot-presets {
+                display: flex;
+                gap: 8px;
+                margin-bottom: 16px;
+            }
+            .ss-preset-btn {
+                flex: 1;
+                padding: 8px 12px;
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                border-radius: 6px;
+                background: rgba(255, 255, 255, 0.1);
+                color: #fff;
+                font-size: 12px;
+                font-weight: 500;
+                cursor: pointer;
+                transition: all 0.2s;
+            }
+            .ss-preset-btn:hover {
+                background: rgba(255, 255, 255, 0.2);
+                border-color: var(--ss-primary-color, #4a9eff);
+            }
+            .ss-preset-btn.active {
+                background: var(--ss-primary-color, #4a9eff);
+                border-color: var(--ss-primary-color, #4a9eff);
+            }
+            .screenshot-row {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 12px;
+            }
+            .screenshot-row label {
+                font-size: 13px;
+                opacity: 0.9;
+            }
+            .screenshot-row input[type="number"],
+            .screenshot-row input[type="text"],
+            .screenshot-row select {
+                width: 120px;
+                padding: 6px 10px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 6px;
+                background: rgba(0, 0, 0, 0.3);
+                color: #fff;
+                font-size: 13px;
+            }
+            .screenshot-row input[type="checkbox"] {
+                width: 18px;
+                height: 18px;
+                cursor: pointer;
+                accent-color: var(--ss-primary-color, #4a9eff);
+            }
+            .checkbox-row {
+                flex-direction: row;
+            }
+            .screenshot-buttons {
+                display: flex;
+                gap: 10px;
+                margin-top: 16px;
+            }
+            .ss-btn {
+                flex: 1;
+                padding: 10px 16px;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                font-size: 13px;
+                font-weight: 500;
+                transition: all 0.2s;
+            }
+            .ss-custom {
+                background: var(--ss-primary-color, #4a9eff);
+                color: #fff;
+            }
+            .ss-custom:hover {
+                filter: brightness(1.1);
+            }
+        `;
+        
+        // Get primary color from WordPress settings
+        const primaryColor = window.flexframeSettings?.primaryColor || '#4a9eff';
+        
+        // Find the container
+        const container = document.getElementById('flexframe-viewer-container') || document.body;
+        
+        // Set CSS variable for primary color
+        container.style.setProperty('--ss-primary-color', primaryColor);
+        
+        container.appendChild(style);
+        container.appendChild(panel);
+        
+        this.screenshotPanel = panel;
+        
+        // Create the screenshot frame for preview
+        this.createScreenshotFrameForPanel();
+        
+        // Setup event listeners
+        panel.querySelector('.screenshot-panel-close').addEventListener('click', () => {
+            this.toggleScreenshotPanel(false);
+        });
+        
+        // Update frame when dimensions change (frame is always visible)
+        panel.querySelector('#ss-width').addEventListener('input', (e) => {
+            this.updateScreenshotFramePanel(parseInt(e.target.value), parseInt(panel.querySelector('#ss-height').value));
+        });
+        panel.querySelector('#ss-height').addEventListener('input', (e) => {
+            this.updateScreenshotFramePanel(parseInt(panel.querySelector('#ss-width').value), parseInt(e.target.value));
+        });
+        
+        // Preset buttons
+        panel.querySelector('#ss-preset-thumbnail').addEventListener('click', () => {
+            panel.querySelector('#ss-width').value = 250;
+            panel.querySelector('#ss-height').value = 250;
+            panel.querySelector('#ss-format').value = 'webp';
+            this.updateScreenshotFramePanel(250, 250);
+            // Update active state
+            panel.querySelectorAll('.ss-preset-btn').forEach(btn => btn.classList.remove('active'));
+            panel.querySelector('#ss-preset-thumbnail').classList.add('active');
+        });
+        
+        panel.querySelector('#ss-preset-hd').addEventListener('click', () => {
+            panel.querySelector('#ss-width').value = 1920;
+            panel.querySelector('#ss-height').value = 1080;
+            panel.querySelector('#ss-format').value = 'png';
+            this.updateScreenshotFramePanel(1920, 1080);
+            // Update active state
+            panel.querySelectorAll('.ss-preset-btn').forEach(btn => btn.classList.remove('active'));
+            panel.querySelector('#ss-preset-hd').classList.add('active');
+        });
+        
+        // Take screenshot button
+        panel.querySelector('.ss-custom').addEventListener('click', () => {
+            this.takeCustomScreenshot();
+        });
+        
+        // Update filename when exercise changes
+        document.addEventListener('exercisesSelected', () => {
+            if (this.currentExerciseName) {
+                panel.querySelector('#ss-filename').value = this.currentExerciseName;
+            }
+        });
+        
+        // Set initial filename
+        if (this.currentExerciseName) {
+            panel.querySelector('#ss-filename').value = this.currentExerciseName;
+        }
+    }
+    
+    /**
+     * Create screenshot frame overlay for panel preview
+     */
+    createScreenshotFrameForPanel() {
+        // Remove existing if any
+        const existing = document.querySelector('.screenshot-frame-panel');
+        if (existing) existing.remove();
+        
+        const frame = document.createElement('div');
+        frame.className = 'screenshot-frame-panel';
+        frame.innerHTML = `
+            <div class="frame-corner top-left"></div>
+            <div class="frame-corner top-right"></div>
+            <div class="frame-corner bottom-left"></div>
+            <div class="frame-corner bottom-right"></div>
+            <div class="frame-info-panel"></div>
+        `;
+        
+        const style = document.createElement('style');
+        style.textContent = `
+            .screenshot-frame-panel {
+                position: absolute;
+                pointer-events: none;
+                border: 2px solid #4a9eff;
+                background: rgba(74, 158, 255, 0.1);
+                z-index: 9999;
+                display: none;
+                box-shadow: 0 0 20px rgba(74, 158, 255, 0.3);
+            }
+            .screenshot-frame-panel.visible {
+                display: block;
+            }
+            .screenshot-frame-panel .frame-corner {
+                position: absolute;
+                width: 16px;
+                height: 16px;
+                border: 2px solid #4a9eff;
+                background: rgba(74, 158, 255, 0.8);
+            }
+            .screenshot-frame-panel .frame-corner.top-left {
+                top: -2px;
+                left: -2px;
+                border-right: none;
+                border-bottom: none;
+            }
+            .screenshot-frame-panel .frame-corner.top-right {
+                top: -2px;
+                right: -2px;
+                border-left: none;
+                border-bottom: none;
+            }
+            .screenshot-frame-panel .frame-corner.bottom-left {
+                bottom: -2px;
+                left: -2px;
+                border-right: none;
+                border-top: none;
+            }
+            .screenshot-frame-panel .frame-corner.bottom-right {
+                bottom: -2px;
+                right: -2px;
+                border-left: none;
+                border-top: none;
+            }
+            .frame-info-panel {
+                position: absolute;
+                bottom: -28px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: rgba(74, 158, 255, 0.9);
+                color: #fff;
+                padding: 4px 10px;
+                border-radius: 4px;
+                font-size: 11px;
+                font-family: monospace;
+                white-space: nowrap;
+            }
+        `;
+        
+        const container = document.getElementById('flexframe-viewer-container') || document.body;
+        container.appendChild(style);
+        container.appendChild(frame);
+        
+        this.screenshotFramePanel = frame;
+    }
+    
+    /**
+     * Toggle screenshot frame panel visibility
+     */
+    toggleScreenshotFramePanel(visible) {
+        if (this.screenshotFramePanel) {
+            this.screenshotFramePanel.classList.toggle('visible', visible);
+        }
+    }
+    
+    /**
+     * Update screenshot frame panel position and size
+     */
+    updateScreenshotFramePanel(width, height) {
+        if (!this.screenshotFramePanel) return;
+        
+        const container = document.getElementById('flexframe-viewer-container');
+        if (!container) return;
+        
+        const containerRect = container.getBoundingClientRect();
+        const containerWidth = containerRect.width;
+        const containerHeight = containerRect.height;
+        
+        // Calculate scale to fit frame in container while maintaining aspect ratio
+        const targetAspect = width / height;
+        const containerAspect = containerWidth / containerHeight;
+        
+        let frameWidth, frameHeight;
+        
+        if (targetAspect > containerAspect) {
+            // Width limited
+            frameWidth = Math.min(width, containerWidth * 0.8);
+            frameHeight = frameWidth / targetAspect;
+        } else {
+            // Height limited
+            frameHeight = Math.min(height, containerHeight * 0.8);
+            frameWidth = frameHeight * targetAspect;
+        }
+        
+        // Center the frame
+        const left = (containerWidth - frameWidth) / 2;
+        const top = (containerHeight - frameHeight) / 2;
+        
+        this.screenshotFramePanel.style.width = `${frameWidth}px`;
+        this.screenshotFramePanel.style.height = `${frameHeight}px`;
+        this.screenshotFramePanel.style.left = `${left}px`;
+        this.screenshotFramePanel.style.top = `${top}px`;
+        
+        // Update info label
+        const infoLabel = this.screenshotFramePanel.querySelector('.frame-info-panel');
+        if (infoLabel) {
+            infoLabel.textContent = `${width} x ${height}`;
+        }
+    }
+    
+    /**
+     * Toggle screenshot panel visibility
+     */
+    toggleScreenshotPanel(forceState) {
+        if (!this.screenshotPanel) return;
+        
+        const isVisible = this.screenshotPanel.classList.contains('visible');
+        const newState = forceState !== undefined ? forceState : !isVisible;
+        
+        this.screenshotPanel.classList.toggle('visible', newState);
+        
+        // Show/hide frame with panel (always on when panel is open)
+        if (newState) {
+            // Show frame and update it
+            this.toggleScreenshotFramePanel(true);
+            const width = parseInt(this.screenshotPanel.querySelector('#ss-width').value);
+            const height = parseInt(this.screenshotPanel.querySelector('#ss-height').value);
+            this.updateScreenshotFramePanel(width, height);
+            
+            // Update filename
+            if (this.currentExerciseName) {
+                this.screenshotPanel.querySelector('#ss-filename').value = this.currentExerciseName;
+            }
+        } else {
+            // Hide frame when closing panel
+            this.toggleScreenshotFramePanel(false);
+        }
+    }
+    
+    /**
+     * Take a quick screenshot (viewport size, 2x resolution)
+     */
+    async takeQuickScreenshot() {
+        const renderer = this.renderer;
         const scene = this.sceneManager.getScene();
         const camera = this.cameraManager.getCamera();
-        
-        // Use current viewport size for screenshot
         const canvas = renderer.domElement;
+        
+        const filename = this.screenshotPanel?.querySelector('#ss-filename')?.value || 
+                        (this.currentExerciseName ? this.currentExerciseName.replace(/\s+/g, '_') : 'flexframe_screenshot');
+        const format = this.screenshotPanel?.querySelector('#ss-format')?.value || 'png';
+        const transparent = this.screenshotPanel?.querySelector('#ss-transparent')?.checked || false;
         
         try {
             const result = await ScreenshotUtils.takeScreenshot(renderer, scene, camera, {
-                width: canvas.clientWidth * 2, // 2x for better quality
+                width: canvas.clientWidth * 2,
                 height: canvas.clientHeight * 2,
-                filename: this.currentExerciseName ? this.currentExerciseName.replace(/\s+/g, '_') : 'flexframe_screenshot',
-                format: 'png',
-                transparent: false
+                filename: filename,
+                format: format,
+                transparent: transparent
             });
             
             if (result.success) {
-                console.log(`📸 User screenshot saved: ${result.filename}`);
+                console.log(`📸 Quick screenshot saved: ${result.filename}`);
             } else {
                 console.error('Screenshot failed:', result.error);
             }
         } catch (error) {
             console.error('Screenshot error:', error);
         }
+    }
+    
+    /**
+     * Take a custom screenshot with specified dimensions
+     */
+    async takeCustomScreenshot() {
+        const renderer = this.renderer;
+        const scene = this.sceneManager.getScene();
+        const camera = this.cameraManager.getCamera();
+        
+        const width = parseInt(this.screenshotPanel?.querySelector('#ss-width')?.value) || 800;
+        const height = parseInt(this.screenshotPanel?.querySelector('#ss-height')?.value) || 800;
+        const baseFilename = this.screenshotPanel?.querySelector('#ss-filename')?.value || 'screenshot';
+        const format = this.screenshotPanel?.querySelector('#ss-format')?.value || 'png';
+        const transparent = this.screenshotPanel?.querySelector('#ss-transparent')?.checked || false;
+        const showFloorShadow = this.screenshotPanel?.querySelector('#ss-floor-shadow')?.checked || false;
+        
+        // Add dimensions to filename
+        const filename = `${baseFilename}_${width}x${height}`;
+        
+        // Store original ground visibility
+        const originalGroundVisible = this.ground ? this.ground.visible : false;
+        
+        // Show/hide ground based on floor shadow setting
+        if (this.ground) {
+            this.ground.visible = showFloorShadow;
+        }
+        
+        // Get frame dimensions to properly crop the screenshot
+        let frameWidth = null, frameHeight = null;
+        let containerWidth = null, containerHeight = null;
+        
+        if (this.screenshotFramePanel) {
+            const container = document.getElementById('flexframe-viewer-container');
+            if (container) {
+                const containerRect = container.getBoundingClientRect();
+                containerWidth = containerRect.width;
+                containerHeight = containerRect.height;
+                
+                // Get the actual frame dimensions on screen
+                frameWidth = parseFloat(this.screenshotFramePanel.style.width) || 0;
+                frameHeight = parseFloat(this.screenshotFramePanel.style.height) || 0;
+            }
+        }
+        
+        try {
+            const result = await ScreenshotUtils.takeScreenshot(renderer, scene, camera, {
+                width: width,
+                height: height,
+                filename: filename,
+                format: format,
+                transparent: transparent,
+                frameWidth: frameWidth,
+                frameHeight: frameHeight,
+                containerWidth: containerWidth,
+                containerHeight: containerHeight
+            });
+            
+            if (result.success) {
+                console.log(`📸 Custom screenshot saved: ${result.filename} (${width}x${height})`);
+            } else {
+                console.error('Screenshot failed:', result.error);
+            }
+        } catch (error) {
+            console.error('Screenshot error:', error);
+        } finally {
+            // Restore original ground visibility
+            if (this.ground) {
+                this.ground.visible = originalGroundVisible;
+            }
+        }
+    }
+
+    /**
+     * Take a screenshot for the end user (legacy method)
+     */
+    async takeUserScreenshot() {
+        await this.takeQuickScreenshot();
     }
 
     /**
@@ -1905,11 +3232,16 @@ class ThreeJSApp {
         console.log('[Quality Debug] modelUrlSQ:', this.modelUrlSQ);
         console.log('[Quality Debug] modelUrlHQ:', this.modelUrlHQ);
         
+        // Check if WordPress admin has disabled the HD button
+        const wpHDButtonEnabled = window.flexframeSettings?.showHDButton !== false;
+        console.log('[Quality Debug] WordPress showHDButton setting:', wpHDButtonEnabled);
+        
         if (qualityBtn) {
-            // Show button only if both SQ and HQ models exist
-            if (this.modelUrlSQ && this.modelUrlHQ) {
+            // Show button only if both SQ and HQ models exist AND WordPress setting allows it
+            if (this.modelUrlSQ && this.modelUrlHQ && wpHDButtonEnabled) {
                 console.log('[Quality Debug] ✅ Both models exist, showing button');
-                qualityBtn.style.display = 'flex';
+                // Use setProperty with !important to override any PHP-injected CSS
+                qualityBtn.style.setProperty('display', 'flex', 'important');
                 if (qualityText) {
                     // Show the quality you'll switch TO, not what's currently loaded (HD/SD for button display)
                     const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
@@ -1920,8 +3252,8 @@ class ThreeJSApp {
                 // Start pulsate animation only when HQ is available to switch to
                 this.startQualityButtonPulsate();
             } else {
-                console.log('[Quality Debug] ❌ Missing model URLs, hiding button');
-                qualityBtn.style.display = 'none';
+                console.log('[Quality Debug] ❌ Missing model URLs or WP disabled, hiding button');
+                qualityBtn.style.setProperty('display', 'none', 'important');
                 this.stopQualityButtonPulsate();
             }
         } else {
@@ -1967,79 +3299,183 @@ class ThreeJSApp {
         }
     }
     
+    /**
+     * Show/update the "Add to Workout" floating button when an exercise is selected.
+     */
+    showAddToWorkoutButton(exercise) {
+        const ws = window.flexframeSettings;
+        const workoutUrl = ws?.workoutPageUrl;
+        
+        // Only show if workout page URL is configured
+        if (!workoutUrl) return;
+        
+        let btn = document.getElementById('ffx-add-to-workout-btn');
+        
+        if (!btn) {
+            btn = document.createElement('a');
+            btn.id = 'ffx-add-to-workout-btn';
+            btn.setAttribute('title', 'Add Exercise to Workout');
+            
+            // Style the button
+            Object.assign(btn.style, {
+                position: 'fixed',
+                bottom: '80px',
+                left: '16px',
+                zIndex: '100000',
+                display: 'flex',
+                alignItems: 'center',
+                gap: '8px',
+                padding: '10px 16px',
+                background: 'rgba(0, 0, 0, 0.65)',
+                border: '1px solid rgba(255, 255, 255, 0.15)',
+                borderRadius: '12px',
+                color: '#ffffff',
+                textDecoration: 'none',
+                fontSize: '13px',
+                fontWeight: '600',
+                fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif',
+                cursor: 'pointer',
+                backdropFilter: 'blur(10px)',
+                WebkitBackdropFilter: 'blur(10px)',
+                transition: 'all 0.3s ease',
+                opacity: '0',
+                transform: 'translateY(10px)',
+                boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                letterSpacing: '0.3px',
+            });
+            
+            // SVG icon (plus in circle)
+            btn.innerHTML = `
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"/>
+                    <line x1="12" y1="8" x2="12" y2="16"/>
+                    <line x1="8" y1="12" x2="16" y2="12"/>
+                </svg>
+                <span>Add to Workout</span>
+            `;
+            
+            // Hover effects
+            btn.addEventListener('mouseenter', () => {
+                btn.style.background = 'rgba(0, 0, 0, 0.85)';
+                btn.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                btn.style.transform = 'translateY(-2px)';
+                btn.style.boxShadow = '0 6px 24px rgba(0,0,0,0.4)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.background = 'rgba(0, 0, 0, 0.65)';
+                btn.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                btn.style.transform = 'translateY(0)';
+                btn.style.boxShadow = '0 4px 16px rgba(0,0,0,0.3)';
+            });
+            
+            // Append to the viewer container so it stays scoped
+            const container = document.getElementById('flexframe-viewer-container') || document.body;
+            container.appendChild(btn);
+            
+            // Animate in
+            requestAnimationFrame(() => {
+                btn.style.opacity = '1';
+                btn.style.transform = 'translateY(0)';
+            });
+        }
+        
+        // Update the link with the current exercise ID
+        const exerciseId = exercise.id || exercise.name?.toLowerCase().replace(/\s+/g, '_') || '';
+        const separator = workoutUrl.includes('?') ? '&' : '?';
+        btn.href = `${workoutUrl}${separator}add_exercise=${encodeURIComponent(exerciseId)}`;
+        btn.target = '_blank';
+        btn.rel = 'noopener';
+    }
+    
     async switchModelQuality() {
         if (!this.modelUrlSQ || !this.modelUrlHQ) return;
         
-        // Toggle quality
-        this.currentModelQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
-        const modelUrl = this.currentModelQuality === 'SQ' ? this.modelUrlSQ : this.modelUrlHQ;
-        
-        console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
-        
-        // Update button text to show the NEXT quality you can switch to (HD/SD for button display)
-        const qualityText = document.getElementById('quality-text');
-        if (qualityText) {
-            const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
-            qualityText.textContent = nextQuality;
+        // Prevent spam clicking - check if already switching
+        if (this.isQualitySwitching) {
+            console.log('[Quality] Already switching quality, ignoring click');
+            return;
         }
         
-        // Restart pulsate animation with new quality
-        this.startQualityButtonPulsate();
+        // Set lock and disable button
+        this.isQualitySwitching = true;
+        const qualityBtn = document.getElementById('quality-toggle-btn');
+        if (qualityBtn) {
+            qualityBtn.disabled = true;
+            qualityBtn.style.opacity = '0.5';
+            qualityBtn.style.cursor = 'wait';
+        }
         
-        // Get quality-specific settings if available
-        console.log('[HQ Debug] currentConfig:', this.currentConfig);
-        console.log('[HQ Debug] Has cameraHQ?', !!this.currentConfig?.cameraHQ);
-        console.log('[HQ Debug] cameraHQ value:', this.currentConfig?.cameraHQ);
-        
-        if (this.currentModelQuality === 'HQ' && (this.currentConfig?.modelHQ || this.currentConfig?.cameraHQ)) {
-            console.log('[HQ Debug] ✅ Entering HQ branch');
-            const hqModelSettings = this.currentConfig.modelHQ;
-            const hqCameraSettings = this.currentConfig.cameraHQ || hqModelSettings?.camera;
-            console.log('[HQ Debug] hqCameraSettings:', hqCameraSettings);
+        try {
+            // Toggle quality
+            this.currentModelQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
+            const modelUrl = this.currentModelQuality === 'SQ' ? this.modelUrlSQ : this.modelUrlHQ;
             
-            // Set pending model config for HQ
-            if (hqModelSettings?.model) {
-                this.pendingModelConfig = hqModelSettings.model;
+            console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
+            
+            // Update button text to show the NEXT quality you can switch to (HD/SD for button display)
+            const qualityText = document.getElementById('quality-text');
+            if (qualityText) {
+                const nextQuality = this.currentModelQuality === 'SQ' ? 'HD' : 'SD';
+                qualityText.textContent = nextQuality;
             }
             
-            // Reload model with HQ settings
-            await this.loadModel(modelUrl);
-            console.log('[HQ Debug] Model loaded, now applying camera settings');
+            // Restart pulsate animation with new quality
+            this.startQualityButtonPulsate();
             
-            // Apply HQ camera settings (from cameraHQ or modelHQ.camera)
-            if (hqCameraSettings) {
-                console.log('[HQ Debug] Applying HQ camera position:', hqCameraSettings.position);
-                const camera = this.cameraManager.getCamera();
-                if (hqCameraSettings.position) {
-                    camera.position.set(...hqCameraSettings.position);
-                }
-                if (hqCameraSettings.rotation) {
-                    camera.rotation.set(...hqCameraSettings.rotation);
-                }
-                if (hqCameraSettings.target) {
-                    this.cameraManager.getControls().target.set(...hqCameraSettings.target);
-                }
-                this.cameraManager.getControls().update();
+            // Get quality-specific settings if available
+            console.log('[HQ Debug] currentConfig:', this.currentConfig);
+            console.log('[HQ Debug] Has cameraHQ?', !!this.currentConfig?.cameraHQ);
+            console.log('[HQ Debug] cameraHQ value:', this.currentConfig?.cameraHQ);
+            
+            if (this.currentModelQuality === 'HQ' && (this.currentConfig?.modelHQ || this.currentConfig?.cameraHQ)) {
+                console.log('[HQ Debug] ✅ Entering HQ branch');
+                const hqModelSettings = this.currentConfig.modelHQ;
+                const hqCameraSettings = this.currentConfig.cameraHQ || hqModelSettings?.camera;
+                console.log('[HQ Debug] hqCameraSettings:', hqCameraSettings);
                 
-                // Update original state for spacebar reset
-                this.cameraManager.updateOriginalState(
-                    hqCameraSettings.position,
-                    hqCameraSettings.rotation,
-                    hqCameraSettings.target
-                );
-            }
-        } else {
-            // Use default/SQ settings
-            if (this.currentConfig?.model) {
-                this.pendingModelConfig = this.currentConfig.model;
-            }
-            
-            // Reload model
-            await this.loadModel(modelUrl);
-            
-            // Apply default camera settings
-            if (this.currentConfig?.camera) {
-                const camera = this.cameraManager.getCamera();
+                // Set pending model config for HQ
+                if (hqModelSettings?.model) {
+                    this.pendingModelConfig = hqModelSettings.model;
+                }
+                
+                // Reload model with HQ settings
+                await this.loadModel(modelUrl);
+                console.log('[HQ Debug] Model loaded, now applying camera settings');
+                
+                // Apply HQ camera settings (from cameraHQ or modelHQ.camera)
+                if (hqCameraSettings) {
+                    console.log('[HQ Debug] Applying HQ camera position:', hqCameraSettings.position);
+                    const camera = this.cameraManager.getCamera();
+                    if (hqCameraSettings.position) {
+                        camera.position.set(...hqCameraSettings.position);
+                    }
+                    if (hqCameraSettings.rotation) {
+                        camera.rotation.set(...hqCameraSettings.rotation);
+                    }
+                    if (hqCameraSettings.target) {
+                        this.cameraManager.getControls().target.set(...hqCameraSettings.target);
+                    }
+                    this.cameraManager.getControls().update();
+                    
+                    // Update original state for spacebar reset
+                    this.cameraManager.updateOriginalState(
+                        hqCameraSettings.position,
+                        hqCameraSettings.rotation,
+                        hqCameraSettings.target
+                    );
+                }
+            } else {
+                // Use default/SQ settings
+                if (this.currentConfig?.model) {
+                    this.pendingModelConfig = this.currentConfig.model;
+                }
+                
+                // Reload model
+                await this.loadModel(modelUrl);
+                
+                // Apply default camera settings
+                if (this.currentConfig?.camera) {
+                    const camera = this.cameraManager.getCamera();
                 if (this.currentConfig.camera.position) {
                     camera.position.set(...this.currentConfig.camera.position);
                 }
@@ -2058,6 +3494,18 @@ class ThreeJSApp {
                     this.currentConfig.camera.target
                 );
             }
+        }
+        } finally {
+            // Release lock and re-enable button after a short delay
+            setTimeout(() => {
+                this.isQualitySwitching = false;
+                const qualityBtn = document.getElementById('quality-toggle-btn');
+                if (qualityBtn) {
+                    qualityBtn.disabled = false;
+                    qualityBtn.style.opacity = '1';
+                    qualityBtn.style.cursor = 'pointer';
+                }
+            }, 500); // 500ms cooldown after model loads
         }
     }
     
@@ -2128,14 +3576,12 @@ class ThreeJSApp {
                                     // console.log('Found material:', mat.name);
                                     
                                     // Convert MUSCLE materials to MeshPhysicalMaterial for sheen support
-                                    if (mat.name.includes('MUSCLE') && mat.type !== 'MeshPhysicalMaterial') {
-                                        // Check if we already converted this material
+                                    if (mat.name.toUpperCase() === 'MUSCLE' && mat.type !== 'MeshPhysicalMaterial') {
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
                                             
-                                            // Create new MeshPhysicalMaterial with default MUSCLE settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
                                                 map: mat.map,
@@ -2149,22 +3595,57 @@ class ThreeJSApp {
                                                 transparent: true,
                                                 side: THREE.DoubleSide,
                                                 depthWrite: true,
-                                                // Sheen settings for realistic muscle appearance
                                                 sheen: 0.3,
                                                 sheenRoughness: 0.45,
                                                 sheenColor: new THREE.Color(0xeb0a0a)
                                             });
                                             
-                                            // Copy the name
                                             physicalMat.name = mat.name;
-                                            
-                                            // Apply bump map from color texture with default scale
                                             if (mat.map) {
                                                 physicalMat.bumpMap = mat.map;
                                                 physicalMat.bumpScale = 10.2;
                                             }
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XMUSCLE to MeshPhysicalMaterial (keeps GLB textures, HD-specific defaults)
+                                    else if (mat.name.toUpperCase() === 'XMUSCLE' && mat.type !== 'MeshPhysicalMaterial') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial for sheen support`);
                                             
-                                            // Store the converted material
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(0xffffff),
+                                                map: mat.map,
+                                                normalMap: mat.normalMap,
+                                                roughness: 0,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0xe91616),
+                                                emissiveIntensity: 0,
+                                                emissiveMap: mat.emissiveMap,
+                                                opacity: 1,
+                                                transparent: false,
+                                                alphaTest: 0,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                envMapIntensity: 1,
+                                                transmission: 0,
+                                                thickness: 0,
+                                                ior: 1.5,
+                                                sheen: 0,
+                                                sheenRoughness: 0.45,
+                                                sheenColor: new THREE.Color(0xeb0a0a)
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            if (mat.map) {
+                                                physicalMat.bumpMap = mat.map;
+                                                physicalMat.bumpScale = 14.2;
+                                            }
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -2235,14 +3716,12 @@ class ThreeJSApp {
                                         }
                                     }
                                     // Convert SKELETON materials to MeshPhysicalMaterial
-                                    else if (mat.name.includes('SKELETON') && mat.type !== 'MeshPhysicalMaterial') {
-                                        // Check if we already converted this material
+                                    else if (mat.name.toUpperCase() === 'SKELETON' && mat.type !== 'MeshPhysicalMaterial') {
                                         if (convertedMaterials.has(mat.name)) {
                                             newMats.push(convertedMaterials.get(mat.name));
                                         } else {
                                             console.log(`Converting ${mat.name} to MeshPhysicalMaterial`);
                                             
-                                            // Create new MeshPhysicalMaterial with custom settings
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
                                                 map: mat.map,
@@ -2262,16 +3741,52 @@ class ThreeJSApp {
                                                 envMapIntensity: 1
                                             });
                                             
-                                            // Copy the name
                                             physicalMat.name = mat.name;
-                                            
-                                            // Apply bump map from color texture
                                             if (mat.map) {
                                                 physicalMat.bumpMap = mat.map;
                                                 physicalMat.bumpScale = 1;
                                             }
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XSKELETON to MeshPhysicalMaterial (keeps GLB textures, HD-specific defaults)
+                                    else if (mat.name.toUpperCase() === 'XSKELETON' && mat.type !== 'MeshPhysicalMaterial') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial`);
                                             
-                                            // Store the converted material
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(0xffffff),
+                                                map: mat.map,
+                                                normalMap: mat.normalMap,
+                                                roughness: 0.99,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 1,
+                                                emissiveMap: mat.emissiveMap,
+                                                opacity: 0.93,
+                                                transparent: false,
+                                                alphaTest: 0,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                envMapIntensity: 1,
+                                                transmission: 0,
+                                                thickness: 0,
+                                                ior: 1.5,
+                                                sheen: 0,
+                                                sheenRoughness: 1,
+                                                sheenColor: new THREE.Color(0x000000)
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            if (mat.map) {
+                                                physicalMat.bumpMap = mat.map;
+                                                physicalMat.bumpScale = 1;
+                                            }
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -2322,6 +3837,155 @@ class ThreeJSApp {
                                             });
                                             
                                             // Store the converted material
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XCLEAR to MeshPhysicalMaterial (keeps GLB map, HD-specific defaults)
+                                    else if (mat.name.toUpperCase() === 'XCLEAR') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Clear)`);
+                                            
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(0xffffff),
+                                                map: mat.map,
+                                                normalMap: mat.normalMap,
+                                                alphaMap: mat.alphaMap || null,
+                                                roughness: 0.42,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 0,
+                                                opacity: 1,
+                                                transparent: true,
+                                                alphaTest: 0,
+                                                side: THREE.FrontSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                transmission: 0,
+                                                thickness: 0.85,
+                                                ior: 1.06,
+                                                envMapIntensity: 2.29,
+                                                sheen: 0,
+                                                sheenRoughness: 0,
+                                                sheenColor: new THREE.Color(0x000000),
+                                                clearcoat: 0.28,
+                                                clearcoatRoughness: 0.14,
+                                                specularIntensity: 0.61,
+                                                specularColor: new THREE.Color(0xffffff),
+                                                attenuationDistance: 90,
+                                                attenuationColor: new THREE.Color(0xffffff)
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XCOLOR materials to MeshPhysicalMaterial (same as COLOR_1)
+                                    else if (mat.name.toUpperCase() === 'XCOLOR') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Color = COLOR_1)`);
+                                            
+                                            const useCustomColor = window.flexframeSettings?.primaryColorMode === 'custom';
+                                            const primaryColor = useCustomColor && window.flexframeSettings?.primaryColor 
+                                                ? window.flexframeSettings.primaryColor 
+                                                : '#ff0000';
+                                            
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(primaryColor),
+                                                roughness: 0.2152357035754776,
+                                                metalness: 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 1,
+                                                opacity: 1,
+                                                transparent: false,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                alphaTest: 0,
+                                                envMapIntensity: 1,
+                                                sheen: 0,
+                                                sheenRoughness: 1,
+                                                sheenColor: new THREE.Color(0x000000),
+                                                transmission: 0,
+                                                thickness: 0,
+                                                ior: 1.5
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            
+                                            console.log(`✅ ${mat.name} XCOLOR Material Applied (= COLOR_1):`, {
+                                                color: '#' + physicalMat.color.getHexString(),
+                                                roughness: physicalMat.roughness,
+                                                metalness: physicalMat.metalness
+                                            });
+                                            
+                                            convertedMaterials.set(mat.name, physicalMat);
+                                            newMats.push(physicalMat);
+                                        }
+                                    }
+                                    // Convert XCLOTHES / aiBodyGirl materials to MeshPhysicalMaterial
+                                    // Keeps GLB textures (roughness, normal/bump, grayscale color map)
+                                    // Sets material color to primary color so white trim = primary, black = stays black
+                                    else if (mat.name.toUpperCase() === 'XCLOTHES' || mat.name.toUpperCase() === 'AIBODYGIRL') {
+                                        if (convertedMaterials.has(mat.name)) {
+                                            newMats.push(convertedMaterials.get(mat.name));
+                                        } else {
+                                            console.log(`Converting ${mat.name} to MeshPhysicalMaterial (HD Clothes/Body)`);
+                                            
+                                            // Get primary color for the trim
+                                            const useCustomColor = window.flexframeSettings?.primaryColorMode === 'custom';
+                                            const primaryColor = useCustomColor && window.flexframeSettings?.primaryColor 
+                                                ? window.flexframeSettings.primaryColor 
+                                                : '#ff0000';
+                                            
+                                            // Create MeshPhysicalMaterial — KEEP all texture maps from GLB
+                                            const physicalMat = new THREE.MeshPhysicalMaterial({
+                                                color: new THREE.Color(primaryColor), // Multiplied with grayscale texture: white->primary, black->black
+                                                map: mat.map,                         // Grayscale color texture from GLB
+                                                normalMap: mat.normalMap,             // Normal/bump map from GLB
+                                                roughnessMap: mat.roughnessMap || null, // Roughness map from GLB
+                                                roughness: mat.roughness !== undefined ? mat.roughness : 0.5,
+                                                metalness: mat.metalness !== undefined ? mat.metalness : 0,
+                                                emissive: new THREE.Color(0x000000),
+                                                emissiveIntensity: 1,
+                                                opacity: 1,
+                                                transparent: false,
+                                                side: THREE.DoubleSide,
+                                                depthWrite: true,
+                                                depthTest: true,
+                                                blending: THREE.NormalBlending,
+                                                alphaTest: 0,
+                                                envMapIntensity: 1
+                                            });
+                                            
+                                            physicalMat.name = mat.name;
+                                            
+                                            // Apply bump map from color texture if available
+                                            if (mat.bumpMap) {
+                                                physicalMat.bumpMap = mat.bumpMap;
+                                                physicalMat.bumpScale = mat.bumpScale || 1;
+                                            } else if (mat.map) {
+                                                physicalMat.bumpMap = mat.map;
+                                                physicalMat.bumpScale = 1;
+                                            }
+                                            
+                                            console.log(`✅ ${mat.name} HD Primary Color Material Applied:`, {
+                                                color: '#' + physicalMat.color.getHexString(),
+                                                hasMap: !!physicalMat.map,
+                                                hasNormalMap: !!physicalMat.normalMap,
+                                                hasRoughnessMap: !!physicalMat.roughnessMap,
+                                                hasBumpMap: !!physicalMat.bumpMap,
+                                                roughness: physicalMat.roughness,
+                                                metalness: physicalMat.metalness
+                                            });
+                                            
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
@@ -2380,6 +4044,13 @@ class ThreeJSApp {
                                             convertedMaterials.set(mat.name, physicalMat);
                                             newMats.push(physicalMat);
                                         }
+                                    }
+                                    // XBODY materials - force depthWrite on + roughness 0.5
+                                    else if (mat.name.includes('XBODY')) {
+                                        mat.depthWrite = true;
+                                        mat.roughness = 0.5;
+                                        console.log(`✅ ${mat.name} - depthWrite forced ON, roughness set to 0.5`);
+                                        newMats.push(mat);
                                     } else {
                                         newMats.push(mat);
                                     }
@@ -2437,15 +4108,20 @@ class ThreeJSApp {
                 // Apply material presets BEFORE adding to scene to prevent flash
                 if (window.flexframeSettings) {
                     const mode = window.flexframeSettings.materialMode || 'preset';
+                    const preset = window.flexframeSettings.materialPreset || 'default';
+                    const isCustomTheme = preset.startsWith('custom:');
                     
                     if (mode === 'custom' && window.flexframeSettings.skinSettings) {
                         console.log('Pre-applying Custom SKIN settings...');
                         this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
-                    } else if (mode === 'preset' && window.flexframeSettings.materialPreset) {
-                        const preset = window.flexframeSettings.materialPreset;
+                    } else if (isCustomTheme && window.flexframeSettings.skinSettings) {
+                        // Custom theme preset — apply saved skin settings
+                        console.log('Applying custom theme SKIN settings:', window.flexframeSettings.skinSettings);
+                        this.applyCustomSkinSettings(window.flexframeSettings.skinSettings);
+                    } else if (mode === 'preset') {
                         console.log('Material Preset setting:', preset);
                         
-                        // 'default', 'dark', 'light' all use the same material settings
+                        // Built-in themes use their own hardcoded skin settings
                         if (preset === 'default' || preset === 'dark' || preset === 'light' || preset === 'preset1') {
                             console.log('Pre-applying Default Material Preset...');
                             this.applyMaterialPreset1();
@@ -2453,6 +4129,12 @@ class ThreeJSApp {
                             console.log('Pre-applying WP Preset...');
                             this.applyWPPreset();
                         }
+                    }
+                    
+                    // Apply equipment material settings if any are enabled
+                    if (window.flexframeSettings.equipmentMaterials) {
+                        console.log('Applying Equipment Material Settings...');
+                        this.applyEquipmentMaterials(model, window.flexframeSettings.equipmentMaterials);
                     }
                 }
                 
@@ -2490,6 +4172,12 @@ class ThreeJSApp {
                 
                 // Complete progress
                 this.updateLoadProgress(100);
+                
+                // Show Model Inspector if this is a test model
+                if (this._isTestModel) {
+                    this.showModelInspector(model, modelUrl);
+                    this._isTestModel = false;
+                }
                 
                 // Resolve the promise when model is fully loaded
                 resolve(model);
@@ -2607,6 +4295,74 @@ class ThreeJSApp {
                     materialsElement.classList.add('materials-folder-main');
                 }
             }, 10);
+            
+            // "Copy All HD Settings" button — copies XMUSCLE, XSKELETON, XCLEAR settings at once
+            const hdMaterialNames = ['XMUSCLE', 'XSKELETON', 'XCLEAR'];
+            const hasAnyHD = hdMaterialNames.some(n => materials.has(n));
+            if (hasAnyHD) {
+                const copyAllHD = {
+                    copyAllHDSettings: () => {
+                        let output = '';
+                        hdMaterialNames.forEach(matName => {
+                            const mat = materials.get(matName);
+                            if (!mat) return;
+                            
+                            const hasTextures = mat.map || mat.normalMap || mat.emissiveMap || mat.bumpMap || mat.alphaMap;
+                            
+                            output += `Material Name: "${matName}"\n\n`;
+                            output += `Settings:\n`;
+                            if (mat.color) output += `- Color: #${mat.color.getHexString()}\n`;
+                            if (mat.opacity !== undefined) output += `- Opacity: ${mat.opacity}\n`;
+                            if (mat.transparent !== undefined) output += `- Transparent: ${mat.transparent}\n`;
+                            if (mat.alphaTest !== undefined) output += `- Alpha Test: ${mat.alphaTest}\n`;
+                            if (mat.side !== undefined) {
+                                const sideNames = { 0: 'FrontSide', 1: 'BackSide', 2: 'DoubleSide' };
+                                output += `- Side: ${sideNames[mat.side] || mat.side}\n`;
+                            }
+                            if (mat.depthWrite !== undefined) output += `- Depth Write: ${mat.depthWrite}\n`;
+                            if (mat.metalness !== undefined) output += `- Metalness: ${mat.metalness}\n`;
+                            if (mat.roughness !== undefined) output += `- Roughness: ${mat.roughness}\n`;
+                            if (mat.emissive) output += `- Emissive: #${mat.emissive.getHexString()}\n`;
+                            if (mat.emissiveIntensity !== undefined) output += `- Emissive Intensity: ${mat.emissiveIntensity}\n`;
+                            if (mat.sheen !== undefined) output += `- Sheen: ${mat.sheen}\n`;
+                            if (mat.sheenRoughness !== undefined) output += `- Sheen Roughness: ${mat.sheenRoughness}\n`;
+                            if (mat.sheenColor) output += `- Sheen Color: #${mat.sheenColor.getHexString()}\n`;
+                            if (mat.bumpScale !== undefined) output += `- Bump Scale: ${mat.bumpScale}\n`;
+                            if (mat.transmission !== undefined) output += `- Transmission: ${mat.transmission}\n`;
+                            if (mat.thickness !== undefined) output += `- Thickness: ${mat.thickness}\n`;
+                            if (mat.ior !== undefined) output += `- IOR: ${mat.ior}\n`;
+                            if (mat.envMapIntensity !== undefined) output += `- Env Map Intensity: ${mat.envMapIntensity}\n`;
+                            if (mat.blending !== undefined) {
+                                const blendingNames = { 0: 'NoBlending', 1: 'NormalBlending', 2: 'AdditiveBlending', 3: 'SubtractiveBlending', 4: 'MultiplyBlending', 5: 'CustomBlending' };
+                                output += `- Blending: ${blendingNames[mat.blending] || mat.blending}\n`;
+                            }
+                            if (mat.depthTest !== undefined) output += `- Depth Test: ${mat.depthTest}\n`;
+                            if (mat.clearcoat !== undefined && mat.clearcoat > 0) output += `- Clearcoat: ${mat.clearcoat}\n`;
+                            if (mat.clearcoatRoughness !== undefined && mat.clearcoat > 0) output += `- Clearcoat Roughness: ${mat.clearcoatRoughness}\n`;
+                            if (mat.specularIntensity !== undefined && mat.specularIntensity !== 1) output += `- Specular Intensity: ${mat.specularIntensity}\n`;
+                            if (mat.specularColor) output += `- Specular Color: #${mat.specularColor.getHexString()}\n`;
+                            if (mat.attenuationDistance !== undefined && isFinite(mat.attenuationDistance)) output += `- Attenuation Distance: ${mat.attenuationDistance}\n`;
+                            if (mat.attenuationColor) output += `- Attenuation Color: #${mat.attenuationColor.getHexString()}\n`;
+                            if (hasTextures) {
+                                output += `\nNote: Has texture maps (`;
+                                const maps = [];
+                                if (mat.map) maps.push('map');
+                                if (mat.normalMap) maps.push('normalMap');
+                                if (mat.emissiveMap) maps.push('emissiveMap');
+                                if (mat.bumpMap) maps.push('bumpMap');
+                                if (mat.alphaMap) maps.push('alphaMap');
+                                output += maps.join(', ') + `)\n`;
+                            }
+                            output += `\n---\n\n`;
+                        });
+                        
+                        navigator.clipboard.writeText(output.trim()).then(() => {
+                            console.log('📋 All HD material settings copied to clipboard (XMUSCLE, XSKELETON, XCLEAR)');
+                        });
+                    }
+                };
+                this.materialsFolder.add(copyAllHD, 'copyAllHDSettings').name('📋 Copy All HD Settings');
+            }
             
             materials.forEach((material, name) => {
                 const matFolder = this.trackFolder(this.materialsFolder.addFolder(name));
@@ -2935,6 +4691,371 @@ class ThreeJSApp {
                         .onChange((value) => shadowBlurParams.setShadowBlur(value));
                 }
                 
+                // Extensive controls for XCLEAR materials (SKIN transmission + opacity mask)
+                if (name.toUpperCase() === 'XCLEAR') {
+                    // Show texture map info
+                    const mapInfo = {
+                        hasColorMap: !!material.map,
+                        hasAlphaMap: !!material.alphaMap,
+                        hasNormalMap: !!material.normalMap
+                    };
+                    
+                    // Alpha Map toggle
+                    if (!material._originalAlphaMap) {
+                        material._originalAlphaMap = material.alphaMap;
+                    }
+                    if (!material._originalColorMap) {
+                        material._originalColorMap = material.map;
+                    }
+                    
+                    const xclearMapParams = {
+                        useColorMap: !!material.map,
+                        useAlphaMap: !!material.alphaMap
+                    };
+                    
+                    matFolder.add(xclearMapParams, 'useColorMap')
+                        .name('🎨 Color Map')
+                        .onChange((value) => {
+                            material.map = value ? material._originalColorMap : null;
+                            material.needsUpdate = true;
+                        });
+                    
+                    matFolder.add(xclearMapParams, 'useAlphaMap')
+                        .name('🔲 Alpha/Opacity Map')
+                        .onChange((value) => {
+                            material.alphaMap = value ? material._originalAlphaMap : null;
+                            material.needsUpdate = true;
+                        });
+                    
+                    // Show alpha map thumbnail if available
+                    const alphaSource = material.alphaMap || material._originalAlphaMap;
+                    if (alphaSource) {
+                        setTimeout(() => {
+                            const folderElement = matFolder.domElement;
+                            if (folderElement) {
+                                const thumbDiv = document.createElement('div');
+                                thumbDiv.className = 'material-texture-thumbnail';
+                                
+                                const label = document.createElement('div');
+                                label.textContent = 'Alpha/Opacity Map:';
+                                label.style.fontSize = '11px';
+                                label.style.marginBottom = '4px';
+                                label.style.color = '#aaa';
+                                
+                                const img = document.createElement('img');
+                                if (alphaSource.image) {
+                                    const canvas = document.createElement('canvas');
+                                    canvas.width = 64;
+                                    canvas.height = 64;
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.drawImage(alphaSource.image, 0, 0, 64, 64);
+                                    img.src = canvas.toDataURL();
+                                }
+                                img.alt = 'Alpha map texture';
+                                
+                                thumbDiv.appendChild(label);
+                                thumbDiv.appendChild(img);
+                                folderElement.appendChild(thumbDiv);
+                            }
+                        }, 100);
+                    }
+                    
+                    // Show color map thumbnail if available
+                    const colorSource = material.map || material._originalColorMap;
+                    if (colorSource) {
+                        setTimeout(() => {
+                            const folderElement = matFolder.domElement;
+                            if (folderElement) {
+                                const thumbDiv = document.createElement('div');
+                                thumbDiv.className = 'material-texture-thumbnail';
+                                
+                                const label = document.createElement('div');
+                                label.textContent = 'Color Map:';
+                                label.style.fontSize = '11px';
+                                label.style.marginBottom = '4px';
+                                label.style.color = '#aaa';
+                                
+                                const img = document.createElement('img');
+                                if (colorSource.image) {
+                                    const canvas = document.createElement('canvas');
+                                    canvas.width = 64;
+                                    canvas.height = 64;
+                                    const ctx = canvas.getContext('2d');
+                                    ctx.drawImage(colorSource.image, 0, 0, 64, 64);
+                                    img.src = canvas.toDataURL();
+                                }
+                                img.alt = 'Color map texture';
+                                
+                                thumbDiv.appendChild(label);
+                                thumbDiv.appendChild(img);
+                                folderElement.appendChild(thumbDiv);
+                            }
+                        }, 100);
+                    }
+                    
+                    // Side rendering 
+                    const sideOptions = { 'Front': THREE.FrontSide, 'Back': THREE.BackSide, 'Double': THREE.DoubleSide };
+                    matFolder.add(material, 'side', sideOptions)
+                        .name('Face Culling')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Blending modes
+                    const blendingOptions = { 
+                        'Normal': THREE.NormalBlending, 
+                        'Additive': THREE.AdditiveBlending, 
+                        'Subtractive': THREE.SubtractiveBlending,
+                        'Multiply': THREE.MultiplyBlending,
+                        'Custom': THREE.CustomBlending
+                    };
+                    matFolder.add(material, 'blending', blendingOptions)
+                        .name('Blending Mode')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Depth controls
+                    matFolder.add(material, 'depthWrite')
+                        .name('Depth Write')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'depthTest')
+                        .name('Depth Test')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Transparency controls
+                    matFolder.add(material, 'opacity', 0, 1, 0.01)
+                        .name('Opacity')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'transparent')
+                        .name('Transparent')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'alphaTest', 0, 1, 0.01)
+                        .name('Alpha Test')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Transmission (glass) controls
+                    if (material.transmission !== undefined) {
+                        matFolder.add(material, 'transmission', 0, 1, 0.01)
+                            .name('🪟 Transmission')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'thickness', 0, 5, 0.01)
+                            .name('Thickness')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'ior', 1, 2.333, 0.01)
+                            .name('IOR (Refraction)')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'envMapIntensity', 0, 5, 0.01)
+                            .name('Env Map Intensity')
+                            .onChange(() => material.needsUpdate = true);
+                    }
+                    
+                    // Sheen controls
+                    if (material.sheen !== undefined) {
+                        matFolder.add(material, 'sheen', 0, 1, 0.01)
+                            .name('Sheen')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'sheenRoughness', 0, 1, 0.01)
+                            .name('Sheen Roughness')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        const sheenColorParams = {
+                            sheenColor: material.sheenColor ? material.sheenColor.getHex() : 0x000000
+                        };
+                        matFolder.addColor(sheenColorParams, 'sheenColor')
+                            .name('Sheen Color')
+                            .onChange((value) => {
+                                if (!material.sheenColor) material.sheenColor = new THREE.Color();
+                                material.sheenColor.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                    }
+                    
+                    // Clearcoat controls
+                    if (material.clearcoat !== undefined) {
+                        matFolder.add(material, 'clearcoat', 0, 1, 0.01)
+                            .name('Clearcoat')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        matFolder.add(material, 'clearcoatRoughness', 0, 1, 0.01)
+                            .name('Clearcoat Roughness')
+                            .onChange(() => material.needsUpdate = true);
+                    }
+                    
+                    // Specular controls
+                    if (material.specularIntensity !== undefined) {
+                        matFolder.add(material, 'specularIntensity', 0, 2, 0.01)
+                            .name('Specular Intensity')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        const specColorParams = {
+                            specularColor: material.specularColor ? material.specularColor.getHex() : 0xffffff
+                        };
+                        matFolder.addColor(specColorParams, 'specularColor')
+                            .name('Specular Color')
+                            .onChange((value) => {
+                                if (!material.specularColor) material.specularColor = new THREE.Color();
+                                material.specularColor.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                    }
+                    
+                    // Attenuation (colored glass absorption)
+                    if (material.attenuationDistance !== undefined) {
+                        matFolder.add(material, 'attenuationDistance', 0, 100, 0.1)
+                            .name('Attenuation Dist')
+                            .onChange(() => material.needsUpdate = true);
+                        
+                        const attenColorParams = {
+                            attenuationColor: material.attenuationColor ? material.attenuationColor.getHex() : 0xffffff
+                        };
+                        matFolder.addColor(attenColorParams, 'attenuationColor')
+                            .name('Attenuation Color')
+                            .onChange((value) => {
+                                if (!material.attenuationColor) material.attenuationColor = new THREE.Color();
+                                material.attenuationColor.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                    }
+                    
+                    // Emissive controls
+                    if (material.emissive) {
+                        const emParams = { emissive: material.emissive.getHex() };
+                        matFolder.addColor(emParams, 'emissive')
+                            .name('Emissive Color')
+                            .onChange((value) => {
+                                material.emissive.setHex(value);
+                                material.needsUpdate = true;
+                            });
+                        matFolder.add(material, 'emissiveIntensity', 0, 3, 0.01)
+                            .name('Emissive Intensity')
+                            .onChange(() => material.needsUpdate = true);
+                    }
+                    
+                    // Alpha to coverage (MSAA-based — great for alpha masks)
+                    matFolder.add(material, 'alphaToCoverage')
+                        .name('Alpha To Coverage')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Premultiplied alpha
+                    matFolder.add(material, 'premultipliedAlpha')
+                        .name('Premultiplied Alpha')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Tone mapped
+                    matFolder.add(material, 'toneMapped')
+                        .name('Tone Mapped')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Wireframe (for debugging geometry/mask)
+                    matFolder.add(material, 'wireframe')
+                        .name('Wireframe')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Flat shading
+                    matFolder.add(material, 'flatShading')
+                        .name('Flat Shading')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Render order (controls transparency sort order)
+                    const renderOrderParams = { renderOrder: 0 };
+                    matFolder.add(renderOrderParams, 'renderOrder', -10, 10, 1)
+                        .name('Render Order')
+                        .onChange((value) => {
+                            if (window.model) {
+                                window.model.traverse((child) => {
+                                    if (child.isMesh && child.material) {
+                                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                                        if (mats.some(m => m.name === name)) {
+                                            child.renderOrder = value;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    
+                    // Custom blending factors (only relevant when blending = CustomBlending)
+                    const blendSrcOptions = {
+                        'SrcAlpha': THREE.SrcAlphaFactor,
+                        'One': THREE.OneFactor,
+                        'Zero': THREE.ZeroFactor,
+                        'DstColor': THREE.DstColorFactor,
+                        'OneMinusSrcAlpha': THREE.OneMinusSrcAlphaFactor,
+                        'SrcColor': THREE.SrcColorFactor,
+                        'OneMinusDstColor': THREE.OneMinusDstColorFactor
+                    };
+                    const blendDstOptions = {
+                        'OneMinusSrcAlpha': THREE.OneMinusSrcAlphaFactor,
+                        'One': THREE.OneFactor,
+                        'Zero': THREE.ZeroFactor,
+                        'SrcColor': THREE.SrcColorFactor,
+                        'SrcAlpha': THREE.SrcAlphaFactor,
+                        'DstColor': THREE.DstColorFactor,
+                        'OneMinusSrcColor': THREE.OneMinusSrcColorFactor
+                    };
+                    const blendEqOptions = {
+                        'Add': THREE.AddEquation,
+                        'Subtract': THREE.SubtractEquation,
+                        'ReverseSubtract': THREE.ReverseSubtractEquation,
+                        'Min': THREE.MinEquation,
+                        'Max': THREE.MaxEquation
+                    };
+                    
+                    matFolder.add(material, 'blendSrc', blendSrcOptions)
+                        .name('Blend Src')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'blendDst', blendDstOptions)
+                        .name('Blend Dst')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    matFolder.add(material, 'blendEquation', blendEqOptions)
+                        .name('Blend Equation')
+                        .onChange(() => material.needsUpdate = true);
+                    
+                    // Visible toggle
+                    matFolder.add(material, 'visible')
+                        .name('Visible')
+                        .onChange(() => {});
+                    
+                    // Cast shadows
+                    const xclearShadowParams = {
+                        castShadow: true,
+                        receiveShadow: true
+                    };
+                    matFolder.add(xclearShadowParams, 'castShadow')
+                        .name('Cast Shadows')
+                        .onChange((value) => {
+                            if (window.model) {
+                                window.model.traverse((child) => {
+                                    if (child.isMesh && child.material) {
+                                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                                        if (mats.some(m => m.name === name)) {
+                                            child.castShadow = value;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                    matFolder.add(xclearShadowParams, 'receiveShadow')
+                        .name('Receive Shadows')
+                        .onChange((value) => {
+                            if (window.model) {
+                                window.model.traverse((child) => {
+                                    if (child.isMesh && child.material) {
+                                        const mats = Array.isArray(child.material) ? child.material : [child.material];
+                                        if (mats.some(m => m.name === name)) {
+                                            child.receiveShadow = value;
+                                        }
+                                    }
+                                });
+                            }
+                        });
+                }
+                
                 // Add "Copy Settings" button at the bottom of each material folder
                 const copyParams = {
                     copySettings: () => {
@@ -3090,7 +5211,10 @@ class ThreeJSApp {
                 
                 mats.forEach((mat) => {
                     if (mat.name === 'LOGO') {
-                        console.log('✅ Found LOGO material - applying texture...');
+                        console.log('✅ Found LOGO material - hiding until texture loads...');
+                        
+                        // Hide material immediately to prevent flash of blank material
+                        mat.visible = false;
                         
                         // Dispose old texture if exists
                         if (mat.map) {
@@ -3178,10 +5302,16 @@ class ThreeJSApp {
                             mat.depthWrite = false;
                             
                             mat.needsUpdate = true;
+                            
+                            // Show material now that texture is loaded
+                            mat.visible = true;
+                            
                             console.log('✅ LOGO texture applied successfully with border:', borderEnabled, 'size:', borderSize, 'displaySize:', displaySize);
                         };
                         img.onerror = (error) => {
                             console.error('❌ Error loading LOGO texture:', error);
+                            // Show material even on error so it's not invisible forever
+                            mat.visible = true;
                         };
                         img.src = cacheBustedUrl;
                     }
@@ -3303,6 +5433,133 @@ class ThreeJSApp {
                 depthWrite: true,
                 depthTest: true,
                 envMapIntensity: 1
+            },
+            'XCLOTHES': {
+                // Only color is applied from preset — textures are preserved from GLB
+                color: (window.flexframeSettings?.primaryColorMode === 'custom' && window.flexframeSettings?.primaryColor) 
+                    ? window.flexframeSettings.primaryColor 
+                    : '#ff0000',
+                _preserveTextures: true // Flag: do NOT clear maps for this material
+            },
+            'AIBODYGIRL': {
+                // Same as XCLOTHES — primary color tint over grayscale texture
+                color: (window.flexframeSettings?.primaryColorMode === 'custom' && window.flexframeSettings?.primaryColor) 
+                    ? window.flexframeSettings.primaryColor 
+                    : '#ff0000',
+                _preserveTextures: true
+            },
+            'XMUSCLE': {
+                color: '#ffffff',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XSKELETON': {
+                color: '#ffffff',
+                opacity: 0.93,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.99,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XCOLOR': {
+                color: (window.flexframeSettings?.primaryColorMode === 'custom' && window.flexframeSettings?.primaryColor) 
+                    ? window.flexframeSettings.primaryColor 
+                    : '#ff0000',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.215,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XMETAL': {
+                color: '#151515',
+                opacity: 1,
+                transparent: false,
+                metalness: 0.85,
+                roughness: 0.36,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XRUBBER': {
+                color: '#1a1a1a',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.95,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XBUMPER': {
+                color: '#808080',
+                opacity: 1,
+                transparent: false,
+                metalness: 0,
+                roughness: 0.8,
+                transmission: 0,
+                thickness: 0,
+                ior: 1.5,
+                side: THREE.DoubleSide,
+                blending: THREE.NormalBlending,
+                depthWrite: true,
+                depthTest: true,
+                envMapIntensity: 1
+            },
+            'XCLEAR': {
+                color: '#ffffff',
+                opacity: 1,
+                transparent: true,
+                metalness: 0,
+                roughness: 0.42,
+                transmission: 0,
+                thickness: 0.85,
+                ior: 1.06,
+                side: THREE.FrontSide,
+                blending: THREE.NormalBlending,
+                depthWrite: false,
+                depthTest: true,
+                envMapIntensity: 2.29,
+                _preserveTextures: true // Keep GLB map texture
+            },
+            'XBODY': {
+                depthWrite: true,
+                roughness: 0.5,
+                _preserveTextures: true // Keep all GLB textures, only force depthWrite + roughness
             }
         };
         
@@ -3316,8 +5573,18 @@ class ThreeJSApp {
                     if (mat.name && presets[mat.name.toUpperCase()]) {
                         const preset = presets[mat.name.toUpperCase()];
                         
+                        // XCLOTHES / _preserveTextures: only apply color, keep all GLB textures & properties
+                        if (preset._preserveTextures) {
+                            if (preset.color && mat.color) mat.color.set(preset.color);
+                            if (preset.depthWrite !== undefined) mat.depthWrite = preset.depthWrite;
+                            if (preset.roughness !== undefined) mat.roughness = preset.roughness;
+                            mat.needsUpdate = true;
+                            appliedCount++;
+                            return; // Skip full property override
+                        }
+                        
                         // Apply preset values
-                        if (preset.color) mat.color.set(preset.color);
+                        if (preset.color && mat.color) mat.color.set(preset.color);
                         mat.opacity = preset.opacity;
                         mat.transparent = preset.transparent;
                         mat.metalness = preset.metalness;
@@ -3377,7 +5644,7 @@ class ThreeJSApp {
                 materials.forEach(mat => {
                     if (mat.name && mat.name.toUpperCase() === 'SKIN') {
                         // Apply custom settings from WordPress
-                        if (skinSettings.color) {
+                        if (skinSettings.color && mat.color) {
                             mat.color.set(skinSettings.color);
                         }
                         if (skinSettings.opacity !== undefined) {
@@ -3420,6 +5687,176 @@ class ThreeJSApp {
         }
     }
 
+    /**
+     * Apply equipment material settings from WordPress admin
+     * @param {Object} model - The loaded 3D model
+     * @param {Object} equipmentMaterials - Settings object for each equipment material
+     */
+    applyEquipmentMaterials(model, equipmentMaterials) {
+        if (!model || !equipmentMaterials) {
+            console.log('No model or equipment materials to apply');
+            return;
+        }
+
+        console.log('Equipment Materials from WordPress:', equipmentMaterials);
+
+        // Map material names in the model to settings keys (PHP sends uppercase keys)
+        const materialMapping = {
+            'BARBELL': 'BARBELL',
+            'BUMPER': 'COLOR1',
+            'CABLE': 'CABLE',
+            'CHROME': 'CHROME',
+            'COLOR_1': 'COLOR1',
+            'COLOR1': 'COLOR1',
+            'METAL': 'METAL',
+            'PAD': 'PAD',
+            'PLASTIC': 'PLASTIC',
+            'RUBBER': 'RUBBER',
+            'XCLOTHES': 'XCLOTHES',
+            'AIBODYGIRL': 'AIBODYGIRL',
+            'XCOLOR': 'COLOR1',
+            'XMETAL': 'METAL',
+            'XRUBBER': 'RUBBER',
+            'XBUMPER': 'COLOR1',
+            'XCLEAR': 'XCLEAR'
+        };
+
+        model.traverse((child) => {
+            if (child.isMesh && child.material) {
+                const materials = Array.isArray(child.material) ? child.material : [child.material];
+                
+                materials.forEach(mat => {
+                    if (!mat.name) return;
+                    
+                    const matNameUpper = mat.name.toUpperCase();
+                    const settingsKey = materialMapping[matNameUpper];
+                    
+                    if (settingsKey && equipmentMaterials[settingsKey]) {
+                        const settings = equipmentMaterials[settingsKey];
+                        
+                        // Check if this material is enabled
+                        if (!settings.enabled) {
+                            console.log(`Equipment material ${matNameUpper} is disabled, skipping`);
+                            return;
+                        }
+
+                        console.log(`Applying equipment settings to ${matNameUpper}:`, settings);
+
+                        // Apply basic properties
+                        if (settings.color && mat.color) {
+                            mat.color.set(settings.color);
+                        }
+
+                        if (settings.opacity !== undefined && settings.opacity !== null) {
+                            mat.opacity = parseFloat(settings.opacity);
+                            mat.transparent = mat.opacity < 1;
+                        }
+
+                        if (settings.metalness !== undefined && settings.metalness !== null) {
+                            mat.metalness = parseFloat(settings.metalness);
+                        }
+
+                        if (settings.roughness !== undefined && settings.roughness !== null) {
+                            mat.roughness = parseFloat(settings.roughness);
+                        }
+
+                        // Clearcoat
+                        if (settings.clearcoat !== undefined && settings.clearcoat !== null) {
+                            mat.clearcoat = parseFloat(settings.clearcoat);
+                        }
+
+                        if (settings.clearcoatRoughness !== undefined && settings.clearcoatRoughness !== null) {
+                            mat.clearcoatRoughness = parseFloat(settings.clearcoatRoughness);
+                        }
+
+                        // Emission
+                        if (settings.emissiveColor && mat.emissive) {
+                            mat.emissive.set(settings.emissiveColor);
+                        }
+
+                        if (settings.emissiveIntensity !== undefined && settings.emissiveIntensity !== null) {
+                            mat.emissiveIntensity = parseFloat(settings.emissiveIntensity);
+                        }
+
+                        // Transmission (glass-like)
+                        if (settings.transmission !== undefined && settings.transmission !== null) {
+                            mat.transmission = parseFloat(settings.transmission);
+                        }
+
+                        if (settings.thickness !== undefined && settings.thickness !== null) {
+                            mat.thickness = parseFloat(settings.thickness);
+                        }
+
+                        if (settings.ior !== undefined && settings.ior !== null) {
+                            mat.ior = parseFloat(settings.ior);
+                        }
+
+                        // Sheen
+                        if (settings.sheen !== undefined && settings.sheen !== null) {
+                            mat.sheen = parseFloat(settings.sheen);
+                        }
+
+                        if (settings.sheenRoughness !== undefined && settings.sheenRoughness !== null) {
+                            mat.sheenRoughness = parseFloat(settings.sheenRoughness);
+                        }
+
+                        if (settings.sheenColor && mat.sheenColor) {
+                            mat.sheenColor.set(settings.sheenColor);
+                        }
+
+                        // Environment map intensity
+                        if (settings.envMapIntensity !== undefined && settings.envMapIntensity !== null) {
+                            mat.envMapIntensity = parseFloat(settings.envMapIntensity);
+                        }
+
+                        // Blending mode
+                        if (settings.blending) {
+                            switch (settings.blending) {
+                                case 'normal':
+                                    mat.blending = THREE.NormalBlending;
+                                    break;
+                                case 'additive':
+                                    mat.blending = THREE.AdditiveBlending;
+                                    break;
+                                case 'subtractive':
+                                    mat.blending = THREE.SubtractiveBlending;
+                                    break;
+                                case 'multiply':
+                                    mat.blending = THREE.MultiplyBlending;
+                                    break;
+                            }
+                        }
+
+                        // Bump and normal map toggles
+                        if (settings.bumpMapEnabled !== undefined && settings.bumpMapEnabled !== null) {
+                            // If bump map is disabled, set bumpScale to 0
+                            if (!settings.bumpMapEnabled && mat.bumpMap) {
+                                mat.bumpScale = 0;
+                            }
+                        }
+
+                        if (settings.normalMapEnabled !== undefined && settings.normalMapEnabled !== null) {
+                            // If normal map is disabled, set normalScale to 0
+                            if (!settings.normalMapEnabled && mat.normalMap && mat.normalScale) {
+                                mat.normalScale.set(0, 0);
+                            }
+                        }
+
+                        if (settings.colorMapEnabled !== undefined && settings.colorMapEnabled !== null) {
+                            // If color map is disabled, remove it
+                            if (!settings.colorMapEnabled && mat.map) {
+                                mat.map = null;
+                            }
+                        }
+
+                        mat.needsUpdate = true;
+                        console.log(`✅ Equipment material settings applied to: ${matNameUpper}`);
+                    }
+                });
+            }
+        });
+    }
+
     setupEventListeners() {
         // Window resize
         window.addEventListener('resize', () => {
@@ -3429,6 +5866,13 @@ class ThreeJSApp {
             this.cameraManager.handleResize();
             this.renderer.setSize(this.sizes.width, this.sizes.height);
             this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            
+            // Disable always-visible on mobile, re-enable on desktop
+            if (this.animationPlayer && this.uiSettings?.player) {
+                const isMobile = window.innerWidth <= 768;
+                const shouldBeAlwaysVisible = isMobile ? false : (this.uiSettings.player.alwaysVisible === true);
+                this.animationPlayer.setAlwaysVisible(shouldBeAlwaysVisible);
+            }
         });
 
         // Click interactions
@@ -4002,7 +6446,241 @@ class ThreeJSApp {
         // customFolder.open();
         // screenshotFolder.open();
     }
+    
+    setupMobileSearchCloseButton() {
+        const searchCloseBtn = document.getElementById('searchCloseBtnMobile');
+        const searchDropdown = document.getElementById('searchDropdown');
+        const searchToggle = document.getElementById('searchToggle');
+        
+        if (!searchCloseBtn || !searchDropdown || !searchToggle) return;
+        
+        // Get menu background color from flexframeSettings
+        const settings = window.flexframeSettings || {};
+        const menuBg = settings.menuBackgroundColor || '#000000';
+        const menuBgOpacity = settings.menuBackgroundOpacity || 0.9;
+        
+        // Convert hex to RGB
+        const hexToRgb = (hex) => {
+            const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+            return result ? {
+                r: parseInt(result[1], 16),
+                g: parseInt(result[2], 16),
+                b: parseInt(result[3], 16)
+            } : {r: 0, g: 0, b: 0};
+        };
+        
+        const rgb = hexToRgb(menuBg);
+        const bgColor = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${menuBgOpacity})`;
+        const bgColorHover = `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${Math.min(menuBgOpacity + 0.1, 1)})`;
+        
+        // Apply inline styles to override theme CSS
+        searchCloseBtn.style.setProperty('background', bgColor, 'important');
+        searchCloseBtn.style.setProperty('background-color', bgColor, 'important');
+        
+        // Add hover effect
+        searchCloseBtn.addEventListener('mouseenter', () => {
+            searchCloseBtn.style.setProperty('background', bgColorHover, 'important');
+            searchCloseBtn.style.setProperty('background-color', bgColorHover, 'important');
+        });
+        searchCloseBtn.addEventListener('mouseleave', () => {
+            searchCloseBtn.style.setProperty('background', bgColor, 'important');
+            searchCloseBtn.style.setProperty('background-color', bgColor, 'important');
+        });
+        
+        // Function to update close button position based on dropdown
+        const updateCloseButtonPosition = () => {
+            if (searchDropdown.classList.contains('show')) {
+                const dropdownRect = searchDropdown.getBoundingClientRect();
+                const bottom = dropdownRect.bottom;
+                searchCloseBtn.style.top = `${bottom + 10}px`;
+                searchCloseBtn.style.display = 'flex';
+            } else {
+                searchCloseBtn.style.display = 'none';
+            }
+        };
+        
+        // Observe dropdown state changes
+        const observer = new MutationObserver((mutations) => {
+            mutations.forEach((mutation) => {
+                if (mutation.type === 'attributes' && mutation.attributeName === 'class') {
+                    updateCloseButtonPosition();
+                }
+            });
+        });
+        
+        observer.observe(searchDropdown, {
+            attributes: true,
+            attributeFilter: ['class']
+        });
+        
+        // Close button click handler
+        searchCloseBtn.addEventListener('click', () => {
+            if (this.multiThumbnailMenuSystem && this.multiThumbnailMenuSystem.menus.search) {
+                this.multiThumbnailMenuSystem.menus.search.closeMenu();
+            }
+        });
+        
+        // Initial check
+        updateCloseButtonPosition();
+    }
+    
+    // Setup mobile fullscreen button
+    setupFullscreenButton() {
+        const fullscreenBtn = document.getElementById('fullscreen-btn');
+        if (!fullscreenBtn) return;
+        
+        const enterIcon = fullscreenBtn.querySelector('.fullscreen-enter-icon');
+        const exitIcon = fullscreenBtn.querySelector('.fullscreen-exit-icon');
+        
+        const updateIcons = () => {
+            const isFullscreen = document.fullscreenElement || 
+                                 document.webkitFullscreenElement || 
+                                 document.mozFullScreenElement ||
+                                 document.msFullscreenElement;
+            
+            if (enterIcon && exitIcon) {
+                enterIcon.style.display = isFullscreen ? 'none' : 'block';
+                exitIcon.style.display = isFullscreen ? 'block' : 'none';
+            }
+        };
+        
+        const enterFullscreen = () => {
+            const elem = document.documentElement;
+            // Try with navigationUI option for better mobile support
+            const options = { navigationUI: 'hide' };
+            
+            if (elem.requestFullscreen) {
+                elem.requestFullscreen(options).catch(() => {
+                    // Fallback without options
+                    elem.requestFullscreen();
+                });
+            } else if (elem.webkitRequestFullscreen) {
+                // iOS Safari doesn't support fullscreen API, but try anyway
+                elem.webkitRequestFullscreen();
+            } else if (elem.webkitEnterFullscreen) {
+                // Alternative for iOS video elements
+                elem.webkitEnterFullscreen();
+            } else if (elem.mozRequestFullScreen) {
+                elem.mozRequestFullScreen();
+            } else if (elem.msRequestFullscreen) {
+                elem.msRequestFullscreen();
+            }
+        };
+        
+        const exitFullscreen = () => {
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        };
+        
+        fullscreenBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent auto-fullscreen from interfering
+            if (!document.fullscreenElement && 
+                !document.webkitFullscreenElement && 
+                !document.mozFullScreenElement &&
+                !document.msFullscreenElement) {
+                enterFullscreen();
+            } else {
+                exitFullscreen();
+            }
+        });
+        
+        // Listen for fullscreen changes
+        document.addEventListener('fullscreenchange', updateIcons);
+        document.addEventListener('webkitfullscreenchange', updateIcons);
+        document.addEventListener('mozfullscreenchange', updateIcons);
+        document.addEventListener('MSFullscreenChange', updateIcons);
+        
+        // Adjust fullscreen button position based on animation player visibility (desktop only)
+        const updateButtonPosition = () => {
+            if (window.innerWidth > 768) {
+                const animationPlayer = document.querySelector('.animation-player');
+                const isPlayerVisible = animationPlayer && animationPlayer.classList.contains('visible');
+                fullscreenBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
+            } else {
+                // On mobile, clear inline style to let CSS handle it (50px)
+                fullscreenBtn.style.bottom = '';
+            }
+        };
+        
+        // Watch for animation player visibility changes
+        const animationPlayer = document.querySelector('.animation-player');
+        if (animationPlayer) {
+            const observer = new MutationObserver(updateButtonPosition);
+            observer.observe(animationPlayer, { attributes: true, attributeFilter: ['class'] });
+        }
+        
+        // Also update on window resize
+        window.addEventListener('resize', updateButtonPosition);
+        
+        // Initial position check
+        updateButtonPosition();
+        
+        // Auto-enter fullscreen on first user interaction (required by browsers)
+        // Browsers require a user gesture - we listen for ANY interaction
+        // Check if WordPress setting enables auto-fullscreen
+        if (window.flexframeSettings?.autoFullscreen) {
+            const autoEnterFullscreen = (e) => {
+                // Don't auto-fullscreen if clicking the fullscreen button itself
+                if (e.target?.closest?.('#fullscreen-btn')) return;
+                
+                // Remove all listeners immediately to prevent multiple triggers
+                document.removeEventListener('click', autoEnterFullscreen);
+                document.removeEventListener('touchstart', autoEnterFullscreen);
+                document.removeEventListener('touchend', autoEnterFullscreen);
+                document.removeEventListener('keydown', autoEnterFullscreen);
+                document.removeEventListener('pointerdown', autoEnterFullscreen);
+                document.removeEventListener('mousedown', autoEnterFullscreen);
+                
+                // Delay fullscreen slightly so the original click action completes first
+                setTimeout(() => {
+                    enterFullscreen();
+                }, 50);
+            };
+            // Listen for any user interaction
+            document.addEventListener('click', autoEnterFullscreen);
+            document.addEventListener('touchstart', autoEnterFullscreen, { passive: true });
+            document.addEventListener('touchend', autoEnterFullscreen, { passive: true });
+            document.addEventListener('keydown', autoEnterFullscreen);
+            document.addEventListener('pointerdown', autoEnterFullscreen);
+            document.addEventListener('mousedown', autoEnterFullscreen);
+        }
+    }
 }
 
-// Initialize the application
-const app = new ThreeJSApp();
+// Initialize the application - wait for canvas element to exist in DOM
+function startApp() {
+    const canvas = document.querySelector('canvas.webgl');
+    if (canvas) {
+        console.log('[FlexFrame] Canvas found, initializing app');
+        const app = new ThreeJSApp();
+        return;
+    }
+    // Canvas not found yet - poll until it appears (themes/page builders may inject content late)
+    console.warn('[FlexFrame] Canvas not found yet, waiting for DOM...');
+    let attempts = 0;
+    const maxAttempts = 100; // 10 seconds max
+    const interval = setInterval(() => {
+        attempts++;
+        if (document.querySelector('canvas.webgl')) {
+            clearInterval(interval);
+            console.log('[FlexFrame] Canvas found after ' + (attempts * 100) + 'ms, initializing app');
+            const app = new ThreeJSApp();
+        } else if (attempts >= maxAttempts) {
+            clearInterval(interval);
+            console.error('[FlexFrame] Canvas element with class "webgl" not found after 10 seconds. Make sure the [flexframe_viewer] shortcode is on this page.');
+        }
+    }, 100);
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', startApp);
+} else {
+    startApp();
+}

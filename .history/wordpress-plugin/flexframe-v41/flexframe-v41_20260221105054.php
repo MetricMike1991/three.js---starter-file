@@ -4266,7 +4266,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B_7hLAay.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-jw71J-lD.js',
             array(),
             FLEXFRAME_VERSION,
             true

@@ -339,6 +339,9 @@ body
     .fullscreen-btn {
         bottom: 50px;
     }
+    #ffx-add-to-workout-btn {
+        bottom: 50px !important;
+    }
 }
 
 /* Responsive design for smaller screens */

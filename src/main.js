@@ -3309,6 +3309,20 @@ class ThreeJSApp {
         // Only show if workout page URL is configured
         if (!workoutUrl) return;
         
+        // Get user's primary color
+        const primaryColor = ws?.primaryColor || '#4a9eff';
+        
+        // Helper: hex to rgb components
+        const hexToRgb = (hex) => {
+            const h = hex.replace('#', '');
+            return {
+                r: parseInt(h.substring(0, 2), 16),
+                g: parseInt(h.substring(2, 4), 16),
+                b: parseInt(h.substring(4, 6), 16),
+            };
+        };
+        const pc = hexToRgb(primaryColor);
+        
         let btn = document.getElementById('ffx-add-to-workout-btn');
         
         if (!btn) {
@@ -3319,15 +3333,15 @@ class ThreeJSApp {
             // Style the button
             Object.assign(btn.style, {
                 position: 'fixed',
-                bottom: '80px',
-                right: '16px',
+                bottom: '20px',
+                left: '16px',
                 zIndex: '100000',
                 display: 'flex',
                 alignItems: 'center',
                 gap: '8px',
                 padding: '10px 16px',
                 background: 'rgba(0, 0, 0, 0.65)',
-                border: '1px solid rgba(255, 255, 255, 0.15)',
+                border: `1px solid ${primaryColor}`,
                 borderRadius: '12px',
                 color: '#ffffff',
                 textDecoration: 'none',
@@ -3340,7 +3354,7 @@ class ThreeJSApp {
                 transition: 'all 0.3s ease',
                 opacity: '0',
                 transform: 'translateY(10px)',
-                boxShadow: '0 4px 16px rgba(0,0,0,0.3)',
+                boxShadow: `0 4px 16px rgba(${pc.r},${pc.g},${pc.b},0.35)`,
                 letterSpacing: '0.3px',
             });
             
@@ -3357,15 +3371,15 @@ class ThreeJSApp {
             // Hover effects
             btn.addEventListener('mouseenter', () => {
                 btn.style.background = 'rgba(0, 0, 0, 0.85)';
-                btn.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                btn.style.borderColor = primaryColor;
                 btn.style.transform = 'translateY(-2px)';
-                btn.style.boxShadow = '0 6px 24px rgba(0,0,0,0.4)';
+                btn.style.boxShadow = `0 6px 24px rgba(${pc.r},${pc.g},${pc.b},0.5)`;
             });
             btn.addEventListener('mouseleave', () => {
                 btn.style.background = 'rgba(0, 0, 0, 0.65)';
-                btn.style.borderColor = 'rgba(255, 255, 255, 0.15)';
+                btn.style.borderColor = primaryColor;
                 btn.style.transform = 'translateY(0)';
-                btn.style.boxShadow = '0 4px 16px rgba(0,0,0,0.3)';
+                btn.style.boxShadow = `0 4px 16px rgba(${pc.r},${pc.g},${pc.b},0.35)`;
             });
             
             // Append to the viewer container so it stays scoped
@@ -6599,13 +6613,16 @@ class ThreeJSApp {
         
         // Adjust fullscreen button position based on animation player visibility (desktop only)
         const updateButtonPosition = () => {
+            const workoutBtn = document.getElementById('ffx-add-to-workout-btn');
             if (window.innerWidth > 768) {
                 const animationPlayer = document.querySelector('.animation-player');
                 const isPlayerVisible = animationPlayer && animationPlayer.classList.contains('visible');
                 fullscreenBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
+                if (workoutBtn) workoutBtn.style.bottom = isPlayerVisible ? '80px' : '20px';
             } else {
                 // On mobile, clear inline style to let CSS handle it (50px)
                 fullscreenBtn.style.bottom = '';
+                if (workoutBtn) workoutBtn.style.bottom = '';
             }
         };
         
