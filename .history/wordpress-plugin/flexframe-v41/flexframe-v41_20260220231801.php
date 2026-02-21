@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v41
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.449
+ * Version: 1.41.444
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.449');
+define('FLEXFRAME_VERSION', '1.41.444');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 define('FLEXFRAME_PLUGIN_URL', plugin_dir_url(__FILE__));
 
@@ -4266,7 +4266,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-C9uYCwTR.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B5UsfZCM.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -4762,7 +4762,15 @@ add_action('wp_ajax_flexframe_save_primary_color', 'flexframe_save_primary_color
  * Register shortcode [flexframe_viewer]
  */
 function flexframe_viewer_shortcode($atts) {
-    flexframe_log('Shortcode render started', $atts);
+    // Prevent duplicate rendering using global flag (more reliable than static)
+    global $flexframe_rendered;
+    if (isset($flexframe_rendered) && $flexframe_rendered === true) {
+        flexframe_log('WARNING: Shortcode already rendered, skipping duplicate');
+        return '<!-- FlexFrame: Duplicate shortcode prevented -->';
+    }
+    $flexframe_rendered = true;
+    
+    flexframe_log('Shortcode render started (first and only render)', $atts);
     
     // Auto-detect and save the viewer page URL (the page where shortcode is embedded)
     $current_url = home_url(add_query_arg(array(), $GLOBALS['wp']->request));

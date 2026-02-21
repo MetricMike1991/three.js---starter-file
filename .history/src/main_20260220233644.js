@@ -6654,33 +6654,5 @@ class ThreeJSApp {
     }
 }
 
-// Initialize the application - wait for canvas element to exist in DOM
-function startApp() {
-    const canvas = document.querySelector('canvas.webgl');
-    if (canvas) {
-        console.log('[FlexFrame] Canvas found, initializing app');
-        const app = new ThreeJSApp();
-        return;
-    }
-    // Canvas not found yet - poll until it appears (themes/page builders may inject content late)
-    console.warn('[FlexFrame] Canvas not found yet, waiting for DOM...');
-    let attempts = 0;
-    const maxAttempts = 100; // 10 seconds max
-    const interval = setInterval(() => {
-        attempts++;
-        if (document.querySelector('canvas.webgl')) {
-            clearInterval(interval);
-            console.log('[FlexFrame] Canvas found after ' + (attempts * 100) + 'ms, initializing app');
-            const app = new ThreeJSApp();
-        } else if (attempts >= maxAttempts) {
-            clearInterval(interval);
-            console.error('[FlexFrame] Canvas element with class "webgl" not found after 10 seconds. Make sure the [flexframe_viewer] shortcode is on this page.');
-        }
-    }, 100);
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', startApp);
-} else {
-    startApp();
-}
+// Initialize the application
+const app = new ThreeJSApp();
