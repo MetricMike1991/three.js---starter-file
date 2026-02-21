@@ -1311,23 +1311,6 @@
         });
     }
 
-    // ─── Reset Workout ─────────────────────────────────────────
-    function resetWorkout() {
-        if (workoutExercises.length === 0) {
-            showToast('Workout is already empty');
-            return;
-        }
-        if (!confirm('Are you sure you want to erase the current workout and start fresh?')) return;
-
-        workoutExercises = [];
-        workoutId = null;
-        workoutNameInput.value = '';
-        localStorage.removeItem(AUTOSAVE_KEY);
-        renderExerciseList();
-        updateStats();
-        showToast('Workout cleared');
-    }
-
     // ─── Autosave ────────────────────────────────────────────
     function startAutosave() {
         autosaveTimer = setInterval(() => {
