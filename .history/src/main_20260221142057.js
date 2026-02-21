@@ -7,10 +7,6 @@ const BUILD_TIMESTAMP = __BUILD_TIMESTAMP__;
 const BUILD_NUMBER = __BUILD_NUMBER__;
 console.log('[FlexFrame Build] main.js v28.4 loaded - AR Support - Build #' + BUILD_NUMBER + ' - ' + BUILD_TIMESTAMP);
 
-// Samsung Internet detection (user-agent contains "SamsungBrowser")
-const IS_SAMSUNG_INTERNET = /SamsungBrowser/i.test(navigator.userAgent);
-if (IS_SAMSUNG_INTERNET) console.log('📱 Samsung Internet detected');
-
 // Keyboard shortcut to check build timestamp (Press 'L')
 document.addEventListener('keydown', (e) => {
     if (e.key === 'l' || e.key === 'L') {
@@ -3975,9 +3971,9 @@ class ThreeJSApp {
                                             const physicalMat = new THREE.MeshPhysicalMaterial({
                                                 color: new THREE.Color(0xffffff),
                                                 map: mat.map,
-                                                normalMap: mat.normalMap,
+                                                normalMap: null,  // Removed — causes rendering issues in Samsung Internet
                                                 alphaMap: mat.alphaMap || null,
-                                                roughness: 0.42,
+                                                roughness: 0.5,
                                                 metalness: 0,
                                                 emissive: new THREE.Color(0x000000),
                                                 emissiveIntensity: 0,
@@ -4169,28 +4165,22 @@ class ThreeJSApp {
                                             newMats.push(physicalMat);
                                         }
                                     }
-                                    // XBODY materials - force depthWrite on
+                                    // XBODY materials - force depthWrite on, roughness 0.5, remove normalMap
                                     else if (mat.name.includes('XBODY')) {
                                         mat.depthWrite = true;
                                         mat.roughness = 0.5;
-                                        if (IS_SAMSUNG_INTERNET) {
-                                            if (mat.normalMap) { mat.normalMap = null; }
-                                            if (mat.roughnessMap) { mat.roughnessMap = null; }
-                                            mat.needsUpdate = true;
-                                            console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5, normalMap+roughnessMap removed (Samsung Internet)`);
-                                        } else {
-                                            console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5`);
-                                        }
+                                        mat.normalMap = null;
+                                        mat.needsUpdate = true;
+                                        console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5, normalMap removed`);
                                         newMats.push(mat);
                                     }
-                                    // XHEAD materials - Samsung Internet: remove normalMap + roughnessMap
+                                    // XHEAD materials - same treatment as XBODY
                                     else if (mat.name.toUpperCase().includes('XHEAD')) {
-                                        if (IS_SAMSUNG_INTERNET) {
-                                            if (mat.normalMap) { mat.normalMap = null; }
-                                            if (mat.roughnessMap) { mat.roughnessMap = null; }
-                                            mat.needsUpdate = true;
-                                            console.log(`✅ ${mat.name} - normalMap+roughnessMap removed (Samsung Internet)`);
-                                        }
+                                        mat.depthWrite = true;
+                                        mat.roughness = 0.5;
+                                        mat.normalMap = null;
+                                        mat.needsUpdate = true;
+                                        console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5, normalMap removed`);
                                         newMats.push(mat);
                                     } else {
                                         newMats.push(mat);
@@ -5198,7 +5188,7 @@ class ThreeJSApp {
                 }
                 
                 // ─── Super-comprehensive XBODY debug controls ─────────
-                if (name.toUpperCase().includes('XBODY') || name.toUpperCase() === 'XCLEAR' || name.toUpperCase().includes('XHEAD')) {
+                if (name.toUpperCase().includes('XBODY')) {
 
                     // ── 📋 Copy Current State for quick sharing ──
                     const xbodyCopy = {
@@ -6009,7 +5999,14 @@ class ThreeJSApp {
             'XBODY': {
                 depthWrite: true,
                 roughness: 0.5,
-                _preserveTextures: true
+                _preserveTextures: true,
+                _removeNormalMap: true   // Normal map causes issues in Samsung Internet
+            },
+            'XHEAD': {
+                depthWrite: true,
+                roughness: 0.5,
+                _preserveTextures: true,
+                _removeNormalMap: true
             }
         };
         
@@ -6028,6 +6025,7 @@ class ThreeJSApp {
                             if (preset.color && mat.color) mat.color.set(preset.color);
                             if (preset.depthWrite !== undefined) mat.depthWrite = preset.depthWrite;
                             if (preset.roughness !== undefined) mat.roughness = preset.roughness;
+                            if (preset._removeNormalMap) { mat.normalMap = null; }
                             mat.needsUpdate = true;
                             appliedCount++;
                             return; // Skip full property override

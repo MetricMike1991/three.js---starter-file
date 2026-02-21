@@ -1344,7 +1344,6 @@
                 localStorage.removeItem(AUTOSAVE_KEY);
                 renderExerciseList();
                 updateStats();
-                renderFinderResults();   // clear "in-workout" highlights in finder
                 showToast('Workout cleared');
             }
         );

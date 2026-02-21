@@ -354,18 +354,12 @@
     border: 1.5px solid var(--ffwb-card-border);
     border-radius: var(--ffwb-radius-sm);
     color: var(--ffwb-text-muted);
-    padding: 8px 12px;
+    padding: 7px;
     cursor: pointer;
     transition: all 0.25s ease;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    gap: 6px;
-    font-size: 12px;
-    font-weight: 600;
-    min-height: 36px;
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
 }
 
 .ffwb-btn-reset:hover {
@@ -376,109 +370,11 @@
 }
 
 .ffwb-btn-reset:active {
-    transform: scale(0.96);
-    background: rgba(231, 76, 60, 0.12);
-    border-color: #e74c3c;
-    color: #e74c3c;
+    transform: translateY(0);
 }
 
 .ffwb-btn-reset svg {
     display: block;
-    flex-shrink: 0;
-}
-
-/* ─── Confirm Modal ─────────────────────────────────────── */
-.ffwb-confirm-modal {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    z-index: 10002;
-}
-
-.ffwb-confirm-backdrop {
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-}
-
-.ffwb-confirm-visible .ffwb-confirm-backdrop {
-    opacity: 1;
-}
-
-.ffwb-confirm-box {
-    position: relative;
-    background: var(--ffwb-card-bg);
-    border: 1px solid var(--ffwb-card-border);
-    border-radius: 16px;
-    padding: 28px 24px 20px;
-    max-width: 340px;
-    width: 90%;
-    text-align: center;
-    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    transform: scale(0.9) translateY(10px);
-    opacity: 0;
-    transition: transform 0.25s ease, opacity 0.25s ease;
-}
-
-.ffwb-confirm-visible .ffwb-confirm-box {
-    transform: scale(1) translateY(0);
-    opacity: 1;
-}
-
-.ffwb-confirm-icon {
-    margin-bottom: 12px;
-}
-
-.ffwb-confirm-title {
-    font-size: 17px;
-    font-weight: 700;
-    color: var(--ffwb-text);
-    margin: 0 0 6px;
-}
-
-.ffwb-confirm-message {
-    font-size: 13px;
-    color: var(--ffwb-text-muted);
-    margin: 0 0 20px;
-    line-height: 1.5;
-}
-
-.ffwb-confirm-actions {
-    display: flex;
-    gap: 10px;
-    justify-content: center;
-}
-
-.ffwb-confirm-cancel {
-    background: transparent;
-    border: 1.5px solid var(--ffwb-card-border);
-    color: var(--ffwb-text-muted);
-    padding: 10px 20px;
-    min-height: 44px;
-    font-size: 14px;
-}
-
-.ffwb-confirm-cancel:hover {
-    border-color: var(--ffwb-text-muted);
-    color: var(--ffwb-text);
-}
-
-.ffwb-confirm-ok {
-    background: #e74c3c;
-    border: 1.5px solid #e74c3c;
-    color: #fff;
-    padding: 10px 20px;
-    min-height: 44px;
-    font-size: 14px;
-}
-
-.ffwb-confirm-ok:hover {
-    background: #c0392b;
-    border-color: #c0392b;
 }
 
 /* Save / Share button – override WP theme hover */
@@ -1670,31 +1566,6 @@ select.ffwb-input option {
 
 .ffwb-stat-divider {
     color: rgba(255, 255, 255, 0.2);
-}
-
-.ffwb-browse-exercises-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    margin-left: auto;
-    padding: 5px 12px;
-    font-size: 12px;
-    font-weight: 600;
-    color: var(--ffwb-primary);
-    text-decoration: none;
-    border: 1.5px solid var(--ffwb-primary);
-    border-radius: var(--ffwb-radius-sm);
-    transition: all 0.2s ease;
-}
-
-.ffwb-browse-exercises-link:hover {
-    background: var(--ffwb-primary);
-    color: #fff;
-    text-decoration: none;
-}
-
-.ffwb-browse-exercises-link svg {
-    flex-shrink: 0;
 }
 
 /* ─── Share Modal ───────────────────────────────────────── */

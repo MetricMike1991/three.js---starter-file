@@ -184,7 +184,7 @@
 
         // Header buttons
         root.querySelector('.ffwb-btn-share')?.addEventListener('click', () => saveWorkout('public'));
-        bindTap(root.querySelector('.ffwb-btn-reset'), resetWorkout);
+        root.querySelector('.ffwb-btn-reset')?.addEventListener('click', resetWorkout);
 
         // Share modal
         shareModal?.querySelector('.ffwb-modal-backdrop')?.addEventListener('click', closeShareModal);
@@ -1344,7 +1344,6 @@
                 localStorage.removeItem(AUTOSAVE_KEY);
                 renderExerciseList();
                 updateStats();
-                renderFinderResults();   // clear "in-workout" highlights in finder
                 showToast('Workout cleared');
             }
         );
@@ -1369,8 +1368,8 @@
                 <h3 class="ffwb-confirm-title">${title}</h3>
                 <p class="ffwb-confirm-message">${message}</p>
                 <div class="ffwb-confirm-actions">
-                    <button class="ffwb-btn ffwb-confirm-cancel" type="button">Cancel</button>
-                    <button class="ffwb-btn ffwb-confirm-ok" type="button">${confirmLabel}</button>
+                    <button class="ffwb-btn ffwb-confirm-cancel">Cancel</button>
+                    <button class="ffwb-btn ffwb-confirm-ok">${confirmLabel}</button>
                 </div>
             </div>
         `;
@@ -1380,30 +1379,11 @@
         requestAnimationFrame(() => modal.classList.add('ffwb-confirm-visible'));
 
         const close = () => modal.remove();
-        bindTap(modal.querySelector('.ffwb-confirm-backdrop'), close);
-        bindTap(modal.querySelector('.ffwb-confirm-cancel'), close);
-        bindTap(modal.querySelector('.ffwb-confirm-ok'), () => {
+        modal.querySelector('.ffwb-confirm-backdrop').addEventListener('click', close);
+        modal.querySelector('.ffwb-confirm-cancel').addEventListener('click', close);
+        modal.querySelector('.ffwb-confirm-ok').addEventListener('click', () => {
             close();
             onConfirm();
-        });
-    }
-
-    /**
-     * Universal tap helper – works in WebViews (Gmail, Facebook, etc.)
-     * Uses both click and touchend to ensure the callback fires reliably.
-     */
-    function bindTap(el, fn) {
-        if (!el) return;
-        let touchMoved = false;
-        el.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
-        el.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
-        el.addEventListener('touchend', (e) => {
-            if (touchMoved) return;
-            e.preventDefault(); // prevent ghost click
-            fn(e);
-        });
-        el.addEventListener('click', (e) => {
-            fn(e);
         });
     }
 

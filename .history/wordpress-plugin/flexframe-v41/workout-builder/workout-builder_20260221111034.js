@@ -49,7 +49,6 @@
 
         cacheDom();
         applyPrimaryColor();
-        initBrowseExercisesLink();
         bindEvents();
         loadExerciseCatalogue();
 
@@ -115,15 +114,6 @@
         root.style.setProperty('--ffwb-hue-rotation', `${hue}deg`);
     }
 
-    function initBrowseExercisesLink() {
-        const viewerUrl = (SETTINGS.viewerPageUrl || '').replace(/\/$/, '');
-        if (!viewerUrl) return;
-        const link = root.querySelector('.ffwb-browse-exercises-link');
-        if (!link) return;
-        link.href = viewerUrl;
-        link.style.display = '';
-    }
-
     // ─── Exercise Catalogue ──────────────────────────────────
     async function loadExerciseCatalogue() {
         try {
@@ -184,7 +174,7 @@
 
         // Header buttons
         root.querySelector('.ffwb-btn-share')?.addEventListener('click', () => saveWorkout('public'));
-        bindTap(root.querySelector('.ffwb-btn-reset'), resetWorkout);
+        root.querySelector('.ffwb-btn-reset')?.addEventListener('click', resetWorkout);
 
         // Share modal
         shareModal?.querySelector('.ffwb-modal-backdrop')?.addEventListener('click', closeShareModal);
@@ -1333,78 +1323,15 @@
             showToast('Workout is already empty');
             return;
         }
-        showConfirmModal(
-            'Start Fresh?',
-            'This will erase all exercises from the current workout. This cannot be undone.',
-            'Clear Workout',
-            () => {
-                workoutExercises = [];
-                workoutId = null;
-                workoutNameInput.value = '';
-                localStorage.removeItem(AUTOSAVE_KEY);
-                renderExerciseList();
-                updateStats();
-                renderFinderResults();   // clear "in-workout" highlights in finder
-                showToast('Workout cleared');
-            }
-        );
-    }
+        if (!confirm('Are you sure you want to erase the current workout and start fresh?')) return;
 
-    function showConfirmModal(title, message, confirmLabel, onConfirm) {
-        // Remove any existing confirm modal
-        root.querySelector('.ffwb-confirm-modal')?.remove();
-
-        const modal = document.createElement('div');
-        modal.className = 'ffwb-confirm-modal';
-        modal.innerHTML = `
-            <div class="ffwb-confirm-backdrop"></div>
-            <div class="ffwb-confirm-box">
-                <div class="ffwb-confirm-icon">
-                    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#e74c3c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <circle cx="12" cy="12" r="10"/>
-                        <line x1="15" y1="9" x2="9" y2="15"/>
-                        <line x1="9" y1="9" x2="15" y2="15"/>
-                    </svg>
-                </div>
-                <h3 class="ffwb-confirm-title">${title}</h3>
-                <p class="ffwb-confirm-message">${message}</p>
-                <div class="ffwb-confirm-actions">
-                    <button class="ffwb-btn ffwb-confirm-cancel" type="button">Cancel</button>
-                    <button class="ffwb-btn ffwb-confirm-ok" type="button">${confirmLabel}</button>
-                </div>
-            </div>
-        `;
-        root.appendChild(modal);
-
-        // Animate in
-        requestAnimationFrame(() => modal.classList.add('ffwb-confirm-visible'));
-
-        const close = () => modal.remove();
-        bindTap(modal.querySelector('.ffwb-confirm-backdrop'), close);
-        bindTap(modal.querySelector('.ffwb-confirm-cancel'), close);
-        bindTap(modal.querySelector('.ffwb-confirm-ok'), () => {
-            close();
-            onConfirm();
-        });
-    }
-
-    /**
-     * Universal tap helper – works in WebViews (Gmail, Facebook, etc.)
-     * Uses both click and touchend to ensure the callback fires reliably.
-     */
-    function bindTap(el, fn) {
-        if (!el) return;
-        let touchMoved = false;
-        el.addEventListener('touchstart', () => { touchMoved = false; }, { passive: true });
-        el.addEventListener('touchmove', () => { touchMoved = true; }, { passive: true });
-        el.addEventListener('touchend', (e) => {
-            if (touchMoved) return;
-            e.preventDefault(); // prevent ghost click
-            fn(e);
-        });
-        el.addEventListener('click', (e) => {
-            fn(e);
-        });
+        workoutExercises = [];
+        workoutId = null;
+        workoutNameInput.value = '';
+        localStorage.removeItem(AUTOSAVE_KEY);
+        renderExerciseList();
+        updateStats();
+        showToast('Workout cleared');
     }
 
     // ─── Autosave ────────────────────────────────────────────

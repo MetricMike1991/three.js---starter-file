@@ -4173,23 +4173,12 @@ class ThreeJSApp {
                                     else if (mat.name.includes('XBODY')) {
                                         mat.depthWrite = true;
                                         mat.roughness = 0.5;
-                                        if (IS_SAMSUNG_INTERNET) {
-                                            if (mat.normalMap) { mat.normalMap = null; }
-                                            if (mat.roughnessMap) { mat.roughnessMap = null; }
+                                        if (IS_SAMSUNG_INTERNET && mat.normalMap) {
+                                            mat.normalMap = null;
                                             mat.needsUpdate = true;
-                                            console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5, normalMap+roughnessMap removed (Samsung Internet)`);
+                                            console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5, normalMap removed (Samsung Internet)`);
                                         } else {
                                             console.log(`✅ ${mat.name} - depthWrite ON, roughness 0.5`);
-                                        }
-                                        newMats.push(mat);
-                                    }
-                                    // XHEAD materials - Samsung Internet: remove normalMap + roughnessMap
-                                    else if (mat.name.toUpperCase().includes('XHEAD')) {
-                                        if (IS_SAMSUNG_INTERNET) {
-                                            if (mat.normalMap) { mat.normalMap = null; }
-                                            if (mat.roughnessMap) { mat.roughnessMap = null; }
-                                            mat.needsUpdate = true;
-                                            console.log(`✅ ${mat.name} - normalMap+roughnessMap removed (Samsung Internet)`);
                                         }
                                         newMats.push(mat);
                                     } else {
