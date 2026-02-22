@@ -1711,9 +1711,7 @@
 
                 // exercise URL
                 let exUrl = '';
-                if (exercise.source === 'custom' && exercise.youtubeUrl) {
-                    exUrl = exercise.youtubeUrl;
-                } else if (exercise.exerciseId && viewerBase) {
+                if (exercise.exerciseId && viewerBase) {
                     const sep = viewerBase.indexOf('?') !== -1 ? '&' : '?';
                     exUrl = viewerBase + sep + 'exercise=' + exercise.exerciseId;
                 }

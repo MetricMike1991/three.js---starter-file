@@ -345,7 +345,6 @@
         card.muscleGroup = catalogueExercise.muscleGroup || [];
         card.configUrl = catalogueExercise.configUrl || '';
         card.source = catalogueExercise.source || '';
-        card.youtubeUrl = catalogueExercise.youtubeUrl || '';
         closeFinder();
         renderExerciseList();
     }
@@ -798,12 +797,9 @@
                         </div>
                     </div>
                     <div class="ffwb-card-expand-row">
-                        ${!isUnassigned && exercise.exerciseId ? `<a class="ffwb-btn-learn3d" href="#" data-exercise-id="${exercise.exerciseId}"${exercise.youtubeUrl ? ' data-youtube-url="' + exercise.youtubeUrl + '"' : ''} target="_blank" rel="noopener noreferrer" title="${exercise.source === 'custom' ? 'Watch exercise video' : 'Learn how to perform this exercise in 3D'}">
-                            ${exercise.source === 'custom'
-                                ? `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M10 16.5l6-4.5-6-4.5v9zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/></svg>
-                            Watch Video`
-                                : `<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
-                            Learn in 3D`}
+                        ${!isUnassigned && exercise.exerciseId ? `<a class="ffwb-btn-learn3d" href="#" data-exercise-id="${exercise.exerciseId}" target="_blank" rel="noopener noreferrer" title="Learn how to perform this exercise in 3D">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3 3-1.34 3-3-1.34-3-3-3z"/></svg>
+                            Learn in 3D
                         </a>` : ''}
                         <button class="ffwb-card-expand-btn">▼ More</button>
                     </div>
@@ -861,22 +857,15 @@
                 openFinderForCard(exercise.uid);
             });
 
-            // Learn in 3D / Watch Video link
+            // Learn in 3D link
             card.querySelector('.ffwb-btn-learn3d')?.addEventListener('click', (e) => {
                 e.preventDefault();
                 e.stopPropagation();
-                const ytUrl = e.currentTarget.dataset.youtubeUrl;
-                if (ytUrl) {
-                    // Custom exercise — open YouTube video directly
-                    window.open(ytUrl, '_blank');
-                } else {
-                    // Standard exercise — open in 3D viewer
-                    const exId = e.currentTarget.dataset.exerciseId;
-                    const viewerUrl = (window.flexframeWorkoutSettings?.viewerPageUrl || '').replace(/\/$/, '');
-                    if (viewerUrl && exId) {
-                        const sep = viewerUrl.indexOf('?') !== -1 ? '&' : '?';
-                        window.open(viewerUrl + sep + 'exercise=' + exId, '_blank');
-                    }
+                const exId = e.currentTarget.dataset.exerciseId;
+                const viewerUrl = (window.flexframeWorkoutSettings?.viewerPageUrl || '').replace(/\/$/, '');
+                if (viewerUrl && exId) {
+                    const sep = viewerUrl.indexOf('?') !== -1 ? '&' : '?';
+                    window.open(viewerUrl + sep + 'exercise=' + exId, '_blank');
                 }
             });
 
@@ -1711,9 +1700,7 @@
 
                 // exercise URL
                 let exUrl = '';
-                if (exercise.source === 'custom' && exercise.youtubeUrl) {
-                    exUrl = exercise.youtubeUrl;
-                } else if (exercise.exerciseId && viewerBase) {
+                if (exercise.exerciseId && viewerBase) {
                     const sep = viewerBase.indexOf('?') !== -1 ? '&' : '?';
                     exUrl = viewerBase + sep + 'exercise=' + exercise.exerciseId;
                 }
@@ -1768,10 +1755,9 @@
                     } catch {}
                 }
 
-                // clickable "Learn in 3D" / "Watch Video" link under QR (or at right if no QR)
+                // clickable "Learn in 3D" link under QR (or at right if no QR)
                 if (exUrl) {
-                    const isCustom = exercise.source === 'custom';
-                    const linkText = isCustom ? 'Watch Video \u2192' : 'Learn in 3D \u2192';
+                    const linkText = 'Learn in 3D \u2192';
                     doc.setFontSize(7);
                     doc.setFont(undefined, 'bold');
                     doc.setTextColor(0, 128, 0);
