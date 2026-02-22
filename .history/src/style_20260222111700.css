@@ -27,19 +27,161 @@
     color: #fff;
     font-size: 1.08em;
     opacity: 1;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+}
+
+.info-section-header {
+    width: calc(100% - 20px);
+    max-width: 230px;
+    margin: 12px auto;
+    box-sizing: border-box;
+}
+
+.info-section-title {
+    background: linear-gradient(135deg, #2d5016 0%, #1a3409 100%);
+    border: 2px solid #4a8f1c;
+    border-radius: 8px;
+    padding: 12px 16px;
+    color: #fff;
+    font-weight: 600;
+    font-size: clamp(10px, 3vw, 12px);
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 .info-step-title {
     font-weight: bold;
-    font-size: 1.12em;
+    font-size: clamp(9px, 3.43vw, 13px); /* Capped at mid-screen size */
     margin-bottom: 6px;
     color: #fff;
     opacity: 1;
 }
 .info-step-text {
-    font-size: 1em;
+    font-size: clamp(8px, 2.86vw, 12px); /* Capped at mid-screen size */
     color: #fff;
     opacity: 1;
+    line-height: 1.5;
 }
+
+/* Formatted content inside info boxes */
+.info-step-text p.info-formatted-p,
+.info-step-text p.info-formatted-label {
+    margin: 4px 0;
+    line-height: 1.5;
+}
+
+.info-step-text p.info-formatted-label strong {
+    color: #4a9eff;
+}
+
+.info-step-text ol.info-formatted-ol,
+.info-step-text ul.info-formatted-ul {
+    margin: 6px 0;
+    padding-left: 20px;
+}
+
+.info-step-text ol.info-formatted-ol li,
+.info-step-text ul.info-formatted-ul li {
+    margin: 3px 0;
+    line-height: 1.45;
+}
+
+/* Suggested exercise cards in alternative exercises tab */
+.info-suggested-exercises {
+    margin: 8px 0 12px 0;
+    padding: 0;
+}
+
+.info-suggested-heading {
+    font-size: clamp(9px, 3vw, 12px);
+    font-weight: 600;
+    color: #4a9eff;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+    text-align: center;
+}
+
+.info-suggested-cards {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+/* Stack suggested exercise cards vertically on mobile */
+@media screen and (max-width: 768px) {
+    .info-suggested-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .info-suggested-card {
+        flex: 0 0 auto;
+        width: 80%;
+        max-width: 200px;
+    }
+}
+
+.info-suggested-card {
+    flex: 0 0 calc(50% - 5px);
+    max-width: 140px;
+    background: rgba(40, 40, 40, 0.95);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.info-suggested-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 12px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.4);
+    border-color: rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.5);
+}
+
+.info-suggested-card:active {
+    transform: scale(0.98);
+}
+
+.info-suggested-thumb {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    background: rgba(20, 20, 20, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.info-suggested-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.info-suggested-placeholder {
+    color: rgba(255, 255, 255, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.info-suggested-name {
+    padding: 6px 8px;
+    font-size: clamp(7px, 2.5vw, 11px);
+    color: #fff;
+    text-align: center;
+    font-weight: 500;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 .info-step-empty {
     color: #bbb;
     text-align: center;
@@ -66,13 +208,31 @@ body
     outline: none;
 }
 
+/* Screenshot and Speed button base styles (desktop) */
+.screenshot-btn,
+.speed-btn {
+    height: 32px;
+    min-height: 32px;
+    max-height: 32px;
+    padding: 0 12px;
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 /* Animation Player Styles */
 .animation-player {
     position: fixed;
     bottom: 0;
-    left: 2.5%;
-    right: 2.5%;
-    width: 95%;
+    left: 0;
+    right: auto;
+    width: 100vw;
+    max-width: 100vw;
+    box-sizing: border-box;
     background: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(10px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -134,10 +294,97 @@ body
     justify-content: flex-end;
 }
 
-/* Responsive design for smaller screens */
+/* Fullscreen Button - simple icon only */
+.fullscreen-btn {
+    display: flex;
+    position: fixed;
+    bottom: 20px;
+    right: 15px;
+    width: 28px;
+    height: 28px;
+    background: none !important;
+    border: none;
+    padding: 0;
+    margin: 0;
+    color: white;
+    cursor: pointer;
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.7;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    pointer-events: auto !important;
+}
+
+.fullscreen-btn:hover {
+    opacity: 1;
+    transform: scale(1.15);
+    background: none !important;
+}
+
+.fullscreen-btn:active,
+.fullscreen-btn:focus {
+    outline: none;
+    background: none !important;
+}
+
+.fullscreen-btn svg {
+    width: 28px;
+    height: 28px;
+    pointer-events: none;
+}
+
+/* Mobile: position button above animation player trigger zone */
 @media screen and (max-width: 768px) {
+    .fullscreen-btn {
+        bottom: 50px;
+    }
+    #ffx-add-to-workout-btn {
+        bottom: 50px !important;
+    }
+}
+
+/* Responsive design for smaller screens */
+/* Mid-tier screen styles (tablet) */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .info-step-item {
+        margin: 12px 0 !important;
+    }
+    
+    .info-step-title,
+    .info-step-text {
+        padding-left: 5px;
+        padding-right: 5px;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    /* Animation player trigger reduced height on mobile */
+    .animation-player-trigger {
+        height: 40px !important;
+    }
+    
+    /* Animation player full width on mobile */
     .animation-player {
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
         padding: 8px 12px;
+        border-radius: 0 !important;
+    }
+    
+    /* Remove background colors on mobile for transparent menus with blur */
+    .thumbnail-dropdown,
+    .exercise-menu,
+    .menu-panel,
+    .side-menu,
+    .right-menu,
+    #searchDropdown,
+    .search-dropdown {
+        background: transparent !important;
+        background-color: transparent !important;
+        -webkit-backdrop-filter: blur(15px) !important;
+        backdrop-filter: blur(15px) !important;
     }
     
     .player-controls {
@@ -162,6 +409,70 @@ body
     .time-display {
         font-size: 10px;
         min-width: 25px;
+    }
+    
+    /* Mobile info step styling */
+    .info-step-item {
+        padding: 5px 5px !important;
+        margin: 5px 0 !important;
+    }
+    
+    .thumbnail-grid {
+        padding: 0px !important;
+    }
+    
+    .menu-hint-tab,
+    .menu-hint-tab-right,
+    div.menu-hint-tab,
+    div.menu-hint-tab-right {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    .screenshot-btn,
+    .speed-btn {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        overflow: hidden !important;
+    }
+    
+    /* Mobile search header styling */
+    #searchDropdown {
+        padding: 0 !important;
+    }
+    
+    .search-header {
+        padding: 10px 12px;
+        margin: 0;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .search-input-wrapper {
+        width: 100%;
+    }
+    
+    .search-input {
+        font-size: 13px;
+        padding: 7px 36px 7px 10px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .search-action-btn {
+        width: 28px;
+        height: 28px;
+        right: 4px;
+    }
+    
+    #searchDropdown .thumbnail-grid-container-content {
+        padding: 12px;
     }
 }
 
@@ -201,6 +512,75 @@ body
     
     .timeline-container {
         margin: 0 6px;
+    }
+    
+    /* Mobile info step styling */
+    .info-step-item {
+        padding: 5px 5px !important;
+        margin: 5px 0 !important;
+    }
+    
+    .thumbnail-grid {
+        padding: 0px !important;
+    }
+    
+    .menu-hint-tab,
+    .menu-hint-tab-right,
+    div.menu-hint-tab,
+    div.menu-hint-tab-right {
+        display: none !important;
+        visibility: hidden !important;
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    
+    .screenshot-btn,
+    .speed-btn {
+        display: none !important;
+        visibility: hidden !important;
+        width: 0 !important;
+        height: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: none !important;
+        overflow: hidden !important;
+    }
+    
+    /* Mobile search header styling */
+    #searchDropdown {
+        padding: 0 !important;
+    }
+    
+    .search-header {
+        padding: 8px 10px;
+        margin: 0;
+        border-radius: 12px 12px 0 0;
+    }
+    
+    .search-input-wrapper {
+        width: 100%;
+    }
+    
+    .search-input {
+        font-size: 12px;
+        padding: 6px 32px 6px 8px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    .search-action-btn {
+        width: 26px;
+        height: 26px;
+        right: 4px;
+    }
+    
+    .search-action-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    #searchDropdown .thumbnail-grid-container-content {
+        padding: 10px;
     }
 }
 
@@ -285,7 +665,7 @@ body
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #00bcd4;
+    background: var(--thumb-color, #00bcd4);
     cursor: pointer;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
     transition: all 0.2s ease;
@@ -293,14 +673,14 @@ body
 
 .timeline-slider::-webkit-slider-thumb:hover {
     transform: scale(1.2);
-    background: #26c6da;
+    background: var(--thumb-color, #26c6da);
 }
 
 .timeline-slider::-moz-range-thumb {
     width: 14px;
     height: 14px;
     border-radius: 50%;
-    background: #00bcd4;
+    background: var(--thumb-color, #00bcd4);
     cursor: pointer;
     border: none;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
@@ -395,22 +775,28 @@ body
     flex-shrink: 0;
 }
 
-/* Screenshot Button specific styles */
-.screenshot-btn:hover {
-    background: rgba(74, 158, 255, 0.3);
-    border-color: rgba(74, 158, 255, 0.5);
+/* Screenshot Button specific styles - colors set via WordPress theme settings */
+.screenshot-btn:hover,
+.screenshot-btn:focus,
+.screenshot-btn:active {
+    /* Hover/focus colors handled by WordPress CSS override */
+    outline: none;
 }
 
-/* AR Button specific styles */
-.ar-btn:hover {
-    background: rgba(74, 158, 255, 0.3);
-    border-color: rgba(74, 158, 255, 0.5);
+/* AR Button specific styles - colors set via WordPress theme settings */
+.ar-btn:hover,
+.ar-btn:focus,
+.ar-btn:active {
+    /* Hover/focus colors handled by WordPress CSS override */
+    outline: none;
 }
 
-/* Quality Button specific styles */
-.quality-btn:hover {
-    background: rgba(74, 158, 255, 0.3);
-    border-color: rgba(74, 158, 255, 0.5);
+/* Quality Button specific styles - colors set via WordPress theme settings */
+.quality-btn:hover,
+.quality-btn:focus,
+.quality-btn:active {
+    /* Hover/focus colors handled by WordPress CSS override */
+    outline: none;
 }
 
 .quality-btn span,
@@ -858,40 +1244,6 @@ body
     }
 }
 
-/* Timeline slider */
-.timeline-slider {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 100%;
-    height: 6px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 3px;
-    outline: none;
-    cursor: pointer;
-}
-
-.timeline-slider::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 16px;
-    height: 16px;
-    background: #4a9eff;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.timeline-slider::-moz-range-thumb {
-    width: 16px;
-    height: 16px;
-    background: #4a9eff;
-    border-radius: 50%;
-    cursor: pointer;
-    border: 2px solid white;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-}
-
 /* Time display */
 .time-display {
     font-size: 12px;
@@ -1114,11 +1466,17 @@ body
     cursor: pointer;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
-    font-size: 12px;
+    font-size: clamp(6px, 2.29vw, 14px); /* 8px at 350px viewport */
     font-weight: 500;
     width: 100%;
     height: 60px;
     justify-content: center;
+}
+
+.thumbnail-menu-toggle svg {
+    display: block;
+    vertical-align: middle;
+    flex-shrink: 0;
 }
 
 .thumbnail-menu-toggle:hover {
@@ -1415,8 +1773,8 @@ body
 .thumbnail-grid {
     display: flex;
     flex-direction: column;
-    gap: 30px;
-    padding: 10px;
+    gap: 0px;
+    padding: 5px;
     align-items: center; /* Center thumbnails horizontally */
 }
 
@@ -1433,6 +1791,34 @@ body
     flex-shrink: 0;
 }
 
+/* Fixed square thumbnails for tablet/desktop (above 480px) */
+@media screen and (min-width: 481px) {
+    .thumbnail-item {
+        width: 150px !important;
+        height: 150px !important;
+        min-width: 150px !important;
+        min-height: 150px !important;
+        max-width: 150px !important;
+        max-height: 150px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .thumbnail-item img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    
+    #searchGrid .thumbnail-item {
+        width: 150px !important;
+        height: 150px !important;
+        min-width: 150px !important;
+        min-height: 150px !important;
+        max-width: 150px !important;
+        max-height: 150px !important;
+    }
+}
+
 .thumbnail-item:hover {
     transform: scale(1.05);
     border-color: rgba(255, 255, 255, 0.4);
@@ -1444,6 +1830,8 @@ body
     height: 100%;
     object-fit: cover;
     transition: transform 0.3s ease;
+    position: relative;
+    z-index: 0;
 }
 
 .thumbnail-item:hover img {
@@ -1476,6 +1864,34 @@ body
     font-size: 14px;
     font-weight: bold;
     z-index: 1;
+}
+
+/* Mobile touch-active state for first tap before selection */
+.thumbnail-item.touch-active {
+    box-shadow: 
+        0 0 20px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.6), 
+        0 5px 20px rgba(0, 0, 0, 0.4);
+    border-color: var(--flexframe-primary-color, #4a9eff);
+}
+
+/* Inset glow overlay on touch-active (appears over the image) */
+.thumbnail-item.touch-active::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 20px 8px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.5);
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 6px;
+}
+
+/* Ensure text color doesn't change on touch-active or selected */
+.thumbnail-item.touch-active .thumbnail-label,
+.thumbnail-item.selected .thumbnail-label {
+    color: white !important;
 }
 
 /* Filter Status Box */
@@ -1570,6 +1986,25 @@ body
     font-size: 18px;
     font-weight: 500;
     text-align: left;
+    border: none;
+    border-radius: 0;
+}
+
+/* YouTube badge for custom exercises */
+.thumbnail-yt-badge {
+    position: absolute;
+    bottom: 30px;
+    right: 4px;
+    background: rgba(255, 0, 0, 0.85);
+    color: #fff;
+    font-size: 7px;
+    font-weight: 700;
+    padding: 1px 3px;
+    border-radius: 2px;
+    line-height: 1.2;
+    pointer-events: none;
+    z-index: 2;
+    letter-spacing: 0.3px;
 }
 
 .thumbnail-muscle-info {
@@ -1602,8 +2037,7 @@ body
     text-shadow: 0 2px 4px rgba(0, 0, 0, 0.9), 0 0 8px rgba(0, 0, 0, 0.7);
 }
 
-/* Mobile responsive adjustments for thumbnail menu - DISABLED for fixed width */
-/* 
+/* Mobile responsive adjustments for thumbnail menu */
 @media (max-width: 768px) {
     .thumbnail-menu-container {
         top: 10px;
@@ -1616,6 +2050,11 @@ body
         padding: 12px;
     }
     
+    /* Make search dropdown wider on mobile */
+    #searchDropdown {
+        width: min(95vw, 400px);
+    }
+    
     .thumbnail-item {
         width: min(35vw, 180px);
         height: min(35vw, 180px);
@@ -1623,7 +2062,7 @@ body
     
     .thumbnail-grid {
         gap: 20px;
-        padding: 8px;
+        padding: 0px;
     }
 }
 
@@ -1634,6 +2073,11 @@ body
         padding: 10px;
     }
     
+    /* Make search dropdown nearly full width on small mobile */
+    #searchDropdown {
+        width: 95vw;
+    }
+    
     .thumbnail-item {
         width: min(40vw, 160px);
         height: min(40vw, 160px);
@@ -1641,14 +2085,14 @@ body
     
     .thumbnail-grid {
         gap: 15px;
-        padding: 5px;
+        padding: 0px;
     }
     
     .scroll-btn {
         padding: 6px;
     }
 }
-*/
+
 /* Right Side Menu System (mirrored from left) */
 .thumbnail-grid-container-right {
     position: fixed;
@@ -1733,7 +2177,7 @@ body
     background: rgba(0, 0, 0, 0.9);
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    padding: 15px;
+    padding: 0px;
     backdrop-filter: blur(15px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     width: 250px;
@@ -1741,9 +2185,98 @@ body
     display: none;
     overflow: hidden;
     z-index: 1002;
+    /* Hide scrollbar */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.thumbnail-dropdown-right::-webkit-scrollbar {
+    display: none;
 }
 
 .thumbnail-dropdown-right.show {
     display: block;
     animation: dropdownShow 0.3s ease;
+}
+
+/* Filter Thumbnail Styles */
+.filter-thumbnail {
+    background: rgba(40, 40, 40, 0.8);
+    border: 2px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+    aspect-ratio: 1;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.filter-thumbnail:hover {
+    background: rgba(60, 60, 60, 0.9);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.filter-thumbnail.selected {
+    border-width: 2px;
+    transform: scale(1.05);
+    border-color: var(--flexframe-primary-color, #f50000);
+}
+
+/* Inset glow overlay on selected filter thumbnails (appears over the image) */
+.filter-thumbnail.selected::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    box-shadow: inset 0 0 20px 8px rgba(var(--flexframe-primary-color-rgb, 74, 158, 255), 0.5);
+    pointer-events: none;
+    z-index: 2;
+    border-radius: 6px;
+}
+
+.filter-thumbnail-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    filter: hue-rotate(var(--flexframe-hue-rotation, 0deg));
+}
+
+/* Hue-rotate default exercise thumbnails (not user-uploaded custom ones) */
+.thumbnail-item img.default-thumbnail,
+.info-suggested-card img.default-thumbnail {
+    filter: hue-rotate(var(--flexframe-hue-rotation, 0deg));
+}
+
+.filter-thumbnail-label {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 9px;
+    font-weight: 600;
+    line-height: 1.1;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    position: relative;
+    z-index: 1;
+    text-shadow: 
+        1px 1px 2px rgba(0, 0, 0, 0.9),
+        -1px -1px 2px rgba(0, 0, 0, 0.9),
+        1px -1px 2px rgba(0, 0, 0, 0.9),
+        -1px 1px 2px rgba(0, 0, 0, 0.9),
+        0 0 8px rgba(0, 0, 0, 0.8);
+    padding: 4px;
 }

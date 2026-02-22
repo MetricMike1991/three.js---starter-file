@@ -4,6 +4,21 @@
  */
 
 import { getAssetUrl } from '../main.js';
+import { filterThumbnails } from './filter-thumbnails.js';
+
+/**
+ * Maps filter category names to thumbnail image keys
+ * Handles case conversion and special naming differences
+ */
+function getFilterThumbnailKey(filterName) {
+    const mapping = {
+        'hamstrings': 'hamstring',
+        'body weight': 'bodyweight',
+        'machines': 'machine'
+    };
+    const lowerName = filterName.toLowerCase();
+    return mapping[lowerName] || lowerName;
+}
 
 class ThumbnailDropdownMenu {
         // Setup search input listener for search menu
@@ -44,97 +59,9 @@ class ThumbnailDropdownMenu {
                 return { muscles, equipment, popularExercises };
             };
             
-            // Show suggestions
-            const showSuggestions = () => {
-                if (!suggestionsBox || this.searchQuery.length > 0) return;
-                
-                const data = generateSuggestions();
-                if (!data) return;
-                
-                let html = '';
-                
-                // Popular Exercises
-                if (data.popularExercises.length > 0) {
-                    html += '<div class="search-suggestion-category">Popular Exercises</div>';
-                    data.popularExercises.forEach(ex => {
-                        html += `
-                            <div class="search-suggestion-item" data-value="${ex.name}">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/>
-                                </svg>
-                                <span class="search-suggestion-text">${ex.name}</span>
-                            </div>
-                        `;
-                    });
-                }
-                
-                // Muscle Groups
-                if (data.muscles.length > 0) {
-                    html += '<div class="search-suggestion-category">Muscle Groups</div>';
-                    data.muscles.forEach(muscle => {
-                        html += `
-                            <div class="search-suggestion-item" data-value="${muscle}">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
-                                </svg>
-                                <span class="search-suggestion-text">${muscle}</span>
-                            </div>
-                        `;
-                    });
-                }
-                
-                // Equipment
-                if (data.equipment.length > 0) {
-                    html += '<div class="search-suggestion-category">Equipment</div>';
-                    data.equipment.forEach(eq => {
-                        html += `
-                            <div class="search-suggestion-item" data-value="${eq}">
-                                <svg viewBox="0 0 24 24" fill="currentColor">
-                                    <path d="M20.57 14.86L22 13.43 20.57 12 17 15.57 8.43 7 12 3.43 10.57 2 9.14 3.43 7.71 2 5.57 4.14 4.14 2.71 2.71 4.14l1.43 1.43L2 7.71l1.43 1.43L2 10.57 3.43 12 7 8.43 15.57 17 12 20.57 13.43 22l1.43-1.43L16.29 22l2.14-2.14 1.43 1.43 1.43-1.43-1.43-1.43L22 16.29z"/>
-                                </svg>
-                                <span class="search-suggestion-text">${eq}</span>
-                            </div>
-                        `;
-                    });
-                }
-                
-                suggestionsBox.innerHTML = html;
-                suggestionsBox.style.display = 'block';
-                
-                // Add click handlers to suggestion items
-                suggestionsBox.querySelectorAll('.search-suggestion-item').forEach(item => {
-                    item.addEventListener('click', () => {
-                        const value = item.getAttribute('data-value');
-                        
-                        // Check if this is an exercise name (from Popular Exercises)
-                        const matchedExercise = this.allExercises.find(ex => ex.name === value);
-                        
-                        if (matchedExercise) {
-                            // If it's an exercise, select it directly
-                            this.selectThumbnail(matchedExercise);
-                            hideSuggestions();
-                            searchInput.value = '';
-                            this.searchQuery = '';
-                            updateButtonIcon();
-                        } else {
-                            // If it's a muscle or equipment, filter by it
-                            searchInput.value = value;
-                            this.searchQuery = value.toLowerCase().trim();
-                            updateButtonIcon();
-                            hideSuggestions();
-                            this.filterDataForMenu();
-                            this.renderVirtualizedGrid();
-                        }
-                    });
-                });
-            };
-            
-            // Hide suggestions
-            const hideSuggestions = () => {
-                if (suggestionsBox) {
-                    suggestionsBox.style.display = 'none';
-                }
-            };
+            // Search suggestions removed - keeping functions as no-ops
+            const showSuggestions = () => { /* Suggestions disabled */ };
+            const hideSuggestions = () => { /* Suggestions disabled */ };
             
             // Update button icon based on search state
             const updateButtonIcon = () => {
@@ -147,29 +74,10 @@ class ThumbnailDropdownMenu {
                 }
             };
             
-            // Handle input focus
-            searchInput.addEventListener('focus', () => {
-                if (!this.searchQuery || this.searchQuery.length === 0) {
-                    showSuggestions();
-                }
-            });
-            
-            // Handle input blur (with delay to allow clicking suggestions)
-            searchInput.addEventListener('blur', () => {
-                setTimeout(() => hideSuggestions(), 200);
-            });
-            
             // Handle input changes
             searchInput.addEventListener('input', (e) => {
                 this.searchQuery = e.target.value.toLowerCase().trim();
                 updateButtonIcon();
-                
-                if (this.searchQuery.length === 0) {
-                    showSuggestions();
-                } else {
-                    hideSuggestions();
-                }
-                
                 this.filterDataForMenu();
                 this.renderVirtualizedGrid();
             });
@@ -179,11 +87,8 @@ class ThumbnailDropdownMenu {
                 if (e.key === 'Enter') {
                     this.searchQuery = searchInput.value.toLowerCase().trim();
                     updateButtonIcon();
-                    hideSuggestions();
                     this.filterDataForMenu();
                     this.renderVirtualizedGrid();
-                } else if (e.key === 'Escape') {
-                    hideSuggestions();
                 }
             });
             
@@ -194,7 +99,6 @@ class ThumbnailDropdownMenu {
                     searchInput.value = '';
                     this.searchQuery = '';
                     updateButtonIcon();
-                    hideSuggestions();
                     this.filterDataForMenu();
                     this.renderVirtualizedGrid();
                     searchInput.focus();
@@ -202,24 +106,311 @@ class ThumbnailDropdownMenu {
                     // Perform search
                     this.searchQuery = searchInput.value.toLowerCase().trim();
                     updateButtonIcon();
-                    hideSuggestions();
                     this.filterDataForMenu();
                     this.renderVirtualizedGrid();
                 }
             });
             
-            // Focus search input when menu opens
+            // Focus search input when menu opens (skip on mobile)
             if (this.toggleBtn) {
                 this.toggleBtn.addEventListener('click', () => {
                     if (this.menuType === 'search' && this.isOpen) {
                         setTimeout(() => {
-                            searchInput.focus();
+                            // Only auto-focus on desktop, not mobile
+                            if (window.innerWidth > 768) {
+                                searchInput.focus();
+                            }
                             updateButtonIcon();
                         }, 150);
                     }
                 });
             }
         }
+
+    setupSearchFilters() {
+        if (this.menuType !== 'search') return;
+        
+        console.log('🔍 setupSearchFilters called for search menu');
+        
+        const typeFiltersContainer = document.getElementById('typeFilters');
+        const muscleFiltersContainer = document.getElementById('muscleFilters');
+        const equipmentFiltersContainer = document.getElementById('equipmentFilters');
+        
+        console.log('🔍 Filter containers found:', { 
+            typeFilters: typeFiltersContainer,
+            muscleFilters: muscleFiltersContainer, 
+            equipmentFilters: equipmentFiltersContainer 
+        });
+        
+        if (!muscleFiltersContainer || !equipmentFiltersContainer) {
+            console.error('❌ Filter containers not found in DOM');
+            return;
+        }
+        
+        // Setup Type filters (Strength / Cardio)
+        if (typeFiltersContainer) {
+            typeFiltersContainer.style.display = 'grid';
+            typeFiltersContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+            typeFiltersContainer.style.gap = '8px';
+            
+            const types = ['Strength', 'Cardio'];
+            
+            types.forEach(type => {
+                const thumbnail = document.createElement('div');
+                thumbnail.className = 'filter-thumbnail type-filter-thumbnail';
+                thumbnail.dataset.value = type;
+                
+                // Style for compact text-only type filters (same width as other thumbnails, just shorter height)
+                thumbnail.style.height = '30px';
+                thumbnail.style.minHeight = '30px';
+                thumbnail.style.display = 'flex';
+                thumbnail.style.alignItems = 'center';
+                thumbnail.style.justifyContent = 'center';
+                thumbnail.style.aspectRatio = 'unset';
+                
+                // Create thumbnail label
+                const label = document.createElement('div');
+                label.className = 'filter-thumbnail-label';
+                label.textContent = type;
+                label.style.position = 'relative';
+                label.style.transform = 'none';
+                label.style.left = 'auto';
+                label.style.bottom = 'auto';
+                
+                thumbnail.appendChild(label);
+                
+                thumbnail.addEventListener('click', () => {
+                    const primaryColor = this.settings.glowColor || '#8d0000';
+                    const isSelected = this.selectedTypeFilter === type;
+                    
+                    if (isSelected) {
+                        // Deselect this filter
+                        this.selectedTypeFilter = null;
+                        thumbnail.classList.remove('selected');
+                        thumbnail.style.removeProperty('border');
+                        thumbnail.style.removeProperty('background-color');
+                        thumbnail.style.removeProperty('box-shadow');
+                        
+                        // Re-enable muscle and equipment filters
+                        this.setMuscleEquipmentFiltersEnabled(true, muscleFiltersContainer, equipmentFiltersContainer);
+                    } else {
+                        // Clear all other type selections first (single selection only)
+                        typeFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                            thumb.classList.remove('selected');
+                            thumb.style.removeProperty('border');
+                            thumb.style.removeProperty('background-color');
+                            thumb.style.removeProperty('box-shadow');
+                        });
+                        
+                        // Select this filter
+                        this.selectedTypeFilter = type;
+                        thumbnail.classList.add('selected');
+                        thumbnail.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
+                        thumbnail.style.setProperty('background-color', `${primaryColor}33`, 'important');
+                        thumbnail.style.setProperty('box-shadow', `0 0 12px ${primaryColor}88`, 'important');
+                        
+                        // If Cardio selected, disable muscle and equipment filters
+                        if (type === 'Cardio') {
+                            // Clear any selected muscle/equipment filters first
+                            this.selectedMuscleFilters.clear();
+                            this.selectedEquipmentFilters.clear();
+                            muscleFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                                thumb.classList.remove('selected');
+                                thumb.style.removeProperty('border');
+                                thumb.style.removeProperty('background-color');
+                                thumb.style.removeProperty('box-shadow');
+                            });
+                            equipmentFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                                thumb.classList.remove('selected');
+                                thumb.style.removeProperty('border');
+                                thumb.style.removeProperty('background-color');
+                                thumb.style.removeProperty('box-shadow');
+                            });
+                            this.setMuscleEquipmentFiltersEnabled(false, muscleFiltersContainer, equipmentFiltersContainer);
+                        } else {
+                            // Strength selected - enable filters
+                            this.setMuscleEquipmentFiltersEnabled(true, muscleFiltersContainer, equipmentFiltersContainer);
+                        }
+                    }
+                    this.filterDataForMenu();
+                    this.renderVirtualizedGrid();
+                });
+                
+                typeFiltersContainer.appendChild(thumbnail);
+            });
+        }
+        
+        console.log('🔍 Sample exercise data:', this.allExercises[0]);
+        
+        // Use predefined filter lists instead of extracting from data
+        const muscles = ['Chest', 'Back', 'Shoulders', 'Biceps', 'Triceps', 'Abs', 'Quads', 'Glutes', 'Hamstrings', 'Calves'];
+        const equipment = ['Barbell', 'Dumbbell', 'Cables', 'Machines', 'Kettlebell', 'Body Weight'];
+        
+        console.log('🔍 Using predefined filters:', { 
+            muscleCount: muscles.length, 
+            equipmentCount: equipment.length,
+            muscles: muscles,
+            equipment: equipment
+        });
+        
+        // Create muscle filter thumbnails (2 column grid)
+        muscleFiltersContainer.style.display = 'grid';
+        muscleFiltersContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        muscleFiltersContainer.style.gap = '8px';
+        
+        muscles.forEach(muscle => {
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'filter-thumbnail';
+            thumbnail.dataset.value = muscle;
+            
+            // Create thumbnail image from embedded base64
+            const thumbnailKey = getFilterThumbnailKey(muscle);
+            if (filterThumbnails[thumbnailKey]) {
+                const img = document.createElement('img');
+                img.src = filterThumbnails[thumbnailKey];
+                img.alt = muscle;
+                img.className = 'filter-thumbnail-img';
+                thumbnail.appendChild(img);
+            }
+            
+            // Create thumbnail label
+            const label = document.createElement('div');
+            label.className = 'filter-thumbnail-label';
+            label.textContent = muscle;
+            
+            thumbnail.appendChild(label);
+            
+            thumbnail.addEventListener('click', () => {
+                const primaryColor = this.settings.glowColor || '#8d0000';
+                const isSelected = this.selectedMuscleFilters.has(muscle);
+                
+                if (isSelected) {
+                    // Deselect this filter
+                    this.selectedMuscleFilters.delete(muscle);
+                    thumbnail.classList.remove('selected');
+                    thumbnail.style.removeProperty('border');
+                    thumbnail.style.removeProperty('background-color');
+                    thumbnail.style.removeProperty('box-shadow');
+                } else {
+                    // Clear all other muscle selections first (single selection only)
+                    this.selectedMuscleFilters.clear();
+                    muscleFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                        thumb.classList.remove('selected');
+                        thumb.style.removeProperty('border');
+                        thumb.style.removeProperty('background-color');
+                        thumb.style.removeProperty('box-shadow');
+                    });
+                    
+                    // Select this filter
+                    this.selectedMuscleFilters.add(muscle);
+                    thumbnail.classList.add('selected');
+                    thumbnail.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
+                    thumbnail.style.setProperty('background-color', `${primaryColor}33`, 'important');
+                    thumbnail.style.setProperty('box-shadow', `0 0 12px ${primaryColor}88`, 'important');
+                }
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+            
+            muscleFiltersContainer.appendChild(thumbnail);
+        });
+        
+        // Add clear button functionality for muscles
+        const clearMuscleBtn = document.getElementById('clearMuscleFilters');
+        if (clearMuscleBtn) {
+            clearMuscleBtn.addEventListener('click', () => {
+                this.selectedMuscleFilters.clear();
+                muscleFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                    thumb.classList.remove('selected');
+                    thumb.style.removeProperty('border');
+                    thumb.style.removeProperty('background-color');
+                    thumb.style.removeProperty('box-shadow');
+                });
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+        }
+        
+        // Create equipment filter thumbnails (2 columns)
+        equipmentFiltersContainer.style.display = 'grid';
+        equipmentFiltersContainer.style.gridTemplateColumns = 'repeat(2, 1fr)';
+        equipmentFiltersContainer.style.gap = '8px';
+        
+        equipment.forEach(eq => {
+            const thumbnail = document.createElement('div');
+            thumbnail.className = 'filter-thumbnail';
+            thumbnail.dataset.value = eq;
+            
+            // Create thumbnail image from embedded base64
+            const thumbnailKey = getFilterThumbnailKey(eq);
+            if (filterThumbnails[thumbnailKey]) {
+                const img = document.createElement('img');
+                img.src = filterThumbnails[thumbnailKey];
+                img.alt = eq;
+                img.className = 'filter-thumbnail-img';
+                thumbnail.appendChild(img);
+            }
+            
+            // Create thumbnail label
+            const label = document.createElement('div');
+            label.className = 'filter-thumbnail-label';
+            label.textContent = eq;
+            
+            thumbnail.appendChild(label);
+            
+            thumbnail.addEventListener('click', () => {
+                const primaryColor = this.settings.glowColor || '#8d0000';
+                const isSelected = this.selectedEquipmentFilters.has(eq);
+                
+                if (isSelected) {
+                    // Deselect this filter
+                    this.selectedEquipmentFilters.delete(eq);
+                    thumbnail.classList.remove('selected');
+                    thumbnail.style.removeProperty('border');
+                    thumbnail.style.removeProperty('background-color');
+                    thumbnail.style.removeProperty('box-shadow');
+                } else {
+                    // Clear all other equipment selections first (single selection only)
+                    this.selectedEquipmentFilters.clear();
+                    equipmentFiltersContainer.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                        thumb.classList.remove('selected');
+                        thumb.style.removeProperty('border');
+                        thumb.style.removeProperty('background-color');
+                        thumb.style.removeProperty('box-shadow');
+                    });
+                    
+                    // Select this filter
+                    this.selectedEquipmentFilters.add(eq);
+                    thumbnail.classList.add('selected');
+                    thumbnail.style.setProperty('border', `2px solid ${primaryColor}`, 'important');
+                    thumbnail.style.setProperty('background-color', `${primaryColor}33`, 'important');
+                    thumbnail.style.setProperty('box-shadow', `0 0 12px ${primaryColor}88`, 'important');
+                }
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+            
+            equipmentFiltersContainer.appendChild(thumbnail);
+        });
+        
+        // Add clear button functionality for equipment
+        const clearEquipmentBtn = document.getElementById('clearEquipmentFilters');
+        if (clearEquipmentBtn) {
+            clearEquipmentBtn.addEventListener('click', () => {
+                this.selectedEquipmentFilters.clear();
+                equipmentFiltersContainer.querySelectorAll('.filter-checkbox').forEach(cb => cb.checked = false);
+                equipmentFiltersContainer.querySelectorAll('.filter-checkbox-label').forEach(label => {
+                    label.classList.remove('selected');
+                    label.style.removeProperty('border');
+                    label.style.removeProperty('background-color');
+                    label.style.removeProperty('box-shadow');
+                });
+                this.filterDataForMenu();
+                this.renderVirtualizedGrid();
+            });
+        }
+    }
+
     constructor(menuType) {
         this.menuType = menuType;
         this.isOpen = false;
@@ -266,19 +457,29 @@ class ThumbnailDropdownMenu {
         this.scrollInteractionDelay = 1500; // 1.5 second delay after scrolling
         this.lastScrollInteraction = 0;
         
+        // Mobile touch tracking for two-touch selection
+        this.activeThumbnail = null;
+        this.touchStartY = 0;
+        this.touchMoved = false;
+        
+        // Search filters (multi-select)
+        this.selectedTypeFilter = null; // Single selection: 'Strength' or 'Cardio'
+        this.selectedMuscleFilters = new Set();
+        this.selectedEquipmentFilters = new Set();
+        
         // Style settings (shared across all menus)
-        // Use primary color from WordPress settings for glow, fallback to blue
-        const primaryColor = window.flexframeSettings?.primaryColor || '#4a9eff';
+        // Use V2 accent color for glow, fallback to primaryColor, then blue
+        const menuAccentColor = window.flexframeSettings?.uiSettings?.menuV2?.accentColor || window.flexframeSettings?.primaryColor || '#4a9eff';
         console.log('[FlexFrame Glow] flexframeSettings:', window.flexframeSettings);
-        console.log('[FlexFrame Glow] primaryColor value:', primaryColor);
-        console.log('[FlexFrame Glow] Using primary color for thumbnail glow:', primaryColor);
+        console.log('[FlexFrame Glow] menuAccentColor value:', menuAccentColor);
+        console.log('[FlexFrame Glow] Using V2 accent color for thumbnail glow:', menuAccentColor);
         this.settings = {
             widthPercentage: 90,
             backgroundColor: '#000000',
             backgroundOpacity: 0.9,
             borderRadius: 12,
             keepOpen: false,
-            glowColor: primaryColor,
+            glowColor: menuAccentColor,
             glowIntensity: 0.6,
             glowSize: 20
         };
@@ -311,7 +512,16 @@ class ThumbnailDropdownMenu {
         try {
             const cdnUrl = 'https://FlexFrame.b-cdn.net/Exercise%20Catalogue%20For%20Menus%20%26%20Thumbnails/exercises.json';
             const cacheBuster = `?t=${Date.now()}`;
-            const response = await fetch(cdnUrl + cacheBuster);
+
+            // Fetch with retry – in-app browsers (Samsung Internet via WhatsApp/Gmail)
+            // can transiently fail on the first cross-origin request.
+            let response = await fetch(cdnUrl + cacheBuster);
+            if (!response.ok) {
+                console.warn('[ExerciseMenu] CDN fetch returned', response.status, '– retrying…');
+                await new Promise(r => setTimeout(r, 1500));
+                response = await fetch(cdnUrl + '?retry=' + Date.now());
+            }
+            if (!response.ok) throw new Error(`CDN fetch failed: ${response.status}`);
             let exercises = await response.json();
             
             // Filter out hidden exercises if running in WordPress context
@@ -334,13 +544,36 @@ class ThumbnailDropdownMenu {
                 exercises = exercises.map(ex => {
                     if (customThumbnails[ex.id]) {
                         customCount++;
-                        return { ...ex, thumbnailUrl: customThumbnails[ex.id] };
+                        return { ...ex, thumbnailUrl: customThumbnails[ex.id], hasCustomThumbnail: true };
                     }
                     return ex;
                 });
                 if (customCount > 0) {
                     console.log(`🖼️ Applied ${customCount} custom thumbnails`);
                 }
+            }
+            
+            // Merge custom exercises (YouTube-based) from WordPress settings
+            if (typeof window.flexframeSettings !== 'undefined' && 
+                Array.isArray(window.flexframeSettings.customExercises) &&
+                window.flexframeSettings.customExercises.length > 0) {
+                const customExercises = window.flexframeSettings.customExercises;
+                customExercises.filter(ce => ce.showInViewer !== false).forEach(ce => {
+                    exercises.push({
+                        id: ce.id || ('custom_' + Date.now()),
+                        name: ce.name || 'Custom Exercise',
+                        thumbnailUrl: ce.thumbnailUrl || '',
+                        configUrl: '',
+                        muscleGroup: ce.muscleGroup || [],
+                        equipment: ce.equipment || [],
+                        type: ce.type || 'Strength',
+                        information: ce.showInfo !== false ? (ce.information || {}) : {},
+                        source: 'custom',
+                        youtubeUrl: ce.youtubeUrl || '',
+                        showInfo: ce.showInfo !== false
+                    });
+                });
+                console.log(`🎬 Merged ${customExercises.length} custom YouTube exercises`);
             }
             
             this.allExercises = exercises;
@@ -353,12 +586,58 @@ class ThumbnailDropdownMenu {
                 this.updateStyles();
                 this.updateGlowStyles();
                 this.setupSearchListener();
+                this.setupSearchFilters();
                 this.updateThumbnailGlowStyles();
             }, 100);
         } catch (error) {
             console.error('Failed to load exercise data:', error);
             this.generateFallbackData();
         }
+    }
+    
+    // Determine exercise type based on equipment (Strength or Cardio)
+    getExerciseType(exercise) {
+        // Cardio equipment keywords
+        const cardioEquipment = ['Treadmill', 'Bike', 'Elliptical', 'Rower', 'Jump Rope', 'Stair Climber', 'Rowing Machine'];
+        const cardioKeywords = ['cardio', 'run', 'jog', 'sprint', 'cycle', 'rowing', 'jump'];
+        
+        // Check if any equipment matches cardio
+        const hasCardioEquipment = exercise.equipment?.some(eq => 
+            cardioEquipment.some(cardio => eq.toLowerCase().includes(cardio.toLowerCase()))
+        );
+        
+        // Check if name contains cardio keywords
+        const hasCardioKeyword = cardioKeywords.some(keyword => 
+            exercise.name.toLowerCase().includes(keyword)
+        );
+        
+        if (hasCardioEquipment || hasCardioKeyword) {
+            return 'Cardio';
+        }
+        
+        // Default to Strength for everything else (barbell, dumbbell, cable, machine exercises)
+        return 'Strength';
+    }
+
+    // Enable or disable muscle and equipment filter thumbnails
+    setMuscleEquipmentFiltersEnabled(enabled, muscleContainer, equipmentContainer) {
+        const containers = [muscleContainer, equipmentContainer];
+        containers.forEach(container => {
+            if (!container) return;
+            container.querySelectorAll('.filter-thumbnail').forEach(thumb => {
+                if (enabled) {
+                    thumb.classList.remove('disabled');
+                    thumb.style.removeProperty('opacity');
+                    thumb.style.removeProperty('pointer-events');
+                    thumb.style.removeProperty('cursor');
+                } else {
+                    thumb.classList.add('disabled');
+                    thumb.style.setProperty('opacity', '0.4', 'important');
+                    thumb.style.setProperty('pointer-events', 'none', 'important');
+                    thumb.style.setProperty('cursor', 'not-allowed', 'important');
+                }
+            });
+        });
     }
 
     filterDataForMenu() {
@@ -460,9 +739,53 @@ class ThumbnailDropdownMenu {
                 break;
                 
             case 'search':
-                // Filter exercises by search query with match metadata
+                // Start with all exercises
+                let searchResults = this.allExercises;
+                
+                // Apply type filter (Strength / Cardio)
+                if (this.selectedTypeFilter) {
+                    searchResults = searchResults.filter(exercise => {
+                        // Determine exercise type based on equipment or explicit type field
+                        const exerciseType = exercise.type || this.getExerciseType(exercise);
+                        return exerciseType === this.selectedTypeFilter;
+                    });
+                }
+                
+                // Apply muscle filters (if any selected) - ALL must match
+                if (this.selectedMuscleFilters.size > 0) {
+                    searchResults = searchResults.filter(exercise => {
+                        // Exercise must contain ALL selected muscles
+                        const exerciseMuscles = new Set();
+                        if (exercise.information?.primaryMuscle) {
+                            exerciseMuscles.add(exercise.information.primaryMuscle);
+                        }
+                        if (exercise.information?.secondaryMuscles) {
+                            exercise.information.secondaryMuscles.forEach(m => exerciseMuscles.add(m));
+                        }
+                        if (exercise.muscleGroup) {
+                            exercise.muscleGroup.forEach(m => exerciseMuscles.add(m));
+                        }
+                        
+                        // Check if ALL selected muscles are present in this exercise
+                        return Array.from(this.selectedMuscleFilters).every(selectedMuscle => 
+                            exerciseMuscles.has(selectedMuscle)
+                        );
+                    });
+                }
+                
+                // Apply equipment filters (if any selected) - ALL must match
+                if (this.selectedEquipmentFilters.size > 0) {
+                    searchResults = searchResults.filter(exercise => {
+                        // Exercise must contain ALL selected equipment
+                        return Array.from(this.selectedEquipmentFilters).every(selectedEquipment => 
+                            exercise.equipment.includes(selectedEquipment)
+                        );
+                    });
+                }
+                
+                // Apply text search query (if provided)
                 if (this.searchQuery) {
-                    this.filteredData = this.allExercises.map(exercise => {
+                    searchResults = searchResults.map(exercise => {
                         const nameMatch = exercise.name.toLowerCase().includes(this.searchQuery);
                         const muscleMatch = exercise.muscleGroup.some(m => m.toLowerCase().includes(this.searchQuery));
                         const equipmentMatch = exercise.equipment.some(e => e.toLowerCase().includes(this.searchQuery));
@@ -501,12 +824,16 @@ class ThumbnailDropdownMenu {
                             }
                         };
                     }).filter(exercise => exercise.searchMatch.type !== '');
-                    
-                    console.log(`Search found ${this.filteredData.length} exercises for: "${this.searchQuery}"`);
                 } else {
-                    // Show all exercises when search is empty
-                    this.filteredData = this.allExercises;
+                    // No text query, just add empty match data
+                    searchResults = searchResults.map(exercise => ({
+                        ...exercise,
+                        searchMatch: { type: '', text: '' }
+                    }));
                 }
+                
+                this.filteredData = searchResults;
+                console.log(`Search filtered to ${this.filteredData.length} exercises`);
                 break;
         }
         
@@ -731,8 +1058,16 @@ class ThumbnailDropdownMenu {
                 `;
             }
             
+            // Mark default thumbnails so they can receive hue rotation
+            // Custom exercises get grayscale instead of hue rotation
+            const imgClass = item.source === 'custom' ? 'custom-thumbnail' : (item.hasCustomThumbnail ? '' : 'default-thumbnail');
+            
+            // YouTube badge for custom exercises
+            const ytBadge = item.source === 'custom' ? '<span class="thumbnail-yt-badge"><svg width="6" height="7" viewBox="0 0 6 7"><polygon points="0,0 6,3.5 0,7" fill="white"/></svg></span>' : '';
+            
             const thumbnailHTML = `
-                <img src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
+                <img class="${imgClass}" src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
+                ${ytBadge}
                 <div class="thumbnail-label">${item.name}</div>
                 ${searchMatchHTML}
                 ${muscleInfoHTML}
@@ -745,6 +1080,7 @@ class ThumbnailDropdownMenu {
                 thumbnailElement.dataset.positionId = positionId;
                 thumbnailElement.innerHTML = thumbnailHTML;
                 
+                // Desktop click handler
                 thumbnailElement.addEventListener('click', (e) => {
                     if (this.recentlyDragged && this.hasDragged) {
                         e.preventDefault();
@@ -752,6 +1088,43 @@ class ThumbnailDropdownMenu {
                         return;
                     }
                     this.selectThumbnail(item);
+                });
+                
+                // Mobile touch handlers - two-touch system
+                thumbnailElement.addEventListener('touchstart', (e) => {
+                    this.touchStartY = e.touches[0].clientY;
+                    this.touchMoved = false;
+                });
+                
+                thumbnailElement.addEventListener('touchmove', (e) => {
+                    const touchY = e.touches[0].clientY;
+                    if (Math.abs(touchY - this.touchStartY) > 10) {
+                        this.touchMoved = true;
+                    }
+                });
+                
+                thumbnailElement.addEventListener('touchend', (e) => {
+                    // If user scrolled, don't do anything
+                    if (this.touchMoved) {
+                        return;
+                    }
+                    
+                    // If this thumbnail is already active, select it (second touch)
+                    if (this.activeThumbnail === thumbnailElement) {
+                        this.selectThumbnail(item);
+                        // Clear active state after selection
+                        if (this.activeThumbnail) {
+                            this.activeThumbnail.classList.remove('touch-active');
+                        }
+                        this.activeThumbnail = null;
+                    } else {
+                        // First touch - make this thumbnail active
+                        if (this.activeThumbnail) {
+                            this.activeThumbnail.classList.remove('touch-active');
+                        }
+                        this.activeThumbnail = thumbnailElement;
+                        thumbnailElement.classList.add('touch-active');
+                    }
                 });
                 if (prevNode && prevNode.nextSibling) {
                     this.visibleContainer.insertBefore(thumbnailElement, prevNode.nextSibling);
@@ -807,6 +1180,11 @@ class ThumbnailDropdownMenu {
         const selectedElement = this.visibleContainer.querySelector(`[data-id="${item.id}"]`);
         if (selectedElement) {
             selectedElement.classList.add('selected');
+        }
+        
+        // Close search dropdown on mobile after selection - use closeMenu() to properly reset state
+        if (this.menuType === 'search' && window.innerWidth <= 768) {
+            this.closeMenu();
         }
         
         // Menu stays open after thumbnail selection - only closes when clicking outside
@@ -1126,17 +1504,29 @@ class ThumbnailDropdownMenu {
         // Set isOpen flag first to prevent this menu from being closed by the closeAll event
         this.isOpen = true;
         
-        // Close other menus first
+        // Close other left menus first
         document.dispatchEvent(new CustomEvent('closeAllThumbnailMenus', { 
             detail: { except: this.menuType } 
         }));
+        
+        // Close all right menus when left menu opens
+        document.dispatchEvent(new CustomEvent('closeAllRightMenus', { 
+            detail: { except: null } 
+        }));
+        
+        // Hide the entire right menu container
+        const rightMenuContainer = document.querySelector('.thumbnail-grid-container-right');
+        if (rightMenuContainer) {
+            rightMenuContainer.classList.remove('menu-visible', 'menu-active');
+        }
 
         // For search tab, focus the input and refresh results
         if (this.menuType === 'search') {
             this.filterDataForMenu();
             this.renderVirtualizedGrid();
             const searchInput = document.getElementById('searchInput');
-            if (searchInput) {
+            if (searchInput && window.innerWidth > 768) {
+                // Only auto-focus on desktop, not mobile
                 setTimeout(() => searchInput.focus(), 150);
             }
         }
@@ -1184,9 +1574,20 @@ class ThumbnailDropdownMenu {
     }
 
     closeMenu() {
+        // If theme editor has menus locked, keep the search dropdown open
+        if (window._themeEditorLockMenus && this.menuType === 'search') {
+            return;
+        }
+
         this.dropdown.classList.remove('show');
         this.toggleBtn.classList.remove('active');
         this.isOpen = false;
+        
+        // Clear active thumbnail state when menu closes
+        if (this.activeThumbnail) {
+            this.activeThumbnail.classList.remove('touch-active');
+            this.activeThumbnail = null;
+        }
         
         // Check if any other menus are open, if not, remove menu-active class
         const anyMenuOpen = window.menuManager && 
@@ -1203,14 +1604,10 @@ class ThumbnailDropdownMenu {
     updateStyles() {
         if (!this.dropdown) return;
         
-        const hex = this.settings.backgroundColor.replace('#', '');
-        const r = parseInt(hex.substr(0, 2), 16);
-        const g = parseInt(hex.substr(2, 2), 16);
-        const b = parseInt(hex.substr(4, 2), 16);
-        
-        // Fixed dropdown width to match grid container
-        this.dropdown.style.width = '250px';
-        this.dropdown.style.background = `rgba(${r}, ${g}, ${b}, ${this.settings.backgroundOpacity})`;
+        // Responsive dropdown width - narrower on mobile
+        // Background handled by CSS to preserve backdrop-filter blur effect
+        const isMobile = window.innerWidth <= 768;
+        this.dropdown.style.width = isMobile ? '40%' : '250px';
         this.dropdown.style.borderRadius = `${this.settings.borderRadius}px`;
     }
     
@@ -1298,19 +1695,24 @@ export class MultiThumbnailMenuSystem {
         this.selectedEquipment = null; // Track selected equipment for filtering
         this.selectedExerciseId = null; // Track selected exercise to preserve selection
         
-        // Use primary color from WordPress settings for glow, fallback to blue
-        const primaryColor = window.flexframeSettings?.primaryColor || '#4a9eff';
-        console.log('[FlexFrame Glow] MultiThumbnailMenuSystem using primaryColor:', primaryColor);
+        // Use V2 accent color for glow/hue, fallback to primaryColor, then blue
+        const menuAccentColor = window.flexframeSettings?.uiSettings?.menuV2?.accentColor || window.flexframeSettings?.primaryColor || '#4a9eff';
+        console.log('[FlexFrame Glow] MultiThumbnailMenuSystem using menuAccentColor:', menuAccentColor);
         
         // Set CSS custom property for primary color (used by style.css)
-        document.documentElement.style.setProperty('--flexframe-primary-color', primaryColor);
+        document.documentElement.style.setProperty('--flexframe-primary-color', menuAccentColor);
         // Also set RGB values for rgba() usage
-        const hex = primaryColor.replace('#', '');
+        const hex = menuAccentColor.replace('#', '');
         const r = parseInt(hex.substring(0, 2), 16);
         const g = parseInt(hex.substring(2, 4), 16);
         const b = parseInt(hex.substring(4, 6), 16);
         document.documentElement.style.setProperty('--flexframe-primary-color-rgb', `${r}, ${g}, ${b}`);
-        console.log('[FlexFrame Glow] Set CSS variables --flexframe-primary-color:', primaryColor, 'RGB:', r, g, b);
+        console.log('[FlexFrame Glow] Set CSS variables --flexframe-primary-color:', menuAccentColor, 'RGB:', r, g, b);
+        
+        // Calculate hue rotation for filter thumbnails (base images are red ~0°)
+        const hueRotation = this.calculateHueRotation(r, g, b);
+        document.documentElement.style.setProperty('--flexframe-hue-rotation', `${hueRotation}deg`);
+        console.log('[FlexFrame Glow] Set hue rotation for filter thumbnails:', hueRotation + 'deg');
         
         this.settings = {
             widthPercentage: 90,
@@ -1318,7 +1720,7 @@ export class MultiThumbnailMenuSystem {
             backgroundOpacity: 0.9,
             borderRadius: 12,
             keepOpen: false,
-            glowColor: primaryColor,
+            glowColor: menuAccentColor,
             glowIntensity: 0.6,
             glowSize: 20
         };
@@ -1328,6 +1730,40 @@ export class MultiThumbnailMenuSystem {
         console.log('🎧 Calling setupGlobalListeners...');
         this.setupGlobalListeners();
         console.log('✅ MultiThumbnailMenuSystem constructor complete');
+    }
+    
+    /**
+     * Calculate hue rotation needed to shift red (0°) to the target color's hue
+     * @param {number} r - Red component (0-255)
+     * @param {number} g - Green component (0-255)
+     * @param {number} b - Blue component (0-255)
+     * @returns {number} - Hue rotation in degrees
+     */
+    calculateHueRotation(r, g, b) {
+        // Convert RGB to HSL to get the hue
+        const rNorm = r / 255;
+        const gNorm = g / 255;
+        const bNorm = b / 255;
+        
+        const max = Math.max(rNorm, gNorm, bNorm);
+        const min = Math.min(rNorm, gNorm, bNorm);
+        const delta = max - min;
+        
+        let hue = 0;
+        if (delta !== 0) {
+            if (max === rNorm) {
+                hue = ((gNorm - bNorm) / delta) % 6;
+            } else if (max === gNorm) {
+                hue = (bNorm - rNorm) / delta + 2;
+            } else {
+                hue = (rNorm - gNorm) / delta + 4;
+            }
+            hue = Math.round(hue * 60);
+            if (hue < 0) hue += 360;
+        }
+        
+        // Base images are red (hue ~0°), so rotation = target hue
+        return hue;
     }
     
     initializeMenus() {
@@ -1482,6 +1918,16 @@ export class MultiThumbnailMenuSystem {
             // Show menu on hover and keep it visible
             menuContainer.addEventListener('mouseenter', () => {
                 menuContainer.classList.add('menu-visible');
+                
+                // Hide the right menu container when left menu becomes visible
+                const rightMenuContainer = document.querySelector('.thumbnail-grid-container-right');
+                if (rightMenuContainer) {
+                    rightMenuContainer.classList.remove('menu-visible', 'menu-active');
+                    // Also close any open right menus
+                    document.dispatchEvent(new CustomEvent('closeAllRightMenus', { 
+                        detail: { except: null } 
+                    }));
+                }
             });
             
             // Make hint tab clickable to toggle menu
@@ -1489,27 +1935,24 @@ export class MultiThumbnailMenuSystem {
             if (hintTab) {
                 hintTab.addEventListener('click', (e) => {
                     e.stopPropagation(); // Prevent event bubbling
-                    
-                    // Toggle menu visibility
-                    if (menuContainer.classList.contains('menu-visible') || 
-                        menuContainer.classList.contains('menu-active')) {
-                        // Close all menus and hide the menu container
-                        Object.values(this.menus).forEach(menu => {
-                            if (menu.isOpen) {
-                                menu.closeMenu();
-                            }
-                        });
-                        menuContainer.classList.remove('menu-visible');
-                    } else {
-                        // Show menu
-                        menuContainer.classList.add('menu-visible');
-                    }
+                    this.toggleLeftMenu();
                 });
             }
+            
+            // Create mobile toggle button (separate from menu container)
+            this.createMobileToggleButton(menuContainer);
         }
         
         // Close menus when clicking outside the menu area
         document.addEventListener('click', (e) => {
+            // Don't close menus while theme editor is open
+            if (window._themeEditorLockMenus) return;
+
+            // Check if click is on a mobile toggle button
+            if (e.target.closest('.mobile-menu-toggle')) {
+                return;
+            }
+            
             if (menuContainer && !menuContainer.contains(e.target)) {
                 // Check if any menu has recent scroll interaction
                 const hasRecentScroll = Object.values(this.menus).some(menu => 
@@ -1523,6 +1966,7 @@ export class MultiThumbnailMenuSystem {
                 
                 // Remove menu visibility and close all open menus
                 menuContainer.classList.remove('menu-visible');
+                this.updateMobileToggleIcon(false);
                 
                 // Check if any menu is currently open
                 const anyMenuOpen = Object.values(this.menus).some(menu => menu.isOpen);
@@ -1578,5 +2022,47 @@ export class MultiThumbnailMenuSystem {
             console.error('Failed to copy to clipboard:', error);
             alert('Failed to copy settings to clipboard.');
         }
+    }
+
+    // Mobile toggle methods
+    createMobileToggleButton(menuContainer) {
+        // Mobile toggle buttons removed - menus accessed via top menu buttons
+    }
+
+    updateMobileToggleVisibility() {
+        // Mobile toggle buttons removed
+    }
+
+    toggleLeftMenu() {
+        const menuContainer = document.querySelector('.thumbnail-grid-container');
+        if (!menuContainer) return;
+        
+        const isOpen = menuContainer.classList.contains('mobile-open');
+        
+        if (isOpen) {
+            // Close menu
+            menuContainer.classList.remove('mobile-open');
+            menuContainer.style.left = '-130px';
+            this.updateMobileToggleIcon(false);
+        } else {
+            // Close right menu first
+            const rightMenu = document.querySelector('.thumbnail-grid-container-right');
+            if (rightMenu && rightMenu.classList.contains('mobile-open')) {
+                rightMenu.classList.remove('mobile-open');
+                rightMenu.style.right = '-130px';
+                // Update right toggle icon
+                const rightToggle = document.querySelector('.mobile-menu-toggle.right-toggle');
+                if (rightToggle) rightToggle.innerHTML = '▶';
+            }
+            
+            // Open left menu
+            menuContainer.classList.add('mobile-open');
+            menuContainer.style.left = '0px';
+            this.updateMobileToggleIcon(true);
+        }
+    }
+
+    updateMobileToggleIcon(isOpen) {
+        // Mobile toggle buttons removed
     }
 }

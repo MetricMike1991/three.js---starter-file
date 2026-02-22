@@ -1329,8 +1329,6 @@ function flexframe_sanitize_custom_exercises($input) {
             'youtubeUrl'    => esc_url_raw(!empty($exercise['youtubeUrl']) ? $exercise['youtubeUrl'] : ''),
             'source'        => 'custom',
             'showInfo'      => !empty($exercise['showInfo']) ? true : false,
-            'showInViewer'  => isset($exercise['showInViewer']) ? (bool) $exercise['showInViewer'] : true,
-            'showInWorkout' => isset($exercise['showInWorkout']) ? (bool) $exercise['showInWorkout'] : true,
             'muscleGroup'   => !empty($exercise['muscleGroup']) && is_array($exercise['muscleGroup']) ? array_map('sanitize_text_field', $exercise['muscleGroup']) : array(),
             'equipment'     => !empty($exercise['equipment']) && is_array($exercise['equipment']) ? array_map('sanitize_text_field', $exercise['equipment']) : array(),
             'type'          => in_array(!empty($exercise['type']) ? $exercise['type'] : '', array('Strength', 'Cardio', 'Flexibility', 'Stretching')) ? $exercise['type'] : 'Strength',
@@ -2696,26 +2694,6 @@ function flexframe_settings_page() {
                                                         <?php echo esc_html($equip); ?>
                                                     </label>
                                                 <?php endforeach; ?>
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="custom-exercise-form-row">
-                                            <label><strong><?php _e('Display In', 'flexframe-viewer'); ?></strong></label>
-                                            <div class="ce-toggle-group">
-                                                <div class="ce-toggle-row">
-                                                    <label class="ce-toggle">
-                                                        <input type="checkbox" id="ce-show-in-viewer" checked />
-                                                        <span class="ce-toggle-slider"></span>
-                                                    </label>
-                                                    <span class="ce-toggle-description"><?php _e('Exercise Viewer', 'flexframe-viewer'); ?></span>
-                                                </div>
-                                                <div class="ce-toggle-row">
-                                                    <label class="ce-toggle">
-                                                        <input type="checkbox" id="ce-show-in-workout" checked />
-                                                        <span class="ce-toggle-slider"></span>
-                                                    </label>
-                                                    <span class="ce-toggle-description"><?php _e('Workout Builder', 'flexframe-viewer'); ?></span>
-                                                </div>
                                             </div>
                                         </div>
                                         
@@ -7100,11 +7078,6 @@ function flexframe_settings_page() {
             font-size: 13px;
             color: #646970;
         }
-        .ce-toggle-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
         /* Info Fields Toggle */
         .custom-exercise-info-fields {
             padding: 12px 16px;
@@ -11019,7 +10992,6 @@ function flexframe_settings_page() {
                         + '<span>💪 ' + escHtml(musclesText) + '</span>'
                         + '<span>🏋️ ' + escHtml(equipText) + '</span>'
                         + (ex.showInfo ? '<span>📋 Info</span>' : '')
-                        + '<span>📍 ' + (function(){ var where = []; if(ex.showInViewer !== false) where.push('Viewer'); if(ex.showInWorkout !== false) where.push('Workout'); return where.length ? where.join(' + ') : 'Hidden'; })() + '</span>'
                         + '</div>'
                         + '</div>'
                         + '<div class="custom-exercise-item-actions">'
@@ -11050,8 +11022,6 @@ function flexframe_settings_page() {
                 $('#ce-type').val('Strength');
                 $('#ce-muscles-grid input[type="checkbox"]').prop('checked', false);
                 $('#ce-equipment-grid input[type="checkbox"]').prop('checked', false);
-                $('#ce-show-in-viewer').prop('checked', true);
-                $('#ce-show-in-workout').prop('checked', true);
                 $('#ce-show-info').prop('checked', true);
                 $('#ce-info-fields').show();
                 $('#ce-step1, #ce-step2, #ce-step3, #ce-step4').val('');
@@ -11085,10 +11055,6 @@ function flexframe_settings_page() {
                 $('#ce-equipment-grid input[type="checkbox"]').each(function() {
                     $(this).prop('checked', (ex.equipment || []).indexOf($(this).val()) !== -1);
                 });
-
-                // Display-in toggles
-                $('#ce-show-in-viewer').prop('checked', ex.showInViewer !== false);
-                $('#ce-show-in-workout').prop('checked', ex.showInWorkout !== false);
 
                 // Show info toggle
                 var showInfo = ex.showInfo !== false; // default true
@@ -11125,8 +11091,6 @@ function flexframe_settings_page() {
                     muscleGroup: muscles,
                     equipment: equipment,
                     source: 'custom',
-                    showInViewer: $('#ce-show-in-viewer').is(':checked'),
-                    showInWorkout: $('#ce-show-in-workout').is(':checked'),
                     showInfo: showInfo,
                     information: showInfo ? {
                         step1: $.trim($('#ce-step1').val()),

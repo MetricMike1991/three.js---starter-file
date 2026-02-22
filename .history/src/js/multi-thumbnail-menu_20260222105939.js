@@ -558,7 +558,7 @@ class ThumbnailDropdownMenu {
                 Array.isArray(window.flexframeSettings.customExercises) &&
                 window.flexframeSettings.customExercises.length > 0) {
                 const customExercises = window.flexframeSettings.customExercises;
-                customExercises.filter(ce => ce.showInViewer !== false).forEach(ce => {
+                customExercises.forEach(ce => {
                     exercises.push({
                         id: ce.id || ('custom_' + Date.now()),
                         name: ce.name || 'Custom Exercise',
@@ -1059,15 +1059,10 @@ class ThumbnailDropdownMenu {
             }
             
             // Mark default thumbnails so they can receive hue rotation
-            // Custom exercises get grayscale instead of hue rotation
-            const imgClass = item.source === 'custom' ? 'custom-thumbnail' : (item.hasCustomThumbnail ? '' : 'default-thumbnail');
-            
-            // YouTube badge for custom exercises
-            const ytBadge = item.source === 'custom' ? '<span class="thumbnail-yt-badge"><svg width="6" height="7" viewBox="0 0 6 7"><polygon points="0,0 6,3.5 0,7" fill="white"/></svg></span>' : '';
+            const imgClass = item.hasCustomThumbnail ? '' : 'default-thumbnail';
             
             const thumbnailHTML = `
                 <img class="${imgClass}" src="${item.thumbnailUrl}" alt="${item.name}" loading="lazy">
-                ${ytBadge}
                 <div class="thumbnail-label">${item.name}</div>
                 ${searchMatchHTML}
                 ${muscleInfoHTML}

@@ -2269,11 +2269,6 @@ body
     filter: hue-rotate(var(--flexframe-hue-rotation, 0deg));
 }
 
-/* Grayscale custom exercise thumbnails */
-.thumbnail-item img.custom-thumbnail {
-    filter: grayscale(1);
-}
-
 .filter-thumbnail-label {
     color: rgba(255, 255, 255, 0.95);
     font-size: 9px;

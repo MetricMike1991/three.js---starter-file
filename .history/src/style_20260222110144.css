@@ -1993,25 +1993,18 @@ body
 /* YouTube badge for custom exercises */
 .thumbnail-yt-badge {
     position: absolute;
-    bottom: 30px;
-    right: 4px;
-    background: rgba(255, 0, 0, 0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
-    border-radius: 2px;
+    bottom: 28px;
+    right: 6px;
+    background: rgba(255, 0, 0, 0.9);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 5px;
+    border-radius: 3px;
+    line-height: 1.2;
     pointer-events: none;
     z-index: 2;
-}
-
-/* Force-hide utility for YouTube custom exercises (overrides WP !important rules) */
-#flexframe-viewer-container .thumbnail-grid-container-right.ffx-yt-hide,
-.thumbnail-grid-container-right.ffx-yt-hide {
-    display: none !important;
-    visibility: hidden !important;
-    pointer-events: none !important;
+    letter-spacing: 0.5px;
 }
 
 .thumbnail-muscle-info {
@@ -2267,11 +2260,6 @@ body
 .thumbnail-item img.default-thumbnail,
 .info-suggested-card img.default-thumbnail {
     filter: hue-rotate(var(--flexframe-hue-rotation, 0deg));
-}
-
-/* Grayscale custom exercise thumbnails */
-.thumbnail-item img.custom-thumbnail {
-    filter: grayscale(1);
 }
 
 .filter-thumbnail-label {

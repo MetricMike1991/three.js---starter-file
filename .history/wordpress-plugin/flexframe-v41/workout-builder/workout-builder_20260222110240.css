@@ -965,11 +965,6 @@
     filter: hue-rotate(var(--ffwb-hue-rotation, 0deg));
 }
 
-/* Grayscale custom exercise thumbnails instead of hue-rotate */
-.ffwb-finder-item-thumb img.ffwb-custom-thumb {
-    filter: grayscale(1);
-}
-
 .ffwb-yt-badge {
     position: absolute;
     bottom: 2px;
@@ -1184,11 +1179,6 @@
     height: 100%;
     object-fit: cover;
     filter: hue-rotate(var(--ffwb-hue-rotation, 0deg));
-}
-
-/* Grayscale custom exercise thumbnails on cards */
-.ffwb-flip-front img.ffwb-custom-thumb {
-    filter: grayscale(1);
 }
 
 .ffwb-thumb-placeholder {

@@ -7100,11 +7100,6 @@ function flexframe_settings_page() {
             font-size: 13px;
             color: #646970;
         }
-        .ce-toggle-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
         /* Info Fields Toggle */
         .custom-exercise-info-fields {
             padding: 12px 16px;

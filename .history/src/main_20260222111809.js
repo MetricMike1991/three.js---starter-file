@@ -233,7 +233,7 @@ class ThreeJSApp {
                 this.showYouTubeViewer(exercise.youtubeUrl);
                 this.animationPlayer.setVisibility(false);
                 
-                // Hide or show right info menu based on showInfo setting
+                // Build right-menu config from exercise info if showInfo is on
                 if (exercise.showInfo && exercise.information && window.rightMenuManager) {
                     const info = exercise.information;
                     const sections = [];
@@ -252,13 +252,6 @@ class ThreeJSApp {
                         alternativeExercises: { title: 'Alternatives', sections: [] }
                     };
                     window.rightMenuManager.updateFromConfig(rightMenuTabs, exercise);
-                    // Ensure right menu container is visible
-                    const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-                    if (rightContainer) rightContainer.classList.remove('ffx-yt-hide');
-                } else {
-                    // Hide right info menu entirely when showInfo is off
-                    const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-                    if (rightContainer) rightContainer.classList.add('ffx-yt-hide');
                 }
                 return; // Skip 3D model loading
             }
@@ -3420,12 +3413,8 @@ class ThreeJSApp {
         const playerBar = document.querySelector('.animation-player');
         if (playerBar) playerBar.style.display = 'none';
         
-        // Also hide the trigger area that shows player on hover/touch
-        const triggerArea = document.querySelector('.animation-player-trigger');
-        if (triggerArea) triggerArea.style.display = 'none';
-        
         // Hide quality/AR/screenshot buttons that don't apply
-        const controlsToHide = ['#quality-toggle-btn', '#ar-btn', '#screenshot-btn', '#speed-btn', '#fullscreen-btn'];
+        const controlsToHide = ['#quality-toggle-btn', '#ar-btn', '#screenshot-btn', '#speed-btn'];
         controlsToHide.forEach(sel => {
             const el = document.querySelector(sel);
             if (el) el.style.display = 'none';
@@ -3454,23 +3443,14 @@ class ThreeJSApp {
         // Restore animation player
         const playerBar = document.querySelector('.animation-player');
         if (playerBar) playerBar.style.display = '';
-        
-        // Restore trigger area
-        const triggerArea = document.querySelector('.animation-player-trigger');
-        if (triggerArea) triggerArea.style.display = '';
-        
         this.animationPlayer.setVisibility(true);
         
         // Restore controls
-        const controlsToShow = ['#quality-toggle-btn', '#ar-btn', '#screenshot-btn', '#speed-btn', '#fullscreen-btn'];
+        const controlsToShow = ['#quality-toggle-btn', '#ar-btn', '#screenshot-btn', '#speed-btn'];
         controlsToShow.forEach(sel => {
             const el = document.querySelector(sel);
             if (el) el.style.display = '';
         });
-        
-        // Restore right info menu (may have been hidden for a no-info custom exercise)
-        const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-        if (rightContainer) rightContainer.classList.remove('ffx-yt-hide');
     }
     
     /**

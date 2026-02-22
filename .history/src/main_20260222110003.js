@@ -233,7 +233,7 @@ class ThreeJSApp {
                 this.showYouTubeViewer(exercise.youtubeUrl);
                 this.animationPlayer.setVisibility(false);
                 
-                // Hide or show right info menu based on showInfo setting
+                // Build right-menu config from exercise info if showInfo is on
                 if (exercise.showInfo && exercise.information && window.rightMenuManager) {
                     const info = exercise.information;
                     const sections = [];
@@ -252,13 +252,6 @@ class ThreeJSApp {
                         alternativeExercises: { title: 'Alternatives', sections: [] }
                     };
                     window.rightMenuManager.updateFromConfig(rightMenuTabs, exercise);
-                    // Ensure right menu container is visible
-                    const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-                    if (rightContainer) rightContainer.classList.remove('ffx-yt-hide');
-                } else {
-                    // Hide right info menu entirely when showInfo is off
-                    const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-                    if (rightContainer) rightContainer.classList.add('ffx-yt-hide');
                 }
                 return; // Skip 3D model loading
             }
@@ -3345,132 +3338,6 @@ class ThreeJSApp {
         if (qualityBtn) {
             qualityBtn.classList.remove('pulsate');
         }
-    }
-    
-    // ============================================
-    // YouTube Viewer (for custom exercises)
-    // ============================================
-    
-    /**
-     * Extract YouTube video ID from various URL formats
-     */
-    extractYouTubeId(url) {
-        const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))([^&?\s]{11})/);
-        return match ? match[1] : null;
-    }
-    
-    /**
-     * Show YouTube iframe overlay inside the viewer container, hiding the 3D canvas
-     */
-    showYouTubeViewer(youtubeUrl) {
-        const videoId = this.extractYouTubeId(youtubeUrl);
-        if (!videoId) {
-            console.error('[YouTube] Invalid YouTube URL:', youtubeUrl);
-            return;
-        }
-        
-        const container = document.getElementById('flexframe-viewer-container');
-        if (!container) return;
-        
-        // Hide the 3D canvas
-        const canvas = container.querySelector('canvas.webgl');
-        if (canvas) canvas.style.display = 'none';
-        
-        // Hide the model loader if visible
-        const loader = document.getElementById('model-loader');
-        if (loader) loader.style.display = 'none';
-        
-        // Create or update YouTube overlay
-        let overlay = document.getElementById('ffx-youtube-overlay');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.id = 'ffx-youtube-overlay';
-            Object.assign(overlay.style, {
-                position: 'fixed',
-                top: '0',
-                left: '0',
-                width: '100%',
-                height: '100%',
-                zIndex: '2',
-                background: 'rgba(0, 0, 0, 0.85)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                padding: '5%'
-            });
-            container.appendChild(overlay);
-        }
-        
-        overlay.style.display = 'flex';
-        overlay.innerHTML = `<div style="
-            width: 100%;
-            max-width: 900px;
-            aspect-ratio: 16 / 9;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 8px 40px rgba(0,0,0,0.6);
-            background: #000;
-        "><iframe 
-            src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
-            style="width:100%;height:100%;border:none;" 
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-            allowfullscreen></iframe></div>`;
-        
-        // Hide animation player controls (they don't apply to YouTube)
-        const playerBar = document.querySelector('.animation-player');
-        if (playerBar) playerBar.style.display = 'none';
-        
-        // Also hide the trigger area that shows player on hover/touch
-        const triggerArea = document.querySelector('.animation-player-trigger');
-        if (triggerArea) triggerArea.style.display = 'none';
-        
-        // Hide quality/AR/screenshot buttons that don't apply
-        const controlsToHide = ['#quality-toggle-btn', '#ar-btn', '#screenshot-btn', '#speed-btn', '#fullscreen-btn'];
-        controlsToHide.forEach(sel => {
-            const el = document.querySelector(sel);
-            if (el) el.style.display = 'none';
-        });
-        
-        console.log(`🎬 Showing YouTube video: ${videoId}`);
-    }
-    
-    /**
-     * Hide YouTube overlay and restore 3D canvas
-     */
-    hideYouTubeViewer() {
-        const overlay = document.getElementById('ffx-youtube-overlay');
-        if (overlay) {
-            overlay.style.display = 'none';
-            overlay.innerHTML = ''; // Stop video playback
-        }
-        
-        // Show the 3D canvas again
-        const container = document.getElementById('flexframe-viewer-container');
-        if (container) {
-            const canvas = container.querySelector('canvas.webgl');
-            if (canvas) canvas.style.display = '';
-        }
-        
-        // Restore animation player
-        const playerBar = document.querySelector('.animation-player');
-        if (playerBar) playerBar.style.display = '';
-        
-        // Restore trigger area
-        const triggerArea = document.querySelector('.animation-player-trigger');
-        if (triggerArea) triggerArea.style.display = '';
-        
-        this.animationPlayer.setVisibility(true);
-        
-        // Restore controls
-        const controlsToShow = ['#quality-toggle-btn', '#ar-btn', '#screenshot-btn', '#speed-btn', '#fullscreen-btn'];
-        controlsToShow.forEach(sel => {
-            const el = document.querySelector(sel);
-            if (el) el.style.display = '';
-        });
-        
-        // Restore right info menu (may have been hidden for a no-info custom exercise)
-        const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-        if (rightContainer) rightContainer.classList.remove('ffx-yt-hide');
     }
     
     /**

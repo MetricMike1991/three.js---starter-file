@@ -1520,7 +1520,7 @@
             return false;
         }
 
-        function imgToBase64(url, applyHue, applyGrayscale) {
+        function imgToBase64(url, applyHue) {
             if (!url) return Promise.resolve(null);
             return new Promise(resolve => {
                 const img = new Image();
@@ -1533,26 +1533,7 @@
                         const ctx = c.getContext('2d');
                         ctx.drawImage(img, 0, 0);
 
-                        if (applyGrayscale) {
-                            try {
-                                const imageData = ctx.getImageData(0, 0, c.width, c.height);
-                                const d = imageData.data;
-                                for (let i = 0; i < d.length; i += 4) {
-                                    const gray = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
-                                    d[i] = d[i+1] = d[i+2] = gray;
-                                }
-                                ctx.putImageData(imageData, 0, 0);
-                            } catch (gsErr) {
-                                const c2 = document.createElement('canvas');
-                                c2.width = img.naturalWidth;
-                                c2.height = img.naturalHeight;
-                                const ctx2 = c2.getContext('2d');
-                                ctx2.filter = 'grayscale(1)';
-                                ctx2.drawImage(img, 0, 0);
-                                resolve(c2.toDataURL('image/png'));
-                                return;
-                            }
-                        } else if (applyHue) {
+                        if (applyHue) {
                             const hueStr = getComputedStyle(root).getPropertyValue('--ffwb-hue-rotation').trim();
                             const angle = parseFloat(hueStr) || 0;
                             if (angle !== 0) {
@@ -1608,7 +1589,7 @@
         if (logoUrl) imageJobs.logo = imgToBase64(logoUrl);
 
         workoutExercises.forEach(ex => {
-            if (ex.thumbnailUrl) imageJobs['thumb_' + ex.uid] = imgToBase64(ex.thumbnailUrl, true, ex.source === 'custom');
+            if (ex.thumbnailUrl) imageJobs['thumb_' + ex.uid] = imgToBase64(ex.thumbnailUrl, true);
             if (ex.exerciseId && viewerBase) {
                 const sep = viewerBase.indexOf('?') !== -1 ? '&' : '?';
                 const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='

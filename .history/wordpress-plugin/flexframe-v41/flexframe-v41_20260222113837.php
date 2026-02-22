@@ -1439,7 +1439,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BZgcj7_R.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DJNCkvI7.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -4266,7 +4266,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DUIiBF6U.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-Dtc0jSJu.js',
             array(),
             FLEXFRAME_VERSION,
             true

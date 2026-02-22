@@ -253,12 +253,12 @@ class ThreeJSApp {
                     };
                     window.rightMenuManager.updateFromConfig(rightMenuTabs, exercise);
                     // Ensure right menu container is visible
-                    const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-                    if (rightContainer) rightContainer.classList.remove('ffx-yt-hide');
+                    const rightContainer = document.querySelector('.thumbnail-grid-container-right');
+                    if (rightContainer) rightContainer.style.display = '';
                 } else {
                     // Hide right info menu entirely when showInfo is off
-                    const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-                    if (rightContainer) rightContainer.classList.add('ffx-yt-hide');
+                    const rightContainer = document.querySelector('.thumbnail-grid-container-right');
+                    if (rightContainer) rightContainer.style.display = 'none';
                 }
                 return; // Skip 3D model loading
             }
@@ -3467,10 +3467,6 @@ class ThreeJSApp {
             const el = document.querySelector(sel);
             if (el) el.style.display = '';
         });
-        
-        // Restore right info menu (may have been hidden for a no-info custom exercise)
-        const rightContainer = document.querySelector('#flexframe-viewer-container .thumbnail-grid-container-right');
-        if (rightContainer) rightContainer.classList.remove('ffx-yt-hide');
     }
     
     /**

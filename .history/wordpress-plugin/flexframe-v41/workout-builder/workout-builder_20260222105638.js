@@ -132,7 +132,7 @@
             
             // Merge custom exercises (YouTube-based) from WordPress settings
             if (Array.isArray(SETTINGS.customExercises) && SETTINGS.customExercises.length > 0) {
-                SETTINGS.customExercises.filter(ce => ce.showInWorkout !== false).forEach(ce => {
+                SETTINGS.customExercises.forEach(ce => {
                     // Ensure required fields and mark as custom
                     exerciseCatalogue.push({
                         id: ce.id || ('custom_' + Date.now()),
@@ -344,7 +344,6 @@
         card.thumbnailUrl = catalogueExercise.thumbnailUrl || '';
         card.muscleGroup = catalogueExercise.muscleGroup || [];
         card.configUrl = catalogueExercise.configUrl || '';
-        card.source = catalogueExercise.source || '';
         closeFinder();
         renderExerciseList();
     }
@@ -516,15 +515,14 @@
         finderNoResults.style.display = 'none';
 
         finderResultsGrid.innerHTML = results.map(ex => `
-            <div class="ffwb-finder-item${ex.source === 'custom' ? ' ffwb-finder-item--custom' : ''}" data-exercise-id="${ex.id}">
+            <div class="ffwb-finder-item" data-exercise-id="${ex.id}">
                 <div class="ffwb-finder-item-thumb">
                     ${ex.thumbnailUrl
-                        ? `<img class="${ex.source === 'custom' ? 'ffwb-custom-thumb' : ''}" src="${ex.thumbnailUrl}" alt="${ex.name}" loading="lazy">`
+                        ? `<img src="${ex.thumbnailUrl}" alt="${ex.name}" loading="lazy">`
                         : `<div class="ffwb-finder-item-placeholder">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
                            </div>`
                     }
-                    ${ex.source === 'custom' ? '<span class="ffwb-yt-badge">YT</span>' : ''}
                 </div>
                 <div class="ffwb-finder-item-info">
                     <div class="ffwb-finder-item-name">${ex.name}</div>
@@ -719,7 +717,7 @@
                                         <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                                        </div>`
                                     : exercise.thumbnailUrl 
-                                        ? `<img class="${exercise.source === 'custom' ? 'ffwb-custom-thumb' : ''}" src="${exercise.thumbnailUrl}" alt="${exercise.name}" loading="lazy">`
+                                        ? `<img src="${exercise.thumbnailUrl}" alt="${exercise.name}" loading="lazy">`
                                         : `<div class="ffwb-thumb-placeholder">
                                             <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
                                            </div>`
@@ -1520,7 +1518,7 @@
             return false;
         }
 
-        function imgToBase64(url, applyHue, applyGrayscale) {
+        function imgToBase64(url, applyHue) {
             if (!url) return Promise.resolve(null);
             return new Promise(resolve => {
                 const img = new Image();
@@ -1533,26 +1531,7 @@
                         const ctx = c.getContext('2d');
                         ctx.drawImage(img, 0, 0);
 
-                        if (applyGrayscale) {
-                            try {
-                                const imageData = ctx.getImageData(0, 0, c.width, c.height);
-                                const d = imageData.data;
-                                for (let i = 0; i < d.length; i += 4) {
-                                    const gray = 0.299 * d[i] + 0.587 * d[i+1] + 0.114 * d[i+2];
-                                    d[i] = d[i+1] = d[i+2] = gray;
-                                }
-                                ctx.putImageData(imageData, 0, 0);
-                            } catch (gsErr) {
-                                const c2 = document.createElement('canvas');
-                                c2.width = img.naturalWidth;
-                                c2.height = img.naturalHeight;
-                                const ctx2 = c2.getContext('2d');
-                                ctx2.filter = 'grayscale(1)';
-                                ctx2.drawImage(img, 0, 0);
-                                resolve(c2.toDataURL('image/png'));
-                                return;
-                            }
-                        } else if (applyHue) {
+                        if (applyHue) {
                             const hueStr = getComputedStyle(root).getPropertyValue('--ffwb-hue-rotation').trim();
                             const angle = parseFloat(hueStr) || 0;
                             if (angle !== 0) {
@@ -1608,7 +1587,7 @@
         if (logoUrl) imageJobs.logo = imgToBase64(logoUrl);
 
         workoutExercises.forEach(ex => {
-            if (ex.thumbnailUrl) imageJobs['thumb_' + ex.uid] = imgToBase64(ex.thumbnailUrl, true, ex.source === 'custom');
+            if (ex.thumbnailUrl) imageJobs['thumb_' + ex.uid] = imgToBase64(ex.thumbnailUrl, true);
             if (ex.exerciseId && viewerBase) {
                 const sep = viewerBase.indexOf('?') !== -1 ? '&' : '?';
                 const qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=150x150&data='

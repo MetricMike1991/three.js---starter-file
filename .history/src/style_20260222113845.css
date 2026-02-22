@@ -1996,14 +1996,15 @@ body
     bottom: 30px;
     right: 4px;
     background: rgba(255, 0, 0, 0.85);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 14px;
-    height: 14px;
+    color: #fff;
+    font-size: 7px;
+    font-weight: 700;
+    padding: 1px 3px;
     border-radius: 2px;
+    line-height: 1.2;
     pointer-events: none;
     z-index: 2;
+    letter-spacing: 0.3px;
 }
 
 /* Force-hide utility for YouTube custom exercises (overrides WP !important rules) */
@@ -2267,11 +2268,6 @@ body
 .thumbnail-item img.default-thumbnail,
 .info-suggested-card img.default-thumbnail {
     filter: hue-rotate(var(--flexframe-hue-rotation, 0deg));
-}
-
-/* Grayscale custom exercise thumbnails */
-.thumbnail-item img.custom-thumbnail {
-    filter: grayscale(1);
 }
 
 .filter-thumbnail-label {
