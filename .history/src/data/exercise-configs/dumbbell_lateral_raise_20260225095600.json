@@ -1,0 +1,101 @@
+{
+  "exerciseId": "dumbbell_lateral_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/07.%20Dumbbell%20Lateral%20Raise/07.%20Dumbbell%20Lateral%20Raise%20-%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/07.%20Dumbbell%20Lateral%20Raise/07.%20Dumbbell%20Lateral%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/07.%20Dumbbell%20Lateral%20Raise/07.%20Dumbbell%20Lateral%20Raise%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/07.%20Dumbbell%20Lateral%20Raise/07.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.8, 1.3, 2.0],
+    "rotation": [-0.3, 0.6, 0.15],
+    "target": [0.0, 0.95, 0.0]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.8, 1.3, 2.0],
+    "rotation": [-0.3, 0.6, 0.15],
+    "target": [0.0, 0.95, 0.0]
+  },
+  "customTextures": {},
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Lateral Raise is an isolation exercise that targets the lateral (side) head of the deltoid muscle.\n\nIt is one of the most effective exercises for building wider, more defined shoulders and creating that sought-after capped shoulder look.\n\nThis movement is a staple in shoulder training programmes for all experience levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds shoulder width and definition\n- Isolates the lateral deltoid effectively\n- Improves shoulder stability and joint health\n- Creates a balanced and proportional upper body appearance\n- Enhances overhead pressing strength\n- Low equipment requirement — just a pair of dumbbells\n- Easy to adjust intensity by changing weight or tempo"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Lateral Deltoid (Side Shoulder)\n\nSecondary: Anterior Deltoid, Supraspinatus, Upper Trapezius, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your back straight, feet shoulder-width apart.\n2. Hold a dumbbell in each hand with a neutral grip (palms facing inward).\n3. Arms fully extended by your sides, palms facing your body.\n4. Keep your elbows slightly bent (soft lock).\n5. Chest up, shoulders back, core braced.\n6. Maintain a slight forward lean at the torso (5-10 degrees)."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your torso stationary, lift the dumbbells out to your sides.\n2. Raise your arms in a smooth arc until they reach shoulder level.\n3. Keep your elbows slightly bent throughout the movement.\n4. Lead with your elbows, not your hands — think of pouring water from a jug.\n5. Hold for a count of one at the top while squeezing your shoulder muscles.\n6. Slowly lower the dumbbells back to the starting position in a controlled manner.\n7. Do not swing or use momentum — keep the movement strict.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and swinging the body for momentum\n- Lifting the dumbbells too high (above shoulder level), engaging the traps excessively\n- Shrugging the shoulders up toward the ears\n- Fully locking out the elbows, placing stress on the joint\n- Rushing the eccentric (lowering) phase\n- Leaning too far back during the lift\n- Not maintaining a slight bend in the elbows throughout"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (light to moderate weight)\n- Optional: Resistance Band (for added tension at the top)\n- Optional: Lifting Gloves (for grip comfort)\n- Recommended: Mirror (to check form)"
+        },
+        {
+          "heading": "Weight Selection",
+          "content": "1. Start lighter than you think — the lateral raise is a strict isolation exercise.\n2. Beginners: 2-5 kg (5-10 lbs) per hand.\n3. Intermediate: 5-10 kg (10-20 lbs) per hand.\n4. Advanced: 10-15 kg (20-30 lbs) per hand.\n5. Form should never be sacrificed for heavier weight.\n6. If you need to swing or shrug to lift the weight, it's too heavy."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, stable base.\n2. Grip: Neutral grip, palms facing your body.\n3. Elbows: Slight bend maintained throughout.\n4. Shoulders: Depressed (pulled down away from ears).\n5. Torso: Slight forward lean, chest up.\n6. Core: Braced to prevent swinging.\n7. Head: Neutral position, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["cable_lateral_raise", "barbell_overhead_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Lateral Raise: Constant tension from the cable\n- Machine Lateral Raise: Guided movement path\n- Behind-the-Back Cable Lateral Raise: Different resistance angle\n- Plate Front Raise: Targets anterior deltoid\n- Barbell Upright Row: Compound shoulder width builder\n- Band Lateral Raise: Progressive resistance"
+        },
+        {
+          "heading": "Lateral Raise Variations",
+          "content": "Seated Lateral Raise: Eliminates momentum and lower body involvement\nIncline Lateral Raise: Lying on an incline bench for constant tension\nLean-Away Lateral Raise: Hold a post and lean away to increase range\n21s Lateral Raise: 7 partial bottom, 7 partial top, 7 full reps\nPause Lateral Raise: Pause at the top for 2-3 seconds\nDrop Set: Start heavy and immediately reduce weight when you fail"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try cable lateral raises with lighter weight, or machine variant\nWrist Discomfort: Adjust grip angle or use a thumbs-up grip\nNeck/Trap Tension: Focus on depressing shoulders before and during the lift\nNo Dumbbells: Use resistance bands, cables, or water bottles\nMobility Issues: Reduce range of motion and gradually increase\nLearning Stage: Use very light weight, perform slow controlled reps in front of a mirror"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,101 @@
+{
+  "exerciseId": "barbell_bicep_curl",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/05.%20Barbell%20Bicep%20Curl/05.%20Barbell%20Bicep%20Curl%20SD%20GLB_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/05.%20Barbell%20Bicep%20Curl/05.%20Barbell%20Bicep%20Curl%20-%20HD%20GLB_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/05.%20Barbell%20Bicep%20Curl/05.%20Barbell%20Bicep%20Curl%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/05.%20Barbell%20Bicep%20Curl/05.%20Barbell%20Bicep%20Curl%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.8280909212977443, 1.934213422067212, -2.6858827242301913],
+    "rotation": [-2.7634376372932272, -0.5726332776535454, -2.929565787486406],
+    "target": [0.005904088605511442, 0.8839057636828281, -0.04210269086318055]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9016729088244209, 1.3749518971674406, 2.591030983037684],
+    "rotation": [-0.18357997082978605, 0.6184062345236845, 0.10722724164149147],
+    "target": [0.023584302363190618, 0.8930919264241265, -0.0042119278169559906]
+  },
+  "customTextures": {},
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Bicep Curl is an isolation exercise that primarily targets the biceps brachii.\n\nIt is one of the most effective exercises for building bicep size and strength, using a barbell to allow you to load heavier weights than dumbbell variations.\n\nThis movement is a staple in any arm training program and is suitable for all experience levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds bicep size and peak\n- Increases arm strength for pulling movements\n- Allows heavier loading compared to dumbbell curls\n- Improves grip and forearm strength\n- Enhances muscle definition in the upper arms\n- Simple movement pattern, easy to learn\n- Carries over to compound pulling exercises like rows and pull-ups"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii\n\nSecondary: Brachialis, Brachioradialis, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand straight holding a barbell with an underhand (supinated) grip.\n2. Hands should be shoulder-width apart.\n3. Arms fully extended towards the floor.\n4. Keep your elbows close to your sides.\n5. Palms facing away from you.\n6. Feet shoulder-width apart with a slight bend in your knees.\n7. Chest up, shoulders back, core braced."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your upper arms stationary, curl the barbell forward and up in a smooth arcing motion while exhaling.\n2. Only your forearms should move — do not swing your body.\n3. Continue upwards until the bar is at shoulder level with your biceps fully contracted.\n4. Hold for a count of one while squeezing your biceps at the top.\n5. Inhale as you slowly lower the barbell back to the starting position in a controlled manner.\n6. Fully extend your arms at the bottom without locking the elbows.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the body or using momentum to lift the weight\n- Allowing the elbows to drift forward or flare out\n- Not using a full range of motion\n- Lowering the weight too quickly (missing the eccentric phase)\n- Gripping the bar too tightly, causing forearm fatigue\n- Leaning back excessively at the top of the movement\n- Using too much weight and sacrificing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Straight Barbell or EZ Curl Bar\n- Weight Plates\n- Collars\n- Optional: Wrist Wraps (for wrist support)\n- Optional: Arm Blaster (to lock elbows in position)\n- Optional: Lifting Gloves or Chalk (for grip)"
+        },
+        {
+          "heading": "Bar Setup",
+          "content": "1. Select a straight barbell or EZ curl bar.\n2. Load the appropriate weight evenly on both sides.\n3. Secure the plates with collars.\n4. Place the bar on a rack at hip height or pick it up from the floor using a deadlift motion.\n5. Ensure enough clear space in front of and behind you."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, stable base.\n2. Grip: Underhand (supinated), shoulder-width apart.\n3. Elbows: Pinned to the sides of your torso throughout.\n4. Shoulders: Pulled back and depressed, not rounded forward.\n5. Core: Braced to prevent swinging or swaying.\n6. Knees: Slight bend to reduce lower back stress.\n7. Head: Neutral position, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_bicep_curl", "cable_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- EZ Bar Curl: Angled grip reduces wrist strain\n- Dumbbell Bicep Curl: Unilateral, more range of motion\n- Hammer Curl: Neutral grip targets brachialis\n- Preacher Curl: Bench isolates biceps, eliminates momentum\n- Cable Curl: Constant tension throughout the range of motion\n- Concentration Curl: Seated isolation for peak contraction"
+        },
+        {
+          "heading": "Curl Variations",
+          "content": "Wide-Grip Barbell Curl: Emphasises the short (inner) head of the biceps\nClose-Grip Barbell Curl: Emphasises the long (outer) head of the biceps\n21s: 7 lower half reps, 7 upper half reps, 7 full reps\nDrag Curl: Bar drags up the body, elbows move behind you\nReverse Curl: Overhand grip for brachioradialis and forearm emphasis\nPaused Curl: Pause at the midpoint for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use an EZ curl bar or switch to hammer curls\nElbow Issues: Reduce weight, avoid full lockout at the bottom\nLower Back Strain: Perform seated or use an arm blaster to prevent swinging\nGrip Issues: Use lifting straps or switch to dumbbell curls\nNo Barbell: Use dumbbells, cables, or resistance bands\nLearning Stage: Start with light weight, focus on slow controlled reps"
+        }
+      ]
+    }
+  }
+}

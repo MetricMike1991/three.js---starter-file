@@ -1,0 +1,92 @@
+{
+  "exerciseId": "dumbbell_bicep_curls",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/08.%20Dumbbell%20Bicep%20Curls/08.%20Dumbbell%20Bicep%20Curls%20-%20HD_compressed.glb",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/08.%20Dumbbell%20Bicep%20Curls/08.%20Dumbbell%20Bicep%20Curls%20-%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/08.%20Dumbbell%20Bicep%20Curls/08.%20Dumbbell%20Bicep%20Curls%20-%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/08.%20Dumbbell%20Bicep%20Curls/08.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "target": [0, 0, 0]
+  },
+  "cameraHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "target": [0, 0, 0]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/08.%20Dumbbell%20Bicep%20Curls/08.%20Dumbbell%20Bicep%20Curls%20Thumbnail.webp",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Dumbbell Bicep Curls are a classic arm exercise that targets the biceps. This movement is performed with a dumbbell in each hand, allowing for a natural range of motion and balanced muscle development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates and strengthens the biceps\n- Improves arm aesthetics and muscle definition\n- Enhances grip strength\n- Can be performed anywhere with dumbbells\n- Helps correct muscle imbalances between arms"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii\nSecondary: Brachialis, Brachioradialis, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Hold a dumbbell in each hand, standing with feet shoulder-width apart.\n2. Let your arms hang by your sides with palms facing in toward your body.\n3. Keep your elbows close to your torso."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Curl the dumbbells upward by bending your elbows, keeping your upper arms stationary.\n2. Rotate your wrists as you lift so your palms face your shoulders at the top.\n3. Squeeze your biceps and hold for a count of one.\n4. Slowly lower the dumbbells back to the starting position.\n5. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the body or using momentum\n- Letting elbows drift away from the torso\n- Not fully extending the arms at the bottom\n- Using too much weight and sacrificing form\n- Not controlling the lowering phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of dumbbells (weight as appropriate)\n- Flat, stable surface\n- Optional: Mirror for form check"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stand upright with feet shoulder-width apart.\n2. Hold dumbbells at your sides, arms fully extended.\n3. Keep your core engaged and back straight.\n4. Maintain a slight bend in your knees."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bicep_curl", "hammer_curl", "preacher_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bicep Curl: Uses a barbell for both arms simultaneously\n- Hammer Curl: Neutral grip variation for brachialis emphasis\n- Preacher Curl: Performed on a bench for strict form\n- Concentration Curl: Focuses on one arm at a time for isolation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "- Wrist Pain: Use lighter weights or try hammer curls\n- Elbow Discomfort: Reduce range of motion or use cables\n- No Dumbbells: Use resistance bands or bodyweight isometric holds"
+        }
+      ]
+    }
+  }
+}
