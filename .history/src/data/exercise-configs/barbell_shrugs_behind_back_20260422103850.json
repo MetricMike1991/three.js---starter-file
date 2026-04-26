@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_shrugs_behind_back",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/182.%20Barbell%20Shrugs%20Behind%20Back/182.%20Barbell%20Shrugs%20Behind%20Back%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/182.%20Barbell%20Shrugs%20Behind%20Back/182.%20Barbell%20Shrugs%20Behind%20Back%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/182.%20Barbell%20Shrugs%20Behind%20Back/182.%20Barbell%20Shrugs%20Behind%20Back%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/182.%20Barbell%20Shrugs%20Behind%20Back/182.%20Barbell%20Shrugs%20Behind%20Back%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Barbell Shrugs Behind Back is a trapezius-building exercise performed by holding a barbell behind your body with an overhand grip and shrugging the shoulders upward.\n\nThe behind-the-back position emphasizes the upper and mid trapezius while also engaging the rear deltoids and rhomboids.\n\nThis variation, sometimes called Haney Shrugs after bodybuilder Lee Haney, is valued for building thickness and strength in the upper back and traps."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets upper and mid trapezius effectively\n- Engages rear deltoids and rhomboids more than front shrugs\n- Improves posture and shoulder stability\n- Builds upper back thickness and width\n- Strengthens grip and forearms\n- Reduces forward shoulder roll compared to front shrugs\n- Complements other pulling movements"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Trapezius, Middle Trapezius\n\nSecondary: Rear Deltoids, Rhomboids, Levator Scapulae, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold a barbell behind your back with an overhand grip.\n3. Position your hands slightly wider than shoulder-width apart.\n4. Let the bar rest against the back of your thighs or glutes.\n5. Keep your back straight and chest lifted.\n6. Relax your arms and shoulders."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears.\n2. Squeeze your trapezius at the top of the movement.\n3. Lower your shoulders back down under control.\n4. Repeat the shrug for the desired number of repetitions.\n5. Focus on engaging your shoulder and upper back muscles.\n6. Maintain proper posture throughout the movement.\n7. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of shrugging straight up\n- Using too much weight and compromising form\n- Bending the arms to assist the lift\n- Leaning forward or rounding the back\n- Insufficient range of motion\n- Jerking the weight with momentum\n- Allowing the bar to drift away from the body\n- Not pausing at the top to maximize contraction"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Optional: Power Rack (for easier unracking)\n- Flat-soled shoes recommended"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart.\n2. Grip: Overhand, slightly wider than shoulders.\n3. Bar Position: Behind back, resting against thighs/glutes.\n4. Arms: Fully extended, relaxed.\n5. Chest: Lifted, shoulders back.\n6. Back: Straight with natural arch.\n7. Head: Neutral, eyes forward.\n8. Core: Engaged for stability."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with light weight to master the movement.\n2. Use a power rack to unrack the bar safely.\n3. Focus on straight-up shrug motion.\n4. Add pauses at the top for greater contraction.\n5. Gradually increase weight as strength improves.\n6. Use straps when grip becomes the limiting factor.\n7. Keep reps in the 8-15 range for hypertrophy."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_shrugs", "dumbbell_shrug"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Shrugs (Front): Traditional variation with bar in front\n- Dumbbell Shrug: Allows greater range of motion\n- Trap Bar Shrug: Neutral grip, comfortable positioning\n- Kettlebell Shrug: Alternative implement for shrug movement\n- Cable Shrug: Constant tension variation\n- Smith Machine Shrug: Fixed bar path for stability"
+        },
+        {
+          "heading": "Trap Variations",
+          "content": "Barbell Shrug Front: Classic trap builder\nDumbbell Shrug: Free range of motion\nTrap Bar Shrug: Neutral hand position\nCable Face Pull: Rear delt and upper trap combo\nFarmer's Carry: Dynamic trap and grip work\nRack Pull Shrug: Heavy overload for traps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Try dumbbell shrugs with neutral grip\nGrip Issues: Use lifting straps\nLower Back Pain: Reduce weight, focus on form\nLimited Mobility: Use a trap bar instead\nNo Barbell: Substitute dumbbells or kettlebells\nBeginner: Start with lighter front shrugs first"
+        }
+      ]
+    }
+  }
+}

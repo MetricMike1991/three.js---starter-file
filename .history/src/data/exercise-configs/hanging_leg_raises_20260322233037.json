@@ -1,0 +1,105 @@
+{
+  "exerciseId": "hanging_leg_raises",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/92.%20Hanging%20Leg%20Raises/92.%20Hanging%20Leg%20Raises%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/92.%20Hanging%20Leg%20Raises/92.%20Hanging%20Leg%20Raises%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/92.%20Hanging%20Leg%20Raises/92.%20Hanging%20Leg%20Raises%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/92.%20Hanging%20Leg%20Raises/92.%20Hanging%20Leg%20Raises%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Hanging Leg Raises are a bodyweight core exercise performed while hanging from a pull-up bar.\n\nThis movement targets the lower abs and hip flexors by raising the legs while maintaining an engaged core.\n\nIt is one of the most effective exercises for developing abdominal strength and is commonly used by athletes and calisthenics practitioners."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent for targeting the lower abdominals\n- Develops grip strength as a secondary benefit\n- Builds core stability and pelvic control\n- No equipment needed beyond a pull-up bar\n- Scalable difficulty by bending or straightening the legs\n- Improves hip flexor strength and flexibility\n- Enhances overall hanging endurance and shoulder health"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis (lower emphasis), Hip Flexors\n\nSecondary: Obliques, Forearms (grip), Latissimus Dorsi (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Grip a pull-up bar with an overhand grip, hands shoulder-width apart.\n2. Hang with arms fully extended — this is a dead hang position.\n3. Ensure there is enough space below to swing your legs to the front.\n4. Engage your shoulders by pulling them slightly down and back.\n5. Keep your core braced and legs together.\n6. Avoid excessive swinging before starting the movement."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Crunch to the front of your body by raising your legs and rotating your pelvis upward into a posterior pelvic tilt.\n2. The more straight you keep your legs, the harder the exercise will feel.\n3. Raise your legs, rotate your pelvis and crunch your abs in a slow and controlled manner.\n4. Aim to bring your legs to at least parallel with the floor, or higher for greater contraction.\n5. Hold briefly at the top, squeezing the abs.\n6. Lower your legs back down under control.\n7. Pause for a second at the bottom to account for any swinging before the next rep."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum and swinging to raise the legs\n- Not rotating the pelvis — simply lifting legs with hip flexors only\n- Dropping the legs too quickly on the way down\n- Losing grip and cutting the set short\n- Shrugging the shoulders up towards the ears\n- Bending too much at the knees when attempting straight-leg raises\n- Not bracing the core before initiating the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pull-Up Bar (overhead bar with sufficient clearance)\n- Optional: Ab straps for forearm support\n- Optional: Chalk for improved grip\n- Optional: Ankle weights for added resistance"
+        },
+        {
+          "heading": "Bar Selection",
+          "content": "1. Use a sturdy overhead bar that can support your bodyweight.\n2. The bar should be high enough that your feet do not touch the ground when hanging.\n3. A straight bar is ideal — avoid thick bars if grip is a limiting factor.\n4. Power rack pull-up bars, wall-mounted bars, or freestanding rigs all work well.\n5. If grip is a limitation, use ab straps that loop over the bar and support your forearms."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Overhand, shoulder-width apart.\n2. Arms: Fully extended in a dead hang.\n3. Shoulders: Pulled slightly down, away from the ears.\n4. Core: Braced and engaged before each rep.\n5. Legs: Together, either straight or with a slight knee bend.\n6. Head: Neutral, looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "abdominal_crunch_machine"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Hanging Knee Raises: Easier variation with bent knees\n- Captain's Chair Leg Raises: Supported version using a vertical knee raise station\n- Lying Leg Raises: Floor-based alternative targeting the same muscles\n- Cable Crunch: Weighted core exercise with adjustable resistance\n- Ab Rollout: Anti-extension movement for full core engagement\n- Toes to Bar: Advanced variation bringing feet all the way to the bar"
+        },
+        {
+          "heading": "Leg Raise Variations",
+          "content": "Hanging Leg Raises: Standard straight-leg raise from a dead hang\nHanging Knee Raises: Bent-knee version for beginners\nWeighted Hanging Leg Raises: Ankle weights for added difficulty\nWindscreen Wipers: Rotational leg raise for oblique focus\nToes to Bar: Full range of motion — toes touch the bar at the top\nL-Sit Hold: Isometric hold with legs parallel to the ground"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Grip Weakness: Use ab straps or forearm slings to remove grip from the equation\nShoulder Issues: Try lying leg raises on the floor instead\nLower Back Pain: Bend your knees to reduce strain and focus on pelvic tilt\nHip Flexor Dominance: Focus on curling the pelvis up rather than just lifting the legs\nBeginner: Start with hanging knee raises and progress to straight legs\nNo Bar Available: Perform lying leg raises or captain's chair raises"
+        }
+      ]
+    }
+  }
+}

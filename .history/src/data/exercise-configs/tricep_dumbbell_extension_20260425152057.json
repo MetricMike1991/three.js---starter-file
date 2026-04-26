@@ -1,0 +1,113 @@
+{
+  "exerciseId": "tricep_dumbbell_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/276.%20Tricep%20Dumbbell%20Extension/276.%20Tricep%20Dumbbell%20Extension%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/276.%20Tricep%20Dumbbell%20Extension/276.%20Tricep%20Dumbbell%20Extension%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tricep Dumbbell Extension, also known as the overhead dumbbell tricep extension, is an isolation exercise targeting the triceps.\n\nA single dumbbell is held overhead with both hands and lowered behind the head before being pressed back to full extension.\n\nThe overhead position places the long head of the triceps in a deeply stretched position, making it especially effective for triceps growth."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets all three heads of the triceps\n- Emphasises the long head through the overhead stretch\n- Builds arm size and pressing lockout strength\n- Can be performed standing or seated for variety\n- Easy to load progressively with a single dumbbell\n- Reinforces shoulder mobility and core bracing\n- Useful as an accessory to bench press and overhead press"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii\n\nSecondary: Anconeus, Core, Anterior Deltoids"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Choose a dumbbell that allows good form for the desired reps.\n2. Stand with your feet shoulder-width apart.\n3. Hold the dumbbell with both hands, cupping the upper plate."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Lift the dumbbell over your head until both arms are fully extended.\n2. Keep your upper arms close to your head and elbows pointing toward the ceiling.\n3. Brace the core and keep the ribs stacked over the hips."
+        },
+        {
+          "heading": "Lower",
+          "content": "1. Slowly lower the dumbbell behind your head by bending your elbows.\n2. Continue until your forearms move beyond parallel to the floor.\n3. Keep your upper arms still, only the forearms should move."
+        },
+        {
+          "heading": "Press and Repeat",
+          "content": "1. Use your triceps to raise the dumbbell back to the starting position by extending your elbows.\n2. Keep your upper arms stationary throughout the press.\n3. Squeeze the triceps at the top and repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the elbows flare wide\n- Moving the upper arms instead of just the forearms\n- Arching the lower back to lift the weight\n- Going too heavy and losing control overhead\n- Cutting the range of motion short\n- Holding the breath through the rep\n- Letting the wrists bend back under load"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Single dumbbell of appropriate weight\n- Optional: Bench for a seated variation\n- Athletic shoes for stable footing\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Dumbbell Adjustments",
+          "content": "1. Select a dumbbell light enough to fully extend overhead with control.\n2. Cup the upper plate with both hands, palms pressed against the underside of the top plate.\n3. Confirm the dumbbell is balanced before lifting overhead.\n4. Adjust load progressively as strength improves."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, knees soft.\n2. Torso: Tall posture, ribs stacked over hips, core braced.\n3. Arms: Upper arms close to the head, elbows pointing up.\n4. Shoulders: Packed and away from the ears.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_skull_crusher_v2", "tricep_pushdown"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Tricep Skull Crusher: Lying triceps extension with a barbell or dumbbells\n- Tricep Pushdown: Cable triceps isolation\n- Cable Overhead Tricep Extension: Cable version of this movement\n- Single Arm Dumbbell Tricep Extension: One-arm overhead variation\n- Close Grip Bench Press: Compound triceps press\n- Tricep Dips On Bench: Bodyweight triceps work"
+        },
+        {
+          "heading": "Tricep Dumbbell Extension Variations",
+          "content": "Standing Two-Hand Overhead: Described here\nSeated Overhead Dumbbell Extension: Performed seated for greater stability\nSingle Arm Overhead Extension: One arm at a time for unilateral work\nLying Dumbbell Tricep Extension: Performed on a bench\nIncline Overhead Extension: Performed on an incline bench\nKneeling Overhead Extension: Performed kneeling for core engagement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Use a lighter weight and reduce range overhead\nElbow Pain: Reduce load and avoid locking out aggressively\nWrist Pain: Use a neutral grip cupping the plate\nLow Back Pain: Perform seated with back support\nBalance Issues: Sit on a bench with back support\nBeginners: Start with a single arm version using a lighter dumbbell"
+        }
+      ]
+    }
+  }
+}

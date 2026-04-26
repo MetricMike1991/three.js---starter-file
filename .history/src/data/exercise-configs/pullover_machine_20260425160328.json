@@ -1,0 +1,113 @@
+{
+  "exerciseId": "pullover_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/285.%20Pullover%20Machine/285.%20Pullover%20Machine%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/285.%20Pullover%20Machine/285.%20Pullover%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Pullover Machine is an isolation exercise that targets the latissimus dorsi through a fixed arc of motion using arm pads or handles.\n\nThe lifter sits on the machine and pushes the arms down and away, contracting the lats while keeping the torso stationary.\n\nUnlike free weight pullovers, the machine provides constant tension throughout the range of motion and removes balance demands, making it an excellent hypertrophy tool for the lats."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Direct isolation of the latissimus dorsi\n- Constant tension throughout the range of motion\n- Reduced lower back demand compared to free weight pullovers\n- Easy to load progressively on the weight stack\n- Reinforces the mind-muscle connection with the lats\n- Strong stretch position challenges the lats deeply\n- Excellent accessory for pull-ups and rows"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi\n\nSecondary: Pectoralis Major, Teres Major, Long Head of Triceps, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the seat of the plate-loaded pullover machine so that when you sit, your upper arms align with the machine's arm pads.\n2. Load the machine with an appropriate weight.\n3. Confirm the seat is locked in position before starting."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the machine and secure your upper arms under the pads.\n2. Grasp the handles if available.\n3. Keep your back flat against the seat and plant your feet firmly on the ground for stability."
+        },
+        {
+          "heading": "Pull Down",
+          "content": "1. Inhale and, using a controlled motion, push the machine's arms down and away from you.\n2. Extend your arms fully along the resistance arc.\n3. Your torso should remain stationary, with the movement coming from your shoulders and lats."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Exhale as you slowly return to the starting position.\n2. Bring the machine's arms back up with a controlled motion.\n3. Focus on feeling the stretch in your lats and chest. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or jerking the weight\n- Letting the torso lean forward to lift more weight\n- Cutting the range of motion short\n- Failing to control the eccentric portion\n- Squeezing the elbow pads too tightly\n- Holding the breath through the rep\n- Selecting too heavy a load and losing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate-loaded pullover machine\n- Weight plates\n- Athletic shoes for foot traction\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Adjust the seat height so the upper arms align with the arm pads.\n2. Confirm the seat belt or lap pad (if equipped) is set comfortably.\n3. Load the machine with an appropriate weight.\n4. Confirm the locking pin is fully engaged before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet flat on the floor, slightly wider than hip-width.\n2. Torso: Pressed firmly into the seat back, ribs stacked, core braced.\n3. Arms: Upper arms pressed into the pads, elbows pointing forward.\n4. Hands: Lightly gripping the handles if available.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["lat_pulldown", "dumbbell_pullover"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Pullover: Free weight pullover on a bench\n- Cable Straight Arm Pulldown: Cable lat isolation\n- Lat Pulldown: Vertical pulling for lats\n- Pull Up: Bodyweight vertical pull\n- Barbell Pullover: Barbell version of the free weight pullover\n- Single Arm Cable Pullover: Unilateral cable variation"
+        },
+        {
+          "heading": "Pullover Machine Variations",
+          "content": "Standard Pullover Machine: Described here\nSingle Arm Pullover Machine: One arm at a time for unilateral focus\nNeutral Grip Pullover Machine: Uses neutral handles for shoulder comfort\nWide Grip Pullover Machine: Wider grip for upper lat emphasis\nPaused Pullover Machine: Pause at full stretch for greater lat tension\nTempo Pullover Machine: Slow eccentric for hypertrophy"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion at the stretched position\nLow Back Pain: Keep the back firmly pressed into the seat\nElbow Pain: Use a lighter load and avoid locking out aggressively\nNo Machine Access: Use cable straight arm pulldowns or dumbbell pullovers\nBeginners: Start light to learn the movement before progressing\nLimited Mobility: Reduce range of motion to a comfortable level"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "walking",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/240.%20Walking/240.%20Walking%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/240.%20Walking/240.%20Walking%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/240.%20Walking/240.%20Walking%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/240.%20Walking/240.%20Walking%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Walking is one of the most accessible forms of cardiovascular exercise - a low-impact, natural movement pattern that virtually anyone can perform.\n\nAs a steady-state cardio activity, walking supports heart health, weight management, mental wellbeing, and general fitness without requiring any equipment or special training.\n\nIt can be performed outdoors, on a treadmill, or incorporated into daily routines, making it one of the most sustainable forms of exercise for lifelong health."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Improves cardiovascular and heart health\n- Low-impact and joint-friendly\n- Supports fat loss and weight management\n- Enhances mental health and reduces stress\n- Excellent for active recovery between training days\n- Improves circulation and blood pressure\n- Boosts mood through endorphin release\n- Strengthens bones and connective tissue\n- Improves sleep quality\n- Accessible to all fitness levels and ages\n- No equipment required\n- Can be performed anywhere"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Hamstrings, Glutes, Calves\n\nSecondary: Hip Flexors, Core, Tibialis Anterior, Lower Back"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand tall with feet hip-width apart.\n2. Chest up, shoulders relaxed and pulled back slightly.\n3. Engage your core lightly to support your posture.\n4. Arms hanging naturally at your sides with a slight bend at the elbows.\n5. Look forward (not at your feet).\n6. Ensure you're wearing supportive footwear appropriate for the surface.\n7. Begin breathing steadily through your nose."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Step forward naturally, landing on your heel first.\n2. Roll through the foot from heel to toe.\n3. Push off with your toes to propel forward.\n4. Swing your arms naturally in opposition to your legs.\n5. Maintain a consistent, moderate pace (50-65% max heart rate).\n6. A conversation should be possible but slightly effortful.\n7. Aim for 30-60 minutes per session.\n8. Include 3-5 sessions per week in your routine.\n9. Focus on steady breathing and good posture throughout."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Looking down at the ground instead of forward\n- Hunching shoulders or rounding the upper back\n- Taking steps that are too long (overstriding)\n- Holding arms rigidly at the sides\n- Clenching fists or tensing shoulders\n- Wearing inappropriate footwear\n- Walking at too slow a pace to get cardiovascular benefit\n- Ignoring proper hydration on longer walks\n- Always walking the same flat route (no variation)"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Supportive Walking Shoes or Running Shoes\n- Comfortable, weather-appropriate clothing\n- Water Bottle (for longer walks)\n- Optional: Fitness Tracker or Pedometer\n- Optional: Heart Rate Monitor\n- Optional: Headphones for music or podcasts\n- Optional: Treadmill for indoor walking\n- Optional: Walking Poles for added upper body engagement"
+        },
+        {
+          "heading": "Setting Your Pace",
+          "content": "1. Target 50-65% of your maximum heart rate.\n2. Use the talk test - conversation should be possible but slightly breathy.\n3. Aim for 100-130 steps per minute for moderate intensity.\n4. Build duration before increasing intensity.\n5. Start with 15-20 minute walks if new to exercise.\n6. Gradually progress to 30-60 minutes per session.\n7. Add hills or incline for increased intensity.\n8. Track progress with a fitness tracker or app."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Posture: Tall and upright, imagine a string pulling the crown of your head up.\n2. Eyes: Focused 10-20 feet ahead, not down at feet.\n3. Shoulders: Relaxed, pulled back slightly.\n4. Chest: Open and lifted.\n5. Core: Lightly engaged.\n6. Arms: Bent approximately 90 degrees, swinging naturally.\n7. Stride: Natural length - avoid overstriding.\n8. Feet: Heel strike, roll through to toe push-off.\n9. Breathing: Steady and rhythmic through the nose."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["crosstrainer", "air_assault_bike"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Treadmill Walking: Indoor controlled version\n- Incline Walking: Added difficulty with elevation\n- Hiking: Outdoor walking on varied terrain\n- Power Walking: Faster pace with intentional arm drive\n- Jogging / Running: Higher intensity variation\n- Crosstrainer: Low-impact cardio with full body engagement\n- Stationary Bike: Seated low-impact cardio"
+        },
+        {
+          "heading": "Walking Variations",
+          "content": "Standard Walking: Natural moderate pace\nPower Walking: Faster pace with exaggerated arm swing\nIncline Walking: Hills or treadmill incline for intensity\nTreadmill Walking: Controlled indoor environment\nInterval Walking: Alternating fast and slow paces\nWeighted Walking: Carrying dumbbells, backpack, or weighted vest\nNordic Walking: Using walking poles for upper body engagement\nRucking: Walking with a loaded backpack\nRetro Walking: Walking backward for variety"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Start on flat surfaces, avoid steep inclines, use supportive shoes\nLower Back Pain: Focus on posture, shorter sessions initially\nBalance Issues: Use trekking poles or walk on flat, even surfaces\nHip Pain: Shorter strides, avoid inclines, consult a physiotherapist\nWeather Constraints: Use an indoor treadmill or mall walking\nBusy Schedule: Break into 3x 10-minute sessions throughout the day\nBeginner Stage: Start with 15-20 minutes at a comfortable pace and progress gradually"
+        }
+      ]
+    }
+  }
+}

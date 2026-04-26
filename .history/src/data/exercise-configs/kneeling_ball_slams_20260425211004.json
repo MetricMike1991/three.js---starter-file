@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kneeling_ball_slams",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/298.%20Kneeling%20Ball%20Slams/298.%20Kneeling%20Ball%20Slams%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/298.%20Kneeling%20Ball%20Slams/298.%20Kneeling%20Ball%20Slams%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Kneeling Ball Slams are a high-intensity power exercise performed from a kneeling position using a medicine ball.\n\nThe lifter raises the ball overhead and forcefully slams it to the ground in front of them, generating power through the core, shoulders, and lats.\n\nKneeling removes lower-body involvement, isolating the upper body and trunk to develop explosive rotational and anti-extension strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds explosive upper-body and core power\n- Develops anti-extension and trunk stability\n- Strengthens lats, shoulders, and abdominals\n- Provides high metabolic conditioning effect\n- Improves stress release and aggressive power output\n- Reinforces overhead-to-ground throwing mechanics\n- Low impact on the lower body"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Obliques, Latissimus Dorsi, Deltoids\n\nSecondary: Triceps, Pectorals, Forearms, Glutes (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Kneel on a soft mat or padded surface with knees hip-width apart.\n2. Sit tall with hips fully extended and core braced.\n3. Hold a medicine ball with both hands in front of your chest.\n4. Keep shoulders down and back relaxed but engaged.\n5. Position yourself so there is clear space in front of you for the slam."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift the ball overhead, fully extending the arms.\n2. Brace the core and engage the lats.\n3. Forcefully slam the ball straight down to the floor in front of you.\n4. Use the lats, abs, and shoulders to drive the slam.\n5. Catch the ball on the bounce or pick it back up.\n6. Reset to the overhead position and immediately repeat.\n7. Maintain a tall, stacked torso throughout."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sitting back onto heels instead of staying tall\n- Slamming with the arms only, ignoring lats and core\n- Hyperextending the lower back at the top\n- Slamming too far forward and losing balance\n- Holding breath instead of exhaling on the slam\n- Using too light a ball to generate real power\n- Letting the ball bounce uncontrolled into the body"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Slam Ball or Non-Bounce Medicine Ball\n- Padded Mat or Soft Surface for Knees\n- Open Floor Space\n- Optional: Knee Pads\n- Recommended: Solid, Non-Slip Flooring"
+        },
+        {
+          "heading": "Selecting the Ball",
+          "content": "1. Use a dead-bounce slam ball where possible.\n2. Choose a weight you can move explosively (typically 6-20 lbs).\n3. Avoid hard-rubber balls that bounce unpredictably.\n4. Heavier balls develop power; lighter balls develop speed.\n5. Inspect the ball for cracks before each session."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Knees: Hip-width apart on a padded surface.\n2. Hips: Fully extended, glutes engaged.\n3. Torso: Tall and stacked over hips.\n4. Core: Braced before each rep.\n5. Shoulders: Packed down, away from ears.\n6. Gaze: Forward and slightly down at slam target."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["medicine_ball_slam", "kneeling_overhead_slam"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standing Medicine Ball Slam: Adds lower-body drive\n- Rotational Ball Slam: Adds rotational core power\n- Battle Rope Slams: Continuous power conditioning\n- Overhead Medicine Ball Throw: Power release variation\n- Sledgehammer Tyre Strikes: Similar overhead-to-ground pattern\n- Kettlebell Halo to Slam: Combined mobility and power"
+        },
+        {
+          "heading": "Slam Variations",
+          "content": "Kneeling Ball Slam: Isolates upper body and core\nStanding Ball Slam: Full body explosive variation\nLateral Ball Slam: Slam to one side for oblique focus\nRotational Ball Slam: Adds full trunk rotation\nTall Kneeling to Standing Slam: Combines drive with slam\nSquat to Slam: Adds lower-body explosive component"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Use thicker padding or a folded mat\nShoulder Issues: Reduce range or use lighter ball\nLower Back Issues: Avoid hyperextension at top of lift\nNo Slam Ball: Use a sandbag or weighted dead-bounce alternative\nLimited Space: Slam slightly forward into a wall pad instead\nBeginner: Start with light ball and slow tempo to learn pattern"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "exerciseId": "donkey_calf_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/286.%20Donkey%20Calf%20Raise/286.%20Donkey%20Calf%20Raise%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/286.%20Donkey%20Calf%20Raise/286.%20Donkey%20Calf%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.176373077459138, 1.878015612015584, -1.0539664639518482],
+    "rotation": [-2.5260203334072977, -1.1493790370779218, -2.568479961690456],
+    "target": [2.335971650383927, 0.9688635968454729, 0.23151608540974894]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.1763734201181135, 1.8780152718930312, -1.0539657682491337],
+    "rotation": [-2.5260202546351236, -1.1493792547095236, -2.568479841114517],
+    "target": [2.335971650383927, 0.9688635968454729, 0.23151608540974894]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/286.%20Donkey%20Calf%20Raise/Donkey%20Calf%20Raise_250x250_2026-04-25T15-10-06.webp",
+  "primaryMuscleGroup": "Calves",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Donkey Calf Raise is an isolation exercise that targets the gastrocnemius and soleus muscles of the calves through a deep stretched position.\n\nThe lifter leans forward against a pad with hips supported, then drives the heels up through the balls of the feet to fully contract the calves.\n\nThe bent-over position places the gastrocnemius in a lengthened state, allowing for a strong stretch and contraction that is difficult to replicate with standing calf raises."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strong stretch through the gastrocnemius\n- Direct isolation of the calves\n- Removes lower back compression compared to standing variations\n- Allows heavy loading through hip support\n- Improves ankle mobility and stability\n- Builds calf size and definition\n- Reinforces the mind-muscle connection in the calves"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gastrocnemius, Soleus\n\nSecondary: Tibialis Posterior, Hamstrings, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the donkey calf raise machine to fit your height.\n2. Ensure the pad rests comfortably on your lower back/hip area when you're in a leaning forward position.\n3. Confirm the load is appropriate before stepping on."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand on the machine's foot platform with your toes on the edge, allowing for maximum range of motion.\n2. Lean forward so that your hips are under the pad.\n3. Grasp the machine's handles for stability."
+        },
+        {
+          "heading": "Stretch the Calves",
+          "content": "1. Keep your knees slightly bent but stationary throughout the movement.\n2. Lower your heels towards the ground as far as possible.\n3. Feel a deep stretch through the calf muscles at the bottom."
+        },
+        {
+          "heading": "Drive Up and Repeat",
+          "content": "1. Push through the balls of your feet to raise your heels as high as possible.\n2. Focus on contracting your calf muscles at the top of the movement.\n3. Pause briefly at the top for maximum contraction, then slowly lower back to the starting position. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing at the bottom of the rep\n- Bending the knees during the raise\n- Cutting the range of motion short\n- Rushing the eccentric portion\n- Allowing the hips to lift off the pad\n- Letting the heels drift inward or outward\n- Loading too heavy and losing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Donkey calf raise machine (or partner-loaded variation)\n- Weight stack or plates as required by the machine\n- Flat athletic shoes with a stable sole"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the hip pad height to match your torso length.\n2. Set the foot platform so the balls of your feet are on the edge.\n3. Select an appropriate weight on the stack or load the lever arm."
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Lean forward so the torso is roughly parallel to the floor.\n2. Hips remain under the pad throughout the set.\n3. Knees soft but not bending during reps."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Confirm the pad is locked before loading the machine\n- Avoid bouncing at the bottom to protect the Achilles\n- Do not lock out the knees aggressively\n- Use a controlled tempo rather than momentum\n- Stop if you feel sharp pain in the Achilles or calves"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other calf isolation exercises that load the gastrocnemius and soleus through a full range of motion."
+        }
+      ],
+      "suggestedExercises": [
+        "standing_calf_raise",
+        "seated_calf_raise"
+      ]
+    }
+  }
+}

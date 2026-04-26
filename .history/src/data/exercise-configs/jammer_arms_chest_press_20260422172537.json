@@ -1,0 +1,113 @@
+{
+  "exerciseId": "jammer_arms_chest_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/199.%20Jammer%20Arms%20Chest%20Press/199.%20Jammer%20Arms%20Chest%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/199.%20Jammer%20Arms%20Chest%20Press/199.%20Jammer%20Arms%20Chest%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/199.%20Jammer%20Arms%20Chest%20Press/199.%20Jammer%20Arms%20Chest%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/199.%20Jammer%20Arms%20Chest%20Press/199.%20Jammer%20Arms%20Chest%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Jammer Arms Chest Press is a pressing exercise performed using a Jammer Arms attachment (such as those found on a rig or power rack) combined with a flat bench.\n\nThe fixed arc of the jammer arms provides a guided pressing path while still allowing natural shoulder and elbow mechanics, making it a strong hybrid between a barbell bench press and a chest press machine.\n\nIt is well-suited for building chest, shoulder, and triceps strength and hypertrophy while reducing the stability demand of a free barbell."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strength and size in the chest, shoulders, and triceps\n- Guided movement path reduces stabilization demands\n- Allows heavy pressing with less shoulder strain than some variations\n- Useful for lifters returning from injury or learning to press\n- Independent arms (on some jammers) can reduce left/right imbalances\n- Scalable by changing plate load\n- Great accessory for improving bench press strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest)\n\nSecondary: Anterior Deltoids, Triceps, Serratus Anterior, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Position a flat bench in front of the Jammer Arms machine.\n2. Adjust the height of the Jammer Arms handles to your preference.\n3. Load the machine with the desired weight plates."
+        },
+        {
+          "heading": "Lie Down",
+          "content": "1. Lie flat on the bench with your upper back and shoulders resting on the bench.\n2. Position your body so that the handles of the Jammer Arms are directly above your chest.\n3. Plant your feet firmly on the floor for stability."
+        },
+        {
+          "heading": "Grip and Press",
+          "content": "1. Reach up and grip the handles of the Jammer Arms with both hands, palms facing down.\n2. Push the handles away from your chest, extending your arms fully while keeping your back and head on the bench.\n3. This is your press phase; squeeze the chest at the top without locking the elbows harshly."
+        },
+        {
+          "heading": "Return to Starting Position",
+          "content": "1. Slowly lower the handles back towards your chest by bending your elbows.\n2. Allow them to come down to chest level or slightly below.\n3. Repeat the press and return phases for the desired number of repetitions, maintaining proper form, keeping your core engaged, and controlling the movement throughout."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring elbows excessively, stressing the shoulders\n- Lifting the hips or arching the back excessively\n- Not lowering the handles through a full range of motion\n- Bouncing the handles at the bottom of the rep\n- Using too much weight and losing control\n- Bench positioned too far from or too close to the jammer pivot\n- Pressing unevenly between left and right arms"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Jammer Arms Attachment (on a rig, rack, or dedicated machine)\n- Flat Bench\n- Weight Plates\n- Collars to secure plates\n- Optional: Lifting Belt for heavier loads\n- Optional: Wrist Wraps for support"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Position the bench perpendicular to the jammer arms so the handles travel over your chest.\n2. Set the jammer arm height so the handles start at mid-chest range when you are lying down.\n3. Load both arms with equal weight plates and secure with collars.\n4. Check that the arms swing smoothly before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Position: Flat on the bench, upper back and head supported.\n2. Feet: Flat on the floor for drive and stability.\n3. Grip: Handles held with palms facing down, wrists neutral.\n4. Shoulders: Retracted and packed into the bench.\n5. Core: Braced to keep the ribs down and the back stable."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bench Press: Classic heavy compound chest press\n- Dumbbell Bench Press: Free-weight press with more range of motion\n- Chest Press Machine: Seated fixed-path press\n- Smith Machine Bench Press: Guided bar with vertical path\n- Landmine Press: Angled pressing with a barbell in a landmine\n- Push-Up Variations: Bodyweight pressing alternative"
+        },
+        {
+          "heading": "Jammer Arms Variations",
+          "content": "Flat Bench Jammer Press: Standard version described here\nIncline Bench Jammer Press: Emphasizes upper chest and front delts\nSeated Upright Jammer Press: Shoulder-focused vertical pressing\nStanding Jammer Press: Athletic, full-body pressing movement\nSingle-Arm Jammer Press: Unilateral variation for balance and core\nTempo Jammer Press: Slow eccentric for hypertrophy focus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use a narrower grip, reduce range, keep elbows tucked\nWrist Pain: Try wrist wraps or a neutral grip if available\nLower Back Issues: Avoid excessive arch; keep hips on the bench\nNo Jammer Arms Machine: Substitute with chest press machine or barbell bench press\nBeginners: Use light plates to learn the path and tempo\nInjury Recovery: Reduce range and load; add a pause at mid-range"
+        }
+      ]
+    }
+  }
+}

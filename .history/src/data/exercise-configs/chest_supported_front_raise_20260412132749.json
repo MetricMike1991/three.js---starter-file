@@ -1,0 +1,105 @@
+{
+  "exerciseId": "chest_supported_front_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/145.%20Chest%20Supported%20Front%20Raise/145.%20Chest%20Supported%20Front%20Raise%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/145.%20Chest%20Supported%20Front%20Raise/145.%20Chest%20Supported%20Front%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/145.%20Chest%20Supported%20Front%20Raise/145.%20Chest%20Supported%20Front%20Raise%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/145.%20Chest%20Supported%20Front%20Raise/145.%20Chest%20Supported%20Front%20Raise%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Chest Supported Front Raise is a shoulder isolation exercise performed lying face down on an incline bench while raising dumbbells to the front.\n\nBy bracing the chest against the bench, this variation eliminates momentum and swinging, forcing the anterior deltoids to do all the work.\n\nThis makes it an excellent choice for strict shoulder development and is commonly used in bodybuilding and rehabilitation programmes where controlled movement is essential."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the anterior deltoids with strict form — no cheating or momentum\n- Chest support reduces lower back stress during the movement\n- Eliminates the ability to swing or use body english to lift the weight\n- Builds shoulder strength and definition through a controlled range of motion\n- Improves posture by strengthening the front of the shoulders\n- Easier to maintain proper form compared to standing front raises\n- Great for mind-muscle connection and slow, controlled reps"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids\n\nSecondary: Medial Deltoids, Upper Trapezius, Serratus Anterior, Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an adjustable bench to a high incline (approximately 45–60 degrees).\n2. Lie face down on the bench with your chest firmly against the pad.\n3. Plant your feet on the ground behind you for stability.\n4. Hold a pair of dumbbells with your arms hanging straight down, palms facing the floor or slightly inward.\n5. Keep your head in a neutral position and your core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your arms straight with a very slight bend in the elbows, raise the dumbbells directly in front of you.\n2. Lift until your arms reach approximately shoulder height — do not go higher.\n3. Pause briefly at the top of the movement, squeezing the front of your shoulders.\n4. Slowly lower the dumbbells back down to the starting position with control.\n5. Maintain contact between your chest and the bench throughout the entire movement.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the chest off the bench to use momentum\n- Raising the dumbbells too high above shoulder level, shifting stress to the traps\n- Using too much weight, leading to swinging or jerky movements\n- Bending the elbows excessively, turning it into a curl-like motion\n- Rushing the lowering phase instead of controlling the eccentric\n- Holding the breath instead of breathing steadily throughout\n- Craning the neck upward instead of keeping a neutral head position"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Adjustable incline bench (set to approximately 45–60 degrees)\n- A pair of light to moderate dumbbells\n- Clear floor space around the bench\n- Optional: Wrist wraps for additional grip support with heavier weights"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Set the bench to a high incline — around 45 to 60 degrees works well.\n2. The steeper the angle, the more strict the isolation on the anterior deltoids.\n3. Ensure the bench is stable and locked into position before use.\n4. Position yourself so that your chin is just above the top of the bench pad.\n5. Your arms should hang freely below you without the dumbbells touching the floor.\n6. If the dumbbells touch the floor, raise the bench height or use smaller plates."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Chest: Firmly pressed against the bench pad throughout the movement.\n2. Feet: Planted on the ground behind you for stability.\n3. Head: Neutral position — do not crane your neck up or let it hang.\n4. Arms: Hanging straight down with a very slight elbow bend.\n5. Grip: Overhand (palms facing floor) or neutral (palms facing each other).\n6. Core: Braced to maintain a stable position on the bench."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "arnold_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standing Dumbbell Front Raise: Same motion without chest support — allows more weight but less strict\n- Cable Front Raise: Constant tension throughout the range of motion\n- Barbell Front Raise: Two-handed variation for heavier loading\n- Plate Front Raise: Hold a weight plate for a different grip angle\n- Landmine Press: Angled pressing movement that emphasises the front delts\n- Face Pull: Targets rear delts for balanced shoulder development"
+        },
+        {
+          "heading": "Front Raise Variations",
+          "content": "Chest Supported Front Raise: Strict isolation with no momentum\nStanding Dumbbell Front Raise: Classic standing variation\nAlternating Front Raise: One arm at a time for focused contraction\nCable Front Raise: Constant tension from low pulley\nIncline Front Raise: Lying back on an incline for a different angle\nBanded Front Raise: Increasing resistance through the range of motion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion or try a neutral grip (palms facing each other)\nLower Back Issues: The chest support makes this a great option — ensure full contact with the bench\nWrist Discomfort: Try a neutral grip or use wrist wraps for support\nNo Adjustable Bench: Use an incline smith machine bench or perform standing front raises instead\nBeginner: Start with very light dumbbells — front raises require less weight than you might think\nMobility Limitations: Only raise to a comfortable height and gradually increase range over time"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_bench_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/20.%20Barbell%20bench%20Press/20%20Barbell%20bench%20Press%20%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/20.%20Barbell%20bench%20Press/20%20Barbell%20bench%20Press%20HD%20%20.fbx_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/20.%20Barbell%20bench%20Press/20%20Barbell%20bench%20Press%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/20.%20Barbell%20bench%20Press/20%20Barbell%20bench%20Press%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.1685539711982393, 1.9917685067874937, -1.774412945477994],
+    "rotation": [-2.4941521420664907, -0.7406361365715154, -2.669791536920493],
+    "target": [-0.003824355458122253, 0.5636686694603045, 0.11417435551643051]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9953024298544615, 1.9550187904336416, 1.5540371992333917],
+    "rotation": [-0.7110899082432366, 0.7529634766941328, 0.5323264031787479],
+    "target": [-0.007735152949554194, 0.5600379678093999, -0.06534917710103008]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Bench Press is one of the most iconic and widely performed compound exercises in strength training.\n\nPerformed lying flat on a bench with a loaded barbell, it is the gold standard for building upper body pressing strength and chest mass.\n\nAs one of the three competition lifts in powerlifting (alongside squat and deadlift), the bench press is a cornerstone movement for athletes, bodybuilders, and recreational lifters alike."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Premier upper body strength and mass builder\n- Allows for heavy loading with progressive overload\n- Trains multiple muscle groups simultaneously\n- Directly transfers to real-world pushing strength\n- One of the three powerlifting competition lifts\n- Easy to track progress and set personal records\n- Highly versatile with many grip and angle variations"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal and Clavicular Heads)\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie flat on the bench with your eyes directly under the barbell.\n2. Grip the bar with hands slightly wider than shoulder-width apart.\n3. Plant your feet firmly on the floor, flat or slightly tucked back.\n4. Retract your shoulder blades and squeeze them together against the bench.\n5. Create a slight arch in your lower back — hips remain on the bench.\n6. Unrack the bar by straightening your arms and moving the bar over your chest.\n7. The bar should be directly above your mid-chest in the starting position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Lower the bar in a controlled manner to your mid-chest or lower chest.\n3. Keep your elbows at approximately 45-75 degrees from your torso.\n4. Touch the bar lightly to your chest — no bouncing.\n5. Drive the bar upward by pressing through your palms.\n6. Push your feet into the floor for leg drive.\n7. Extend your arms fully without locking the elbows aggressively.\n8. The bar should travel in a slight arc from chest to over shoulders.\n9. Repeat for the desired number of reps, then rerack with control."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing the bar off the chest\n- Flaring elbows out to 90 degrees (increases shoulder injury risk)\n- Lifting hips off the bench during the press\n- Not retracting shoulder blades before unracking\n- Uneven grip width or uneven pressing\n- Bar path going straight up instead of slight arc toward face\n- Not using a spotter for heavy attempts\n- Wrapping thumbs around the same side as fingers (suicide grip)\n- Rushing the descent — no control on the eccentric\n- Not planting feet firmly for a stable base"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Flat Bench Press Station or Power Rack with Bench\n- Safety Pins or Spotter Arms (recommended)\n- Optional: Spotter for heavy lifts\n- Optional: Wrist Wraps (for wrist support)\n- Optional: Chalk (for grip)\n- Recommended: Flat-soled shoes for stable leg drive"
+        },
+        {
+          "heading": "Rack Setup",
+          "content": "1. Set the rack height so the bar is reachable with slightly bent arms while lying down.\n2. Don't set the hooks too high — you shouldn't have to full press to unrack.\n3. Don't set them too low — you shouldn't lose shoulder blade retraction to unrack.\n4. Set safety pins or spotter arms just below chest level.\n5. Ensure the bench is centered in the rack.\n6. Use collars on the barbell to secure the plates."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Eyes: Directly under the barbell when lying down.\n2. Feet: Flat on the floor or slightly tucked, creating leg drive.\n3. Hips: Firmly on the bench at all times.\n4. Back: Shoulder blades retracted and depressed, slight arch.\n5. Shoulders: Pulled back into the bench, not rounded forward.\n6. Head: Flat on the bench, neutral position.\n7. Grip: Slightly wider than shoulder-width, full grip with thumbs wrapped.\n8. Wrists: Stacked straight over forearms, not bent back."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flat_dumbbell_chest_press", "incline_dumbbell_chest_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Flat Dumbbell Chest Press: Greater range of motion, independent arms\n- Incline Barbell Bench Press: Upper chest emphasis\n- Close-Grip Bench Press: Triceps-dominant pressing\n- Floor Press: Limited range, lockout strength\n- Machine Chest Press: Guided movement, great for beginners\n- Push-Ups: Bodyweight alternative, no equipment needed"
+        },
+        {
+          "heading": "Bench Press Variations",
+          "content": "Flat Barbell Bench Press: Standard competition-style press\nPaused Bench Press: Pause on chest for strength and control\nTempo Bench Press: Controlled eccentric for muscle building\nClose-Grip Bench Press: Narrow grip for tricep emphasis\nWide-Grip Bench Press: Greater chest stretch, more pec activation\nSpoto Press: Pause just above chest for strength off the chest\nBoard Press: Partial range for lockout development"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try close-grip or neutral grip dumbbell press\nWrist Pain: Use wrist wraps, check grip width, ensure straight wrists\nLower Back Pain: Reduce arch, keep feet flat, or elevate feet on bench\nNo Spotter: Use a power rack with safety pins, or switch to dumbbells\nNo Barbell: Use dumbbells, resistance bands, or machine chest press\nLearning Stage: Start with just the bar, focus on bar path and shoulder position"
+        }
+      ]
+    }
+  }
+}

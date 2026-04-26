@@ -1,0 +1,105 @@
+{
+  "exerciseId": "feet_elevated_hip_thrusts",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/239.%20Feet%20Elevated%20Hip%20Thrusts/239.%20Feet%20Elevated%20Hip%20Thrusts%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/239.%20Feet%20Elevated%20Hip%20Thrusts/239.%20Feet%20Elevated%20Hip%20Thrusts%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/239.%20Feet%20Elevated%20Hip%20Thrusts/239.%20Feet%20Elevated%20Hip%20Thrusts%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/239.%20Feet%20Elevated%20Hip%20Thrusts/239.%20Feet%20Elevated%20Hip%20Thrusts%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Feet Elevated Hip Thrust is a glute-focused hip extension exercise where the feet are raised on a platform such as bumper plates or a low box.\n\nElevating the feet increases hamstring involvement and changes the loading angle on the glutes, providing a deeper stretch and stronger contraction compared to standard hip thrusts.\n\nThis variation is excellent for developing the posterior chain without heavy external loading, making it suitable for all training levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strong emphasis on gluteus maximus and hamstrings\n- Increased range of motion compared to flat-footed hip thrusts\n- Builds glute strength and power for athletic performance\n- Improves hip extension mechanics\n- Bodyweight-friendly variation - no heavy loading required\n- Enhances mind-muscle connection with the glutes\n- Reduced lower back stress compared to conventional deadlifts\n- Supports better posture and pelvic alignment\n- Excellent accessory for squats and deadlifts"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus, Hamstrings\n\nSecondary: Gluteus Medius, Adductors, Core, Erector Spinae, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Position a bench or box behind you for upper back support.\n2. Place bumper plates (or a low platform) where your feet will rest.\n3. Sit on the ground with your upper back against the edge of the bench.\n4. Place your feet flat on the bumper plates, hip-width apart.\n5. Arms can rest on the bench or extend along your sides for stability.\n6. Tuck your chin slightly to maintain a neutral head position.\n7. Engage your core and set your pelvis in a neutral position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Drive through your heels on the elevated platform.\n3. Lift your hips toward the ceiling by squeezing your glutes.\n4. Continue until your body forms a straight line from shoulders to knees.\n5. Pause at the top and maximally contract your glutes.\n6. Avoid hyperextending the lower back at the top.\n7. Lower your hips back down with control.\n8. Stop just before your glutes touch the floor to maintain tension.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyperextending the lower back at the top\n- Pushing through the toes instead of the heels\n- Tucking the chin too aggressively or looking up\n- Not achieving full hip extension at the top\n- Letting the knees cave inward\n- Using momentum instead of glute drive\n- Feet positioned too far from the body\n- Upper back slipping off the bench\n- Resting on the floor between reps (losing tension)"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Flat Bench or Low Box (for upper back support)\n- Bumper Plates or Low Platform (for foot elevation)\n- Padded Mat (optional for comfort)\n- Optional: Glute Band (for added resistance)\n- Optional: Dumbbell or Barbell (for added load)\n- Recommended: Non-slip surface for stability"
+        },
+        {
+          "heading": "Foot Elevation Setup",
+          "content": "1. Use stable bumper plates or a low box (4-8 inches high).\n2. Ensure the platform is wide enough for full foot contact.\n3. Position feet so knees are bent at approximately 90 degrees at the top.\n4. Feet should be hip-width apart with toes forward or slightly out.\n5. Avoid unstable surfaces that can tip or shift.\n6. Ensure the platform has a non-slip surface.\n7. Test stability with bodyweight before adding load."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Upper Back: Rested on bench edge at the bra-line / shoulder blades.\n2. Stance: Feet on platform, hip-width apart.\n3. Knees: Bent approximately 90 degrees at the top position.\n4. Hips: Aligned with shoulders and knees at lockout.\n5. Spine: Neutral - avoid hyperextension.\n6. Core: Braced throughout the entire movement.\n7. Chin: Slightly tucked, head neutral.\n8. Arms: Resting on bench or along sides for balance."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "sumo_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Heavy loaded variation with barbell\n- Dumbbell Hip Thrust: Dumbbell load across the hips\n- Glute Bridge: Floor-based variation without bench\n- Single Leg Hip Thrust: Unilateral version for balance and stability\n- Kas Glute Bridge: Limited range of motion for constant glute tension\n- B-Stance Hip Thrust: Staggered foot position for quasi-unilateral loading"
+        },
+        {
+          "heading": "Hip Thrust Variations",
+          "content": "Feet Elevated Hip Thrust: Feet on platform for increased range\nBarbell Hip Thrust: Loaded variation for strength\nDumbbell Hip Thrust: Dumbbell on hips for moderate load\nSingle Leg Hip Thrust: Unilateral challenge\nB-Stance Hip Thrust: Staggered stance with partial unilateral load\nPaused Hip Thrust: Pause at top for increased time under tension\nBanded Hip Thrust: Resistance band for constant glute tension\nTempo Hip Thrust: Slow eccentric for hypertrophy"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce range of motion, focus on glute squeeze without hyperextending\nKnee Pain: Ensure proper foot placement, reduce load\nHip Pinching: Adjust foot position wider or closer to body\nNeck Strain: Support head with small towel, avoid looking up\nNo Bench: Perform on floor as standard glute bridge\nNo Bumper Plates: Use stacked books, aerobic step, or any stable elevated surface\nBeginner Stage: Master the standard hip thrust before adding foot elevation"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "exerciseId": "double_kettlebell_carry",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/295.%20Double%20Kettlebell%20Carry/295.%20Double%20Kettlebell%20Carry%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/295.%20Double%20Kettlebell%20Carry/295.%20Double%20Kettlebell%20Carry%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Double Kettlebell Carry is a loaded carry exercise where the lifter walks while holding a kettlebell in each hand at their sides.\n\nThis variation, also known as a kettlebell farmer's walk, develops total body strength, grip endurance, and core stability under heavy bilateral load.\n\nLoaded carries are highly transferable to real-world strength and reinforce trunk stiffness, postural control, and conditioning."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds anti-flexion core strength under heavy load\n- Develops powerful grip strength and forearm endurance\n- Improves shoulder stability and posture\n- Increases conditioning and work capacity\n- Allows heavier loading than single-arm carries\n- Reinforces upright bracing patterns\n- Highly scalable through load and distance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Forearms, Trapezius, Core (Rectus Abdominis, Obliques)\n\nSecondary: Quadriceps, Glutes, Calves, Shoulders, Upper Back"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Stand between two kettlebells, spaced slightly wider than hip-width apart.\n2. Bend at the knees and hips to squat down.\n3. Grasp each kettlebell handle firmly with each hand."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Engage your core and lift the kettlebells by straightening your legs and hips to stand up fully.\n2. Keep the kettlebells at your sides with arms extended naturally.\n3. Pull your shoulders back and down, ribs stacked over hips."
+        },
+        {
+          "heading": "Walk With Control",
+          "content": "1. Begin walking forward at a steady pace.\n2. Keep your shoulders back, chest up, and gaze forward.\n3. Ensure your movements are controlled and your posture remains upright throughout the walk."
+        },
+        {
+          "heading": "Finish the Carry",
+          "content": "1. Continue walking for a predetermined distance or time.\n2. To finish, carefully lower the kettlebells to the ground by squatting down.\n3. Ensure your back remains straight and the movement comes from your legs and hips."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the lower back to round under load\n- Letting the shoulders shrug or roll forward\n- Leaning side to side as you walk\n- Holding the breath instead of breathing steadily\n- Walking with rushed, choppy steps\n- Using a load too heavy to maintain posture\n- Setting the kettlebells down with poor mechanics"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Pair of kettlebells of matching weight\n- Open walking space\n- Optional measuring tape or distance markers"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Feet hip-width apart at the start.\n2. Core braced, ribs stacked over hips.\n3. Shoulders back and down throughout the walk."
+        },
+        {
+          "heading": "Movement Setup",
+          "content": "1. Pick up both kettlebells with a hinge or squat pattern.\n2. Stand fully tall before stepping off.\n3. Walk in a straight line with controlled steps."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Keep the path clear of obstacles\n- Stop if posture deteriorates\n- Use a load you can carry without leaning\n- Lower the kettlebells with bent knees, not a rounded back\n- Stop immediately if you feel sharp back or shoulder pain"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other loaded carry variations that build core stability and grip strength."
+        }
+      ],
+      "suggestedExercises": [
+        "kettlebell_carry",
+        "farmers_walk"
+      ]
+    }
+  }
+}

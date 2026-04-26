@@ -1,0 +1,102 @@
+{
+  "exerciseId": "jammer_arms_shoulder_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/200.%20Jammer%20Arms%20Shoulder%20Press/200.%20Jammer%20Arms%20Shoulder%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/200.%20Jammer%20Arms%20Shoulder%20Press/200.%20Jammer%20Arms%20Shoulder%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/200.%20Jammer%20Arms%20Shoulder%20Press/200.%20Jammer%20Arms%20Shoulder%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Jammer Arms Shoulder Press is an overhead pressing exercise performed standing in front of a Jammer Arms attachment (typically mounted to a rig or power rack).\n\nThe fixed arc of the jammer arms guides the pressing path while still allowing natural shoulder mechanics, making it an efficient tool for building shoulder strength and power.\n\nIt combines the benefits of a standing press with the stability of a guided movement, making it ideal for progressive overload and athletic training."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strength and size in the shoulders and triceps\n- Guided path reduces stabilization demands compared to free weights\n- Allows heavier loading with controlled mechanics\n- Engages the core and legs as part of a standing press\n- Good for lifters with shoulder mobility limitations\n- Useful accessory for overhead press and push press work\n- Independent arms (on some jammers) can address side-to-side imbalances"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Lateral Deltoids\n\nSecondary: Triceps, Upper Chest, Trapezius, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the Jammer Arms machine to your desired settings.\n2. Set the height of the handles so they sit at roughly shoulder height when you are standing.\n3. Load the desired weight plates onto the arms."
+        },
+        {
+          "heading": "Stand and Grip",
+          "content": "1. Stand in front of the Jammer Arms machine with your feet shoulder-width apart.\n2. Reach for the handles with both hands.\n3. Grip them firmly at shoulder height or slightly above, wrists neutral."
+        },
+        {
+          "heading": "Press Overhead",
+          "content": "1. Push the handles upward and overhead while extending your arms fully.\n2. Keep your core engaged, back straight, and feet planted on the ground.\n3. Avoid excessive arching or leaning back during the press."
+        },
+        {
+          "heading": "Lower and Repeat",
+          "content": "1. Lower the handles back down to shoulder height or slightly below by bending your elbows.\n2. Repeat the press for the desired number of repetitions.\n3. Maintain control and proper form throughout the exercise."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Excessive back arch during the press\n- Losing core tension and letting the ribs flare\n- Flaring the elbows too far out to the sides\n- Pressing with uneven effort between left and right arms\n- Using leg drive when a strict press is intended\n- Not reaching a full lockout at the top\n- Letting the handles drop too fast on the eccentric"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Jammer Arms Attachment (on a rig, rack, or dedicated machine)\n- Weight Plates\n- Collars to secure plates\n- Flat-soled shoes\n- Optional: Lifting Belt for heavier loads\n- Optional: Wrist Wraps for support"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Set the handle start height so your hands rest at shoulder level when standing.\n2. Load both arms with equal weight and secure with collars.\n3. Check that each arm moves smoothly through its full arc.\n4. Position yourself so the arms travel vertically over your shoulders, not in front."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, weight balanced through the whole foot.\n2. Core: Braced to protect the lower back.\n3. Glutes: Lightly squeezed to stabilize the pelvis.\n4. Shoulders: Packed, not shrugged.\n5. Grip: Firm but relaxed, wrists stacked over the forearms."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "arnold_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Classic standing barbell press\n- Dumbbell Shoulder Press: Free-weight press with more range of motion\n- Seated Shoulder Press Machine: Fixed-path seated press\n- Smith Machine Overhead Press: Guided barbell press\n- Landmine Press: Angled pressing with a landmine attachment\n- Push Press: Explosive leg-assisted overhead press"
+        },
+        {
+          "heading": "Jammer Arms Shoulder Press Variations",
+          "content": "Standing Jammer Press: Standard version described here\nHalf-Kneeling Jammer Press: Removes leg drive, challenges core stability\nSingle-Arm Jammer Press: Unilateral variation for core and balance\nPush Press Jammer: Adds leg drive for heavier, explosive work\nTempo Jammer Press: Slow eccentric for hypertrophy\nSeated Jammer Press: Seated against a bench for strict pressing"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try neutral grip, reduce range, or use lighter load\nLower Back Issues: Use a seated or half-kneeling variation\nWrist Pain: Use wrist wraps or adjust grip angle\nNo Jammer Arms: Substitute with dumbbell, barbell, or machine shoulder press\nBeginners: Start with very light loads to learn the arc and timing\nInjury Recovery: Reduce range and focus on controlled tempo"
+        }
+      ]
+    }
+  }
+}

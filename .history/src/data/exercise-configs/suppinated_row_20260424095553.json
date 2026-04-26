@@ -1,0 +1,105 @@
+{
+  "exerciseId": "suppinated_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/236.%20Suppinated%20Row/236.%20Suppinated%20Row%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/236.%20Suppinated%20Row/236.%20Suppinated%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/236.%20Suppinated%20Row/236.%20Suppinated%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/236.%20Suppinated%20Row/236.%20Suppinated%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Supinated Row (also known as the Underhand Barbell Row or Yates Row) is a compound pulling exercise performed with an underhand (palms-up) grip on a barbell.\n\nThe supinated grip shifts emphasis onto the lower lats and biceps while allowing greater loading than traditional overhand rows.\n\nMade famous by bodybuilder Dorian Yates, this variation is a staple of back-building programs for developing thickness and width."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Greater lat activation, particularly the lower lats\n- Increased biceps recruitment due to supinated grip\n- Allows heavier loads than pronated bent-over rows\n- Builds back thickness and width\n- Improves pulling strength for deadlifts and pull-ups\n- Shorter range of motion reduces lower back fatigue\n- Enhances grip strength\n- Develops rhomboid and mid-trap strength\n- More comfortable shoulder position for many lifters"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Biceps Brachii\n\nSecondary: Rhomboids, Trapezius (middle/lower), Rear Deltoids, Erector Spinae, Brachialis, Forearms and Grip, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Load the barbell with an appropriate weight.\n2. Stand with feet hip-width apart, toes pointed forward.\n3. Grip the bar with an underhand (supinated) grip, palms facing up.\n4. Hands should be slightly narrower than shoulder-width apart.\n5. Bend at the hips and knees while keeping your back flat.\n6. Torso should be angled 30-45 degrees from horizontal.\n7. Let the bar hang with arms fully extended.\n8. Engage your core and set your shoulder blades."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Pull the barbell toward your lower chest / upper abdomen.\n3. Drive your elbows back and down along your sides.\n4. Squeeze your shoulder blades together at the top.\n5. Pause briefly in the contracted position.\n6. Lower the bar with control back to full arm extension.\n7. Maintain the same torso angle throughout the set.\n8. Repeat for the desired number of repetitions with controlled tempo."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or jerking the weight up\n- Standing too upright (reducing back engagement)\n- Rounding the lower back during the pull\n- Pulling the bar to the chest instead of lower chest/abdomen\n- Not fully extending arms between reps\n- Flaring elbows out instead of keeping them close\n- Excessive knee bend turning it into a squat-row hybrid\n- Looking up and hyperextending the neck\n- Using too much weight and losing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates (appropriate for your strength level)\n- Lifting Platform or Stable Floor Surface\n- Optional: Lifting Straps (for grip assistance with heavy loads)\n- Optional: Lifting Belt (for heavy sets)\n- Optional: Chalk (improves grip)\n- Recommended: Flat-soled shoes"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start with lighter weight to master form.\n2. Use a weight that allows 8-12 controlled reps.\n3. Last reps should be challenging but maintain strict form.\n4. Progress gradually - form before load.\n5. Use straps if grip fails before back.\n6. Warm up with lighter sets before working sets.\n7. Avoid ego lifting - the supinated grip can stress biceps."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, toes forward.\n2. Grip: Supinated (underhand), slightly narrower than shoulders.\n3. Knees: Bent slightly for stability.\n4. Hips: Hinged back, torso angled 30-45 degrees.\n5. Spine: Neutral from head to tailbone.\n6. Shoulders: Packed down and back.\n7. Core: Braced throughout the entire movement.\n8. Eyes: Focused on the floor a few feet ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bentover_barbell_row", "barbell_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bentover Barbell Row: Pronated (overhand) grip variation\n- Pendlay Row: Bar reset on floor each rep, strict form\n- T-Bar Row: Landmine or T-bar apparatus row\n- Seal Row: Chest-supported variation for strict form\n- Dumbbell Row: Unilateral version with dumbbells\n- Chest Supported Row: Removes lower back demand"
+        },
+        {
+          "heading": "Row Variations",
+          "content": "Supinated Row: Underhand grip, lower lat / bicep emphasis\nPronated Bent-Over Row: Overhand grip, upper back focus\nPendlay Row: Strict row from floor each rep\nYates Row: More upright torso, heavier loads\nSingle-Arm Dumbbell Row: Unilateral version\nCable Row: Constant tension from cables\nInverted Row: Bodyweight horizontal pull"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Switch to chest-supported row or machine row\nBicep Tendinitis: Use pronated grip or neutral grip instead\nLimited Hip Mobility: Use landmine or T-bar row\nGrip Issues: Use lifting straps or hook grip\nNo Barbell: Use dumbbells for similar pattern\nBeginner Stage: Start with dumbbell rows to learn the pattern before loading heavy"
+        }
+      ]
+    }
+  }
+}

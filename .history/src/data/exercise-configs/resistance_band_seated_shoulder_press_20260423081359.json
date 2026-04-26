@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_seated_shoulder_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/206.%20Resistance%20Band%20Seated%20Shoulder%20Press/206.%20Resistance%20Band%20Seated%20Shoulder%20Press%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/206.%20Resistance%20Band%20Seated%20Shoulder%20Press/206.%20Resistance%20Band%20Seated%20Shoulder%20Press%20AR.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/206.%20Resistance%20Band%20Seated%20Shoulder%20Press/206.%20Resistance%20Band%20Seated%20Shoulder%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.2189364611672269, 1.1674656783896824, 2.7280231546101303],
+    "rotation": [-0.21141058065273574, 0.42951588999381024, 0.08913651500836946],
+    "target": [-0.06023363337790372, 0.5814405761273452, -0.0025321864141939726]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Seated Shoulder Press is a pressing exercise that combines the seated stability of a bench with the accommodating resistance of a band anchored beneath the bench or feet.\n\nIt targets the deltoids and triceps while providing continuous band tension that increases as the arms lift overhead.\n\nThis variation is well suited for home training, warm-ups, rehab, and hypertrophy work with lower joint stress than heavy loaded presses."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strength and size in the shoulders and triceps\n- Seated position removes lower-body involvement for strict pressing\n- Accommodating band tension increases at lockout\n- Joint-friendly alternative to heavy barbell presses\n- Easy to scale by changing band thickness or anchor point\n- Portable and equipment-efficient\n- Strong core engagement without spinal compression"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Lateral Deltoids\n\nSecondary: Triceps, Upper Chest, Trapezius, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Sit on the bench with back support.\n2. Anchor the band securely beneath the bench or under your feet.\n3. Ensure the band is even on both sides."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Grasp the handles at shoulder height.\n2. Palms facing forward.\n3. Elbows bent, core braced, back against the pad."
+        },
+        {
+          "heading": "Press",
+          "content": "1. Exhale as you press the handles overhead.\n2. Extend your arms fully without locking the elbows harshly.\n3. Keep the handles tracking over the shoulders."
+        },
+        {
+          "heading": "Lower and Repeat",
+          "content": "1. Inhale and lower the handles back down to shoulder height.\n2. Maintain control and core engagement throughout.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back excessively during the press\n- Flaring elbows too far out, stressing the shoulders\n- Pressing the handles forward rather than straight up\n- Rushing the eccentric and losing band tension\n- Using a band that is too heavy and breaking form\n- Letting the wrists bend back under the band tension\n- Shrugging the shoulders toward the ears at the top"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Bench with Back Support\n- Secure Anchor Point (under bench or under feet)\n- Athletic shoes\n- Optional: Lighter and heavier bands for progression"
+        },
+        {
+          "heading": "Anchor Adjustments",
+          "content": "1. Route the band beneath the seat of the bench or under both feet flat on the floor.\n2. Ensure the band pulls straight downward from the hands.\n3. Confirm the anchor is stable and will not slip under tension.\n4. Choose a band thickness appropriate for your strength level."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat: Back pressed firmly into the pad.\n2. Feet: Flat on the floor for stability.\n3. Core: Braced to protect the lower back.\n4. Shoulders: Packed, not shrugged.\n5. Grip: Firm but relaxed, wrists stacked over forearms."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_seated_shoulder_press", "arnold_press", "barbell_overhead_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Seated Shoulder Press: Classic seated barbell press\n- Dumbbell Shoulder Press: Free-weight press with more range\n- Machine Shoulder Press: Guided-path pressing machine\n- Arnold Press: Rotational dumbbell press variation\n- Landmine Press: Angled pressing with a landmine\n- Smith Machine Shoulder Press: Guided barbell variation"
+        },
+        {
+          "heading": "Resistance Band Seated Shoulder Press Variations",
+          "content": "Standard Seated Band Press: Described here\nSingle-Arm Band Press: Unilateral variation for core and balance\nNeutral Grip Band Press: Palms facing each other for shoulder comfort\nTempo Band Press: Slow eccentric for hypertrophy\nPause Band Press: Pause at shoulder height for control\nStanding Band Press: Standing variation for full-body engagement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use a neutral grip, reduce range, use a lighter band\nLower Back Issues: Keep back pressed into the pad, avoid arching\nWrist Pain: Try wrist wraps or adjust grip angle\nBand Too Light: Use a heavier band or shorten the band length\nBand Too Heavy: Use a lighter band or adjust the anchor\nBeginners: Start with a light band to learn the pressing path"
+        }
+      ]
+    }
+  }
+}

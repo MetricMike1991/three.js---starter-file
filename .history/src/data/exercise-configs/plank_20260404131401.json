@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plank",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/129.%20Plank/129.%20Plank%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/129.%20Plank/129.%20Plank%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/129.%20Plank/129.%20Plank%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/129.%20Plank/129.%20Plank%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.5307980045536067, 0.6909732851847423, 0.1416170151268351],
+    "rotation": [-1.0295576337881904, 1.3968600193027096, 1.0228204201014683],
+    "target": [0.10112330992075814, 0.3250701453664523, -0.0783327227862028]
+  },
+  "modelHQ": {
+    "position": [0, 0.024, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.6999996044676142, 0.612398088858716, 0.933316182045543],
+    "rotation": [-0.2847338136974282, 1.0359438633368239, 0.24668250552716445],
+    "target": [0.038203212074810214, 0.33583944529711507, -0.011580686950112096]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/129.%20Plank/Plank_250x250_2026-04-04T12-13-27.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plank is a foundational isometric core exercise where you hold a rigid push-up position for time.\n\nIt targets the entire core musculature including the rectus abdominis, obliques, and transverse abdominis while also engaging the shoulders, back, and glutes.\n\nWidely used in fitness programs of all levels, the plank builds endurance, stability, and postural strength without any equipment."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strengthens the entire core without spinal flexion\n- Improves posture and spinal alignment\n- Builds isometric endurance in stabilising muscles\n- Requires no equipment — can be done anywhere\n- Reduces lower back pain by strengthening supporting muscles\n- Engages multiple muscle groups simultaneously\n- Scalable for all fitness levels by adjusting hold time"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis (Abs), Transverse Abdominis, Obliques\n\nSecondary: Erector Spinae, Deltoids (Shoulders), Glutes, Quadriceps, Pectorals"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Start in a push-up position with your hands shoulder-width apart.\n2. Place your toes on the ground with feet together or slightly apart.\n3. Arms should be fully extended with shoulders stacked directly over wrists.\n4. Engage your core and squeeze your glutes.\n5. Your body should form a straight line from head to heels."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core and maintain a straight line from your head to your heels.\n2. Keep your hips level — avoid sagging or piking upward.\n3. Breathe steadily throughout the hold.\n4. Focus on pulling your belly button towards your spine.\n5. Hold this position for the desired amount of time.\n6. Release the plank by lowering your knees to the ground and resting."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag towards the floor\n- Piking the hips too high in the air\n- Holding breath instead of breathing steadily\n- Looking up and straining the neck\n- Placing hands too far forward or too far back\n- Locking the elbows aggressively\n- Shrugging shoulders up towards the ears\n- Holding for too long with poor form rather than shorter holds with good form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Flat, Non-Slip Surface\n- Optional: Exercise Mat for wrist and forearm comfort\n- Optional: Timer or stopwatch to track hold duration"
+        },
+        {
+          "heading": "Plank Variations Setup",
+          "content": "1. Standard Plank: Arms extended, hands under shoulders.\n2. Forearm Plank: Rest on forearms instead of hands for reduced wrist strain.\n3. Side Plank: Rotate to one side, stacking feet and balancing on one hand or forearm.\n4. Elevated Plank: Hands on a bench or step for an easier variation.\n5. Choose the variation that matches your current strength level."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Shoulder-width apart, fingers spread wide.\n2. Feet: Together or slightly apart for stability.\n3. Core: Braced tight — imagine bracing for a punch.\n4. Glutes: Squeezed to maintain hip alignment.\n5. Head: Neutral, looking at the floor just ahead of your hands.\n6. Shoulders: Pulled down and away from ears.\n7. Start with 20-30 second holds and build up progressively."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Forearm Plank: Easier on the wrists with similar core activation\n- Side Plank: Targets obliques with lateral stability\n- Dead Bug: Supine core exercise with anti-extension focus\n- Hollow Body Hold: Supine isometric for deep core engagement\n- Ab Wheel Rollout: Dynamic anti-extension core exercise\n- Mountain Climbers: Dynamic plank variation with cardio element"
+        },
+        {
+          "heading": "Plank Variations",
+          "content": "Standard Plank: Arms extended, isometric hold\nForearm Plank: On forearms for reduced wrist strain\nSide Plank: Lateral core stability on one arm\nPlank With Shoulder Tap: Tap opposite shoulder for anti-rotation\nPlank Walk-Up: Alternate between forearm and extended position\nWeighted Plank: Plate on back for added resistance"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use forearm plank variation instead\nShoulder Issues: Try incline plank with hands on a bench\nLower Back Pain: Shorten hold duration and focus on core engagement\nCore Weakness: Start with kneeling plank and progress to full plank\nNeck Discomfort: Keep head neutral and avoid looking up\nEndurance Issues: Do multiple short holds rather than one long hold"
+        }
+      ]
+    }
+  }
+}

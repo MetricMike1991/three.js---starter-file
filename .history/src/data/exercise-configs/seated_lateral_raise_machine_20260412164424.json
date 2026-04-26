@@ -1,0 +1,105 @@
+{
+  "exerciseId": "seated_lateral_raise_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/154.%20Seated%20Lateral%20Raise%20Machine/154.%20Seated%20Lateral%20Raise%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/154.%20Seated%20Lateral%20Raise%20Machine/154.%20Seated%20Lateral%20Raise%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/154.%20Seated%20Lateral%20Raise%20Machine/154.%20Seated%20Lateral%20Raise%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/154.%20Seated%20Lateral%20Raise%20Machine/154.%20Seated%20Lateral%20Raise%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.5069781120621573, 2.1423873500779615, 2.892392617866051],
+    "rotation": [-0.48757775393407604, 0.4517217101751403, 0.22746941374417998],
+    "target": [0.13044123758627055, 0.8132113126490063, 0.38584117429028614]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.7139746863992105, 1.91951984115923, 2.2175079123008636],
+    "rotation": [-0.5747171576846966, 0.6168503302475633, 0.3584566269850434],
+    "target": [0.14246144645681288, 0.7149047277502374, 0.3575119573971947]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Seated Lateral Raise Machine is a shoulder isolation exercise performed on a dedicated machine with roller pads that guide the arms through a lateral raising motion.\n\nThe machine's fixed path and pad-based design eliminates grip fatigue and ensures consistent tension on the lateral deltoids throughout the entire range of motion.\n\nIt is popular in bodybuilding, general fitness, and rehabilitation programmes for safely building wider, more defined shoulders."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly isolates the lateral deltoids with a guided, controlled movement\n- Roller pads remove grip as a limiting factor, allowing full focus on the delts\n- Fixed path of motion reduces the risk of momentum cheating\n- Easy to adjust weight via the pin stack for progressive overload and drop sets\n- Excellent for building shoulder width and the capped deltoid look\n- Suitable for all fitness levels from beginner to advanced\n- Lower injury risk compared to free-weight lateral raises with heavy loads"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Lateral Deltoids\n\nSecondary: Anterior Deltoids, Upper Trapezius, Supraspinatus"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so the roller pads align with your elbows when seated.\n2. Set the weight stack to a suitable resistance.\n3. Sit on the machine with your back straight against the backrest.\n4. Place your elbows against the roller pads and hold the handles for stability.\n5. Keep your feet flat on the floor with your core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Exhale and raise your elbows outward by pressing against the roller pads.\n2. Keep a slight bend in your arms throughout the movement.\n3. Continue lifting until your elbows are parallel to the floor at shoulder height.\n4. Pause briefly at the top and squeeze your lateral deltoids.\n5. Inhale and slowly lower your elbows back down to the starting position with control.\n6. Do not let the weight stack slam — maintain tension throughout.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and shrugging the shoulders upward to compensate\n- Raising the elbows above shoulder height, increasing impingement risk\n- Letting the weight stack slam down between reps, losing tension\n- Leaning to one side or lifting the back off the backrest\n- Rushing through repetitions instead of using slow, controlled movements\n- Not adjusting the seat height properly, causing misalignment with the shoulder joint\n- Using momentum from the torso to initiate the lift"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Seated Lateral Raise Machine with roller pads\n- Adjustable seat height\n- Weight stack with pin selection for easy load changes"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Seat Height: Adjust so the roller pads sit comfortably against your elbows with your shoulders in a natural position.\n2. Pad Alignment: Ensure the pivot point of the machine aligns with your shoulder joints.\n3. Weight: Start light to warm up and establish proper form before increasing.\n4. Back Pad: Ensure your back is fully supported against the backrest.\n5. Check the pin selection is secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Firmly pressed against the backrest at all times.\n2. Shoulders: Down and relaxed — avoid shrugging upward.\n3. Elbows: Positioned against the roller pads with a slight arm bend.\n4. Feet: Flat on the floor for stability.\n5. Core: Braced throughout the entire set.\n6. Grip: Hold the handles lightly for stability — let the delts do the work."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["standing_lateral_raise_machine_cables", "dumbbell_lateral_raise", "arnold_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standing Lateral Raise Machine Cables: Cable-based lateral raise for constant tension\n- Dumbbell Lateral Raise: Free-weight shoulder isolation with dumbbells\n- Cable Lateral Raise: Single or dual cable lateral raise variation\n- Resistance Band Lateral Raise: Portable alternative with progressive resistance\n- Upright Row: Compound movement targeting lateral delts and traps\n- Machine Shoulder Press: Compound machine press for overall shoulder development"
+        },
+        {
+          "heading": "Lateral Raise Variations",
+          "content": "Seated Lateral Raise Machine: Standard pad-based lateral raise\nSingle-Arm Machine Lateral Raise: Unilateral variation for balanced development\nSlow Tempo Machine Lateral Raise: 3–4 second concentrics for increased time under tension\nPaused Machine Lateral Raise: Hold at the top for 2–3 seconds per rep\nDrop Set Machine Lateral Raise: Reduce weight immediately after failure for extended sets\nPartial Rep Finisher: After failure, perform partial reps in the lower range for extra volume\n21s Machine Lateral Raise: 7 bottom half, 7 top half, 7 full range reps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion — stop before shoulder height if needed\nRotator Cuff Issues: Use a lighter weight and avoid raising above 90 degrees\nNo Lateral Raise Machine: Use dumbbells, cables, or resistance bands as alternatives\nBeginner: Start with minimal weight to establish proper form and mind-muscle connection\nNeck Tension: Ensure you are not shrugging — keep shoulders down and relaxed\nMobility Limitations: Adjust the seat so the pads sit slightly lower on the arms and work within a comfortable range"
+        }
+      ]
+    }
+  }
+}

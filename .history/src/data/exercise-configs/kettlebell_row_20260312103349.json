@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row%20Real/48.%20The%20Kettlebell%20Row%20SD%202_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row%20Real/48.%20The%20Kettlebell%20Row%20HD%202_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row%20Real/48.%20The%20Kettlebell%20Row%20AR%202_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row%20Real/48.%20The%20Kettlebell%20Row%20USDZ%20(2).usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.731637027059841, 1.4873949667404223, 1.142367754503255],
+    "rotation": [-0.6114960578604367, 1.0840199719532864, 0.5547836854043563],
+    "target": [0.002725741812243341, 0.6582389835979814, -0.04020128100255207]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.8274051789746693, 1.4042419865214346, -1.066804097665201],
+    "rotation": [-2.5255453270454167, -0.946880899613102, -2.6200761823947083],
+    "target": [0.0005032171893884748, 0.6439574914924981, 0.00710693154893411]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row%20Real/The%20Kettlebell%20Row_250x250_2026-03-12T10-32-52.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Row is a compound pulling exercise that targets the back muscles by rowing two kettlebells from a hinged position.\n\nPerformed with a forward hip hinge and an overhand grip, this movement builds thickness and strength across the entire back while also engaging the biceps and core.\n\nThe kettlebell's offset centre of gravity provides a unique challenge to grip and forearm strength compared to dumbbells or barbells."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds a strong, thick back across the lats, rhomboids, and traps\n- The hip hinge position strengthens the posterior chain isometrically\n- Improves posture by strengthening the upper back and rear shoulders\n- Develops grip and forearm strength due to the kettlebell's handle\n- Engages the core throughout as a stabiliser\n- Can be loaded progressively with heavier kettlebells\n- Versatile — can be performed with one or two kettlebells"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Back (Latissimus Dorsi, Rhomboids, Trapezius)\n\nSecondary: Biceps, Rear Deltoids, Erector Spinae, Core (Rectus Abdominis, Obliques), Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold two kettlebells in front of your body with an overhand grip.\n3. Hinge forward at the hips until your torso is roughly 45 degrees to the floor.\n4. Keep your back straight and your core braced.\n5. Let the kettlebells hang at arm's length toward the ground.\n6. Maintain a slight bend in your knees for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Stand with your feet shoulder-width apart, holding two kettlebells in front of your body with an overhand grip.\n2. Hinge forward at the hips, keeping your back straight and the kettlebells hanging toward the ground.\n3. Pull the kettlebells up toward your ribcage, keeping your elbows close to your sides and squeezing your shoulder blades toward your spine.\n4. Slowly lower the kettlebells back down to the starting position, keeping control of the weight throughout the movement, and repeat for the desired number of reps.\n5. Focus on initiating the pull with your back muscles, not your biceps.\n6. Pause briefly at the top of each rep to maximise the contraction."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum to swing the kettlebells up instead of rowing with control\n- Rounding the lower back during the hip hinge\n- Flaring the elbows wide instead of keeping them close to the body\n- Standing too upright, reducing the range of motion\n- Not squeezing the shoulder blades together at the top\n- Letting the kettlebells drop quickly on the way down\n- Shrugging the shoulders up toward the ears instead of keeping them packed"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Two kettlebells of equal weight\n- Flat, stable surface to stand on\n- Optional: Chalk for grip assistance\n- Optional: Lifting straps for heavier loads\n- Recommended: Start with a moderate weight to master the hinge and row pattern"
+        },
+        {
+          "heading": "Choosing Your Kettlebell Weight",
+          "content": "1. Beginners: Start with 8-12 kg per hand (men) or 4-8 kg per hand (women).\n2. Intermediate: 16-24 kg per hand (men) or 8-16 kg per hand (women).\n3. The weight should challenge your back without causing your lower back to round.\n4. If you cannot maintain a flat back in the hinge, reduce the weight.\n5. You should be able to pause at the top of each row with control.\n6. Progress gradually as your back strength and hip hinge endurance improve."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, firmly planted.\n2. Knees: Slight bend, maintained throughout.\n3. Hips: Hinged back, torso at roughly 45 degrees.\n4. Spine: Flat and neutral from head to tailbone.\n5. Shoulders: Pulled back and down, away from the ears.\n6. Arms: Fully extended at the bottom, elbows driving back at the top.\n7. Head: Neutral, eyes looking a few feet ahead on the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bent_over_row", "dumbbell_bent_over_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bent Over Row: Heavier bilateral rowing with a barbell\n- Dumbbell Bent Over Row: Similar movement pattern with dumbbells\n- Single Arm Kettlebell Row: Unilateral version for isolating each side\n- T-Bar Row: Machine-supported rowing for back thickness\n- Cable Row: Seated cable pulling for constant tension\n- Inverted Row: Bodyweight pulling exercise for beginners"
+        },
+        {
+          "heading": "Kettlebell Row Variations",
+          "content": "Double Kettlebell Row: Standard bilateral row with two kettlebells\nSingle Arm Kettlebell Row: One kettlebell, one arm at a time\nRenegade Row: Rowing from a push up position for core challenge\nGorilla Row: Alternating rows from a deep hinge with kettlebells on the floor\nKettlebell Meadows Row: Single arm, landmine-style angle for lat emphasis\nSlow Tempo Kettlebell Row: 3-4 second eccentric for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Support your chest on an incline bench or reduce hinge depth\nGrip Fatigue: Use chalk or lifting straps for heavier sets\nShoulder Issues: Keep elbows tight to the body and reduce range of motion\nHamstring Tightness: Bend the knees slightly more to reduce strain\nCore Weakness: Use a lighter weight and focus on bracing throughout\nLearning Stage: Start with single arm rows using a bench for support before progressing to the standing bilateral version"
+        }
+      ]
+    }
+  }
+}

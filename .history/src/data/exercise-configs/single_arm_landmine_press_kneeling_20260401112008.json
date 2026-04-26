@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_arm_landmine_press_kneeling",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/123.%20Single%20Arm%20Landmine%20Press%20Kneeling/123.%20Single%20Arm%20Landmine%20Press%20Kneeling%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/123.%20Single%20Arm%20Landmine%20Press%20Kneeling/123.%20Single%20Arm%20Landmine%20Press%20Kneeling%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/123.%20Single%20Arm%20Landmine%20Press%20Kneeling/123.%20Single%20Arm%20Landmine%20Press%20Kneeling%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/123.%20Single%20Arm%20Landmine%20Press%20Kneeling/123.%20Single%20Arm%20Landmine%20Press%20Kneeling%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.549061101453681, 2.3543137022362655, 3.3012304683320375],
+    "rotation": [-0.5719764162310552, -0.6632403886850744, -0.3773526619108716],
+    "target": [0.2811915473793598, 0.3935030088646096, 0.2553606280389304]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.121763933383347, 1.5697285656567668, 3.147924459338565],
+    "rotation": [-0.4121438213737217, -0.641914329817551, -0.2560104155792576],
+    "target": [0.1486117613026723, 0.35310513448161884, 0.3650505934446005]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Arm Landmine Press Kneeling is a unilateral pressing exercise performed from a kneeling position with one end of a barbell anchored in a landmine attachment or corner.\n\nThe kneeling position removes lower body momentum, forcing the shoulders and core to do all the work, making it a stricter pressing variation.\n\nThis exercise is excellent for building shoulder strength, improving core stability, and correcting imbalances between sides."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Kneeling position eliminates lower body momentum for stricter form\n- Unilateral movement corrects strength imbalances between sides\n- Increased core and anti-rotation demands compared to standing\n- Unique pressing angle reduces shoulder stress compared to overhead pressing\n- Joint-friendly arc of motion follows a natural pressing path\n- Improved hip flexor stretch from the kneeling position\n- Great for athletes requiring upper body pressing strength and stability\n- Can be loaded progressively with standard weight plates"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids (Front Shoulders), Upper Pectoralis Major (Upper Chest)\n\nSecondary: Triceps Brachii, Serratus Anterior, Core (Obliques and Transverse Abdominis), Trapezius, Glutes (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Use a landmine attachment or position a barbell securely into the corner of a machine.\n2. Kneel on the ground facing the end of the barbell.\n3. Use a half-kneeling or tall-kneeling position depending on preference.\n4. Pick up the end of the barbell and hold it at shoulder height with one hand.\n5. Position the barbell in a front rack position at the shoulder.\n6. Keep your core braced and your back straight.\n7. Squeeze your glutes to maintain a stable kneeling position.\n8. Ensure a firm grip on the end of the barbell."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Brace your core and maintain a straight back position.\n2. Extend your arm and press the barbell overhead and to the front of your body.\n3. Push through the movement until your arm is fully extended.\n4. Keep your torso stable and resist rotation throughout the press.\n5. Lower the bar back down slowly to the shoulder and front rack position.\n6. Maintain control of the weight throughout the entire movement.\n7. Complete all reps on one side before switching to the other shoulder.\n8. Breathe out as you press up, breathe in as you lower the bar."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Excessive rotation of the torso during the press\n- Leaning too far back or arching the lower back\n- Not bracing the core throughout the movement\n- Using momentum or swaying to push the weight up\n- Not squeezing the glutes to maintain kneeling stability\n- Flaring the elbow too far out from the body\n- Rushing the eccentric (lowering) phase\n- Uneven reps or loading between sides"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell\n- Landmine Attachment or Corner Setup\n- Weight Plates\n- Optional: Knee Pad or Mat (for comfort)\n- Optional: Lifting Gloves (for grip comfort)"
+        },
+        {
+          "heading": "Landmine Setup",
+          "content": "1. Secure a landmine attachment to a squat rack or heavy base.\n2. Alternatively, wedge one end of the barbell into the corner of two walls or a machine.\n3. Load the free end of the barbell with the desired weight plates.\n4. Ensure the anchored end is stable and will not slip during the movement.\n5. Place a knee pad or mat on the floor for comfort.\n6. Test with light weight first to confirm the setup is secure."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Position: Tall kneeling or half-kneeling facing the barbell.\n2. Grip: One hand gripping the end of the barbell at shoulder height.\n3. Elbow: Tucked close to the body in the starting position.\n4. Core: Braced and tight throughout the movement.\n5. Back: Straight and neutral, avoid excessive arching.\n6. Glutes: Squeezed to maintain a stable kneeling base.\n7. Shoulders: Packed down, avoid shrugging."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["single_arm_landmine_press_standing", "arnold_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Single Arm Landmine Press Standing: Standing version with more lower body involvement\n- Arnold Press: Rotational dumbbell pressing targeting all deltoid heads\n- Dumbbell Shoulder Press: Bilateral or unilateral overhead pressing\n- Half-Kneeling Cable Press: Constant tension unilateral pressing from kneeling\n- Barbell Overhead Press: Bilateral standing overhead press"
+        },
+        {
+          "heading": "Landmine Variations",
+          "content": "Single Arm Landmine Press Kneeling: Strict kneeling unilateral press\nSingle Arm Landmine Press Standing: Standing version with full body involvement\nDouble Arm Landmine Press: Both hands pressing together\nLandmine Squat to Press: Full body compound movement\nLandmine Rotational Press: Adding rotation for athletic power"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try a more neutral pressing angle or reduce range of motion\nKnee Discomfort: Use a thick pad or mat under the knees\nLower Back Issues: Focus on squeezing glutes and bracing core harder\nGrip Issues: Use lifting gloves or a fat grip attachment\nNo Landmine Attachment: Wedge the barbell into a corner securely\nBeginner: Start with just the bar to learn the movement pattern"
+        }
+      ]
+    }
+  }
+}

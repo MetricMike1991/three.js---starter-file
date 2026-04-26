@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_single_arm_overhead_tricep_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/210.%20Resistance%20Band%20Single%20Arm%20Overhead%20Tricpe%20Extension/210.%20Resistance%20Band%20Single%20Arm%20Overhead%20Tricpe%20Extension%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/210.%20Resistance%20Band%20Single%20Arm%20Overhead%20Tricpe%20Extension/210.%20Resistance%20Band%20Single%20Arm%20Overhead%20Tricpe%20Extension%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/210.%20Resistance%20Band%20Single%20Arm%20Overhead%20Tricpe%20Extension/210.%20Resistance%20Band%20Single%20Arm%20Overhead%20Tricpe%20Extension%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.861030819111923, 1.6504937802559505, -0.6292852240857785],
+    "rotation": [-2.3783806901053843, -1.2523703296464594, -2.404103599412235],
+    "target": [0.1499571727628624, 0.9643958088026222, 0.08795254408743815]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Single Arm Overhead Tricep Extension is a unilateral isolation exercise that targets the triceps, with strong emphasis on the long head, by pressing overhead against band tension one arm at a time.\n\nTraining one arm at a time helps address strength imbalances and allows for a greater focus on tricep engagement through the full range of motion.\n\nAnchoring the band under the back foot creates constant, accommodating resistance that increases as the arm extends."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the long head of the triceps through an overhead stretch\n- Unilateral training addresses left/right strength imbalances\n- Constant band tension for continuous muscle engagement\n- Low-impact and joint-friendly\n- Improves lockout strength for pressing movements\n- Builds overhead shoulder stability and core control\n- Portable and easily scalable with band thickness"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (especially Long Head)\n\nSecondary: Shoulders (Deltoids), Core, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Anchor the band securely under your back foot.\n2. Adopt a comfortable split stance for balance.\n3. Ensure the band has no slack before starting."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Place your non-working hand on your hip or thigh to stay still.\n2. Grasp the band handle with your working arm.\n3. Extend the working arm overhead with the elbow close to the head."
+        },
+        {
+          "heading": "Extension",
+          "content": "1. Exhale as you extend your arm upward.\n2. Drive through the triceps to full lockout.\n3. Keep the elbow tucked and pointing forward."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Inhale while bending your elbow under control.\n2. Maintain tension throughout the rep.\n3. Complete reps on one side, then switch arms."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring the elbow outward\n- Arching the lower back to press overhead\n- Using momentum instead of controlled triceps extension\n- Twisting the torso to help lift\n- Using a band that is too heavy and breaking form\n- Incomplete lockout at the top\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handle (or loop band)\n- Athletic shoes for secure footing\n- Optional: Lighter and heavier bands for progression\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Step on the band with your back foot in a split stance.\n2. Wider stance creates more tension; narrower stance reduces it.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on the handle is secure before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Split stance, back foot anchoring the band.\n2. Torso: Tall, ribs down, core braced.\n3. Working Arm: Fully extended overhead, elbow near the ear.\n4. Non-Working Arm: Hand on hip or thigh for stability.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Single-Arm Dumbbell Overhead Extension: Free-weight variation\n- Single-Arm Cable Overhead Extension: Cable variation with constant tension\n- Two-Arm Band Overhead Tricep Extension: Bilateral variation\n- Tricep Pushdown: Standing cable triceps isolation\n- EZ-Bar Skullcrusher: Lying triceps extension\n- Close-Grip Bench Press: Compound triceps movement"
+        },
+        {
+          "heading": "Resistance Band Single Arm Overhead Tricep Extension Variations",
+          "content": "Standing Single-Arm Band Overhead Extension: Described here\nSeated Single-Arm Band Overhead Extension: Seated for reduced core demand\nKneeling Single-Arm Band Overhead Extension: Kneeling variation\nTempo Single-Arm Band Overhead Extension: Slow eccentric for hypertrophy\nPause Single-Arm Band Overhead Extension: Pause at the stretch for more tension\nCross-Body Single-Arm Band Extension: Angled variation for different line of pull"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Reduce range or choose a non-overhead triceps variation\nElbow Pain: Lighten the band and keep the elbow tracking forward\nLower Back Issues: Brace the core and avoid arching; try a seated version\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nBeginners: Start with a light band to learn the pattern"
+        }
+      ]
+    }
+  }
+}

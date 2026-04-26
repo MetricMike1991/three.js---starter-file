@@ -1,0 +1,105 @@
+{
+  "exerciseId": "rear_delt_row_variation",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/86.%20Rear%20Delt%20Row%20Variation/86.%20Rear%20Delt%20Row%20Variation%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/86.%20Rear%20Delt%20Row%20Variation/86.%20Rear%20Delt%20Row%20Variation%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/86.%20Rear%20Delt%20Row%20Variation/86.%20Rear%20Delt%20Row%20Variation%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/86.%20Rear%20Delt%20Row%20Variation/86.%20Rear%20Delt%20Row%20Variation%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.3535494298932806, 2.1239305845489147, 2.419990611072488],
+    "rotation": [-0.4379503469545478, -0.6602768136697927, -0.2796839243615157],
+    "target": [-0.026714059485990288, 0.853212896200751, -0.29360034263423934]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.2264943340073744, 1.9574723643715197, 3.441869083993137],
+    "rotation": [-0.32716668962036427, -0.5964319563367592, -0.18835808760882453],
+    "target": [0.017943428726319547, 0.8950725707275429, 0.3112912561929503]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Rear Delt Row Variation is a machine-based exercise that primarily targets the posterior deltoids (rear delts) and upper back muscles.\n\nPerformed seated with the chest pressed against a pad, this exercise isolates the rear delts and rhomboids while minimising momentum and lower back involvement.\n\nIt is an excellent exercise for improving shoulder balance, posture, and upper back thickness, and is suitable for all experience levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the often underdeveloped posterior deltoids\n- Improves shoulder balance and reduces injury risk\n- Chest pad support eliminates momentum and cheating\n- Strengthens the rhomboids and mid-traps for better posture\n- Easy to adjust resistance via the pin-loaded weight stack\n- Reduced lower back stress compared to bent-over row variations\n- Excellent for high-rep burnout sets and drop sets\n- Helps correct rounded shoulder posture from desk work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Posterior Deltoids (Rear Delts), Rhomboids, Middle Trapezius\n\nSecondary: Infraspinatus, Teres Minor, Biceps Brachii, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat of the rear delt row machine to your height.\n2. Select the appropriate weight using the pin on the weight stack.\n3. Sit down and place your chest firmly against the chest pad.\n4. Plant your feet flat on the footrests for stability.\n5. Reach forward and grasp the handles with a neutral or overhand grip.\n6. Start with your arms fully extended in front of you.\n7. Keep your back straight and core engaged.\n8. Ensure your chest stays pressed firmly against the pad throughout."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Squeeze your shoulder blades together and pull the handles towards your chest.\n3. Keep your elbows close to your body as you pull.\n4. Focus on driving the movement with your rear delts and upper back, not your arms.\n5. Continue pulling until your elbows are in line with or slightly behind your torso.\n6. Pause briefly at the fully contracted position and squeeze your shoulder blades.\n7. Slowly release the handles back to the starting position under control.\n8. Do not let the weight stack slam — maintain tension throughout.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting your chest off the pad during the pull\n- Using too much weight and relying on momentum\n- Pulling with the biceps instead of the rear delts and upper back\n- Not achieving full scapular retraction at the end of the movement\n- Rushing through reps without controlling the eccentric phase\n- Shrugging the shoulders up towards the ears\n- Flaring the elbows too high, shifting emphasis away from the rear delts\n- Not using a full range of motion"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Rear Delt Row / Reverse Fly Machine\n- Pin-loaded weight stack for easy resistance adjustment\n- No additional equipment required\n- Optional: Lifting straps for grip support on heavier sets"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select an appropriate weight using the pin on the weight stack.\n2. Start light to warm up the rear delts before increasing load.\n3. Adjust the seat height so your chest is centred on the pad.\n4. Ensure the handles are positioned so your arms are roughly parallel to the floor when extended.\n5. If the machine has adjustable handle positions, set them for a row grip (closer together).\n6. Check that the cable and pulley system is running smoothly before starting.\n7. Some machines allow switching between rear delt fly and row — ensure it is set to row mode."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Height: Adjusted so your chest is centred on the pad and arms extend naturally to the handles.\n2. Chest: Pressed firmly against the chest pad throughout the movement.\n3. Grip: Neutral or overhand grip on the handles.\n4. Feet: Flat on the footrests for stability.\n5. Arms: Fully extended in the starting position.\n6. Core: Lightly braced to maintain an upright seated posture.\n7. Shoulders: Relaxed and pulled down, not shrugged up."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_cable_row", "face_pull"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Cable Row: Cable-based rowing for overall back development\n- Face Pull: Cable exercise targeting rear delts and external rotators\n- Bent-Over Dumbbell Reverse Fly: Free weight rear delt isolation\n- Barbell Bent-Over Row: Compound back and rear delt builder\n- T-Bar Row: Chest-supported row variation for back thickness\n- Cable Reverse Fly: Standing cable variation for rear delt isolation"
+        },
+        {
+          "heading": "Rear Delt Variations",
+          "content": "Machine Rear Delt Row: Seated chest-supported row targeting rear delts\nMachine Reverse Fly: Same machine, wider arm path for rear delt isolation\nBent-Over Dumbbell Reverse Fly: Free weight rear delt exercise\nCable Face Pull: Rope attachment pull to the face for rear delts and rotator cuff\nIncline Bench Reverse Fly: Lying face down on an incline for strict rear delt work\nBand Pull-Apart: Resistance band exercise for rear delt activation and warm-up"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the weight and avoid pulling too far behind the body\nNeck Tension: Keep your head neutral and avoid craning forward\nLower Back Issues: The chest pad provides support — ensure you stay pressed against it\nGrip Fatigue: Use lifting straps or alternate grip positions\nLimited Range of Motion: Work within a pain-free range and gradually increase\nNo Machine Available: Use bent-over dumbbell reverse flys or cable face pulls\nRehabilitation: Start with very light weight and focus on controlled, slow reps"
+        }
+      ]
+    }
+  }
+}

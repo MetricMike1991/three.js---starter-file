@@ -1,0 +1,105 @@
+{
+  "exerciseId": "standing_lateral_raise_machine_cables",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/152.%20Standing%20Lateral%20Raise%20Machine%20Cables/152.%20Standing%20Lateral%20Raise%20Machine%20Cables%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/152.%20Standing%20Lateral%20Raise%20Machine%20Cables/152.%20Standing%20Lateral%20Raise%20Machine%20Cables%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/152.%20Standing%20Lateral%20Raise%20Machine%20Cables/152.%20Standing%20Lateral%20Raise%20Machine%20Cables%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/152.%20Standing%20Lateral%20Raise%20Machine%20Cables/152.%20Standing%20Lateral%20Raise%20Machine%20Cables%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Standing Lateral Raise Machine with Cables is a shoulder isolation exercise performed on a cable machine that targets the lateral (side) deltoids.\n\nThe cable provides constant tension throughout the entire range of motion, making it more effective than dumbbell lateral raises for maintaining muscle engagement at the top and bottom of the movement.\n\nIt is widely used in bodybuilding and general fitness programmes for building wider, more defined shoulders."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Constant cable tension throughout the full range of motion for superior muscle activation\n- Effectively isolates the lateral deltoids for shoulder width and definition\n- Reduced momentum cheating compared to free-weight lateral raises\n- Adjustable resistance via the weight stack for easy progressive overload\n- Lower risk of shoulder impingement when performed with correct form\n- Can be performed unilaterally or bilaterally depending on machine setup\n- Excellent for drop sets and high-rep burnout work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Lateral Deltoids\n\nSecondary: Anterior Deltoids, Upper Trapezius, Supraspinatus, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand upright at the cable machine and grasp the handles with an overhand grip, palms facing down.\n2. Keep your feet shoulder-width apart with a slight bend in your knees.\n3. Let your arms hang at your sides with the cables taut and a slight bend in your elbows.\n4. Engage your core and maintain a proud chest with your shoulders pulled back slightly."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping a slight bend in your elbows, raise your arms out to the sides.\n2. Lift until your arms are parallel to the ground at shoulder height.\n3. Focus on leading with your elbows rather than your hands to maximise lateral deltoid engagement.\n4. Squeeze your shoulders briefly at the top of the movement.\n5. Slowly lower the handles back down to the starting position with control.\n6. Maintain tension in your shoulder muscles throughout — do not let the weight stack rest between reps.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and swinging the body to generate momentum\n- Shrugging the shoulders upward, recruiting the traps instead of the delts\n- Raising the arms above shoulder height, increasing impingement risk\n- Locking the elbows completely straight, placing stress on the joints\n- Leaning excessively forward or backward during the lift\n- Rushing the eccentric phase instead of lowering with control\n- Gripping the handles too tightly, creating unnecessary forearm tension"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable machine with lateral raise handles or D-handle attachments\n- Adjustable pulley positions (set to the lowest setting)\n- Weight stack with pin selection for easy load changes"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Pulley Height: Set the pulleys to the lowest position so the cables pull from below.\n2. Handle Attachment: Use the machine's built-in lateral raise handles or attach D-handles.\n3. Weight: Start light — lateral raises require less weight than compound shoulder movements.\n4. Cable Length: Ensure there is enough slack to allow your arms to hang comfortably at your sides.\n5. Check all pin selections and attachments are secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, weight evenly distributed.\n2. Posture: Stand tall with a slight natural arch in the lower back.\n3. Core: Braced throughout for stability.\n4. Shoulders: Down and back — avoid shrugging.\n5. Elbows: Maintain a slight bend throughout the movement.\n6. Grip: Firm but relaxed — let the deltoids do the work."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_lateral_raise", "arnold_press", "barbell_overhead_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Lateral Raise: Free-weight shoulder isolation with dumbbells\n- Cable Lateral Raise (Single Arm): Unilateral cable variation for balanced development\n- Machine Lateral Raise (Seated): Pad-based machine for guided lateral raises\n- Resistance Band Lateral Raise: Portable alternative with increasing resistance\n- Upright Row: Compound movement hitting lateral delts and traps\n- Leaning Cable Lateral Raise: Increased range of motion by leaning away from the cable"
+        },
+        {
+          "heading": "Lateral Raise Variations",
+          "content": "Standing Cable Lateral Raise: Standard bilateral cable lateral raise\nSingle-Arm Cable Lateral Raise: Unilateral for balanced shoulder development\nLeaning Cable Lateral Raise: Lean away from the machine for extended range of motion\nSlow Tempo Lateral Raise: 3–4 second concentrics for increased time under tension\nPaused Lateral Raise: Hold at the top for 2–3 seconds per rep\nDrop Set Lateral Raise: Reduce weight immediately after failure for extended sets\n21s Lateral Raise: 7 bottom half, 7 top half, 7 full range reps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion — stop before shoulder height if needed\nRotator Cuff Issues: Use a lighter weight and focus on strict form with slow tempo\nNo Cable Machine: Use dumbbells or resistance bands as an alternative\nBeginner: Start with a very light weight to establish proper form and mind-muscle connection\nWrist Discomfort: Try a neutral grip or use wrist wraps for support\nMobility Limitations: Perform partial range of motion and gradually increase over time"
+        }
+      ]
+    }
+  }
+}

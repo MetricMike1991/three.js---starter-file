@@ -1,0 +1,113 @@
+{
+  "exerciseId": "close_grip_push_up_female",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/271.%20Close%20Grip%20Push%20Up%20Female/271.%20Close%20Grip%20Push%20Up%20Female%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/271.%20Close%20Grip%20Push%20Up%20Female/271.%20Close%20Grip%20Push%20Up%20Female%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Close Grip Push Up is a bodyweight pressing exercise that targets the triceps with secondary emphasis on the chest and shoulders.\n\nBy placing the hands directly under the shoulders with thumbs and index fingers forming a triangle, the elbows track close to the body and load the triceps more than a standard push-up.\n\nIt is a portable, equipment-free exercise that builds upper-body pressing strength and elbow lockout power."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the triceps brachii\n- Strengthens chest and anterior shoulders\n- Reinforces core and full-body bracing\n- Requires no equipment and minimal space\n- Easily scaled by elevating the hands or dropping to the knees\n- Improves elbow lockout strength carry-over to bench press\n- Builds shoulder stability and scapular control"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii\n\nSecondary: Pectoralis Major, Anterior Deltoids, Core, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Begin in a plank position with your hands directly under your shoulders.\n2. Bring the hands closer together so the thumbs and index fingers form a triangle.\n3. Brace the core and squeeze the glutes for a straight body line."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Arms fully extended with shoulders directly over the wrists.\n2. Body in a straight line from head to heels.\n3. Gaze slightly forward of the hands; neck neutral."
+        },
+        {
+          "heading": "Lower",
+          "content": "1. Bend the elbows to lower the body toward the ground.\n2. Keep the elbows close to the sides as you descend.\n3. Lower until the chest nearly touches the floor."
+        },
+        {
+          "heading": "Press and Repeat",
+          "content": "1. Push the body back up by extending the elbows.\n2. Drive through the palms and engage the triceps and chest.\n3. Return to the starting position and repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring the elbows out wide\n- Letting the hips sag or pike up\n- Failing to descend through the full range of motion\n- Allowing the head to drop or jut forward\n- Placing the hands too far forward or back\n- Holding the breath through the rep\n- Losing core bracing and twisting through the torso"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Flat, non-slip floor surface\n- Optional: Exercise mat for hand and knee comfort\n- Optional: Push-up handles or parallettes for wrist relief\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Hand Position",
+          "content": "1. Place the hands directly under the shoulders.\n2. Bring the hands together so the thumbs and index fingers form a triangle.\n3. Spread the fingers wide and press evenly through the palms.\n4. Keep the wrists stacked under the shoulders."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, toes on the floor.\n2. Torso: Straight line from head to heels, glutes and core engaged.\n3. Arms: Elbows tucked close to the ribs, not flared.\n4. Shoulders: Packed, away from the ears.\n5. Head: Neutral, eyes slightly forward of the hands."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "tricep_dips_on_bench"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Wider hand position emphasizing chest\n- Diamond Push-Up: Hands together with thumbs touching\n- Tricep Dips on Bench: Bodyweight triceps isolation\n- Close-Grip Bench Press: Loaded barbell variation\n- Tricep Pushdown: Cable-based triceps isolation\n- Skull Crusher: Lying tricep extension"
+        },
+        {
+          "heading": "Close Grip Push Up Variations",
+          "content": "Knee Close Grip Push Up: Easier variation on the knees\nIncline Close Grip Push Up: Hands elevated for less load\nDecline Close Grip Push Up: Feet elevated for greater load\nWeighted Close Grip Push Up: Plate or vest for added resistance\nTempo Close Grip Push Up: Slow eccentric for hypertrophy\nPause Close Grip Push Up: Pause near the floor for greater triceps tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or parallettes for a neutral grip\nElbow Pain: Reduce range of motion and lighten the load\nShoulder Issues: Keep the elbows tucked and shoulders packed\nLow Strength: Drop to the knees or elevate the hands\nAdvanced: Elevate the feet or add a weighted vest\nBeginners: Start with knee or incline variations to learn the pattern"
+        }
+      ]
+    }
+  }
+}

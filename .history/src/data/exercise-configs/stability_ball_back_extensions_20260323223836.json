@@ -1,0 +1,62 @@
+{
+  "exerciseId": "stability_ball_back_extensions",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/98.%20Stability%20Ball%20Back%20Extensions/98.%20Stability%20Ball%20Back%20Extensions%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/98.%20Stability%20Ball%20Back%20Extensions/98.%20Stability%20Ball%20Back%20Extensions%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/98.%20Stability%20Ball%20Back%20Extensions/98.%20Stability%20Ball%20Back%20Extensions%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/98.%20Stability%20Ball%20Back%20Extensions/98.%20Stability%20Ball%20Back%20Extensions%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "target": [0, 0, 0]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "target": [0, 0, 0]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Stability Ball Back Extensions are a bodyweight exercise that targets the glutes, hamstrings, and lower back. Using a stability ball increases the range of motion and challenges core stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strengthens glutes, hamstrings, and lower back\n- Improves core stability and balance\n- Enhances hip extension strength\n- Promotes better posture\n- Low-impact and accessible for most fitness levels"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes, Hamstrings, Lower Back\nSecondary: Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Execution",
+          "content": "1. Lie face down on a stability ball with your feet on the ground and hands behind your head.\n2. Squeeze your glutes and lift your upper body off the ball until your body forms a straight line.\n3. Hold for a second and slowly lower your upper body back down to the starting position.\n4. Repeat for desired reps."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,113 @@
+{
+  "exerciseId": "smith_machine_push_ups",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/274.%20Smith%20Machine%20Push%20Ups/274.%20Smith%20Machine%20Push%20Ups%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/274.%20Smith%20Machine%20Push%20Ups/274.%20Smith%20Machine%20Push%20Ups%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Push Up is a pressing exercise that uses a fixed barbell on a Smith machine to perform an inclined push-up.\n\nBy adjusting the bar height, the difficulty of the movement can be precisely scaled, making it accessible for beginners and useful as a finisher for advanced lifters.\n\nThe exercise primarily targets the chest with strong secondary involvement of the triceps and anterior shoulders."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the chest, triceps, and anterior shoulders\n- Adjustable bar height allows precise difficulty scaling\n- Stable bar path supports learning proper push-up mechanics\n- Wrist-friendly compared to floor push-ups for some lifters\n- Reinforces core and full-body bracing\n- Useful as a regression or progression for bodyweight push-ups\n- Easy to load by lowering the bar to increase resistance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major\n\nSecondary: Triceps Brachii, Anterior Deltoids, Core, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Set the bar on a Smith machine to a low to mid height that allows comfortable push-ups.\n2. Confirm the safety stops are engaged and the bar is locked at the chosen height.\n3. Position yourself facing the bar, ready to take a plank position underneath it."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie face down under the bar with hands placed slightly wider than shoulder-width.\n2. Press up so your arms are fully extended and your body is in a straight line.\n3. Brace the core and squeeze the glutes to maintain a flat plank."
+        },
+        {
+          "heading": "Lower",
+          "content": "1. Bend the elbows to lower your body toward the bar.\n2. Lower until your chest nearly touches the bar.\n3. Keep your body straight and your core engaged throughout the descent."
+        },
+        {
+          "heading": "Press and Repeat",
+          "content": "1. Press up through your hands by extending the elbows.\n2. Drive evenly through both palms.\n3. Return to the starting position and repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag or pike up\n- Flaring the elbows out wide\n- Failing to lower through a full range of motion\n- Choosing a bar height that is too low for current strength\n- Letting the head drop or jut forward\n- Holding the breath through the rep\n- Rocking the torso instead of pressing through both hands evenly"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith machine with adjustable bar height\n- Athletic shoes for foot traction\n- Optional: Mat for forearm or knee comfort\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Bar Adjustments",
+          "content": "1. Set the bar at a height that allows you to maintain good form for the desired reps.\n2. Lower the bar for a harder variation; raise it for an easier variation.\n3. Engage the safety stops to lock the bar in place.\n4. Confirm the bar is stable before getting under it."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, toes on the floor.\n2. Torso: Straight line from head to heels, glutes and core engaged.\n3. Arms: Hands slightly wider than shoulder-width, elbows tracking back at about 45 degrees.\n4. Shoulders: Packed and away from the ears.\n5. Head: Neutral, eyes slightly forward of the hands."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "close_grip_push_up_female"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Push Up: Standard floor variation\n- Incline Push Up: Hands elevated on a bench or box\n- Decline Push Up: Feet elevated for greater chest demand\n- Close Grip Push Up: Triceps-focused bodyweight variation\n- Bench Press: Loaded barbell pressing\n- Dumbbell Bench Press: Dumbbell pressing variation"
+        },
+        {
+          "heading": "Smith Machine Push Up Variations",
+          "content": "Standard Smith Machine Push Up: Described here\nClose Grip Smith Machine Push Up: Hands narrower for triceps emphasis\nWide Grip Smith Machine Push Up: Hands wider for chest emphasis\nFeet-Elevated Smith Machine Push Up: Feet on a bench for greater load\nTempo Smith Machine Push Up: Slow eccentric for hypertrophy\nPause Smith Machine Push Up: Pause near the bar for greater chest tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or grip the bar with neutral wrists\nElbow Pain: Reduce range of motion and lighten the demand by raising the bar\nShoulder Issues: Keep the elbows tucked at about 45 degrees\nLow Strength: Raise the bar height for an easier angle\nAdvanced: Lower the bar height or elevate the feet\nBeginners: Start with the bar high and progress lower over time"
+        }
+      ]
+    }
+  }
+}

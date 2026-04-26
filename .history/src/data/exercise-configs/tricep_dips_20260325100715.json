@@ -1,0 +1,105 @@
+{
+  "exerciseId": "tricep_dips",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/101.%20Tricep%20Dips/101.%20Tricep%20Dips%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/101.%20Tricep%20Dips/101.%20Tricep%20Dips%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/101.%20Tricep%20Dips/101.%20Tricep%20Dips%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/101.%20Tricep%20Dips/101.%20Tricep%20Dips%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.057528448287619, 1.5741330987829691, 2.725156919651864],
+    "rotation": [-0.22756702843745155, 0.6306910940070846, 0.13572296574034806],
+    "target": [-0.08100121856685857, 0.913373530252645, -0.12812899364767538]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.297634631360315, 1.9448657561661191, 2.444499525671669],
+    "rotation": [-0.3935912994754942, -0.4043988493461131, -0.1619593387665975],
+    "target": [-0.08295018262436622, 0.8564225909698873, -0.1766176978622554]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Tricep Dips are a bodyweight compound exercise that primarily targets the triceps while also engaging the chest and shoulders.\n\nPerformed on parallel dip bars, this exercise uses your own body weight as resistance to build upper body pushing strength.\n\nTricep Dips are a staple in bodyweight training programmes and are highly effective for developing arm size, strength, and muscular endurance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Highly effective for building tricep size and strength\n- Compound movement that also engages chest and shoulders\n- No equipment needed beyond parallel bars or a stable surface\n- Easily scalable by adding weight or adjusting body position\n- Builds functional upper body pushing strength\n- Improves lockout strength for bench press and overhead press\n- Can be performed almost anywhere with a sturdy surface"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps (all three heads)\n\nSecondary: Anterior Deltoids, Pectoralis Major (Lower Chest), Rhomboids, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand between parallel dip bars and grip each bar firmly.\n2. Position your hands shoulder-width apart with palms facing inward.\n3. Jump or press yourself up so your arms are fully extended.\n4. Keep your body upright with a slight forward lean.\n5. Cross your ankles or bend your knees behind you for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Position yourself with your hands on a dip bar, shoulder-width apart.\n2. Keep your feet off the floor, bend your arms and lower your body towards the floor.\n3. Lower yourself until your upper arms are roughly parallel to the floor or until you feel a comfortable stretch.\n4. Keep your elbows tucked close to your body to maximise tricep engagement.\n5. Straighten your arms, pushing your body back up to the starting position.\n6. Squeeze your triceps at the top of the movement.\n7. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring elbows out too wide, shifting emphasis to the chest\n- Lowering too far, placing excessive stress on the shoulder joint\n- Swinging or using momentum to complete reps\n- Not fully extending the arms at the top\n- Leaning too far forward, turning it into a chest-dominant exercise\n- Rushing through reps without controlling the descent\n- Shrugging the shoulders up towards the ears"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Parallel Dip Bars or Dip Station\n- Optional: Dip Belt with Weight Plates (for added resistance)\n- Optional: Resistance Band (for assisted dips)\n- Alternative: Two sturdy chairs or a bench for bench dips"
+        },
+        {
+          "heading": "Bar Setup",
+          "content": "1. Ensure the dip bars are stable and securely fixed.\n2. Bar width should allow a comfortable shoulder-width grip.\n3. Check that the bars can support your body weight plus any added load.\n4. If using a dip belt, attach the weight before mounting the bars.\n5. For assisted dips, loop a resistance band around the bars and place your knees or feet in it."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Firm overhand grip on parallel bars, shoulder-width apart.\n2. Arms: Fully extended at the start, elbows soft (not locked).\n3. Torso: Upright position to emphasise triceps; slight lean for more chest involvement.\n4. Elbows: Tucked close to the body throughout the movement.\n5. Legs: Crossed at the ankles or bent behind you.\n6. Core: Engaged to prevent swinging.\n7. Shoulders: Pulled down and back, away from ears."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "cable_crossovers"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Close Grip Bench Press: Barbell pressing variation targeting triceps\n- Diamond Push Ups: Bodyweight alternative with similar tricep focus\n- Tricep Cable Pushdowns: Cable isolation exercise for the triceps\n- Bench Dips: Easier variation using a bench behind you\n- Assisted Dips: Machine-assisted version for building up strength\n- Overhead Tricep Extension: Isolation exercise targeting the long head"
+        },
+        {
+          "heading": "Dip Variations",
+          "content": "Tricep Dips: Standard parallel bar dips with upright torso\nChest Dips: Forward-leaning variation emphasising chest\nWeighted Dips: Added resistance via dip belt or weighted vest\nBench Dips: Feet on floor, hands on bench behind you\nRing Dips: Performed on gymnastic rings for added instability\nAssisted Dips: Band or machine-assisted for beginners"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion or switch to bench dips\nElbow Discomfort: Avoid full lockout at the top, reduce depth\nLack of Strength: Use an assisted dip machine or resistance band\nWrist Issues: Adjust grip position or use padded grips\nNo Dip Bars: Perform bench dips or close grip push ups instead\nBeginner: Start with bench dips and progress to parallel bar dips"
+        }
+      ]
+    }
+  }
+}

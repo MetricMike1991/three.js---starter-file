@@ -1,0 +1,113 @@
+{
+  "exerciseId": "standing_hip_thrust_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/283.%20Standing%20Hip%20Thrust%20Machine/283.%20Standing%20Hip%20Thrust%20Machine%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/283.%20Standing%20Hip%20Thrust%20Machine/283.%20Standing%20Hip%20Thrust%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.1181780660165033, 1.590937612165448, -2.2909639857717607],
+    "rotation": [-2.7096627417292245, -0.7376914270282948, -2.840957459672674],
+    "target": [-0.025686419600528927, 0.6271337217609172, -0.20009683213332494]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.1181717180856667, 1.5909366930902118, -2.290970801050255],
+    "rotation": [-2.7096644054189296, -0.7376886342182092, -2.8409595665676934],
+    "target": [-0.02568650159974912, 0.6271338348422097, -0.200096736725828]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Standing Hip Thrust Machine is a glute-focused machine that loads the hip extension pattern from a standing position.\n\nThe lifter braces the torso against an inclined pad while driving the hips forward against a padded lever, producing a strong glute contraction without the floor setup of a traditional hip thrust.\n\nIt is a beginner-friendly, joint-friendly way to load the glutes and is commonly used for both hypertrophy and accessory work."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Direct loading of the glutes through hip extension\n- No barbell setup required\n- Lower back is supported by the inclined pad\n- Easy to load progressively on the weight stack\n- Stable platform allows full focus on glute contraction\n- Safe and beginner friendly\n- Strong carryover to barbell hip thrust performance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Erector Spinae, Core, Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the machine so the padded lever is at the right height for your hips.\n2. Stand facing away from the machine.\n3. Position your shoulders under the upper pads and your feet shoulder-width apart on the platform."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Lean forward slightly, placing your torso against the inclined pad.\n2. Confirm your hips are positioned beneath the lever pad.\n3. Brace your core and grip the handles for stability."
+        },
+        {
+          "heading": "Thrust",
+          "content": "1. Drive through your heels and extend your hips forward.\n2. Push against the weighted resistance with your glutes.\n3. Your body should move in a thrusting motion and your legs should remain relatively straight throughout the exercise."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Slowly return to the starting position by reversing the hip extension.\n2. Control the movement and maintain tension in your glutes and hamstrings throughout.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyper-extending the lower back at the top\n- Pushing through the toes instead of the heels\n- Letting the knees cave inward\n- Failing to fully extend the hips\n- Using momentum instead of controlled glute contraction\n- Holding the breath through the rep\n- Rounding the upper back against the pad"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Standing hip thrust machine\n- Athletic shoes for foot traction\n- Optional: Mirror to monitor form\n- Optional: Towel for the chest pad"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Adjust the lever pad to align with your hips when standing on the platform.\n2. Set the chest pad to a comfortable lean position.\n3. Select a load that allows controlled reps with full hip extension.\n4. Confirm the locking pin is fully engaged before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, flat on the platform.\n2. Torso: Leaning into the inclined pad, ribs stacked, core braced.\n3. Hips: Positioned beneath the lever pad.\n4. Hands: Gripping the handles firmly for stability.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "glute_kick_back_machine_female"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Heavy compound glute lift\n- Dumbbell Hip Thrust: Loaded with a dumbbell across the hips\n- Bodyweight Hip Thrust: Unloaded learning variation\n- Glute Kick Back Machine: Direct glute isolation\n- Cable Pull Through: Cable hip extension\n- Romanian Deadlift: Compound posterior chain lift"
+        },
+        {
+          "heading": "Standing Hip Thrust Machine Variations",
+          "content": "Standard Standing Hip Thrust Machine: Described here\nSingle Leg Standing Hip Thrust: One leg lifted for unilateral demand\nTempo Standing Hip Thrust: Slow eccentric for hypertrophy\nPaused Standing Hip Thrust: Pause at the top for greater glute tension\nWide Stance Standing Hip Thrust: Feet wider for adductor and glute emphasis\nNarrow Stance Standing Hip Thrust: Feet closer for outer glute focus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce load and avoid arching at the top\nKnee Pain: Adjust foot position to reduce knee strain\nNo Machine Access: Use barbell, dumbbell, or band hip thrusts\nBalance Issues: Grip the handles firmly and lean into the pad\nHip Mobility Issues: Reduce range of motion to a comfortable level\nBeginners: Start light to learn the movement before progressing"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "glute_ham_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/67.%20Glute%20Ham%20Raise/67.%20Glute%20Ham%20Raise%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/67.%20Glute%20Ham%20Raise/67.%20Glute%20Ham%20Raise%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/67.%20Glute%20Ham%20Raise/67.%20Glute%20Ham%20Raise%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/67.%20Glute%20Ham%20Raise/67.%20Glute%20Ham%20Raise%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Glute Ham Raise is a posterior chain exercise performed on a dedicated GHR machine that targets the hamstrings and glutes through knee flexion and hip extension.\n\nWidely used by powerlifters, sprinters, and athletes, this exercise builds exceptional hamstring strength through the full range of motion, from hip extension to knee flexion.\n\nIt is one of the most effective exercises for developing the hamstrings and reducing the risk of hamstring injuries."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the hamstrings through both hip extension and knee flexion\n- Builds exceptional posterior chain strength\n- Reduces the risk of hamstring strains and tears\n- Improves sprinting speed and athletic performance\n- No external load required — bodyweight provides sufficient resistance\n- Strengthens the glutes, lower back, and calves simultaneously\n- Excellent for correcting quad-dominant movement patterns"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus), Gluteus Maximus\n\nSecondary: Erector Spinae, Calves (Gastrocnemius), Core (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Position yourself face down on the glute ham raise machine.\n2. Secure your feet firmly under the footpads with the pad resting against your Achilles tendon or lower calves.\n3. Position your thighs on the thigh pad so your knees are just below the pad.\n4. Cross your arms over your chest or hold them behind your head.\n5. Start with your torso hanging perpendicular to the floor.\n6. Engage your core before beginning the movement."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your glutes and hamstrings to lift your torso upward.\n2. Drive through the footpads, using your hamstrings to curl your body up.\n3. Continue raising until your body forms a straight line from head to heels.\n4. Squeeze your glutes and hamstrings hard at the top position.\n5. Slowly lower your body back down to the starting position under control.\n6. Maintain tension in the hamstrings throughout the entire lowering phase.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or swinging to get the body up\n- Hyperextending the lower back at the top of the movement\n- Not controlling the eccentric (lowering) phase\n- Positioning the knees too far forward or backward on the pad\n- Letting the hips pike or sag during the movement\n- Not engaging the glutes — relying solely on the lower back\n- Attempting the full movement before building adequate hamstring strength\n- Rushing through reps without maintaining tension"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Glute Ham Raise (GHR) Machine\n- Optional: Weight Plate (held at chest for added resistance)\n- Optional: Resistance Band (for assistance or added difficulty)\n- Recommended: Ensure the machine is properly adjusted before starting"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the footplate so your feet are firmly secured under the pads.\n2. The pad should rest against your Achilles tendon or lower calves.\n3. Position the thigh pad so your knees sit just below the edge of the pad.\n4. This allows the knees to bend freely during the movement.\n5. The machine should be stable and secure on the floor.\n6. Test the setup with a partial rep before performing a full set."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Firmly secured under the footpads, toes pointed downward.\n2. Knees: Positioned just below the thigh pad for free flexion.\n3. Thighs: Resting on the pad for support.\n4. Hips: Aligned with the body, not piked or sagging.\n5. Arms: Crossed over the chest or behind the head.\n6. Core: Braced throughout to maintain a rigid torso.\n7. Head: Neutral alignment with the spine.\n8. Back: Straight — avoid rounding or hyperextending."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["romanian_deadlift_rdl", "conventional_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Romanian Deadlift: Hip hinge movement targeting hamstrings and glutes\n- Nordic Hamstring Curl: Bodyweight knee flexion for hamstring eccentric strength\n- Lying Leg Curl: Machine-based hamstring isolation exercise\n- Good Morning: Barbell hip hinge for posterior chain development\n- Reverse Hyperextension: Machine exercise targeting glutes and lower back\n- Stability Ball Hamstring Curl: Bodyweight alternative using a Swiss ball"
+        },
+        {
+          "heading": "Glute Ham Raise Variations",
+          "content": "Bodyweight Glute Ham Raise: Standard version with no added resistance\nWeighted Glute Ham Raise: Holding a plate at the chest for added load\nBanded Glute Ham Raise: Band around the back for accommodating resistance\nAssisted Glute Ham Raise: Using a band for support to assist the concentric phase\nSlow Tempo Glute Ham Raise: 3-5 second eccentric for maximum time under tension\nGlute Ham Raise with Twist: Adding a rotation at the top for oblique engagement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Cannot Complete Full Rep: Use a resistance band for assistance or perform negatives only\nKnee Discomfort: Ensure the pad is positioned correctly below the knee joint\nLower Back Pain: Focus on glute engagement and avoid hyperextending at the top\nHamstring Cramping: Build up volume gradually, stretch before and after\nNo GHR Machine: Use a Nordic curl setup or stability ball hamstring curls\nBeginner: Start with partial reps or band-assisted reps and progress gradually"
+        }
+      ]
+    }
+  }
+}

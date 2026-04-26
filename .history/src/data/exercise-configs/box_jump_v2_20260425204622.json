@@ -1,0 +1,112 @@
+{
+  "exerciseId": "box_jump_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/292.%20Box%20Jump/292.%20Box%20Jump%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/292.%20Box%20Jump/292.%20Box%20Jump%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-4.45465352461154, 2.5135740594795646, 0.6498087619861548],
+    "rotation": [-0.947105060289914, -1.1976288119316425, -0.9129411544430703],
+    "target": [0.2997129121235849, 1.0026313646736096, -0.43730897041152367]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-4.45465364587052, 2.513573634985902, 0.6498088216894353],
+    "rotation": [-0.9471050616535452, -1.1976288123497807, -0.9129411559139302],
+    "target": [0.299712791642933, 1.002630940311218, -0.43730890748682505]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Box Jump is an explosive lower body plyometric exercise that develops vertical power.\n\nThe athlete loads into a quarter squat, swings the arms back, then explodes upward to land softly on top of a sturdy box.\n\nIt is a foundational athletic training tool for sprinting, jumping, and field sport performance, building reactive strength and coordination."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops vertical explosive power\n- Trains triple extension of the hips, knees, and ankles\n- Improves jump mechanics and takeoff speed\n- Builds reactive strength and elasticity\n- Reinforces soft, balanced landings\n- Highly transferable to court and field sports\n- Adjustable difficulty by changing box height"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Gluteus Maximus, Hamstrings\n\nSecondary: Calves, Hip Flexors, Core, Shoulders"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Place a sturdy plyometric box on a flat, non-slip surface.\n2. Stand facing the box at a comfortable distance with your feet shoulder-width apart.\n3. Keep your knees slightly bent and your core braced."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Feet shoulder-width apart with weight evenly distributed.\n2. Knees soft, hips ready to load.\n3. Arms relaxed and ready to drive through the jump."
+        },
+        {
+          "heading": "Load and Launch",
+          "content": "1. Drop into a quarter squat.\n2. Swing your arms backward to prepare for the jump.\n3. Explode upward and forward, swinging your arms forward and upward to help propel your body. Bring your knees towards your chest to clear the height of the box."
+        },
+        {
+          "heading": "Land and Reset",
+          "content": "1. Land softly on the box with your feet flat and knees bent to absorb the impact.\n2. Stand up fully on the box.\n3. Step back down carefully one foot at a time and reset for the next rep."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Landing in a deep squat that absorbs all the energy from the box height\n- Letting the knees collapse inward on landing\n- Failing to use the arm swing for momentum\n- Jumping back down instead of stepping down\n- Choosing a box height beyond your current ability\n- Performing reps when fatigued, leading to poor mechanics\n- Skipping the warm-up before plyometrics"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Sturdy plyometric box at an appropriate height\n- Flat, non-slip training surface\n- Supportive athletic footwear"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Feet shoulder-width apart facing the box.\n2. Knees soft, hips loaded.\n3. Arms ready to drive through the jump."
+        },
+        {
+          "heading": "Movement Setup",
+          "content": "1. Quarter squat depth on the load.\n2. Powerful triple extension on take-off.\n3. Soft two-foot landing on top of the box."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Use a sturdy box that will not slide or tip\n- Always step down rather than jump down to reduce knee impact\n- Stop the session if landings become sloppy\n- Limit volume to maintain quality of each rep\n- Stop immediately if you feel sharp knee or ankle pain"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other lower body plyometric exercises that develop explosive power."
+        }
+      ],
+      "suggestedExercises": [
+        "broad_jump",
+        "squat_jump"
+      ]
+    }
+  }
+}

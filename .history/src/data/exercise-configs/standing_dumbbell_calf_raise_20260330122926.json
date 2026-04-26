@@ -1,0 +1,105 @@
+{
+  "exerciseId": "standing_dumbbell_calf_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/111.%20Standing%20Dumbbell%20Calf%20Raise/111.%20Standing%20Dumbbell%20Calf%20Raise%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/111.%20Standing%20Dumbbell%20Calf%20Raise/111.%20Standing%20Dumbbell%20Calf%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/111.%20Standing%20Dumbbell%20Calf%20Raise/111.%20Standing%20Dumbbell%20Calf%20Raise%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/111.%20Standing%20Dumbbell%20Calf%20Raise/111.%20Standing%20Dumbbell%20Calf%20Raise%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Calves",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Standing Dumbbell Calf Raise is an isolation exercise that targets the gastrocnemius and soleus muscles of the calf.\n\nPerformed by standing on a bumper plate with one foot while holding a dumbbell in the opposite hand, this unilateral movement helps address muscle imbalances between legs.\n\nIt is a simple yet effective exercise for building calf size, strength, and ankle stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the gastrocnemius and soleus for complete calf development\n- Unilateral movement helps correct muscle imbalances between legs\n- Improves ankle stability and balance\n- Requires minimal equipment — just a dumbbell and a bumper plate\n- Full range of motion through elevated foot positioning\n- Enhances lower leg strength for running, jumping, and everyday activities\n- Easy to progressively overload by increasing dumbbell weight"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gastrocnemius, Soleus (Calves)\n\nSecondary: Tibialis Anterior, Core (for stabilisation), Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a bumper plate flat on the ground.\n2. Stand on the plate with the ball of one foot, allowing your heel to hang off the edge.\n3. Hold a dumbbell in the opposite hand at your side.\n4. Use a wall, rack, or sturdy surface with the free hand for balance if needed.\n5. Keep your standing leg straight with a slight bend in the knee.\n6. Engage your core and maintain an upright posture."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Raise your heel off the bumper plate as high as possible, contracting your calf muscle at the top.\n2. Hold the top position briefly, squeezing the calf for a strong contraction.\n3. Slowly lower your heel back down to the starting position in a controlled manner.\n4. Allow a slight stretch at the bottom of the movement without bouncing.\n5. Repeat the movement for the desired number of reps.\n6. Switch sides and repeat with the opposite foot and hand."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing at the bottom of the movement instead of using a controlled tempo\n- Not achieving full range of motion at the top or bottom\n- Rushing through reps without pausing at the peak contraction\n- Bending the knee excessively, shifting emphasis away from the calf\n- Leaning too far forward or backward, compromising balance\n- Using momentum rather than controlled muscle contractions\n- Neglecting to train both sides equally"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Dumbbell (appropriate weight for your fitness level)\n- Bumper Plate or Elevated Surface (step, block, or platform edge)\n- Optional: Wall or Rack for balance support"
+        },
+        {
+          "heading": "Positioning",
+          "content": "1. Place a bumper plate on a flat, stable surface.\n2. Stand on the edge of the plate with the ball of one foot.\n3. Hold the dumbbell in the hand opposite to the working leg.\n4. Keep your free hand available for balance support if needed.\n5. Ensure the plate is stable and will not slide during the exercise."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Foot: Ball of foot on edge of plate, heel hanging off.\n2. Standing Leg: Straight with a slight knee bend.\n3. Opposite Hand: Holding the dumbbell at your side.\n4. Free Hand: Resting on a wall or rack for balance.\n5. Torso: Upright posture, core engaged.\n6. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_dumbbell_calf_raise"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Dumbbell Calf Raise: Seated version targeting the soleus more directly\n- Standing Barbell Calf Raise: Bilateral version using a barbell for heavier loads\n- Smith Machine Calf Raise: Machine-guided standing calf raise\n- Leg Press Calf Raise: Calf raises performed on a leg press machine\n- Donkey Calf Raise: Bent-over variation for an enhanced stretch"
+        },
+        {
+          "heading": "Variations",
+          "content": "Standing Dumbbell Calf Raise: Single-leg with opposite hand dumbbell\nDouble Leg Dumbbell Calf Raise: Both feet on the plate with two dumbbells\nSlow Tempo Calf Raise: 3-4 second eccentric for increased time under tension\nPaused Calf Raise: Hold at the top for 2-3 seconds per rep\nBodyweight Single Leg Calf Raise: No added weight, higher rep ranges"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Balance Issues: Use a wall or rack for support, or try the seated variation\nAnkle Mobility Restrictions: Start with a smaller range of motion and progress gradually\nAchilles Tendon Sensitivity: Reduce the depth of the stretch and use lighter loads\nNo Bumper Plate: Use a step, block, or any stable elevated surface\nGrip Fatigue: Use lifting straps or switch to a barbell variation"
+        }
+      ]
+    }
+  }
+}

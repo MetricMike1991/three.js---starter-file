@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_thruster",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/135.%20Barbell%20Thruster/135.%20Barbell%20Thruster%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/135.%20Barbell%20Thruster/135.%20Barbell%20Thruster%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/135.%20Barbell%20Thruster/135.%20Barbell%20Thruster%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/135.%20Barbell%20Thruster/135.%20Barbell%20Thruster%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.8311926024922256, 1.3092337145848683, 2.2456837864269854],
+    "rotation": [-0.21534305957447286, 0.6884127899761603, 0.13808050614221426],
+    "target": [-0.05929327585620828, 0.8181944151887541, 0.0007752712265511386]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.2617807602345708, 1.599915090153108, 2.9877878346067406],
+    "rotation": [-0.22862774406907446, 0.4112033404377084, 0.09274483357067508],
+    "target": [-0.0037000999345247667, 0.9421882387448435, 0.16124207139917754]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Thruster is a high-intensity compound exercise that combines a front squat with an overhead press in one powerful movement.\n\nPerformed with a barbell in the front rack position, this exercise is a staple in CrossFit and functional fitness training for building total body strength and conditioning.\n\nThe barbell allows for heavier loading compared to dumbbell or kettlebell variations, making it an excellent choice for developing maximal strength and power."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Full-body compound movement engaging virtually every major muscle group\n- Allows for heavier loading than dumbbell or kettlebell thrusters\n- Builds explosive power through the squat-to-press transition\n- Excellent for cardiovascular conditioning and metabolic training\n- Develops front rack mobility and shoulder stability\n- Highly efficient calorie-burning exercise\n- Improves coordination and timing between lower and upper body"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Shoulders, Quadriceps, Glutes\n\nSecondary: Triceps, Core, Hamstrings, Upper Back, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Position the barbell on your front shoulders in a front rack position.\n3. Grip the bar with palms facing upwards, elbows pointing forward.\n4. Keep your elbows high to prevent the bar from rolling forward.\n5. Engage your core and maintain a neutral spine.\n6. Keep your chest up and shoulders back.\n7. Distribute your weight evenly across both feet.\n8. Look straight ahead with a neutral head position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Lower your body into a squat by bending at the hips and knees.\n3. Keep your chest up and elbows high throughout the descent.\n4. Squat down until your thighs are at least parallel to the ground.\n5. Drive explosively through your heels to stand up.\n6. Use the upward momentum from the squat to press the barbell overhead.\n7. Fully extend your arms at the top, pushing your head slightly forward through the arms.\n8. Slowly lower the barbell back to the front rack position with control.\n9. Immediately descend into the next squat and repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Dropping the elbows during the squat, causing the bar to roll forward\n- Not squatting deep enough before initiating the press\n- Pressing the barbell before fully standing from the squat\n- Letting the knees cave inward during the squat\n- Leaning too far forward and losing an upright torso\n- Not using the momentum from the squat to assist the press\n- Pressing the bar in front of the body instead of directly overhead\n- Not fully locking out the arms overhead\n- Rounding the upper back due to poor front rack mobility"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Squat Rack (to unrack the barbell safely)\n- Flat, Non-Slip Floor Surface\n- Adequate Overhead Clearance\n- Optional: Lifting Belt (for heavy loads)\n- Optional: Weightlifting Shoes for improved stability\n- Optional: Wrist Wraps for front rack support"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start lighter than you think — the overhead press is the limiting factor.\n2. Choose a weight you can strict press for 8-10 reps.\n3. The squat portion will feel easy; the press should be challenging.\n4. Beginners should start with just the barbell (20 kg/45 lbs).\n5. Intermediate lifters typically use 40-60 kg (90-135 lbs).\n6. Focus on mastering the front rack position before increasing load.\n7. The transition from squat to press should feel smooth and explosive.\n8. If you can't maintain good form, reduce the weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Shoulder-width apart, toes slightly turned out.\n2. Bar Position: Front rack, resting on front deltoids.\n3. Grip: Just outside shoulder-width, fingertips under the bar.\n4. Elbows: High and forward, parallel to the ground.\n5. Torso: Upright throughout the entire movement.\n6. Core: Braced and engaged at all times.\n7. Knees: Track over toes during squat, do not cave inward.\n8. Head: Neutral, push slightly forward through arms at lockout."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_thruster", "kettlebell_thrusters"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Thruster: Independent arm movement, easier front rack\n- Kettlebell Thruster: Single or double kettlebell variation\n- Barbell Overhead Press: Isolates the pressing component\n- Barbell Front Squat: Isolates the squat component\n- Wall Ball: Similar movement pattern with a medicine ball\n- Barbell Push Press: Less squat depth, more explosive press"
+        },
+        {
+          "heading": "Thruster Variations",
+          "content": "Barbell Thruster: Standard barbell in front rack position\nDumbbell Thruster: Dumbbells at shoulders for independent movement\nKettlebell Thruster: Kettlebells racked at shoulders\nSingle Arm Barbell Thruster: Landmine variation for unilateral work\nCluster (Squat Clean Thruster): Clean into thruster combination\nTempo Thruster: Controlled descent for muscle building\nPaused Thruster: Pause at bottom of squat for strength development"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Front Rack Mobility Issues: Work on wrist and lat flexibility, use straps\nShoulder Mobility Issues: Use dumbbells or kettlebells instead\nKnee Pain: Reduce squat depth or use a box squat variation\nWrist Discomfort: Use wrist wraps or switch to a cross-arm grip\nLower Back Issues: Focus on core bracing, reduce weight\nNo Barbell: Use dumbbells, kettlebells, or resistance bands\nLearning Stage: Practice front squats and overhead press separately first"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "ez_barbell_upright_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/97.%20Ez%20Barbell%20Upright%20Row/97.%20Ez%20Barbell%20Upright%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/97.%20Ez%20Barbell%20Upright%20Row/97.%20Ez%20Barbell%20Upright%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/97.%20Ez%20Barbell%20Upright%20Row/97.%20Ez%20Barbell%20Upright%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/97.%20Ez%20Barbell%20Upright%20Row/97.%20Ez%20Barbell%20Upright%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.3182681951681003, 1.4102168822835486, -2.6732601671318363],
+    "rotation": [-3.03552866493696, -0.47127491116499814, -3.093293407588389],
+    "target": [-0.006455187353544317, 1.1376828342790832, -0.11337796206816644]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.3182681951683553, 1.410216882280455, -2.6732601671320317],
+    "rotation": [-3.0355286649369715, -0.47127491116500525, -3.0932934075883933],
+    "target": [-0.006455187353782892, 1.1376828342760201, -0.11337796206837139]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The EZ Barbell Upright Row is a compound upper body exercise that targets the shoulders and upper traps using an EZ curl bar.\n\nThe angled grip of the EZ bar places the wrists in a more natural position compared to a straight barbell, reducing strain on the wrist joints.\n\nThis makes it a popular choice for those who experience discomfort with a standard barbell upright row while still effectively building shoulder width and upper back mass."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds the lateral deltoids and upper trapezius\n- EZ bar grip reduces wrist strain compared to a straight barbell\n- More comfortable hand position for those with wrist issues\n- Develops shoulder width and upper back thickness\n- Simple to learn and perform\n- Allows for progressive overload with manageable weight increases\n- Effective as both a primary or accessory shoulder exercise"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Lateral Deltoids, Upper Trapezius\n\nSecondary: Anterior Deltoids, Biceps, Forearms, Rhomboids"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold the EZ bar with an overhand grip, hands slightly closer than shoulder-width apart.\n3. Use the inner angled grips of the EZ bar for the most comfortable wrist position.\n4. Let the bar hang at arm's length in front of your thighs.\n5. Keep your chest up, shoulders back, and core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keep your elbows close to your body and lift the barbell straight up towards your chin.\n2. Lead with your elbows — they should rise higher than your hands throughout the movement.\n3. Keep the bar close to your body as it travels upward.\n4. Pause briefly at the top of the movement when the bar reaches upper chest or chin level.\n5. Lower the bar back down to the starting position in a controlled manner.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling the bar too high and causing shoulder impingement\n- Using momentum to swing the weight up\n- Letting the elbows drop below the hands during the lift\n- Gripping too tightly and creating excessive forearm tension\n- Leaning back to assist the lift\n- Not controlling the lowering phase\n- Using too heavy a weight and sacrificing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- EZ Curl Bar\n- Weight Plates\n- Collars/Clips to secure the plates\n- Optional: Wrist wraps for additional support"
+        },
+        {
+          "heading": "Grip Selection",
+          "content": "1. Use the inner angled grips for a closer grip — more trap emphasis.\n2. Use the outer angled grips for a wider grip — more lateral deltoid emphasis.\n3. The angled grip naturally pronates the wrists less than a straight bar.\n4. Choose the grip width that feels most comfortable on your wrists and shoulders.\n5. Maintain a firm but relaxed grip — avoid white-knuckling the bar."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, flat on the ground.\n2. Grip: Overhand on the EZ bar angled grips.\n3. Arms: Fully extended, bar resting against the thighs.\n4. Chest: Lifted and open.\n5. Core: Braced throughout the movement.\n6. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["kettlebell_upright_row", "barbell_overhead_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Upright Row: Straight bar version with slightly different wrist angle\n- Kettlebell Upright Row: Single implement version with natural grip\n- Dumbbell Upright Row: Allows independent arm movement\n- Cable Upright Row: Constant tension throughout the range of motion\n- Dumbbell Lateral Raise: Isolation movement for the lateral deltoids\n- Face Pulls: Targets rear delts and upper traps with cable"
+        },
+        {
+          "heading": "Upright Row Variations",
+          "content": "EZ Bar Upright Row: Standard EZ bar upright row with angled grip\nWide Grip EZ Bar Upright Row: Wider grip for more lateral deltoid focus\nClose Grip EZ Bar Upright Row: Narrower grip for more trap emphasis\nSlow Tempo Upright Row: Controlled eccentric for greater time under tension\nPartial Rep Upright Row: Reduced range to avoid impingement\nSuperset Upright Row: Paired with lateral raises for shoulder burnout"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Stop the pull at chest level rather than chin level\nWrist Pain: EZ bar is already easier on the wrists — try adjusting grip width\nElbow Pain: Reduce weight and focus on smooth, controlled reps\nNo EZ Bar: Use dumbbells, kettlebell, or a straight barbell\nBeginner: Start with just the empty EZ bar to learn the movement\nMobility Issues: Perform partial range of motion and progress gradually"
+        }
+      ]
+    }
+  }
+}

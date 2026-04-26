@@ -1,0 +1,113 @@
+{
+  "exerciseId": "tricep_dips_on_bench",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/268.%20Tricep%20Dips%20On%20Bench/268.%20Tricep%20Dips%20On%20Bench%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/268.%20Tricep%20Dips%20On%20Bench/268.%20Tricep%20Dips%20On%20Bench%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.102, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.7592241723731257, 2.529742121431119, 2.5623011006633787],
+    "rotation": [-0.6835412717742162, -0.7098926178286475, -0.4880416388831284],
+    "target": [0.02318036208655112, 0.48491333329196185, 0.05187715770524209]
+  },
+  "modelHQ": {
+    "position": [0, -0.102, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.75922417237242, 2.529742121429339, 2.5623011006656107],
+    "rotation": [-0.6835412717733548, -0.7098926178284295, -0.48804163888229457],
+    "target": [0.02318036208655112, 0.48491333329196185, 0.05187715770524209]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/268.%20Tricep%20Dips%20On%20Bench/Tricep%20Dips%20On%20Bench_250x250_2026-04-25T12-56-08.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Tricep Dips on Bench is a bodyweight exercise that targets the triceps using a stable bench for support.\n\nBy lowering and pressing your body up with your arms, you build strength and definition in the back of the upper arms.\n\nThis movement also engages the shoulders and chest, making it an effective accessory exercise for upper-body pushing strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the triceps brachii\n- Requires no specialized equipment beyond a bench\n- Builds upper-body pushing strength\n- Easily scaled by bending the knees or extending the legs\n- Reinforces shoulder stability and core control\n- Great accessory movement for bench press and overhead pressing\n- Portable and convenient for at-home or gym training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii\n\nSecondary: Anterior Deltoids, Pectoralis Major, Core, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Position yourself in front of a sturdy bench, facing away from it.\n2. Place your hands on the edge of the bench, fingers pointing towards your body.\n3. Extend your legs out in front of you with your heels on the ground."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Slide your buttocks off the bench with your arms fully extended.\n2. Support your body weight with your hands gripping the edge.\n3. Keep your shoulders packed and chest lifted."
+        },
+        {
+          "heading": "Lower",
+          "content": "1. Slowly bend your elbows to lower your body toward the floor.\n2. Lower until your elbows reach about a 90-degree angle.\n3. Keep your back close to the bench and elbows tracking straight back."
+        },
+        {
+          "heading": "Press and Repeat",
+          "content": "1. Push back up by extending your elbows.\n2. Focus on using your triceps to drive the movement.\n3. Return to the starting position and repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring the elbows out to the sides\n- Letting the shoulders shrug up toward the ears\n- Drifting too far away from the bench\n- Using leg drive instead of the triceps\n- Going too low and stressing the shoulders\n- Locking out the elbows aggressively at the top\n- Allowing the hips to sag during the rep"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sturdy flat bench, box, or stable elevated surface\n- Athletic shoes for secure footing\n- Optional: Mat under your feet for grip\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Bench Adjustments",
+          "content": "1. Use a bench that will not slide or tip during the movement.\n2. Sit on the edge with your hands gripping beside your hips.\n3. Fingers should point forward toward your body for wrist comfort.\n4. Confirm both hands are evenly placed before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Legs extended forward, heels on floor (bend knees for easier variation).\n2. Torso: Tall, ribs down, core braced.\n3. Arms: Elbows tracking straight back, not flared.\n4. Shoulders: Packed and down, away from the ears.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_skull_crusher_v2", "tricep_pushdown"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Parallel Bar Dips: Heavier bodyweight variation\n- Tricep Pushdown: Cable-based isolation\n- Tricep Skull Crusher: Lying tricep extension\n- Close-Grip Bench Press: Compound triceps press\n- Diamond Push-Up: Bodyweight triceps emphasis\n- Overhead Tricep Extension: Long-head focused isolation"
+        },
+        {
+          "heading": "Tricep Dips On Bench Variations",
+          "content": "Bent-Knee Bench Dip: Easier variation with feet flat\nStraight-Leg Bench Dip: Standard variation as described\nElevated-Foot Bench Dip: Feet on a second bench for greater load\nWeighted Bench Dip: Place a plate on the lap for added resistance\nTempo Bench Dip: Slow eccentric for hypertrophy\nPause Bench Dip: Pause at the bottom for greater triceps tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion and avoid going too low\nWrist Pain: Use parallettes or dip handles for a neutral grip\nElbow Pain: Lighten the load by bending the knees\nLow Strength: Start with bent knees and feet flat on the floor\nAdvanced: Elevate feet or add weight to the lap\nBeginners: Use a higher bench and bent knees to learn the pattern"
+        }
+      ]
+    }
+  }
+}

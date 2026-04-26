@@ -1,0 +1,105 @@
+{
+  "exerciseId": "smith_machine_seated_calf_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/117.%20Smith%20Machine%20Seated%20Calf%20Raise/117.%20Smith%20Machine%20Seated%20Calf%20Raise%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/117.%20Smith%20Machine%20Seated%20Calf%20Raise/117.%20Smith%20Machine%20Seated%20Calf%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/117.%20Smith%20Machine%20Seated%20Calf%20Raise/117.%20Smith%20Machine%20Seated%20Calf%20Raise%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/117.%20Smith%20Machine%20Seated%20Calf%20Raise/117.%20Smith%20Machine%20Seated%20Calf%20Raise%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.3321463322723166, 0.9914848770370144, 1.9040939944908084],
+    "rotation": [-0.34018160257085417, -0.5987889532211688, -0.1969112117734867],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.849330698867593, 1.5348942247685824, 2.203335761612985],
+    "rotation": [-0.5016583998134615, -0.71987530621542, -0.3469653102148256],
+    "target": [0.16017783120493317, 0.4328403363624976, 0.19396710469229328]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Calves",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Seated Calf Raise is a lower leg isolation exercise that targets the soleus and gastrocnemius muscles.\n\nBy sitting on a bench with the Smith Machine bar resting across the knees, this exercise provides a stable, guided range of motion.\n\nThe seated position places greater emphasis on the soleus muscle compared to standing calf raises, making it an excellent complement to a complete calf training programme."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Effectively isolates the calf muscles, particularly the soleus\n- The Smith Machine provides a stable, guided bar path for safety\n- Seated position reduces lower back strain\n- Allows for heavy loading with controlled movement\n- Great for developing calf size and definition\n- Improves ankle stability and mobility\n- Easy to perform drop sets for added intensity"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Soleus, Gastrocnemius (Calves)\n\nSecondary: Tibialis Anterior, Ankle Stabilisers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on a bench and position the bar of the Smith Machine across the top of your knees.\n2. Position your feet on the edge of a plyometric step with your heels hanging off.\n3. Unlock the Smith Machine bar and support the weight on your knees.\n4. Keep your back straight and core engaged.\n5. Start with your heels in a neutral or slightly lowered position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Slowly lower your heels while maintaining a straight back position.\n2. Reach a full stretch in your calves at the bottom of the movement.\n3. Pause briefly at the bottom to feel the stretch.\n4. Push through the balls of your feet to raise your heels as high as possible.\n5. Return back to a tippy-toe position on the edge of the plyometric step.\n6. Give a big squeeze at the top, holding for a second.\n7. Repeat for the desired number of reps with controlled tempo."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing at the bottom of the movement instead of controlled stretching\n- Not achieving full range of motion (partial reps)\n- Using too much weight and sacrificing form\n- Letting the bar slide off the knees\n- Moving too quickly without pausing at the top or bottom\n- Not positioning feet correctly on the step edge\n- Rounding the back during the exercise"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith Machine\n- Flat Bench or Seat\n- Plyometric Step or Calf Block\n- Optional: Towel or Pad for knee comfort under the bar"
+        },
+        {
+          "heading": "Smith Machine Setup",
+          "content": "1. Position a flat bench inside the Smith Machine.\n2. Place a plyometric step or calf block in front of the bench.\n3. Adjust the Smith Machine bar height so it sits comfortably across your knees when seated.\n4. Load appropriate weight plates onto the bar.\n5. Sit on the bench and place the balls of your feet on the edge of the step.\n6. Position the bar across both knees evenly.\n7. Unlock the bar by rotating the safety hooks."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Balls of feet on the edge of the step, heels hanging off.\n2. Knees: Bar resting securely across both knees.\n3. Back: Straight and upright throughout the movement.\n4. Hands: Lightly holding the bar for stability.\n5. Core: Engaged to maintain posture.\n6. Foot Width: Shoulder-width apart for balanced development."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Calf Raise Machine: Dedicated machine for seated calf raises\n- Standing Calf Raise: Greater emphasis on the gastrocnemius\n- Leg Press Calf Raise: Using the leg press platform for calf raises\n- Donkey Calf Raise: Hip-hinged position for calf development\n- Single-Leg Calf Raise: Unilateral version for imbalance correction"
+        },
+        {
+          "heading": "Calf Raise Variations",
+          "content": "Smith Machine Seated Calf Raise: Guided bar path, seated position\nStanding Smith Machine Calf Raise: Standing variation on the Smith Machine\nSeated Dumbbell Calf Raise: Dumbbells resting on knees\nBarbell Seated Calf Raise: Free weight barbell across knees\nSingle-Leg Seated Calf Raise: Isolate one calf at a time\nToe Press on Leg Press: Using the leg press for calf work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Discomfort: Use a pad or towel under the bar for cushioning\nAnkle Mobility Issues: Reduce range of motion and gradually increase\nNo Smith Machine: Use a seated calf raise machine or dumbbells on knees\nNo Plyometric Step: Use weight plates stacked on the floor as a platform\nAchilles Tendon Issues: Use lighter weight and avoid deep stretches\nBalance Concerns: The Smith Machine's guided path is already a safer option"
+        }
+      ]
+    }
+  }
+}

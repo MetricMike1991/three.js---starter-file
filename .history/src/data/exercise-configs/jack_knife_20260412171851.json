@@ -1,0 +1,105 @@
+{
+  "exerciseId": "jack_knife",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/158.%20Jack%20Knife/158.%20Jack%20Knife%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/158.%20Jack%20Knife/158.%20Jack%20Knife%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/158.%20Jack%20Knife/158.%20Jack%20Knife%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/158.%20Jack%20Knife/158.%20Jack%20Knife%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Jack Knife is a bodyweight core exercise performed lying on your back, where you simultaneously lift your legs and upper body to meet in the middle, forming a V shape.\n\nThis dynamic movement targets the entire rectus abdominis while also engaging the hip flexors and requiring significant core coordination.\n\nIt is a popular exercise in bodyweight training, athletic conditioning, and gymnastics programmes for building explosive core strength, abdominal definition, and trunk control."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the entire rectus abdominis through a full range of motion\n- No equipment required — can be performed anywhere\n- Builds explosive core strength and coordination\n- Engages both the upper and lower abdominals simultaneously\n- Improves hip flexor strength and flexibility\n- Develops body control and proprioception\n- Can be progressed or regressed to suit any fitness level"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis (Upper and Lower Fibres)\n\nSecondary: Hip Flexors, Obliques, Quadriceps, Transverse Abdominis"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie flat on your back on a mat with your legs fully extended.\n2. Extend your arms overhead, resting them on the floor behind you.\n3. Engage your core and press your lower back into the floor.\n4. Keep your body in a straight line from fingertips to toes."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Simultaneously lift your legs and upper body off the ground.\n2. Bring your hands and feet together to meet in the middle, forming a V shape with your body.\n3. Keep your legs as straight as possible throughout the movement.\n4. Reach your hands toward your toes at the top of the movement.\n5. Engage your abs to control the lift — do not rely on momentum.\n6. Slowly lower your legs and upper body back down to the starting position with control.\n7. Do not let your hands or feet touch the floor between reps to maintain tension.\n8. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum to swing the body up instead of engaging the core\n- Bending the knees excessively instead of keeping the legs straight\n- Not reaching full extension at the top — stopping short of the V position\n- Allowing the lower back to arch off the floor during the lowering phase\n- Dropping the legs and torso too quickly instead of lowering with control\n- Holding the breath instead of exhaling during the lift phase\n- Straining the neck by pulling the head forward"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Exercise mat (optional but recommended for comfort)\n- No other equipment required"
+        },
+        {
+          "heading": "Space Requirements",
+          "content": "1. Find a flat, open area with enough space to lie down fully extended with arms overhead.\n2. Use an exercise mat for comfort and to protect your spine.\n3. Ensure there is clearance above for the V-up movement."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat on the floor with lower back pressed firmly down.\n2. Arms: Extended overhead, resting on the floor behind you.\n3. Legs: Fully extended with toes pointed.\n4. Core: Engaged and braced before initiating each rep.\n5. Head: In a neutral position — move with the torso, do not pull the neck.\n6. Breathing: Exhale on the way up, inhale on the way down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flutter_kicks", "bodyweight_crunch", "deadbug"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- V-Up: Similar full-body crunch with a focus on touching toes at the top\n- Flutter Kicks: Alternating leg kicks for lower abdominal endurance\n- Bicycle Crunches: Rotational crunch targeting abs and obliques\n- Hollow Body Hold: Isometric core hold in a similar extended position\n- Leg Raises: Lying leg raise for lower abdominal targeting\n- Tuck Crunch: Knees-to-chest crunch as a regression of the jack knife"
+        },
+        {
+          "heading": "Jack Knife Variations",
+          "content": "Standard Jack Knife: Full V-up with straight legs and arms overhead\nSingle-Leg Jack Knife: Alternate one leg at a time for a regression\nWeighted Jack Knife: Hold a light dumbbell or medicine ball for added resistance\nSlow Tempo Jack Knife: 3–4 second concentric and eccentric for increased time under tension\nPaused Jack Knife: Hold the V position for 2–3 seconds at the top\nTuck Jack Knife: Bend the knees to reduce difficulty as a beginner progression\nDecline Jack Knife: Perform on a decline bench for increased range of motion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Keep the lower back pressed into the floor and reduce the range of motion\nHamstring Tightness: Bend the knees slightly if you cannot keep the legs straight\nNeck Strain: Keep the head in a neutral position and avoid pulling the chin forward\nBeginner: Start with tuck jack knives (bent knees) and progress to straight legs\nHip Flexor Issues: Reduce the speed and range of motion to minimise hip flexor strain\nPost-Injury: Consult a physiotherapist before performing explosive core exercises"
+        }
+      ]
+    }
+  }
+}

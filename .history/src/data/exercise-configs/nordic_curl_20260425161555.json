@@ -1,0 +1,112 @@
+{
+  "exerciseId": "nordic_curl",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/287.%20Nordic%20Curl/287.%20Nordic%20Curl%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/287.%20Nordic%20Curl/287.%20Nordic%20Curl%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.372797783654102, 2.6115106143402427, -1.781859411884168],
+    "rotation": [-2.3379810551086395, -0.6933589126330657, -2.55624396445782],
+    "target": [0.1788610986641645, 0.4010901849031694, 0.3494740200991609]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.3727976169468734, 2.6115108807801093, -1.7818593351260767],
+    "rotation": [-2.3379809768739896, -0.6933588583378014, -2.5562439224427065],
+    "target": [0.1788610986527413, 0.40109018486629355, 0.3494740200900395]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Nordic Curl is an advanced bodyweight hamstring exercise that emphasises the eccentric strength of the hamstrings.\n\nWith the ankles anchored, the lifter lowers the torso towards the floor under control, then drives back up using the hamstrings.\n\nIt is one of the most effective exercises for hamstring hypertrophy, knee flexor strength, and injury resilience for sprinting and jumping athletes."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds eccentric hamstring strength\n- Reduces risk of hamstring strains in athletes\n- Develops hamstring hypertrophy with bodyweight only\n- Strengthens knee flexors and stabilisers\n- Improves control through deep ranges of motion\n- Reinforces glute and core engagement\n- Highly scalable through tempo and assistance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus)\n\nSecondary: Gluteus Maximus, Gastrocnemius, Erector Spinae, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the Nordic curl machine so that your ankles are securely held under the padded brace.\n2. Position your knees just behind the pad on the kneeling cushion.\n3. Confirm the anchor is firmly locked before beginning."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Kneel on the machine with your body upright.\n2. Cross your hands over your chest or place them behind your head.\n3. Brace your core and engage your glutes to keep the hips extended."
+        },
+        {
+          "heading": "Lower Under Control",
+          "content": "1. Slowly lower your torso towards the ground by flexing at the knees.\n2. Keep your hips extended and back straight throughout the descent.\n3. Use your hamstrings to control the descent and resist gravity as long as possible."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Push against the floor with your hands to help initiate the movement.\n2. Use your hamstrings to pull yourself back to the starting position.\n3. Keep the motion controlled and repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bending at the hips instead of the knees\n- Dropping rapidly instead of resisting the eccentric\n- Hyperextending the lower back\n- Failing to brace the core\n- Using arms to push too early on the descent\n- Choosing too long a range before strength is built\n- Skipping the warm-up of the hamstrings"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Nordic curl machine, GHD, or partner-anchored setup\n- Padded surface for the knees\n- Optional resistance band for assistance"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Knees just behind the kneeling pad.\n2. Hips fully extended in line with the torso.\n3. Hands crossed at the chest or behind the head."
+        },
+        {
+          "heading": "Anchor Setup",
+          "content": "1. Heels secured tightly under the ankle pad.\n2. Pad pressure even on both ankles.\n3. Lock confirmed before initiating the rep."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Begin with assisted reps if you cannot control a full range\n- Place a mat or pad to catch the chest if needed\n- Do not allow the hips to flex during the descent\n- Stop immediately if you feel sharp hamstring or knee pain\n- Progress range of motion gradually over weeks"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other hamstring exercises that emphasise knee flexion or eccentric loading."
+        }
+      ],
+      "suggestedExercises": [
+        "lying_leg_curl",
+        "seated_leg_curl"
+      ]
+    }
+  }
+}

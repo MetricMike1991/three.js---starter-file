@@ -1,0 +1,105 @@
+{
+  "exerciseId": "air_assault_bike",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/172.%20Air%20Assault%20Bike/172%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/172.%20Air%20Assault%20Bike/172%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/172.%20Air%20Assault%20Bike/172%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/172.%20Air%20Assault%20Bike/172%20AR.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Air Assault Bike is a full-body cardiovascular conditioning machine that uses a large fan as its resistance source, meaning the harder and faster you push, the more resistance it produces.\n\nIt combines simultaneous pushing and pulling movements of the arms with pedaling from the legs, making it one of the most effective tools for building conditioning, endurance, and work capacity.\n\nIt's a staple in CrossFit, HIIT, and general conditioning programs and scales from easy warm-up pace all the way to brutally intense interval work."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Provides an intense full-body cardiovascular workout\n- Scales infinitely with effort due to fan-based resistance\n- Builds cardiovascular endurance and work capacity\n- Burns significant calories in short timeframes\n- Engages both upper and lower body simultaneously\n- Low-impact alternative to running or jumping\n- Great for HIIT, intervals, and steady-state cardio\n- Easily programmed for warm-ups, finishers, or main conditioning pieces"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Hamstrings, Glutes, Shoulders, Chest, Back\n\nSecondary: Biceps, Triceps, Core, Calves, Hip Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so your leg has a slight bend at the bottom of the pedal stroke.\n2. Adjust the handlebar position for a comfortable reach.\n3. Sit on the bike with an upright posture.\n4. Place your feet on the pedals and secure the straps if available.\n5. Grip the handlebars firmly with a comfortable, neutral grip.\n6. Brace your core and set a steady breathing rhythm."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Begin pedaling the bike by pushing down with your feet and pulling up with your arms.\n2. Simultaneously push and pull the handlebars to engage the upper body.\n3. Maintain a smooth, continuous motion with both arms and legs.\n4. The harder and faster you pedal, the more resistance you'll experience from the fan.\n5. Keep your core engaged and torso relatively stable.\n6. To increase intensity, pedal faster or adjust the resistance setting if available.\n7. Control your pace based on your workout goal (sprint, tempo, or steady state)."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Setting the seat too low, causing knee discomfort\n- Setting the seat too high, reducing pedal power\n- Gripping the handlebars too tightly and wasting energy\n- Relying on legs only and ignoring the arm pull\n- Hunching over the handlebars and restricting breathing\n- Starting too hard and burning out early\n- Not using interval structure for maximum benefit\n- Holding the breath during high-intensity efforts"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Assault Bike / Air Bike\n- Athletic shoes with firm soles\n- Optional: Heart rate monitor\n- Optional: Interval timer or app\n- Optional: Towel and water bottle for longer sessions\n- Recommended: Open space around the fan for airflow"
+        },
+        {
+          "heading": "Finding Your Bike Setup",
+          "content": "1. Stand next to the bike and adjust the seat to hip height.\n2. Sit on the bike and test the bottom of the pedal stroke - leg should have a slight bend.\n3. Adjust the handlebars so your arms can fully extend and pull comfortably.\n4. Check that you can reach the pedals and handlebars without overextending.\n5. Ensure your back stays relatively upright during movement.\n6. Re-adjust as needed before starting your workout."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat: Adjusted so the knee has a slight bend at full pedal extension.\n2. Handlebars: Within easy reach, arms comfortably extended.\n3. Torso: Upright, core engaged, shoulders relaxed.\n4. Grip: Firm but relaxed, neutral wrist position.\n5. Feet: Securely on the pedals, drive through the whole foot.\n6. Breathing: Steady, rhythmic, matching your pace.\n7. Effort: Scaled to match your programming (warm-up, intervals, or max)."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Rowing Machine: Full-body pulling cardio alternative\n- SkiErg: Upper-body focused cardio machine\n- Stationary Bike: Lower-body only cycling\n- Treadmill Running: High-impact cardio option\n- Battlerope: Upper-body conditioning alternative\n- Jump Rope: Cardio with higher skill and coordination"
+        },
+        {
+          "heading": "Assault Bike Workout Variations",
+          "content": "Steady State: 10-30 minutes at moderate pace\nIntervals: 30/30 or 40/20 work-to-rest intervals\nTabata: 20 seconds on, 10 seconds off x 8 rounds\nEMOM: Target calories per minute\nFor Calories: Finish a set calorie goal as fast as possible\nAssault Bike Sprints: Short all-out efforts with full recovery"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Raise the seat height and reduce resistance effort\nLower Back Pain: Focus on an upright posture and lighter intensity\nShoulder Issues: Reduce arm drive and pedal with the legs more\nBreathing Issues: Use longer rest intervals and pace yourself\nBeginner Level: Start with 30-60 second easy-paced sessions\nNo Assault Bike: Substitute with rower, stationary bike, or SkiErg"
+        }
+      ]
+    }
+  }
+}

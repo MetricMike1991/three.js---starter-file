@@ -1,0 +1,105 @@
+{
+  "exerciseId": "burpee",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/246.%20Burpee/246.%20Burpee%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/246.%20Burpee/246.%20Burpee%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/246.%20Burpee/246.%20Burpee%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/246.%20Burpee/246.%20Burpee%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Burpee is one of the most demanding full-body bodyweight exercises, combining a squat, plank, push-up, and explosive jump into a single fluid movement.\n\nDeveloped originally as a fitness test, the Burpee has become a staple in HIIT workouts, military training, CrossFit, and conditioning programs due to its ability to elevate heart rate rapidly and engage virtually every major muscle group.\n\nIts combination of strength, power, and cardiovascular demand makes it one of the most time-efficient exercises for building total-body conditioning."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Trains the entire body in a single movement\n- Elevates heart rate rapidly for cardiovascular conditioning\n- Burns significant calories per minute\n- Builds explosive power through the jump component\n- Develops upper body pushing strength via the push-up\n- Strengthens the core through the plank transition\n- Improves coordination and body awareness\n- Enhances muscular endurance\n- Requires no equipment or space\n- Scales easily from beginner to advanced\n- Builds mental toughness and work capacity\n- Excellent for HIIT and finisher workouts"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Chest, Glutes, Shoulders\n\nSecondary: Triceps, Core, Hamstrings, Calves, Lower Back, Hip Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand tall with feet shoulder-width apart.\n2. Arms relaxed at your sides.\n3. Chest up, core engaged.\n4. Eyes focused forward.\n5. Clear floor space in front of you for the plank phase.\n6. Ensure supportive athletic footwear and a non-slip surface.\n7. Breathe rhythmically in preparation."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Squat down and place both hands flat on the floor in front of your feet, shoulder-width apart.\n2. Jump both feet back simultaneously, landing in a high plank position with a straight line from head to heels.\n3. Lower your chest to the floor by bending your elbows, performing a full push-up.\n4. Press back up to the plank position.\n5. Jump both feet forward towards your hands, landing in a low squat position.\n6. Explode upwards into a vertical jump, fully extending your hips and reaching your arms overhead.\n7. Land softly with bent knees to absorb the impact.\n8. Immediately transition into the next repetition.\n9. Maintain a steady, controlled rhythm throughout the set."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sagging hips during the plank phase\n- Skipping the push-up or performing a partial push-up\n- Landing stiffly from the jump (locked knees)\n- Rounding the back when placing hands on the floor\n- Jumping feet back unevenly or too narrow\n- Rushing reps and losing form\n- Not fully extending at the top of the jump\n- Holding the breath instead of breathing rhythmically\n- Poor hand placement - too narrow or too wide\n- Hiking hips high during the plank (pike position)"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required\n- Supportive athletic footwear\n- Non-slip flat surface\n- Optional: Gym mat for joint cushioning\n- Optional: Interval timer for HIIT work/rest cycles\n- Optional: Heart rate monitor to track intensity"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 5-8 reps.\n2. Intermediate: 3-4 sets of 10-15 reps.\n3. Advanced: 4-5 sets of 15-20 reps.\n4. HIIT Interval: 30 seconds work / 30 seconds rest x 8-10 rounds.\n5. Finisher: Max reps in 60 seconds.\n6. AMRAP: As many burpees as possible in a set time window.\n7. Rest: 30-90 seconds between sets depending on intensity goal.\n8. Progress gradually - burpees are highly demanding."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Posture: Tall and upright at the start and top of each jump.\n2. Hand Placement: Shoulder-width apart on the floor.\n3. Plank: Straight line from head to heels - no sagging or piking.\n4. Push-Up: Full range of motion, chest to floor.\n5. Core: Braced throughout the movement.\n6. Knees: Slightly bent on every landing to absorb impact.\n7. Feet: Land softly on the balls of the feet.\n8. Arms: Fully extended overhead at the top of the jump.\n9. Breathing: Exhale on effort (push-up and jump), inhale during transitions."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["jumping_jacks", "box_jump"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Mountain Climbers: Lower impact full-body cardio\n- Jumping Jacks: Simpler full-body cardio warm-up\n- Squat Thrusts: Burpee without push-up or jump\n- Box Jumps: Pure lower body explosive power\n- Thrusters: Barbell version of squat-to-overhead\n- Bear Crawls: Full-body conditioning on the ground\n- Kettlebell Swings: Hip-drive cardio alternative"
+        },
+        {
+          "heading": "Burpee Variations",
+          "content": "Standard Burpee: Full squat-plank-push-up-jump sequence\nNo Push-Up Burpee: Easier variant skipping the push-up\nNo Jump Burpee: Easier variant standing up instead of jumping\nBurpee Box Jump: Jumping onto a box at the top\nBurpee Pull-Up: Adding a pull-up at the top\nBurpee Broad Jump: Horizontal jump instead of vertical\nDevil's Press: Burpee with dumbbells raised overhead\nHalf Burpee: Squat-plank-return (no push-up or jump)\nBurpee with Tuck Jump: Knees to chest at the top\nSingle-Arm Burpee: One-arm push-up variation (advanced)"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Use No Jump Burpee and step back into plank\nWrist Pain: Use push-up handles or fists for neutral wrist position\nShoulder Issues: Skip the push-up and reduce plank time\nLower Back Pain: Focus on strong plank position and step back rather than jumping\nCardio Constraints: Use Half Burpee or Squat Thrust variants\nPregnancy: Avoid - substitute with lower-intensity full-body alternatives\nBeginner: Use Step-Back Burpee (no jumping in or out of plank)\nSpace Constraints: Can be performed in a very small area"
+        }
+      ]
+    }
+  }
+}

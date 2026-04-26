@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_lateral_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/203.%20Resistance%20Band%20Lateral%20Raise/203.%20Resistance%20Band%20Lateral%20Raise%20AR_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/203.%20Resistance%20Band%20Lateral%20Raise/203.%20Resistance%20Band%20Lateral%20Raise%20AR_compressed.glb",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Lateral Raise is a shoulder isolation exercise that targets the lateral (side) deltoid using a resistance band anchored under the feet.\n\nIt replaces the dumbbell version with a band, providing accommodating resistance that increases as the arms travel higher.\n\nThis exercise is ideal for building shoulder width, adding volume to shoulder training, and training at home or while traveling."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the lateral (side) deltoid for shoulder width\n- Accommodating resistance increases as the arms lift\n- Joint-friendly and low-impact on the shoulders\n- Scalable by changing band thickness or step width\n- Portable and inexpensive equipment requirement\n- Improves shoulder mobility, control, and endurance\n- Great accessory to any shoulder or upper-body workout"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Lateral Deltoid\n\nSecondary: Anterior Deltoid, Trapezius, Supraspinatus, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Anchor the Band",
+          "content": "1. Place the resistance band on the ground.\n2. Step on it with both feet, ensuring your feet are hip-width or shoulder-width apart.\n3. Check that the band is evenly balanced under your feet."
+        },
+        {
+          "heading": "Grip",
+          "content": "1. Grasp the handles of the resistance band with both hands.\n2. Keep your palms facing your body.\n3. Let your arms hang down at your sides with some tension on the band."
+        },
+        {
+          "heading": "Raise",
+          "content": "1. Keeping your arms straight (slight elbow bend).\n2. Exhale as you lift both arms out to the sides.\n3. Raise until they are at shoulder level or slightly below."
+        },
+        {
+          "heading": "Lower and Repeat",
+          "content": "1. Inhale as you slowly lower your arms back down to your sides.\n2. Return to the starting position under control.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or swinging the body\n- Shrugging the shoulders at the top instead of leading with the elbows\n- Raising the arms too high and over-activating the traps\n- Bending the elbows excessively\n- Leaning forward or backward during the rep\n- Using a band that is too heavy and losing form\n- Rushing the eccentric (lowering) phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Flat, stable surface to stand on\n- Athletic shoes for secure footing\n- Optional: Mirror to monitor form\n- Optional: Lighter and heavier bands for progression"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Position the band centered under the middle of both feet.\n2. Adjust stance width to change tension: wider stance = more tension.\n3. Choose a band thickness appropriate for your strength level.\n4. Ensure handles are gripped evenly so both arms feel balanced resistance."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip- to shoulder-width, knees slightly soft.\n2. Torso: Upright, chest tall, core braced.\n3. Shoulders: Packed and down, not shrugged.\n4. Arms: Slight bend at the elbow, wrists neutral.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Lateral Raise: Classic free-weight version\n- Cable Lateral Raise: Constant-tension cable version\n- Machine Lateral Raise: Guided lateral raise machine\n- Leaning Lateral Raise: Single-arm version for longer tension\n- Upright Row: Compound shoulder movement\n- Front Raise: Shoulder isolation for the front deltoid"
+        },
+        {
+          "heading": "Resistance Band Lateral Raise Variations",
+          "content": "Two-Handed Band Lateral Raise: Described here\nSingle-Arm Band Lateral Raise: Unilateral variation\nSeated Band Lateral Raise: Performed sitting to remove leg drive\nBent-Over Band Lateral Raise: Targets the rear deltoid\nTempo Band Lateral Raise: Slow eccentric for hypertrophy\nPartial Reps: Short-range pulses at the top for burnout"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range, use a lighter band, lead with the elbows\nBalance Issues: Perform seated or against a wall\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nNeck Pain: Keep shoulders packed and avoid shrugging\nBeginners: Start with a very light band to learn the pattern"
+        }
+      ]
+    }
+  }
+}

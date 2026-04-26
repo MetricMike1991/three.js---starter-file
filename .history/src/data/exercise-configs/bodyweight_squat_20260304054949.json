@@ -1,0 +1,100 @@
+{
+  "exerciseId": "bodyweight_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/14.%20Bodyweight%20Squat/14%20Bodyweight%20Squat%20GLB%20AR.glb",
+  "modelUrlHQ": "",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/14.%20Bodyweight%20Squat/14%20Bodyweight%20Squat%20GLB%20AR.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/14.%20Bodyweight%20Squat/14.%20Bodyweight%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Squat is one of the most fundamental lower body exercises and a cornerstone of functional fitness.\n\nIt involves lowering your hips from a standing position until your thighs are parallel to the ground, then standing back up — using only your own body weight as resistance.\n\nThis exercise is suitable for all fitness levels and forms the foundation for every squat variation, making it essential for building proper movement mechanics."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds foundational lower body strength\n- Requires no equipment — can be performed anywhere\n- Improves mobility in hips, knees, and ankles\n- Strengthens quads, glutes, and core simultaneously\n- Enhances balance and coordination\n- Increases functional strength for daily activities\n- Excellent warm-up exercise before heavier lifts\n- Can be used for high-rep endurance or slow tempo strength work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Calves, Core, Hip Flexors, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Toes pointed slightly outward (about 15-30 degrees).\n3. Arms can be at your sides, extended in front of you, or hands clasped at chest height.\n4. Keep your chest up and shoulders back.\n5. Engage your core and maintain a neutral spine.\n6. Distribute your weight evenly across both feet.\n7. Eyes looking forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Initiate the movement by pushing your hips back as if sitting into a chair.\n2. Bend at the knees and lower your body in a controlled manner.\n3. Keep your chest up and back flat throughout the descent.\n4. Lower until your thighs are at least parallel to the ground (or as deep as mobility allows).\n5. Ensure your knees track over your toes — do not let them cave inward.\n6. Keep your heels firmly planted on the ground.\n7. Push through your heels and mid-foot to stand back up.\n8. Squeeze your glutes at the top of the movement.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Knees caving inward during the squat\n- Heels lifting off the ground\n- Leaning too far forward with the torso\n- Not squatting deep enough (cutting depth short)\n- Rounding the lower back at the bottom\n- Rushing through repetitions without control\n- Not engaging the core before descending\n- Looking down instead of forward\n- Shifting weight onto the toes"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required (bodyweight exercise)\n- Flat, stable surface\n- Optional: Yoga mat for comfort\n- Optional: Resistance band around knees for glute activation\n- Optional: Small weight plate under heels if ankle mobility is limited\n- Recommended: Supportive athletic shoes or barefoot on a clean surface"
+        },
+        {
+          "heading": "Space Setup",
+          "content": "1. Find a flat, stable surface.\n2. Ensure you have enough overhead clearance.\n3. A mirror to the side can help you check your form.\n4. No forward space needed — this is a stationary exercise.\n5. If using for warm-ups, perform near your main training area.\n6. Can be done indoors or outdoors."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, toes slightly turned out.\n2. Weight Distribution: Even across the full foot — heels, mid-foot, and toes.\n3. Core: Braced and tight throughout the movement.\n4. Chest: Up and proud — avoid rounding forward.\n5. Arms: Choose a comfortable position — in front, at chest, or at sides.\n6. Knees: Track in line with toes throughout the squat.\n7. Depth: Aim for thighs parallel to the ground or lower."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "dumbbell_goblet_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Loaded version with barbell across upper back\n- Dumbbell Goblet Squat: Holding a dumbbell at chest for added resistance\n- Sumo Squat: Wide stance squat targeting inner thighs and glutes\n- Wall Sit: Isometric hold against a wall for quad endurance\n- Box Squat: Squat to a bench or box for depth consistency\n- Pistol Squat: Advanced single-leg squat for balance and strength"
+        },
+        {
+          "heading": "Bodyweight Squat Variations",
+          "content": "Standard Bodyweight Squat: Classic squat with no equipment\nPulse Squat: Small pulses at the bottom for extra burn\nJump Squat: Explosive squat with a jump at the top\nSumo Bodyweight Squat: Wide stance for inner thigh emphasis\nSingle-Leg Squat (Pistol): Advanced unilateral variation\nTempo Squat: Slow 3-4 second descent for increased time under tension\nPause Squat: Hold at the bottom for 2-3 seconds before standing"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce depth, try box squats to a comfortable height\nAnkle Mobility Issues: Place small plates under heels or work on ankle stretches\nBalance Problems: Hold onto a doorframe, chair, or TRX straps for support\nHip Tightness: Widen your stance slightly and warm up with hip circles\nLower Back Pain: Focus on keeping core braced and chest up\nLearning Stage: Start with partial squats and gradually increase depth\nNo Lower Body Strength: Begin with wall sits to build baseline strength"
+        }
+      ]
+    }
+  }
+}

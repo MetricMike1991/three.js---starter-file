@@ -1,0 +1,105 @@
+{
+  "exerciseId": "deficit_reverse_lunge",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/128.%20Deficit%20Reverse%20Lunge/128.%20Deficit%20Reverse%20Lunge%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/128.%20Deficit%20Reverse%20Lunge/128.%20Deficit%20Reverse%20Lunge%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/128.%20Deficit%20Reverse%20Lunge/128.%20Deficit%20Reverse%20Lunge%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/128.%20Deficit%20Reverse%20Lunge/128.%20Deficit%20Reverse%20Lunge%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-3.370857999862587, 0.8985237372853954, -0.2708846682248572],
+    "rotation": [-2.1648315218637553, -1.4496372622962928, -2.1682489143130077],
+    "target": [0.12168132143471826, 0.5461357283453491, -0.03287627366811823]
+  },
+  "modelHQ": {
+    "position": [-0.4, -0.002, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-3.123301328174219, 1.5504184280821998, -0.578809598948566],
+    "rotation": [-2.2266368593609522, -1.1602968801997582, -2.2689746479244546],
+    "target": [0.14125769475544486, 0.4243694461486304, 0.2876416774443027]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Deficit Reverse Lunge is an advanced lunge variation performed from an elevated surface such as a plyometric step, while holding dumbbells for added resistance.\n\nThe elevated starting position increases the range of motion, forcing the working leg to travel through a deeper stretch at the bottom of the movement.\n\nThis greater range of motion leads to increased glute and quad activation compared to a standard reverse lunge, making it an excellent exercise for building lower body strength and muscle."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increased range of motion compared to standard reverse lunges\n- Greater glute and quad activation from the deeper stretch\n- Builds unilateral leg strength and corrects muscle imbalances\n- Improves hip mobility and flexibility\n- Less knee stress than forward lunge variations\n- Enhances balance, coordination, and stability\n- Easily scalable by adjusting step height and dumbbell weight"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings\n\nSecondary: Calves, Core (Rectus Abdominis, Obliques), Hip Flexors, Adductors, Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand on top of a plyometric step or elevated platform.\n2. Hold a dumbbell in each hand with arms hanging at your sides.\n3. Keep your chest up, shoulders back, and core engaged.\n4. Feet should be hip-width apart on the platform.\n5. Eyes looking straight ahead with a neutral spine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Step one foot back off the platform, landing on the ball of your foot on the floor behind you.\n2. Keep your front knee directly over your ankle as you descend.\n3. Lower your back knee towards the ground, keeping your front knee bent at a 90-degree angle.\n4. Allow your hip to drop below the level of the platform for a deep stretch.\n5. Push through your front foot to return to the starting position on the platform.\n6. Repeat on the other side for the desired number of reps.\n7. Alternate legs with each rep or complete all reps on one side before switching."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Stepping back too far or not far enough off the platform\n- Front knee caving inward during the descent\n- Leaning the torso too far forward\n- Not utilising the full range of motion the deficit provides\n- Losing balance due to an unstable platform\n- Rushing through reps and losing control\n- Not keeping the front shin relatively vertical"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plyometric Step or Sturdy Elevated Platform (10-20 cm height)\n- Pair of Dumbbells (appropriate weight for your level)\n- Flat, Non-Slip Surface\n- Optional: Mirror for form checking"
+        },
+        {
+          "heading": "Platform Selection",
+          "content": "1. Start with a low platform (10-15 cm) and progress to higher as you build strength.\n2. Ensure the platform is sturdy and does not wobble.\n3. The surface should be non-slip to prevent your foot from sliding.\n4. A standard aerobic step or bumper plate works well.\n5. The higher the platform, the greater the range of motion and difficulty."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Hip-width apart, centred on the platform.\n2. Grip: Dumbbells held at sides with a neutral grip.\n3. Torso: Upright with chest proud and shoulders back.\n4. Core: Braced throughout the movement.\n5. Head: Neutral, eyes forward.\n6. Step Length: Long enough that both knees reach 90 degrees at the bottom.\n7. Ensure adequate space behind the platform for the step back."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["reverse_lunge_dumbbell", "bulgarian_split_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Reverse Lunge: Standard flat-ground version with less range of motion\n- Bulgarian Split Squat: Rear foot elevated for single-leg focus\n- Walking Lunge: Continuous stepping lunges for distance\n- Step-Up: Single-leg movement onto an elevated surface\n- Goblet Squat: Front-loaded squat for quad emphasis\n- Forward Lunge: Step forward instead of backward"
+        },
+        {
+          "heading": "Deficit Lunge Variations",
+          "content": "Deficit Reverse Lunge with Dumbbells: Standard deficit lunge with dumbbells at sides\nDeficit Reverse Lunge with Barbell: Barbell across upper back for heavier loading\nDeficit Forward Lunge: Step forward off the platform for a different challenge\nDeficit Curtsy Lunge: Step back and across for glute medius emphasis\nBodyweight Deficit Reverse Lunge: No added weight for learning the movement\nDeficit Reverse Lunge with Pulse: Add pulses at the bottom for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce platform height or switch to flat-ground reverse lunges\nBalance Issues: Start with bodyweight only and hold a wall for support\nHip Tightness: Warm up with hip flexor stretches before lunging\nAnkle Mobility: Use a lower platform and ensure proper footwear\nNo Platform: Perform standard reverse lunges from the floor\nLower Back Pain: Keep torso more upright and reduce dumbbell weight"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "overhead_tricep_cable_extensions",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/59.%20Overhead%20Tricep%20Cable%20Extensions/59.%20Overhead%20Tricep%20Cable%20Extensions%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/59.%20Overhead%20Tricep%20Cable%20Extensions/59.%20Overhead%20Tricep%20Cable%20Extensions%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/59.%20Overhead%20Tricep%20Cable%20Extensions/59.%20Overhead%20Tricep%20Cable%20Extensions%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/59.%20Overhead%20Tricep%20Cable%20Extensions/59.%20Overhead%20Tricep%20Cable%20Extensions%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.196345684068938, 1.7163341933224112, 1.951161497403875],
+    "rotation": [-0.32124821387001523, 0.7298161202521527, 0.2183352960349015],
+    "target": [-0.018459773442620127, 0.9346015724928854, -0.39796925212544965]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-3.223233110039782, 1.9465922720494528, 2.275629924158575],
+    "rotation": [-0.5026832771490904, -0.9817419449106506, -0.4287701522818504],
+    "target": [-0.013104183146186542, 0.9131933878217358, 0.39601101461384836]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Overhead Tricep Cable Extension is an isolation exercise that targets the triceps, particularly the long head, using a low pulley cable machine while facing away from the machine.\n\nBy positioning the arms overhead, this exercise places the long head of the triceps in a fully stretched position, which is optimal for muscle growth and development.\n\nThis variation is highly effective for building the size and definition of the back of the arms, and the cable provides constant tension throughout the movement."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Maximally stretches the long head of the triceps for superior muscle growth\n- Constant cable tension throughout the entire range of motion\n- Builds the mass and shape of the back of the upper arms\n- Improves overhead pressing strength and lockout\n- Easy to adjust weight for progressive overload and drop sets\n- Provides a unique stimulus compared to pushdown variations\n- Low risk of injury when performed with controlled form"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps (Long Head emphasis, Lateral Head, Medial Head)\n\nSecondary: Forearms, Core (stabilization), Shoulders (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Attach a rope or straight bar to the low pulley of a cable machine.\n2. Stand facing away from the machine and grasp the rope or bar with both hands, palms facing up.\n3. Step forward so there is tension on the cable.\n4. Raise the rope or bar overhead with your arms fully extended.\n5. Keep your elbows close to your head and pointing forward.\n6. Stand with one foot slightly in front of the other for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Slowly bend your elbows and lower the rope or bar behind your head.\n2. Lower until your forearms are approximately parallel to the ground.\n3. Keep your upper arms stationary — only the forearms should move.\n4. Pause briefly at the bottom of the movement to feel the stretch.\n5. Extend your arms and press the rope or bar back to the fully extended overhead position.\n6. Squeeze your triceps at the top of the movement.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring the elbows out to the sides instead of keeping them close to the head\n- Using momentum or arching the back to move the weight\n- Not lowering the weight far enough to achieve a full stretch\n- Moving the upper arms instead of keeping them stationary\n- Standing too close to the machine, reducing the range of motion\n- Using too much weight and sacrificing form\n- Rushing through reps without controlling the eccentric phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Machine with Low Pulley\n- Rope Attachment (most common)\n- Alternative: Straight Bar or EZ Bar Attachment\n- Appropriate Weight Selection"
+        },
+        {
+          "heading": "Cable Machine Setup",
+          "content": "1. Set the pulley to the lowest position on the cable machine.\n2. Attach a rope handle or straight bar to the cable clip.\n3. Select an appropriate weight — start lighter to master form.\n4. Ensure the cable runs smoothly without any obstructions.\n5. Stand facing away from the machine and step forward until the cable is taut."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Staggered stance with one foot slightly forward for balance.\n2. Knees: Slightly bent for stability.\n3. Torso: Slight forward lean from the hips, keeping the back straight.\n4. Elbows: Close to the head, pointing straight forward.\n5. Grip: Palms facing up on the rope or bar.\n6. Core: Engaged throughout to prevent arching the lower back.\n7. Head: Neutral position, looking forward or slightly down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_cable_extension", "close_grip_bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Tricep Cable Extension (Pushdown): Cable extension facing the machine\n- Overhead Dumbbell Tricep Extension: Free weight overhead variation\n- Skull Crushers: Lying tricep extension with barbell or dumbbells\n- Close Grip Bench Press: Compound pressing with tricep emphasis\n- Dips: Bodyweight tricep-dominant pressing movement\n- French Press: Barbell or EZ bar overhead extension"
+        },
+        {
+          "heading": "Overhead Extension Variations",
+          "content": "Overhead Cable Extension with Rope: Standard rope variation for maximum stretch\nOverhead Cable Extension with Bar: Straight or EZ bar for a fixed grip\nSingle Arm Overhead Cable Extension: Unilateral version for imbalance correction\nSeated Overhead Cable Extension: Seated version for stricter form\nIncline Bench Overhead Cable Extension: Performed on an incline for a different angle\nBanded Overhead Extension: Resistance band alternative"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Cable Machine: Use a resistance band anchored low behind you\nShoulder Mobility Issues: Use a pushdown variation instead of overhead\nElbow Pain: Reduce weight and focus on slow, controlled reps\nLower Back Strain: Engage your core more or perform the exercise seated\nBeginner: Start with light weight and master the overhead position first\nWant More Challenge: Add pause reps at the stretched position"
+        }
+      ]
+    }
+  }
+}

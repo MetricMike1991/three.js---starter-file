@@ -1,0 +1,105 @@
+{
+  "exerciseId": "pivot_leg_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/21.%20Pivot%20Leg%20press/21.%20Pivot%20Leg%20press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/21.%20Pivot%20Leg%20press/21.%20Pivot%20Leg%20press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/21.%20Pivot%20Leg%20press/21.%20Pivot%20Leg%20press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/21.%20Pivot%20Leg%20press/21.%20Pivot%20Leg%20press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Pivot Leg Press is a machine-based compound lower body exercise that targets the quadriceps, glutes, and hamstrings.\n\nUnlike a traditional sled-style leg press where the platform moves linearly, the pivot leg press uses a hinged arm mechanism that creates a natural arc of motion.\n\nThis design reduces shear forces on the knees and lower back while allowing for heavy loading, making it an excellent choice for building leg strength and size safely."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Safely allows heavy leg training without spinal compression\n- Natural arc of motion reduces joint stress compared to linear leg presses\n- Excellent for building quadriceps mass and strength\n- Back pad support eliminates lower back strain\n- Adjustable foot placement shifts emphasis between quads and glutes\n- Great for progressive overload with easy weight adjustments\n- Suitable for all fitness levels from beginner to advanced"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Gluteus Maximus\n\nSecondary: Hamstrings, Adductors, Calves (Gastrocnemius and Soleus)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit into the machine with your back pressed fully against the back pad.\n2. Position your feet on the push plate just outside shoulder-width apart.\n3. Point your toes slightly outward (about 15-30 degrees).\n4. Ensure your entire back and hips are firmly against the pad.\n5. Grip the side handles for stability.\n6. Your knees should be bent at approximately 90 degrees in the starting position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Press the push plate away from you by extending your legs.\n2. Undo the safety bar using the handles once your legs are extended.\n3. Fully extend your legs without locking out at the knees.\n4. Slowly lower the weight back by bending your knees.\n5. Keep your knees pressed outward, tracking in line with your toes.\n6. Lower until your knees reach approximately 90 degrees or a comfortable depth.\n7. Do not allow your lower back to round or lift off the pad.\n8. Press back up to the starting position with control.\n9. Re-engage the safety bar when your set is complete."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Locking out the knees at full extension\n- Allowing knees to cave inward during the press\n- Lowering the weight too far, causing the lower back to round\n- Hips lifting off the seat at the bottom of the movement\n- Placing feet too high or too low on the platform\n- Using momentum or bouncing at the bottom\n- Not using the full range of motion\n- Forgetting to engage the safety bar after the set\n- Turning the head to the side during the press"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pivot Leg Press Machine\n- Weight Plates (for plate-loaded versions)\n- Optional: Knee Sleeves (for joint warmth and support)\n- Recommended: Flat-soled shoes for stable foot placement"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat back position so your knees bend to about 90 degrees at the bottom.\n2. Load the machine with appropriate weight — start light if unfamiliar.\n3. Ensure safety stops are properly set.\n4. Check that the pivot mechanism moves smoothly.\n5. Wipe down the back pad and foot plate if needed for grip."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Just outside shoulder-width on the platform, toes pointed slightly out.\n2. Knees: Track over toes throughout the movement, never caving inward.\n3. Hips: Firmly pressed into the seat at all times.\n4. Back: Fully against the back pad, maintaining natural spinal curve.\n5. Head: Resting against the head pad if available, looking forward.\n6. Hands: Gripping side handles for stability.\n7. Foot Placement Tips:\n   - Higher on platform = more glute and hamstring emphasis\n   - Lower on platform = more quadriceps emphasis\n   - Wider stance = more adductor and glute activation\n   - Narrower stance = more outer quad emphasis"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "dumbbell_goblet_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- 45-Degree Leg Press: Linear sled movement, similar muscle activation\n- Hack Squat Machine: More quad-dominant, fixed path\n- Barbell Back Squat: Free weight compound leg builder\n- Smith Machine Squat: Guided squat with back support\n- Goblet Squat: Dumbbell-based quad and glute exercise\n- Belt Squat: No spinal loading, pure leg work"
+        },
+        {
+          "heading": "Leg Press Variations",
+          "content": "Standard Leg Press: Both feet, shoulder-width placement\nWide Stance Leg Press: Feet wider with toes out for adductors and glutes\nNarrow Stance Leg Press: Feet close together for outer quad emphasis\nSingle-Leg Press: Unilateral pressing for balance and imbalance correction\nHigh Foot Placement: Targets glutes and hamstrings more\nLow Foot Placement: Targets quadriceps more\nCalf Press on Leg Press: Toes on edge of platform for calf work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Don't go as deep, keep feet higher on the platform\nLower Back Issues: Ensure back stays flat against pad, reduce range of motion\nHip Tightness: Use a slightly wider stance with toes pointed more outward\nNo Leg Press Machine: Use barbell squats, goblet squats, or lunges\nRecovering from Injury: Start with very light weight, focus on controlled range\nLearning Stage: Start with minimal weight to learn the movement pattern"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "exerciseId": "waiters_carry",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/296.%20Waiters%20Carry/296.%20Waiters%20Carry%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/296.%20Waiters%20Carry/296.%20Waiters%20Carry%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.828340019380133, 2.0444871706291066, 1.5787086893279096],
+    "rotation": [-0.29705046636227334, 0.6367312585554847, 0.18003182862412653],
+    "target": [-0.046413680885808585, 1.3024171387429317, -0.8455058044356546]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.041861481511201, 2.129003808010108, 1.8548099305577468],
+    "rotation": [-0.2970504664209288, 0.6367312585076232, 0.18003182864964415],
+    "target": [-0.046413680885808585, 1.3024171387429317, -0.8455058044356546]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Waiter's Carry is a single-arm overhead loaded carry that builds shoulder stability, core strength, and postural control.\n\nThe lifter holds a weight plate, dumbbell, or kettlebell overhead with one arm fully extended and walks a set distance while maintaining a tall, braced posture.\n\nIt is an excellent accessory for overhead pressing strength, scapular control, and anti-rotational core stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds shoulder stability and overhead control\n- Develops anti-rotation and anti-lateral-flexion core strength\n- Reinforces tall, stacked posture under load\n- Improves scapular and thoracic positioning\n- Highly transferable to overhead pressing\n- Strengthens grip and forearm endurance\n- Adjustable through load and distance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Deltoids, Trapezius, Core (Obliques, Rectus Abdominis)\n\nSecondary: Rotator Cuff, Triceps, Forearms, Glutes, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Select a weight plate of appropriate load.\n2. Stand next to it with your feet shoulder-width apart.\n3. Squat down to pick up the plate with one hand, gripping it firmly around the edge."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Lift the weight plate to shoulder height.\n2. Carefully press it overhead until your arm is fully extended.\n3. Keep your wrist straight and the plate stable above you."
+        },
+        {
+          "heading": "Walk With Control",
+          "content": "1. Engage your core and shoulders to maintain stability as you begin walking.\n2. Keep your gaze forward and your body straight.\n3. Avoid any leaning or tilting to the sides."
+        },
+        {
+          "heading": "Finish the Carry",
+          "content": "1. Walk a predetermined distance or for a set period of time.\n2. Once completed, carefully lower the weight plate back to shoulder height and then to the ground in a controlled manner.\n3. Switch arms if necessary to repeat the exercise on the other side."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the carrying arm drift forward or behind the head\n- Leaning to the opposite side to balance the load\n- Allowing the lower back to overextend\n- Holding the breath instead of breathing steadily\n- Walking with rushed, choppy steps\n- Bending the elbow during the carry\n- Using a load too heavy to maintain alignment"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Weight plate, dumbbell, or kettlebell\n- Open walking space\n- Optional measuring tape or distance markers"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Feet shoulder-width apart at the start.\n2. Ribs stacked over hips, core braced.\n3. Carrying arm fully locked out overhead."
+        },
+        {
+          "heading": "Movement Setup",
+          "content": "1. Press the load to lockout before stepping off.\n2. Walk in a straight line with controlled steps.\n3. Switch arms midway or at the end of the set."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Keep the path clear of obstacles\n- Stop if posture deteriorates or the arm drops\n- Use a load you can press cleanly overhead\n- Lower the weight with control, not by dropping it\n- Stop immediately if you feel sharp shoulder or back pain"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other loaded carry variations that build core stability and shoulder control."
+        }
+      ],
+      "suggestedExercises": [
+        "kettlebell_carry",
+        "double_kettlebell_carry"
+      ]
+    }
+  }
+}

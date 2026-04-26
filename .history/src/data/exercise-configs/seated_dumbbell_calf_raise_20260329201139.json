@@ -1,0 +1,105 @@
+{
+  "exerciseId": "seated_dumbbell_calf_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/110.%20Seated%20Dumbbell%20Calf%20Raise/110.%20Seated%20Dumbbell%20Calf%20Raise%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/110.%20Seated%20Dumbbell%20Calf%20Raise/110.%20Seated%20Dumbbell%20Calf%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/110.%20Seated%20Dumbbell%20Calf%20Raise/110.%20Seated%20Dumbbell%20Calf%20Raise%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/110.%20Seated%20Dumbbell%20Calf%20Raise/110.%20Seated%20Dumbbell%20Calf%20Raise%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.7353953895228504, 0.9888154068604722, 2.029142153323158],
+    "rotation": [-0.3185283984032322, 0.7092129922189827, 0.2115370633291011],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.8593283270761576, 1.1275968551595623, 1.5266256350526823],
+    "rotation": [-0.40705877410698654, 0.8971045503125389, 0.3249977459313329],
+    "target": [-0.10707491955701953, 0.5061200761683479, 0.08514844507271936]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Calves",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Seated Dumbbell Calf Raise is an isolation exercise that targets the calf muscles, specifically the soleus, which is best activated when the knee is bent.\n\nPerformed seated with dumbbells resting on the thighs and the balls of the feet elevated on a bumper plate or step, this exercise allows for a deep stretch and strong contraction of the calves.\n\nIt is an effective exercise for building calf size and strength without requiring a dedicated calf raise machine."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the soleus muscle, which is best worked with bent knees\n- Builds calf thickness and lower leg definition\n- Requires minimal equipment — just dumbbells and a plate or step\n- Allows for a full range of motion with a deep stretch at the bottom\n- Improves ankle stability and mobility\n- Supports athletic performance in running, jumping, and change of direction\n- Can be performed almost anywhere with basic equipment"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Soleus, Gastrocnemius (Calves)\n\nSecondary: Tibialis Anterior, Peroneals, Foot Stabilisers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on a bench or sturdy chair with your back straight and feet flat on the floor.\n2. Place a bumper plate or low step on the ground in front of you.\n3. Position the balls of your feet on the edge of the plate, allowing your heels to hang off.\n4. Hold a dumbbell in each hand and rest them on top of your thighs, close to your knees.\n5. Sit tall with your core engaged and shoulders back."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower your heels towards the ground to get a full stretch in the calves.\n2. Press through the balls of your feet and lift your heels as high as possible, contracting your calf muscles.\n3. Hold the top position briefly, squeezing the calves at peak contraction.\n4. Slowly lower your heels back down to the starting position in a controlled manner.\n5. Repeat the movement for the desired number of reps.\n6. Maintain a steady tempo throughout — avoid bouncing at the bottom."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing at the bottom of the movement instead of using a controlled tempo\n- Not using a full range of motion — failing to lower the heels fully or raise them high enough\n- Placing the feet too far forward on the plate, reducing the stretch\n- Leaning too far forward or rounding the back\n- Using too much weight and sacrificing form\n- Rushing through reps without pausing at the top contraction"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of Dumbbells (appropriate weight for your level)\n- A Bench or Sturdy Chair\n- A Bumper Plate, Low Step, or Block (to elevate the balls of the feet)\n- Optional: Towel or pad on the thighs for comfort under the dumbbells"
+        },
+        {
+          "heading": "Setting Up the Platform",
+          "content": "1. Place a bumper plate flat on the floor in front of the bench.\n2. Ensure the plate is stable and will not slide during the exercise.\n3. The plate should be thick enough to allow your heels to drop below the level of your toes.\n4. Alternatively, use a low step, wooden block, or calf raise block.\n5. Position the bench so you can sit comfortably with the plate within easy foot reach."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Sit upright on the bench with a straight back.\n2. Foot Placement: Balls of feet on the edge of the plate, heels hanging off.\n3. Dumbbell Placement: Resting on top of the thighs, near the knees.\n4. Knee Angle: Approximately 90 degrees.\n5. Core: Engaged throughout the movement.\n6. Shoulders: Pulled back, chest up.\n7. Head: Neutral, looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["standing_calf_raise", "leg_press_calf_raise"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standing Calf Raise: Targets the gastrocnemius with straight legs\n- Machine Seated Calf Raise: Same movement with a dedicated machine\n- Leg Press Calf Raise: Calf raises performed on the leg press platform\n- Smith Machine Calf Raise: Standing calf raise using the Smith machine\n- Single Leg Dumbbell Calf Raise: Unilateral version for addressing imbalances\n- Donkey Calf Raise: Bent-over calf raise for a deep stretch"
+        },
+        {
+          "heading": "Seated Calf Raise Variations",
+          "content": "Seated Dumbbell Calf Raise: Standard seated raise with dumbbells on thighs\nSeated Barbell Calf Raise: Barbell placed across the thighs for heavier loading\nSingle Leg Seated Calf Raise: One leg at a time for isolating each calf\nTempo Seated Calf Raise: Slow eccentrics and pauses for increased time under tension\nBanded Seated Calf Raise: Resistance band over the knees for accommodating resistance"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Discomfort: Reduce the weight on the thighs or use a pad for cushioning\nAnkle Mobility Issues: Start with a smaller range of motion and gradually increase\nNo Bumper Plate: Use a low step, thick book, or wooden block under the feet\nNo Dumbbells: Use a loaded barbell or weight plate on the thighs instead\nBeginner: Start with bodyweight only (no dumbbells) to learn the movement\nAdvanced: Add pauses at the top and slow 3-4 second eccentrics for greater difficulty"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "trap_bar_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/178.%20Trap%20Bar%20Shrug/178.%20Trap%20Bar%20Shrug%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/178.%20Trap%20Bar%20Shrug/178.%20Trap%20Bar%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/178.%20Trap%20Bar%20Shrug/178.%20Trap%20Bar%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/178.%20Trap%20Bar%20Shrug/178.%20Trap%20Bar%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Trap Bar Shrug is an upper-back isolation exercise performed by standing inside a hexagonal (trap) bar and shrugging the shoulders with the load held at your sides.\n\nThe neutral grip and centered load allow for a strong, stable position, letting you focus on driving the trapezius through a full contraction.\n\nIt's a staple for building thick, powerful traps and upper-back development with minimal stress on wrists and elbows."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates and develops the trapezius muscles\n- Neutral grip is comfortable on wrists and shoulders\n- Centered load allows heavier weights safely\n- Reduces strain on lower back compared to barbell shrugs\n- Improves grip strength and forearm endurance\n- Builds upper-back thickness and posture support\n- Great for strength and hypertrophy training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Trapezius (Upper, Middle), Levator Scapulae\n\nSecondary: Rhomboids, Deltoids, Forearms and Grip, Erector Spinae, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand inside the trap bar with your feet shoulder-width apart.\n2. Grip the handles with your palms facing your body (neutral grip).\n3. Keep your back straight and chest lifted.\n4. Shoulders pulled back and down, core braced.\n5. Eyes forward, neck neutral."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift the trap bar by straightening your hips and knees, focusing on using your leg muscles.\n2. Once fully extended at the hips and knees, lift your shoulders as high as possible by shrugging them towards your ears.\n3. Pause briefly at the top to maximize the contraction.\n4. Lower your shoulders back down with control.\n5. Lower the trap bar by bending your hips and knees to finish the rep.\n6. Repeat for the desired number of repetitions, focusing on engaging your leg and shoulder muscles during the movement.\n7. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of lifting straight up\n- Using the biceps or arms to pull the weight\n- Rushing reps and missing the top contraction\n- Rounding the back during the lift or lockout\n- Bending the elbows during the shrug\n- Not bracing the core\n- Using excessive weight that limits range of motion\n- Letting the head jut forward"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Trap Bar (Hex Bar)\n- Weight Plates (bumper or iron)\n- Lifting Platform or Suitable Floor Surface\n- Optional: Lifting Straps (for heavy sets)\n- Optional: Chalk for improved grip\n- Recommended: Flat-soled shoes for stability"
+        },
+        {
+          "heading": "Choosing the Right Weight",
+          "content": "1. Select a load you can control through a full range of motion.\n2. Prioritize feeling the trap contraction over moving heavy weight.\n3. Use straps if grip fails before your traps do.\n4. Progress gradually with strict form.\n5. Keep reps controlled at the top and bottom.\n6. Higher reps work well for trap hypertrophy."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, centered inside the bar.\n2. Grip: Neutral, palms facing your body, firm hold.\n3. Torso: Upright with chest up and core braced.\n4. Shoulders: Pulled back and down to start.\n5. Arms: Straight and relaxed throughout.\n6. Head: Neutral, eyes looking forward.\n7. Breathing: Exhale on the shrug up, inhale on the descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["trap_bar_deadlift", "trap_bar_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Shrug: Traditional barbell variation\n- Dumbbell Shrug: Unilateral freedom of motion\n- Smith Machine Shrug: Fixed plane shrug variation\n- Cable Shrug: Constant tension variation\n- Kettlebell Shrug: Offset load variation\n- Farmers Walk Shrug: Combined carry and shrug"
+        },
+        {
+          "heading": "Trap Bar Shrug Variations",
+          "content": "Standard Trap Bar Shrug: Full range from floor\nHigh Handle Trap Bar Shrug: Reduced range, heavier loading\nLow Handle Trap Bar Shrug: Increased range of motion\nPaused Trap Bar Shrug: Hold at top for maximum contraction\nTempo Trap Bar Shrug: Slow eccentrics for muscle building\nTrap Bar Shrug from Blocks: Set the bar on blocks for strict shrugs"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Reduce range and weight, keep chin tucked\nGrip Issues: Use straps or chalk\nLower Back Pain: Use high handles or lighter loads\nNo Trap Bar: Substitute with dumbbell or barbell shrugs\nShoulder Impingement: Focus on straight-up shrugs, avoid rolling\nLearning Stage: Start light and master the straight-up shrug pattern"
+        }
+      ]
+    }
+  }
+}

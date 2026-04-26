@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_assisted_pull_ups",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/79.%20Cable%20Assisted%20Pull%20Ups/79.%20Cable%20Assisted%20Pull%20Ups%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/79.%20Cable%20Assisted%20Pull%20Ups/79.%20Cable%20Assisted%20Pull%20Ups%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/79.%20Cable%20Assisted%20Pull%20Ups/79.%20Cable%20Assisted%20Pull%20Ups%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/79.%20Cable%20Assisted%20Pull%20Ups/79.%20Cable%20Assisted%20Pull%20Ups%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.1698671558567804, 2.1564762504902846, -2.8406139855450125],
+    "rotation": [-2.731983121626304, -0.656867800310561, -2.8824352445527777],
+    "target": [0.08991746661270646, 0.9893591543292232, -0.15243881241371324]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9436174307723832, 1.9011491016810331, 3.286823140971331],
+    "rotation": [-0.23783350110269938, 0.5461008110911609, 0.1252448936230716],
+    "target": [0.0007900067680338276, 1.1480050806707347, 0.18007113231897395]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/79.%20Cable%20Assisted%20Pull%20Ups/Cable%20Assisted%20Pull%20Ups_250x250_2026-03-19T23-25-36.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Assisted Pull Up is a machine-assisted variation of the traditional pull up that uses a counterweight to reduce the amount of bodyweight you need to lift.\n\nThis exercise primarily targets the latissimus dorsi (lats) and is an excellent progression tool for those working towards unassisted pull ups.\n\nBy adjusting the weight on the stack, you can gradually decrease the assistance over time, building the strength needed for full bodyweight pull ups."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Allows beginners to perform pull ups with proper form\n- Adjustable assistance makes progressive overload easy\n- Targets the same muscles as a full bodyweight pull up\n- Builds lat, upper back, and bicep strength\n- Helps develop grip strength over time\n- Safer than band-assisted pull ups with more consistent resistance\n- Great for high-rep back training and hypertrophy work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi (Lats), Rhomboids, Trapezius (Lower and Middle)\n\nSecondary: Biceps, Rear Deltoids, Forearms, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the weight on the machine — more weight means more assistance.\n2. Step up onto the platform and kneel on the knee pad.\n3. Grip the pull-up bar with your hands about shoulder-width apart, palms facing away from you.\n4. Hang down with your arms fully extended.\n5. Engage your core and keep your body in a straight line.\n6. Retract your shoulder blades slightly before initiating the pull."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your back muscles and pull your body up towards the bar.\n2. Focus on driving your elbows down and back rather than pulling with your arms.\n3. Continue pulling until your chin clears above the bar.\n4. Squeeze your lats and upper back at the top of the movement.\n5. Lower yourself down slowly and with control to the starting position.\n6. Allow your arms to fully extend at the bottom before the next rep.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much assistance weight, making the exercise too easy\n- Pulling primarily with the biceps instead of engaging the back\n- Not achieving full range of motion (chin above bar)\n- Swinging or using momentum to get up\n- Not fully extending the arms at the bottom of each rep\n- Shrugging the shoulders up instead of keeping them down and back\n- Rushing through reps without control\n- Gripping the bar too narrow or too wide"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Assisted Pull Up Machine (with knee pad and weight stack)\n- Pull-up bar handles (built into the machine)\n- Weight stack with pin selection for assistance level"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select your assistance weight using the pin on the weight stack.\n2. Remember: more weight = more assistance (easier), less weight = less assistance (harder).\n3. Step up onto the side platforms of the machine.\n4. Pull the knee pad down if it is not already lowered.\n5. Carefully kneel onto the knee pad one knee at a time.\n6. Reach up and grip the pull-up bar handles with a shoulder-width overhand grip.\n7. Let your body hang with arms fully extended — you are now ready to begin."
+        },
+        {
+          "heading": "Grip Options",
+          "content": "1. Overhand Grip (Pronated): Palms facing away, standard pull up grip — emphasises lats and upper back.\n2. Underhand Grip (Supinated): Palms facing you, chin up grip — increases bicep involvement.\n3. Neutral Grip: Palms facing each other (if handles available) — comfortable on shoulders and wrists.\n4. Wide Grip: Hands wider than shoulder-width — targets outer lats.\n5. Narrow Grip: Hands closer than shoulder-width — increases range of motion.\n6. Start with shoulder-width overhand grip and experiment as strength develops.\n7. Ensure thumbs wrap around the bar for a secure grip.\n8. Use chalk if grip is slipping."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_pull_up", "plate_loaded_lat_pull_down"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Pull Up: Full bodyweight version without assistance\n- Plate Loaded Lat Pull Down: Machine-based lat pulldown with plate loading\n- Cable Lat Pull Down Station: Cable-based lat pulldown\n- Bodyweight Pull Up: Unassisted pull up for advanced athletes\n- Band Assisted Pull Up: Using resistance bands for assistance instead\n- Inverted Row: Bodyweight rowing movement at an angle"
+        },
+        {
+          "heading": "Pull Up Variations",
+          "content": "Cable Assisted Pull Up: Machine-assisted pull up with adjustable counterweight\nBodyweight Pull Up: Standard unassisted overhand pull up\nChin Up: Underhand grip pull up with more bicep emphasis\nWide Grip Pull Up: Wider hand placement targeting outer lats\nNeutral Grip Pull Up: Palms facing each other for shoulder comfort\nNegative Pull Up: Slow eccentric-only lowering for strength building\nWeighted Pull Up: Adding external load for advanced strength work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try neutral grip or underhand grip for less shoulder stress\nGrip Weakness: Use lifting straps or chalk to assist grip\nNot Strong Enough Yet: Increase the assistance weight and focus on form\nNo Assisted Machine Available: Use resistance bands looped over the bar\nElbow Pain: Try a wider grip and avoid full lockout at the bottom\nBeginner: Start with high assistance and reduce by small increments each week\nRecovering from Injury: Use lat pulldown machine as a regression"
+        }
+      ]
+    }
+  }
+}

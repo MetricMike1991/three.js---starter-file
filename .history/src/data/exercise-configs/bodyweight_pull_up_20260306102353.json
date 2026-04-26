@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bodyweight_pull_up",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/24.%20Body%20Weight%20Pull%20up/24.%20Body%20Weight%20Pull%20up%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/24.%20Body%20Weight%20Pull%20up/24.%20Body%20Weight%20Pull%20up%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/24.%20Body%20Weight%20Pull%20up/24.%20Body%20Weight%20Pull%20up%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/24.%20Body%20Weight%20Pull%20up/24.%20Body%20Weight%20Pull%20up%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.1, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.6967804522540906, 1.8906312717373472, 3.2407951853736296],
+    "rotation": [-0.1866269091515657, 0.686935629216238, 0.11917933497850944],
+    "target": [-0.0008211011944073247, 1.280378539831723, 0.008939311496464703]
+  },
+  "modelHQ": {
+    "position": [0, -0.1, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-3.1222178767144877, 2.637725892050222, -3.054402130465621],
+    "rotation": [-2.718813575894788, -0.7742153395908342, -2.836834935538678],
+    "target": [0.0137718127816412, 1.3219363167122002, -0.12984036963135168]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/24.%20Body%20Weight%20Pull%20up/Bodyweight%20Pull%20Up_250x250_2026-03-06T10-23-28.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Pull Up is a fundamental compound upper body exercise that targets the latissimus dorsi, biceps, and upper back muscles.\n\nPerformed by hanging from a bar and pulling your body upward until the chin clears the bar, it is one of the most effective bodyweight exercises for building back width and upper body pulling strength.\n\nPull-ups require no equipment other than a bar and are a benchmark for relative body strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds a wide, V-tapered back\n- Develops grip strength and forearm endurance\n- Engages multiple muscle groups simultaneously\n- Requires minimal equipment\n- Improves posture and shoulder health\n- Excellent indicator of relative body strength\n- Easily scalable with bands or added weight\n- Carries over to climbing, sports, and daily pulling tasks"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Teres Major\n\nSecondary: Biceps Brachii, Brachialis, Brachioradialis, Rhomboids, Lower Trapezius, Rear Deltoids, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Hang from a pull-up bar with your palms facing away from you (overhand/pronated grip).\n2. Hands should be slightly wider than shoulder-width apart.\n3. Arms fully extended, shoulders engaged (not shrugging up to ears).\n4. Legs straight or slightly crossed behind you.\n5. Core braced and body in a straight line."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your shoulder blades by pulling them down and back.\n2. Drive your elbows down toward your hips as you pull your body upward.\n3. Continue pulling until your chin clears the bar.\n4. Squeeze your lats at the top of the movement.\n5. Lower your body back down in a controlled manner to full arm extension.\n6. Avoid swinging or using momentum — maintain a strict form.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or kipping to get over the bar\n- Not achieving full range of motion (partial reps)\n- Shrugging shoulders up to the ears instead of engaging lats\n- Flaring elbows out instead of driving them down\n- Not fully extending arms at the bottom\n- Crossing legs and swinging to generate momentum\n- Gripping too narrow or too wide\n- Rushing through reps without control\n- Craning the neck to get chin over the bar"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pull-Up Bar (doorway, wall-mounted, or free-standing)\n- Optional: Resistance Band (for assisted pull-ups)\n- Optional: Weight Belt or Dumbbell between feet (for weighted pull-ups)\n- Optional: Chalk (for improved grip)\n- Optional: Gymnastics grips or gloves"
+        },
+        {
+          "heading": "Bar Setup",
+          "content": "1. Ensure the pull-up bar is securely mounted and can support your body weight.\n2. The bar should be high enough that you can hang with arms fully extended without your feet touching the ground.\n3. If using a doorway bar, verify it is properly secured before each use.\n4. For assisted pull-ups, loop a resistance band over the bar and place one foot or knee in the band."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Overhand (pronated), slightly wider than shoulder-width.\n2. Arms: Fully extended at the start — dead hang position.\n3. Shoulders: Pulled down away from ears, engaged and packed.\n4. Core: Braced throughout the movement.\n5. Legs: Straight or slightly bent, crossed if preferred.\n6. Head: Neutral position, looking straight ahead.\n7. Breathing: Exhale on the way up, inhale on the way down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_lat_pulldown"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Chin-Ups (underhand grip): More biceps involvement\n- Lat Pulldown: Machine-based alternative, adjustable resistance\n- Neutral Grip Pull-Up: Palms facing each other, easier on wrists\n- Inverted Row: Bodyweight pulling at an angle\n- Band-Assisted Pull-Up: Reduced bodyweight for beginners\n- Machine-Assisted Pull-Up: Counterweight to reduce difficulty"
+        },
+        {
+          "heading": "Pull-Up Variations",
+          "content": "Standard Pull-Up: Classic overhand grip, shoulder-width or wider\nWide-Grip Pull-Up: Greater lat stretch and width emphasis\nClose-Grip Pull-Up: More biceps and lower lat engagement\nWeighted Pull-Up: Added resistance via belt or dumbbell\nSlow Negative Pull-Up: Controlled eccentric for strength building\nL-Sit Pull-Up: Legs held in front for added core challenge\nCommando Pull-Up: Alternating side-to-side neutral grip\nArcher Pull-Up: One arm does most of the work for advanced strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lack of Strength: Start with band-assisted or machine-assisted pull-ups\nShoulder Pain: Try neutral grip pull-ups or reduce range of motion\nElbow Pain: Check grip width, try chin-ups or neutral grip\nGrip Weakness: Use chalk or straps, practice dead hangs\nNo Pull-Up Bar: Use a sturdy door frame, tree branch, or playground equipment\nOverweight: Use band assistance or lat pulldowns to build baseline strength\nLearning Stage: Start with dead hangs, then work on negatives (slow lowering)"
+        }
+      ]
+    }
+  }
+}

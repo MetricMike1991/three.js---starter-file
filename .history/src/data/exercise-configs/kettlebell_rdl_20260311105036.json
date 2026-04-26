@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_rdl",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/46.%20Kettlebell%20RDL/46.%20Kettlebell%20RDL%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/46.%20Kettlebell%20RDL/46.%20Kettlebell%20RDL%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/46.%20Kettlebell%20RDL/46.%20Kettlebell%20RDL%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/46.%20Kettlebell%20RDL/46.%20Kettlebell%20RDL%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell RDL (Romanian Deadlift) is a hip-hinge movement that targets the hamstrings and glutes using a kettlebell held with both hands.\n\nBy hinging at the hips while maintaining a neutral spine, the movement places a deep stretch on the posterior chain and builds strength through a controlled range of motion.\n\nThis exercise is an excellent kettlebell alternative to the barbell Romanian deadlift, offering a more accessible entry point while still delivering serious hamstring and glute development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Deep stretch and strengthening of the hamstrings and glutes\n- Develops a strong hip hinge pattern essential for many lifts\n- Improves posterior chain flexibility and mobility\n- Lower back friendly when performed with proper form\n- The kettlebell's compact shape allows a natural movement path between the legs\n- Excellent for building hamstring resilience and injury prevention\n- Requires minimal equipment — just one kettlebell"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings\n\nSecondary: Glutes, Erector Spinae, Core (Rectus Abdominis, Obliques), Forearms and Grip, Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with feet hip-width apart.\n2. Grip the handle of the kettlebell with both hands using an overhand grip.\n3. Hold the kettlebell between your legs at around hip height.\n4. Stand tall with a slight bend in your knees.\n5. Pull your shoulders back and down, chest proud.\n6. Your arms will remain fully extended for the duration of the movement."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Grip the handle of the kettlebell with both hands. Stand straight with the kettlebell between your legs around hip height. Your arms will remain fully extended for the duration of the movement.\n2. Hinge at the hips and allow your hips to drift backward as the kettlebell goes lower to the floor. Maintain a neutral spine and pelvic position.\n3. Once you reach a full stretch in your hamstrings or glutes, return back to the starting position.\n4. Repeat for reps.\n5. Keep the kettlebell close to your body throughout — it should travel straight down along your legs.\n6. Squeeze your glutes hard at the top of each rep to fully lock out."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back instead of maintaining a neutral spine\n- Bending the knees too much, turning it into a squat\n- Not hinging deep enough to feel the hamstring stretch\n- Letting the kettlebell drift forward away from the body\n- Looking up and hyperextending the neck\n- Rushing through reps without controlling the eccentric (lowering) phase\n- Not squeezing the glutes at the top of the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for your hip hinge strength)\n- Flat, stable surface to stand on\n- Optional: Exercise mat for foot traction\n- Optional: Chalk for grip assistance on heavier loads\n- Recommended: Start with a moderate weight to master the hinge pattern"
+        },
+        {
+          "heading": "Choosing Your Kettlebell Weight",
+          "content": "1. Beginners: Start with 8-16 kg (men) or 4-12 kg (women).\n2. Intermediate: 20-32 kg (men) or 12-20 kg (women).\n3. The weight should challenge the hamstrings without compromising spinal position.\n4. If your lower back rounds before you feel the hamstring stretch, reduce the weight.\n5. Focus on the quality of the stretch and contraction over heavy loading.\n6. Progress gradually as your hip hinge mechanics improve."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Hip-width apart, toes pointing forward or slightly out.\n2. Knees: Soft bend, maintained throughout — do not increase bend during the hinge.\n3. Hips: Drive backward as if closing a car door with your glutes.\n4. Spine: Neutral from head to tailbone — no rounding or excessive arching.\n5. Shoulders: Pulled back and down, chest open.\n6. Arms: Fully extended, acting as hooks holding the kettlebell.\n7. Head: Neutral, eyes looking a few feet ahead on the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["romanian_deadlift_rdl", "conventional_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Romanian Deadlift: Same movement pattern with heavier loading potential\n- Dumbbell RDL: Similar to kettlebell version with dumbbells at the sides\n- Single Leg RDL: Unilateral version for balance and stability\n- Good Morning: Barbell on back, same hip hinge pattern\n- Cable Pull Through: Machine-based hip hinge with constant tension\n- Stiff Leg Deadlift: Straighter legs for more hamstring isolation"
+        },
+        {
+          "heading": "Kettlebell RDL Variations",
+          "content": "Double Hand Kettlebell RDL: Standard variation with both hands on one kettlebell\nSingle Arm Kettlebell RDL: One kettlebell in one hand for anti-rotation demand\nSingle Leg Kettlebell RDL: Unilateral version for balance and stability\nDouble Kettlebell RDL: One kettlebell in each hand for heavier loading\nSlow Tempo Kettlebell RDL: 3-4 second eccentric for time under tension\nPaused Kettlebell RDL: Pause at the bottom for stretch and strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Focus on bracing the core and reduce range of motion\nHamstring Tightness: Only hinge as far as you can with a flat back, increase depth over time\nGrip Fatigue: Use chalk or switch to a lighter kettlebell\nKnee Issues: Maintain a consistent soft bend, avoid locking out\nBalance Problems: Widen your stance slightly for more stability\nLearning Stage: Practice the hip hinge with no weight first, then add the kettlebell"
+        }
+      ]
+    }
+  }
+}

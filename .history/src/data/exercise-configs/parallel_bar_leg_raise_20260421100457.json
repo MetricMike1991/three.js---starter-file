@@ -1,0 +1,105 @@
+{
+  "exerciseId": "parallel_bar_leg_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/164.%20Parallel%20Bar%20Leg%20Raise/164%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/164.%20Parallel%20Bar%20Leg%20Raise/164%20hD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/164.%20Parallel%20Bar%20Leg%20Raise/164%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/164.%20Parallel%20Bar%20Leg%20Raise/164.%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [3.4124546382989145, 2.8049823301895858, 3.850575351659889],
+    "rotation": [-0.2167067529510971, 0.7355349036007341, 0.14666574684946815],
+    "target": [0.005845948999554042, 1.995564448869425, 0.17414420568836675]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.130773109011481, 2.0584098402359223, 2.0601425507470443],
+    "rotation": [-0.45852273537735777, 0.7660975736774209, 0.32973961916843686],
+    "target": [0.08616044847641194, 1.1177894990272355, 0.15454924501202028]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Parallel Bar Leg Raise is a bodyweight core exercise performed while supporting yourself on a set of parallel bars or a captain's chair station.\n\nIt primarily targets the rectus abdominis and hip flexors, with strong secondary engagement from the obliques, shoulders, and upper back as stabilizers.\n\nBy removing floor contact and requiring you to support your full bodyweight, this exercise is a more challenging progression from lying leg raises and a great stepping stone toward the hanging leg raise."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strongly targets the lower abs and hip flexors\n- Builds excellent core stability and control\n- Develops shoulder and scapular strength for support\n- Improves grip and forearm endurance\n- Trains the core through a long, controlled range of motion\n- Bridges lying leg raises and hanging leg raises\n- Less grip-demanding than a pull-up bar variation\n- Can be scaled by using knee tucks for beginners"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Hip Flexors\n\nSecondary: Obliques, Transverse Abdominis, Shoulders, Latissimus Dorsi, Trapezius, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand between two parallel bars and grip them with your hands at shoulder-width apart.\n2. Press into the bars and lift yourself up until your arms are straight.\n3. Keep your shoulders down and away from your ears.\n4. Let your body hang fully extended with legs together.\n5. Brace your core and set a neutral pelvis before beginning."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core muscles and lift your legs off the ground, keeping them together and your feet pointed.\n2. Continue raising your legs until they are parallel to the ground or as high as you can comfortably lift them.\n3. Pause briefly at the top of the movement with the core fully contracted.\n4. Slowly lower your legs back down to the starting position, controlling the movement and keeping your core engaged.\n5. Avoid swinging or using momentum between reps.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the body and using momentum to raise the legs\n- Allowing shoulders to shrug up toward the ears\n- Arching the lower back at the bottom of the movement\n- Bending the knees excessively (unless performing a scaled version)\n- Dropping the legs rapidly instead of lowering with control\n- Holding the breath throughout the set\n- Leaning too far forward or backward on the bars\n- Not initiating the lift from the abs and hip flexors"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Parallel Bars, Dip Station, or Captain's Chair\n- Stable, level floor surface\n- Optional: Chalk for improved grip\n- Optional: Wrist Wraps for support\n- Recommended: Enough overhead and side clearance for full leg extension"
+        },
+        {
+          "heading": "Finding Your Position",
+          "content": "1. Step between the bars and grip them firmly with both hands.\n2. Press up into a full support position with arms straight.\n3. Keep shoulders packed down and chest up.\n4. Allow the body to hang with legs fully extended and together.\n5. Brace the core and set the pelvis in a neutral position.\n6. Look forward with a neutral head and neck."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Shoulder-width on the bars, firm grip.\n2. Arms: Straight but not locked out aggressively.\n3. Shoulders: Packed down and away from the ears.\n4. Torso: Upright and slightly braced forward.\n5. Core: Fully engaged throughout the set.\n6. Legs: Straight, squeezed together, feet pointed.\n7. Breathing: Exhale on the lift, inhale on the lower."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Hanging Leg Raise: More advanced variation from a pull-up bar\n- Captain's Chair Leg Raise: Similar position with back and arm support\n- Lying Leg Raise: Floor-based scaled alternative\n- Knee Raise on Parallel Bars: Bent-knee progression\n- L-Sit Hold: Isometric hold at the top of the movement\n- Toes-to-Bar: Advanced hanging variation for full core flexion"
+        },
+        {
+          "heading": "Leg Raise Variations",
+          "content": "Parallel Bar Leg Raise: Standard straight-leg raise on parallel bars\nParallel Bar Knee Raise: Beginner progression with knees tucked\nParallel Bar L-Sit Hold: Isometric variation held at the top\nWeighted Parallel Bar Leg Raise: Ankle weights or dumbbell between feet for added resistance\nSide-to-Side Parallel Bar Leg Raise: Oblique-focused variation\nWindshield Wipers: Advanced rotational movement at the top position"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Core Weakness: Start with knee raises before progressing to straight-leg raises\nGrip or Wrist Issues: Use a captain's chair with back and arm supports\nShoulder Pain: Keep shoulders packed and avoid dipping into the bars\nLower Back Pain: Reduce range of motion and focus on pelvic control\nHip Flexor Tightness: Warm up with hip mobility drills\nNo Parallel Bars: Use a dip station, captain's chair, or sturdy chair setup"
+        }
+      ]
+    }
+  }
+}

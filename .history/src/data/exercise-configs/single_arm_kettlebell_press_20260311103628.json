@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_arm_kettlebell_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/45.%20The%20Single%20Arm%20Kettlebell%20press/45.%20The%20Single%20Arm%20Kettlebell%20press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/45.%20The%20Single%20Arm%20Kettlebell%20press/45.%20The%20Single%20Arm%20Kettlebell%20press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/45.%20The%20Single%20Arm%20Kettlebell%20press/45.%20The%20Single%20Arm%20Kettlebell%20press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/45.%20The%20Single%20Arm%20Kettlebell%20press/45.%20The%20Single%20Arm%20Kettlebell%20press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Arm Kettlebell Press is a unilateral overhead pressing movement that targets the shoulders using a kettlebell from the front rack position.\n\nThe unique shape of the kettlebell and the corkscrew pressing path challenge shoulder stability, grip strength, and core engagement more than a standard dumbbell press.\n\nThis exercise is excellent for building overhead pressing strength, correcting side-to-side imbalances, and developing functional shoulder power."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strong, stable shoulders through a full range of motion\n- The offset load of the kettlebell increases core and stabiliser demand\n- Corrects left-to-right strength imbalances\n- Develops rotational pressing strength through the corkscrew motion\n- Improves overhead mobility and shoulder health\n- Strengthens the rotator cuff and scapular stabilisers\n- Transfers well to sport and everyday overhead tasks"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Shoulders (Anterior and Lateral Deltoids)\n\nSecondary: Triceps, Upper Chest (Clavicular Pectoralis), Trapezius, Core (Obliques, Rectus Abdominis), Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Clean the kettlebell or pick it up into the front rack position.\n2. Hold the kettlebell handle with a firm grip, hugging the bell into your chest.\n3. Your elbow should be tucked in and positioned directly under the kettlebell.\n4. Stand with feet shoulder-width apart, core braced, and shoulders packed down.\n5. The body of the bell rests against the back of your forearm.\n6. Keep your wrist straight and aligned with your forearm."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Start with holding the kettlebell handle and hugging the kettlebell into your chest in the front rack position.\n2. With your elbow under the kettlebell, begin to move the kettlebell out to the side around your shoulder and then begin to press the kettlebell upward.\n3. The kettlebell should be fully pressed above the head until the arm is fully extended. The body of the bell will rest against the back of your forearm.\n4. Return the weight back to the starting position in the same manner — down and rotate in. This is like a corkscrew motion.\n5. Keep your core tight and avoid leaning to the opposite side throughout the press.\n6. Repeat for the desired number of reps, then switch arms."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pressing the kettlebell straight up instead of using the corkscrew path\n- Leaning excessively to the opposite side to compensate for the weight\n- Flaring the elbow out wide at the start instead of keeping it tucked\n- Allowing the wrist to bend backward under the weight\n- Not fully locking out the arm overhead\n- Rushing the descent instead of controlling the corkscrew back down\n- Using momentum from the legs instead of strict pressing"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for your pressing strength)\n- Flat, stable surface to stand on\n- Optional: Chalk for grip assistance\n- Optional: Wrist wraps for heavier loads\n- Recommended: Start lighter than you think — the offset load is demanding"
+        },
+        {
+          "heading": "Choosing Your Kettlebell Weight",
+          "content": "1. Beginners: Start with 8-12 kg (men) or 4-8 kg (women).\n2. Intermediate: 16-24 kg (men) or 8-16 kg (women).\n3. The kettlebell should be heavy enough to challenge you but light enough to press with strict form.\n4. If you cannot press without leaning, the weight is too heavy.\n5. Master the front rack position before attempting heavy presses.\n6. Progress gradually — the single arm press demands significant shoulder stability."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, toes slightly out.\n2. Core: Braced tight as if preparing for a punch.\n3. Glutes: Squeezed to stabilise the hips.\n4. Front Rack: Kettlebell hugged into chest, elbow tucked under.\n5. Wrist: Straight and neutral, aligned with forearm.\n6. Shoulder: Packed down and away from the ear.\n7. Head: Neutral, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Bilateral pressing with a barbell\n- Dumbbell Shoulder Press: Similar unilateral press with a dumbbell\n- Seated Shoulder Press: Seated variation removing lower body assistance\n- Arnold Press: Rotational dumbbell press for full deltoid engagement\n- Push Press: Using leg drive to press heavier loads overhead\n- Landmine Press: Angled pressing for shoulder-friendly overhead work"
+        },
+        {
+          "heading": "Kettlebell Press Variations",
+          "content": "Single Arm Kettlebell Press: Standard strict press from front rack\nKettlebell Push Press: Using leg drive for heavier loads\nDouble Kettlebell Press: Two kettlebells pressed simultaneously\nKettlebell Bottom-Up Press: Bell inverted for extreme grip and stability challenge\nHalf Kneeling Kettlebell Press: Kneeling to isolate the shoulder and core\nKettlebell Z-Press: Seated on the floor with legs extended for core demand"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Check mobility, try half kneeling press or landmine press\nWrist Discomfort: Ensure proper rack position, try wrist wraps\nCore Weakness: Start with half kneeling press to reduce stability demand\nLack of Overhead Mobility: Work on thoracic extension and shoulder stretches first\nGrip Fatigue: Use chalk, or alternate with dumbbell presses\nLearning Stage: Master the front rack position and use a light kettlebell before progressing"
+        }
+      ]
+    }
+  }
+}

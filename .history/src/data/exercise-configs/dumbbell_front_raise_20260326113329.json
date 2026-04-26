@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_front_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/106.%20Dumbbell%20Front%20Raise/106.%20Dumbbell%20Front%20Raise%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/106.%20Dumbbell%20Front%20Raise/106.%20Dumbbell%20Front%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/106.%20Dumbbell%20Front%20Raise/106.%20Dumbbell%20Front%20Raise%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/106.%20Dumbbell%20Front%20Raise/106.%20Dumbbell%20Front%20Raise%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Front Raise is an isolation exercise that targets the anterior (front) deltoid.\n\nPerformed standing with dumbbells raised in front of the body to shoulder height, it is a staple movement for building shoulder definition and strength.\n\nThis exercise is commonly used in shoulder training routines to develop the front portion of the deltoid muscle."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly isolates the anterior deltoid\n- Builds shoulder definition and roundness from the front\n- Strengthens the shoulder for pressing movements\n- Simple to learn with minimal equipment required\n- Can be performed unilaterally to correct imbalances\n- Improves shoulder stability and endurance\n- Effective at lighter weights with strict form"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoid\n\nSecondary: Lateral Deltoid, Upper Chest (Clavicular Head of Pectoralis Major), Trapezius, Serratus Anterior, Core (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand upright with feet shoulder-width apart.\n2. Hold a dumbbell in each hand with palms facing your thighs (pronated grip).\n3. Let the dumbbells rest against the front of your thighs.\n4. Keep a slight bend in your elbows throughout the movement.\n5. Engage your core and maintain a neutral spine.\n6. Pull your shoulders back and down, away from your ears."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your arms straight with a slight bend in the elbows, raise the dumbbells in front of your body.\n2. Exhale as you lift the dumbbells to shoulder height — arms parallel to the floor.\n3. Pause briefly at the top of the movement and squeeze the front deltoids.\n4. Slowly lower the dumbbells back to the starting position while inhaling.\n5. Maintain control throughout the entire range of motion.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the dumbbells or using momentum to lift\n- Raising the dumbbells above shoulder height unnecessarily\n- Shrugging the shoulders up during the lift\n- Arching the lower back to compensate for heavy weight\n- Fully locking out the elbows\n- Rushing the lowering phase\n- Using too heavy a weight, sacrificing strict form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight for controlled reps)\n- Open floor space for standing\n- Optional: Mirror for form checking"
+        },
+        {
+          "heading": "Selecting Your Weight",
+          "content": "1. The front raise is an isolation movement — start light.\n2. Choose a weight you can lift with strict form for 10-15 reps.\n3. You should be able to pause at the top without swinging.\n4. If your lower back arches or you need momentum, reduce the weight.\n5. Progress gradually, prioritising time under tension over load.\n6. This is a high-rep, controlled movement — ego lifting is counterproductive."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, flat on the floor.\n2. Knees: Slight bend, not locked.\n3. Hips: Neutral position, core braced.\n4. Torso: Upright, shoulders back and down.\n5. Arms: Slight bend in elbows, dumbbells resting on thighs.\n6. Grip: Overhand (pronated), palms facing the body.\n7. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["arnold_press", "barbell_overhead_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Arnold Press: Rotational press that heavily involves the anterior deltoid\n- Barbell Overhead Press: Compound pressing for overall shoulder development\n- Cable Front Raise: Constant tension variation using cables\n- Plate Front Raise: Alternative using a weight plate\n- Lateral Raise: Targets the lateral (side) deltoid\n- Dumbbell Shoulder Press: Compound movement for all three deltoid heads"
+        },
+        {
+          "heading": "Front Raise Variations",
+          "content": "Alternating Front Raise: Raise one arm at a time for unilateral focus\nSeated Front Raise: Performed seated to eliminate lower body momentum\nIncline Front Raise: Lying face down on an incline bench for a stretch\nNeutral Grip Front Raise: Palms facing each other (hammer grip)\nBarbell Front Raise: Both arms using a barbell for bilateral loading\nCable Front Raise: Using a low cable for constant tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion or use a neutral grip\nLower Back Issues: Perform seated or brace against a wall\nWrist Discomfort: Use a neutral (hammer) grip variation\nNo Dumbbells: Use resistance bands, cables, or a weight plate\nMobility Restrictions: Start with partial range of motion and progress over time\nRecovering from Injury: Use very light weight and focus on controlled movement"
+        }
+      ]
+    }
+  }
+}

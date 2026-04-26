@@ -1,0 +1,105 @@
+{
+  "exerciseId": "assisted_dips",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/80.%20Assisted%20Dips/80.%20Assisted%20Dips%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/80.%20Assisted%20Dips/80.%20Assisted%20Dips%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/80.%20Assisted%20Dips/80.%20Assisted%20Dips%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/80.%20Assisted%20Dips/80.%20Assisted%20Dips%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Assisted Dip is a machine-assisted variation of the traditional dip that uses a counterweight to reduce the amount of bodyweight you need to press.\n\nThis exercise primarily targets the triceps while also engaging the chest and front deltoids, making it an excellent upper body pressing movement.\n\nBy adjusting the weight on the stack, you can gradually decrease the assistance over time, building the strength needed for full bodyweight dips."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Allows beginners to perform dips with proper form and control\n- Adjustable assistance makes progressive overload straightforward\n- Targets the same muscles as full bodyweight dips\n- Builds tricep, chest, and shoulder pressing strength\n- Safer than unsupported dips, reducing risk of shoulder injury\n- Great for high-rep tricep training and hypertrophy\n- Helps develop lockout strength for pressing movements"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii\n\nSecondary: Pectoralis Major (Lower Chest), Anterior Deltoids (Front Shoulders), Rhomboids, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the weight on the machine — more weight means more assistance.\n2. Step up onto the footrests or kneel on the knee pad.\n3. Place your hands on the handles with a firm grip.\n4. Push yourself up until your arms are fully extended.\n5. Keep your core engaged and your body upright.\n6. This is your starting position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower yourself down slowly by bending at the elbows.\n2. Keep your elbows tucked close to your body to emphasise the triceps.\n3. Continue lowering until your elbows reach approximately a 90-degree angle.\n4. Do not drop below 90 degrees unless you have adequate shoulder mobility.\n5. Push yourself back up to the starting position by extending your arms.\n6. Squeeze your triceps at the top of the movement.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much assistance weight, making the exercise too easy\n- Dropping too deep, placing excessive stress on the shoulders\n- Flaring elbows out wide, shifting emphasis away from triceps\n- Leaning too far forward, turning it into a chest exercise\n- Not fully locking out the arms at the top\n- Swinging or using momentum instead of controlled movement\n- Rushing the eccentric (lowering) phase\n- Shrugging shoulders up instead of keeping them depressed"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Assisted Dip Machine (with knee pad or footrests and weight stack)\n- Dip handles (built into the machine)\n- Weight stack with pin selection for assistance level"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select your assistance weight using the pin on the weight stack.\n2. Remember: more weight = more assistance (easier), less weight = less assistance (harder).\n3. Step up onto the side platforms of the machine.\n4. If the machine uses a knee pad, pull it down and kneel on it.\n5. If the machine uses footrests, stand on them.\n6. Grip the dip handles firmly with both hands.\n7. Push yourself up to full arm extension — you are now ready to begin."
+        },
+        {
+          "heading": "Body Position Guide",
+          "content": "1. Keep your torso upright to emphasise triceps.\n2. A slight forward lean will engage more chest.\n3. Keep elbows tucked close to your sides throughout the movement.\n4. Shoulders should be depressed (pulled down away from ears).\n5. Core should be braced and engaged.\n6. Avoid excessive swinging or kipping.\n7. Grip the handles at a comfortable width.\n8. Start with higher assistance and reduce gradually as strength improves."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_dip_machine", "close_grip_bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Tricep Dip Machine: Seated machine dip with plate or cable loading\n- Close Grip Bodyweight Push Up: Bodyweight pressing with tricep emphasis\n- Tricep Cable Extension: Cable-based tricep isolation\n- Overhead Tricep Cable Extensions: Overhead cable tricep work\n- Tricep Skull Crusher: Dumbbell-based tricep isolation\n- Bench Dips: Bodyweight dips using a bench for support"
+        },
+        {
+          "heading": "Dip Variations",
+          "content": "Assisted Dips: Machine-assisted dips with adjustable counterweight\nBodyweight Dips: Full bodyweight dips on parallel bars\nWeighted Dips: Adding external load for advanced strength work\nBench Dips: Feet on floor, hands on bench behind you\nRing Dips: Performed on gymnastic rings for added instability\nKorean Dips: Hands behind body on a bar for increased stretch\nStraight Bar Dips: Performed on a single straight bar"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce depth and avoid going below 90 degrees at the elbow\nWrist Discomfort: Adjust grip position or try angled handles if available\nNot Strong Enough Yet: Increase the assistance weight and focus on form\nNo Assisted Machine Available: Use bench dips or band-assisted dips\nElbow Pain: Keep elbows tucked and avoid full lockout at the top\nBeginner: Start with high assistance and reduce by small increments each week\nRecovering from Injury: Use the tricep dip machine as a regression"
+        }
+      ]
+    }
+  }
+}

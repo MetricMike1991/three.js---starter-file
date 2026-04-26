@@ -1,0 +1,105 @@
+{
+  "exerciseId": "decline_dumbbell_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/257.%20Decline%20Dumbbell%20Press/257.%20Decline%20Dumbbell%20Press%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/257.%20Decline%20Dumbbell%20Press/257.%20Decline%20Dumbbell%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/257.%20Decline%20Dumbbell%20Press/Decline%20Dumbbell%20Press_250x250_2026-04-24T21-33-07.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Decline Dumbbell Press is a compound upper body pressing exercise performed on a decline bench, with the head positioned lower than the hips.\n\nThis angle emphasises the lower portion of the pectoral muscles, helping to build thickness and fullness in the lower chest while engaging the shoulders and triceps as secondary movers.\n\nUsing dumbbells instead of a barbell allows a greater range of motion, independent limb control, and a more natural pressing path, making it an excellent addition to any complete chest development programme."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the lower pectoral muscles for full chest development\n- Greater range of motion than the barbell variation\n- Independent arm movement corrects strength imbalances\n- More natural, shoulder-friendly pressing path\n- Reduced strain on the anterior deltoids\n- Increased core and stabiliser engagement\n- Allows a deeper stretch at the bottom of the press\n- Reduces tendency to arch the lower back\n- Develops triceps and shoulders as secondary movers\n- Excellent for aesthetic lower chest development"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Lower/Sternal Head)\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core (stabiliser)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set the decline bench to an angle of 15-30 degrees.\n2. Secure your legs under the leg padding at the raised end of the bench.\n3. Hold a dumbbell in each hand, resting them on top of your thighs.\n4. Lie back on the bench, using your thighs to help hoist the dumbbells up.\n5. Bring the dumbbells to shoulder height with palms facing forward.\n6. Pull your shoulder blades back and down into the bench.\n7. Chest up, core engaged.\n8. Wrists straight and stacked over the elbows.\n9. Take a deep breath and prepare to press."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Press the dumbbells upwards until your arms are extended above you.\n2. Keep a slight bend in the elbows at the top - do not lock out aggressively.\n3. The dumbbells should travel in a slight arc, finishing close together over the lower chest.\n4. Pause briefly at the top.\n5. Inhale and lower the dumbbells with control back to shoulder height.\n6. Keep your elbows tucked at approximately 45-75 degrees from the torso.\n7. Allow a comfortable stretch at the bottom without losing shoulder position.\n8. Exhale and drive the dumbbells back up to the starting position.\n9. Maintain control throughout the entire range of motion.\n10. Repeat for the desired number of repetitions.\n11. To finish, bring the dumbbells to your chest and sit up carefully or have a spotter assist."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and losing form\n- Bouncing the dumbbells off the chest\n- Flaring the elbows out at 90 degrees (increases shoulder strain)\n- Partial range of motion at the top or bottom\n- Lifting the hips off the bench\n- Locking out the elbows aggressively at the top\n- Clanging the dumbbells together at the top\n- Uneven pressing - one arm ahead of the other\n- Not securing the feet under the leg padding\n- Holding the breath for multiple reps\n- Incorrect hand position (palms not facing forward)"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Decline Bench (fixed or adjustable)\n- Pair of Dumbbells\n- Comfortable athletic clothing\n- Supportive footwear\n- Optional: Lifting Gloves or Chalk for grip\n- Optional: Wrist Wraps for heavy sets\n- Recommended: Spotter for heavier sets (to hand off dumbbells)"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 8-10 reps with light to moderate weight.\n2. Intermediate: 3-4 sets of 6-10 reps.\n3. Advanced: 4-5 sets of 6-10 reps with heavier dumbbells.\n4. Hypertrophy Focus: 3-4 sets of 8-12 reps with controlled tempo.\n5. Strength Focus: 4-5 sets of 4-6 reps with heavier weight.\n6. Endurance Focus: 2-3 sets of 12-15 reps with lighter weight.\n7. Rest: 90-180 seconds between sets depending on load and goal.\n8. Progressive Overload: Gradually increase weight over weeks."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Bench Angle: 15-30 degree decline.\n2. Feet: Secured under the leg padding.\n3. Back: Flat against the bench with natural arch in the lower back.\n4. Shoulders: Retracted and pressed into the bench.\n5. Grip: Neutral or slightly angled, palms facing forward.\n6. Wrists: Straight, stacked above elbows.\n7. Elbows: Tucked at approximately 45-75 degrees from torso.\n8. Head: Resting on the bench - do not lift.\n9. Core: Braced throughout the movement.\n10. Breathing: Inhale on descent, exhale on the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["decline_barbell_bench_press", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Decline Barbell Bench Press: Barbell variation for lower chest\n- Flat Dumbbell Bench Press: Classic dumbbell chest press\n- Incline Dumbbell Press: Upper chest emphasis\n- Dip: Bodyweight lower chest alternative\n- Decline Push-Up: Bodyweight variation with elevated feet\n- Cable Decline Fly: Isolation alternative for lower chest\n- Machine Chest Press (Decline Angle): Guided machine variation\n- Decline Smith Machine Press: Guided bar path variation"
+        },
+        {
+          "heading": "Decline Dumbbell Press Variations",
+          "content": "Standard Decline Dumbbell Press: Classic execution with moderate decline\nSteep Decline Dumbbell Press: Greater decline angle (30-40 degrees) for more lower chest focus\nNeutral-Grip Decline Dumbbell Press: Palms facing each other for shoulder comfort\nAlternating Decline Dumbbell Press: One arm presses while the other holds\nPause Decline Dumbbell Press: 2-3 second pause at the bottom\nTempo Decline Dumbbell Press: Slow eccentric (3-5 seconds) for time under tension\nSingle-Arm Decline Dumbbell Press: Unilateral focus, extra core engagement\nDecline Dumbbell Squeeze Press: Dumbbells pressed together throughout for inner chest"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use a neutral grip or reduce range of motion\nLower Back Pain: Ensure proper bench setup with feet secured, brace core\nWrist Pain: Use wrist wraps or try a neutral-grip variation\nElbow Pain: Keep elbows tucked closer to the body (reduce flare)\nHigh Blood Pressure: Avoid steep decline angles (head below heart)\nReflux / GERD: Avoid decline position - use flat or incline instead\nBeginner: Start with flat dumbbell press, progress to decline later\nLight-Headedness: Come up slowly at the end of the set to avoid dizziness\nNo Decline Bench: Substitute with dips or decline push-ups"
+        }
+      ]
+    }
+  }
+}

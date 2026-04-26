@@ -1,0 +1,105 @@
+{
+  "exerciseId": "preacher_curl_station",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/37.%20Preacher%20Curl%20Station/37.%20Preacher%20Curl%20Station%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/37.%20Preacher%20Curl%20Station/37.%20Preacher%20Curl%20Station%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/37.%20Preacher%20Curl%20Station/37.%20Preacher%20Curl%20Station%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/37.%20Preacher%20Curl%20Station/37.%20Preacher%20Curl%20Station%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.7229585166765522, 1.4788474568517076, -3.0300525751008975],
+    "rotation": [-2.89825401440077, -0.6364621657423865, -2.9950964666823507],
+    "target": [0.002605332284738615, 0.9162881135546657, -0.7640272337541579]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.8216483861917208, 1.6978810413192253, 3.0340627879094013],
+    "rotation": [-0.3601124599698185, 0.6614634055591582, 0.22729579969443925],
+    "target": [-0.017292807644731675, 0.8654536485562461, 0.8232837565443035]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Preacher Curl Station is a bicep isolation exercise performed on a preacher curl bench using an EZ bar.\n\nThe angled pad locks the upper arms in place, eliminating momentum and forcing the biceps to work through a strict, controlled range of motion.\n\nThis is one of the most effective exercises for building bicep peak and overall arm size, as the fixed arm position ensures maximum bicep engagement on every rep."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the biceps with strict form — no cheating\n- Preacher pad eliminates swing and momentum\n- EZ bar reduces wrist strain compared to a straight barbell\n- Builds bicep peak and overall arm thickness\n- Targets both the long and short head of the biceps\n- Easy to progressively overload with small weight increments\n- Great for drop sets by quickly changing plates\n- Reduces strain on the lower back compared to standing curls\n- Excellent for developing mind-muscle connection"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii (Long Head and Short Head)\n\nSecondary: Brachialis, Brachioradialis, Forearm Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit at the preacher curl bench with an EZ bar in your hands.\n2. Use an underhand (supinated) grip with palms facing upward and hands shoulder-width apart.\n3. Place the back of your upper arms flat on the preacher pad.\n4. Keep your chest up, core engaged, and shoulder blades down and back.\n5. Arms should be extended at the starting position with a slight bend in the elbows.\n6. Feet flat on the floor for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Curl the EZ bar toward your shoulders by contracting the biceps.\n2. Keep your elbows close to your sides and your wrists straight throughout.\n3. Focus on squeezing the biceps hard at the top of the movement.\n4. Hold the peak contraction for a brief moment.\n5. Slowly lower the EZ bar back down to the starting position with control.\n6. Maintain tension on the biceps throughout the entire rep.\n7. Stop just short of full arm extension to keep tension on the biceps.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the upper arms off the pad during the curl\n- Using momentum or swinging the body to lift the weight\n- Not achieving full range of motion\n- Dropping the weight on the eccentric (lowering phase)\n- Hyperextending the elbows at the bottom\n- Gripping too tightly, causing premature forearm fatigue\n- Seat too high or too low, causing improper arm placement\n- Rushing through reps without squeezing at the top\n- Wrists bending backward under the load\n- Using too much weight and compensating with shoulders"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Preacher Curl Bench/Station\n- EZ Curl Bar\n- Weight Plates\n- Optional: Wrist Wraps for wrist support\n- Optional: Lifting Gloves for grip comfort"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Adjust the seat height so the back of your upper arms rest flat on the preacher pad.\n2. Your armpits should be near the top edge of the pad.\n3. Load equal weight on both sides of the EZ bar.\n4. Ensure the bar is securely racked or have a spotter hand it to you.\n5. Test the range of motion with just the bar before adding weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Upper Arms: Back of arms (tricep area) flat against the preacher pad.\n2. Chest: Up and pressed lightly against the back of the pad.\n3. Feet: Flat on the floor for stability.\n4. Grip: Underhand (supinated), shoulder-width apart on the EZ bar angles.\n5. Elbows: In line with the body, not flared out.\n6. Shoulders: Down and relaxed, not shrugging up.\n7. Core: Engaged to prevent swaying.\n8. Wrists: Straight and neutral — do not let them bend backward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bicep_curl", "dumbbell_bicep_curls", "alternating_dumbbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Preacher Curl (Straight Bar): Wider grip variation\n- Dumbbell Preacher Curl: Unilateral preacher curl variation\n- Plate Loaded Preacher Curl Machine: Machine-based preacher curl\n- Cable Preacher Curl: Constant tension through the range\n- Concentration Curl: Seated single-arm isolation\n- Spider Curl: Chest-supported curl for strict isolation"
+        },
+        {
+          "heading": "Preacher Curl Variations",
+          "content": "EZ Bar Preacher Curl: Standard angled grip for wrist comfort\nStraight Bar Preacher Curl: Full supination for maximum bicep engagement\nDumbbell Preacher Curl: Unilateral for balanced development\nReverse Grip Preacher Curl: Targets brachioradialis and forearms\nSlow Tempo Preacher Curl: 3-4 second eccentric for muscle building\n21s Preacher Curl: 7 bottom half, 7 top half, 7 full range reps\nDrop Set Preacher Curl: Remove plates progressively for exhaustion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Reduce weight, avoid full extension at the bottom\nWrist Pain: Use an EZ bar instead of straight bar, or try wrist wraps\nShoulder Pain: Adjust seat height, ensure arms are properly positioned on pad\nNo Preacher Bench: Use an incline bench set at 45 degrees as a substitute\nNo EZ Bar: Use dumbbells or a straight barbell\nGrip Weakness: Use lighter weight and focus on controlled reps\nLearning Stage: Start with just the EZ bar, focus on the squeeze at the top"
+        }
+      ]
+    }
+  }
+}

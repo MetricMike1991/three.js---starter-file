@@ -1,0 +1,105 @@
+{
+  "exerciseId": "overhead_carry_kettlebell",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/300.%20Overhead%20Carry%20Kettlebell/300.%20Overhead%20Carry%20Kettlebell%20%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/300.%20Overhead%20Carry%20Kettlebell/300.%20Overhead%20Carry%20Kettlebell%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Overhead Carry with Kettlebell is a single-arm loaded carry where the lifter walks a set distance while holding a kettlebell directly overhead with one arm fully extended.\n\nIt builds shoulder stability, scapular control, and full-body bracing under an asymmetrical load.\n\nThe offset bell of the kettlebell adds a unique stability challenge compared to a dumbbell or weight plate, making it highly effective for shoulder integrity and core anti-lateral-flexion strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds overhead shoulder stability and rotator cuff strength\n- Develops anti-lateral-flexion and anti-rotation core control\n- Reinforces tall, stacked posture under offset load\n- Improves scapular and thoracic positioning\n- Highly transferable to overhead pressing and Turkish get-ups\n- Strengthens grip and forearm endurance\n- Excellent low-impact conditioning tool"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Deltoids, Trapezius, Core (Obliques, Rectus Abdominis)\n\nSecondary: Rotator Cuff, Triceps, Forearms, Glutes, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Select a kettlebell and stand next to it with feet shoulder-width apart.\n2. Squat down to pick up the kettlebell with one hand, gripping the handle firmly.\n3. Clean the kettlebell to the rack position at shoulder height.\n4. Brace your core and pack your shoulder down."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Press the kettlebell overhead until the arm is fully extended.\n2. Keep the wrist straight and the bell stacked over the shoulder, hip, and ankle.\n3. Engage core and glutes to maintain a tall, stable posture.\n4. Begin walking with controlled, even steps.\n5. Keep your gaze forward and avoid leaning or tilting to either side.\n6. Walk a predetermined distance or for a set period of time.\n7. Carefully lower the kettlebell to the rack, then to the ground, and switch arms to repeat."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the bell drift forward or behind the head\n- Leaning sideways to compensate for the load\n- Hyperextending the lower back\n- Soft, disengaged shoulder (not packed)\n- Bent or collapsed wrist\n- Holding breath instead of breathing through bracing\n- Walking too fast and losing stacked alignment\n- Using a kettlebell too heavy for proper overhead control"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell of appropriate weight\n- Open walking lane (10-30 metres)\n- Flat, non-slip flooring\n- Optional: Lifting Belt (for heavier loads)\n- Optional: Chalk (improves grip)\n- Recommended: Flat-soled training shoes"
+        },
+        {
+          "heading": "Selecting the Load",
+          "content": "1. Start light to learn the overhead position.\n2. Choose a weight you can hold overhead with full control.\n3. The bell should not waver or pull you sideways.\n4. Increase load only when posture stays tall and stacked.\n5. Heavier kettlebells challenge stability; lighter ones build endurance."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, toes forward.\n2. Hips: Stacked under shoulders, glutes engaged.\n3. Core: Braced before pressing the bell overhead.\n4. Shoulder: Packed down, away from the ear.\n5. Elbow: Fully extended and locked.\n6. Wrist: Straight, knuckles toward the ceiling.\n7. Gaze: Forward, head neutral."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["waiters_carry", "kettlebell_carry"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Waiters Carry: Same overhead pattern with weight plate or dumbbell\n- Kettlebell Carry (Rack): Loaded carry with bell in rack position\n- Farmers Walk: Bilateral carry at sides for grip and posture\n- Suitcase Carry: Single-arm side carry for anti-lateral-flexion\n- Bottoms-Up Kettlebell Carry: Rack carry with bell inverted\n- Turkish Get-Up: Full overhead stability and mobility drill"
+        },
+        {
+          "heading": "Overhead Carry Variations",
+          "content": "Single-Arm Overhead Carry: Standard offset load variation\nDouble Overhead Carry: Two kettlebells held overhead\nMixed Carry: One overhead, one in rack or at side\nBottoms-Up Overhead Carry: Bell inverted for grip and stability\nLunge Overhead Carry: Adds lower-body challenge\nOverhead Carry to Press: Combine carry with pressing reps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Work on thoracic and shoulder mobility first\nRotator Cuff Pain: Reduce load or substitute with rack carry\nLower Back Issues: Avoid hyperextension; reduce distance and load\nGrip Issues: Use chalk or shorter sets\nNo Kettlebell: Use a dumbbell or weight plate (Waiters Carry)\nBeginner: Start with a very light bell and short distances to learn position"
+        }
+      ]
+    }
+  }
+}

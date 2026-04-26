@@ -1,0 +1,113 @@
+{
+  "exerciseId": "single_arm_dumbbell_tricep_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/277.%20Single%20Arm%20Dumbbell%20Tricep%20Extension/277.%20Single%20Arm%20Dumbbell%20Tricep%20Extension%20HD_compressed%20(1).glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/277.%20Single%20Arm%20Dumbbell%20Tricep%20Extension/277.%20Single%20Arm%20Dumbbell%20Tricep%20Extension%20HD_compressed%20(1).glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Arm Dumbbell Tricep Extension is a unilateral isolation exercise targeting the triceps.\n\nWith one dumbbell held overhead, the lifter lowers it behind the head and presses it back up, working one arm at a time.\n\nTraining one arm at a time corrects strength imbalances and increases the demand on core stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets all three heads of the triceps with strong long-head emphasis\n- Trains each arm independently to fix imbalances\n- Improves shoulder mobility through the overhead position\n- Reinforces core bracing and anti-lateral flexion\n- Easy to load progressively with a single dumbbell\n- Effective accessory for pressing strength\n- Allows the free hand to support the working arm if needed"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii\n\nSecondary: Anconeus, Core, Anterior Deltoids, Obliques"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Choose a dumbbell that allows good form for the desired reps.\n2. Stand with your feet hip-width apart.\n3. Hold the dumbbell in one hand with a neutral grip."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Raise the dumbbell over your head until your arm is fully extended.\n2. Brace your core and slightly bend your knees.\n3. Place your other hand on your waist for balance or use it to support the arm that's lifting."
+        },
+        {
+          "heading": "Lower",
+          "content": "1. Keep your upper arm close to your head and your elbow pointing upward.\n2. Slowly lower the dumbbell behind your head by bending your elbow.\n3. Continue until your forearm is at least parallel to the floor."
+        },
+        {
+          "heading": "Press and Repeat",
+          "content": "1. Contract your tricep to extend your elbow and raise the dumbbell back to the starting position.\n2. Keep the upper arm stationary throughout the press.\n3. Complete all reps on one side before switching arms."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the elbow flare out wide\n- Moving the upper arm instead of just the forearm\n- Arching the lower back to lift the weight\n- Going too heavy and losing control overhead\n- Cutting the range of motion short\n- Tilting the torso to one side\n- Holding the breath through the rep"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Single dumbbell of appropriate weight\n- Optional: Bench for a seated variation\n- Athletic shoes for stable footing\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Dumbbell Adjustments",
+          "content": "1. Select a dumbbell light enough to fully extend overhead with control.\n2. Use a neutral grip with the palm facing inward.\n3. Confirm the dumbbell is balanced before lifting overhead.\n4. Adjust load progressively as strength improves."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, knees soft.\n2. Torso: Tall posture, ribs stacked over hips, core braced.\n3. Working Arm: Upper arm close to the head, elbow pointing up.\n4. Free Hand: On waist for balance or supporting the working arm.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_dumbbell_extension", "tricep_skull_crusher_v2"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Tricep Dumbbell Extension: Two-handed overhead version\n- Tricep Skull Crusher: Lying triceps extension\n- Tricep Pushdown: Cable triceps isolation\n- Cable Overhead Tricep Extension: Cable version of this movement\n- Close Grip Bench Press: Compound triceps press\n- Tricep Dips On Bench: Bodyweight triceps work"
+        },
+        {
+          "heading": "Single Arm Dumbbell Tricep Extension Variations",
+          "content": "Standing Single Arm Overhead Extension: Described here\nSeated Single Arm Overhead Extension: Performed seated for stability\nKneeling Single Arm Overhead Extension: Performed kneeling for added core demand\nSupported Single Arm Overhead Extension: Bracing the working arm with the free hand\nCable Single Arm Overhead Extension: Cable version using a single handle\nIncline Single Arm Overhead Extension: Performed on an incline bench"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Use a lighter weight and reduce range overhead\nElbow Pain: Reduce load and avoid locking out aggressively\nWrist Pain: Use a neutral grip and wrist wraps if needed\nLow Back Pain: Perform seated with back support\nBalance Issues: Sit on a bench with back support\nBeginners: Start light and use the free hand to support the working arm"
+        }
+      ]
+    }
+  }
+}

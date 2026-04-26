@@ -1,0 +1,105 @@
+{
+  "exerciseId": "adapted_push_up_from_knees",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees/40.%20The%20Adapted%20Push%20up%20From%20the%20Knees%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.66057232669875, 0.9025253525530713, -2.8139445271321875],
+    "rotation": [-2.936910119815437, -0.5855127358775539, -3.027372376018071],
+    "target": [-0.017176071437284297, 0.3987661747063519, -0.38723788788949715]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.3284119249155653, 1.2516136585703663, 2.2009497619366947],
+    "rotation": [-0.4038587756624929, 0.5301830589254205, 0.21283379275785605],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Adapted Push Up From the Knees is a modified version of the standard push up that reduces the load by using the knees as the pivot point instead of the toes.\n\nThis variation is ideal for beginners, those building upper body strength, or anyone recovering from injury who needs a lower-intensity pressing movement.\n\nIt targets the same muscles as a full push up — chest, shoulders, and triceps — while allowing you to focus on proper form and controlled movement."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent entry point for those unable to perform full push ups\n- Reduces the percentage of bodyweight being lifted, making it more accessible\n- Builds foundational chest, shoulder, and tricep strength\n- Allows focus on proper push up mechanics before progressing\n- Requires no equipment — can be performed anywhere\n- Great for high-rep sets to build muscular endurance\n- Effective rehabilitation exercise for upper body injuries"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest), Anterior Deltoids (Front Shoulders), Triceps\n\nSecondary: Core (Rectus Abdominis, Obliques), Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Start by lying face down on the floor.\n2. Position your hands just outside your chest, in line with your nipple line.\n3. Keep your knees on the ground with your feet lifted or crossed behind you.\n4. Engage your core and maintain a straight line from your shoulders down through your knees.\n5. Your head should be in a neutral position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. From the floor, press yourself up until your arms are fully extended.\n2. Maintain a straight back position from your shoulders down through your knees throughout the movement.\n3. Squeeze your chest at the top of the movement.\n4. While maintaining this straight back position, lower yourself back down until your chest touches the floor.\n5. Keep your elbows at approximately a 45-degree angle to your body during the movement.\n6. Breathe out as you push up and breathe in as you lower down.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag or pike up, breaking the straight line from shoulders to knees\n- Placing hands too far forward instead of in line with the chest\n- Flaring elbows out to 90 degrees, stressing the shoulders\n- Not lowering all the way down to the floor\n- Rushing the movement without control\n- Looking up or down instead of maintaining a neutral head position\n- Not engaging the core throughout the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required\n- Optional: Exercise mat or soft surface for knee comfort\n- Flat, stable floor surface"
+        },
+        {
+          "heading": "Space Requirements",
+          "content": "1. You need enough floor space to lie down with arms extended.\n2. Ensure the surface is flat and non-slip.\n3. A yoga or exercise mat is recommended to cushion the knees.\n4. Clear the area of any obstacles around you."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Just outside chest width, in line with the nipple line.\n2. Knees: On the ground, acting as the pivot point.\n3. Feet: Lifted off the ground or crossed behind you.\n4. Core: Engaged throughout to maintain a straight torso.\n5. Back: Straight line from shoulders to knees — no sagging or piking.\n6. Head: Neutral position, gaze slightly ahead.\n7. Elbows: Track at roughly 45 degrees to your body during descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push Up: Full bodyweight version for increased difficulty\n- Incline Push Up: Hands elevated on a bench or step for moderate difficulty\n- Bench Press: Barbell or dumbbell pressing for similar muscle targeting\n- Wall Push Up: Easiest push up variation, standing against a wall\n- Chest Press Machine: Machine-based alternative for guided pressing"
+        },
+        {
+          "heading": "Push Up Progressions",
+          "content": "Wall Push Up: Easiest — standing upright pushing against a wall\nIncline Push Up: Hands on a raised surface, reducing bodyweight load\nKnee Push Up: This exercise — knees on the ground as pivot\nStandard Push Up: Full bodyweight from toes\nDecline Push Up: Feet elevated for increased difficulty\nWeighted Push Up: Adding resistance for advanced strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Discomfort: Use a thick mat or folded towel under knees\nWrist Pain: Use push up handles or fists to maintain a neutral wrist\nShoulder Issues: Reduce range of motion or try wall push ups\nLower Back Pain: Focus on core engagement and maintaining a straight back\nNeed More Challenge: Progress to incline push ups or standard push ups\nUpper Body Weakness: Start with wall push ups and build gradually"
+        }
+      ]
+    }
+  }
+}

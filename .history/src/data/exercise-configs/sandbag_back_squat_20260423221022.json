@@ -1,0 +1,102 @@
+{
+  "exerciseId": "sandbag_back_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/217.%20Sandbag%20Back%20Squat/217.%20Sandbag%20Back%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/217.%20Sandbag%20Back%20Squat/217.%20Sandbag%20Back%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/217.%20Sandbag%20Back%20Squat/217.%20Sandbag%20Back%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Sandbag Back Squat is a lower-body compound exercise that uses a sandbag loaded across the upper back to train the squat pattern.\n\nThe shifting, awkward load of a sandbag challenges trunk stability, grip, and postural control more than a fixed barbell, making it a great carryover tool for athletic and real-world strength.\n\nIt is a joint-friendly, scalable squat variation suitable for home gyms and conditioning blocks."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds quad, glute, and overall lower-body strength\n- Challenges core and trunk stability from the shifting load\n- Improves upper-back and postural endurance\n- Lower peak spinal load than a heavy barbell squat\n- Portable and suitable for home or outdoor training\n- Excellent for athletic and real-world strength carryover\n- Easily scaled by adjusting sandbag weight"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Core, Lower Back, Upper Back, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Clean or shoulder the sandbag onto your upper back.\n2. Rest it comfortably across the traps, not on the neck.\n3. Grip the sandbag handles or ends securely."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with feet shoulder-width apart or slightly wider.\n2. Turn the toes out slightly, weight balanced through the mid-foot.\n3. Brace the core, chest up, eyes forward."
+        },
+        {
+          "heading": "Descent",
+          "content": "1. Initiate the squat by bending at the hips and knees together.\n2. Sit down and back, keeping the chest up and torso stable.\n3. Descend to at least parallel, or as deep as mobility allows with good form."
+        },
+        {
+          "heading": "Ascent",
+          "content": "1. Drive through the heels to stand up, exhaling on the way up.\n2. Keep the knees tracking over the toes.\n3. Finish tall with hips and knees fully extended before the next rep."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the chest collapse forward\n- Knees caving inward (valgus)\n- Rising onto the toes at the bottom\n- Rounding the lower back\n- Resting the sandbag on the neck\n- Not bracing the core before descending\n- Bouncing out of the bottom instead of controlling the descent"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sandbag appropriate to your strength level\n- Flat, stable training surface\n- Athletic shoes with flat, stable soles\n- Optional: Lifting belt for heavier sets\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Sandbag Placement",
+          "content": "1. Shoulder the bag to your upper back using a clean, shoulder, or rack-pull style.\n2. Rest it across the traps, not on the neck.\n3. Grip handles or tuck hands under the bag to keep it stable.\n4. Reset if the bag slides during the set."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Shoulder-width or slightly wider, toes turned out slightly.\n2. Torso: Tall, ribs down, core braced.\n3. Back: Upper back tight under the bag, lower back neutral.\n4. Shoulders: Packed and down, not shrugged.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Heaviest loaded squat variation\n- Goblet Squat: Dumbbell or kettlebell front-loaded variation\n- Front Squat: Quad-dominant barbell variation\n- Safety Bar Squat: Specialty bar variation\n- Sandbag Front Squat: Front-loaded sandbag version\n- Bodyweight Squat: Unloaded variation for warm-up or beginners"
+        },
+        {
+          "heading": "Sandbag Back Squat Variations",
+          "content": "Sandbag Back Squat: Described here\nSandbag Front Squat: Front-rack sandbag position\nSandbag Zercher Squat: Sandbag held in the elbow crooks\nSandbag Bear-Hug Squat: Sandbag hugged to the chest\nSandbag Split Squat: Single-leg variation\nSandbag Box Squat: Box-supported variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce depth or choose a box squat variation\nLower Back Issues: Use a lighter bag and brace hard; consider goblet squat\nShoulder Issues: Try a bear-hug or zercher position instead of back-rack\nAnkle Mobility Issues: Elevate the heels slightly with plates\nBag Too Light: Add sand or upgrade to a heavier bag\nBag Too Heavy: Use a lighter bag or reduce reps\nBeginners: Master the bodyweight squat first"
+        }
+      ]
+    }
+  }
+}

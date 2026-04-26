@@ -1,0 +1,105 @@
+{
+  "exerciseId": "smith_machine_flat_bench_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/119.%20Smith%20Machine%20Flat%20Bench%20Press/119.%20Smith%20Machine%20Flat%20Bench%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/119.%20Smith%20Machine%20Flat%20Bench%20Press/119.%20Smith%20Machine%20Flat%20Bench%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/119.%20Smith%20Machine%20Flat%20Bench%20Press/119.%20Smith%20Machine%20Flat%20Bench%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/119.%20Smith%20Machine%20Flat%20Bench%20Press/119.%20Smith%20Machine%20Flat%20Bench%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.4679548200097, 2.356177084117041, 2.815820026890123],
+    "rotation": [-0.5812742968300222, 0.6915730172444614, 0.39677414532700644],
+    "target": [0.01081856673539691, 0.7266922865522681, 0.33559706260686195]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.3925825090650434, 2.573487326755482, 2.7214979864891564],
+    "rotation": [-0.6430934396008441, 0.6822784526205052, 0.4414235518050757],
+    "target": [-0.042781550731177766, 0.7759023912201589, 0.3226813541444557]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Flat Bench Press is a machine-guided variation of the traditional barbell bench press.\n\nThe fixed bar path of the smith machine provides stability, making it a great option for beginners or those training without a spotter.\n\nThis exercise primarily targets the chest muscles while also engaging the triceps and front deltoids."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Fixed bar path provides added stability and safety\n- Can be performed without a spotter\n- Excellent for isolating the chest muscles\n- Allows you to focus on mind-muscle connection\n- Built-in safety hooks for easy reracking at any point\n- Great for training to failure safely\n- Useful for working around certain shoulder injuries"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest)\n\nSecondary: Anterior Deltoids (Front Shoulders), Triceps Brachii, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place an adjustable bench in the flat position underneath the smith machine.\n2. Position the bench so the bar is inline with your chest.\n3. Lie back on the bench with your feet flat on the floor.\n4. Grip the bar just outside shoulder width.\n5. Keep your shoulder blades retracted and pinched together.\n6. Maintain a slight natural arch in your lower back.\n7. Ensure your eyes are directly under the bar.\n8. Plant your feet firmly on the ground."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Unrack the bar by rotating it to release the safety hooks.\n2. Press the bar straight up until your arms are locked out.\n3. Lower the bar slowly and with control until it touches your chest.\n4. Follow the guided path of the smith machine throughout the movement.\n5. Press the bar back up explosively to the starting position.\n6. Keep your elbows at approximately a 45-degree angle to your body.\n7. Breathe in as you lower the bar, exhale as you press up.\n8. Rerack the weight by rotating the bar back into the safety hooks when the set is complete."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring elbows out to 90 degrees, increasing shoulder stress\n- Bouncing the bar off the chest\n- Not aligning the bench correctly under the bar path\n- Lifting hips off the bench during the press\n- Not fully locking out at the top\n- Gripping the bar too narrow or too wide\n- Rushing the eccentric (lowering) portion\n- Not retracting the shoulder blades"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith Machine\n- Adjustable Flat Bench\n- Weight Plates\n- Optional: Wrist Wraps (for heavy loads)\n- Optional: Lifting Gloves (for grip comfort)"
+        },
+        {
+          "heading": "Bench Positioning",
+          "content": "1. Place the flat bench directly under the smith machine bar.\n2. Adjust the bench so the bar aligns with your mid-chest when lying down.\n3. Set the safety stops at an appropriate height just above chest level.\n4. Ensure the bench is centred and stable.\n5. Test the bar path with an empty bar before adding weight.\n6. Make sure there is enough clearance to unrack comfortably."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Just outside shoulder width, overhand grip.\n2. Shoulders: Retracted and depressed, pinched together.\n3. Back: Slight natural arch in the lower back.\n4. Feet: Flat on the floor, firmly planted.\n5. Head: Resting on the bench, eyes under the bar.\n6. Core: Braced and tight throughout the movement.\n7. Elbows: Tucked at approximately 45 degrees."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bench Press: Free weight version with greater stabiliser engagement\n- Dumbbell Flat Chest Press: Greater range of motion, independent arm movement\n- Push Up: Bodyweight alternative targeting the same muscles\n- Cable Chest Press: Constant tension throughout the movement\n- Plate Loaded Chest Press: Machine alternative with guided motion"
+        },
+        {
+          "heading": "Smith Machine Variations",
+          "content": "Smith Machine Flat Bench Press: Standard flat pressing movement\nSmith Machine Incline Bench Press: Angled to target the upper chest\nSmith Machine Decline Bench Press: Angled to target the lower chest\nSmith Machine Close Grip Bench Press: Narrower grip to emphasise triceps\nSmith Machine Floor Press: Reduced range of motion for lockout strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion or try a slight decline angle\nWrist Discomfort: Use wrist wraps or adjust grip width\nNo Smith Machine: Use barbell bench press with a spotter or dumbbells\nNo Bench: Perform floor press on the smith machine\nBeginner: Start with just the bar to learn the movement pattern\nRecovering from Injury: Use lighter weight with slow, controlled reps"
+        }
+      ]
+    }
+  }
+}

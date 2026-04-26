@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bodyweight_push_up",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/39.%20The%20Bodyweight%20Push%20up/39.%20The%20Bodyweight%20Push%20up%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/39.%20The%20Bodyweight%20Push%20up/39.%20The%20Bodyweight%20Push%20up%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/39.%20The%20Bodyweight%20Push%20up/39.%20The%20Bodyweight%20Push%20up%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/39.%20The%20Bodyweight%20Push%20up/39.%20The%20Bodyweight%20Push%20up%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.20372407931867, 1.9480981711681264, -2.5474627971958945],
+    "rotation": [-2.5210712808515496, -0.6863674567692369, -2.7163085011841943],
+    "target": [0.002258138994698388, 0.38240608530055714, -0.35675344275538307]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.6582624796002514, 0.9079234676518535, 2.1977067124959095],
+    "rotation": [-0.28207369553192835, 0.6868170970799508, 0.18172931306043152],
+    "target": [0.005308106214166478, 0.3468295104903642, 0.26157025696193537]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/39.%20The%20Bodyweight%20Push%20up/The%20Bodyweight%20Push%20Up_250x250_2026-03-10T22-06-14.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Push Up is one of the most fundamental and effective upper body exercises, requiring no equipment at all.\n\nIt primarily targets the chest, shoulders, and triceps while engaging the core for stability.\n\nUsed in military training, athletics, and general fitness, the push up remains a gold standard for measuring upper body strength and endurance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Requires no equipment — can be performed anywhere\n- Builds functional upper body pushing strength\n- Engages the core and stabiliser muscles throughout\n- Easily scalable with variations for all fitness levels\n- Improves shoulder stability and joint health\n- Develops chest, triceps, and anterior deltoid strength\n- Can be used for strength, endurance, or hypertrophy training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest), Anterior Deltoids (Front Shoulders), Triceps\n\nSecondary: Core (Rectus Abdominis, Obliques), Serratus Anterior, Upper Back Stabilisers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Start in a plank position with your hands placed slightly wider than shoulder-width apart.\n2. Keep your feet together or hip-width apart for stability.\n3. Your body should form a straight line from head to heels.\n4. Engage your core and glutes to maintain a rigid torso.\n5. Arms should be fully extended with fingers pointing forward.\n6. Keep your head in a neutral position, looking slightly ahead of your hands."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower your body by bending your elbows, keeping them at approximately a 45-degree angle to your torso.\n2. Descend in a controlled manner until your chest nearly touches the ground.\n3. Keep your core braced and body in a straight line throughout the descent.\n4. Push yourself back up to the starting position by straightening your arms.\n5. Fully extend your arms at the top without locking out aggressively.\n6. Exhale as you push up, inhale as you lower down.\n7. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag or pike up, breaking the straight body line\n- Flaring elbows out to 90 degrees, placing excess stress on shoulders\n- Not lowering deep enough — aim for chest near the floor\n- Rushing the movement and losing control\n- Holding breath instead of breathing rhythmically\n- Looking straight down, causing neck strain\n- Not fully engaging the core throughout the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required\n- Optional: Exercise mat for wrist and hand comfort\n- Optional: Push up handles or parallettes for deeper range of motion\n- Flat, stable surface"
+        },
+        {
+          "heading": "Space Requirements",
+          "content": "1. You need enough floor space to lie down fully extended.\n2. Ensure the surface is flat and non-slip.\n3. A yoga or exercise mat can provide cushioning for your hands.\n4. If using push up handles, place them at shoulder-width apart.\n5. Clear the area of any obstacles around you."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Slightly wider than shoulder-width, fingers spread for stability.\n2. Feet: Together or hip-width apart depending on preference.\n3. Core: Engaged throughout — imagine bracing for a punch.\n4. Hips: In line with shoulders and ankles — no sagging or piking.\n5. Head: Neutral position, gaze slightly ahead of hands.\n6. Shoulders: Pulled down and back, away from ears.\n7. Elbows: Track at roughly 45 degrees to your body during descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bench_press", "dumbbell_bicep_curls"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bench Press: Barbell pressing movement targeting the same muscle groups\n- Dumbbell Chest Press: Similar pressing pattern with independent arm movement\n- Close Grip Push Up: Shifts emphasis to triceps\n- Incline Push Up: Easier variation for beginners\n- Decline Push Up: Harder variation targeting upper chest and shoulders\n- Dips: Bodyweight pressing movement with greater tricep emphasis"
+        },
+        {
+          "heading": "Push Up Variations",
+          "content": "Standard Push Up: Classic form as described above\nWide Grip Push Up: Wider hand placement for more chest focus\nClose Grip Push Up: Hands closer together for tricep emphasis\nDiamond Push Up: Hands form a diamond shape under the chest\nDecline Push Up: Feet elevated for increased difficulty\nIncline Push Up: Hands elevated for reduced difficulty\nPlyometric Push Up: Explosive push off the ground for power"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push up handles or fists to maintain a neutral wrist\nShoulder Issues: Reduce range of motion or try incline push ups\nLower Back Pain: Focus on core engagement, try kneeling push ups\nBeginner: Start with incline or knee push ups and progress gradually\nNeed More Challenge: Try decline push ups, weighted vest, or plyometric push ups\nNo Floor Space: Wall push ups are a viable alternative"
+        }
+      ]
+    }
+  }
+}

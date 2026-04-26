@@ -1,0 +1,105 @@
+{
+  "exerciseId": "trap_bar_deadlift",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/175.%20Trap%20Bar%20Deadlift/175.%20Trap%20Bar%20Deadlift%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/175.%20Trap%20Bar%20Deadlift/175.%20Trap%20Bar%20Deadlift%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/175.%20Trap%20Bar%20Deadlift/175.%20Trap%20Bar%20Deadlift%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/175.%20Trap%20Bar%20Deadlift/175.%20Trap%20Bar%20Deadlift%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Trap Bar Deadlift is a variation of the deadlift performed using a hexagonal (trap) bar, allowing you to stand inside the bar with a neutral grip.\n\nThis position shifts the load closer to your center of mass, reducing stress on the lower back and blending characteristics of a squat and deadlift.\n\nIt's widely used in strength and conditioning programs because it's easier to learn, safer on the spine, and allows heavy loading with great power output."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Reduced lower back stress compared to straight bar deadlifts\n- Neutral grip is easier on wrists, elbows, and shoulders\n- More upright torso position\n- Combines squat and deadlift mechanics\n- Easier to learn for most lifters\n- Great for developing total-body strength and power\n- Excellent for athletes and general strength training\n- Allows for heavy loading with safer mechanics"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes, Quadriceps, Hamstrings, Erector Spinae\n\nSecondary: Trapezius, Latissimus Dorsi, Core, Forearms and Grip, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand inside the trap bar with feet shoulder-width apart.\n2. Grip the handles with palms facing inwards (neutral grip).\n3. Keep back flat and chest lifted.\n4. Hinge at hips and bend knees to lower and grasp the handles fully.\n5. Shoulders should be over or slightly in front of the handles.\n6. Eyes forward, neck neutral."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage core and take a deep breath to brace.\n2. Lift the trap bar by driving through your heels.\n3. Simultaneously straighten hips and knees to stand tall.\n4. Keep the bar balanced and close to your body throughout.\n5. Finish upright with shoulders back and hips locked.\n6. Lower the trap bar back down with control, pushing hips back first.\n7. Repeat for the desired reps, focusing on form and engaging leg and back muscles."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower or upper back\n- Hips rising faster than shoulders\n- Letting knees cave inward\n- Starting with hips too high (turning it into a stiff-leg deadlift)\n- Starting with hips too low (turning it into a squat)\n- Jerking the weight off the ground\n- Using the high handles when low handles are more appropriate\n- Not bracing the core before lifting\n- Rushing the descent and losing control"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Trap Bar (Hex Bar)\n- Weight Plates (bumper or iron)\n- Lifting Platform or Suitable Floor Surface\n- Optional: Lifting Belt (for heavy loads)\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk for improved grip\n- Recommended: Flat-soled shoes for stability"
+        },
+        {
+          "heading": "Choosing Handle Height",
+          "content": "1. Most trap bars have high and low handle options.\n2. High handles reduce range of motion - easier on lower back.\n3. Low handles increase range of motion - more leg/hip involvement.\n4. Beginners often start with high handles.\n5. Taller lifters may prefer high handles to maintain form.\n6. Choose the height that allows a flat back at the start.\n7. Consistency matters - pick one and progress."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, centered inside the bar.\n2. Grip: Neutral, palms facing each other, firm grip on handles.\n3. Hips: Between a squat and deadlift starting position.\n4. Back: Flat, chest up, shoulders pulled back slightly.\n5. Shoulders: Over or slightly in front of the handles.\n6. Knees: Tracking over toes, slightly flexed.\n7. Head: Neutral with eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_deadlift", "sumo_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Conventional Deadlift: Straight bar, more back involvement\n- Sumo Deadlift: Wide stance, more hip adductor focus\n- Romanian Deadlift: Hip hinge focus, hamstring emphasis\n- Dumbbell Deadlift: Lighter-load alternative\n- Kettlebell Deadlift: Great for learning the pattern\n- Rack Pull: Partial range for lockout strength"
+        },
+        {
+          "heading": "Trap Bar Variations",
+          "content": "Standard Trap Bar Deadlift: Full range pull from floor\nHigh Handle Trap Bar Deadlift: Reduced range of motion\nLow Handle Trap Bar Deadlift: Increased range of motion\nTrap Bar Jump: Explosive power development\nTrap Bar Farmer's Carry: Grip and core conditioning\nPaused Trap Bar Deadlift: Pause off floor for strength\nTempo Trap Bar Deadlift: Slow eccentrics for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Use high handles or lighter weights\nKnee Issues: Reduce depth or try Romanian deadlift\nGrip Issues: Use straps or chalk\nNo Trap Bar: Substitute with dumbbell deadlifts or kettlebell deadlift\nMobility Restrictions: Use high handles to shorten range\nLearning Stage: Start light, focus on posture and hip hinge pattern"
+        }
+      ]
+    }
+  }
+}

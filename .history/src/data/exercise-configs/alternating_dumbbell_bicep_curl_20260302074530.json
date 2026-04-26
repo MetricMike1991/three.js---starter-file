@@ -1,0 +1,100 @@
+{
+  "exerciseId": "alternating_dumbbell_bicep_curl",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/09.%20Alternating%20Dumbbell%20Bicep%20Curl/09.%20Alternating%20Dumbbell%20Bicep%20Curl%20-%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/09.%20Alternating%20Dumbbell%20Bicep%20Curl/09.%20Alternating%20Dumbbell%20Bicep%20Curl%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/09.%20Alternating%20Dumbbell%20Bicep%20Curl/09.%20Alternating%20Dumbbell%20Bicep%20Curl%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/09.%20Alternating%20Dumbbell%20Bicep%20Curl/09.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/09.%20Alternating%20Dumbbell%20Bicep%20Curl/09.%20Alternating%20Dumbbell%20Bicep%20Curl.webp",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Alternating Dumbbell Bicep Curl is a unilateral arm exercise that targets the biceps one arm at a time.\n\nBy alternating arms, you can focus on each bicep individually, helping to correct strength imbalances and improve mind-muscle connection.\n\nThis variation also allows for a slight rotational movement (supination) through the curl, which further activates the biceps brachii."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates each bicep individually for balanced development\n- Helps identify and correct strength imbalances between arms\n- Allows greater focus and mind-muscle connection per rep\n- Natural supination movement maximizes bicep activation\n- Can be performed standing or seated\n- Versatile — works with light or heavy dumbbells\n- Engages core for stabilization during unilateral movement"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii\n\nSecondary: Brachialis, Brachioradialis, Forearms, Core (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold a dumbbell in each hand with your arms fully extended at your sides.\n3. Palms should be facing in toward the sides of your body (neutral grip).\n4. Keep your elbows close to your torso.\n5. Stand tall with your chest up and core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your upper arm stationary, curl one dumbbell upward toward your shoulder.\n2. As you lift, rotate your wrist so your palm faces your shoulder at the top of the movement.\n3. Continue raising the dumbbell until it is level with your shoulder and your forearm is in a vertical position.\n4. Squeeze or flex your bicep and hold for a count of one.\n5. Slowly lower the dumbbell back to the starting position with control.\n6. Repeat the movement with the opposite arm.\n7. Continue alternating between left and right arms for the desired number of reps.\n8. Do not swing your hips or use momentum to move the weight."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the body or using momentum to lift the weight\n- Letting elbows drift forward or away from the torso\n- Curling both arms at the same time instead of alternating\n- Not fully extending the arm at the bottom of the movement\n- Rushing the lowering (eccentric) phase\n- Using too much weight and sacrificing form\n- Leaning back excessively during the curl"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of dumbbells (appropriate weight for your level)\n- Flat, stable surface to stand on\n- Optional: Mirror for form check\n- Optional: Weight bench (for seated variation)"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start with a lighter weight to master the alternating pattern.\n2. You should be able to complete each rep with control and no swinging.\n3. Increase weight gradually once form is consistent.\n4. Alternating curls may use slightly lighter weight than standard curls since each arm works independently.\n5. Aim for a weight that challenges you in the 8-15 rep range."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, knees slightly bent.\n2. Grip: Neutral grip at start, supinate (rotate palm up) during curl.\n3. Elbows: Pinned to your sides throughout the movement.\n4. Torso: Upright and stable — no leaning or swaying.\n5. Core: Engaged to maintain balance during unilateral movement.\n6. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_bicep_curls", "barbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Bicep Curls: Both arms curl simultaneously\n- Barbell Bicep Curl: Uses a barbell for heavier bilateral loading\n- Hammer Curl: Neutral grip variation targeting the brachialis\n- Concentration Curl: Single-arm seated curl for strict isolation\n- Incline Dumbbell Curl: Performed on an incline bench for greater stretch\n- Cable Bicep Curl: Constant tension throughout the range of motion"
+        },
+        {
+          "heading": "Alternating Curl Variations",
+          "content": "Alternating Dumbbell Bicep Curl: Standard alternating supinated curl\nAlternating Hammer Curl: Neutral grip alternating curl\nAlternating Incline Curl: Performed on an incline bench, alternating arms\nAlternating Cross-Body Curl: Curl across the body toward opposite shoulder\nSeated Alternating Curl: Performed seated for stricter form\nSlow Tempo Alternating Curl: 3-4 second eccentric for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Try hammer curls with a neutral grip to reduce wrist strain\nElbow Discomfort: Reduce range of motion or switch to cables for smoother resistance\nShoulder Issues: Keep elbows pinned and avoid raising them during the curl\nNo Dumbbells: Use resistance bands or cable machines\nBalance Issues: Perform seated on a bench for added stability\nLearning Stage: Start with light weight, focus on controlled alternating pattern"
+        }
+      ]
+    }
+  }
+}

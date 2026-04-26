@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bicep_cable_curl_facing_in",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/57.%20Bicep%20Cable%20Curl%20Facing%20In/57.%20Bicep%20Cable%20Curl%20Facing%20In%20%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/57.%20Bicep%20Cable%20Curl%20Facing%20In/57.%20Bicep%20Cable%20Curl%20Facing%20In%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/57.%20Bicep%20Cable%20Curl%20Facing%20In/57.%20Bicep%20Cable%20Curl%20Facing%20In%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/57.%20Bicep%20Cable%20Curl%20Facing%20In/57.%20Bicep%20Cable%20Curl%20Facing%20In%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-3.1205537772648344, 1.9275232583881212, -2.5599166162525737],
+    "rotation": [-2.8446527494236724, -0.8842072889570152, -2.9092139740535568],
+    "target": [-0.008378306012856, 1.1811725842396883, -0.12075449108437286]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.96467597021916, 2.203223132767738, 2.187326499062338],
+    "rotation": [-0.4827505005209569, 0.8993757671463886, 0.38939465677587637],
+    "target": [0.0068545726925382565, 1.1122232809408499, 0.10571004478289941]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/57.%20Bicep%20Cable%20Curl%20Facing%20In/Bicep%20Cable%20Curl%20Facing%20In_250x250_2026-03-14T10-40-32.webp",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bicep Cable Curl Facing In is an isolation exercise that targets the biceps using a low pulley cable machine while facing toward the machine.\n\nThis setup creates a unique resistance angle where the cable pulls the arms back, keeping constant tension on the biceps throughout the entire range of motion.\n\nUsing a straight bar or EZ bar attachment, this exercise is excellent for building bicep size and strength with controlled, consistent resistance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Constant tension on the biceps throughout the entire rep\n- Unique resistance angle compared to free weight curls\n- Easy to adjust weight for progressive overload and drop sets\n- Reduces the ability to use momentum or cheat reps\n- Effective for building bicep peak and overall arm size\n- Low risk of injury with controlled cable resistance\n- Suitable for all fitness levels"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii (Short Head, Long Head)\n\nSecondary: Brachialis, Brachioradialis, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the pulley to the bottom position on the cable machine.\n2. Attach a straight bar or EZ bar to the cable.\n3. Face into the machine and grip the bar with an underhand grip.\n4. Take a step back so the weight stack is not touching and there is tension on the cable.\n5. Stand upright with your arms fully straight and your feet shoulder-width apart.\n6. Keep your elbows tucked close to your sides."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. With your body position stiff and upright, curl at the elbow so the bar moves upward toward your face.\n2. Only your elbow joint should be moving — keep your upper arms stationary.\n3. Squeeze your biceps hard at the top of the movement.\n4. Slowly lower the bar back down to the starting position with control.\n5. Ensure your arms are fully extended at the bottom before beginning the next rep.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the body or using momentum to lift the weight\n- Moving the upper arms or shoulders during the curl\n- Standing too close to the machine, reducing tension at the bottom\n- Not fully extending the arms at the bottom of the rep\n- Rushing through reps without controlling the eccentric phase\n- Using too much weight and sacrificing form\n- Flaring the elbows out instead of keeping them tucked"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Machine with Low Pulley\n- Straight Bar or EZ Bar Attachment\n- Appropriate Weight Selection"
+        },
+        {
+          "heading": "Cable Machine Setup",
+          "content": "1. Set the pulley to the lowest position on the cable machine.\n2. Attach a straight bar or EZ bar to the cable clip.\n3. Select an appropriate weight — start lighter to master form.\n4. Ensure the cable runs smoothly without any obstructions.\n5. Stand facing the machine and step back until there is tension on the cable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, firmly planted on the floor.\n2. Knees: Slightly bent for stability.\n3. Torso: Upright and rigid — no swaying or leaning.\n4. Elbows: Tucked close to your sides throughout the movement.\n5. Grip: Underhand (supinated) grip on the bar, shoulder-width apart.\n6. Core: Engaged to maintain a stable body position.\n7. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bicep_curl", "dumbbell_bicep_curls"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bicep Curl: Free weight alternative with similar movement pattern\n- Dumbbell Bicep Curl: Unilateral free weight curl variation\n- Hammer Curl: Neutral grip variation targeting the brachialis\n- Preacher Curl: Bench-supported curl for strict isolation\n- Concentration Curl: Seated single-arm isolation curl\n- Cable Rope Curl: Cable variation using a rope attachment"
+        },
+        {
+          "heading": "Cable Curl Variations",
+          "content": "Cable Curl Facing In: Standard low pulley curl facing the machine\nCable Curl Facing Away: Low pulley curl with cable behind you\nSingle Arm Cable Curl: Unilateral version for imbalance correction\nCable Rope Hammer Curl: Neutral grip cable curl with rope\nHigh Cable Curl: Overhead curl using high pulleys\nCable Preacher Curl: Using a preacher bench with cable resistance"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Cable Machine: Use resistance bands or free weight curls\nWrist Pain: Switch to an EZ bar attachment for a more natural grip angle\nElbow Discomfort: Reduce weight and focus on slow, controlled reps\nShoulder Issues: Keep elbows pinned to sides and avoid swinging\nBeginner: Start with light weight and focus on mind-muscle connection\nWant More Challenge: Add pause reps at the top or slow eccentrics"
+        }
+      ]
+    }
+  }
+}

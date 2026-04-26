@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_snatch",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/170.%20Dumbbell%20Snatch/170%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/170.%20Dumbbell%20Snatch/170%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/170.%20Dumbbell%20Snatch/170%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/170.%20Dumbbell%20Snatch/170%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.4916616397131937, 1.2619437725753306, 2.5794860291720436],
+    "rotation": [-0.11612043414394164, 0.773368743349333, 0.08130284776475726],
+    "target": [-0.020132201216560078, 0.9638411262253211, 0.02384993495106915]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.4118840786703388, 1.4932765497582732, 2.709308265146465],
+    "rotation": [-0.20108014074034897, 0.43449286971174533, 0.0855947034614331],
+    "target": [0.005316719927142687, 0.8879141193076288, -0.2605595319074923]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/170.%20Dumbbell%20Snatch/Dumbbell%20Snatch_250x250_2026-04-21T10-20-03.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Snatch is a powerful full-body compound movement derived from Olympic weightlifting, performed with a single dumbbell moving from the floor to an overhead locked-out position in one explosive motion.\n\nIt trains total-body power, coordination, and conditioning while also developing serious shoulder, back, and posterior chain strength.\n\nThe Dumbbell Snatch is a staple in athletic, CrossFit, and conditioning programs and offers a more accessible entry point to Olympic-style lifting than the barbell snatch."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds full-body explosive power\n- Strengthens the shoulders, traps, and posterior chain\n- Improves hip drive and triple extension mechanics\n- Great conditioning tool for high-intensity workouts\n- Develops core stability under overhead loads\n- More accessible than the barbell snatch\n- Improves grip strength and coordination\n- Trains unilateral strength and anti-rotation stability"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Shoulders (all three deltoid heads), Glutes, Hamstrings, Quadriceps\n\nSecondary: Trapezius, Latissimus Dorsi, Erector Spinae, Core, Forearms and Grip, Triceps, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a dumbbell on the ground between your feet.\n2. Stand with your feet shoulder-width apart, knees slightly bent, and back straight.\n3. Reach down and grab the dumbbell with an overhand grip.\n4. Keep your arm extended with your palm facing your body.\n5. Keep your chest up, shoulders back, and core braced.\n6. Position your hips back and shoulders slightly over the dumbbell."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Explosively drive through your heels and extend your legs and hips.\n2. Simultaneously pull the dumbbell upwards in a swift, fluid motion.\n3. Keep the dumbbell close to your body as it rises.\n4. Shrug the shoulder and pull with the arm as the hips finish extending.\n5. As the dumbbell rises, quickly rotate your hand, flipping your palm to face forward.\n6. Continue pulling the weight overhead into a locked-out position.\n7. Catch the weight with your arm fully extended, shoulder stable.\n8. Lower the dumbbell back to the starting position with control and repeat."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling with the arm too early instead of driving from the hips\n- Allowing the dumbbell to drift away from the body\n- Catching the weight with a soft or bent arm\n- Rounding the lower back during the initial pull\n- Using excessive back extension instead of hip drive\n- Not fully locking out the arm overhead\n- Losing control on the descent\n- Rushing reps and sacrificing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Dumbbell (weight appropriate for the movement)\n- Non-slip floor surface or lifting platform\n- Open space above and around you for overhead movement\n- Optional: Athletic shoes with good support\n- Optional: Chalk or grip aid for heavier loads"
+        },
+        {
+          "heading": "Finding Your Position",
+          "content": "1. Place the dumbbell on the ground between your feet.\n2. Stand with feet about shoulder-width apart.\n3. Hinge at the hips, soft bend in the knees.\n4. Grab the dumbbell with an overhand grip, arm extended.\n5. Keep the non-working arm relaxed or extended for balance.\n6. Brace your core and set a neutral spine before lifting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Shoulder-width, feet firmly planted.\n2. Grip: Overhand grip on the dumbbell handle.\n3. Hips: Loaded back, creating tension in the hamstrings.\n4. Chest: Up, shoulders slightly over the dumbbell.\n5. Core: Fully braced throughout the entire lift.\n6. Arm: Straight on the pull, locked out at the top.\n7. Breathing: Inhale and brace before the pull, exhale after lockout."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Kettlebell Snatch: Traditional unilateral ballistic movement\n- Barbell Snatch: Olympic lift variation with a barbell\n- Dumbbell Clean and Press: Slower two-movement alternative\n- Dumbbell High Pull: Simplified version without the overhead finish\n- Hang Dumbbell Snatch: Starting from the hip for beginners\n- Dumbbell Swing: Hip hinge power movement without overhead catch"
+        },
+        {
+          "heading": "Snatch Variations",
+          "content": "Dumbbell Snatch: Standard single-arm snatch from the floor\nHang Dumbbell Snatch: Starts from hip height for easier learning\nPower Dumbbell Snatch: Catch with minimal knee bend\nAlternating Dumbbell Snatch: Switches hands each rep\nDouble Dumbbell Snatch: Both arms simultaneously for advanced lifters\nSingle-Arm Dumbbell Squat Snatch: Full squat catch for maximum range"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Work on thoracic and shoulder mobility first\nLower Back Pain: Start with hang snatches and reduce load\nKnee Pain: Use a lighter load and focus on hip drive\nGrip Issues: Use chalk or grip aids, or reduce reps\nBeginner Level: Start with dumbbell high pulls and clean and press\nNo Dumbbell: Substitute with kettlebell snatch or barbell snatch"
+        }
+      ]
+    }
+  }
+}

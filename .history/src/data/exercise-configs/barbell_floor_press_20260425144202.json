@@ -1,0 +1,113 @@
+{
+  "exerciseId": "barbell_floor_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/275.%20Barbell%20Floor%20Press/275.%20Barbell%20Floor%20Press%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/275.%20Barbell%20Floor%20Press/275.%20Barbell%20Floor%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Floor Press is a horizontal pressing exercise performed lying on the floor with a loaded barbell.\n\nThe floor limits the range of motion at the bottom of the press, reducing shoulder strain and emphasising the lockout portion driven by the chest and triceps.\n\nIt is a popular accessory lift for powerlifters and a useful pressing variation for lifters with shoulder issues or no bench access."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the chest, triceps, and anterior shoulders\n- Reduced shoulder range of motion is easier on the shoulder joints\n- Strong carryover to bench press lockout strength\n- Useful when no bench is available\n- Reinforces tight bracing and a stable upper back\n- Can be loaded heavy with relatively low joint stress\n- Great for building triceps mass and pressing power"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major\n\nSecondary: Triceps Brachii, Anterior Deltoids, Core, Latissimus Dorsi"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Lie flat on the ground with your knees bent and feet flat on the floor.\n2. Position a loaded barbell over your hips using a rack or have a partner help you.\n3. Confirm the loading is secure and the bar path overhead is clear."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Grasp the barbell with both hands slightly wider than shoulder-width apart.\n2. Lift the bar from the rack or have your partner hand it to you.\n3. Hold the bar straight over your chest with arms fully extended and shoulders packed."
+        },
+        {
+          "heading": "Lower",
+          "content": "1. Lower the barbell slowly towards your chest by bending your elbows.\n2. Continue lowering until your upper arms lightly touch the floor.\n3. Keep the elbows tucked at roughly 45 degrees and the wrists stacked over the elbows."
+        },
+        {
+          "heading": "Press and Repeat",
+          "content": "1. Press the barbell back up to the starting position by extending your arms fully.\n2. Drive through the chest and triceps to lock out the bar over the chest.\n3. Reset the brace and repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing the elbows off the floor\n- Flaring the elbows out wide\n- Letting the wrists bend back under load\n- Pressing the bar toward the face instead of over the chest\n- Failing to brace the core and glutes\n- Holding the breath through the full set\n- Using too much weight and losing bar control"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Barbell\n- Weight plates\n- Collars to secure the plates\n- Power rack or training partner for hand-off\n- Optional: Mat for back comfort"
+        },
+        {
+          "heading": "Barbell Adjustments",
+          "content": "1. Load the bar with appropriate weight and secure with collars.\n2. If using a rack, set the pins low enough to lift the bar off while lying down.\n3. If using a partner, brief them on the lift-off and re-rack.\n4. Check that the floor space is clear and stable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Knees bent, feet flat on the floor, hip-width apart.\n2. Torso: Upper back flat on the floor, glutes and core engaged.\n3. Arms: Hands slightly wider than shoulder-width, elbows tracking at about 45 degrees.\n4. Shoulders: Packed and pulled back into the floor.\n5. Head: Neutral, eyes up toward the bar path."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "smith_machine_push_ups"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bench Press: Standard horizontal pressing\n- Dumbbell Floor Press: Floor press with dumbbells\n- Close Grip Bench Press: Triceps-biased pressing\n- Dumbbell Bench Press: Free-weight dumbbell pressing\n- Smith Machine Push Up: Bodyweight pressing on a fixed bar\n- Push Up: Bodyweight horizontal pressing"
+        },
+        {
+          "heading": "Barbell Floor Press Variations",
+          "content": "Standard Barbell Floor Press: Described here\nClose Grip Barbell Floor Press: Hands narrower for triceps emphasis\nWide Grip Barbell Floor Press: Hands wider for chest emphasis\nPaused Barbell Floor Press: Pause with arms on the floor for explosive lockout\nBoard Press: Pressed against boards for partial range work\nDumbbell Floor Press: Same movement with dumbbells for greater range"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Tuck the elbows tighter and reduce the load\nElbow Pain: Use a slightly wider grip and lighter weight\nWrist Pain: Use wrist wraps and keep the wrists stacked\nLow Back Issues: Bend the knees and keep the feet flat for stability\nNo Rack or Partner: Use dumbbells instead for safer loading\nBeginners: Start light to learn the bar path before adding load"
+        }
+      ]
+    }
+  }
+}

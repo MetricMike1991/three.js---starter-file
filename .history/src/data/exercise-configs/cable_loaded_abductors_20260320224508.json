@@ -1,0 +1,99 @@
+{
+  "exerciseId": "cable_loaded_abductors",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/81.%20Cable%20Loaded%20Abductors/81.%20Cable%20Loaded%20Abductors%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/81.%20Cable%20Loaded%20Abductors/81.%20Cable%20Loaded%20Abductors%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/81.%20Cable%20Loaded%20Abductors/81.%20Cable%20Loaded%20Abductors%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/81.%20Cable%20Loaded%20Abductors/81.%20Cable%20Loaded%20Abductors%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.1972032029108557, 1.4877165987701688, -2.0689039928622246],
+    "rotation": [-2.7467017647811796, 0.7617240410577066, 2.8615027396080177],
+    "target": [-0.022123985474654828, 0.5925111230278435, 0.07898553180770737]
+  },
+  "cameraHQ": {
+    "position": [-2.341107617263427, 1.8272004998878413, 2.1963948020278683],
+    "rotation": [-0.4963052956688345, -0.7804334978787404, -0.3640231869451919],
+    "target": [0.10320041939715678, 0.6516554194336819, 0.025548916366472052]
+  },
+  "customTextures": {},
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Abductor Machine targets the hip abductor muscles, primarily the gluteus medius and gluteus minimus.\n\nThis seated machine exercise involves pushing your legs outward against cable-driven resistance, isolating the outer glutes and hip stabilisers.\n\nIt is an excellent exercise for developing hip stability, improving lateral movement strength, and sculpting the outer glutes."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates and strengthens the hip abductor muscles\n- Improves hip stability and lateral movement control\n- Targets the gluteus medius and minimus for balanced glute development\n- Cable resistance provides smooth, consistent tension throughout the range of motion\n- Helps prevent knee valgus (inward knee collapse) during squats and lunges\n- Supports injury prevention for the hips, knees, and lower back\n- Easy to adjust resistance via the pin-loaded weight stack\n- Excellent for rehabilitation and prehabilitation of the hip complex"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Medius, Gluteus Minimus, Tensor Fasciae Latae (TFL)\n\nSecondary: Gluteus Maximus (upper fibres), Hip External Rotators, Core Stabilisers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the weight on the machine using the pin selector.\n2. Sit on the seat with your back firmly against the back pad.\n3. Place the outside of your legs against the leg pads.\n4. Position your feet flat on the footrests if available.\n5. Grasp the handles on either side of the seat for stability.\n6. Sit upright with your core engaged and chest up.\n7. Your legs should be together or close together in the starting position.\n8. Ensure the seat height and pad positions are comfortable."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Slowly push your legs outward against the pads, driving your knees apart.\n3. Focus on squeezing the outer glutes as you push out.\n4. Continue pushing until you reach your full comfortable range of motion.\n5. Hold the position briefly at the widest point, squeezing the glutes.\n6. Slowly return your legs to the starting position under control.\n7. Do not let the weight stack slam — maintain tension throughout.\n8. Keep your back pressed against the pad during the entire movement.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and losing control of the movement\n- Rushing through reps without focusing on the contraction\n- Leaning forward or lifting off the back pad\n- Not using a full range of motion\n- Letting the weight stack slam at the bottom of each rep\n- Relying on momentum instead of controlled muscle contraction\n- Not engaging the core throughout the exercise\n- Positioning too far forward or back on the seat"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Abductor/Adductor Machine\n- Pin-loaded weight stack for easy resistance adjustment\n- No additional equipment required\n- Optional: Resistance band around knees for added activation"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select an appropriate weight using the pin on the weight stack.\n2. Start light to warm up the hip muscles before increasing load.\n3. Adjust the starting leg position if the machine allows it.\n4. Ensure the machine is set to abduction mode (legs push outward).\n5. Some machines have a lever to switch between abduction and adduction — verify the correct setting.\n6. Check that the seat and pad positions are secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Sit with your back flat against the back pad.\n2. Leg Position: Outside of legs pressed firmly against the leg pads.\n3. Feet: Flat on the footrests or floor in front of you.\n4. Grip: Hands on the side handles for stability.\n5. Core: Braced and engaged throughout the movement.\n6. Posture: Upright, chest up, shoulders relaxed.\n7. Starting Position: Legs together, ready to push outward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["cable_loaded_adductors", "cable_kickback_glutes"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Loaded Adductors: The opposite movement — squeezing legs inward\n- Cable Kickback Glutes: Cable-based glute isolation from a standing position\n- Banded Lateral Walks: Functional hip abductor exercise using resistance bands\n- Side-Lying Hip Abduction: Bodyweight floor exercise targeting the same muscles\n- Standing Cable Hip Abduction: Single-leg cable abduction from a standing position\n- Clamshells: Rehabilitation-style exercise for hip abductor activation"
+        },
+        {
+          "heading": "Abductor Variations",
+          "content": "Seated Cable Abduction: Standard machine-based hip abduction\nStanding Cable Abduction: Single-leg abduction using a low cable\nBanded Abduction: Using a resistance band around the knees or ankles\nSide-Lying Abduction: Floor-based bodyweight hip abduction\nLateral Band Walks: Walking sideways against band resistance\nSumo Walks: Wide stance walking with a band for constant abductor tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Hip Pain: Reduce the range of motion and use lighter weight\nKnee Issues: Ensure the pad is positioned on the outer thigh, not the knee\nLower Back Pain: Focus on keeping your back firmly against the pad\nLimited Mobility: Start with a smaller range and gradually increase\nNo Machine Available: Use resistance bands for banded abduction exercises\nRehabilitation: Start with very light weight and focus on activation, not load"
+        }
+      ]
+    }
+  }
+}

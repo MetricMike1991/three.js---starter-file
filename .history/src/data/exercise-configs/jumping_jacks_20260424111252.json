@@ -1,0 +1,105 @@
+{
+  "exerciseId": "jumping_jacks",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/245.%20Jumping%20Jacks/245.%20Jumping%20Jacks%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/245.%20Jumping%20Jacks/245.%20Jumping%20Jacks%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/245.%20Jumping%20Jacks/245.%20Jumping%20Jacks%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/245.%20Jumping%20Jacks/245.%20Jumping%20Jacks%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Jumping Jacks are a classic full-body, bodyweight cardiovascular exercise that elevates heart rate, improves coordination, and warms up multiple muscle groups simultaneously.\n\nBy combining rhythmic jumping with synchronized arm and leg movements, Jumping Jacks are an efficient way to boost circulation, burn calories, and prepare the body for more intense training.\n\nThey are commonly used as part of dynamic warm-ups, high-intensity interval training (HIIT), and general conditioning programs because they require no equipment and can be scaled to any fitness level."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Elevates heart rate quickly for cardiovascular conditioning\n- Improves coordination between upper and lower body\n- Warms up multiple muscle groups simultaneously\n- Burns calories and supports weight management\n- Enhances lower body endurance and calf strength\n- Strengthens shoulders and arms through repeated elevation\n- Improves agility and rhythmic timing\n- Boosts bone density through light plyometric impact\n- Increases circulation and blood flow\n- Requires no equipment or special setup\n- Easily scalable - low or high intensity versions available"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Calves, Glutes, Shoulders\n\nSecondary: Hamstrings, Hip Adductors, Hip Abductors, Core, Deltoids, Trapezius"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand tall with feet together.\n2. Arms hanging naturally at your sides.\n3. Chest up, shoulders relaxed.\n4. Core lightly engaged.\n5. Eyes looking forward.\n6. Weight distributed evenly across both feet.\n7. Breathe steadily through the nose."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Jump upwards, simultaneously spreading your legs to approximately shoulder-width apart.\n2. At the same time, raise both arms out and up overhead in a sweeping arc.\n3. Land softly on the balls of your feet with knees slightly bent.\n4. Immediately jump again, bringing your legs back together and lowering your arms to your sides.\n5. Land in the starting position with soft, controlled landings.\n6. Continue repeating in a smooth rhythm.\n7. Maintain an upright posture throughout the movement.\n8. Perform for the desired number of repetitions or time duration.\n9. Breathe rhythmically throughout the exercise."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Landing with straight or locked knees\n- Slamming feet down hard instead of landing softly\n- Hunching shoulders during the arm raise\n- Not bringing arms fully overhead\n- Keeping feet too close together when jumping out\n- Rounding the back or leaning forward\n- Holding breath instead of breathing rhythmically\n- Going too fast and losing coordination\n- Landing heavily on heels instead of balls of feet\n- Letting knees cave inward on landing"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required\n- Supportive athletic footwear\n- Flat, non-slip surface\n- Optional: Gym mat for joint cushioning\n- Optional: Fitness tracker to monitor heart rate\n- Optional: Interval timer for HIIT-style workouts"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Warm-Up: 1-2 minutes at moderate pace.\n2. HIIT Work Interval: 30-45 seconds maximum effort.\n3. Steady-State Cardio: 3-5 minutes continuous.\n4. Circuit Station: 20-30 reps between other exercises.\n5. Beginner: 2-3 sets of 20-30 reps.\n6. Intermediate: 3-4 sets of 40-60 reps.\n7. Advanced: Continuous for 1-3 minutes per set.\n8. Rest: 30-60 seconds between sets depending on goal."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Posture: Tall and upright throughout the movement.\n2. Feet: Land softly on the balls of the feet.\n3. Knees: Slightly bent on every landing to absorb impact.\n4. Hips: Neutral, facing forward.\n5. Core: Lightly engaged for stability.\n6. Shoulders: Relaxed, not hunched near the ears.\n7. Arms: Full range - from sides to overhead.\n8. Breathing: Rhythmic - exhale on the jump out, inhale on the return.\n9. Eyes: Focused forward, not down at feet."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["crosstrainer", "air_assault_bike"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- High Knees: In-place cardio with high knee drive\n- Mountain Climbers: Ground-based full-body cardio\n- Burpees: Higher intensity full-body conditioning\n- Skater Jumps: Lateral plyometric alternative\n- Skipping / Jump Rope: Rhythm-based cardio\n- Star Jumps: Similar pattern with explosive extension\n- Squat Jumps: Lower body focused plyometric"
+        },
+        {
+          "heading": "Jumping Jack Variations",
+          "content": "Standard Jumping Jacks: Classic full range-of-motion version\nLow-Impact Jumping Jacks: Step out to the side instead of jumping\nCross Jacks: Cross arms and legs in front on the return\nSeal Jacks: Arms clap in front of chest instead of overhead\nPlank Jacks: Performed in plank position with legs jumping out\nSquat Jacks: Staying in a squat while jumping legs out and in\nPower Jacks: Deeper squat with explosive jump\nRotational Jacks: Adding a twist to engage the core\nWeighted Jacks: Holding light dumbbells during the movement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Use Low-Impact Jacks (stepping instead of jumping)\nAnkle Issues: Reduce range of motion and jump less high\nShoulder Issues: Raise arms only to shoulder height\nLower Back Pain: Focus on core engagement and avoid arching\nBalance Concerns: Start with Step Jacks before jumping\nPregnancy: Switch to Low-Impact Step Jacks\nBeginner: Start with 20-30 seconds and build gradually\nSpace Constraints: Can be performed in a very small area"
+        }
+      ]
+    }
+  }
+}

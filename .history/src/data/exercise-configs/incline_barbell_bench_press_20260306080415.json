@@ -1,0 +1,105 @@
+{
+  "exerciseId": "incline_barbell_bench_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/22.%20Incline%20barbell%20Bench%20press/22.%20Incline%20barbell%20Bench%20press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/22.%20Incline%20barbell%20Bench%20press/22.%20Incline%20barbell%20Bench%20press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/22.%20Incline%20barbell%20Bench%20press/22.%20Incline%20barbell%20Bench%20press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/22.%20Incline%20barbell%20Bench%20press/22.%20Incline%20barbell%20Bench%20press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Incline Barbell Bench Press is a compound upper body exercise performed on a bench set to a 30-45 degree incline.\n\nThis angle shifts the emphasis to the upper portion of the pectoralis major (clavicular head) and the anterior deltoids, making it a key movement for developing a full, well-rounded chest.\n\nAs a barbell variation, it allows for heavier loading compared to dumbbell incline presses, making it ideal for building upper chest strength and size."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the upper chest for balanced chest development\n- Allows heavier loading than dumbbell incline variations\n- Builds pressing strength that transfers to overhead movements\n- Develops anterior deltoid and triceps simultaneously\n- Easy to progressively overload with small weight increments\n- Strengthens the shoulder girdle in an inclined pressing pattern\n- Essential for a complete chest training program"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Clavicular Head / Upper Chest)\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an incline bench to 30-45 degrees inside a rack or Smith machine.\n2. Lie back with your feet flat on the floor.\n3. Ensure your back, shoulders, and head are all in contact with the bench.\n4. Grip the barbell with a wider-than-shoulder-width grip, palms facing forward.\n5. Retract your shoulder blades and press them into the bench.\n6. Unrack the bar by straightening your arms and position it above your upper chest.\n7. Maintain a slight natural arch in your lower back."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Lower the barbell in a controlled manner toward your upper chest.\n3. Keep your elbows slightly tucked at approximately 45-60 degrees from your torso.\n4. Touch the bar lightly to the upper chest — no bouncing.\n5. Press the barbell back up by extending your arms fully.\n6. The bar should travel in a slight arc from upper chest to over shoulders.\n7. Squeeze your chest at the top of the movement.\n8. Maintain shoulder blade retraction throughout.\n9. Repeat for the desired number of reps, then rerack with control."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Setting the bench angle too steep (turns it into a shoulder press)\n- Bouncing the bar off the chest\n- Flaring elbows out to 90 degrees (increases shoulder injury risk)\n- Lifting hips off the bench during the press\n- Not retracting shoulder blades before unracking\n- Bar path going straight up instead of a slight arc\n- Grip too narrow or too wide for the incline angle\n- Not using a spotter for heavy attempts\n- Rushing the descent with no control\n- Losing back tightness during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Adjustable Incline Bench with Rack or Power Rack\n- Safety Pins or Spotter Arms (recommended)\n- Optional: Spotter for heavy lifts\n- Optional: Wrist Wraps (for wrist support)\n- Optional: Chalk (for grip)\n- Recommended: Flat-soled shoes for stable foot placement"
+        },
+        {
+          "heading": "Bench and Rack Setup",
+          "content": "1. Set the bench angle to 30-45 degrees.\n2. 30 degrees: More chest-dominant, less shoulder involvement.\n3. 45 degrees: More upper chest and anterior deltoid emphasis.\n4. Avoid angles above 45 degrees — this becomes more shoulder press.\n5. Position the bench so the bar racks at a comfortable height.\n6. Set safety pins just below chest level.\n7. Ensure the bench is stable and centered under the bar."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Eyes: Directly under or slightly in front of the barbell.\n2. Feet: Flat on the floor, providing a stable base.\n3. Hips: Firmly on the bench seat at all times.\n4. Back: Pressed into the incline pad, shoulder blades retracted.\n5. Shoulders: Pulled back and down into the bench.\n6. Head: Resting against the bench pad, neutral position.\n7. Grip: Wider than shoulder-width, full grip with thumbs wrapped.\n8. Wrists: Stacked straight over forearms, not bent back."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["incline_dumbbell_chest_press", "barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Incline Dumbbell Chest Press: Greater range of motion, independent arms\n- Flat Barbell Bench Press: Overall chest emphasis\n- Low-to-High Cable Fly: Constant tension on upper chest\n- Landmine Press: Angled pressing with natural arc\n- Machine Incline Press: Guided movement, beginner-friendly\n- Incline Push-Ups (feet elevated): Bodyweight upper chest option"
+        },
+        {
+          "heading": "Incline Press Variations",
+          "content": "Standard Incline Barbell Press: Classic upper chest builder\nClose-Grip Incline Press: Triceps emphasis with upper chest activation\nWide-Grip Incline Press: Greater chest stretch and activation\nPaused Incline Press: Pause on chest for strength off the bottom\nTempo Incline Press: Controlled eccentric for muscle building\nIncline Board Press: Partial range for lockout strength\nReverse-Grip Incline Press: Supinated grip for unique upper chest stimulus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Lower the bench angle or switch to dumbbell incline press\nWrist Pain: Use wrist wraps, check grip width, ensure straight wrists\nLower Back Pain: Reduce arch, ensure hips stay on the bench\nNo Incline Bench: Use an adjustable bench in a power rack\nNo Spotter: Use a power rack with safety pins or switch to dumbbells\nNo Barbell: Use dumbbells, resistance bands, or machine incline press\nLearning Stage: Start with just the bar, focus on bar path and control"
+        }
+      ]
+    }
+  }
+}

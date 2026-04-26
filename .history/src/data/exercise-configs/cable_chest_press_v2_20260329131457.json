@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_chest_press_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/108.%20Cable%20Chest%20Press%20V2/108.%20Cable%20Chest%20Press%20V2%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/108.%20Cable%20Chest%20Press%20V2/108.%20Cable%20Chest%20Press%20V2%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/108.%20Cable%20Chest%20Press%20V2/108.%20Cable%20Chest%20Press%20V2%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/108.%20Cable%20Chest%20Press%20V2/108.%20Cable%20Chest%20Press%20V2%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Chest Press is a chest-focused pushing exercise performed on a cable machine.\n\nUsing cables provides constant tension throughout the entire range of motion, unlike free weights where tension varies.\n\nThis exercise is ideal for building chest strength and muscle definition while offering a joint-friendly alternative to heavy barbell or dumbbell pressing."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Constant tension throughout the full range of motion\n- Reduced joint stress compared to heavy barbell pressing\n- Engages stabilizer muscles due to independent cable handles\n- Allows for a greater range of motion and deeper chest stretch\n- Easy to adjust resistance quickly for drop sets\n- Suitable for all fitness levels from beginner to advanced\n- Helps correct muscular imbalances between left and right sides"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest)\n\nSecondary: Anterior Deltoids, Triceps, Serratus Anterior, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit down on the machine and adjust the seat so that the handles are level with your chest.\n2. Plant your feet firmly on the floor for stability.\n3. Sit with your back flat against the pad.\n4. Grasp the handles with an overhand grip, hands slightly wider than shoulder-width apart.\n5. Retract your shoulder blades and keep your chest up."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Push the handles away from your chest, fully extending your arms.\n3. Squeeze your chest muscles at the top of the movement.\n4. Slowly bring the handles back to the starting position, keeping control of the weight throughout the movement.\n5. Allow a slight stretch in the chest at the bottom without overextending.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring elbows too high, placing excess stress on the shoulders\n- Not controlling the weight on the return (letting cables snap back)\n- Arching the lower back excessively off the pad\n- Using momentum instead of controlled muscle contraction\n- Not fully extending the arms at the top of the press\n- Gripping the handles too tightly, causing forearm fatigue\n- Rushing through repetitions without proper muscle engagement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Machine with adjustable pulleys\n- Seat or bench attachment\n- D-handle or chest press handle attachments\n- Optional: Wrist wraps for additional support"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the pulleys to chest height.\n2. Set the seat height so handles align with the middle of your chest.\n3. Select an appropriate weight on the cable stack.\n4. Ensure cables move smoothly without obstruction.\n5. Check that the seat pad is secure and stable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Adjust so handles are at mid-chest level.\n2. Back: Flat against the pad with shoulder blades retracted.\n3. Feet: Flat on the floor, hip-width apart.\n4. Grip: Overhand grip, slightly wider than shoulder-width.\n5. Elbows: Slightly below shoulder height at the start.\n6. Core: Engaged and braced throughout the movement.\n7. Head: Neutral position, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bench Press: Free weight pressing for maximum strength\n- Dumbbell Bench Press: Independent arm pressing with free weights\n- Machine Chest Press: Guided pressing movement\n- Push-Ups: Bodyweight pressing alternative\n- Cable Flyes: Isolation movement for chest with cable resistance\n- Incline Cable Press: Upper chest emphasis with cables"
+        },
+        {
+          "heading": "Cable Press Variations",
+          "content": "Cable Chest Press: Standard seated pressing motion\nStanding Cable Press: Performed standing for greater core engagement\nIncline Cable Press: Angled to target upper chest\nSingle-Arm Cable Press: Unilateral pressing for balance correction\nCable Crossover: Fly variation for inner chest emphasis\nLow-to-High Cable Press: Targets upper chest from low pulley position"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Lower the handle position and keep elbows at 45 degrees\nWrist Discomfort: Use neutral grip handles or wrist wraps\nLower Back Issues: Ensure back is firmly against the pad, reduce weight\nNo Cable Machine: Substitute with resistance band chest press or push-ups\nLimited Mobility: Start with partial range of motion and gradually increase\nLearning Stage: Begin with light weight and focus on form and control"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_walking_lunges",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/69.%20Kettlebell%20Walking%20Lunges/69.%20Kettlebell%20Walking%20Lunges%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/69.%20Kettlebell%20Walking%20Lunges/69.%20Kettlebell%20Walking%20Lunges%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/69.%20Kettlebell%20Walking%20Lunges/69.%20Kettlebell%20Walking%20Lunges%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/69.%20Kettlebell%20Walking%20Lunges/69.%20Kettlebell%20Walking%20Lunges%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.244849934312965, 1.2561624772257414, -2.5830123704081736],
+    "rotation": [-3.0362802806773126, -0.7319725471527743, -3.07106418134752],
+    "target": [-0.01817454675618582, 0.9956511001501028, -0.11846264175870741]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.1371292922361462, 0.9220137924642753, 2.1931508104208195],
+    "rotation": [-0.0767290182620871, 0.7817120683954167, 0.054108713091666635],
+    "target": [0.010909206707975632, 0.7578250545014125, 0.05749987451083855]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/69.%20Kettlebell%20Walking%20Lunges/Kettlebell%20Walking%20Lunges_250x250_2026-03-17T22-25-18.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Kettlebell Walking Lunges are a dynamic lower body exercise that combines forward stepping lunges with kettlebell resistance held at the sides.\n\nThis exercise challenges the quadriceps, glutes, and hamstrings through a full range of motion while also demanding balance, coordination, and core stability with every step.\n\nWalking lunges are a functional movement that mimics real-world locomotion patterns, making them an excellent exercise for building athletic strength and improving everyday movement quality."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds quad, glute, and hamstring strength through a full range of motion\n- Improves balance, coordination, and single-leg stability\n- Functional movement that transfers to everyday activities and sport\n- Kettlebells allow a natural arm position at the sides\n- Engages the core throughout for anti-rotation and stability\n- Unilateral movement helps identify and correct leg imbalances\n- Can be used for strength, hypertrophy, or conditioning depending on load and tempo"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Gluteus Maximus\n\nSecondary: Hamstrings, Hip Flexors, Calves, Core (Rectus Abdominis, Obliques), Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart.\n2. Hold a kettlebell in each hand at your sides with a neutral grip.\n3. Keep your chest up, shoulders back, and core braced.\n4. Look straight ahead with your head in a neutral position.\n5. Ensure you have a clear path ahead for the walking movement.\n6. Take a breath and prepare to step forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a controlled step forward with your right leg.\n2. Lower your body into a lunge position, bending both knees to approximately 90 degrees.\n3. Your front knee should track over your toes without pushing past them.\n4. Your back knee should hover just above the ground.\n5. Push off through the heel of your front foot to stand back up.\n6. As you rise, step your left foot forward into the next lunge.\n7. Continue alternating legs, walking forward with each step.\n8. Keep the kettlebells at your sides throughout — do not swing them."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Taking steps that are too short or too long\n- Allowing the front knee to cave inward\n- Leaning the torso too far forward during the lunge\n- Not lowering deep enough — both knees should reach approximately 90 degrees\n- Pushing off from the toes instead of the heel\n- Swinging the kettlebells or using momentum\n- Looking down instead of keeping the head neutral and eyes forward\n- Rushing through reps without maintaining balance between steps"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Two Kettlebells of equal weight\n- Clear floor space (at least 10-15 metres for walking)\n- Optional: Chalk for grip assistance\n- Recommended: Flat-soled shoes for stable footing"
+        },
+        {
+          "heading": "Choosing Your Kettlebell Weight",
+          "content": "1. Beginners: Start with 8-12 kg per hand (men) or 4-8 kg per hand (women).\n2. Intermediate: 12-20 kg per hand (men) or 8-14 kg per hand (women).\n3. The weight should challenge your legs without compromising balance.\n4. If your torso leans excessively forward, reduce the weight.\n5. You should be able to complete all reps with controlled, steady steps.\n6. Progress gradually as your leg strength and balance improve."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Hip-width apart at the start.\n2. Arms: Hanging straight at your sides, holding the kettlebells.\n3. Grip: Firm neutral grip on the kettlebell handles.\n4. Chest: Up and open throughout the movement.\n5. Shoulders: Back and down, away from the ears.\n6. Core: Braced to maintain an upright torso.\n7. Head: Neutral, eyes looking forward.\n8. Steps: Moderate length — not too short, not too long."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bulgarian_split_squat", "dumbbell_goblet_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Walking Lunges: Same movement with dumbbells instead of kettlebells\n- Barbell Walking Lunges: Barbell across the back for heavier loading\n- Bulgarian Split Squat: Stationary unilateral squat with rear foot elevated\n- Reverse Lunges: Stepping backward instead of forward\n- Goblet Squat: Front-loaded squat with a single kettlebell\n- Step Ups: Stepping onto an elevated platform for unilateral leg work"
+        },
+        {
+          "heading": "Walking Lunge Variations",
+          "content": "Kettlebell Walking Lunges: Standard version with kettlebells at the sides\nOverhead Kettlebell Walking Lunges: Kettlebells pressed overhead for core challenge\nKettlebell Rack Walking Lunges: Kettlebells held in the rack position at chest height\nReverse Walking Lunges: Stepping backward for reduced knee stress\nDeficit Walking Lunges: Front foot elevated for increased range of motion\nSlow Tempo Walking Lunges: 3-4 second lowering phase for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Try reverse lunges which reduce forward knee stress\nBalance Issues: Perform stationary lunges before progressing to walking\nGrip Fatigue: Use chalk or lighter kettlebells, or switch to goblet position\nHip Tightness: Reduce step length and depth until mobility improves\nLimited Space: Perform stationary alternating lunges in place\nBeginner: Start with bodyweight walking lunges to master the pattern first"
+        }
+      ]
+    }
+  }
+}

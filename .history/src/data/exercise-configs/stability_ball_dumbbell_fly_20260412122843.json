@@ -1,0 +1,105 @@
+{
+  "exerciseId": "stability_ball_dumbbell_fly",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/142.%20Stability%20Ball%20Dumbbell%20Fly/142.%20Stability%20Ball%20Dumbbell%20Fly%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/142.%20Stability%20Ball%20Dumbbell%20Fly/142.%20Stability%20Ball%20Dumbbell%20Fly%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/142.%20Stability%20Ball%20Dumbbell%20Fly/142.%20Stability%20Ball%20Dumbbell%20Fly%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/142.%20Stability%20Ball%20Dumbbell%20Fly/142.%20Stability%20Ball%20Dumbbell%20Fly%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.6703684554666187, 2.312525219911951, 1.8099781774620556],
+    "rotation": [-0.7385686797176008, 0.5809540193162563, 0.4633953766456349],
+    "target": [0.010650968493565007, 0.6105966264415621, -0.059311061774484225]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.4763609429220603, 2.029449933990275, 1.7226008492388831],
+    "rotation": [-0.7994502799252511, 0.5675902435087203, 0.5050876132949021],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Stability Ball Dumbbell Fly is an isolation exercise for the chest performed while lying back on a stability ball.\n\nBy using a stability ball instead of a flat bench, this exercise engages the core and stabilising muscles throughout the movement, adding a functional training element to a classic chest exercise.\n\nThe fly motion specifically targets the pectoral muscles through a wide arc, providing an effective stretch and contraction that complements pressing movements."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the chest muscles through a full range of motion\n- Engages the core intensely due to the unstable surface of the stability ball\n- Improves balance, coordination, and proprioception\n- Provides a deep stretch across the pectoral muscles at the bottom of the movement\n- Activates stabilising muscles of the spine, hips, and legs\n- Lower risk of shoulder impingement compared to flat bench flys for some individuals\n- Builds chest width and definition effectively"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal and Clavicular heads)\n\nSecondary: Anterior Deltoids, Biceps (as stabilisers), Core (Rectus Abdominis, Obliques, Transverse Abdominis), Glutes and Legs (active as stabilisers)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Select a pair of dumbbells at an appropriate weight.\n2. Sit on a stability ball with your feet flat on the floor, hip-width apart.\n3. Hold the dumbbells at chest level and slowly walk your feet forward.\n4. Roll your body down the ball until your head and shoulders are resting on the ball.\n5. Lift your hips so that your body forms a straight line from head to knees.\n6. Extend the dumbbells above your chest with a slight bend in your elbows, palms facing each other."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Brace your core and keep your hips elevated throughout the movement.\n2. Slowly lower the dumbbells out to the sides in a wide arc, maintaining a slight bend in your elbows.\n3. Continue lowering until you feel a comfortable stretch across your chest — your arms should be roughly in line with your shoulders.\n4. Pause briefly at the bottom of the movement.\n5. Squeeze your chest muscles to bring the dumbbells back up to the starting position, following the same wide arc.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag during the movement, reducing core engagement\n- Bending the elbows too much, turning the fly into a press\n- Lowering the dumbbells too far, placing excessive stress on the shoulder joints\n- Using momentum rather than controlled muscle contraction\n- Feet too close together, reducing stability on the ball\n- Rushing the eccentric (lowering) phase of the movement\n- Not maintaining a slight elbow bend throughout the entire range of motion"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of Dumbbells (select a lighter weight than you would use for a chest press — flys are an isolation movement)\n- Stability Ball (sized so that when lying back, your head and shoulders are supported)\n- Clear floor space with no obstacles nearby\n- Optional: Exercise mat placed under or around the ball for safety"
+        },
+        {
+          "heading": "Getting Into Position",
+          "content": "1. Sit on the stability ball holding the dumbbells on your thighs.\n2. Slowly walk your feet forward, rolling the ball up your back.\n3. Stop when your head and upper shoulders are resting on the ball.\n4. Your feet should be flat on the floor, roughly hip-width apart or slightly wider.\n5. Press your hips up so your torso is parallel to the floor.\n6. Press the dumbbells up above your chest to begin the fly movement."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat on the floor, hip-width or slightly wider for stability.\n2. Hips: Elevated so your torso forms a straight line from shoulders to knees.\n3. Upper Back and Head: Supported by the stability ball.\n4. Core: Actively braced throughout the entire exercise.\n5. Arms: Extended above chest with a slight bend at the elbows.\n6. Grip: Palms facing each other (neutral grip) holding the dumbbells."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["stability_ball_chest_press", "barbell_bench_press", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Flat Bench Dumbbell Fly: Same movement on a stable bench — allows heavier loads\n- Cable Fly: Constant tension through the range of motion\n- Pec Deck Machine: Machine-based chest isolation\n- Stability Ball Chest Press: Compound pressing on the same unstable surface\n- Incline Dumbbell Fly: Targets the upper chest with an angled bench\n- Floor Fly: Limited range of motion variant that protects the shoulders"
+        },
+        {
+          "heading": "Stability Ball Variations",
+          "content": "Stability Ball Dumbbell Fly: Standard chest fly on the ball\nSingle-Arm Stability Ball Fly: Unilateral variation for greater core anti-rotation demand\nStability Ball Incline Fly: Adjust hip height to shift emphasis to upper chest\nStability Ball Fly with Pause: Hold at the bottom for increased time under tension\nStability Ball Alternating Fly: Lower one arm at a time for added stability challenge"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion or switch to a cable fly with controlled movement\nBalance Difficulty: Use a wider foot stance or start with a flat bench until confidence increases\nLower Back Discomfort: Ensure hips stay elevated and core is braced; consider floor flys instead\nNo Stability Ball: Use a flat bench or incline bench for standard dumbbell flys\nBeginner: Start with very light dumbbells to master form and balance before progressing weight"
+        }
+      ]
+    }
+  }
+}

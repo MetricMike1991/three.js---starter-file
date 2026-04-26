@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_leg_hip_thrust",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/54.%20Single%20Leg%20Hip%20Thrust/54.%20Single%20Leg%20Hip%20Thrust_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/54.%20Single%20Leg%20Hip%20Thrust/54.%20Single%20Leg%20Hip%20Thrust%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/54.%20Single%20Leg%20Hip%20Thrust/54.%20Single%20Leg%20Hip%20Thrust%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/54.%20Single%20Leg%20Hip%20Thrust/54.%20Single%20Leg%20Hip%20Thrust%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.462328417152354, 2.021334804617105, -1.077721759021259],
+    "rotation": [-2.231578634869333, 0.8847293196291829, 2.3585255098423845],
+    "target": [-0.0009006824837905344, 0.4290798739840641, 0.16003225567528584]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.7812741770649438, 2.5028972587002847, 1.5776556657337668],
+    "rotation": [-0.865754209710432, -0.5856707143210325, -0.5760815104773859],
+    "target": [-0.008034312899167449, 0.46691922838302796, -0.15484856206100098]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/54.%20Single%20Leg%20Hip%20Thrust/Single%20Leg%20Hip%20Thrust_250x250_2026-03-13T11-45-25.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Leg Hip Thrust is a unilateral glute exercise performed with your upper back supported on a bench and one leg extended while the other drives the movement.\n\nThis variation isolates each glute individually, making it highly effective for identifying and correcting strength imbalances between sides.\n\nBy working one leg at a time, the single leg hip thrust increases the demand on the working glute and challenges core stability throughout the movement."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates each glute individually for balanced development\n- Identifies and corrects strength imbalances between sides\n- Increases glute activation compared to bilateral hip thrusts\n- Improves single-leg stability and balance\n- Builds functional unilateral hip extension strength\n- Minimal equipment required\n- Enhances core stability and coordination"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes (Gluteus Maximus), Gluteus Medius\n\nSecondary: Hamstrings, Quadriceps, Hip Adductors, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the ground with your back against a bench, positioned at around shoulder blade height.\n2. Place one foot flat on the ground with the knee bent at approximately 90 degrees.\n3. Extend the other leg straight out in front of you.\n4. Hold a dumbbell on your hip or keep your hands on your hips for balance.\n5. Keep your chin slightly tucked and your gaze forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Drive through the heel of your planted foot to lift your hips off the ground.\n2. Push your hips upward until your thigh is parallel to the floor.\n3. Squeeze your glute hard at the top of the movement.\n4. Keep the extended leg straight and elevated throughout the rep.\n5. Maintain a neutral spine — avoid hyperextending your lower back.\n6. Slowly lower your hips back down to the starting position with control.\n7. Repeat for the desired number of reps before switching sides."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyperextending the lower back at the top of the movement\n- Allowing the hips to rotate or tilt to one side\n- Pushing through the toes instead of the heel\n- Not keeping the extended leg straight and stable\n- Positioning too far forward or back on the bench\n- Not achieving full hip extension at the top\n- Rushing through reps without controlling the descent\n- Neglecting to train both sides equally"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sturdy Flat Bench or Box\n- Flat, Non-Slip Floor Surface\n- Optional: Dumbbell or Kettlebell (for added resistance)\n- Optional: Hip Pad or Towel (for comfort if using weight)"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Position a sturdy bench against a wall or rack so it doesn't slide.\n2. The bench height should allow your shoulder blades to rest on the edge.\n3. Ensure the bench is stable and won't tip during the movement.\n4. If using a box, make sure it is heavy enough to stay in place.\n5. A standard flat bench height works well for most people."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Working Foot: Flat on the floor, positioned so the shin is vertical at the top.\n2. Non-Working Leg: Extended straight out in front, elevated off the floor.\n3. Back: Shoulder blades resting on the edge of the bench.\n4. Arms: Hands on hips or holding a dumbbell across the working hip.\n5. Head: Neutral position, chin slightly tucked.\n6. Core: Braced throughout to prevent hip rotation.\n7. Hips: Level and square throughout the entire movement."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_hip_thrust", "dumbbell_hip_thrust"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Hip Thrust: Bilateral version with no external load\n- Dumbbell Hip Thrust: Bilateral version with dumbbell resistance\n- Kettlebell Hip Thrust: Bilateral version with kettlebell resistance\n- Single Leg Glute Bridge: Floor-based unilateral version\n- Barbell Hip Thrust: Heavier bilateral loading option\n- Bulgarian Split Squat: Unilateral lower body compound exercise"
+        },
+        {
+          "heading": "Single Leg Variations",
+          "content": "Single Leg Hip Thrust: Standard unilateral bench-supported thrust\nWeighted Single Leg Hip Thrust: Added dumbbell or kettlebell for resistance\nPaused Single Leg Hip Thrust: Hold at top for increased time under tension\nSingle Leg Glute Bridge: Floor-based unilateral alternative\nElevated Foot Single Leg Hip Thrust: Foot raised for extra range of motion\nTempo Single Leg Hip Thrust: Slow eccentric for enhanced muscle engagement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Balance Issues: Start with bilateral hip thrusts to build base strength\nKnee Discomfort: Adjust foot position closer or further from the bench\nLower Back Pain: Focus on core bracing and avoid hyperextension\nHip Rotation: Engage your core more and reduce range of motion initially\nNot Strong Enough: Begin with single leg glute bridges from the floor\nWant More Resistance: Hold a dumbbell or kettlebell on the working hip"
+        }
+      ]
+    }
+  }
+}

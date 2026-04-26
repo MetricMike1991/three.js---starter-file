@@ -1,0 +1,105 @@
+{
+  "exerciseId": "flutter_kicks",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/157.%20Flutter%20Kicks/157.%20Flutter%20Kicks%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/157.%20Flutter%20Kicks/157.%20Flutter%20Kicks%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/157.%20Flutter%20Kicks/157.%20Flutter%20Kicks%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/157.%20Flutter%20Kicks/157.%20Flutter%20Kicks%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Flutter Kicks are a bodyweight core exercise performed lying on your back, where you alternate kicking your legs up and down in a controlled scissor-like motion.\n\nThis exercise targets the lower abdominals and hip flexors while also engaging the entire core for stabilisation.\n\nFlutter kicks are widely used in fitness, athletic conditioning, and military training programmes for building core endurance, lower abdominal strength, and hip flexor conditioning."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Effectively targets the lower abdominals, an area often difficult to isolate\n- No equipment required — can be performed anywhere\n- Builds core endurance and muscular stamina\n- Engages the hip flexors and quadriceps as secondary muscles\n- Improves core stability and overall trunk control\n- Can be performed for time or repetitions for flexible programming\n- Excellent as a finisher or warm-up exercise in any workout"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis (Lower Fibres), Hip Flexors\n\nSecondary: Obliques, Quadriceps, Transverse Abdominis"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie flat on your back on a mat with your legs fully extended.\n2. Place your arms by your sides with palms facing down, or place your hands under your glutes for lower back support.\n3. Engage your core and press your lower back firmly into the floor.\n4. Lift both legs a few inches off the ground, keeping them straight and close together."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Begin alternating kicking your legs up and down in a controlled scissor-like motion.\n2. Keep the range of motion small — approximately 6 to 12 inches between the top and bottom of each kick.\n3. Keep your legs straight throughout the movement with toes pointed.\n4. Engage your core and ensure your lower back stays pressed against the floor.\n5. Breathe steadily — do not hold your breath.\n6. Continue for the desired number of repetitions or time duration."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the lower back to arch off the floor, placing stress on the spine\n- Kicking too fast and losing control of the movement\n- Bending the knees instead of keeping the legs straight\n- Lifting the legs too high, reducing lower abdominal engagement\n- Holding the breath instead of breathing steadily throughout\n- Placing the hands behind the head and pulling on the neck\n- Not engaging the core before starting the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Exercise mat (optional but recommended for comfort)\n- No other equipment required"
+        },
+        {
+          "heading": "Space Requirements",
+          "content": "1. Find a flat, open area with enough space to lie down fully extended.\n2. Use an exercise mat for comfort and to protect your lower back.\n3. Ensure there is clearance above and around your legs for the kicking motion."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat on the floor with lower back pressed firmly down.\n2. Arms: By your sides with palms down, or hands under glutes for support.\n3. Legs: Fully extended, lifted a few inches off the ground.\n4. Core: Engaged and braced before beginning the kicks.\n5. Head: Resting on the floor in a neutral position — do not lift or strain the neck.\n6. Toes: Pointed for a clean, controlled movement."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "deadbug", "deadbug_progression"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Scissor Kicks: Similar alternating leg movement with a wider range of motion\n- Leg Raises: Lying leg raise for lower abdominal targeting\n- Dead Bug: Contralateral arm and leg extension for core stability\n- Bicycle Crunches: Alternating elbow-to-knee crunch with rotation\n- Reverse Crunch: Hip flexion-based lower ab exercise\n- Hollow Body Hold: Isometric core hold in a similar position"
+        },
+        {
+          "heading": "Flutter Kick Variations",
+          "content": "Standard Flutter Kicks: Basic alternating leg kicks lying on the back\nWeighted Flutter Kicks: Hold a light dumbbell between the feet for added resistance\nIncline Flutter Kicks: Perform on a decline bench for increased difficulty\nSlow Tempo Flutter Kicks: Slower kicks for increased time under tension\nFlutter Kick Hold: Pause with legs extended and hold for 2–3 seconds between kicks\nSeated Flutter Kicks: Sit on the edge of a bench and perform the kicks for a different angle\nProne Flutter Kicks: Lie face down and kick to target the glutes and lower back"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Place hands under your glutes and keep the lower back pressed firmly into the floor\nHip Flexor Tightness: Reduce the range of motion and keep the legs higher off the ground\nNeck Strain: Keep your head on the floor — do not lift it during the exercise\nBeginner: Start with shorter sets (10–15 seconds) and gradually increase duration\nKnee Issues: Maintain a slight bend in the knees if full extension is uncomfortable\nPost-Injury: Consult a physiotherapist before performing any core exercises involving hip flexion"
+        }
+      ]
+    }
+  }
+}

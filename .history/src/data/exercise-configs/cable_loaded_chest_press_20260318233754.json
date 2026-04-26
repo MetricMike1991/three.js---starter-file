@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_loaded_chest_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/77.%20Cable%20Loaded%20Chest%20Press/77.%20Cable%20Loaded%20Chest%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/77.%20Cable%20Loaded%20Chest%20Press/77.%20Cable%20Loaded%20Chest%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/77.%20Cable%20Loaded%20Chest%20Press/77.%20Cable%20Loaded%20Chest%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/77.%20Cable%20Loaded%20Chest%20Press/77.%20Cable%20Loaded%20Chest%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Chest Press is a machine-based exercise that targets the chest muscles through a horizontal pressing movement.\n\nUsing a cable-loaded system provides smooth and consistent resistance throughout the range of motion, making it an excellent option for isolating the chest.\n\nThis exercise is ideal for beginners learning pressing mechanics and for advanced lifters looking to add volume without the stabilisation demands of free weights."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Smooth and consistent resistance throughout the movement\n- Reduced strain on shoulders compared to free weight presses\n- Easier to isolate the chest muscles\n- No need for a spotter, making it safer for solo training\n- Great for building muscle endurance and hypertrophy\n- Fixed movement path helps maintain proper form\n- Allows for easy weight adjustments between sets"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest)\n\nSecondary: Anterior Deltoids (Front Shoulders), Triceps, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat position so the handles are in line with your nipple line.\n2. Sit with your back pressed flat against the back pad.\n3. Grip the handles evenly on both sides.\n4. Position your elbows back and in line with the same height as the handles of the machine.\n5. Keep your feet flat on the floor for stability.\n6. Engage your core and retract your shoulder blades slightly."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. With your back pressed flat against the pad, push the handles out away from your body.\n2. Keep your elbows in line with the handles throughout the movement.\n3. Fully straighten your arms at the end of the pressing motion.\n4. Squeeze your chest at the top of the movement.\n5. Slowly return the handles back to the starting position with control.\n6. Repeat for reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Seat positioned too high or too low, causing shoulder strain\n- Flaring elbows too high above the handles\n- Not pressing evenly with both arms\n- Lifting your back off the pad during the press\n- Using momentum instead of controlled movement\n- Not fully extending the arms at the top\n- Rushing the eccentric (return) phase\n- Gripping the handles too tightly, causing forearm fatigue"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Chest Press Machine\n- Adjustable seat (built into the machine)\n- Weight stack with pin selection"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select your desired weight using the pin on the weight stack.\n2. Adjust the seat height so the handles align with your nipple line.\n3. Sit down with your back firmly against the back pad.\n4. Place your feet flat on the floor or on the provided footrests.\n5. Grip both handles evenly and ensure your elbows are level with the handles.\n6. Retract your shoulder blades and press your back into the pad.\n7. You are now ready to begin the exercise."
+        },
+        {
+          "heading": "Seat Height Guide",
+          "content": "1. Handles should be at mid-chest height (nipple line).\n2. If handles are too high, your shoulders will take over the movement.\n3. If handles are too low, you lose chest activation and strain your shoulders.\n4. Your elbows should be roughly level with the handles at the starting position.\n5. Feet should be flat on the floor for a stable base.\n6. Back should be fully in contact with the back pad.\n7. Adjust seat up or down until the pressing angle feels comfortable on your chest.\n8. Test with a light weight before loading up."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["plate_loaded_chest_press", "barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Plate Loaded Chest Press: Uses plates instead of cable stack\n- Barbell Bench Press: Free weight horizontal pressing movement\n- Flat Dumbbell Chest Press: Dumbbell variation on a flat bench\n- Incline Dumbbell Chest Press: Targets upper chest on an incline\n- Cable Crossovers: Cable-based chest isolation exercise\n- Bodyweight Push Up: Bodyweight alternative for chest development"
+        },
+        {
+          "heading": "Chest Press Variations",
+          "content": "Cable Loaded Chest Press: Standard machine chest press with cable resistance\nPlate Loaded Chest Press: Heavier loading with plate-loaded resistance\nIncline Cable Chest Press: Angled press targeting upper chest\nSingle Arm Cable Chest Press: Unilateral variation for imbalance correction\nWide Grip Chest Press: Wider hand placement for more chest stretch\nClose Grip Chest Press: Narrower grip to shift emphasis toward triceps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Lower the seat slightly and keep elbows below shoulder height\nWrist Discomfort: Try a neutral grip if the machine allows it\nNo Machine Available: Use flat dumbbell chest press or push ups\nBeginner: Start with a light weight to learn the movement path\nRecovering from Injury: Use single arm pressing with reduced load\nLimited Range of Motion: Reduce the depth of the eccentric phase gradually"
+        }
+      ]
+    }
+  }
+}

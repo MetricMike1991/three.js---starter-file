@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bodyweight_crunch",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/90.%20Bodyweight%20Crunch/90.%20Bodyweight%20Crunch%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/90.%20Bodyweight%20Crunch/90.%20Bodyweight%20Crunch%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/90.%20Bodyweight%20Crunch/90.%20Bodyweight%20Crunch%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/90.%20Bodyweight%20Crunch/90.%20Bodyweight%20Crunch%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Crunch is a classic abdominal exercise performed lying on the floor with no equipment required.\n\nIt targets the rectus abdominis (the 'six-pack' muscle) by flexing the spine and lifting the shoulders off the ground.\n\nThis exercise is one of the most popular core exercises for all fitness levels and is an excellent foundation for building abdominal strength and definition."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the rectus abdominis for core strength and definition\n- Requires no equipment — can be done anywhere\n- Easy to learn and suitable for all fitness levels\n- Strengthens the core for improved posture and stability\n- Low impact exercise with minimal joint stress\n- Can be easily progressed with variations or added resistance\n- Helps support the lower back by strengthening the abdominal wall\n- Excellent for high-rep endurance training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis (upper and lower fibres)\n\nSecondary: Obliques (Internal and External), Hip Flexors, Transverse Abdominis"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie down on your back on a flat surface or exercise mat.\n2. Bend your knees to approximately 90 degrees.\n3. Place your feet flat on the ground, hip-width apart.\n4. Place your hands behind your head with your fingers lightly supporting (not pulling) your neck.\n5. Keep your elbows out to the sides.\n6. Press your lower back gently into the floor.\n7. Engage your core by drawing your belly button towards your spine.\n8. Keep your chin slightly tucked, as if holding a tennis ball under your chin."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath in to prepare.\n2. Exhale as you contract your abs to lift your shoulders and upper back off the ground.\n3. Focus on curling your ribcage towards your pelvis.\n4. Keep your lower back pressed into the floor throughout.\n5. Lift only your shoulders and upper back — do not sit all the way up.\n6. Squeeze your abs at the top of the movement and hold briefly.\n7. Inhale as you slowly lower back down to the starting position.\n8. Maintain control throughout — do not use momentum.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling on the neck with the hands, causing neck strain\n- Using momentum to swing up rather than contracting the abs\n- Lifting too high and turning the crunch into a full sit-up\n- Allowing the lower back to arch off the floor\n- Holding your breath instead of exhaling on the way up\n- Rushing through reps without controlling the movement\n- Tucking the chin too aggressively into the chest\n- Letting the feet lift off the ground during the crunch"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Exercise Mat (recommended for comfort)\n- Flat floor surface\n- No additional equipment required\n- Optional: Towel or small pad for neck support\n- Optional: Weight plate or dumbbell held on chest for added resistance"
+        },
+        {
+          "heading": "Space Setup",
+          "content": "1. Find a flat, stable surface to lie on.\n2. Place an exercise mat down for comfort.\n3. Ensure you have enough space to lie fully extended.\n4. The surface should be firm — avoid soft beds or couches.\n5. If on a hard floor without a mat, use a folded towel under your lower back.\n6. Ensure the area is clear of obstacles around you."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Position: Lying flat on your back on the mat.\n2. Knees: Bent to approximately 90 degrees.\n3. Feet: Flat on the ground, hip-width apart.\n4. Hands: Behind the head with fingers lightly supporting the neck.\n5. Elbows: Out to the sides, not pointing forward.\n6. Lower Back: Pressed gently into the floor.\n7. Core: Engaged before beginning the first rep."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "bodyweight_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bicycle Crunch: Rotational crunch targeting the obliques\n- Reverse Crunch: Lifting the hips instead of the shoulders for lower ab focus\n- Plank: Isometric core hold for overall core stability\n- Sit-Up: Full range spinal flexion from floor to upright\n- Dead Bug: Anti-extension core exercise for stability\n- Mountain Climber: Dynamic core exercise with cardio benefit"
+        },
+        {
+          "heading": "Crunch Variations",
+          "content": "Bodyweight Crunch: Standard floor crunch targeting the rectus abdominis\nBicycle Crunch: Alternating elbow-to-knee crunch for oblique engagement\nReverse Crunch: Lifting the hips to target the lower abs\nWeighted Crunch: Holding a plate or dumbbell for added resistance\nCable Crunch: Kneeling crunch using a cable machine for constant tension\nStability Ball Crunch: Performing crunches on a Swiss ball for increased range"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Cross your arms over your chest instead of placing hands behind your head\nLower Back Pain: Keep your lower back firmly pressed into the floor and reduce range of motion\nHip Flexor Tightness: Place feet on a bench or elevate them to reduce hip flexor involvement\nPost-Surgery: Consult a professional before performing any spinal flexion exercises\nLimited Mobility: Start with smaller range of motion and gradually increase\nRehabilitation: Focus on slow, controlled partial crunches with emphasis on breathing"
+        }
+      ]
+    }
+  }
+}

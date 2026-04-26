@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_walking_lunges",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/12.%20Dumbbell%20Walking%20Lunges/12.%20Dumbbell%20Walking%20Lunges_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/12.%20Dumbbell%20Walking%20Lunges/12.%20Dumbbell%20Walking%20Lunges%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/12.%20Dumbbell%20Walking%20Lunges/12.%20Dumbbell%20Walking%20Lunges%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/12.%20Dumbbell%20Walking%20Lunges/12.%20Dumbbell%20Walking%20Lunges%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.203474846268684, 1.9670810963774024, -2.215270376937603],
+    "rotation": [-2.6831809408545007, 0.7162711074486268, 2.82826338836688],
+    "target": [-0.0004897937463236934, 0.8466710353954093, 0.05519217960114823]
+  },
+  "cameraHQ": {
+    "position": [-2.0421039255832127, 1.4981376382222753, 1.7071836190577447],
+    "rotation": [-0.3734241477217558, -0.8270239609352651, -0.2807245717779762],
+    "target": [0.010117841916371967, 0.8093451565532667, -0.05080252632049176]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Dumbbell Walking Lunges are a dynamic lower body exercise that involves stepping forward into a lunge and continuing to walk with each rep.\n\nThis movement targets the quads, glutes, and hamstrings while also challenging balance, coordination, and core stability.\n\nThe use of dumbbells adds resistance without loading the spine, making it a joint-friendly alternative to barbell lunges."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds unilateral leg strength and corrects muscle imbalances\n- Targets quads, glutes, and hamstrings simultaneously\n- Improves balance, coordination, and proprioception\n- Mimics real-world walking and stepping patterns\n- Lower spinal loading compared to barbell variations\n- Engages the core throughout the entire movement\n- Can be used for hypertrophy, strength, or conditioning\n- Improves hip flexor flexibility and ankle mobility"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Core, Hip Flexors, Calves, Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart.\n2. Hold a dumbbell in each hand with your arms fully extended at your sides.\n3. Keep your palms facing inward (neutral grip).\n4. Stand tall with your chest up, shoulders back, and core braced.\n5. Look straight ahead and maintain a neutral spine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a controlled step forward with one foot, roughly 2-3 feet ahead.\n2. Lower your body by bending both knees simultaneously.\n3. Your front thigh should reach parallel to the floor or slightly below.\n4. Your back knee should hover just above the ground without touching.\n5. Keep your front knee tracking over your toes — do not let it cave inward.\n6. Drive through the heel of your front foot to stand back up.\n7. Bring your back foot forward and step directly into the next lunge.\n8. Continue alternating legs, walking forward with each rep."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Taking steps that are too short, causing the knee to travel past the toes\n- Taking steps that are too long, making it difficult to push back up\n- Leaning the torso too far forward instead of staying upright\n- Letting the front knee cave inward during the lunge\n- Touching or slamming the back knee into the ground\n- Swinging the dumbbells or using momentum\n- Looking down instead of keeping the head neutral\n- Rushing through the reps without controlled movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of dumbbells (appropriate weight for your level)\n- A clear, flat space with enough room to walk 10-20 feet\n- Optional: Gym flooring or turf for grip\n- Optional: Mirror for form check"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start with light dumbbells to master balance and form.\n2. You should be able to complete all reps without losing balance.\n3. Increase weight gradually as your stability improves.\n4. For hypertrophy, aim for a weight that challenges you in the 10-16 rep range (each leg).\n5. For strength, use heavier dumbbells with 6-10 reps per leg.\n6. If balance is a concern, start with bodyweight lunges first."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, toes pointing forward.\n2. Grip: Dumbbells held at sides with a neutral grip.\n3. Arms: Fully extended, hanging naturally — do not shrug.\n4. Torso: Upright with a slight natural arch in the lower back.\n5. Core: Braced throughout the entire set.\n6. Head: Neutral, eyes looking forward.\n7. Step Length: Roughly 2-3 feet — adjust based on your height and mobility."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_goblet_squat", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Walking Lunges: Heavier loading with barbell on upper back\n- Reverse Lunges: Stepping backward for less knee strain\n- Bulgarian Split Squat: Elevated rear foot for deeper single-leg work\n- Dumbbell Goblet Squat: Front-loaded squat alternative\n- Bodyweight Walking Lunges: No weight, ideal for warm-ups\n- Kettlebell Walking Lunges: Similar movement with kettlebells"
+        },
+        {
+          "heading": "Walking Lunge Variations",
+          "content": "Dumbbell Walking Lunges: Standard walking lunge with dumbbells at sides\nBarbell Walking Lunges: Barbell across upper back for heavier loads\nOverhead Walking Lunges: Dumbbells or plate held overhead for core challenge\nDeficit Walking Lunges: Start from an elevated platform for increased range\nPaused Walking Lunges: Hold the bottom position for 2-3 seconds per rep\nCross-Body Walking Lunges: Step at a slight angle for adductor engagement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Try reverse lunges or reduce step length and depth\nBalance Issues: Start with bodyweight, use a wall for light support\nLower Back Pain: Keep torso upright, use lighter dumbbells\nHip Tightness: Warm up with hip flexor stretches before lunging\nNo Dumbbells: Use kettlebells, a barbell, or bodyweight\nLimited Space: Perform stationary lunges or reverse lunges in place"
+        }
+      ]
+    }
+  }
+}

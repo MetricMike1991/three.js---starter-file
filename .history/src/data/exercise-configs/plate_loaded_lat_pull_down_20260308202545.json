@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_lat_pull_down",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/29.%20Plate%20Loaded%20Lat%20Pull%20Down/29.%20Plate%20Loaded%20Lat%20Pull%20Down%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/29.%20Plate%20Loaded%20Lat%20Pull%20Down/29.%20Plate%20Loaded%20Lat%20Pull%20Down%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/29.%20Plate%20Loaded%20Lat%20Pull%20Down/29.%20Plate%20Loaded%20Lat%20Pull%20Down%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/29.%20Plate%20Loaded%20Lat%20Pull%20Down/29.%20Plate%20Loaded%20Lat%20Pull%20Down%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Lat Pull Down is a compound back exercise performed on a plate-loaded machine that primarily targets the latissimus dorsi.\n\nThis machine provides a guided vertical pulling movement that mimics the pull-up but with adjustable resistance, making it accessible for all fitness levels.\n\nThe plate-loaded design offers a more natural resistance curve compared to cable-stack machines, allowing for heavy loading and effective lat development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds lat width for a V-tapered back\n- Plate-loaded resistance provides a natural feel\n- Thigh pads lock the body in place for strict form\n- Allows heavy progressive overload\n- Great alternative to pull-ups for those who can't perform them\n- Develops grip strength and forearm endurance\n- Easy to perform drop sets by removing plates\n- Targets the entire back with emphasis on the lats"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Teres Major\n\nSecondary: Biceps Brachii, Brachialis, Rhomboids, Lower Trapezius, Rear Deltoids, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so your thighs are firmly pressed against the thigh pads.\n2. Your body should be locked in place with no room to rise off the seat.\n3. Grasp each handle with an overhand grip, palms facing away from your body.\n4. Arms should be fully extended overhead at the start.\n5. Sit upright with your chest lifted and core engaged.\n6. Pull your shoulder blades slightly down before beginning the pull."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Contract your back muscles and initiate the pull by driving your elbows down.\n2. Pull the handles down until your shoulder blades are pinched together.\n3. Focus on pulling with your lats, not just your arms.\n4. Squeeze your back muscles hard at the bottom of the movement.\n5. Hold the contraction for a brief moment.\n6. Slowly let the weight back up until your arms are fully extended.\n7. Maintain control throughout the entire range of motion.\n8. Avoid leaning excessively backward during the pull.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling with the biceps instead of initiating with the back\n- Leaning too far back and turning it into a row\n- Not achieving full range of motion at the top\n- Using momentum or jerking the weight down\n- Grip too wide or too narrow\n- Not squeezing the shoulder blades together at the bottom\n- Shrugging the shoulders up during the pull\n- Letting the weight slam back up between reps\n- Seat height too high or low, reducing stability"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Lat Pull Down Machine\n- Weight Plates (Olympic size)\n- Optional: Lifting Straps (for grip support on heavy sets)\n- Optional: Chalk (for improved grip)\n- Recommended: Non-slip footwear"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so your thighs fit snugly under the pads.\n2. The thigh pads should lock your lower body in place.\n3. Load equal weight on both sides of the machine.\n4. Ensure all pins and safety mechanisms are secured.\n5. Test the range of motion with no weight before loading.\n6. Handles should be reachable with arms fully extended while seated."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Thighs: Pressed firmly under the thigh pads.\n2. Feet: Flat on the floor for stability.\n3. Back: Upright with a slight natural arch.\n4. Chest: Lifted and open.\n5. Shoulders: Down and back, not shrugging up.\n6. Grip: Overhand (pronated), slightly wider than shoulder-width.\n7. Arms: Fully extended at the start position.\n8. Core: Engaged throughout the movement.\n9. Head: Neutral, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_lat_pulldown", "bodyweight_pull_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Lat Pulldown: Selectorized machine with constant cable tension\n- Pull-Ups: Bodyweight vertical pulling movement\n- Chin-Ups: Underhand grip for more biceps involvement\n- Neutral Grip Pulldown: Palms facing each other, shoulder-friendly\n- Single-Arm Lat Pulldown: Unilateral work for imbalance correction\n- Straight-Arm Pulldown: Isolation movement for lats"
+        },
+        {
+          "heading": "Lat Pulldown Variations",
+          "content": "Standard Overhand Pulldown: Classic lat width builder\nWide Grip Pulldown: Greater lat stretch and width emphasis\nClose Grip Pulldown: More lower lat and biceps engagement\nReverse Grip Pulldown: Underhand for biceps and lower lat focus\nSingle-Arm Pulldown: Unilateral for balanced development\nSlow Tempo Pulldown: Controlled eccentric for muscle building\nPause Pulldown: Hold at bottom for increased contraction\nDrop Set Pulldown: Remove plates progressively for exhaustion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use a narrower grip or neutral grip handles\nElbow Pain: Reduce weight, try underhand grip\nGrip Weakness: Use lifting straps or chalk\nNo Plate Loaded Machine: Use cable lat pulldown or pull-up bar\nLimited Plates: Use resistance bands looped over a bar\nLearning Stage: Start light, focus on feeling the lats contract\nMobility Issues: Adjust grip width and seat position for comfort"
+        }
+      ]
+    }
+  }
+}

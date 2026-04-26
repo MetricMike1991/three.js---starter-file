@@ -1,0 +1,105 @@
+{
+  "exerciseId": "hip_thrust_bench",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/76.%20Hip%20Thrust%20Bench/76.%20Hip%20Thrust%20Bench%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/76.%20Hip%20Thrust%20Bench/76.%20Hip%20Thrust%20Bench%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/76.%20Hip%20Thrust%20Bench/76.%20Hip%20Thrust%20Bench%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/76.%20Hip%20Thrust%20Bench/76.%20Hip%20Thrust%20Bench%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Hip Thrust Bench is a machine-based exercise that targets the glutes through a horizontal hip extension movement.\n\nUsing a dedicated hip thrust bench provides a stable and comfortable platform, allowing you to focus entirely on driving through the hips.\n\nThis exercise is one of the most effective movements for building glute strength, size, and power, and is widely used by athletes and bodybuilders alike."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Maximises glute activation compared to most other exercises\n- Dedicated bench provides stability and consistent positioning\n- Reduces lower back strain by supporting the upper body\n- Allows for heavy loading to build glute strength and size\n- Improves hip extension power for athletic performance\n- Enhances posterior chain development\n- Supports progressive overload easily with barbell loading"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes (Gluteus Maximus)\n\nSecondary: Hamstrings, Quadriceps, Hip Adductors, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the floor with your back against the edge of the hip thrust bench.\n2. Position yourself so the pad sits around your shoulder blade height.\n3. Roll a loaded barbell across your hips.\n4. Place your feet flat on the floor, roughly shoulder-width apart.\n5. Grip the barbell with both hands to keep it stable.\n6. Start in a hip hinge position with your hips lowered toward the floor."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Maintaining a neutral spine and with your hands gripping the barbell, press the barbell up using your hips.\n2. Drive through your heels and squeeze your glutes at the top of the movement.\n3. Your back should remain straight throughout the movement — only bend at the hips.\n4. At the top, your shins should be vertical and your torso parallel to the floor.\n5. Lower the weight back down into the hip hinged position with control.\n6. Repeat for reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Overextending the lower back at the top of the movement\n- Feet placed too far forward or too close to the body\n- Not driving through the heels\n- Letting the knees cave inward\n- Rushing the eccentric (lowering) phase\n- Bar not centred on the hips, causing imbalance\n- Not achieving full hip extension at the top\n- Placing back too high or too low on the bench pad"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Hip Thrust Bench / Dedicated Glute Bench\n- Olympic Barbell (45 lbs / 20 kg)\n- Weight Plates\n- Optional: Barbell Pad or Hip Thrust Pad for comfort\n- Optional: Resistance Band around the knees for added glute activation"
+        },
+        {
+          "heading": "Bench & Body Setup",
+          "content": "1. Position the hip thrust bench so it is stable and won't slide.\n2. Sit on the floor with the bench behind you.\n3. Lean your upper back against the bench pad at shoulder blade height.\n4. Roll the loaded barbell over your legs into your hip crease.\n5. Place feet flat on the floor, roughly shoulder-width apart.\n6. Toes can point slightly outward for comfort.\n7. Grip the bar to stabilise it across your hips."
+        },
+        {
+          "heading": "Foot Placement",
+          "content": "1. Feet should be roughly shoulder-width apart.\n2. Position feet so that at the top of the movement, shins are vertical.\n3. If feet are too far forward, hamstrings take over.\n4. If feet are too close, quads take over.\n5. Toes angled slightly out (15-30 degrees) can improve comfort.\n6. Drive through your heels to maximise glute engagement.\n7. Experiment with foot position to find maximum glute activation.\n8. Keep feet flat throughout the movement."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "bodyweight_hip_thrust"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust (flat bench): Same movement on a standard flat bench\n- Bodyweight Hip Thrust: Unloaded version for beginners\n- Glute Bridge: Floor-based variation with shorter range of motion\n- Single-Leg Hip Thrust: Unilateral variation for imbalance correction\n- Cable Pull-Through: Hip hinge pattern using cable machine\n- Kettlebell Swing: Explosive hip extension movement"
+        },
+        {
+          "heading": "Hip Thrust Variations",
+          "content": "Barbell Hip Thrust Bench: Standard loaded hip thrust on dedicated bench\nBanded Hip Thrust: Adding resistance band around knees for adductor engagement\nSingle-Leg Hip Thrust: Unilateral focus for balance and imbalance correction\nPause Hip Thrust: Hold at the top for 2-3 seconds for extra glute activation\nFoot-Elevated Hip Thrust: Feet on a raised surface for increased range of motion\nSmith Machine Hip Thrust: Machine-guided bar for consistent bar path"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Hip Thrust Bench: Use a standard flat bench or sturdy box\nLower Back Pain: Focus on posterior pelvic tilt at the top, avoid hyperextension\nKnee Discomfort: Adjust foot placement, try wider or narrower stance\nBar Discomfort on Hips: Use a thick barbell pad or folded towel\nNo Barbell Available: Use dumbbells, kettlebells, or a resistance band\nBeginner: Start with bodyweight glute bridges and progress to loaded hip thrusts"
+        }
+      ]
+    }
+  }
+}

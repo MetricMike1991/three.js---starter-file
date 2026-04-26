@@ -1,0 +1,105 @@
+{
+  "exerciseId": "stability_ball_crunch",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/109.%20Stability%20Ball%20Crunch/109.%20Stability%20Ball%20Crunch%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/109.%20Stability%20Ball%20Crunch/109.%20Stability%20Ball%20Crunch%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/109.%20Stability%20Ball%20Crunch/109.%20Stability%20Ball%20Crunch%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/109.%20Stability%20Ball%20Crunch/109.%20Stability%20Ball%20Crunch%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Stability Ball Crunch is a core exercise performed by lying back on a stability ball and curling the torso upward.\n\nThe unstable surface of the ball increases core activation compared to a standard floor crunch, as the stabiliser muscles must work harder to maintain balance.\n\nThis exercise targets the rectus abdominis while also engaging the obliques and deep core stabilisers, making it an excellent choice for building functional abdominal strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Greater range of motion compared to floor crunches\n- Increased core muscle activation due to the unstable surface\n- Engages deep stabiliser muscles for improved balance\n- Lower back is supported by the ball, reducing spinal strain\n- Targets the full length of the rectus abdominis\n- Improves overall core stability and coordination\n- Suitable for all fitness levels with easy difficulty progression"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis\n\nSecondary: Obliques, Transverse Abdominis, Hip Flexors, Erector Spinae (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the stability ball and walk your feet forward until the ball is positioned under your lower back.\n2. Feet should be flat on the ground, roughly shoulder-width apart.\n3. Knees bent at approximately 90 degrees.\n4. Place your hands behind your head with elbows wide and pointing outwards.\n5. Allow your back to extend slightly over the ball to achieve a full stretch in the abdominals.\n6. Keep your chin slightly tucked, maintaining a neutral neck position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core and lift your shoulder blades off the ball, exhaling as you crunch.\n2. Focus on contracting your abdominals to drive the movement, not pulling with your hands.\n3. Pause briefly at the top of the movement, squeezing the abs.\n4. Slowly lower your upper body back onto the ball while inhaling.\n5. Allow a slight extension over the ball at the bottom to maintain a full range of motion.\n6. Repeat the movement for the desired number of reps.\n7. Maintain steady contact with the ball throughout — avoid rocking or bouncing."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling on the neck with the hands during the crunch\n- Using momentum or bouncing off the ball instead of controlled movement\n- Not extending far enough back over the ball, limiting range of motion\n- Feet too close together, reducing stability\n- Ball positioned too high on the back instead of the lower back\n- Rushing the repetitions without a controlled tempo\n- Not engaging the core before initiating the crunch"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Stability Ball (Swiss Ball) — choose the correct size for your height\n- Non-slip floor surface or exercise mat\n- Optional: Light dumbbell or weight plate held on the chest for added resistance"
+        },
+        {
+          "heading": "Choosing the Right Ball Size",
+          "content": "1. Under 5'0\" (152 cm): 45 cm ball.\n2. 5'0\" to 5'5\" (152–165 cm): 55 cm ball.\n3. 5'6\" to 5'11\" (168–180 cm): 65 cm ball.\n4. 6'0\" and above (183 cm+): 75 cm ball.\n5. When seated on the ball, your thighs should be parallel to the floor.\n6. The ball should be firm — an under-inflated ball reduces effectiveness.\n7. Place the ball on a non-slip surface to prevent sliding during the exercise."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Ball Position: Under the lower back and hips.\n2. Feet: Flat on the floor, shoulder-width apart for stability.\n3. Knees: Bent at roughly 90 degrees.\n4. Hands: Behind the head with fingers lightly supporting, not pulling.\n5. Elbows: Wide and pointing outwards.\n6. Head: Neutral position, chin slightly tucked.\n7. Core: Braced before beginning each rep."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "cable_crunch"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Crunch: Floor-based variation without a stability ball\n- Cable Crunch: Weighted crunch using a cable machine for progressive overload\n- Decline Sit-Up: Increased difficulty with a decline bench angle\n- Ab Rollout: Anti-extension core exercise using a wheel or barbell\n- Hanging Leg Raise: Targets lower abs with a hanging position\n- Plank: Isometric core hold for endurance and stability"
+        },
+        {
+          "heading": "Stability Ball Variations",
+          "content": "Stability Ball Crunch: Standard crunch on the ball targeting rectus abdominis\nStability Ball Oblique Crunch: Rotating crunch to emphasise the obliques\nStability Ball Pass: Pass the ball between hands and feet for full core engagement\nWeighted Stability Ball Crunch: Hold a dumbbell or plate on chest for added resistance\nStability Ball Reverse Crunch: Tuck the knees towards the chest with feet on the ball"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Balance Issues: Widen your foot stance or position the ball near a wall for support\nNeck Pain: Cross arms over your chest instead of placing hands behind your head\nLower Back Sensitivity: Ensure the ball supports your lower back fully and reduce range of motion\nNo Stability Ball: Perform standard floor crunches or use a BOSU ball\nBeginner: Start with hands crossed on chest and a smaller range of motion\nAdvanced: Hold a weight plate on the chest or slow down the tempo"
+        }
+      ]
+    }
+  }
+}

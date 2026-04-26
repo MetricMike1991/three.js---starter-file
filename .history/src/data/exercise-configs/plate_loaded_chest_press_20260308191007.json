@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_chest_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/27.%20Plate%20Loaded%20Chest%20Press/27.%20Plate%20Loaded%20Chest%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/27.%20Plate%20Loaded%20Chest%20Press/27.%20Plate%20Loaded%20Chest%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/27.%20Plate%20Loaded%20Chest%20Press/27.%20Plate%20Loaded%20Chest%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/27.%20Plate%20Loaded%20Chest%20Press/27.%20Plate%20Loaded%20Chest%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0.7811650015161122, 1.775096008129891, -4.170013144786404],
+    "rotation": [-2.8933616975984675, 0.176041937448621, 3.0972325763413684],
+    "target": [-0.006900584579821118, 0.6866327770250192, 0.12443239068707793]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-0.9980127718086065, 1.474137037843225, 3.2432903055300737],
+    "rotation": [-0.2096428845668751, -0.2787917956332852, -0.058486074310073875],
+    "target": [0.011278829003434214, 0.7403493009193666, -0.2054605736948877]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/27.%20Plate%20Loaded%20Chest%20Press/Plate%20Loaded%20Chest%20Press_250x250_2026-03-08T19-09-41.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Chest Press is a compound upper body exercise performed on a plate-loaded machine that targets the pectoralis major, anterior deltoids, and triceps.\n\nUnlike cable or selectorized machines, plate-loaded machines offer a more free-weight-like feel with a guided movement path, combining the stability of a machine with natural pressing mechanics.\n\nIt is an excellent exercise for building chest size and pressing strength, particularly for lifters who want heavy loading without the need for a spotter."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the chest with heavy, progressive loading\n- Guided path reduces need for stabilization, allowing focus on the chest\n- No spotter required for heavy sets\n- Plate-loaded design provides a more natural resistance curve\n- Reduces injury risk compared to free-weight pressing\n- Easy to perform drop sets by quickly removing plates\n- Great for building chest thickness and pressing power\n- Suitable for all experience levels"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal and Clavicular Heads)\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the seat and adjust the height so your upper chest is just above the horizontal handles.\n2. Grasp the handles using a wide overhand grip.\n3. Place your elbows out to the sides, just below your shoulders.\n4. Press your back firmly into the back pad.\n5. Plant your feet flat on the floor for stability.\n6. Retract your shoulder blades slightly."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Press the handles forward by extending your arms, squeezing your chest.\n3. Fully extend your arms without locking out the elbows.\n4. Pause briefly at the top and squeeze your chest muscles.\n5. Return the weight in a controlled manner until your chest muscles are slightly stretched.\n6. Do not let the weight stack touch down between reps to keep tension on the chest.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Seat too high or too low, shifting emphasis away from the chest\n- Flaring elbows too high, increasing shoulder stress\n- Not pressing through the full range of motion\n- Letting the weight slam back at the bottom\n- Arching the back excessively off the pad\n- Using too much weight with poor form\n- Not retracting shoulder blades before pressing\n- Rushing through reps without controlled negatives"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Chest Press Machine\n- Weight Plates (Olympic size)\n- Optional: Wrist Wraps for heavy sets\n- Recommended: Non-slip footwear"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so the handles align with your mid-to-upper chest.\n2. Load equal weight on both sides of the machine.\n3. Ensure all pins and safety mechanisms are secured.\n4. Test the range of motion with no weight before loading.\n5. If the machine has handle angle adjustments, set to a comfortable pressing angle."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Firmly pressed against the back pad.\n2. Shoulders: Slightly retracted, pressed into the pad.\n3. Feet: Flat on the floor, providing a stable base.\n4. Grip: Wide overhand grip on the handles.\n5. Elbows: Out to the sides, just below shoulder height.\n6. Head: Resting against the pad in a neutral position.\n7. Core: Engaged throughout the movement.\n8. Chest: Upper chest aligned with the handles."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "flat_dumbbell_chest_press", "incline_barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Flat Barbell Bench Press: Free-weight compound chest movement\n- Flat Dumbbell Chest Press: Independent arm pressing\n- Cable Chest Press: Constant tension throughout the movement\n- Selectorized Chest Press Machine: Pin-loaded alternative\n- Push-Ups: Bodyweight chest pressing movement\n- Incline Plate Loaded Press: Upper chest emphasis"
+        },
+        {
+          "heading": "Chest Press Variations",
+          "content": "Standard Plate Loaded Press: Classic flat pressing movement\nWide Grip Press: Greater chest stretch and activation\nNarrow Grip Press: More triceps involvement\nSingle-Arm Press: Unilateral pressing for imbalance correction\nSlow Tempo Press: Controlled eccentric for time under tension\nPause Press: Hold at the bottom for increased difficulty\nDrop Set Press: Remove plates progressively for muscle exhaustion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Adjust seat height, reduce range of motion, or lower elbow position\nWrist Pain: Use wrist wraps, try a neutral grip if available\nElbow Pain: Reduce weight, avoid full lockout\nNo Plate Loaded Machine: Use selectorized chest press or barbell bench press\nLimited Plates: Use dumbbells or bodyweight push-ups\nLearning Stage: Start with light weight, focus on feeling the chest work\nMobility Issues: Adjust seat and handle position for comfortable range"
+        }
+      ]
+    }
+  }
+}

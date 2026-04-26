@@ -1,0 +1,105 @@
+{
+  "exerciseId": "heels_elevated_rdl",
+  "modelUrlSQ": "",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/235.%20Heels%20Elevated%20RDL/235.%20Heels%20Elevated%20RDL%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/235.%20Heels%20Elevated%20RDL/235.%20Heels%20Elevated%20RDL%20HD_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/235.%20Heels%20Elevated%20RDL/235.%20Heels%20Elevated%20RDL%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Heels Elevated Romanian Deadlift (RDL) is a hip-hinge variation performed with the heels elevated on a small platform or weight plates.\n\nElevating the heels increases ankle dorsiflexion, allowing for a deeper hip hinge and more stretch on the hamstrings.\n\nThis variation is excellent for those with limited hamstring flexibility or anyone looking to emphasize posterior chain loading in the stretched position."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increases hamstring stretch and range of motion\n- Emphasizes eccentric loading of the posterior chain\n- Improves hip hinge mechanics\n- Helps those with tight hamstrings or limited mobility\n- Builds glute and hamstring strength\n- Enhances mind-muscle connection with the posterior chain\n- Reduces stress on the lower back compared to conventional deadlifts\n- Better knee tracking and stability during the hinge\n- Unilateral grip demand develops forearms and grip strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings, Gluteus Maximus\n\nSecondary: Erector Spinae, Adductor Magnus, Latissimus Dorsi, Trapezius, Core, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a small elevated surface (weight plates, slant board, or platform) on the floor.\n2. Position your heels on the elevated surface with toes on the ground.\n3. Stand with feet hip-width apart.\n4. Hold a dumbbell in each hand with a neutral grip (palms facing your body).\n5. Keep a slight bend in your knees - do not lock them out.\n6. Engage your core and retract your shoulder blades.\n7. Maintain a neutral spine with chest up."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Initiate the movement by hinging at the hips, pushing them backward.\n3. Keep the dumbbells close to your legs as you lower them.\n4. Maintain the slight knee bend throughout the movement.\n5. Lower until you feel a strong stretch in your hamstrings.\n6. Keep your back flat and chest up throughout the descent.\n7. Drive through the platform and squeeze your glutes to return to standing.\n8. Lock out at the top by fully extending hips - avoid hyperextending the lower back.\n9. Repeat for the desired number of repetitions with a controlled tempo."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower or upper back\n- Turning the movement into a squat (excessive knee bend)\n- Bouncing at the bottom of the rep\n- Dumbbells drifting away from the legs\n- Hyperextending the lower back at the top\n- Heels slipping off the elevated surface\n- Looking up and hyperextending the neck\n- Insufficient hip hinge - bending at the waist instead\n- Using too much weight and compromising form\n- Unstable or uneven heel platform"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight for your strength level)\n- Elevated Surface (small weight plates, slant board, or wedge)\n- Flat, stable floor surface\n- Optional: Lifting Straps (for grip assistance with heavier weights)\n- Optional: Flat-soled shoes or lifting shoes\n- Optional: Lifting Belt (for heavy sets)\n- Recommended: Heel elevation of around 1-2 inches (2.5-5 cm)"
+        },
+        {
+          "heading": "Heel Elevation Setup",
+          "content": "1. Use stable weight plates (2.5 lb / 5 lb / or bumper plates).\n2. Ensure heels are fully supported on the elevated surface.\n3. Toes should remain on the ground or a flat surface.\n4. Platform should be wide enough for full heel contact.\n5. Avoid unstable surfaces that can tip or shift.\n6. Elevation of 1-2 inches is ideal for most lifters.\n7. Ensure the surface is non-slip for safety.\n8. Test balance with bodyweight before adding load."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, heels elevated.\n2. Grip: Neutral (palms facing thighs), firm but not crushing.\n3. Knees: Slight, consistent bend throughout the movement.\n4. Hips: Primary hinge point - push them back, not down.\n5. Spine: Neutral from head to tailbone.\n6. Shoulders: Pulled back and down, packed into sockets.\n7. Core: Braced throughout the entire movement.\n8. Eyes: Focused 6-10 feet in front of you on the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_deadlift", "sumo_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Romanian Deadlift: Standard flat-footed version\n- Barbell Romanian Deadlift: Heavier loading potential with barbell\n- Deficit RDL: Standing on platform for increased range of motion\n- Single Leg Dumbbell RDL: Unilateral variation for balance and stability\n- Good Mornings: Hip hinge with bar on back\n- Cable Pull-Through: Similar pattern with constant tension"
+        },
+        {
+          "heading": "RDL Variations",
+          "content": "Heels Elevated RDL: Heel elevation for deeper stretch\nDumbbell RDL: Standard bilateral version\nDeficit RDL: Toes elevated for increased range of motion\nSingle Leg RDL: Unilateral stability challenge\nPaused RDL: Pause at the bottom for increased time under tension\nTempo RDL: Slow eccentric for hypertrophy and control\nB-Stance RDL: Staggered stance, partial unilateral loading"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce weight, focus on hip hinge mechanics, consider shorter range of motion\nLimited Hamstring Flexibility: Start with minimal heel elevation, work on mobility separately\nGrip Issues: Use lifting straps or reduce weight\nKnee Pain: Ensure minimal knee bend, avoid turning it into a squat\nBalance Issues: Use a wider, more stable platform or perform flat-footed\nNo Dumbbells: Substitute with kettlebells, barbell, or resistance bands\nBeginner Stage: Master the standard RDL pattern before adding heel elevation"
+        }
+      ]
+    }
+  }
+}

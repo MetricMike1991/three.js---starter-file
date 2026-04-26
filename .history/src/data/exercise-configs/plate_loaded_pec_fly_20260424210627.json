@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_pec_fly",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/250.%20Plate%20Loaded%20Pec%20Fly/250.%20Plate%20Loaded%20Pec%20Fly%20SD_compressed.glb",
+  "modelUrlHQ": "",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/250.%20Plate%20Loaded%20Pec%20Fly/250.%20Plate%20Loaded%20Pec%20Fly%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/250.%20Plate%20Loaded%20Pec%20Fly/250.%20Plate%20Loaded%20Pec%20Fly%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Pec Fly is a chest isolation exercise performed on a plate-loaded machine designed to replicate the horizontal adduction movement of the pectoral muscles.\n\nBy guiding the arms through a fixed arc, the machine eliminates the need for stabilisation and allows you to target the chest with precision and safety.\n\nThis exercise is commonly used to build chest definition, develop the inner chest, and provide a strong muscle-building stimulus without the balance demands of free weight flyes. Plate-loaded versions offer smooth resistance profiles that can be adjusted quickly using standard weight plates."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the chest muscles with minimal secondary involvement\n- Safer than dumbbell flyes (no risk of dropping weights)\n- Easy to learn and perform with proper technique\n- Provides consistent resistance through the arc of motion\n- Great for building chest definition and shape\n- Excellent finisher after compound pressing movements\n- Machine guided path reduces injury risk\n- Allows for high-rep pump-focused training\n- Scalable resistance suitable for all fitness levels\n- Targets the sternal (middle) fibres of the chest\n- Reduces shoulder strain compared to free-weight flyes"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal Head)\n\nSecondary: Pectoralis Minor, Anterior Deltoids, Serratus Anterior, Biceps (stabilisers)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Load the desired weight plates onto the machine.\n2. Adjust the seat height so your arms align with the machine's handles at shoulder level.\n3. Sit down with your back flat against the back pad.\n4. Place your feet flat on the floor, hip-width apart.\n5. Grasp the handles with a neutral grip, palms facing each other.\n6. Chest up, shoulders pulled back and down.\n7. Core lightly engaged.\n8. Maintain a slight bend in the elbows throughout the movement."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Begin with arms extended out to the sides at shoulder level, slightly in front of the body.\n2. Maintain a slight bend at the elbows (avoid locking out).\n3. Exhale as you bring your arms together in a smooth arc in front of your chest.\n4. Squeeze your chest at the point of peak contraction when your hands meet or nearly meet.\n5. Hold the contraction briefly for 1 second.\n6. Inhale as you slowly return your arms to the starting position.\n7. Maintain the slight elbow bend throughout the entire range of motion.\n8. Keep the movement controlled - avoid using momentum.\n9. Perform for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and relying on momentum\n- Straightening the elbows (turns it into a press)\n- Letting the shoulders shrug up towards the ears\n- Arching the lower back off the pad\n- Letting the arms go too far back (hyperextending the shoulder)\n- Rushing through the rep without controlling the eccentric\n- Not squeezing the chest at peak contraction\n- Poor seat height adjustment (arms not aligned with handles)\n- Lifting the feet off the floor\n- Holding the breath throughout the rep"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Pec Fly Machine\n- Weight Plates\n- Comfortable athletic clothing\n- Supportive footwear\n- Optional: Wrist Wraps for stability\n- Optional: Lifting Gloves for grip comfort"
+        },
+        {
+          "heading": "Setting the Machine",
+          "content": "1. Seat Height: Arms should be parallel to the floor when gripping the handles.\n2. Start Position (if adjustable): Arms slightly behind the torso without overstretching.\n3. Weight: Start light to establish form before adding resistance.\n4. Beginner: 3 sets of 12-15 reps at moderate weight.\n5. Intermediate: 3-4 sets of 10-12 reps.\n6. Advanced: 4 sets of 8-10 reps with heavier weight.\n7. Hypertrophy Focus: 3-4 sets of 10-15 reps with controlled tempo.\n8. Rest: 60-90 seconds between sets."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat against the back pad throughout the movement.\n2. Seat Height: Arms aligned horizontally with the handles.\n3. Feet: Flat on the floor for stability.\n4. Grip: Neutral grip, palms facing each other.\n5. Elbows: Maintain a slight, consistent bend throughout.\n6. Shoulders: Pulled back and down, away from the ears.\n7. Chest: Lifted and proud throughout the movement.\n8. Core: Lightly braced for trunk stability.\n9. Head: Resting against the headrest or in neutral position."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bench_press", "barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Chest Fly: Standing variation with cables\n- Dumbbell Fly: Free weight variation on a bench\n- Pec Deck Machine: Similar machine with forearm pads\n- Selectorised Pec Fly: Pin-loaded machine version\n- Incline Dumbbell Fly: Upper chest emphasis\n- Decline Cable Fly: Lower chest emphasis\n- Standing Cable Crossover: Cable alternative for chest isolation"
+        },
+        {
+          "heading": "Plate Loaded Pec Fly Variations",
+          "content": "Standard Plate Loaded Pec Fly: Standard seated execution\nSingle-Arm Pec Fly: One arm at a time for unilateral focus\nPartial Range Fly: Focus on stretch or contraction portion\nPause Fly: 2-3 second pause at peak contraction\nTempo Fly: Slow eccentric (3-5 seconds) for time under tension\nDrop Set Fly: Reducing weight for extended sets\n1.5 Rep Fly: Full rep + half rep counts as one rep\nIsometric Hold: Hold peak contraction for 20-30 seconds"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion or skip if pain persists\nRotator Cuff Issues: Keep elbows slightly higher to reduce shoulder strain\nWrist Pain: Use neutral grip handles if available\nElbow Pain: Maintain a more pronounced bend in the elbows\nLower Back Pain: Ensure full back pad contact and avoid arching\nBeginner: Start with very light weight and focus on feeling the chest working\nPost-Injury: Progress slowly with reduced range and weight\nOlder Lifters: Use moderate weight with higher reps and longer rest periods"
+        }
+      ]
+    }
+  }
+}

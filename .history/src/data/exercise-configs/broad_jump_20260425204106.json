@@ -1,0 +1,112 @@
+{
+  "exerciseId": "broad_jump",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/291.%20Broad%20Jump/291.%20Broad%20Jump%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/291.%20Broad%20Jump/291.%20Broad%20Jump%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-3.4942628333993975, 2.1404052797857185, 2.5099110287733946],
+    "rotation": [-0.5798731784006584, -0.9245654079036337, -0.4818111206836439],
+    "target": [0.5855506941212039, 0.45429897387107454, -0.0643473599187689]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-3.4942616762441556, 2.1404035234667003, 2.5099140130548347],
+    "rotation": [-0.5798721696074868, -0.9245650318740477, -0.48181010044935074],
+    "target": [0.5855506941212039, 0.45429897387107454, -0.0643473599187689]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/291.%20Broad%20Jump/Broad%20Jump_250x250_2026-04-25T19-39-29.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Broad Jump is an explosive lower body plyometric exercise that develops horizontal power.\n\nThe athlete loads into a quarter squat, swings the arms back, then explodes forward to cover as much horizontal distance as possible before landing softly on both feet.\n\nIt is a foundational athletic test and training tool for sprinting, jumping, and field sport performance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops horizontal explosive power\n- Trains triple extension of the hips, knees, and ankles\n- Improves sprint acceleration mechanics\n- Builds reactive strength and elasticity\n- Reinforces soft, balanced landings\n- Highly transferable to field and court sports\n- Requires no equipment beyond open space"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Gluteus Maximus, Hamstrings\n\nSecondary: Calves, Hip Flexors, Core, Shoulders"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Find a flat, non-slip surface with several metres of clear space ahead.\n2. Mark a starting line on the ground.\n3. Wear supportive athletic footwear."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart at the starting line.\n2. Keep your knees slightly bent and ready to jump forward.\n3. Brace your core and look forward."
+        },
+        {
+          "heading": "Load and Launch",
+          "content": "1. Lower into a quarter squat position.\n2. Swing your arms backward to generate momentum.\n3. Explode forward, swinging your arms forward as you jump as far as you can, pushing off with both feet."
+        },
+        {
+          "heading": "Land and Reset",
+          "content": "1. Land softly on both feet with your knees bent to absorb the impact.\n2. Stabilise your landing before standing up.\n3. Walk back to the starting line and reset for the next rep."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Landing with stiff legs and no knee bend\n- Letting the knees collapse inward on landing\n- Failing to use the arm swing for momentum\n- Landing on the heels instead of the full foot\n- Performing reps when fatigued, leading to poor mechanics\n- Jumping vertically instead of horizontally\n- Skipping the warm-up before plyometrics"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Flat, non-slip training surface\n- Optional measuring tape or distance markers\n- Supportive athletic footwear"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Feet shoulder-width apart at the line.\n2. Knees soft, hips loaded.\n3. Arms ready to drive through the jump."
+        },
+        {
+          "heading": "Movement Setup",
+          "content": "1. Quarter squat depth on the load.\n2. Powerful triple extension on take-off.\n3. Soft two-foot landing with the feet underneath the hips."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Always warm up the lower body before plyometrics\n- Stop the session if landings become sloppy\n- Avoid wet or slippery surfaces\n- Limit volume to maintain quality of each rep\n- Stop immediately if you feel sharp knee or ankle pain"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other lower body plyometric exercises that develop explosive power."
+        }
+      ],
+      "suggestedExercises": [
+        "box_jump",
+        "squat_jump"
+      ]
+    }
+  }
+}

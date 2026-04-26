@@ -1,0 +1,105 @@
+{
+  "exerciseId": "smith_machine_incline_bench_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/118.%20Smith%20Machine%20Incline%20Bench%20Press/118.%20Smith%20Machine%20Incline%20Bench%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/118.%20Smith%20Machine%20Incline%20Bench%20Press/118.%20Smith%20Machine%20Incline%20Bench%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/118.%20Smith%20Machine%20Incline%20Bench%20Press/118.%20Smith%20Machine%20Incline%20Bench%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/118.%20Smith%20Machine%20Incline%20Bench%20Press/118.%20Smith%20Machine%20Incline%20Bench%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.6420054141988243, 2.0104012016766752, 3.2225882370038708],
+    "rotation": [-0.4219728639980052, -0.4852032778097822, -0.20639902695200507],
+    "target": [0.017500752651088698, 0.7212994962685019, 0.35115998519001645]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.8595544914937365, 2.542360364568569, 3.0230051227263983],
+    "rotation": [-0.592813383853893, -0.5250542162752894, -0.32564641755877444],
+    "target": [0.021742030048830935, 0.7279506538137392, 0.32955588917434847]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Incline Bench Press is a compound upper body exercise that primarily targets the upper chest (clavicular head of the pectoralis major).\n\nUsing the Smith Machine provides a fixed, guided bar path which allows the lifter to focus on pushing effort without worrying about stabilising the bar laterally.\n\nThe incline angle shifts emphasis from the mid-chest to the upper chest, making it an excellent exercise for building a well-rounded chest."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the upper chest for balanced chest development\n- The Smith Machine provides a stable, guided bar path for safety\n- Easier to self-spot and rack/unrack without a training partner\n- Allows for heavier loading with reduced stabilisation demands\n- Great for muscle isolation and mind-muscle connection\n- Ideal for drop sets and training to failure safely\n- Reduces risk of the bar drifting out of the correct path"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Pectoralis Major (Chest)\n\nSecondary: Anterior Deltoids (Front Shoulders), Triceps Brachii, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an adjustable bench to a slight incline (approximately 30-45 degrees).\n2. Position the bench inside the Smith Machine so the bar aligns with your upper chest.\n3. Lie back on the bench with your feet flat on the floor.\n4. Grip the bar just outside shoulder width with an overhand grip.\n5. Keep your shoulder blades retracted and pressed into the bench.\n6. Maintain a slight natural arch in your lower back."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Unrack the bar by rotating the safety hooks and press the bar straight up until your arms are locked out.\n2. Lower the bar slowly and under control until it touches your upper chest, following the path guided by the Smith Machine.\n3. Pause briefly at the bottom with the bar lightly touching your chest.\n4. Press the bar back up explosively to the starting position.\n5. Repeat for the desired number of reps.\n6. Rerack the weight in the original start position when you have completed the set by rotating the safety hooks back into place."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring elbows out too wide, increasing shoulder strain\n- Bouncing the bar off the chest instead of controlling the descent\n- Setting the incline too steep, turning it into a shoulder press\n- Not retracting the shoulder blades, reducing chest activation\n- Lifting the hips off the bench during heavy reps\n- Gripping the bar too narrow or too wide\n- Not aligning the bench correctly under the bar path"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith Machine\n- Adjustable Incline Bench\n- Weight Plates\n- Optional: Wrist Wraps for heavy loads"
+        },
+        {
+          "heading": "Bench and Bar Setup",
+          "content": "1. Set the adjustable bench to a 30-45 degree incline.\n2. Position the bench centrally inside the Smith Machine.\n3. Lie on the bench and check that the bar path aligns with your upper chest.\n4. Adjust the bench position forward or backward as needed.\n5. Set the safety stops at an appropriate height just below chest level.\n6. Load the desired weight plates onto the bar evenly on both sides."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Just outside shoulder width, overhand grip.\n2. Shoulders: Blades retracted and pressed into the bench.\n3. Back: Slight natural arch, maintaining contact with the bench.\n4. Feet: Flat on the floor for a stable base.\n5. Head: Resting on the bench, eyes under the bar.\n6. Elbows: Tucked at roughly 45 degrees to the torso."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Incline Bench Press: Free weight version for greater stabiliser activation\n- Dumbbell Incline Press: Allows greater range of motion and independent arm work\n- Incline Cable Flye: Isolation movement for the upper chest\n- Machine Incline Press: Plate-loaded or selectorised machine alternative\n- Incline Push-Up: Bodyweight option targeting the upper chest"
+        },
+        {
+          "heading": "Smith Machine Chest Variations",
+          "content": "Smith Machine Flat Bench Press: Targets the mid-chest\nSmith Machine Incline Bench Press: Targets the upper chest\nSmith Machine Decline Bench Press: Targets the lower chest\nSmith Machine Close-Grip Bench Press: Shifts emphasis to the triceps\nSmith Machine Floor Press: Limits range of motion for lockout strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the incline angle and tuck elbows more\nWrist Discomfort: Use wrist wraps or adjust grip width\nNo Smith Machine: Use a barbell or dumbbells on an incline bench\nLower Back Issues: Keep feet elevated on the bench to flatten the spine\nNo Adjustable Bench: Use a fixed incline bench if available\nLearning Stage: Start with light weight to master the bar path and form"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "pike_walk",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/248.%20Pike%20Walk/248.%20Pike%20Walk%20SD_compressed.glb",
+  "modelUrlHQ": "",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/248.%20Pike%20Walk/248.%20Pike%20Walk%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/248.%20Pike%20Walk/248.%20Pike%20Walk%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0.024, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.4400627231694556, 1.4352335816493824, 2.464443782698053],
+    "rotation": [-0.3658070839604555, -0.6705955552282401, -0.23369635535493613],
+    "target": [-0.1176457754260009, 0.3879433697236225, -0.26965792511076603]
+  },
+  "modelHQ": {
+    "position": [0, 0.024, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.4400627231694556, 1.4352335816493824, 2.464443782698053],
+    "rotation": [-0.3658070839604555, -0.6705955552282401, -0.23369635535493613],
+    "target": [-0.1176457754260009, 0.3879433697236225, -0.26965792511076603]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/248.%20Pike%20Walk/Pike%20Walk_250x250_2026-04-24T10-31-14.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Pike Walk, also known as Inchworm or Walkout, is a dynamic bodyweight movement that builds core strength, hamstring flexibility, and shoulder stability in one fluid pattern.\n\nBy alternating between a hinged toe-touch position and a full plank, the Pike Walk simultaneously stretches the posterior chain while challenging the core and upper body.\n\nIt is commonly used as a dynamic warm-up, mobility drill, and low-impact conditioning exercise in bodyweight training, yoga-flow-style workouts, and athletic preparation routines."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strengthens the core through the plank phase\n- Improves hamstring and calf flexibility\n- Enhances shoulder stability and scapular control\n- Builds full-body coordination\n- Excellent dynamic warm-up for lower and upper body\n- Improves mobility in the posterior chain\n- Strengthens the wrists and forearms\n- No equipment required\n- Scales easily for all fitness levels\n- Low impact on joints\n- Develops movement quality and body awareness"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Core (Rectus Abdominis, Obliques), Shoulders, Hamstrings\n\nSecondary: Chest, Triceps, Calves, Hip Flexors, Lower Back, Wrists"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand tall with feet hip-width apart.\n2. Arms relaxed at your sides.\n3. Chest up, shoulders back, core engaged.\n4. Eyes focused forward.\n5. Clear floor space in front of you for walking out to plank.\n6. Ensure a non-slip surface - barefoot or supportive footwear.\n7. Breathe steadily in preparation."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Hinge at the hips and bend forward, reaching your hands to the ground in front of your feet.\n2. Keep your legs as straight as possible - slight knee bend is acceptable if hamstrings are tight.\n3. Place both hands flat on the floor.\n4. Begin walking your hands forward one at a time, keeping your legs stationary.\n5. Continue walking forward until you reach a full high plank position.\n6. Hold the plank briefly - straight line from head to heels, core braced.\n7. Walk your feet forward one step at a time towards your hands, keeping your legs straight.\n8. Continue until you return to the hinged toe-touch position.\n9. Stand tall and repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bending the knees excessively during the walk-out or walk-in\n- Sagging hips in the plank position\n- Piking hips too high during the plank phase\n- Rushing the movement instead of controlled walking steps\n- Rounding the back when hinging forward\n- Holding breath through the movement\n- Collapsing the shoulders or shrugging towards the ears\n- Not fully extending to a proper plank position\n- Moving the feet instead of walking the hands out (and vice versa)\n- Letting the lower back overarch in the plank"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required\n- Non-slip flat surface or yoga mat\n- Barefoot or supportive athletic footwear\n- Optional: Yoga mat for wrist and knee cushioning\n- Optional: Push-up handles to reduce wrist strain\n- Optional: Timer for set-based or interval work"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Warm-Up: 5-8 slow reps before a workout.\n2. Beginner: 2-3 sets of 5 reps.\n3. Intermediate: 3-4 sets of 8-10 reps.\n4. Advanced: 3-4 sets of 12-15 reps.\n5. Flow Work: Combine with push-ups or shoulder taps at the plank.\n6. Mobility Circuit: Include with other dynamic stretches.\n7. Rest: 30-60 seconds between sets.\n8. Tempo: Slow and controlled for maximum mobility and control benefit."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Posture: Tall and upright at the start of each rep.\n2. Hinge: From the hips, not the lower back.\n3. Legs: As straight as possible - slight knee bend acceptable.\n4. Hands: Shoulder-width apart on the floor.\n5. Plank: Straight line from head to heels - no sagging or piking.\n6. Core: Braced throughout the movement.\n7. Shoulders: Pulled away from the ears, engaged.\n8. Feet: Small, controlled steps during the walk-in phase.\n9. Breathing: Exhale on effort, inhale during the transitions."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["burpee", "jumping_jacks"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Inchworm: Often used interchangeably with Pike Walk\n- Walkout to Push-Up: Adds a push-up at the plank position\n- Downward Dog to Plank: Yoga-inspired mobility alternative\n- Bear Crawl: Ground-based full-body mobility\n- World's Greatest Stretch: Dynamic multi-muscle stretch\n- Cat-Cow: Spinal mobility alternative\n- Plank Shoulder Taps: Static plank with added core challenge"
+        },
+        {
+          "heading": "Pike Walk Variations",
+          "content": "Standard Pike Walk: Walk out and walk back without extras\nPike Walk to Push-Up: Add a push-up at the plank position\nPike Walk to Plank Hold: Hold the plank for 5-10 seconds each rep\nPike Walk with Shoulder Tap: Alternate shoulder taps at the plank\nPike Walk with Knee Drive: Drive a knee towards chest at the plank\nFast Pike Walk: Increased pace for cardio component\nOne-Arm Pike Walk: Walk out on a single arm at a time (advanced)\nWeighted Pike Walk: Wearing a weighted vest for added resistance"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Tight Hamstrings: Allow a slight knee bend during the hinge and walk-in\nWrist Pain: Use push-up handles or fists to maintain neutral wrist position\nShoulder Issues: Reduce the depth of the plank or skip the plank hold\nLower Back Pain: Focus on strong core bracing and avoid hyperextension\nBalance Concerns: Perform against a raised surface (hands on a bench)\nBeginner: Bend the knees as needed to reach the floor comfortably\nReturning from Injury: Keep movements small and controlled - build range gradually\nLimited Floor Space: Perform in place by moving slower and smaller"
+        }
+      ]
+    }
+  }
+}

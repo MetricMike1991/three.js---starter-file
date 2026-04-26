@@ -1,0 +1,105 @@
+{
+  "exerciseId": "ski_erg",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/195.%20Ski%20Erg/195.%20Ski%20Erg%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/195.%20Ski%20Erg/195.%20Ski%20Erg%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/195.%20Ski%20Erg/195.%20Ski%20Erg%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/195.%20Ski%20Erg/195.%20Ski%20Erg%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.00603875954671, 1.1990584656067007, 1.7803772965063984],
+    "rotation": [-0.1752683445958832, 0.7786715010571326, 0.12373772504803345],
+    "target": [-0.041224792149059344, 0.8372370035572158, -0.26282635722000275]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.473332653273378, 1.621302246522292, 2.2240753382927845],
+    "rotation": [-0.31302358937398467, 0.7628670078902425, 0.22003023439051642],
+    "target": [-0.01723720299889829, 0.8190016352158153, -0.2547272405373026]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Ski Erg is a full-body cardiovascular machine that simulates the motion of cross-country skiing using a double-pole technique.\n\nIt combines upper body pulling, core bracing, and leg drive into a single rhythmic movement, providing an intense cardiovascular and muscular endurance challenge.\n\nThe Ski Erg is low-impact on the joints and is popular for conditioning work, warm-ups, and CrossFit-style training."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent full-body cardiovascular workout\n- Low impact on joints\n- Builds upper body pulling endurance\n- Strong core engagement\n- Trains both power and steady-state endurance\n- Adjustable resistance (damper setting)\n- Great for interval training and HIIT\n- Improves posture and shoulder stability"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Core, Triceps\n\nSecondary: Shoulders, Chest, Quads, Glutes, Hamstrings, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Position yourself in front of the Ski Erg machine.\n2. Ensure your feet are hip-width apart.\n3. Grasp the handles with both hands using an overhand grip (palms facing down).\n4. Extend your arms overhead to start.\n5. Stand upright with your chest lifted.\n6. Engage your core.\n7. Set the damper to your desired resistance level."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Initiate the skiing motion by pushing the handles downward.\n2. Simultaneously bend at your hips and knees.\n3. Drive the handles past your hips with a strong triceps extension.\n4. Finish with a brief core crunch.\n5. Let the handles rise back up smoothly.\n6. Extend your hips and knees to return to the tall start position.\n7. Repeat in a fluid, rhythmic motion.\n8. Maintain a steady pace and full range of motion."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using only the arms and not engaging the core or legs\n- Bending the arms too early in the pull\n- Squatting too deeply instead of a slight hip hinge\n- Rounding the lower back at the bottom\n- Jerky, uneven tempo\n- Gripping the handles too tightly\n- Not returning the handles fully overhead\n- Setting the damper too high before you have technique"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Ski Erg Machine\n- Training shoes with good grip\n- Optional: Gloves for hand comfort\n- Optional: Heart Rate Monitor\n- Comfortable training attire\n- Water bottle for longer sessions"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart in front of the machine.\n2. Grip: Overhand on the handles.\n3. Arms: Fully extended overhead at the start.\n4. Chest: Lifted, shoulders back.\n5. Back: Neutral spine.\n6. Hips: Slight hinge during the pull.\n7. Knees: Softly bent, flexing with the movement.\n8. Core: Braced throughout."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with a low damper setting (e.g., 3-5) and focus on technique.\n2. Master the rhythm: arms, core, legs — all working together.\n3. Aim for full range of motion every rep.\n4. Begin with 1-2 minute intervals and build up.\n5. Try 500m sprints to benchmark progress.\n6. Use longer steady-state sessions for endurance work.\n7. Gradually raise the damper as you become stronger.\n8. Track pace (500m split) to measure improvement."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["battlerope", "prowler_sled_push"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Rowing Machine: Similar full-body cardio\n- Battle Ropes: Upper body conditioning alternative\n- Prowler Sled Push: Full-body power conditioning\n- Assault Bike: Full-body cardio alternative\n- Kettlebell Swing: Hip-hinge conditioning\n- Cable Straight Arm Pulldown: Trains similar lat action"
+        },
+        {
+          "heading": "Training Variations",
+          "content": "Steady State: 10-30 minute continuous sessions\nInterval Training: 30s on / 30s off work-rest cycles\nSprint Efforts: 100m or 200m all-out efforts\nDistance Pieces: 500m, 1000m, 2000m benchmarks\nTabata: 20s on / 10s off for 8 rounds\nLow Damper Speed Work: High-pace technique focus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Issues: Reduce range of motion and lighten damper\nLower Back Pain: Minimize hip hinge and stay more upright\nKnee Issues: Keep leg flexion minimal\nLimited Mobility: Shorten the pull and focus on arms\nNo Ski Erg: Substitute a rowing machine or assault bike\nBeginner: Start with 1-minute intervals and low damper"
+        }
+      ]
+    }
+  }
+}

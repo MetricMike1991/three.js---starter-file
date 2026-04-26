@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_chest_supported_rows",
+  "modelUrlSQ": "",
+  "modelUrlHQ": "",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Chest Supported Row is a horizontal pulling exercise performed face-down on an incline bench with a pair of dumbbells.\n\nBy supporting the chest against the bench, this exercise eliminates the need for lower back stabilisation, allowing you to isolate the upper and mid-back muscles with strict form.\n\nIt's an excellent choice for building a thick, strong back while minimising risk to the lower back and teaching correct scapular retraction mechanics."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the upper and mid back muscles effectively\n- Removes lower back strain from the rowing pattern\n- Reinforces strict scapular retraction\n- Allows for independent arm movement to address imbalances\n- Builds back thickness and improves posture\n- Reduces momentum and cheating during reps\n- Great accessory for deadlifts, rows, and pulling movements\n- Safer option for lifters with lower back issues"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius, Rear Deltoids\n\nSecondary: Biceps, Brachialis, Lower Trapezius, Forearms and Grip, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an incline bench to a comfortable angle, typically around 45 degrees.\n2. Place a pair of dumbbells on the floor near the head of the bench.\n3. Position yourself face-down on the incline bench with your chest against the top of the bench.\n4. Plant your feet firmly on the floor for stability.\n5. Allow your arms to hang down, holding the dumbbells with an overhand grip.\n6. Keep your head in a neutral position and core braced."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core muscles and keep your chest pressed into the bench.\n2. Squeeze your shoulder blades together as you lift the dumbbells up toward your chest.\n3. Drive the elbows back and slightly out, leading with the elbows rather than the hands.\n4. Pause briefly at the top with the shoulder blades fully retracted.\n5. Slowly lower the dumbbells back down to the starting position, fully extending your arms.\n6. Maintain control throughout the entire range of motion.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the chest off the bench to create momentum\n- Shrugging the shoulders up toward the ears\n- Pulling with the biceps instead of the back\n- Rowing the dumbbells too high or too low\n- Not fully extending the arms at the bottom\n- Rushing the reps and losing control on the descent\n- Flaring the elbows too wide or tucking them too close\n- Holding the breath throughout the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (weight appropriate for your strength level)\n- Adjustable Incline Bench\n- Non-slip floor surface for foot stability\n- Optional: Lifting Straps for heavier loads\n- Optional: Chalk for grip assistance"
+        },
+        {
+          "heading": "Finding Your Bench Position",
+          "content": "1. Adjust the bench to roughly 30-45 degree incline.\n2. Place the dumbbells on the floor near the head of the bench.\n3. Lie face down with your chest fully supported on the pad.\n4. Ensure your feet can reach the ground for stability.\n5. Grab the dumbbells with a neutral or overhand grip.\n6. Let your arms hang fully extended before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Chest: Fully pressed into the bench pad.\n2. Feet: Firmly planted on the floor for stability.\n3. Grip: Overhand or neutral grip on the dumbbells.\n4. Arms: Fully extended in the starting position.\n5. Shoulders: Relaxed and slightly protracted at the bottom.\n6. Core: Engaged to keep the torso stable.\n7. Head: Neutral, looking slightly down at the bench.\n8. Breathing: Exhale on the pull, inhale on the return."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bentover Barbell Row: Free-standing version for heavier loading\n- Seated Cable Row: Machine alternative with constant tension\n- T-Bar Row: Heavy compound back builder\n- Single-Arm Dumbbell Row: Unilateral free version\n- Inverted Row: Bodyweight rowing alternative\n- Machine Chest Supported Row: Fixed-path equivalent"
+        },
+        {
+          "heading": "Chest Supported Row Variations",
+          "content": "Dumbbell Chest Supported Row: Standard two-arm version\nAlternating Chest Supported Row: Alternate arms each rep\nNeutral Grip Chest Supported Row: Hammer-grip for more lat focus\nWide Grip Chest Supported Row: Emphasises upper back and rear delts\nSingle-Arm Chest Supported Row: Unilateral variation for imbalances\nPaused Chest Supported Row: Pause at the top for scapular control"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Chest-supported row is already ideal for this\nShoulder Issues: Use a neutral grip and control the range of motion\nGrip Issues: Use lifting straps or a more neutral grip\nNo Incline Bench: Use a flat bench with torso supported off the end\nBeginner Level: Start with lighter weight and focus on scapular retraction\nElbow Pain: Use a neutral grip and reduce load"
+        }
+      ]
+    }
+  }
+}

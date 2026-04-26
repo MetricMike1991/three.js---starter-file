@@ -1,0 +1,105 @@
+{
+  "exerciseId": "arnold_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/104.%20%20Arnold%20Press/104.%20%20Arnold%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/104.%20%20Arnold%20Press/104.%20%20Arnold%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/104.%20%20Arnold%20Press/104.%20%20Arnold%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/104.%20%20Arnold%20Press/104.%20%20Arnold%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.0492870952086313, 1.161380110219607, 2.19592294086823],
+    "rotation": [-0.32531636403912784, 0.44728452116865003, 0.14486663324501511],
+    "target": [-0.028549877502714403, 0.4432677107745199, 0.06692134528727489]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [0.9881982549976018, 1.1540680819853697, 1.7881623594193259],
+    "rotation": [-0.31192149042244216, 0.4936223204513658, 0.15160931958423926],
+    "target": [-0.02029856224915468, 0.5788510741116996, 0.004253141415277505]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Arnold Press is a dumbbell shoulder press variation popularised by Arnold Schwarzenegger.\n\nIt incorporates a rotational movement that takes the dumbbells from a palms-facing-in position to a standard overhead press, engaging all three heads of the deltoid throughout the movement.\n\nThis unique pressing pattern provides a greater range of motion than a standard shoulder press, making it highly effective for building well-rounded shoulder development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets all three heads of the deltoid in a single movement\n- Greater range of motion compared to a standard shoulder press\n- The rotational component increases time under tension\n- Builds shoulder stability and coordination\n- Excellent for developing rounded, full shoulder aesthetics\n- Improves pressing strength and overhead mobility\n- Can be performed seated or standing for variation"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Lateral Deltoids, Posterior Deltoids\n\nSecondary: Triceps, Upper Trapezius, Serratus Anterior, Upper Chest"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Take a seated position on a fully upright bench.\n2. Hold a dumbbell in each hand at shoulder height.\n3. Position the dumbbells in front of your face with palms facing towards you.\n4. Keep your elbows directly under the dumbbells.\n5. Sit with your back firmly against the bench pad and feet flat on the floor."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a seated position on a fully upright bench. Start with the dumbbells positioned in front of your face, palms facing into your face and elbows under the dumbbells.\n2. Begin the movement by rotating the dumbbells out to the sides as you press up.\n3. The dumbbells will move out around your shoulders and up over your head into a fully extended arm position.\n4. Squeeze your shoulders at the top of the movement.\n5. Return the weight back to its original starting position following the same path of motion.\n6. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rushing the rotation and not controlling the movement\n- Arching the lower back excessively during the press\n- Using too much weight and sacrificing the rotational range of motion\n- Not rotating the dumbbells fully from start to finish\n- Flaring the elbows too far back at the bottom position\n- Locking out the elbows aggressively at the top\n- Lifting the feet off the floor or shifting on the bench\n- Shrugging the shoulders instead of pressing through the deltoids"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight)\n- Adjustable Bench set to fully upright (90 degrees)\n- Optional: Mirror for form check"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Set the bench to a fully upright position (90 degrees).\n2. Ensure the bench is stable and on a flat surface.\n3. Sit on the bench with your back firmly against the pad.\n4. Select dumbbells that allow you to complete the full rotational movement with control.\n5. Start with a lighter weight to master the rotation pattern before progressing."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Hips pushed back, back flat against the pad.\n2. Feet: Flat on the floor, shoulder-width apart.\n3. Grip: Neutral grip at the start (palms facing you).\n4. Elbows: Under the dumbbells, positioned in front of the body.\n5. Dumbbells: At shoulder height, in front of the face.\n6. Head: Neutral, looking straight ahead.\n7. Core: Engaged throughout the movement for stability."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Shoulder Press: Standard pressing variation without rotation\n- Barbell Overhead Press: Heavier loading potential with a barbell\n- Seated Barbell Shoulder Press: Barbell variation with back support\n- Cable Shoulder Press: Constant tension alternative\n- Lateral Raise: Isolation exercise for the lateral deltoid\n- Front Raise: Isolation exercise for the anterior deltoid"
+        },
+        {
+          "heading": "Arnold Press Variations",
+          "content": "Seated Arnold Press: Standard version on an upright bench\nStanding Arnold Press: Added core stability demand\nSingle Arm Arnold Press: Unilateral pressing for imbalance correction\nIncline Arnold Press: Slight incline to shift emphasis\nAlternating Arnold Press: Press one arm at a time for added focus\nSlow Tempo Arnold Press: Extended time under tension for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion or switch to a neutral grip press\nLower Back Issues: Ensure the bench fully supports your back\nElbow Discomfort: Avoid full lockout at the top\nLimited Mobility: Start with a partial rotation and increase gradually\nNo Dumbbells: Substitute with a barbell or cable shoulder press\nBeginner: Start with light dumbbells to master the rotational pattern"
+        }
+      ]
+    }
+  }
+}

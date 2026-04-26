@@ -1,0 +1,105 @@
+{
+  "exerciseId": "concept_rower",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/196.%20Concept%20Rower/196.%20Concept%20Rower%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/196.%20Concept%20Rower/196.%20Concept%20Rower%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/196.%20Concept%20Rower/196.%20Concept%20Rower%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/196.%20Concept%20Rower/196.%20Concept%20Rower%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Concept 2 Rower is a full-body cardiovascular machine that simulates the action of rowing a boat.\n\nIt combines powerful leg drive, core bracing, and a strong upper body pull into a single rhythmic movement, delivering an elite cardiovascular and muscular endurance workout.\n\nRowing is low-impact on the joints and is a staple tool in CrossFit, endurance training, and general fitness programming."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent full-body cardiovascular workout\n- Low impact on joints\n- Builds endurance in legs, back, and arms\n- Strong core engagement\n- Trains both power and steady-state endurance\n- Measurable via pace (500m split) and distance\n- Great for interval and HIIT training\n- Improves posture and pulling strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Quadriceps, Glutes, Hamstrings\n\nSecondary: Core, Lower Back, Rhomboids, Trapezius, Biceps, Forearms, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the foot straps so they securely hold your feet in place.\n2. Set the damper resistance to your preference (lower for less, higher for more).\n3. Sit on the rower's seat with your feet securely strapped in.\n4. Grab the handlebar with an overhand grip.\n5. Keep your arms fully extended and your back straight.\n6. Bend your knees with your shins vertical.\n7. Lean slightly forward from the hips — this is the catch position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. The Catch: Begin by pushing off with your legs, extending them fully while keeping your arms straight.\n2. The Drive: As your legs straighten, lean back slightly and engage your back muscles.\n3. The Finish: With legs straight and torso leaned back, pull the handlebar toward your lower ribs.\n4. The Recovery: Extend your arms forward first.\n5. Lean forward at the hips.\n6. Bend your knees and slide back to the catch position.\n7. Row continuously, moving smoothly between catch, drive, finish, and recovery.\n8. Maintain a steady pace and rhythm throughout."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rowing with the arms first instead of legs\n- Bending the arms too early in the drive\n- Leaning back excessively at the finish\n- Rounding the lower back\n- Rushing the recovery phase\n- Not fully extending the legs on the drive\n- Gripping the handle too tightly\n- Setting the damper too high before technique is solid"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Concept 2 Rowing Machine\n- Training shoes with good grip\n- Optional: Heart Rate Monitor\n- Optional: Gloves for hand comfort\n- Comfortable training attire\n- Water bottle for longer sessions"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Strapped in firmly, heels can lift slightly.\n2. Grip: Overhand on the handle, thumbs wrapped.\n3. Arms: Fully extended at the catch.\n4. Back: Neutral with a slight forward lean at the catch.\n5. Shins: Vertical at the catch position.\n6. Core: Braced throughout the stroke.\n7. Head: Neutral, eyes forward.\n8. Damper: Typically 3-5 for most users."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with a damper of 3-5 and focus on technique.\n2. Master the sequence: legs, back, arms — then reverse on recovery.\n3. Aim for a 1:2 drive-to-recovery ratio.\n4. Track your 500m split for progress.\n5. Begin with 1-2 minute intervals and build up.\n6. Try 500m or 1000m benchmark pieces.\n7. Use longer steady-state sessions for endurance.\n8. Experiment with damper settings as you advance."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["ski_erg", "assault_bike"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Ski Erg: Upper-body dominant cardio alternative\n- Assault Bike: Full-body cardio alternative\n- Battle Ropes: Upper-body conditioning\n- Prowler Sled Push: Power-based conditioning\n- Kettlebell Swing: Hip-hinge conditioning\n- Treadmill Run: Classic cardiovascular option"
+        },
+        {
+          "heading": "Training Variations",
+          "content": "Steady State: 10-30 minute continuous sessions\nInterval Training: 30s on / 30s off work-rest cycles\nSprint Efforts: 100m or 250m all-out efforts\nDistance Pieces: 500m, 1000m, 2000m benchmarks\nTabata: 20s on / 10s off for 8 rounds\nLow Damper Speed Work: High stroke-rate technique focus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce lean-back at the finish and keep a neutral spine\nKnee Issues: Limit the forward position at the catch\nShoulder Issues: Use a shorter pull and lighter damper\nLimited Mobility: Shorten the stroke and work in a reduced range\nNo Rower Available: Substitute a Ski Erg or assault bike\nBeginner: Start with short intervals and low damper to learn the rhythm"
+        }
+      ]
+    }
+  }
+}

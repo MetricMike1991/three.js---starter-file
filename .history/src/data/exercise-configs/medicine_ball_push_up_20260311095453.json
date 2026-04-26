@@ -1,0 +1,105 @@
+{
+  "exerciseId": "medicine_ball_push_up",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/43.%20The%20Medicine%20Ball%20push%20Up/43.%20The%20Medicine%20Ball%20push%20Up%20%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/43.%20The%20Medicine%20Ball%20push%20Up/43.%20The%20Medicine%20Ball%20push%20Up%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/43.%20The%20Medicine%20Ball%20push%20Up/43.%20The%20Medicine%20Ball%20push%20Up%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/43.%20The%20Medicine%20Ball%20push%20Up/43.%20The%20Medicine%20Ball%20push%20Up%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.088540749649876, 1.2465842545041022, -1.626419133262926],
+    "rotation": [-2.717267394428582, -0.9612664661000295, -2.78684829392852],
+    "target": [-0.02295851070292794, 0.6528098061900851, -0.312091367036853]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.274098226963843, 1.3224116984590515, 1.5385857272921906],
+    "rotation": [-0.5104204109791618, 1.0109529613444568, 0.44298631827215584],
+    "target": [-0.00638904484512523, 0.6241586167856321, 0.29150657257739027]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Medicine Ball Push Up is an advanced bodyweight pushing exercise that increases instability by placing both hands on a medicine ball.\n\nBalancing on the ball forces the stabiliser muscles of the shoulders, chest, and core to work harder than a standard push up.\n\nThis variation is excellent for developing chest strength, improving balance, and building functional upper body stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increased chest activation due to the narrow hand position on the ball\n- Greater core engagement from the unstable surface\n- Improved shoulder stabilisation and joint integrity\n- Enhanced proprioception and balance\n- Builds grip and wrist strength\n- Develops functional pushing power\n- Requires no gym — only a medicine ball and floor space"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Chest (Pectoralis Major)\n\nSecondary: Triceps, Anterior Deltoids, Core (Rectus Abdominis, Obliques), Serratus Anterior, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a medicine ball on the floor in front of you.\n2. Kneel down and place both hands on top of the medicine ball directly under your chest.\n3. Extend your legs behind you into a plank position.\n4. Your body should form a straight line from head to heels.\n5. Engage your core and squeeze your glutes to maintain a rigid torso.\n6. Grip the sides of the ball firmly with your fingers for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Place both hands on the medicine ball directly under your chest.\n2. Press yourself up until your arms are fully extended while maintaining a neutral spine, straight back position.\n3. Lower yourself back down until your chest touches the back of your hands on the medicine ball.\n4. Repeat for reps.\n5. Keep your elbows close to your body throughout the movement.\n6. Move slowly and with control — the instability of the ball requires focus."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Placing hands too far forward on the ball instead of directly under the chest\n- Letting the hips sag or pike upward, breaking the plank position\n- Rushing through reps without controlling the balance\n- Not lowering fully until the chest touches the hands\n- Flaring the elbows wide instead of keeping them tucked\n- Using a ball that is too large or too small for comfortable hand placement\n- Not engaging the core, causing the lower back to arch"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Medicine Ball (6-14 lbs recommended)\n- A flat, stable floor surface\n- Optional: Exercise mat for comfort\n- Optional: Non-slip mat under the ball for extra stability\n- Ensure the medicine ball has a textured or grippy surface"
+        },
+        {
+          "heading": "Choosing Your Medicine Ball",
+          "content": "1. Select a ball that is firm enough to support your weight without excessive compression.\n2. A slightly larger ball (10-12 inch diameter) is easier to balance on.\n3. Rubber or textured surfaces provide better grip than smooth leather.\n4. Start with a lighter ball to learn the balance before progressing.\n5. Avoid slam balls that are too soft — they compress and make balancing difficult.\n6. The ball should sit flat on the floor without rolling."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Both placed firmly on top of the medicine ball, gripping the sides.\n2. Arms: Directly under the chest, elbows close to the body.\n3. Core: Braced tight to maintain a flat back throughout.\n4. Glutes: Squeezed to keep hips level.\n5. Feet: Together or slightly apart for additional balance.\n6. Head: Neutral position, looking slightly ahead.\n7. Shoulders: Depressed and away from the ears."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "close_grip_bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push Up: Stable surface, same pushing pattern\n- Close Grip Push Up: Narrow hand placement on the floor for triceps emphasis\n- Bosu Ball Push Up: Similar instability challenge with a larger surface\n- Dumbbell Push Up: Hands on dumbbells for neutral wrist position\n- Decline Push Up: Feet elevated to increase difficulty\n- Incline Push Up: Hands elevated for an easier variation"
+        },
+        {
+          "heading": "Medicine Ball Push Up Variations",
+          "content": "Medicine Ball Push Up: Both hands on one ball, standard variation\nAlternating Medicine Ball Push Up: One hand on ball, alternate each rep\nStaggered Medicine Ball Push Up: One hand on ball, one on floor\nMedicine Ball Diamond Push Up: Hands in diamond shape on ball\nElevated Feet Medicine Ball Push Up: Feet on bench for added difficulty\nSlow Tempo Medicine Ball Push Up: 3-4 second eccentric for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Ensure proper grip on ball sides, try push up handles on floor instead\nShoulder Discomfort: Reduce range of motion or switch to incline push ups\nBalance Difficulty: Start with wider foot placement for more stability\nLack of Strength: Begin with incline medicine ball push ups using a bench\nCore Weakness: Practice plank holds on the medicine ball before adding push ups\nLearning Stage: Master standard push ups first, then progress to the medicine ball"
+        }
+      ]
+    }
+  }
+}

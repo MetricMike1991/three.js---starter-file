@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_upright_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/96.%20Kettlebell%20Upright%20Row/96.%20Kettlebell%20Upright%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/96.%20Kettlebell%20Upright%20Row/96.%20Kettlebell%20Upright%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/96.%20Kettlebell%20Upright%20Row/96.%20Kettlebell%20Upright%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/96.%20Kettlebell%20Upright%20Row/96.%20Kettlebell%20Upright%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.9814111045404565, 1.3195585302972495, -2.481235786169847],
+    "rotation": [-3.0163915087062168, -0.6788544962105283, -3.0627291616547825],
+    "target": [-0.029149547747376003, 1.0173810217002877, -0.08032366970265888]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.661647237652261, 1.448839265500326, 2.350328623211305],
+    "rotation": [-0.1735488421539436, 0.6192491851430788, 0.10140652291752554],
+    "target": [0.011207095892954827, 1.0489994343076328, 0.06960201475418928]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/96.%20Kettlebell%20Upright%20Row/Kettlebell%20Upright%20Row_250x250_2026-03-23T10-07-22.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Upright Row is a compound upper body exercise that targets the shoulders and upper traps.\n\nPerformed by pulling a kettlebell vertically from the thighs up towards the chin, it develops the deltoids and trapezius muscles effectively.\n\nThe kettlebell's unique handle allows for a natural grip position, making it a popular alternative to barbell and dumbbell upright rows."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds shoulder width and upper trap mass\n- Develops the lateral deltoids for broader-looking shoulders\n- Strengthens the upper back and traps\n- Kettlebell grip allows a more natural wrist position\n- Simple movement pattern that is easy to learn\n- Can be used for moderate to high rep training\n- Effective as part of a shoulder or full body workout"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Lateral Deltoids, Upper Trapezius\n\nSecondary: Anterior Deltoids, Biceps, Forearms, Rhomboids"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold a kettlebell in both hands in front of your thighs with arms fully extended.\n3. Grip the kettlebell by the horns or handle with an overhand grip.\n4. Keep your chest up and shoulders pulled back.\n5. Engage your core and maintain a tall posture."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your elbows close to your body, lift the kettlebell up towards your chin.\n2. Lead with your elbows — they should rise higher than your hands.\n3. Keep the kettlebell close to your body throughout the movement.\n4. Pause briefly at the top of the movement when the kettlebell reaches upper chest or chin level.\n5. Slowly lower the kettlebell back down to the starting position.\n6. Maintain control throughout the lowering phase.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the kettlebell too high and impinging the shoulders\n- Using momentum or swinging the weight up\n- Shrugging the shoulders up instead of leading with the elbows\n- Letting the kettlebell drift away from the body\n- Rounding the upper back during the lift\n- Using too heavy a weight and compromising form\n- Not controlling the eccentric (lowering) phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for your level)\n- Optional: Wrist wraps if grip comfort is an issue"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start with a lighter kettlebell to master the movement pattern.\n2. Beginners: 8-12 kg kettlebell.\n3. Intermediate: 12-20 kg kettlebell.\n4. Advanced: 20-28 kg kettlebell.\n5. The weight should allow you to complete all reps with proper form.\n6. If your shoulders are rounding or you are using momentum, reduce the weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, flat on the ground.\n2. Grip: Both hands on the kettlebell horns or handle.\n3. Arms: Fully extended at the start, hanging in front of the thighs.\n4. Chest: Lifted and open.\n5. Core: Engaged throughout the movement.\n6. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "dumbbell_lateral_raise"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Upright Row: Heavier loading with a barbell\n- Dumbbell Upright Row: Allows independent arm movement\n- Cable Upright Row: Constant tension through the full range of motion\n- Dumbbell Lateral Raise: Isolation movement for the lateral deltoids\n- Face Pulls: Targets the rear delts and upper traps\n- Barbell Overhead Press: Compound pressing for overall shoulder development"
+        },
+        {
+          "heading": "Upright Row Variations",
+          "content": "Kettlebell Upright Row: Standard two-handed kettlebell upright row\nSingle Arm Kettlebell Upright Row: Unilateral version for addressing imbalances\nWide Grip Upright Row: Wider grip to reduce shoulder impingement risk\nBarbell Upright Row: Traditional barbell version\nCable Upright Row: Using a cable machine for constant tension\nBand Upright Row: Resistance band version for home workouts"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Avoid pulling higher than chest level or switch to lateral raises\nWrist Pain: Adjust grip width or use a neutral grip with dumbbells\nElbow Pain: Reduce weight and avoid excessive elbow flare\nNo Kettlebell: Use a dumbbell, barbell, or resistance band\nBeginner: Start with a very light weight and focus on leading with the elbows\nMobility Issues: Perform partial range of motion and gradually increase"
+        }
+      ]
+    }
+  }
+}

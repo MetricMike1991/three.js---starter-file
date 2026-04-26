@@ -1,0 +1,105 @@
+{
+  "exerciseId": "crosstrainer",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/238.%20Crosstrainer/238.%20Crosstrainer%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/238.%20Crosstrainer/238.%20Crosstrainer%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/238.%20Crosstrainer/238.%20Crosstrainer%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/238.%20Crosstrainer/238.%20Crosstrainer%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [3.7880233387077036, 2.1286057931566598, -1.2757993909826983],
+    "rotation": [-2.4430238297895563, 1.1328243788988592, 2.49135789198416],
+    "target": [0.042241366781419376, 1.000459936991505, 0.06747957584041439]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [3.7880233387077036, 2.1286057931566598, -1.2757993909826983],
+    "rotation": [-2.4430238297895563, 1.1328243788988592, 2.49135789198416],
+    "target": [0.042241366781419376, 1.000459936991505, 0.06747957584041439]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Crosstrainer (also known as an Elliptical Trainer) is a low-impact cardiovascular machine that simulates running, walking, and stair climbing in a fluid elliptical motion.\n\nWith moving handles and foot pedals that track an oval path, the crosstrainer provides a full-body cardio workout while minimizing stress on the joints.\n\nIt's a staple piece of cardio equipment in commercial gyms, excellent for general fitness, fat loss, and active recovery."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Low-impact cardio - gentle on knees, hips, and ankles\n- Full-body workout (legs, glutes, arms, core)\n- Improves cardiovascular endurance and stamina\n- Burns calories efficiently\n- Suitable for all fitness levels\n- Safe rehabilitation option for injured athletes\n- Adjustable resistance and incline for progression\n- Works muscles both concentrically and eccentrically\n- Can be performed forward or in reverse for variety\n- Weight-bearing exercise supports bone health"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings\n\nSecondary: Calves, Hip Flexors, Core, Chest, Back (Latissimus Dorsi), Biceps, Triceps, Shoulders"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Step onto the machine pedals one foot at a time.\n2. Position feet centered on the pedals for even weight distribution.\n3. Grasp the moving handlebars lightly with both hands.\n4. Stand tall with chest up and shoulders relaxed.\n5. Engage your core and maintain a neutral spine.\n6. Look forward - avoid staring down at the console.\n7. Select a starting resistance level and program on the machine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Initiate movement by pushing one pedal down while the other rises.\n2. Coordinate arm movement with the opposite leg (natural walking pattern).\n3. Push and pull the handlebars in sync with pedal motion.\n4. Keep the movement smooth and continuous - no jerky transitions.\n5. Drive through your heels and engage glutes and quads.\n6. Maintain an upright posture - avoid leaning on the handles.\n7. Adjust resistance, incline, or speed to vary intensity.\n8. Continue for the desired duration at your target heart rate."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Leaning heavily on the handlebars for support\n- Not using the moving arm handles (only passive hand rails)\n- Hunching shoulders or rounding the upper back\n- Bouncing heels off the pedals\n- Selecting resistance too low (coasting with no effort)\n- Moving too fast with uncontrolled momentum\n- Looking down at the console or feet\n- Gripping handlebars too tightly\n- Skipping a warm-up period\n- Not varying intensity or programs for progression"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Crosstrainer / Elliptical Machine\n- Athletic Shoes with good support\n- Water Bottle\n- Towel\n- Optional: Heart Rate Monitor or Fitness Tracker\n- Optional: Headphones for audio\n- Recommended: Comfortable workout clothing"
+        },
+        {
+          "heading": "Machine Settings",
+          "content": "1. Adjust resistance based on fitness level (start low).\n2. Set incline to a challenging but sustainable level.\n3. Choose a program: Manual, Interval, Hill, or Weight Loss.\n4. Enter your weight for accurate calorie tracking.\n5. Set a target duration or distance goal.\n6. Ensure stride length feels natural for your height.\n7. Test pedal motion briefly before starting your workout.\n8. Familiarize yourself with the emergency stop button."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet centered on pedals, toes pointed forward.\n2. Grip: Light grip on moving handles, palms neutral.\n3. Posture: Tall and upright, shoulders back and down.\n4. Core: Engaged and braced throughout.\n5. Head: Neutral, eyes looking forward.\n6. Breathing: Steady and rhythmic - nose in, mouth out.\n7. Arms: Moving through full range of motion.\n8. Legs: Smooth cyclical motion, even pressure on both pedals."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["air_assault_bike", "battlerope"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Treadmill: Walking or running cardio\n- Stationary Bike: Seated or upright low-impact cardio\n- Assault Bike: High-intensity full-body cardio\n- Stair Climber: Lower-body focused cardio\n- Rowing Machine: Full-body cardio with posterior chain emphasis\n- Jump Rope: Portable cardio alternative"
+        },
+        {
+          "heading": "Crosstrainer Variations",
+          "content": "Standard Forward Motion: Traditional elliptical pattern\nReverse Motion: Works glutes and hamstrings more\nHigh Resistance / Low Speed: Strength-focused cardio\nLow Resistance / High Speed: Speed and endurance focus\nInterval Training: Alternating high/low intensity bursts\nIncline Intervals: Varying incline for glute emphasis\nArms-Only (holding rails): Shorter stride, legs do less\nLegs-Only (hands on static rails): Focus on lower body"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Lower resistance and incline, shorter sessions\nLower Back Pain: Maintain upright posture, engage core\nBalance Issues: Use static hand rails initially for stability\nShoulder Pain: Use legs-only with hands on static rails\nCardiovascular Conditions: Consult physician before use, start at low intensity\nNo Crosstrainer: Use a treadmill, bike, or rower as alternative\nBeginner Stage: Start with 10-15 minute sessions and gradually build up"
+        }
+      ]
+    }
+  }
+}

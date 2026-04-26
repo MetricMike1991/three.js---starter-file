@@ -1,0 +1,105 @@
+{
+  "exerciseId": "tricep_dip_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/33.%20Tricep%20Dip%20Machine/Tricep%20Dip%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/33.%20Tricep%20Dip%20Machine/Tricep%20Dip%20Machine%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/33.%20Tricep%20Dip%20Machine/Tricep%20Dip%20Machine%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/33.%20Tricep%20Dip%20Machine/Tricep%20Dip%20Machine%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.6590589518888403, 1.4640686216574195, 2.3689836529073833],
+    "rotation": [-0.3816315341593135, 0.6120147015553427, 0.22659757143996354],
+    "target": [-0.06363544156998148, 0.5500184262286683, 0.09129351526465627]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.3738113430446572, 1.778038816279233, -1.8793179185788913],
+    "rotation": [-2.498970973897182, -0.5439328763788288, -2.7719793900132483],
+    "target": [-0.007968928052635304, 0.4245996110392726, -0.07142216873799032]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/33.%20Tricep%20Dip%20Machine/Tricep%20Dip%20Machine_250x250_2026-03-09T10-34-33.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tricep Dip Machine is an isolation exercise that targets the triceps brachii using a seated, machine-assisted dipping motion.\n\nUnlike bodyweight dips, the machine allows you to control the resistance precisely and isolate the triceps without heavily involving the chest or shoulders.\n\nThis exercise is ideal for building tricep strength and size, especially for those who may not yet have the strength for full bodyweight dips."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the triceps with controlled resistance\n- Safer than bodyweight dips for beginners\n- Allows precise progressive overload with weight stack or plates\n- Minimizes shoulder and chest involvement compared to bodyweight dips\n- Excellent for building tricep mass and definition\n- Supports drop sets by quickly adjusting the weight\n- Reduces strain on the wrists and shoulders\n- Great for high-rep burnout sets at the end of arm training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (Long Head, Lateral Head, Medial Head)\n\nSecondary: Anterior Deltoid, Pectoralis Major (minor involvement), Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat position so you can fit underneath the leg pads comfortably.\n2. Sit down and secure your thighs under the leg pads.\n3. Grip the handles with a firm overhand grip.\n4. Maintain a neutral spine position with your chest up.\n5. Pin your shoulders back and down — do not round them forward.\n6. Arms should be bent at the starting position with elbows close to your sides."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Press down the handles until your arms are fully straight.\n2. Focus on squeezing the triceps hard at the bottom of the movement.\n3. Keep your shoulders pinned back throughout — do not let them round forward.\n4. Return the handles to the starting position by bending at the elbow joint.\n5. Your goal is to close the elbow angle as much as possible without allowing your shoulders to round forward.\n6. Control the weight on the way back up — don't let it slam.\n7. Maintain a neutral spine and upright torso throughout.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the shoulders forward during the press\n- Leaning too far forward and turning it into a chest exercise\n- Not achieving full arm extension at the bottom\n- Using momentum to push the handles down\n- Letting the weight slam back up on the return\n- Flaring the elbows out wide instead of keeping them close\n- Seat positioned too high or too low\n- Gripping too tightly and fatiguing the forearms\n- Using too much weight and compensating with body movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Tricep Dip Machine (plate loaded or weight stack)\n- Weight Plates (if plate loaded)\n- Optional: Wrist Wraps for support\n- Recommended: Non-slip grip gloves"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so your thighs fit snugly under the leg pads.\n2. The handles should be at a comfortable height where your arms can bend to at least 90 degrees.\n3. Set the appropriate weight on the stack or load plates evenly.\n4. Test the range of motion with light weight before loading heavy.\n5. Ensure the seat is locked in position."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Torso: Upright with a neutral spine — no leaning forward.\n2. Shoulders: Pinned back and down throughout the movement.\n3. Chest: Up and open — do not collapse inward.\n4. Elbows: Close to your sides, not flared out.\n5. Grip: Firm overhand grip on the handles.\n6. Thighs: Secured under the leg pads for stability.\n7. Feet: Flat on the floor or on the foot rest.\n8. Core: Engaged to maintain an upright position."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_skull_crusher", "barbell_bicep_curl", "alternating_dumbbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Tricep Dips: Classic compound movement on parallel bars\n- Cable Tricep Pushdown: Standing cable isolation for triceps\n- Tricep Skull Crusher: Lying barbell/dumbbell tricep isolation\n- Overhead Tricep Extension: Targets the long head of the triceps\n- Close-Grip Bench Press: Compound pressing for tricep emphasis\n- Diamond Push-Ups: Bodyweight tricep-focused push-up variation"
+        },
+        {
+          "heading": "Tricep Dip Variations",
+          "content": "Standard Machine Dip: Balanced tricep isolation\nWide Grip Dip: Slightly more chest involvement\nClose Grip Dip: Maximum tricep isolation\nSlow Tempo Dip: 3-4 second eccentric for muscle building\nPause Dip: Hold at full extension for peak contraction\nDrop Set Dip: Reduce weight progressively for exhaustion\n21s Dip: 7 partial bottom, 7 partial top, 7 full range reps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion at the top — don't let elbows bend past 90 degrees\nElbow Pain: Lighten the weight and focus on slow, controlled reps\nWrist Pain: Try adjusting your grip position on the handles\nNo Dip Machine: Use cable tricep pushdowns or skull crushers\nBeginner: Start with very light weight and focus on keeping shoulders back\nPost-Injury: Use partial range of motion with light resistance\nGrip Issues: Use lifting straps or gloves for better grip on handles"
+        }
+      ]
+    }
+  }
+}

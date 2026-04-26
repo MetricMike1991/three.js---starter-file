@@ -1,0 +1,105 @@
+{
+  "exerciseId": "t_bar_row_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/193.%20T-Bar%20Row%20Machine/193.%20T-Bar%20Row%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/193.%20T-Bar%20Row%20Machine/193.%20T-Bar%20Row%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/193.%20T-Bar%20Row%20Machine/193.%20T-Bar%20Row%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/193.%20T-Bar%20Row%20Machine/193.%20T-Bar%20Row%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.9170810189123502, 2.613472200863605, -2.3114896839346653],
+    "rotation": [-2.3852556807916985, -0.5222035520365309, -2.701731196019242],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.157329965108267, 2.3405770512120063, -1.9649534013883672],
+    "rotation": [-2.371509619950319, -0.6420895995744162, -2.6154089861138288],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The T-Bar Row Machine (standing variation without the chest pad) is a compound back-building exercise that targets the lats, middle traps, and rhomboids.\n\nThe dedicated machine provides a fixed pivot point, allowing for heavy loading with controlled movement while reducing some of the balance demand of a traditional barbell row.\n\nThis is an excellent movement for building upper back thickness and rowing strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds upper back thickness\n- Heavy loading potential\n- Dedicated machine pivot for smooth path\n- Strong lat and rhomboid activation\n- Multiple grip options available\n- Carries over to other rowing movements\n- Improves posture and pulling strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Middle Trapezius, Rhomboids\n\nSecondary: Rear Deltoids, Biceps, Lower Back, Core, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Load the appropriate weight onto the T-Bar row machine.\n2. Ensure the machine is secure and won't tip over.\n3. Stand with your feet shoulder-width apart.\n4. Keep your knees slightly bent.\n5. Bend at the hips, keeping your back straight.\n6. Reach down and grasp the handles or T-Bar attachment.\n7. Your hands should be slightly wider than shoulder-width apart.\n8. Brace your core and lift your chest."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Exhale as you pull the handles or T-Bar attachment toward your lower ribcage.\n2. Squeeze your shoulder blades together at the peak of the movement.\n3. Keep your back straight, chest up, and core engaged.\n4. Inhale as you slowly extend your arms.\n5. Return the handles to the starting position under control.\n6. Maintain proper form throughout the entire set.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back\n- Using momentum or jerking the weight\n- Standing too upright — reduces lat engagement\n- Not squeezing the shoulder blades at the top\n- Short range of motion\n- Pulling with the arms instead of the back\n- Looking up excessively and straining the neck\n- Loading too much weight and sacrificing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- T-Bar Row Machine\n- Weight Plates\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Flat-soled shoes recommended\n- Lifting Belt (optional for heavier loads)"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, straddling the bar.\n2. Knees: Slightly bent.\n3. Hips: Hinged back, torso bent at roughly 45 degrees.\n4. Back: Flat with a natural arch.\n5. Grip: Slightly wider than shoulder-width on the handles.\n6. Arms: Fully extended at the start.\n7. Chest: Up and proud.\n8. Core: Braced to protect the spine."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with moderate weight to learn the hinge position.\n2. Focus on pulling with the back, not the arms.\n3. Pause at the top for peak contraction.\n4. Control the lowering phase for time under tension.\n5. Gradually increase weight as strength improves.\n6. Use straps when grip becomes limiting.\n7. Experiment with different grip attachments.\n8. Keep reps in the 6-12 range for strength/hypertrophy."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bentover_barbell_row", "seated_cable_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bent Over Barbell Row: Free-weight staple\n- Seated Cable Row: Constant tension variation\n- Chest Supported T-Bar Row: Removes lower back demand\n- Single Arm Dumbbell Row: Unilateral variation\n- Pendlay Row: Strict dead-stop rowing\n- Landmine Row: Similar angle without machine"
+        },
+        {
+          "heading": "Rowing Variations",
+          "content": "Bent Over Barbell Row: Classic compound row\nChest Supported T-Bar Row: Removes lower back strain\nSeated Cable Row: Constant tension version\nSingle Arm DB Row: Unilateral strength and balance\nPendlay Row: Strict, stop-start variation\nInverted Row: Bodyweight regression"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Issues: Use the chest-supported T-bar row variation\nGrip Issues: Use lifting straps\nShoulder Issues: Use a narrower, neutral grip\nLimited Mobility: Reduce range of motion\nNo T-Bar Machine: Use a landmine setup with a barbell\nBeginner: Start light to master the hip hinge first"
+        }
+      ]
+    }
+  }
+}

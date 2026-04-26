@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_goblet_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/95.%20Kettlebell%20Goblet%20Squat/95.%20Kettlebell%20Goblet%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/95.%20Kettlebell%20Goblet%20Squat/95.%20Kettlebell%20Goblet%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/95.%20Kettlebell%20Goblet%20Squat/95.%20Kettlebell%20Goblet%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/95.%20Kettlebell%20Goblet%20Squat/95.%20Kettlebell%20Goblet%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.8081995515038838, 1.1448216662718325, -2.796685080550101],
+    "rotation": [-3.085648032393797, -0.5833722175321041, -3.110753621671719],
+    "target": [-0.000051701037175682, 0.9916344511148065, -0.06134853913452893]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.6803869056266412, 1.243333733756218, 2.7641225803812848],
+    "rotation": [-0.050090796232828645, 0.5592326317403331, 0.02659094447568925],
+    "target": [-0.029036668312329008, 1.106581575430344, 0.03632076703539505]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Goblet Squat is a lower body exercise performed by holding a kettlebell at chest height while squatting.\n\nThe front-loaded position encourages an upright torso and deep squat depth, making it an excellent movement for building leg strength and improving squat mechanics.\n\nIt is widely used as a beginner-friendly squat variation and as a warm-up or accessory movement for more advanced lifters."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Encourages proper squat form with an upright torso\n- Develops quadriceps, glutes, and core strength\n- Front-loaded position naturally improves squat depth\n- Beginner-friendly with easy setup\n- Builds grip and upper back endurance from holding the kettlebell\n- Low barrier to entry — requires only a single kettlebell\n- Excellent warm-up or accessory for barbell squats"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Core, Hip Adductors, Upper Back, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Hold a kettlebell by the horns at chest level with your elbows pointing down.\n2. Stand with your feet shoulder-width apart and your toes pointing slightly outwards.\n3. Keep your chest up and shoulders pulled back.\n4. Engage your core before initiating the squat.\n5. Maintain a tall spine with your weight distributed evenly across your feet."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your chest up and core engaged, lower your hips down and back as if you are sitting in a chair.\n2. Push your knees out over your toes as you descend.\n3. Squat as deep as your mobility allows — aim for your hip crease to drop below your knees.\n4. Keep your elbows inside your knees at the bottom position.\n5. Pause briefly at the bottom of the squat.\n6. Drive through your heels to return to the starting position.\n7. Squeeze your glutes at the top and repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the chest fall forward and rounding the upper back\n- Knees caving inward during the squat\n- Rising onto the toes instead of driving through the heels\n- Not squatting deep enough\n- Holding the kettlebell too far from the body\n- Rushing through reps without controlling the descent\n- Letting the elbows flare out wide instead of keeping them tucked"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for your level)\n- Optional: Squat shoes or flat-soled shoes\n- Optional: Small plates under heels if ankle mobility is limited"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start with a lighter kettlebell to learn the movement pattern.\n2. Beginners: 8-12 kg kettlebell.\n3. Intermediate: 16-24 kg kettlebell.\n4. Advanced: 28-32 kg or heavier.\n5. The weight should challenge your legs without compromising your posture.\n6. Increase weight gradually as form and depth improve."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, toes turned out 15-30 degrees.\n2. Grip: Hold the kettlebell by the horns with both hands at chest height.\n3. Elbows: Pointing down, close to the body.\n4. Chest: Lifted and proud throughout the movement.\n5. Core: Braced before each rep.\n6. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "bodyweight_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Heavier loading with barbell on the back\n- Bodyweight Squat: No equipment needed, great for warm-ups\n- Dumbbell Goblet Squat: Same movement using a dumbbell instead\n- Front Squat: Barbell front-loaded for similar torso position\n- Bulgarian Split Squat: Unilateral squat variation for leg development\n- Sumo Squat: Wider stance targeting the inner thighs and glutes"
+        },
+        {
+          "heading": "Goblet Squat Variations",
+          "content": "Kettlebell Goblet Squat: Standard goblet squat with kettlebell\nDumbbell Goblet Squat: Using a dumbbell held vertically\nPause Goblet Squat: Hold at the bottom for 2-3 seconds\nTempo Goblet Squat: Slow eccentric for increased time under tension\n1.5 Rep Goblet Squat: Squat down, come halfway up, go back down, then stand\nGoblet Squat to Press: Combine with an overhead press at the top"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Ankle Mobility Issues: Place small plates under your heels or wear squat shoes\nKnee Pain: Reduce depth and focus on pushing knees out over toes\nLower Back Pain: Focus on keeping chest up — the front load should help\nGrip Fatigue: Use a lighter kettlebell or rest between sets\nNo Kettlebell: Use a dumbbell held vertically at chest height\nBeginner: Start with bodyweight squats to build confidence and mobility"
+        }
+      ]
+    }
+  }
+}

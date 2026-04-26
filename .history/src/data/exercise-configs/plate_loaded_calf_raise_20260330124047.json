@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_calf_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/112.%20Plate%20Loaded%20Calf%20Raise/112.%20Plate%20Loaded%20Calf%20Raise%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/112.%20Plate%20Loaded%20Calf%20Raise/112.%20Plate%20Loaded%20Calf%20Raise%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/112.%20Plate%20Loaded%20Calf%20Raise/112.%20Plate%20Loaded%20Calf%20Raise%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/112.%20Plate%20Loaded%20Calf%20Raise/112.%20Plate%20Loaded%20Calf%20Raise%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Calves",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Calf Raise is a machine-based isolation exercise that targets the gastrocnemius and soleus muscles of the calves.\n\nPerformed on a seated or standing plate loaded calf raise machine, this exercise allows for heavy loading and a full range of motion through the ankle joint.\n\nIt is one of the most effective exercises for building calf size and strength due to the controlled movement path and ability to safely push to failure."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Machine-guided movement ensures consistent form and muscle engagement\n- Allows for heavy loading to maximise calf hypertrophy\n- Full range of motion through the ankle joint for complete calf development\n- Targets both the gastrocnemius and soleus muscles\n- Reduced balance requirements compared to free weight calf raises\n- Easy to progressively overload by adding plates\n- Safe to train to failure without a spotter"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gastrocnemius, Soleus (Calves)\n\nSecondary: Tibialis Anterior, Core (for stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the machine to fit your height so the pads sit comfortably on your thighs.\n2. Load the desired weight onto the machine using weight plates.\n3. Sit down and position the balls of your feet on the edge of the platform.\n4. Ensure your heels are hanging off the platform with room to move.\n5. Place your thighs under the pads and adjust for a snug fit.\n6. Release the safety handle and support the weight with your calves."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Push up through the balls of your feet, raising your heels as high as possible.\n2. Squeeze your calf muscles hard at the top of the movement.\n3. Hold the top position briefly for a strong contraction.\n4. Slowly lower your heels back down below the platform level for a full stretch.\n5. Pause briefly at the bottom to feel the stretch in your calves.\n6. Repeat the movement for the desired number of reps with controlled tempo."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing at the bottom of the movement instead of using a controlled tempo\n- Not achieving full range of motion at the top or bottom\n- Using too much weight and sacrificing form for ego lifting\n- Rushing through reps without pausing at the peak contraction\n- Placing feet too far forward or too far back on the platform\n- Not adjusting the machine height properly before starting\n- Forgetting to engage the safety mechanism when finished"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Calf Raise Machine\n- Weight Plates (appropriate for your fitness level)\n- Optional: Towel for padding under the thigh pads"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so the thigh pads rest comfortably on your lower thighs.\n2. Load weight plates evenly on both sides of the machine.\n3. Ensure the platform is clean and free of debris for a solid foot placement.\n4. Test the safety mechanism before beginning your working sets.\n5. Start with a light weight to warm up the calves and ankles."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Balls of feet on the edge of the platform, hip-width apart.\n2. Heels: Hanging off the edge of the platform.\n3. Thighs: Secured under the padded lever.\n4. Back: Straight and upright against the seat.\n5. Hands: Gripping the handles or resting on the thigh pads.\n6. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["standing_dumbbell_calf_raise", "seated_dumbbell_calf_raise"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standing Dumbbell Calf Raise: Free weight single-leg variation\n- Seated Dumbbell Calf Raise: Seated free weight variation targeting the soleus\n- Smith Machine Calf Raise: Standing calf raise using a Smith machine\n- Leg Press Calf Raise: Calf raises performed on a leg press machine\n- Donkey Calf Raise: Bent-over variation for enhanced stretch"
+        },
+        {
+          "heading": "Variations",
+          "content": "Plate Loaded Calf Raise: Standard seated machine calf raise\nToes In Calf Raise: Toes pointed inward to shift emphasis to outer calves\nToes Out Calf Raise: Toes pointed outward to shift emphasis to inner calves\nSingle Leg Calf Raise: One leg at a time for addressing imbalances\nSlow Tempo Calf Raise: 3-4 second eccentric for increased time under tension\nPaused Calf Raise: Hold at the top for 2-3 seconds per rep"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Ankle Mobility Issues: Start with a smaller range of motion and progress gradually\nKnee Discomfort: Adjust the thigh pad height and reduce weight\nAchilles Tendon Sensitivity: Reduce the depth of the stretch and use lighter loads\nNo Calf Raise Machine: Use a standing dumbbell calf raise or leg press calf raise\nBalance Issues: This machine is ideal as it requires no balance"
+        }
+      ]
+    }
+  }
+}

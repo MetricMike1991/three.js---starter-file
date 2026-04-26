@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_leg_kettlebell_stiff_leg_deadlift",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row/48.%20The%20Kettlebell%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row/48.%20The%20Kettlebell%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row/48.%20The%20Kettlebell%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/48.%20The%20Kettlebell%20Row/48.%20The%20Kettlebell%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Leg Kettlebell Stiff Leg Deadlift is a unilateral hip-hinge exercise that isolates the hamstrings and glutes one leg at a time.\n\nPerformed standing on one leg while hinging forward with a kettlebell in one hand, this movement demands exceptional balance, coordination, and posterior chain strength.\n\nThis exercise is highly effective for correcting muscle imbalances, improving single-leg stability, and building functional hamstring and glute strength that carries over to running, jumping, and sport."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates each leg individually to address strength imbalances\n- Deep hamstring and glute stretch under load\n- Develops balance, proprioception, and coordination\n- Strengthens the stabiliser muscles of the ankle, knee, and hip\n- Builds functional single-leg strength for athletic performance\n- Improves hip hinge mechanics and posterior chain control\n- Low equipment requirement — only a single kettlebell needed"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings\n\nSecondary: Glutes, Erector Spinae, Core (Obliques, Rectus Abdominis), Hip Stabilisers, Calves, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart.\n2. Hold a kettlebell in one hand with an overhand grip, arm fully extended.\n3. Shift your weight onto the opposite leg (if kettlebell is in your right hand, stand on your left leg).\n4. Keep a slight bend in the standing knee.\n5. Engage your core and pull your shoulders back.\n6. Lift your free leg slightly off the ground behind you to prepare."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Stand with your feet hip-width apart, holding a kettlebell in one hand with an overhand grip.\n2. Lift one leg off the ground behind you and hinge forward at the hips, keeping your back straight and the kettlebell close to your body.\n3. Lower the kettlebell toward the ground while keeping your lifted leg straight and your balance centred over your standing foot.\n4. Return to the starting position by contracting your hamstring and glute muscles, and repeat the movement for the desired number of reps before switching to the other leg.\n5. Your body and rear leg should form a straight line as you hinge forward.\n6. Control the movement throughout — avoid rushing or using momentum."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back instead of maintaining a flat spine\n- Opening the hips by rotating the lifted leg outward\n- Bending the standing knee too much, turning it into a squat\n- Not hinging deep enough to feel the hamstring stretch\n- Letting the kettlebell swing away from the body\n- Losing balance by rushing through reps\n- Not keeping the hips square and level throughout the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for single-leg balance)\n- Flat, non-slip surface to stand on\n- Optional: Exercise mat for foot traction\n- Optional: Wall or rack nearby for balance assistance when learning\n- Recommended: Start lighter than bilateral RDL — balance is the limiting factor"
+        },
+        {
+          "heading": "Choosing Your Kettlebell Weight",
+          "content": "1. Beginners: Start with 4-8 kg (men) or 4-6 kg (women).\n2. Intermediate: 12-20 kg (men) or 8-12 kg (women).\n3. The weight should challenge the hamstrings without compromising balance.\n4. If you cannot maintain a level hip position, the weight is too heavy.\n5. Master the movement pattern with a light weight before progressing.\n6. Balance and control are more important than load in this exercise."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Standing Foot: Firmly planted, weight through the heel and mid-foot.\n2. Standing Knee: Slight bend, maintained throughout the hinge.\n3. Hips: Square and level — do not let the hip of the raised leg rotate open.\n4. Spine: Neutral from head to tailbone.\n5. Rear Leg: Extends straight behind you as a counterbalance.\n6. Arm: Fully extended, kettlebell hanging straight down.\n7. Head: Neutral, eyes looking a few feet ahead on the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["romanian_deadlift_rdl", "kettlebell_rdl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Kettlebell RDL (Bilateral): Both feet on the ground, same hip hinge pattern\n- Barbell Romanian Deadlift: Heavier loading with both legs\n- Single Leg Dumbbell RDL: Same movement using a dumbbell instead\n- Single Leg Cable RDL: Cable machine for constant tension\n- Good Morning: Barbell on back, bilateral hip hinge\n- Nordic Hamstring Curl: Bodyweight hamstring exercise from kneeling"
+        },
+        {
+          "heading": "Single Leg Deadlift Variations",
+          "content": "Single Leg Kettlebell Stiff Leg Deadlift: Standard single-leg hinge with kettlebell\nContralateral Single Leg RDL: Kettlebell in opposite hand to standing leg\nIpsilateral Single Leg RDL: Kettlebell in same hand as standing leg\nBodyweight Single Leg RDL: No weight, focusing on balance and form\nBanded Single Leg RDL: Resistance band for accommodating resistance\nSlow Tempo Single Leg RDL: 3-4 second eccentric for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Balance Difficulty: Use a wall or rack for light fingertip support\nHamstring Tightness: Reduce hinge depth and increase over time\nLower Back Sensitivity: Focus on core bracing and use a lighter weight\nAnkle Instability: Perform barefoot or in flat shoes for better ground contact\nKnee Issues: Maintain a consistent soft bend in the standing leg\nLearning Stage: Master the bilateral kettlebell RDL before progressing to single leg"
+        }
+      ]
+    }
+  }
+}

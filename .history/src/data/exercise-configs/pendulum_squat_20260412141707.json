@@ -1,0 +1,105 @@
+{
+  "exerciseId": "pendulum_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/151.%20Pendulum%20Squat/151.%20Pendulum%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/151.%20Pendulum%20Squat/151.%20Pendulum%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/151.%20Pendulum%20Squat/151.%20Pendulum%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/151.%20Pendulum%20Squat/151.%20Pendulum%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.8236085829401643, 2.1016093999907377, -2.2414861997963245],
+    "rotation": [-2.49669868106542, 0.7725355065824809, 2.658156995988098],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [3.1682656625514576, 1.622317496423106, -1.7631529592618014],
+    "rotation": [-2.530279650511363, 1.0155788389452145, 2.604419397905182],
+    "target": [-0.14739670231002971, 0.4418720956623162, -0.07890780706110838]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Pendulum Squat is a machine-based lower body exercise that guides you through a squatting motion along a fixed arc path.\n\nThe pendulum mechanism shifts the load angle throughout the movement, placing greater emphasis on the quadriceps while reducing stress on the lower back compared to free-weight squats.\n\nIt is popular in bodybuilding and strength training for building quad size and strength with a controlled, joint-friendly movement pattern."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the quadriceps with exceptional isolation due to the arc path\n- Reduces lower back stress compared to barbell squats\n- Fixed path of motion allows you to focus on muscle contraction rather than balance\n- Enables heavy loading with reduced injury risk\n- Provides a deep range of motion for maximum quad activation\n- Excellent for building quad sweep and overall leg size\n- Suitable for lifters with back issues who still want to squat heavy"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps (Rectus Femoris, Vastus Lateralis, Vastus Medialis, Vastus Intermedius)\n\nSecondary: Glutes, Hamstrings, Calves (as stabilisers)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height and foot placement on the Pendulum Squat Machine according to your comfort.\n2. Stand inside the machine with your feet shoulder-width apart on the foot platform.\n3. Place your shoulders firmly under the shoulder pads.\n4. Grasp the handles or bars provided for stability, ensuring a secure grip.\n5. Stand tall to unrack the weight and prepare for the descent."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower your body by bending your knees and hips in a controlled manner.\n2. Keep your back straight and chest lifted throughout the descent.\n3. Descend until your thighs are at least parallel to the foot platform, or as deep as your mobility comfortably allows.\n4. Push through your heels to extend your knees and hips, driving yourself back to the starting position.\n5. Squeeze your quads at the top of the movement.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Placing feet too high on the platform, shifting emphasis away from the quads\n- Not descending deep enough to fully engage the quadriceps\n- Allowing the knees to cave inward during the ascent\n- Rushing the eccentric phase instead of controlling the descent\n- Lifting the heels off the platform during the movement\n- Using too much weight and compromising range of motion\n- Rounding the upper back and losing contact with the shoulder pads"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pendulum Squat Machine\n- Weight plates for loading\n- Flat, stable training shoes (optional but recommended)"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Shoulder Pad Height: Adjust so the pads sit comfortably on your shoulders without straining your neck.\n2. Foot Platform: Position your feet shoulder-width apart, slightly lower on the platform for more quad emphasis.\n3. Weight: Load plates evenly on both sides of the machine.\n4. Safety Stops: Set the safety catches at an appropriate depth for your range of motion.\n5. Check all pins and plate collars are secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Shoulders: Firmly pressed into the shoulder pads at all times.\n2. Back: Straight and supported against the back pad.\n3. Feet: Shoulder-width apart, flat on the platform.\n4. Knees: Track over the toes throughout the movement.\n5. Hands: Gripping the handles firmly for stability.\n6. Core: Braced throughout the entire set."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "barbell_split_squat", "bodyweight_box_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Hack Squat: Machine-based squat with a linear path targeting the quads\n- Leg Press: Seated machine press for heavy quad and glute loading\n- Barbell Back Squat: Free-weight compound squat for total leg development\n- Front Squat: Barbell squat variation with greater quad emphasis\n- Smith Machine Squat: Guided barbell squat for controlled movement\n- Sissy Squat: Bodyweight quad isolation exercise"
+        },
+        {
+          "heading": "Pendulum Squat Variations",
+          "content": "Standard Pendulum Squat: Shoulder-width stance for balanced quad development\nNarrow Stance Pendulum Squat: Feet closer together for outer quad emphasis\nWide Stance Pendulum Squat: Wider foot placement for inner quad and adductor engagement\nSlow Tempo Pendulum Squat: 3–4 second eccentric for increased time under tension\nPaused Pendulum Squat: Hold at the bottom for 2–3 seconds to eliminate momentum\n1.5 Rep Pendulum Squat: Full rep followed by a half rep for extended quad tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce the depth of the squat and use a lighter load\nLower Back Issues: The pendulum squat is generally back-friendly, but ensure the back pad is supporting you fully\nAnkle Mobility: Place a small wedge or plate under your heels to improve squat depth\nBeginner: Start with bodyweight or very light loading to learn the movement pattern\nNo Pendulum Squat Machine: Use a hack squat or leg press as an alternative\nPost-Injury: Consult a physiotherapist and work within a pain-free range of motion"
+        }
+      ]
+    }
+  }
+}

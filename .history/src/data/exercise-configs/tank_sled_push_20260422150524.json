@@ -1,0 +1,90 @@
+{
+  "exerciseId": "tank_sled_push",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/191.%20Tank%20Sled%20Push/191.%20Tank%20Sled%20Push%20HD_compressed.glb",
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tank Sled Push is a full-body conditioning exercise performed by pushing a weighted tank-style sled across the floor.\n\nTank sleds typically feature multiple grip positions and magnetic or wheel-based resistance, combining leg drive, core stability, and upper body bracing for intense training stimulus.\n\nBecause there is no eccentric phase, tank sled pushes produce minimal muscle soreness while delivering excellent strength-endurance and cardiovascular benefits."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds explosive leg and hip power\n- Excellent cardiovascular conditioning\n- Trains the entire posterior chain and core\n- Low impact on joints (no eccentric load)\n- Minimal muscle soreness afterwards\n- Scalable — adjust load and distance\n- Multiple grip options for varied stimulus\n- Boosts work capacity and mental toughness"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings, Calves\n\nSecondary: Core, Lower Back, Shoulders, Chest, Triceps (bracing)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Load the tank sled with the desired amount of weight plates or resistance.\n2. Make sure the sled is on a flat, stable surface.\n3. Stand behind the tank sled with feet shoulder-width apart.\n4. Grip the handles with both hands at a comfortable height.\n5. Bend your hips and knees to lean into the sled.\n6. Keep your back straight and core braced.\n7. Lean forward to drive through the sled."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Start pushing the tank sled forward by driving your legs.\n2. Engage your core throughout the movement.\n3. Keep your back straight and maintain a strong posture.\n4. Continue pushing the tank sled for the desired distance or time.\n5. Focus on maintaining a steady and controlled pace.\n6. Use your legs, hips, and upper body strength to propel the sled forward.\n7. Keep the strides powerful and consistent.\n8. Carefully stop the sled at the end of the effort."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Standing too upright — reduces leg drive\n- Looking down instead of ahead\n- Short, choppy strides\n- Rounding the lower back\n- Bending the elbows excessively\n- Loading too much weight and sacrificing pace\n- Holding breath throughout the effort\n- Starting too fast and burning out"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Tank Sled\n- Weight Plates (if applicable)\n- Flat, smooth surface (turf, rubber, or concrete)\n- Training shoes with good grip\n- Optional: Gloves for hand comfort\n- Clear lane of at least 10-20 metres"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart behind the sled.\n2. Body Angle: Leaning forward at roughly 45 degrees.\n3. Grip: Firm on the handles at a comfortable height.\n4. Arms: Extended, elbows mostly straight.\n5. Back: Flat with a neutral spine.\n6. Core: Braced hard throughout.\n7. Head: Neutral, eyes looking slightly ahead.\n8. Feet: Driving through the balls of the feet."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start light to learn the pushing mechanics.\n2. Focus on powerful leg drive, not pace, at first.\n3. Keep pushes short (10-20m) for power work.\n4. Use longer distances for conditioning work.\n5. Gradually increase weight once form is solid.\n6. Vary grip heights — low for power, high for speed.\n7. Alternate forward and backward sled work for balance.\n8. Manage rest periods based on your goal."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["prowler_sled_push", "battlerope"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Prowler Sled Push: Low-handle power-focused variation\n- Sled Drag: Pulled variation for posterior chain\n- Reverse Sled Drag: Quad-focused backward pulling\n- Farmer's Walk: Full-body loaded carry\n- Battle Ropes: Cardiovascular conditioning\n- Yoke Carry: Heavy loaded locomotion"
+        },
+        {
+          "heading": "Conditioning Variations",
+          "content": "Heavy Push: Short distance, maximum load — power focus\nLight Push: Long distance, fast pace — conditioning focus\nHigh Handle Push: More upright, speed biased\nLow Handle Push: Lower body angle, strength biased\nSled Drag (Forwards/Backwards): Alternative stimulus\nSprint Intervals: Pure cardiovascular option"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Issues: Use high handles and lighter loads\nKnee Issues: Reduce load and shorten stride\nShoulder Issues: Keep arms extended and avoid excessive bracing\nNo Tank Sled Available: Use a prowler sled or push a weight plate on a towel\nLimited Space: Focus on short, heavy pushes\nBeginner: Start with very light load to learn the pattern"
+        }
+      ]
+    }
+  }
+}

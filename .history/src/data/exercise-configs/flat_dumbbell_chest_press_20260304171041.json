@@ -1,0 +1,105 @@
+{
+  "exerciseId": "flat_dumbbell_chest_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/17.%20Flat%20Dumbbell%20Chest%20Press/17.%20Flat%20Dumbbell%20Chest%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/17.%20Flat%20Dumbbell%20Chest%20Press/17.%20Flat%20Dumbbell%20Chest%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/17.%20Flat%20Dumbbell%20Chest%20Press/17.%20Flat%20Dumbbell%20Chest%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/17.%20Flat%20Dumbbell%20Chest%20Press/17.%20Flat%20Dumbbell%20Chest%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Flat Dumbbell Chest Press is a fundamental upper body exercise that targets the pectoralis major muscles.\n\nPerformed lying flat on a bench with a dumbbell in each hand, this exercise allows for a greater range of motion compared to the barbell bench press.\n\nThe independent movement of each arm helps address muscle imbalances and requires greater stabilizer muscle activation, making it an excellent chest-building exercise for all fitness levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Greater range of motion than barbell bench press\n- Independently works each arm, correcting muscle imbalances\n- Increased activation of chest stabilizer muscles\n- Reduced shoulder strain compared to barbell pressing\n- Versatile — easily adjustable weight increments\n- Develops chest thickness and definition\n- Improved mind-muscle connection with the pectorals"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal and Clavicular Heads)\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on a flat bench with a dumbbell in each hand resting on your thighs.\n2. Lie back and use your thighs to help kick the dumbbells up to chest level.\n3. Position the dumbbells at the sides of your chest with palms facing forward.\n4. Plant your feet firmly on the floor on either side of the bench.\n5. Retract your shoulder blades and squeeze them together.\n6. Maintain a slight natural arch in your lower back.\n7. Elbows should be bent at roughly 90 degrees."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Push the dumbbells upward by extending your arms.\n3. Press in a slight arc, bringing the dumbbells closer together at the top.\n4. Fully extend your arms without locking the elbows.\n5. Pause briefly at the top with dumbbells nearly touching.\n6. Slowly lower the dumbbells back to the starting position.\n7. Keep your shoulder blades retracted throughout the movement.\n8. Lower until you feel a stretch in the chest, elbows at roughly bench level.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring elbows out too wide (increases shoulder strain)\n- Bouncing the weight off the chest\n- Losing the shoulder blade retraction during the press\n- Arching the back excessively\n- Not lowering the dumbbells far enough\n- Locking the elbows aggressively at the top\n- Using momentum instead of controlled movement\n- Uneven pressing — one arm extending faster than the other\n- Feet lifting off the floor during the press"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight)\n- Flat Weight Bench\n- Optional: Spotter for heavy lifts\n- Optional: Wrist Wraps (for wrist support)\n- Recommended: Flat-soled shoes for stable foot placement"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Ensure the bench is flat and level (0-degree incline).\n2. Position the bench with enough clearance on both sides.\n3. Check the bench is stable and locked in position.\n4. Have dumbbells within easy reach on the floor beside the bench.\n5. Ensure the floor surface provides good foot traction."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat on the floor, shoulder-width apart or wider.\n2. Hips: Firmly on the bench throughout the movement.\n3. Back: Slight natural arch, shoulder blades squeezed together.\n4. Shoulders: Retracted and depressed (pulled back and down).\n5. Head: Resting naturally on the bench.\n6. Grip: Firm, neutral wrist position, palms facing forward.\n7. Elbows: At approximately 45-75 degree angle from torso."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bench_press", "incline_dumbbell_chest_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bench Press: Fixed path, allows heavier loads\n- Incline Dumbbell Press: Targets upper chest emphasis\n- Cable Chest Press: Constant tension throughout range\n- Machine Chest Press: Guided movement, great for beginners\n- Dumbbell Floor Press: Limited range, tricep emphasis\n- Push-Ups: Bodyweight alternative, no equipment needed"
+        },
+        {
+          "heading": "Flat Press Variations",
+          "content": "Flat Dumbbell Press: Standard chest builder with full range of motion\nNeutral Grip Dumbbell Press: Palms facing each other, easier on shoulders\nSingle-Arm Dumbbell Press: Unilateral pressing for core and balance\nDumbbell Squeeze Press: Dumbbells pressed together for inner chest\nSlow Eccentric Press: 3-4 second lowering phase for muscle growth\nPaused Dumbbell Press: Pause at the bottom for chest stretch and strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try neutral grip (palms facing each other) or reduce range\nWrist Discomfort: Use wrist wraps or try neutral grip position\nLower Back Issues: Keep feet elevated on the bench or use a slight hip tilt\nNo Bench: Perform floor press or push-up variations\nNo Dumbbells: Use resistance bands or barbell bench press\nLearning Stage: Start with lighter weights, focus on form and control"
+        }
+      ]
+    }
+  }
+}

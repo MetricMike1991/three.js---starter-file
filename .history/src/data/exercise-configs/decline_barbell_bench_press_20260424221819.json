@@ -1,0 +1,105 @@
+{
+  "exerciseId": "decline_barbell_bench_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/23.%20Decline%20Barbell%20Bench%20Press/23.%20Decline%20Barbell%20Bench%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/23.%20Decline%20Barbell%20Bench%20Press/23.%20Decline%20Barbell%20Bench%20Press%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/23.%20Decline%20Barbell%20Bench%20Press/23.%20Decline%20Barbell%20Bench%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/23.%20Decline%20Barbell%20Bench%20Press/23%20Decline%20Barbell%20Bench%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.1, 0],
+    "rotation": [0, -0.0519999999999999, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.2309718990755574, 1.8185467323919595, -1.0885735338640679],
+    "rotation": [-2.419090492351576, -0.8216026648411644, -2.5684075814765324],
+    "target": [-0.05446384022550685, 0.4799164485525208, 0.43000084384379955]
+  },
+  "modelHQ": {
+    "position": [0, -0.092, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.184335260741323, 1.5717063343051454, 1.3183901770814535],
+    "rotation": [-0.5703841169336236, 0.823189863952621, 0.4397142330900895],
+    "target": [-0.006352455723833003, 0.4750220839052454, -0.3911438948190664]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Decline Barbell Bench Press is a compound chest exercise performed on a bench set to a decline angle (typically 15-30 degrees).\n\nThis movement emphasizes the lower portion of the pectoralis major, while also engaging the triceps and anterior deltoids.\n\nThe decline angle reduces shoulder strain and can allow for heavier loading compared to flat or incline presses."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Emphasizes the lower chest for balanced development\n- Allows for heavier weights due to reduced shoulder involvement\n- Reduces stress on the shoulders compared to flat/incline presses\n- Builds pressing strength and triceps\n- Useful for breaking through chest training plateaus\n- Can improve lockout strength for other pressing movements"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal Head / Lower Chest)\n\nSecondary: Triceps Brachii, Anterior Deltoids, Serratus Anterior, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie flat on a decline bench with your feet secured under the foot pads.\n2. Grip the barbell with hands slightly wider than shoulder-width, palms facing forward.\n3. Keep your elbows bent and unrack the barbell, holding it above your lower chest.\n4. Retract your shoulder blades and keep them pressed into the bench.\n5. Maintain a slight natural arch in your lower back."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Push the barbell upward until your arms are fully extended, keeping your shoulder blades down and back.\n2. Lower the barbell in a controlled manner to your lower chest.\n3. Keep your elbows at a 45-60 degree angle from your torso.\n4. Touch the bar lightly to your chest—no bouncing.\n5. Press the barbell back up to the starting position.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting hips rise off the bench\n- Bouncing the bar off the chest\n- Flaring elbows out to 90 degrees\n- Not retracting shoulder blades\n- Using too steep a decline angle\n- Rushing the descent\n- Not controlling the bar path\n- Not using a spotter for heavy sets"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Decline Bench with Rack\n- Safety Pins or Spotter Arms (recommended)\n- Optional: Spotter for heavy lifts\n- Optional: Wrist Wraps\n- Optional: Chalk\n- Recommended: Flat-soled shoes"
+        },
+        {
+          "heading": "Bench and Rack Setup",
+          "content": "1. Set the bench to a 15-30 degree decline.\n2. Position the bench so the bar racks at a comfortable height.\n3. Set safety pins just below chest level.\n4. Ensure the bench is stable and centered under the bar.\n5. Secure your feet under the foot pads."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Eyes: Directly under or slightly in front of the barbell.\n2. Feet: Secured under foot pads.\n3. Hips: Firmly on the bench at all times.\n4. Back: Pressed into the decline pad, shoulder blades retracted.\n5. Shoulders: Pulled back and down into the bench.\n6. Head: Resting against the bench pad, neutral position.\n7. Grip: Slightly wider than shoulder-width, full grip with thumbs wrapped.\n8. Wrists: Stacked straight over forearms."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flat_dumbbell_chest_press", "barbell_bench_press", "incline_barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Flat Barbell Bench Press: Overall chest emphasis\n- Decline Dumbbell Press: Greater range of motion, independent arms\n- Low-to-High Cable Fly: Constant tension on lower chest\n- Machine Decline Press: Guided movement, beginner-friendly\n- Decline Push-Ups: Bodyweight lower chest option"
+        },
+        {
+          "heading": "Decline Press Variations",
+          "content": "Standard Decline Barbell Press: Classic lower chest builder\nClose-Grip Decline Press: Triceps emphasis\nWide-Grip Decline Press: Greater chest stretch\nPaused Decline Press: Pause on chest for strength off the bottom\nTempo Decline Press: Controlled eccentric\nDecline Board Press: Partial range for lockout strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use a shallower decline or switch to dumbbells\nWrist Pain: Use wrist wraps, check grip width\nLower Back Pain: Reduce arch, ensure hips stay on the bench\nNo Decline Bench: Use a flat bench with plates under one end\nNo Spotter: Use a power rack with safety pins or switch to dumbbells\nNo Barbell: Use dumbbells, resistance bands, or machine decline press\nLearning Stage: Start with just the bar, focus on bar path and control"
+        }
+      ]
+    }
+  }
+}

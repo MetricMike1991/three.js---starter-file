@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bentover_barbell_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/103.%20Bentover%20Barbell%20Row/103.%20Bentover%20Barbell%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/103.%20Bentover%20Barbell%20Row/103.%20Bentover%20Barbell%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/103.%20Bentover%20Barbell%20Row/103.%20Bentover%20Barbell%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/103.%20Bentover%20Barbell%20Row/103.%20Bentover%20Barbell%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bent Over Barbell Row is a compound pulling exercise that primarily targets the muscles of the upper and middle back.\n\nPerformed in a hinged-forward position, this exercise is one of the most effective movements for building a thick, strong back.\n\nIt is a staple in strength training and bodybuilding programmes, valued for its ability to develop pulling strength and improve posture."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds overall back thickness and width\n- Strengthens the posterior chain including lower back and hamstrings\n- Improves posture by strengthening upper back muscles\n- Develops grip strength and forearm endurance\n- Carries over to deadlift and other compound lift performance\n- Engages the biceps as a secondary mover\n- Can be loaded progressively for continued strength gains"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Rear Deltoids, Biceps, Erector Spinae, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart behind a loaded barbell.\n2. Bend your knees slightly and hinge forward at the hips.\n3. Grasp the barbell with an overhand grip, hands slightly wider than shoulder-width.\n4. Keep your back straight and core engaged.\n5. Let the barbell hang at arm's length below your chest."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Stand with your feet hip-width apart, bend your knees slightly and bend forward at the hips to grasp the barbell with an overhand grip.\n2. Keep your back straight and pull the barbell towards your stomach, keeping your elbows close to your body.\n3. Squeeze your shoulder blades together at the top of the movement.\n4. Slowly lower the barbell back to the starting position, keeping control of the weight throughout the movement.\n5. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back during the row\n- Using momentum or jerking the weight up\n- Not pulling the bar high enough towards the stomach\n- Standing too upright, reducing back engagement\n- Flaring the elbows out too wide\n- Lifting the torso with each rep instead of keeping it fixed\n- Using too much weight and sacrificing form\n- Not squeezing the shoulder blades at the top"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Optional: Lifting Belt (for heavy loads)\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Recommended: Flat-soled shoes for stability"
+        },
+        {
+          "heading": "Barbell Setup",
+          "content": "1. Place the loaded barbell on the floor or on a low rack.\n2. Stand with feet hip-width apart, toes under or slightly behind the bar.\n3. Hinge at the hips until your torso is roughly 45 degrees to the floor.\n4. Grip the bar just outside shoulder width.\n5. Start with a lighter weight to warm up and establish proper form."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Hip-width apart, knees slightly bent.\n2. Torso: Hinged forward at approximately 45 degrees.\n3. Back: Flat and neutral throughout the movement.\n4. Grip: Overhand, slightly wider than shoulder-width.\n5. Arms: Hanging straight down from shoulders.\n6. Head: Neutral position, looking at the floor a few feet ahead.\n7. Core: Braced and engaged for spinal support.\n8. Shoulders: Pulled down and back before initiating the pull."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["conventional_deadlift", "barbell_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Bent Over Row: Unilateral variation for balanced development\n- T-Bar Row: Chest-supported or standing variation with a neutral grip\n- Seated Cable Row: Machine-based alternative with constant tension\n- Pendlay Row: Strict variation with the bar returning to the floor each rep\n- Single Arm Dumbbell Row: Isolates each side independently\n- Chest Supported Row: Removes lower back demand while targeting upper back"
+        },
+        {
+          "heading": "Barbell Row Variations",
+          "content": "Bent Over Barbell Row (Overhand): Standard grip targeting upper back and lats\nBent Over Barbell Row (Underhand): Supinated grip for more bicep and lower lat engagement\nPendlay Row: Strict row from the floor for explosive power\nYates Row: More upright torso angle with an underhand grip\nSeal Row: Lying face down on an elevated bench to isolate the back\nMeadows Row: Landmine-based single arm row for lat focus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Switch to chest-supported rows or seated cable rows\nGrip Issues: Use lifting straps, chalk, or a mixed grip\nHamstring Tightness: Bend the knees more or elevate the barbell on blocks\nShoulder Discomfort: Try a neutral grip with dumbbells or a T-bar\nNo Barbell: Use dumbbells, kettlebells, or a cable machine\nBeginner: Start with light weight to master the hip hinge position"
+        }
+      ]
+    }
+  }
+}

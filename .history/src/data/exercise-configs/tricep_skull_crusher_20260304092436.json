@@ -1,0 +1,105 @@
+{
+  "exerciseId": "tricep_skull_crusher",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/16.%20Tricep%20Dumbbell%20Skull%20Crusher/16.%20Tricep%20Dumbbell%20Skull%20Crusher%20SD%20New_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/16.%20Tricep%20Dumbbell%20Skull%20Crusher/16.%20Tricep%20Dumbbell%20Skull%20Crusher%20hd_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/16.%20Tricep%20Dumbbell%20Skull%20Crusher/16.%20Tricep%20Dumbbell%20Skull%20Crusher%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/16.%20Tricep%20Dumbbell%20Skull%20Crusher/16.%20Tricep%20Dumbbell%20Skull%20Crusher%20usdz.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.066571438309432, 1.7867556275698901, -2.884177988666635],
+    "rotation": [-2.573190198460567, -0.7366504547357922, -2.736257075214696],
+    "target": [-0.011131786976856132, 0.5668476066443658, -0.9742428053664174]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9372728027151782, 1.739819080034386, 3.0093181982793786],
+    "rotation": [-0.47530485786632953, 0.6944388367055624, 0.31816795647950724],
+    "target": [0.0011050074669643614, 0.6759608900116377, 0.9422000443734769]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/16.%20Tricep%20Dumbbell%20Skull%20Crusher/Tricep%20Skull%20Crusher_250x250_2026-03-04T09-23-46.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tricep Skull Crusher, also known as a lying tricep extension, is an isolation exercise that targets the triceps brachii.\n\nPerformed lying on a flat bench with dumbbells, the movement involves lowering the weights toward either side of the head by bending at the elbows, then extending the arms back to the starting position.\n\nThis exercise is one of the most effective movements for building tricep size and strength, particularly the long head of the triceps."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the triceps for maximum muscle activation\n- Targets all three heads of the triceps, especially the long head\n- Builds arm size and definition\n- Improves lockout strength for pressing movements\n- Enhances elbow joint stability\n- Excellent for building pressing power for bench press and overhead press\n- Can be performed with various equipment (dumbbells, barbell, EZ-bar)\n- Allows for a deep stretch at the bottom of the movement"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps (Long Head, Lateral Head, Medial Head)\n\nSecondary: Anterior Deltoids, Chest (stabilisation), Core (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie flat on your back on a bench with your feet flat on the floor on either side.\n2. Hold a dumbbell in each hand with a neutral grip (palms facing each other).\n3. Extend your arms straight up above your chest with hands close together.\n4. Your upper arms should be perpendicular to the floor.\n5. Keep your elbows pointed toward the ceiling and shoulder-width apart.\n6. Engage your core and press your lower back gently into the bench.\n7. Keep your head flat on the bench and eyes looking up."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your upper arms stationary, bend at the elbows only.\n2. Slowly lower the dumbbells toward either side of your head.\n3. Lower until your forearms are roughly parallel to the floor or slightly below.\n4. Feel a deep stretch in the triceps at the bottom position.\n5. Pause briefly at the bottom without resting the weights.\n6. Extend your arms back to the starting position by contracting the triceps.\n7. Squeeze the triceps hard at the top of the movement.\n8. Keep elbows locked in position throughout — do not let them flare out.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Elbows flaring out to the sides during the movement\n- Moving the upper arms instead of keeping them stationary\n- Using momentum or swinging the weights\n- Lowering the weights too fast without control\n- Not getting a full range of motion at the bottom\n- Arching the lower back excessively off the bench\n- Using weights that are too heavy, compromising form\n- Locking the elbows aggressively at the top (maintain slight control)\n- Not keeping the wrists neutral"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Flat Bench\n- Pair of Dumbbells (appropriate weight for controlled reps)\n- Optional: EZ-Curl Bar or Straight Barbell as alternatives\n- Optional: Incline bench for variation\n- Recommended: Spotter for heavier sets"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Set up a flat bench in a stable position.\n2. Ensure the bench is secure and will not slide.\n3. Have dumbbells within reach before lying down.\n4. Sit on the bench and bring the dumbbells to your thighs.\n5. Lie back and press the dumbbells up to the starting position.\n6. Plant your feet firmly on the floor for stability.\n7. If using heavier weights, have a spotter assist with handoff."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Position: Lying flat on the bench, entire back supported.\n2. Feet: Flat on the floor, shoulder-width apart for stability.\n3. Head: Resting on the bench, eyes looking up.\n4. Grip: Neutral grip (palms facing each other) on dumbbells.\n5. Elbows: Pointed at the ceiling, shoulder-width apart.\n6. Upper Arms: Perpendicular to the floor and locked in place.\n7. Core: Engaged throughout to prevent lower back arching."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bicep_curl", "alternating_dumbbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Skull Crushers: Same movement with a barbell or EZ-bar\n- Overhead Tricep Extension: Standing or seated dumbbell extension\n- Cable Tricep Pushdown: Cable isolation for the triceps\n- Close-Grip Bench Press: Compound pressing with tricep emphasis\n- Tricep Dips: Bodyweight tricep exercise\n- Diamond Push-Ups: Bodyweight alternative targeting triceps"
+        },
+        {
+          "heading": "Skull Crusher Variations",
+          "content": "Dumbbell Skull Crushers: Standard variation with neutral grip\nBarbell Skull Crushers: Heavier loading with fixed bar path\nEZ-Bar Skull Crushers: Reduced wrist strain with angled grip\nIncline Skull Crushers: Greater long head stretch on incline bench\nDecline Skull Crushers: Altered angle for different emphasis\nSingle-Arm Skull Crushers: Unilateral version for imbalance correction\nBanded Skull Crushers: Accommodating resistance at lockout"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Reduce weight, try EZ-bar for less wrist/elbow strain\nShoulder Issues: Keep upper arms slightly angled back, not perfectly vertical\nWrist Discomfort: Use neutral grip dumbbells or EZ-bar\nNo Bench: Perform floor skull crushers for a limited range of motion\nNo Dumbbells: Use cables, bands, or bodyweight alternatives like diamond push-ups\nLearning Stage: Start with very light weight to master elbow positioning\nLower Back Pain: Keep feet elevated on the bench or press back firmly into the bench"
+        }
+      ]
+    }
+  }
+}

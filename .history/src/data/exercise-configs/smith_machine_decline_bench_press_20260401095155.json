@@ -1,0 +1,105 @@
+{
+  "exerciseId": "smith_machine_decline_bench_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/120.%20Smith%20Machine%20Decline%20Bench%20Press/120.%20Smith%20Machine%20Decline%20Bench%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/120.%20Smith%20Machine%20Decline%20Bench%20Press/120.%20Smith%20Machine%20Decline%20Bench%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/120.%20Smith%20Machine%20Decline%20Bench%20Press/120.%20Smith%20Machine%20Decline%20Bench%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/120.%20Smith%20Machine%20Decline%20Bench%20Press/120.%20Smith%20Machine%20Decline%20Bench%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.8037917708709974, 2.21460467034169, 2.7368845646665116],
+    "rotation": [-0.5264468800288721, 0.5583736497170481, 0.29868845633411717],
+    "target": [-0.02682257972841415, 0.7421554913795451, 0.20322023148229598]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.0126489343287433, 2.2722897185572597, 2.4503624496765957],
+    "rotation": [-0.617491796392718, 0.6571129772819572, 0.40927605006004136],
+    "target": [-0.09157905079749959, 0.6930958613416233, 0.22655047391992045]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Decline Bench Press is a machine-guided variation of the decline bench press that targets the lower portion of the chest.\n\nThe fixed bar path of the smith machine provides stability, allowing you to focus on the lower chest without worrying about balancing the weight.\n\nThis exercise is ideal for those looking to develop the lower pectorals while maintaining a safe and controlled pressing movement."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the lower chest more effectively than flat or incline pressing\n- Fixed bar path provides added stability and safety\n- Can be performed without a spotter\n- Built-in safety hooks for easy reracking at any point\n- Great for isolating the lower pectorals\n- Reduced shoulder stress compared to flat bench pressing\n- Useful for training to failure safely"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Lower Chest)\n\nSecondary: Anterior Deltoids (Front Shoulders), Triceps Brachii, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an adjustable bench to a decline position underneath the smith machine.\n2. Position the bench so the bar is inline with your chest when lying down.\n3. Secure your legs at the end of the bench to prevent sliding.\n4. Lie back on the decline bench with your feet locked in place.\n5. Grip the bar just outside shoulder width.\n6. Keep your shoulder blades retracted and pinched together.\n7. Maintain a slight natural arch in your lower back.\n8. Ensure the bar is aligned with your lower chest."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Unrack the bar by rotating it to release the safety hooks.\n2. Press the bar straight up until your arms are locked out.\n3. Lower the bar slowly and with control until it touches your chest.\n4. Follow the guided path of the smith machine throughout the movement.\n5. Press the bar back up explosively to the starting position.\n6. Keep your elbows at approximately a 45-degree angle to your body.\n7. Breathe in as you lower the bar, exhale as you press up.\n8. Rerack the weight by rotating the bar back into the safety hooks when the set is complete."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Not securing legs properly on the decline bench\n- Flaring elbows out to 90 degrees, increasing shoulder stress\n- Bouncing the bar off the chest\n- Not aligning the bench correctly under the bar path\n- Lowering the bar too high towards the neck\n- Not fully locking out at the top\n- Gripping the bar too narrow or too wide\n- Rushing the eccentric (lowering) portion"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith Machine\n- Adjustable Decline Bench\n- Weight Plates\n- Optional: Wrist Wraps (for heavy loads)\n- Optional: Lifting Gloves (for grip comfort)"
+        },
+        {
+          "heading": "Bench Positioning",
+          "content": "1. Set the bench to a decline angle of approximately 15-30 degrees.\n2. Place the decline bench directly under the smith machine bar.\n3. Adjust the bench so the bar aligns with your lower chest when lying down.\n4. Set the safety stops at an appropriate height just above chest level.\n5. Ensure the bench is centred and stable.\n6. Lock your feet securely under the foot pads.\n7. Test the bar path with an empty bar before adding weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Just outside shoulder width, overhand grip.\n2. Shoulders: Retracted and depressed, pinched together.\n3. Back: Slight natural arch in the lower back.\n4. Legs: Securely locked under the foot pads.\n5. Head: Resting on the bench, eyes under the bar.\n6. Core: Braced and tight throughout the movement.\n7. Elbows: Tucked at approximately 45 degrees."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "smith_machine_flat_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Decline Bench Press: Free weight version with greater stabiliser engagement\n- Smith Machine Flat Bench Press: Flat angle targeting the mid-chest\n- Dumbbell Decline Chest Press: Greater range of motion, independent arm movement\n- Cable Chest Press: Constant tension throughout the movement\n- Decline Push Up: Bodyweight alternative targeting the lower chest"
+        },
+        {
+          "heading": "Smith Machine Variations",
+          "content": "Smith Machine Decline Bench Press: Decline angle targeting the lower chest\nSmith Machine Flat Bench Press: Standard flat pressing movement\nSmith Machine Incline Bench Press: Angled to target the upper chest\nSmith Machine Close Grip Bench Press: Narrower grip to emphasise triceps\nSmith Machine Floor Press: Reduced range of motion for lockout strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the decline angle or try a flat bench variation\nWrist Discomfort: Use wrist wraps or adjust grip width\nDizziness from Decline: Use a shallower decline angle or switch to flat bench\nNo Smith Machine: Use barbell decline press with a spotter or dumbbells\nNo Decline Bench: Perform decline push ups as a bodyweight alternative\nBeginner: Start with just the bar to learn the movement pattern"
+        }
+      ]
+    }
+  }
+}

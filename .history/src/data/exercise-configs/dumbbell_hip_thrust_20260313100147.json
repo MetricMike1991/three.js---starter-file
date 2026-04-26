@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_hip_thrust",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/52.%20Dumbbell%20Hip%20Thrust/52.%20Dumbbell%20Hip%20Thrust%20SD%20Compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/52.%20Dumbbell%20Hip%20Thrust/52.%20Dumbbell%20Hip%20Thrust%20HD%20Compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/52.%20Dumbbell%20Hip%20Thrust/52.%20Dumbbell%20Hip%20Thrust%20AR%20Compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/52.%20Dumbbell%20Hip%20Thrust/52.%20Dumbbell%20Hip%20Thrust%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.4655884586116783, 1.5690777113899437, -1.181631064569197],
+    "rotation": [-2.4292695317098136, 0.9997978727635862, 2.5132496183876545],
+    "target": [0.009053823319068264, 0.5376909881977368, 0.012689429241327654]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.311795902566255, 1.7555658262763352, 1.4997600513550975],
+    "rotation": [-0.7031435335693137, -0.8654825991800837, -0.5731542677048307],
+    "target": [0.0071378017122715725, 0.4789010740204322, -0.0063156009020036985]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Hip Thrust is a glute-dominant exercise performed with your upper back supported on a bench and a dumbbell placed across the hips for resistance.\n\nThis movement targets the glutes through a full range of hip extension and is one of the most effective exercises for building glute strength and size.\n\nUsing a dumbbell makes this variation easy to set up and accessible for all fitness levels, while still providing meaningful resistance for glute development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- High glute activation throughout the full range of motion\n- Easy to set up compared to barbell hip thrusts\n- Reduced stress on the lower back\n- Builds hip extension strength for improved athletic performance\n- Improves lockout strength in squats and deadlifts\n- Accessible for beginners and advanced lifters alike\n- Helps correct quad-dominant movement patterns"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes (Gluteus Maximus)\n\nSecondary: Hamstrings, Quadriceps, Hip Adductors, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the ground with your back against a bench, positioned at around shoulder blade height.\n2. Hold a dumbbell on your hips securely with both hands.\n3. Place your feet flat on the ground, roughly shoulder-width apart.\n4. Bend your knees at approximately a 90-degree angle.\n5. Keep your chin slightly tucked and your gaze forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Drive through your heels to lift your hips off the ground.\n2. Push your hips upward until your thighs are parallel to the floor.\n3. Squeeze your glutes hard at the top of the movement.\n4. Maintain a neutral spine throughout — avoid hyperextending your lower back.\n5. Slowly lower your hips back down to the starting position with control.\n6. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyperextending the lower back at the top of the movement\n- Pushing through the toes instead of the heels\n- Allowing the knees to cave inward during the thrust\n- Positioning too far forward or back on the bench\n- Not achieving full hip extension at the top\n- Rushing through reps without controlling the descent\n- Letting the dumbbell shift or roll off the hips"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Dumbbell (appropriate weight for your level)\n- Sturdy Flat Bench or Box\n- Optional: Hip Pad or Towel (for comfort on hips)\n- Flat, Non-Slip Floor Surface"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Position a sturdy bench against a wall or rack so it doesn't slide.\n2. The bench height should allow your shoulder blades to rest on the edge.\n3. Ensure the bench is stable and won't tip during the movement.\n4. If using a box, make sure it is heavy enough to stay in place.\n5. A standard flat bench height works well for most people."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, flat on the floor.\n2. Shins: Approximately vertical at the top of the movement.\n3. Back: Shoulder blades resting on the edge of the bench.\n4. Dumbbell: Centered on the hips, held securely with both hands.\n5. Head: Neutral position, chin slightly tucked.\n6. Core: Braced throughout the entire movement.\n7. Knees: Tracking in line with toes, bent at roughly 90 degrees."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["kettlebell_hip_thrust", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Heavier loading potential with a barbell\n- Kettlebell Hip Thrust: Alternative loading with a kettlebell\n- Glute Bridge: Floor-based version without bench elevation\n- Single Leg Hip Thrust: Unilateral variation for balance correction\n- Banded Hip Thrust: Resistance band variation for constant tension\n- Cable Pull-Through: Standing hip hinge with cable resistance"
+        },
+        {
+          "heading": "Hip Thrust Variations",
+          "content": "Dumbbell Hip Thrust: Standard bench-supported thrust with dumbbell\nSingle Leg Dumbbell Hip Thrust: Unilateral version for imbalance correction\nPaused Hip Thrust: Hold at top for increased time under tension\nBanded Dumbbell Hip Thrust: Added band resistance at lockout\nFoot-Elevated Hip Thrust: Feet raised to increase range of motion\nTempo Hip Thrust: Slow eccentric for enhanced muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Bench Available: Perform glute bridges from the floor\nKnee Discomfort: Adjust foot position wider or narrower\nLower Back Pain: Focus on core bracing and avoid hyperextension\nHip Discomfort: Use a pad or towel under the dumbbell\nNo Dumbbell: Use a kettlebell, plate, or resistance band\nLimited Mobility: Start with bodyweight hip thrusts to build range"
+        }
+      ]
+    }
+  }
+}

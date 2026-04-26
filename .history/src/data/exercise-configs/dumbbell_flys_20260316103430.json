@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_flys",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/62.%20Dumbbell%20Flys/62.%20Dumbbell%20Flys%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/62.%20Dumbbell%20Flys/62.%20Dumbbell%20Flys%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/62.%20Dumbbell%20Flys/62.%20Dumbbell%20Flys%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/62.%20Dumbbell%20Flys/62.%20Dumbbell%20Flys%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Fly is an isolation exercise that targets the pectoralis major (chest) muscles using a flat bench and two dumbbells.\n\nBy moving the arms in a wide arc with a slight bend in the elbows, this exercise stretches and contracts the chest muscles through a full range of motion.\n\nDumbbell Flys are an excellent exercise for developing chest width, improving muscle definition, and building the inner chest area that pressing movements alone cannot fully target."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the chest muscles for focused development\n- Provides a deep stretch at the bottom of the movement for muscle growth\n- Targets the inner chest for improved definition\n- Complements pressing exercises for complete chest development\n- Improves shoulder joint mobility and flexibility\n- Allows for a greater range of motion than barbell presses\n- Low risk of injury when performed with controlled form and appropriate weight"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal and Clavicular Head)\n\nSecondary: Anterior Deltoids, Biceps (stabilization), Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Grab two dumbbells and sit on the edge of a flat bench.\n2. Lie back on the bench with one dumbbell in each hand.\n3. Extend your arms directly above your shoulders with palms facing each other.\n4. Maintain a slight bend in your elbows throughout the movement.\n5. Plant your feet flat on the floor for stability.\n6. Retract your shoulder blades and press them into the bench.\n7. Keep a slight arch in your lower back."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. In a wide arcing motion, slowly lower the dumbbells out to your sides.\n2. Keep the same slight bend in your elbows throughout the movement.\n3. Move only at the shoulder joint — do not bend or straighten the elbows.\n4. Lower the dumbbells until you feel a full stretch across your chest.\n5. Pause briefly at the bottom of the movement.\n6. Reverse the motion, bringing the dumbbells back together above your chest in the same arc.\n7. Squeeze your chest muscles at the top of the movement.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Straightening the arms at the bottom, turning it into a press\n- Using too much weight and losing control of the arc\n- Lowering the dumbbells too far, putting excessive stress on the shoulders\n- Not maintaining a constant bend in the elbows\n- Rushing through reps without controlling the eccentric phase\n- Lifting the feet off the floor or losing back contact with the bench\n- Not retracting the shoulder blades, reducing chest engagement\n- Bringing the dumbbells together too quickly at the top"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Two Dumbbells (matching weight)\n- Flat Bench\n- Appropriate Weight Selection"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Position a flat bench in a clear area with enough space on both sides.\n2. Select an appropriate weight — start lighter than your pressing weight.\n3. Place the dumbbells at the end of the bench for easy access.\n4. Ensure the bench is stable and secure before lying down.\n5. Sit on the edge, place the dumbbells on your thighs, and use your legs to kick them up as you lie back."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat on the bench with shoulder blades retracted.\n2. Shoulders: Pulled back and pressed into the bench.\n3. Chest: Open and expanded.\n4. Arms: Extended above shoulders, slight bend in elbows.\n5. Elbows: Soft bend maintained throughout — never lock out or bend excessively.\n6. Feet: Flat on the floor for stability.\n7. Head: Resting on the bench, eyes looking up.\n8. Core: Engaged to maintain stability."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flat_dumbbell_chest_press", "cable_crossovers"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Crossovers: Cable-based chest fly with constant tension\n- Flat Dumbbell Chest Press: Compound pressing for overall chest\n- Pec Deck Machine: Machine-based fly variation\n- Incline Dumbbell Flys: Targets the upper chest\n- Decline Dumbbell Flys: Targets the lower chest\n- Bodyweight Push Up: Bodyweight chest exercise"
+        },
+        {
+          "heading": "Dumbbell Fly Variations",
+          "content": "Flat Dumbbell Fly: Standard flat bench variation for overall chest\nIncline Dumbbell Fly: Bench set to 30-45 degrees for upper chest emphasis\nDecline Dumbbell Fly: Bench set to decline for lower chest emphasis\nSingle Arm Dumbbell Fly: Unilateral version for imbalance correction\nFloor Fly: Performed on the floor for a reduced range of motion\nSlow Tempo Fly: Extended eccentric for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion and use lighter weight\nNo Bench: Perform floor flys for a shortened but safe range of motion\nElbow Pain: Ensure a consistent slight bend and reduce weight\nBeginner: Start with very light dumbbells to master the arc movement\nNo Dumbbells: Use cable crossovers or resistance band flys\nWant More Challenge: Add a pause at the stretched position or slow the eccentric"
+        }
+      ]
+    }
+  }
+}

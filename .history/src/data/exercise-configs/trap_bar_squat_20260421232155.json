@@ -1,0 +1,105 @@
+{
+  "exerciseId": "trap_bar_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/176.%20Trap%20Bar%20Squat/176.%20Trap%20Bar%20Squat%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/176.%20Trap%20Bar%20Squat/176.%20Trap%20Bar%20Squat%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/176.%20Trap%20Bar%20Squat/176.%20Trap%20Bar%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/176.%20Trap%20Bar%20Squat/176.%20Trap%20Bar%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Trap Bar Squat is a compound lower-body exercise performed by standing inside a hexagonal (trap) bar and squatting while holding the handles at your sides.\n\nThe neutral grip and centered load create a more upright torso position than a back squat, reducing stress on the lower back while still driving strong quad and glute development.\n\nIt's an excellent squat variation for athletes, beginners, and anyone looking to train the squat pattern with lower spinal load."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- More upright torso than a barbell back squat\n- Reduced stress on the lower back\n- Neutral grip is easier on wrists and shoulders\n- Combines elements of squat and deadlift mechanics\n- Great for building quad and glute strength\n- Easier to learn than a back squat\n- Allows heavy loading with safer mechanics\n- Excellent for athletic power development"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Erector Spinae, Core, Trapezius, Forearms and Grip, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand inside the trap bar with your feet shoulder-width apart.\n2. Grip the handles with palms facing inwards (neutral grip).\n3. Chest up, shoulders back, spine neutral.\n4. Stand tall with the bar held at your sides.\n5. Eyes forward, neck neutral."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keep your chest lifted and engage your core.\n2. Lower your body by bending your knees and pushing your hips back, maintaining a neutral spine.\n3. Squat down until your thighs are parallel to the ground or as low as you can comfortably go.\n4. Keep your knees in line with your toes throughout the movement.\n5. Push through your heels and engage your leg muscles to return to the starting position.\n6. Finish upright with hips fully extended.\n7. Repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Knees caving inward during descent or ascent\n- Rounding the lower back at the bottom\n- Leaning too far forward (turning it into a deadlift)\n- Not squatting deep enough\n- Rising on the toes instead of driving through heels\n- Letting the bar drift forward or backward\n- Losing core brace during the lift\n- Using momentum instead of controlled reps"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Trap Bar (Hex Bar)\n- Weight Plates (bumper or iron)\n- Lifting Platform or Suitable Floor Surface\n- Optional: Lifting Belt for heavier loads\n- Optional: Lifting Straps for grip support\n- Optional: Chalk for improved grip\n- Recommended: Flat-soled shoes for stability"
+        },
+        {
+          "heading": "Choosing Handle Height",
+          "content": "1. Most trap bars have high and low handle options.\n2. High handles reduce range of motion - easier on back and mobility.\n3. Low handles increase depth and leg involvement.\n4. Beginners often start with high handles.\n5. Taller lifters may prefer high handles to maintain form.\n6. Choose the height that allows a deep, upright squat.\n7. Stay consistent with your choice to track progress."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, centered inside the bar.\n2. Toes: Slightly turned out (10-20 degrees).\n3. Grip: Neutral, palms facing each other, firm hold.\n4. Torso: Upright with chest up and core braced.\n5. Shoulders: Pulled back and down.\n6. Knees: Tracking over toes.\n7. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "trap_bar_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Traditional barbell squat variation\n- Front Squat: Quad-dominant barbell squat\n- Goblet Squat: Dumbbell or kettlebell squat\n- Trap Bar Deadlift: Same bar, more hip hinge pattern\n- Dumbbell Squat: Holding dumbbells at sides\n- Safety Bar Squat: Reduced shoulder strain alternative"
+        },
+        {
+          "heading": "Trap Bar Squat Variations",
+          "content": "Standard Trap Bar Squat: Full range, neutral grip\nHigh Handle Trap Bar Squat: Reduced range of motion\nLow Handle Trap Bar Squat: Increased depth and leg involvement\nPaused Trap Bar Squat: Pause at bottom for strength\nTempo Trap Bar Squat: Slow eccentrics for muscle building\nTrap Bar Jump Squat: Explosive power development"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Use high handles or lighter loads\nKnee Issues: Reduce depth or switch to leg press\nGrip Issues: Use lifting straps or chalk\nNo Trap Bar: Substitute with goblet squats or dumbbell squats\nMobility Restrictions: Use high handles for shorter range\nLearning Stage: Start light, focus on knee tracking and upright torso"
+        }
+      ]
+    }
+  }
+}

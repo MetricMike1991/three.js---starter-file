@@ -1,0 +1,113 @@
+{
+  "exerciseId": "bodyweight_hip_thrust_female",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/280.%20Bodyweight%20Hip%20Thrust%20Female/280.%20Bodyweight%20Hip%20Thrust%20Female%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/280.%20Bodyweight%20Hip%20Thrust%20Female/280.%20Bodyweight%20Hip%20Thrust%20Female%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.7836167512152277, 2.3459522220877607, 1.5275287553427073],
+    "rotation": [-0.8301094150303587, 0.5739641172051035, 0.5358677734355383],
+    "target": [-0.012533328644455288, 0.29581580464695134, -0.34701334763110536]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.7836126796530423, 2.3459533279989078, 1.527531447123025],
+    "rotation": [-0.8301089685548985, 0.5739626515305983, 0.5358663846689058],
+    "target": [-0.012533328644455288, 0.29581580464695134, -0.34701334763110536]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Hip Thrust is a foundational glute exercise performed with the upper back resting on a bench and the hips driven up to full extension.\n\nIt is the unloaded version of the barbell hip thrust, ideal for learning the movement pattern, building a strong mind-muscle connection, and warming up before heavier work.\n\nDespite using only bodyweight, it produces a strong glute contraction and is suitable for all training levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Direct activation of the gluteus maximus\n- Reinforces hip extension mechanics for heavier lifts\n- No equipment beyond a bench is required\n- Excellent warm up for barbell hip thrusts\n- Builds glute endurance and tension control\n- Beginner friendly with a low learning curve\n- Can be progressed with tempo, pauses, or single leg variations"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Core, Erector Spinae, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Sit on the ground with your back against a bench.\n2. Bend your legs and place your feet flat on the floor, shoulder-width apart.\n3. Confirm the bench is stable before beginning."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Place your shoulder blades against the edge of the bench.\n2. Your body should form a straight line from your shoulders to your knees when in the top position.\n3. Brace your core and tuck the chin slightly."
+        },
+        {
+          "heading": "Lift",
+          "content": "1. Brace your core and drive through your heels.\n2. Lift your hips towards the ceiling until your hips are fully extended.\n3. Squeeze your glutes at the top of the movement for maximum engagement."
+        },
+        {
+          "heading": "Lower and Repeat",
+          "content": "1. Lower your hips back down to the starting position in a controlled manner.\n2. Keep tension in your glutes throughout the descent.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyper-extending the lower back at the top\n- Pushing through the toes instead of the heels\n- Letting the knees cave inward\n- Failing to fully extend the hips\n- Tucking the chin too aggressively or letting the head drop\n- Bouncing the hips off the floor\n- Holding the breath through the rep"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Stable bench or sturdy elevated surface\n- Athletic shoes for foot traction\n- Optional: Mat for floor comfort\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Bench Adjustments",
+          "content": "1. Place the bench against a wall or weight to prevent it from sliding.\n2. Confirm the bench height supports the upper back comfortably.\n3. Check that the bench is stable before loading any weight.\n4. Choose a slightly padded surface for shoulder comfort if needed."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet flat on the floor, shoulder-width apart, toes slightly pointed out.\n2. Torso: Shoulder blades on the bench, ribs stacked, core braced.\n3. Knees: Bent at roughly 90 degrees in the top position.\n4. Hips: Driven up to full extension, glutes squeezed.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "glute_kick_back_machine_female"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Heavy loaded version\n- Dumbbell Hip Thrust: Loaded with a dumbbell across the hips\n- Glute Bridge: Floor-based hip extension\n- Single Leg Hip Thrust: Unilateral variation\n- Glute Kick Back Machine: Machine-based glute isolation\n- Romanian Deadlift: Compound posterior chain lift"
+        },
+        {
+          "heading": "Bodyweight Hip Thrust Variations",
+          "content": "Standard Bodyweight Hip Thrust: Described here\nSingle Leg Hip Thrust: One leg lifted for greater unilateral demand\nFeet Elevated Hip Thrust: Feet on a step or box for more glute stretch\nB Stance Hip Thrust: One foot lightly placed for unilateral bias\nPaused Hip Thrust: Pause at the top for greater glute tension\nTempo Hip Thrust: Slow eccentric for hypertrophy"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Avoid over-extending at the top, focus on glute squeeze\nKnee Pain: Adjust foot position to reduce knee strain\nNo Bench: Perform a glute bridge on the floor instead\nShoulder Discomfort: Use a padded bench edge or towel for the upper back\nBalance Issues: Keep the feet wider for stability\nBeginners: Start with floor glute bridges before progressing to hip thrusts"
+        }
+      ]
+    }
+  }
+}

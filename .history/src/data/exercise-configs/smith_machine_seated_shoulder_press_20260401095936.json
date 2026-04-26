@@ -1,0 +1,105 @@
+{
+  "exerciseId": "smith_machine_seated_shoulder_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/121.%20Smith%20Machine%20Seated%20Shoulder%20Press/121.%20Smith%20Machine%20Seated%20Shoulder%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/121.%20Smith%20Machine%20Seated%20Shoulder%20Press/121.%20Smith%20Machine%20Seated%20Shoulder%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/121.%20Smith%20Machine%20Seated%20Shoulder%20Press/121.%20Smith%20Machine%20Seated%20Shoulder%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/121.%20Smith%20Machine%20Seated%20Shoulder%20Press/121.%20Smith%20Machine%20Seated%20Shoulder%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.893815758906903, 1.9462051081625886, 3.1401248754038016],
+    "rotation": [-0.38555474763062875, 0.5532933036560483, 0.21013195367754472],
+    "target": [0.03753265077859894, 0.8159480340020747, 0.3553351198085012]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9396071526154228, 2.09762444264514, 2.3545041558671316],
+    "rotation": [-0.5883045832360936, 0.676124064195721, 0.395463502917509],
+    "target": [0.018932017555409124, 0.769043901548073, 0.36293666799363133]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Seated Shoulder Press is a machine-guided overhead pressing movement that targets the deltoid muscles.\n\nThe fixed bar path of the smith machine allows you to focus on pressing strength without worrying about balancing the weight, making it an excellent choice for beginners and experienced lifters alike.\n\nThis exercise is highly effective for building shoulder size and strength while maintaining a safe and controlled movement pattern."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Fixed bar path provides added stability and safety\n- Can be performed without a spotter\n- Excellent for isolating the shoulder muscles\n- Allows heavier loading compared to free weight alternatives\n- Built-in safety hooks for easy reracking at any point\n- Great for training to failure safely\n- Seated position reduces lower back involvement\n- Consistent movement pattern for progressive overload"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids (Front Shoulders), Lateral Deltoids (Side Shoulders)\n\nSecondary: Triceps Brachii, Upper Trapezius, Serratus Anterior, Upper Chest"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a bench inside the smith machine with the backrest set to an upright or near-upright position.\n2. Adjust the bar height so it sits at approximately shoulder level when seated.\n3. Sit on the bench with your feet flat on the floor.\n4. Grab the barbell with a slightly wider than shoulder-width grip, palms facing forward.\n5. Keep your shoulder blades down and back.\n6. Maintain a neutral spine with your back flat against the bench.\n7. Brace your core before unracking the bar.\n8. Lift the bar to shoulder height to begin."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Unrack the bar by rotating it to release the safety hooks.\n2. Press the barbell upward until your arms are fully extended overhead.\n3. Keep your shoulder blades down and back throughout the movement.\n4. Slowly lower the barbell back down to shoulder level with control.\n5. Follow the guided path of the smith machine throughout the movement.\n6. Avoid locking out aggressively at the top.\n7. Breathe in as you lower the bar, exhale as you press up.\n8. Rerack the weight by rotating the bar back into the safety hooks when the set is complete."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back excessively during the press\n- Flaring elbows too far back, increasing shoulder impingement risk\n- Not sitting directly under the bar path\n- Pressing the bar too far in front of or behind the head\n- Using momentum or bouncing at the bottom\n- Not fully extending the arms at the top\n- Gripping the bar too narrow or too wide\n- Tilting the head forward to avoid the bar"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith Machine\n- Adjustable Bench with Upright Back Support\n- Weight Plates\n- Optional: Wrist Wraps (for heavy loads)\n- Optional: Lifting Belt (for additional core support)"
+        },
+        {
+          "heading": "Bench Positioning",
+          "content": "1. Place the bench inside the smith machine with the backrest set upright or slightly angled back.\n2. Position the bench so the bar travels directly above your shoulders when seated.\n3. Adjust the bar height to sit at shoulder level when you are in the starting position.\n4. Set the safety stops at an appropriate height just below chin level.\n5. Ensure the bench is centred and stable.\n6. Test the bar path with an empty bar before adding weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Slightly wider than shoulder width, overhand grip.\n2. Shoulders: Blades pulled down and back against the bench.\n3. Back: Flat against the bench pad, slight natural curve.\n4. Feet: Flat on the floor, firmly planted.\n5. Head: Neutral position, looking straight ahead.\n6. Core: Braced and tight throughout the movement.\n7. Elbows: Slightly in front of the bar at the bottom position."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Standing free weight version with greater core engagement\n- Barbell Seated Shoulder Press: Free weight seated version with greater stabiliser engagement\n- Dumbbell Shoulder Press: Independent arm movement with greater range of motion\n- Arnold Press: Rotational pressing movement targeting all three deltoid heads\n- Machine Shoulder Press: Plate-loaded or cable-loaded machine alternative"
+        },
+        {
+          "heading": "Smith Machine Variations",
+          "content": "Smith Machine Seated Shoulder Press: Standard seated overhead press\nSmith Machine Standing Shoulder Press: Standing version for greater core involvement\nSmith Machine Behind the Neck Press: Targets rear deltoids more (requires good mobility)\nSmith Machine Single Arm Press: Unilateral pressing for imbalance correction\nSmith Machine Push Press: Uses leg drive for heavier loads"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Reduce range of motion or use a neutral grip dumbbell press\nLower Back Pain: Ensure back is fully supported against the bench\nWrist Discomfort: Use wrist wraps or adjust grip width\nNo Smith Machine: Use barbell or dumbbell shoulder press\nLimited Mobility: Use a slightly reclined bench angle\nBeginner: Start with just the bar to learn the movement pattern"
+        }
+      ]
+    }
+  }
+}

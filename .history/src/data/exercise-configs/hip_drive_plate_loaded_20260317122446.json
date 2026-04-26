@@ -1,0 +1,105 @@
+{
+  "exerciseId": "hip_drive_plate_loaded",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/66.%20Hip%20Drive%20Plate%20Loaded/66.%20Hip%20Drive%20Plate%20Loaded%20%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/66.%20Hip%20Drive%20Plate%20Loaded/66.%20Hip%20Drive%20Plate%20Loaded%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/66.%20Hip%20Drive%20Plate%20Loaded/66.%20Hip%20Drive%20Plate%20Loaded%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/66.%20Hip%20Drive%20Plate%20Loaded/66.%20Hip%20Drive%20Plate%20Loaded%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.0446811727491117, 1.8234638752824468, -1.8026156009488545],
+    "rotation": [-2.5117762202315577, 0.7412917263002893, 2.6842539844991595],
+    "target": [-0.0009948532018278652, 0.5073009343591712, 0.0032326947759222513]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.203607901959625, 2.2107379231614246, 1.7288717525878081],
+    "rotation": [-0.7172371656212043, -0.7596433598319134, -0.5408943415604507],
+    "target": [-0.008155729137615175, 0.6913412117114313, -0.013172969756085673]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Hip Drive Plate Loaded is a machine-based glute exercise that isolates the hip extension movement pattern.\n\nPerformed on a dedicated hip drive machine with plate-loaded resistance, it allows heavy loading of the glutes and hamstrings without placing stress on the lower back or requiring barbell setup.\n\nThis exercise is an excellent alternative to barbell hip thrusts, providing a stable setup and consistent resistance throughout the range of motion."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the glutes through a full hip extension range\n- No barbell required — eliminates discomfort from bar on hips\n- Stable machine setup allows focus purely on the contraction\n- Plate-loaded for easy progressive overload\n- Reduced lower back stress compared to free-weight alternatives\n- Excellent for building glute strength, size, and power\n- Simple to set up and suitable for all fitness levels"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus, Gluteus Medius\n\nSecondary: Hamstrings, Quadriceps (stabilisation), Core (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Load the desired weight plates onto the hip drive machine.\n2. Sit on the machine with your back flat against the pad.\n3. Place your feet shoulder-width apart and firmly on the platform in front of you.\n4. Position your feet so that your shins are roughly vertical at the bottom of the movement.\n5. Grasp the handles on either side of the pad for stability.\n6. Your hips should be in a flexed position at the bottom, ready to drive upward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Push through your heels to extend your hips, driving the weight upward.\n2. Squeeze your glutes hard at the top of the movement when your hips are fully extended.\n3. Pause briefly at the top for maximum contraction.\n4. Slowly lower the weight back to the starting position under control.\n5. Keep your back against the pad throughout the entire movement.\n6. Avoid overextending or arching the lower back at the top.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pushing through the toes instead of the heels\n- Hyperextending the lower back at the top of the movement\n- Not achieving full hip extension before lowering\n- Rushing through reps without squeezing at the top\n- Placing feet too far forward or too close to the body\n- Using too much weight and reducing the range of motion\n- Letting the back come away from the pad during the drive\n- Not controlling the eccentric (lowering) phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Hip Drive Machine (plate-loaded)\n- Weight Plates (for loading resistance)\n- Optional: Resistance Band (above knees for added glute activation)\n- Optional: Hip Pad (if machine pad needs additional cushioning)"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the back pad height if the machine allows it.\n2. Load the appropriate weight plates evenly on both sides.\n3. Sit into the machine with your back firmly against the pad.\n4. Adjust your foot position on the platform — shoulder-width apart.\n5. Ensure your shins are approximately vertical when hips are at the bottom.\n6. Grip the handles securely before beginning the set.\n7. Perform a few unloaded reps to check your positioning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat against the pad from upper back to lower back.\n2. Feet: Shoulder-width apart, flat on the platform.\n3. Knees: Tracking over the toes, not caving inward.\n4. Hips: Starting in a flexed position at the bottom.\n5. Hands: Gripping the handles firmly for stability.\n6. Head: Neutral, looking forward or slightly upward.\n7. Core: Braced throughout to support the spine.\n8. Heels: Driving through the heels, not the toes."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "bodyweight_hip_thrust"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Free-weight version using a barbell and bench\n- Bodyweight Hip Thrust: Unloaded version for beginners\n- Glute Bridge: Floor-based glute isolation exercise\n- Cable Pull-Through: Standing hip extension with cable resistance\n- Romanian Deadlift: Hip hinge movement targeting glutes and hamstrings\n- Kettlebell Swing: Dynamic hip extension for power and conditioning"
+        },
+        {
+          "heading": "Hip Drive Variations",
+          "content": "Standard Hip Drive: Both feet on platform, shoulder-width apart\nSingle Leg Hip Drive: One foot on platform for unilateral glute work\nWide Stance Hip Drive: Feet wider for greater glute medius activation\nBanded Hip Drive: Add a resistance band above the knees for extra activation\nPaused Hip Drive: Hold at the top for 2-3 seconds for peak contraction\nSlow Tempo Hip Drive: 3-4 second eccentric for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Adjust foot position — move feet slightly further forward\nLower Back Discomfort: Ensure back stays against the pad, reduce weight\nHip Flexor Tightness: Warm up with hip flexor stretches before the exercise\nNo Hip Drive Machine: Use barbell hip thrusts or glute bridges instead\nBeginner: Start with light weight to master the hip extension pattern\nWant More Challenge: Add a band above the knees or try single leg variation"
+        }
+      ]
+    }
+  }
+}

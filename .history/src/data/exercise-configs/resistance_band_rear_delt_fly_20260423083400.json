@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_rear_delt_fly",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/208.%20Resistance%20Band%20Rear%20Delt%20Fly/208.%20Resistance%20Band%20Rear%20Delt%20Fly%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/208.%20Resistance%20Band%20Rear%20Delt%20Fly/208.%20Resistance%20Band%20Rear%20Delt%20Fly%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/208.%20Resistance%20Band%20Rear%20Delt%20Fly/208.%20Resistance%20Band%20Rear%20Delt%20Fly%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.610379053012315, 1.3125010285193897, -2.6147443817253464],
+    "rotation": [-2.888875864989164, -0.622650931843437, -2.992114097258169],
+    "target": [-0.019086543304015463, 0.7582886122195558, -0.46861283404500964]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/208.%20Resistance%20Band%20Rear%20Delt%20Fly/Resistance%20Band%20Rear%20Delt%20Fly_250x250_2026-04-23T07-33-29.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Rear Delt Fly is a shoulder isolation exercise that targets the rear (posterior) deltoids and the upper back using a band anchored beneath the feet.\n\nPerformed seated in a slightly hinged position, it produces constant band tension that trains the rear delts and scapular retractors.\n\nIt is an excellent accessory for shoulder balance, posture, and upper-back health, especially for lifters with forward-rounded shoulders."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the often-neglected rear deltoids\n- Strengthens scapular retractors for better posture\n- Joint-friendly and low-impact\n- Accommodating band tension through the range of motion\n- Portable and equipment-efficient\n- Scalable by changing band thickness or grip\n- Great warm-up or finisher for upper-body training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rear (Posterior) Deltoids\n\nSecondary: Rhomboids, Middle Trapezius, Rotator Cuff, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Sit on the bench with feet flat on the floor.\n2. Anchor the band under both feet.\n3. Ensure the band is balanced evenly on both sides."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Grasp the band handles with both hands.\n2. Palms facing each other (neutral grip).\n3. Arms slightly bent, torso hinged forward slightly, chest up."
+        },
+        {
+          "heading": "Fly",
+          "content": "1. Exhale and extend your arms out to the sides.\n2. Squeeze your shoulder blades together at the top.\n3. Lead with the elbows, keeping the slight bend constant."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Inhale as you return to the starting position.\n2. Maintain core engagement and controlled tempo.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or swinging the torso\n- Shrugging the shoulders up instead of squeezing the blades together\n- Bending the elbows excessively during the rep\n- Rounding the lower back instead of hinging at the hips\n- Using a band that is too heavy and breaking form\n- Rushing the eccentric (return) phase\n- Raising the arms too high and activating the traps"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Flat Bench\n- Athletic shoes for secure footing\n- Optional: Lighter and heavier bands for progression\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Step on the middle of the band with both feet flat on the floor.\n2. Wider stance creates more tension; narrower stance reduces it.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on both handles is even before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat: Sit tall on the bench, feet firmly planted.\n2. Torso: Hinge forward slightly at the hips, chest up, back flat.\n3. Arms: Slight, constant bend at the elbows.\n4. Shoulders: Packed and down, not shrugged.\n5. Head: Neutral, eyes forward and slightly down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Rear Delt Fly: Free-weight variation with a hinge\n- Reverse Pec Deck: Machine-based rear delt fly\n- Cable Reverse Fly: Constant-tension cable version\n- Face Pull: Cable or band exercise for rear delts and upper back\n- Bent-Over Lateral Raise: Free-weight variation in full hinge\n- Band Pull Apart: Horizontal band exercise for upper back"
+        },
+        {
+          "heading": "Resistance Band Rear Delt Fly Variations",
+          "content": "Seated Band Rear Delt Fly: Described here\nStanding Band Rear Delt Fly: Standing hinged variation\nSingle-Arm Band Rear Delt Fly: Unilateral variation\nTempo Band Rear Delt Fly: Slow eccentric for hypertrophy\nPause Band Rear Delt Fly: Pause at peak contraction\nAnchored Band Rear Delt Fly: Band anchored in front for different angle"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range, use a lighter band, lead with the elbows\nNeck Pain: Keep shoulders packed and avoid shrugging\nLower Back Issues: Keep hinge shallow and torso supported\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nBeginners: Start with a very light band to learn the pattern"
+        }
+      ]
+    }
+  }
+}

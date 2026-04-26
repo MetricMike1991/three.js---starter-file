@@ -1,0 +1,113 @@
+{
+  "exerciseId": "glute_kick_back_machine_female",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/279.%20Glute%20Kick%20Back%20Machine%20Female/279.%20Glute%20Kick%20Back%20Machine%20Female%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/279.%20Glute%20Kick%20Back%20Machine%20Female/279.%20Glute%20Kick%20Back%20Machine%20Female%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Glute Kick Back Machine is an isolation exercise that targets the gluteus maximus through a hip extension movement against a foot platform.\n\nThe machine provides a stable, fixed path of resistance, allowing the lifter to focus entirely on contracting the glutes without balance challenges.\n\nIt is a popular choice for direct glute work, with adjustable load to scale difficulty across all training levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Direct isolation of the gluteus maximus\n- Stable platform allows full focus on glute contraction\n- Easy to load progressively as strength improves\n- Reduced lower back demand compared to free weight hip extension\n- Trains each leg independently to fix imbalances\n- Beginner friendly with minimal technique requirements\n- Excellent for targeted glute hypertrophy work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Erector Spinae, Core, Gluteus Medius"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the machine to fit your height.\n2. Ensure the platform or pad is positioned where you can comfortably place your foot while standing on the other leg.\n3. Select an appropriate weight on the stack."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand facing the machine, placing the foot of your working leg against the platform or pad.\n2. Lean slightly forward for balance, grasping the machine's handles or support bars.\n3. Brace the core and keep the support leg slightly bent."
+        },
+        {
+          "heading": "Kick Back",
+          "content": "1. Press back with your foot against the platform, extending your leg straight behind you.\n2. Drive the movement with your glute, keeping the working leg relatively straight.\n3. Hold the contraction briefly at the top of the kick back."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Slowly return your leg to the starting position, controlling the movement.\n2. Keep tension in your glutes throughout the return.\n3. Complete all reps on one side before switching legs."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or swinging the leg back\n- Arching the lower back excessively\n- Letting the working leg bend too much\n- Failing to control the eccentric portion\n- Going too heavy and losing form\n- Holding the breath through the rep\n- Tilting the hips to lift more weight"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Glute kick back machine\n- Athletic shoes for grip\n- Optional: Towel for the foot pad\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Adjust the foot platform to align with your hip when standing tall.\n2. Set the chest or hand pad to support your torso comfortably.\n3. Select a weight that allows controlled reps through full range of motion.\n4. Confirm the locking pin is fully engaged before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Support leg slightly bent, foot flat on the floor.\n2. Torso: Slight forward lean, ribs stacked over hips, core braced.\n3. Working Leg: Foot flat on the platform, leg relatively straight.\n4. Hands: Grip the support handles firmly.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "cable_glute_kick_back"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Glute Kick Back: Cable version of this movement\n- Barbell Hip Thrust: Heavy compound glute lift\n- Glute Bridge: Bodyweight or loaded hip extension\n- Single Leg Glute Bridge: Unilateral floor variation\n- Donkey Kicks: Bodyweight kneeling glute kick back\n- Romanian Deadlift: Compound glute and hamstring work"
+        },
+        {
+          "heading": "Glute Kick Back Variations",
+          "content": "Standard Glute Kick Back Machine: Described here\nCable Glute Kick Back: Performed at a cable column with an ankle strap\nResistance Band Glute Kick Back: Standing version using a band\nDonkey Kicks: Bodyweight kneeling kick back\nQuadruped Glute Kick Back: On hands and knees with optional ankle weight\nHip Extension Machine: Lying or seated machine variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce load and avoid arching the back\nKnee Pain: Slightly bend the working leg to reduce knee strain\nHip Mobility Issues: Reduce range of motion to a comfortable level\nBalance Issues: Hold the support handles firmly and lean into the chest pad\nNo Machine Access: Use cables, bands, or bodyweight donkey kicks\nBeginners: Start light to learn the movement before progressing"
+        }
+      ]
+    }
+  }
+}

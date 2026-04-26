@@ -1,0 +1,105 @@
+{
+  "exerciseId": "stability_ball_plank",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/138.%20Stability%20Ball%20Plank/138.%20Stability%20Ball%20Plank%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/138.%20Stability%20Ball%20Plank/138.%20Stability%20Ball%20Plank%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/138.%20Stability%20Ball%20Plank/138.%20Stability%20Ball%20Plank%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/138.%20Stability%20Ball%20Plank/138.%20Stability%20Ball%20Plank%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.18513157692401, 1.1762741409042246, 1.4266045580998512],
+    "rotation": [-0.3261605579258651, 0.9303741639077923, 0.26484489880792134],
+    "target": [0.0006245664285417438, 0.6546829202168893, -0.11546711313017166]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.2546051712782915, 1.091935280804822, 1.1582711545522728],
+    "rotation": [-0.3319598356263221, 0.7609161697901384, 0.23337965598163504],
+    "target": [-0.011216148519461898, 0.6586984365049238, -0.09852198659309036]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/138.%20Stability%20Ball%20Plank/Stability%20Ball%20Plank_250x250_2026-04-06T11-09-46.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Stability Ball Plank is an advanced core exercise that adds an unstable surface to the traditional plank position.\n\nBy placing the hands on a stability ball, the body is forced to recruit additional stabiliser muscles to maintain balance, significantly increasing the core challenge.\n\nThis exercise is excellent for developing deep core strength, improving balance, and building anti-extension and anti-rotation stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increased core activation compared to a standard floor plank\n- Develops deep stabiliser muscles including the transverse abdominis\n- Improves balance and proprioception through the unstable surface\n- Strengthens shoulders and arms in an isometric hold\n- Builds anti-extension strength to protect the lower back\n- No heavy equipment required — just a stability ball\n- Scalable difficulty by adjusting hold duration or ball size"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Transverse Abdominis, Obliques\n\nSecondary: Shoulders, Chest, Lower Back, Glutes, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a stability ball on the floor in front of you.\n2. Kneel behind the ball and place both hands on top of the ball.\n3. Position your palms flat on the ball with arms straight.\n4. Step your feet back one at a time into a plank position.\n5. Your body should form a straight line from head to heels.\n6. Position your feet hip-width apart for stability.\n7. Engage your core muscles and maintain a neutral spine.\n8. Keep your shoulders stacked directly over your hands."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Brace your core by drawing your belly button toward your spine.\n2. Maintain a straight line from your head to your heels.\n3. Keep your hips level — avoid sagging or piking.\n4. Press firmly into the ball with both hands to maintain stability.\n5. Breathe steadily throughout the hold — do not hold your breath.\n6. Focus on keeping the ball as still as possible.\n7. Hold the plank position for the desired duration of time.\n8. To finish, lower your knees to the ground with control.\n9. Progress by increasing hold time as you build strength."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the hips to sag toward the floor\n- Piking the hips up too high, breaking the straight line\n- Holding the breath instead of breathing steadily\n- Placing the hands too far forward on the ball\n- Not engaging the core, relying solely on the arms\n- Looking up or down instead of maintaining a neutral neck\n- Feet too close together, reducing stability\n- Shrugging the shoulders up toward the ears\n- Rushing into the position without proper setup"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Stability Ball (Swiss Ball) — appropriately sized for your height\n- Non-Slip Floor Surface or Exercise Mat\n- Open Floor Space\n- Optional: Timer or stopwatch for timed holds\n- Optional: Mirror for form checking"
+        },
+        {
+          "heading": "Choosing Your Ball Size",
+          "content": "1. Ball size should match your height for optimal difficulty.\n2. Under 5'0\" (152 cm): 45 cm ball.\n3. 5'0\" - 5'5\" (152-165 cm): 55 cm ball.\n4. 5'6\" - 5'11\" (168-180 cm): 65 cm ball.\n5. 6'0\" and above (183+ cm): 75 cm ball.\n6. A slightly deflated ball is easier (more stable contact area).\n7. A fully inflated ball is harder (less stable).\n8. Ensure the ball is in good condition with no punctures or cracks."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Flat on top of the stability ball, shoulder-width apart.\n2. Arms: Fully extended, shoulders over hands.\n3. Core: Braced and engaged throughout the hold.\n4. Hips: Level, in line with shoulders and ankles.\n5. Back: Neutral spine, no rounding or arching.\n6. Legs: Straight with knees locked.\n7. Feet: Hip-width apart for balance.\n8. Head: Neutral, looking down at the ball."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Plank: Floor-based plank without the unstable surface\n- Forearm Plank: Performed on forearms for a different challenge\n- Stability Ball Forearm Plank: Forearms on ball for increased difficulty\n- Ab Rollout: Dynamic anti-extension exercise\n- Dead Bug: Supine core stability exercise\n- Bird Dog: Core stability with opposite arm and leg extension"
+        },
+        {
+          "heading": "Plank Variations",
+          "content": "Standard Plank: Hands on floor, straight arms\nForearm Plank: Forearms on floor, elbows under shoulders\nStability Ball Plank: Hands on ball for added instability\nStability Ball Forearm Plank: Forearms on ball\nSide Plank: Lateral core focus on one arm\nPlank with Shoulder Taps: Dynamic stability challenge\nWeighted Plank: Added resistance on the back"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Perform on forearms instead of straight arms\nLower Back Pain: Reduce hold time and focus on core bracing\nShoulder Issues: Use a smaller range or standard floor plank\nBalance Difficulty: Start with a partially deflated ball for more stability\nNo Stability Ball: Use a standard floor plank or BOSU ball\nLearning Stage: Start with knee planks on the ball before progressing to full plank"
+        }
+      ]
+    }
+  }
+}

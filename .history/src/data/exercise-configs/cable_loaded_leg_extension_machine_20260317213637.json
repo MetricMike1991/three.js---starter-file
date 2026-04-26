@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_loaded_leg_extension_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/68.%20Cable%20Loaded%20Leg%20Extension%20Machine/68.%20Cable%20Loaded%20Leg%20Extension%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/68.%20Cable%20Loaded%20Leg%20Extension%20Machine/68.%20Cable%20Loaded%20Leg%20Extension%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/68.%20Cable%20Loaded%20Leg%20Extension%20Machine/68.%20Cable%20Loaded%20Leg%20Extension%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/68.%20Cable%20Loaded%20Leg%20Extension%20Machine/68.%20Cable%20Loaded%20Leg%20Extension%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.8068196284581375, 1.8368989856408233, -2.3148037507175965],
+    "rotation": [-2.763507331230149, -0.8327165432852428, -2.8558066854648194],
+    "target": [-0.07039419545196669, 0.9181116235824978, -0.0016099572915370204]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.3845596933180686, 1.8090278392477925, 2.168918281288994],
+    "rotation": [-0.4263242235583025, 0.7892663691096009, 0.31187246092838866],
+    "target": [0.05132260469623201, 0.8516074798456889, 0.060896676727376996]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/68.%20Cable%20Loaded%20Leg%20Extension%20Machine/Cable%20Loaded%20Leg%20Extension%20Machine_250x250_2026-03-17T21-35-49.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Leg Extension Machine is an isolation exercise that targets the quadriceps using a pin-selected cable weight stack.\n\nPerformed from a seated position, this exercise extends the knee joint against resistance to isolate and develop the four heads of the quadriceps muscle.\n\nThe cable-loaded mechanism provides smooth, consistent tension throughout the range of motion, making it an effective exercise for building quad size, definition, and knee joint strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly isolates the quadriceps for targeted development\n- Cable mechanism provides smooth, consistent resistance\n- Pin-selected weight stack makes changing resistance quick and easy\n- Safe to perform without a spotter\n- Excellent for pre-exhausting the quads before compound leg movements\n- Builds definition in all four heads of the quadriceps\n- Useful for rehabilitation and strengthening the muscles around the knee"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps (Rectus Femoris, Vastus Lateralis, Vastus Medialis, Vastus Intermedius)\n\nSecondary: Hip Flexors (stabilisation), Tibialis Anterior (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the back pad so your knees are positioned just in front of the bottom seat pad.\n2. Sit with your back firmly against the back pad.\n3. Position the roller pad on your shins, just above the ankles.\n4. Select your desired weight using the pin on the weight stack.\n5. Grip the handles on either side of the seat firmly.\n6. Your legs should be bent at approximately 90 degrees at the knee."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Grip the handles and press yourself firmly into the seat.\n2. Extend your legs by contracting your quadriceps, pushing through the roller pad.\n3. Straighten your legs to a fully extended position without aggressively locking out.\n4. Squeeze the quadriceps hard at the top of the movement.\n5. Pause briefly at the top for maximum contraction.\n6. Slowly lower the weight back to the starting position under control.\n7. Maintain tension in the quads throughout — do not let the weight stack rest between reps.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or swinging the legs to lift the weight\n- Not adjusting the machine properly — knees not aligned with the pivot point\n- Locking out the knees aggressively at full extension\n- Letting the weight stack slam down between reps\n- Lifting the hips or lower back off the seat during the extension\n- Using too much weight, resulting in a shortened range of motion\n- Rushing through reps without pausing at the top\n- Not gripping the handles, causing the body to shift during the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Leg Extension Machine\n- Pin-selected weight stack (built into the machine)\n- Optional: Ankle weights for additional resistance\n- Recommended: Adjust all pads before starting the exercise"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Set the back pad so your back is fully supported and your knees align with the machine's pivot point.\n2. Your knees should be just in front of the edge of the seat pad.\n3. Adjust the roller pad so it sits on your shins just above the ankles.\n4. The roller pad should not press against your feet or sit too high on the shins.\n5. Select an appropriate starting weight using the pin.\n6. Sit in the machine and perform a test rep to verify alignment before your working set."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat against the back pad throughout the exercise.\n2. Hips: Firmly in the seat — do not lift off during extension.\n3. Knees: Aligned with the machine pivot point for safe joint mechanics.\n4. Shins: Roller pad resting just above the ankles.\n5. Hands: Gripping the handles firmly for stability.\n6. Feet: Toes pointed forward or slightly outward.\n7. Core: Lightly braced to maintain an upright seated posture."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["hack_squat", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Plate Loaded Leg Extension: Similar movement with plate-loaded resistance\n- Barbell Front Squat: Compound quad-dominant movement\n- Hack Squat: Machine-based compound quad exercise\n- Bulgarian Split Squat: Unilateral quad-focused exercise\n- Sissy Squat: Bodyweight quad isolation exercise\n- Wall Sit: Isometric quad hold exercise"
+        },
+        {
+          "heading": "Leg Extension Variations",
+          "content": "Standard Leg Extension: Both legs extending simultaneously\nSingle Leg Extension: One leg at a time for unilateral focus\nPartial Rep Extensions: Top-half reps for peak contraction emphasis\nSlow Tempo Extension: 3-4 second eccentric for time under tension\nPaused Leg Extension: 2-3 second hold at the top for maximum squeeze\nDrop Set Extensions: Reduce weight after failure for extended sets"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce the weight and avoid full lockout at the top\nKnee Injury History: Consult a physiotherapist before using this exercise\nHip Flexor Tightness: Ensure the back pad is supporting your lower back\nQuad Weakness: Start with a light weight and focus on controlled reps\nNo Leg Extension Machine: Use bodyweight sissy squats or wall sits\nBeginner: Start with a light weight, focus on full range of motion and controlled tempo"
+        }
+      ]
+    }
+  }
+}

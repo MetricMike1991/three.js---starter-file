@@ -1,0 +1,112 @@
+{
+  "exerciseId": "nordic_curl_resistance_band",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/290.%20Nordic%20Curl%20Resistance%20Band/290.%20Nordic%20Curl%20Resistance%20Band%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/290.%20Nordic%20Curl%20Resistance%20Band/290.%20Nordic%20Curl%20Resistance%20Band%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.492268497823262, 2.376923311871754, 2.4574864355792485],
+    "rotation": [-0.4782718960563005, 0.7061713877387867, 0.3245202218298918],
+    "target": [-0.0984914571379041, 0.9788750214562267, -0.23928100220322446]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.492268491793005, 2.37692331834264, 2.4574864379710792],
+    "rotation": [-0.47827189625383865, 0.7061713871603668, 0.32452022177104023],
+    "target": [-0.09849146141115382, 0.9788750267046933, -0.23928100086563192]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Nordic Curl Resistance Band is a regression of the bodyweight Nordic curl that uses a band to provide assistance during the eccentric and concentric phases.\n\nThe band anchored at floor level pulls back on the ankles, helping the lifter control the descent and return to the upright position.\n\nThis variation is ideal for those building hamstring strength toward the full bodyweight Nordic curl, allowing controlled progression through deeper ranges of motion."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds eccentric hamstring strength with assistance\n- Excellent regression for the full Nordic curl\n- Reduces hamstring strain risk in athletes\n- No partner required\n- Adjustable difficulty by changing band thickness\n- Strengthens glutes and core stabilisers\n- Allows controlled progression through full range"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus)\n\nSecondary: Gluteus Maximus, Gastrocnemius, Erector Spinae, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Secure a resistance band to a sturdy, immovable object at ground level.\n2. Kneel on a soft surface and loop the other end of the band around the back of your ankles.\n3. Confirm the anchor point is solid and the band is positioned to assist the upward phase."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Cross your arms over your chest or place them behind your head.\n2. Maintain an upright torso with your hips extended.\n3. Brace your core and engage your glutes."
+        },
+        {
+          "heading": "Lower Under Control",
+          "content": "1. Slowly lower your body toward the floor by bending at the knees.\n2. Control the descent with your hamstrings while the band assists.\n3. Keep your body straight from your knees to your shoulders."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Use your hamstrings to pull yourself back to the starting position.\n2. Utilise the resistance band to assist in the movement as needed.\n3. Keep the motion controlled and repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bending at the hips instead of the knees\n- Dropping rapidly instead of resisting the eccentric\n- Hyperextending the lower back at the top\n- Failing to brace the core\n- Anchor point not secure or band slipping\n- Using a band so heavy it removes all the work\n- Skipping the hamstring warm-up"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Long loop resistance band rated for the lifter's bodyweight\n- Sturdy low anchor point such as a rack base or sled\n- Padded mat for the knees"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Knees on the pad with hips stacked over knees.\n2. Hips fully extended in line with the torso.\n3. Hands crossed at the chest or behind the head."
+        },
+        {
+          "heading": "Band Setup",
+          "content": "1. Anchor the band at floor level behind the lifter.\n2. Loop the free end around the back of both ankles.\n3. Tension the band slightly before starting the rep."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Test the anchor point under load before performing reps\n- Use a thicker band if you cannot control the descent\n- Lower the band tension as strength improves\n- Stop immediately if you feel sharp hamstring or knee pain\n- Avoid lower back hyperextension at the top of each rep"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other hamstring exercises that emphasise knee flexion or eccentric loading."
+        }
+      ],
+      "suggestedExercises": [
+        "nordic_curl",
+        "nordic_curl_with_spotter"
+      ]
+    }
+  }
+}

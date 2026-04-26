@@ -1,0 +1,105 @@
+{
+  "exerciseId": "resistance_band_push_up_female",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/264.%20Resistance%20Band%20Push%20Up%20Female/264.%20Resistance%20Band%20Push%20Up%20Female%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/264.%20Resistance%20Band%20Push%20Up%20Female/264.%20Resistance%20Band%20Push%20Up%20Female%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Push-Up is a bodyweight pressing exercise progressed by looping a resistance band across the upper back and anchoring an end in each hand on the floor.\n\nThe band adds accommodating resistance, increasing tension as the arms extend and challenging the chest, shoulders, and triceps more in the lockout portion of the press.\n\nThis variation is excellent for building pressing strength, lockout power, and muscular endurance, and can be performed from the knees or toes depending on strength level."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Adds accommodating resistance for greater pressing demand\n- Increases tension at the top of the press for stronger lockout\n- Builds chest, shoulder, and triceps strength\n- Strengthens the core and serratus anterior as stabilisers\n- Adjustable difficulty via band thickness and tension\n- Easily scaled by performing from knees or toes\n- Portable - only requires a resistance band\n- Excellent progression from standard push-ups\n- Improves shoulder and scapular control\n- Great for home and travel training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core (stabiliser)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Loop a resistance band across your upper back, just below the shoulder blades.\n2. Hold an end of the band securely in each hand.\n3. Place your hands on the floor slightly wider than shoulder-width apart, trapping the band ends under your palms.\n4. Get into a push-up position with knees on the floor (regression) or toes on the floor (full version).\n5. Form a straight line from your head to your heels (toes) or to your knees (knees).\n6. Engage your core and squeeze your glutes.\n7. Pull your shoulder blades down and slightly back.\n8. Keep your neck in a neutral position, eyes looking slightly ahead.\n9. Take a deep breath and prepare to press."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Inhale and lower your chest towards the floor by bending your elbows.\n2. Keep your elbows tucked at approximately 45 degrees from your torso - not flared out.\n3. Maintain a rigid body line - no sagging hips or raised glutes.\n4. Lower until your chest is close to the floor.\n5. Pause briefly at the bottom.\n6. Exhale and push through your hands to return to the starting position against the band's tension.\n7. Extend your arms fully at the top without aggressively locking out the elbows.\n8. The band tension increases as your arms straighten - press strongly through the lockout.\n9. Maintain control during both the lowering and pressing phases.\n10. Keep the band ends firmly anchored under your palms throughout.\n11. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sagging hips or raised glutes (loss of neutral spine)\n- Flaring the elbows out at 90 degrees\n- Partial range of motion at the top or bottom\n- Pressing unevenly - one arm ahead of the other\n- Allowing the band to slip out from under the hands\n- Band positioned too low (lower back) or too high (neck)\n- Dropping the head or craning the neck\n- Holding the breath for multiple reps\n- Using a band with too much resistance and breaking form\n- Rushing the tempo and losing control"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band (loop or long band, appropriate tension)\n- Comfortable athletic clothing\n- Supportive, flat-soled footwear\n- Optional: Exercise Mat for grip and comfort\n- Optional: Push-Up Handles for wrist comfort\n- Non-slip flooring to prevent the hands and feet from shifting"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 8-10 reps from the knees with a light band.\n2. Intermediate: 3-4 sets of 10-15 reps from the toes with a light to medium band.\n3. Advanced: 4-5 sets of 12-20 reps with a heavier band.\n4. Hypertrophy Focus: 3-4 sets of 10-15 reps with controlled tempo.\n5. Endurance Focus: 2-3 sets of 20+ reps with a lighter band.\n6. Tempo Focus: 3 sets of 8-12 reps with 3-second eccentric.\n7. Rest: 60-90 seconds between sets.\n8. Progression: Increase band tension or transition from knees to toes."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Band Position: Across the upper back, just below the shoulder blades.\n2. Hand Placement: Slightly wider than shoulder-width, anchoring band ends.\n3. Body Line: Straight from head to heels (or knees if regressing).\n4. Hips: Neither sagging nor raised.\n5. Shoulders: Pulled down and slightly back, stacked over wrists.\n6. Elbows: Tucked at approximately 45 degrees.\n7. Head: Neutral, eyes looking slightly ahead.\n8. Core: Braced throughout the movement.\n9. Glutes: Squeezed to maintain body line.\n10. Breathing: Inhale on descent, exhale on the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["push_up", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Bodyweight benchmark movement\n- Knee Push-Up: Easier regression from the floor\n- Incline Push-Up: Hands elevated for an easier variation\n- Decline Push-Up: Feet elevated for upper chest emphasis\n- Banded Bench Press: Weighted alternative with band resistance\n- Bench Press: Classic barbell chest press\n- Dumbbell Bench Press: Free-weight pressing alternative\n- Cable Chest Press: Constant-tension alternative"
+        },
+        {
+          "heading": "Resistance Band Push-Up Variations",
+          "content": "Standard Resistance Band Push-Up: Classic execution with band across the back\nKnee Resistance Band Push-Up: Beginner regression on knees\nDecline Resistance Band Push-Up: Feet elevated for more upper chest emphasis\nIncline Resistance Band Push-Up: Hands elevated for an easier variation\nNarrow-Grip Resistance Band Push-Up: Hands closer for more triceps focus\nWide-Grip Resistance Band Push-Up: Hands wider for more chest emphasis\nTempo Resistance Band Push-Up: 3-5 second eccentric for time under tension\nPause Resistance Band Push-Up: 2-3 second pause at the bottom\nDouble-Band Push-Up: Two bands stacked for advanced lifters"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or a neutral-grip variation\nShoulder Pain: Keep elbows tucked closer to the torso, reduce depth\nElbow Pain: Avoid aggressive lockout at the top\nLower Back Pain: Focus on bracing the core and squeezing the glutes\nLimited Strength: Perform from the knees or use a lighter band\nNo Resistance Band: Substitute with a standard push-up\nBand Snapping Risk: Inspect band for damage before use, replace if worn\nBeginner: Master the standard push-up before adding band resistance\nShoulder Instability: Ensure shoulders are packed down and back before pressing"
+        }
+      ]
+    }
+  }
+}

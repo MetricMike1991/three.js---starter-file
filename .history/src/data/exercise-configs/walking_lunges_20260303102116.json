@@ -1,0 +1,105 @@
+{
+  "exerciseId": "walking_lunges",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/13.%20Walking%20Lunges/13.%20Walking%20Lunges%20SD_compressed%20-%20Copy.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/13.%20Walking%20Lunges/13.%20Walking%20Lunges%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/13.%20Walking%20Lunges/13.%20Walking%20Lunges%20SD_compressed%20AR.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/13.%20Walking%20Lunges/13.%20Walking%20Lunges%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.4421244512657814, 1.5180254943585156, -2.4384891349668143],
+    "rotation": [-2.9062526822199293, -0.5090248569567017, -3.02526761813844],
+    "target": [-0.000996685320931992, 0.9159013355615493, 0.0726299798854154]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.725146033950059, 1.79576814104247, 2.562178565061441],
+    "rotation": [-0.3677491764364318, 0.5459441871055905, 0.19743885025980584],
+    "target": [0.021591906349179058, 0.7876759009419038, -0.054367193528045976]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/13.%20Walking%20Lunges/Walking%20Lunges_250x250_2026-03-03T10-20-33.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Walking Lunges are a dynamic lower body exercise that involves stepping forward into a lunge and continuing to walk with each repetition.\n\nThis bodyweight movement targets the quads, glutes, and hamstrings while also challenging balance, coordination, and core stability.\n\nWalking lunges are a functional exercise that mimics natural movement patterns, making them ideal for building real-world leg strength and athletic performance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strong quads, glutes, and hamstrings\n- Improves balance, coordination, and stability\n- Engages the core throughout the movement\n- Mimics real-world walking and stepping patterns\n- No equipment required — can be done anywhere\n- Helps correct muscle imbalances between legs\n- Increases hip flexibility and mobility\n- Burns significant calories due to large muscle group engagement"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings\n\nSecondary: Calves, Core, Hip Flexors, Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand tall with your feet hip-width apart.\n2. Keep your chest up and shoulders back.\n3. Engage your core and maintain a neutral spine.\n4. Arms can hang by your sides or be placed on your hips.\n5. Eyes looking forward, head in a neutral position.\n6. Ensure you have enough space to walk forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a big step forward with your right foot.\n2. Lower your body until your front thigh is parallel to the ground.\n3. Keep your front knee directly above your ankle — do not let it drift past your toes.\n4. Your back knee should hover just above the ground.\n5. Push through your front heel to drive yourself upward and forward.\n6. Bring your back foot forward and step directly into the next lunge with your left foot.\n7. Continue alternating legs, walking forward with each step.\n8. Maintain a steady rhythm and upright torso throughout."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the front knee drift past the toes or cave inward\n- Leaning the torso too far forward\n- Taking steps that are too short or too long\n- Not lowering deep enough — aim for a 90-degree bend in both knees\n- Losing balance by not engaging the core\n- Looking down at the ground instead of forward\n- Rushing through repetitions without control\n- Landing with the foot turned inward or outward"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required (bodyweight exercise)\n- Flat, open space with room to walk forward (at least 10-15 feet)\n- Optional: Dumbbells held at sides for added resistance\n- Optional: Barbell across upper back for advanced variation\n- Optional: Kettlebells held in goblet or racked position\n- Recommended: Supportive athletic shoes"
+        },
+        {
+          "heading": "Space Setup",
+          "content": "1. Find a clear, flat surface with enough room to walk.\n2. Ideally 10-15 feet of open space in front of you.\n3. If space is limited, perform reverse lunges (stepping backward) or stationary lunges.\n4. Ensure the floor is not slippery.\n5. For outdoor training, choose a flat, even surface.\n6. Mark a start and end point if tracking distance."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, toes pointing forward.\n2. Posture: Chest up, shoulders back and down.\n3. Core: Braced and engaged throughout the movement.\n4. Arms: At your sides, on your hips, or holding weights.\n5. Knees: Track over your toes throughout the lunge.\n6. Eyes: Looking forward to maintain balance.\n7. Stride Length: Long enough that both knees reach ~90 degrees at the bottom."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_walking_lunges", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Walking Lunges: Same movement with added resistance\n- Reverse Lunges: Step backward instead of forward, easier on the knees\n- Stationary Lunges: No walking — lunge in place alternating legs\n- Bulgarian Split Squat: Rear foot elevated for deeper stretch\n- Step-Ups: Step onto a platform for a similar unilateral movement\n- Curtsy Lunges: Cross-behind lunge for glute and adductor emphasis"
+        },
+        {
+          "heading": "Walking Lunge Variations",
+          "content": "Bodyweight Walking Lunges: Standard movement with no additional load\nDumbbell Walking Lunges: Hold dumbbells at sides for added resistance\nBarbell Walking Lunges: Barbell across upper back for heavy loading\nOverhead Walking Lunges: Hold weight overhead for core and shoulder challenge\nPulse Walking Lunges: Add a pulse at the bottom for extra time under tension\nDeficit Walking Lunges: Front foot elevated for increased range of motion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Try reverse lunges which place less stress on the front knee\nBalance Issues: Perform stationary lunges or hold onto a wall for support\nHip Tightness: Warm up with hip stretches, reduce stride length\nNo Space: Switch to stationary lunges or reverse lunges in place\nLower Back Pain: Focus on keeping the core tight and torso upright\nLearning Stage: Start with small steps and shallow lunges, increase depth gradually"
+        }
+      ]
+    }
+  }
+}

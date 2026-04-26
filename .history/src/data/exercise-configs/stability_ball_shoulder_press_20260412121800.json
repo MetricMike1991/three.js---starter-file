@@ -1,0 +1,105 @@
+{
+  "exerciseId": "stability_ball_shoulder_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/141.%20Stability%20Ball%20Shoulder%20Press/141.%20Stability%20Ball%20Shoulder%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/141.%20Stability%20Ball%20Shoulder%20Press/141.%20Stability%20Ball%20Shoulder%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/141.%20Stability%20Ball%20Shoulder%20Press/141.%20Stability%20Ball%20Shoulder%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/141.%20Stability%20Ball%20Shoulder%20Press/141.%20Stability%20Ball%20Shoulder%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.4637116348681818, 1.1490301976392958, 1.7990933743331174],
+    "rotation": [-0.3161501148657463, 0.6792972751133132, 0.2026911753896924],
+    "target": [-0.03640162088803434, 0.5714450224504107, 0.03343742582919077]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.2991542658667623, 1.5329274219547044, 2.364316894608285],
+    "rotation": [-0.3026665554544523, 0.5042461721286916, 0.14973858877090457],
+    "target": [-0.07531062076486292, 0.7905194267484272, -0.013211712022354577]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/141.%20Stability%20Ball%20Shoulder%20Press/Stability%20Ball%20Shoulder%20Press_250x250_2026-04-12T11-17-41.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Stability Ball Shoulder Press is a dumbbell overhead press performed while seated on a stability ball.\n\nBy replacing the bench with a stability ball, this exercise adds an unstable surface that challenges your core, stabilising muscles, and balance while simultaneously building shoulder strength.\n\nThis exercise is popular in functional training, rehabilitation programmes, and general fitness routines as it develops both upper-body strength and whole-body stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds shoulder strength through a full overhead pressing range of motion\n- Engages the core intensely due to the unstable surface of the stability ball\n- Improves balance and proprioception\n- Activates stabilising muscles of the spine, hips, and lower body\n- Suitable for all fitness levels with adjustable dumbbell weight\n- Promotes good posture and shoulder mobility\n- A functional alternative to a seated shoulder press on a fixed bench"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Deltoids (Anterior, Medial, and Posterior heads), Upper Trapezius\n\nSecondary: Triceps, Serratus Anterior, Core (Rectus Abdominis, Obliques, Transverse Abdominis), Glutes and Legs (active as stabilisers)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Select a pair of dumbbells at an appropriate weight.\n2. Sit on a stability ball with your feet flat on the floor, hip-width apart.\n3. Hold the dumbbells at shoulder level with your palms facing forward and elbows bent, pointing out to the sides.\n4. Sit tall with your chest up, core engaged, and spine in a neutral position.\n5. Ensure your hips and knees are at approximately 90 degrees."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Brace your core to stabilise your position on the ball.\n2. Press the dumbbells upward toward the ceiling in a smooth, controlled arc, extending your arms fully without locking out your elbows.\n3. At the top of the movement, your arms should be roughly vertical and your biceps near your ears.\n4. Slowly lower the dumbbells back down to shoulder level, keeping your elbows at approximately 90 degrees.\n5. Maintain a stable, upright torso on the ball throughout the entire movement.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back excessively during the press\n- Allowing the hips to sag or the ball to shift\n- Using momentum rather than controlled muscle contraction\n- Locking out the elbows at the top of the movement\n- Feet too close together, reducing balance on the ball\n- Letting the core disengage mid-set\n- Shrugging the shoulders up toward the ears at the top of the press"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of Dumbbells (select a weight appropriate for overhead pressing)\n- Stability Ball (sized so that hips and knees are at approximately 90 degrees when seated)\n- Clear floor space with no obstacles nearby in case of balance loss\n- Optional: Exercise mat placed under or around the ball for safety"
+        },
+        {
+          "heading": "Choosing the Right Ball Size",
+          "content": "1. When seated, your thighs should be parallel to the floor or angled very slightly downward.\n2. A 55 cm ball is typically suitable for people 5'1\" to 5'7\" (155–170 cm).\n3. A 65 cm ball suits those 5'8\" to 6'1\" (173–185 cm).\n4. A 75 cm ball is generally for those over 6'1\" (185+ cm).\n5. Ensure the ball is properly inflated — it should compress slightly under your weight but remain firm.\n6. Always check the ball for damage or slow leaks before use."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat on the floor, hip-width or slightly wider for better stability.\n2. Hips: Centred on the ball, sitting tall and evenly balanced.\n3. Core: Actively braced throughout the entire exercise.\n4. Back: Neutral spine — avoid rounding or hyperextending.\n5. Dumbbells: Held at shoulder height with elbows bent at about 90 degrees.\n6. Grip: Palms facing forward or at a slight angle — whichever feels most comfortable for your shoulder joint."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_seated_shoulder_press", "arnold_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Dumbbell Shoulder Press: Same pressing movement on a fixed bench — useful for heavier loads\n- Barbell Overhead Press: Standing barbell variation for maximum strength development\n- Arnold Press: Dumbbell press with a rotational component for greater deltoid activation\n- Cable Shoulder Press: Constant tension through the range of motion\n- Landmine Press: Shoulder-friendly angled pressing variation"
+        },
+        {
+          "heading": "Stability Ball Variations",
+          "content": "Stability Ball Shoulder Press: Standard seated overhead press on the ball\nSingle-Arm Stability Ball Shoulder Press: Unilateral variation for greater core challenge\nStability Ball Push Press: Add a slight leg drive for a power component\nStability Ball Neutral Grip Press: Palms facing each other for a shoulder-friendly variation\nStability Ball Alternating Press: Press one arm at a time for added anti-rotation core demand"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try a neutral grip or reduce the range of motion; consult a physiotherapist\nBalance Difficulty: Start with a wider foot stance or choose a fixed bench until confidence increases\nLower Back Discomfort: Ensure core is braced and avoid hyperextension; consider standing variations\nNo Stability Ball: Use a flat bench or adjustable bench set to 90 degrees\nBeginner: Start with lighter dumbbells to master form and balance before progressing weight"
+        }
+      ]
+    }
+  }
+}

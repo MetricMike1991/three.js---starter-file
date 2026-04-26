@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_kickback_glutes",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/61.%20Cable%20Kickback%20Glutes/61.%20Cable%20Kickback%20Glutes%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/61.%20Cable%20Kickback%20Glutes/61.%20Cable%20Kickback%20Glutes%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/61.%20Cable%20Kickback%20Glutes/61.%20Cable%20Kickback%20Glutes%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/61.%20Cable%20Kickback%20Glutes/61.%20Cable%20Kickback%20Glutes%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Kickback is an isolation exercise that targets the glutes using a low pulley cable machine with an ankle cuff attachment.\n\nBy kicking the leg straight back against cable resistance, this exercise isolates the gluteus maximus with constant tension throughout the entire range of motion.\n\nCable Kickbacks are an excellent exercise for building glute shape, improving hip extension strength, and addressing muscle imbalances between the left and right sides."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly isolates the glutes with constant cable tension\n- Excellent for building glute shape and definition\n- Unilateral movement helps correct muscle imbalances\n- Constant tension throughout the entire range of motion\n- Low impact on joints and spine\n- Easy to adjust weight for progressive overload\n- Great finishing exercise for glute-focused workouts\n- Improves hip extension strength and stability"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Core (stabilization), Hip Flexors (stabilization), Lower Back (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Attach an ankle cuff to the low pulley of a cable machine.\n2. Set the pulley to the lowest position.\n3. Strap the ankle cuff securely around one ankle.\n4. Stand facing the cable machine at arm's length.\n5. Lean forward slightly and grasp the cable machine frame with both hands for support.\n6. Keep your standing leg slightly bent for stability.\n7. Engage your core and keep your back straight."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. With your knee straight or slightly bent, kick your cuffed leg back behind you.\n2. Focus on driving the movement from your glute, not your lower back.\n3. Continue until your glutes are fully contracted and your leg is extended behind you.\n4. Pause briefly at the top of the movement and squeeze your glutes.\n5. Slowly return your leg to the starting position in a controlled manner.\n6. Avoid swinging the leg or using momentum.\n7. Complete all reps on one side, then switch legs and repeat."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or swinging the leg back instead of a controlled movement\n- Arching the lower back excessively to increase range of motion\n- Not squeezing the glute at the top of the movement\n- Standing too close to the machine, reducing the range of motion\n- Using too much weight, which compromises form\n- Rotating the hips to one side instead of keeping them square\n- Bending the knee too much, shifting emphasis to the hamstrings\n- Rushing through reps without controlling the eccentric phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Machine with Low Pulley\n- Ankle Cuff Attachment\n- Appropriate Weight Selection"
+        },
+        {
+          "heading": "Cable Machine Setup",
+          "content": "1. Set the pulley to the lowest position on the cable machine.\n2. Attach an ankle cuff to the cable clip.\n3. Select an appropriate weight — start lighter to master form.\n4. Ensure the cable runs smoothly without any obstructions.\n5. Stand facing the machine and strap the cuff securely around one ankle.\n6. Position yourself at arm's length from the machine so there is tension on the cable at the starting position."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Standing leg slightly in front, working leg behind.\n2. Knees: Standing leg slightly bent for stability.\n3. Torso: Slight forward lean, back straight.\n4. Hands: Gripping the cable machine frame for balance.\n5. Hips: Square to the machine, not rotated.\n6. Core: Engaged throughout to prevent arching the lower back.\n7. Head: Neutral, looking forward or slightly down.\n8. Ankle Cuff: Secure and snug, not too loose."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["glute_kickback_machine", "hip_hyperextension"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Glute Kickback Machine: Machine-based glute kickback variation\n- Hip Hyperextension: Hip extension with bodyweight or added resistance\n- Donkey Kicks: Bodyweight glute kickback on all fours\n- Romanian Deadlift: Hip hinge movement with hamstring and glute emphasis\n- Hip Thrust: Barbell or bodyweight glute-dominant hip extension\n- Step Ups: Compound movement with glute activation"
+        },
+        {
+          "heading": "Cable Kickback Variations",
+          "content": "Standing Cable Kickback: Standard straight-leg variation\nKneeling Cable Kickback: Performed on all fours for stricter form\nBent-Knee Cable Kickback: Knee bent to shift emphasis slightly\nSingle Leg Cable RDL: Hip hinge with cable for glute and hamstring\nCable Pull-Through: Two-legged hip extension with cable\nAnkle Cuff Side Kick: Lateral abduction for gluteus medius"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Cable Machine: Use a resistance band around the ankles\nKnee Pain: Keep the standing leg slightly bent and reduce weight\nLower Back Strain: Focus on core engagement and reduce range of motion\nBalance Issues: Hold the machine firmly and use a lighter weight\nBeginner: Start with light weight and focus on the glute squeeze\nWant More Challenge: Add a pause at the top or slow the eccentric phase"
+        }
+      ]
+    }
+  }
+}

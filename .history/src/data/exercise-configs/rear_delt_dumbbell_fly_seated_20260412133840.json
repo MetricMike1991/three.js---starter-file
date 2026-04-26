@@ -1,0 +1,105 @@
+{
+  "exerciseId": "rear_delt_dumbbell_fly_seated",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated/146.%20Rear%20Delt%20Dumbbell%20Fly%20Seated%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.600809133671057, 2.284266071129147, 2.1488935624890493],
+    "rotation": [-0.6614395349063815, -0.7484970057299196, -0.48715603900204385],
+    "target": [-0.03115292076507244, 0.5848344512983752, -0.03430376478879348]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.1889081944021567, 2.2673655376361412, 1.8078513791262527],
+    "rotation": [-0.840116287458507, -0.7002433159442336, -0.6234207855514493],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Seated Rear Delt Dumbbell Fly is an isolation exercise that targets the posterior deltoids by raising dumbbells out to the sides while bent forward at the hips.\n\nPerforming this movement seated reduces momentum and lower body involvement, making it a stricter and more focused variation than the standing bent-over fly.\n\nThis exercise is essential for balanced shoulder development and is widely used in bodybuilding, strength training, and posture-correction programmes."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the rear deltoids effectively with minimal momentum\n- Seated position reduces cheating and forces strict form\n- Strengthens the posterior shoulder, improving shoulder balance and stability\n- Helps correct postural imbalances caused by overtraining the front delts and chest\n- Supports shoulder health by strengthening the muscles around the rear of the joint\n- Builds upper back thickness and definition\n- Accessible exercise requiring only dumbbells and a bench or chair"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Posterior Deltoids\n\nSecondary: Rhomboids, Middle Trapezius, Infraspinatus, Teres Minor, Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the edge of a flat bench or sturdy chair with your feet firmly on the ground.\n2. Hold a pair of dumbbells with your palms facing each other.\n3. Bend forward at the waist until your chest is close to your thighs.\n4. Let your arms hang straight down beneath you with a slight bend in your elbows.\n5. Keep your back flat, core engaged, and shoulder blades pulled back and down."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your core engaged and your torso stationary, raise the dumbbells out to your sides in a wide arc.\n2. Lead with your elbows, not your hands, and maintain the slight bend in your elbows throughout.\n3. Lift until your arms are roughly parallel with the floor or in line with your shoulders.\n4. Squeeze your rear delts and upper back at the top of the movement.\n5. Pause briefly, then slowly lower the dumbbells back down to the starting position with control.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum by swinging the torso upward during the lift\n- Lifting too heavy, causing the traps to take over the movement\n- Straightening the arms fully, turning it into a straight-arm raise\n- Not bending forward enough, shifting emphasis to the medial delts\n- Rounding the upper back instead of keeping the chest proud\n- Rushing the lowering phase instead of controlling the eccentric\n- Shrugging the shoulders up toward the ears at the top of the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of light to moderate dumbbells\n- Flat bench, adjustable bench, or sturdy chair\n- Clear floor space around the bench\n- Optional: Wrist wraps for grip support with heavier weights"
+        },
+        {
+          "heading": "Bench and Seating Position",
+          "content": "1. Sit on the edge of the bench — do not sit back with full back support.\n2. Your feet should be flat on the floor, roughly hip-width apart.\n3. Bend forward at the hips until your chest is near your thighs.\n4. Let the dumbbells hang directly below your shoulders.\n5. If the dumbbells touch the ground, elevate the bench slightly or use a higher seat.\n6. Keep your head in a neutral position — look toward the floor to avoid neck strain."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Torso: Bent forward at the hips, chest close to the thighs.\n2. Back: Flat and neutral — avoid rounding.\n3. Arms: Hanging below with a slight elbow bend, palms facing each other.\n4. Shoulders: Pulled back and down — do not let them round forward.\n5. Core: Braced throughout to support the bent-over position.\n6. Feet: Flat on the floor for stability."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["chest_supported_front_raise", "arnold_press", "barbell_overhead_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standing Bent-Over Dumbbell Fly: Same movement performed standing — allows more body involvement\n- Cable Reverse Fly: Constant tension through the range of motion\n- Face Pull: Targets rear delts and external rotators with cables or bands\n- Reverse Pec Deck: Machine-based rear delt isolation\n- Chest Supported Rear Delt Fly: Lying face down on an incline bench for maximum isolation\n- Band Pull-Apart: Light resistance band exercise for rear delt activation"
+        },
+        {
+          "heading": "Rear Delt Fly Variations",
+          "content": "Seated Rear Delt Fly: Standard seated bent-over variation\nStanding Bent-Over Fly: Performed standing with a hip hinge\nChest Supported Fly: Face-down on incline bench for strict isolation\nSingle-Arm Rear Delt Fly: Unilateral variation for focused contraction\nCable Reverse Fly: Using a cable machine for constant tension\nIncline Bench Rear Delt Fly: Lying face down at a shallow incline"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion or try a neutral grip with thumbs pointing up\nLower Back Discomfort: Use a chest-supported variation on an incline bench to eliminate back strain\nNeck Strain: Keep your head neutral and eyes toward the floor\nNo Bench: Perform the standing bent-over variation with a hip hinge\nBeginner: Start with very light dumbbells — rear delt work requires less weight than you think\nGrip Issues: Use wrist wraps or try a reverse pec deck machine instead"
+        }
+      ]
+    }
+  }
+}

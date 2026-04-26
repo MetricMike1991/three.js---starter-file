@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_thruster",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/133.%20Dumbbell%20Thruster/133.%20Dumbbell%20Thruster%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/133.%20Dumbbell%20Thruster/133.%20Dumbbell%20Thruster%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/133.%20Dumbbell%20Thruster/133.%20Dumbbell%20Thruster%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/133.%20Dumbbell%20Thruster/133.%20Dumbbell%20Thruster%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.344884968479697, 1.4669641020368653, 2.3660570043386193],
+    "rotation": [-0.221359830716661, 0.7850581669030401, 0.15775676309797088],
+    "target": [-0.004201046004390884, 0.9508562238614673, 0.07273026156588956]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.7339152904673496, 1.4360478587109706, 2.28787659493775],
+    "rotation": [-0.23718968479287508, -0.6757819261603222, -0.15007338713446625],
+    "target": [0.003188883212909932, 0.9269218577127766, 0.18178851466142076]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Thruster is a powerful compound exercise that combines a front squat with an overhead press into one fluid movement.\n\nThis full-body exercise is highly effective for building strength, power, and cardiovascular endurance simultaneously.\n\nPopular in functional fitness and CrossFit training, the thruster is one of the most efficient exercises for total body conditioning."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Full-body compound movement targeting multiple muscle groups at once\n- Builds explosive power through the squat-to-press transition\n- Increases cardiovascular endurance and metabolic conditioning\n- Develops shoulder strength and stability\n- Improves coordination and timing between lower and upper body\n- Highly efficient calorie-burning exercise\n- Dumbbells allow independent arm movement, correcting imbalances"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Shoulders, Quadriceps, Glutes\n\nSecondary: Triceps, Core, Hamstrings, Upper Back, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold a dumbbell in each hand at shoulder level, palms facing inwards.\n3. Keep your elbows close to your body and slightly in front.\n4. Engage your core and maintain a neutral spine.\n5. Keep your chest up and shoulders back.\n6. Distribute your weight evenly across both feet.\n7. Ensure your feet are firmly planted on the ground.\n8. Look straight ahead with a neutral head position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Squat down by bending at the hips and knees simultaneously.\n3. Keep your chest up and knees aligned with your toes throughout the descent.\n4. Lower until your thighs are at least parallel to the ground.\n5. Drive explosively through your heels to stand up.\n6. Use the upward momentum from the squat to press the dumbbells overhead.\n7. Fully extend your arms at the top, locking out overhead.\n8. Lower the dumbbells back to shoulder level with control.\n9. Immediately descend into the next squat and repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Not squatting deep enough before pressing\n- Pressing the dumbbells before fully standing up from the squat\n- Letting the knees cave inward during the squat\n- Leaning too far forward and losing an upright torso\n- Not using the momentum from the squat to assist the press\n- Flaring the elbows out too wide during the press\n- Rushing the movement and losing control\n- Not fully locking out the arms overhead\n- Rounding the lower back at the bottom of the squat"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight for your level)\n- Flat, Non-Slip Floor Surface\n- Adequate Overhead Clearance\n- Optional: Weightlifting Shoes for improved stability\n- Optional: Mirror for form checking\n- Optional: Wrist Wraps for heavier loads"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start lighter than you think — the overhead press is the limiting factor.\n2. Choose a weight you can press overhead for 10+ reps comfortably.\n3. The squat portion will feel easy; the press should be challenging.\n4. Beginners should start with 5-10 kg (10-20 lbs) dumbbells.\n5. Intermediate lifters typically use 10-20 kg (20-45 lbs).\n6. Focus on mastering the movement pattern before increasing load.\n7. The transition from squat to press should feel smooth and controlled.\n8. If you can't maintain good form, reduce the weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Shoulder-width apart, toes slightly turned out.\n2. Dumbbell Position: Racked at shoulder height, palms facing in.\n3. Elbows: Close to the body, slightly forward.\n4. Torso: Upright throughout the entire movement.\n5. Core: Braced and engaged at all times.\n6. Knees: Track over toes during squat, do not cave inward.\n7. Overhead: Full lockout with arms extended.\n8. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Thruster: Heavier loading option with a barbell\n- Kettlebell Thruster: Single or double kettlebell variation\n- Barbell Overhead Press: Isolates the pressing component\n- Barbell Back Squat: Isolates the squat component\n- Wall Ball: Similar movement pattern with a medicine ball\n- Dumbbell Push Press: Less squat depth, more explosive press"
+        },
+        {
+          "heading": "Thruster Variations",
+          "content": "Dumbbell Thruster: Standard dumbbells at shoulders, squat and press\nBarbell Thruster: Barbell in front rack position\nKettlebell Thruster: Kettlebells racked at shoulders\nSingle Arm Dumbbell Thruster: Unilateral version for core engagement\nCluster (Squat Clean Thruster): Clean into thruster combo\nTempo Thruster: Controlled descent for muscle building\nPaused Thruster: Pause at bottom of squat for strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Work on overhead mobility, use lighter weight\nKnee Pain: Reduce squat depth or use a box squat variation\nWrist Discomfort: Use neutral grip or try kettlebells\nLower Back Issues: Focus on core bracing, reduce weight\nNo Dumbbells: Use a barbell, kettlebells, or resistance bands\nLearning Stage: Practice the squat and press separately before combining"
+        }
+      ]
+    }
+  }
+}

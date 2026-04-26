@@ -1,0 +1,105 @@
+{
+  "exerciseId": "abdominal_crunch_machine_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/156.%20Abdominal%20Crunch%20Machine%20V2/156.%20Abdominal%20Crunch%20Machine%20V2%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/156.%20Abdominal%20Crunch%20Machine%20V2/156.%20Abdominal%20Crunch%20Machine%20V2%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/156.%20Abdominal%20Crunch%20Machine%20V2/156.%20Abdominal%20Crunch%20Machine%20V2%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/156.%20Abdominal%20Crunch%20Machine%20V2/156.%20Abdominal%20Crunch%20Machine%20V2%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.3782882373485332, 2.0226983862319474, 1.9941042089531604],
+    "rotation": [-0.5889210793367211, 0.7978242561227739, 0.44603645028619004],
+    "target": [-0.12123221105243435, 0.6683871739539681, -0.03332548863195257]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Abdominal Crunch Machine V2 is a core isolation exercise performed on a dedicated machine that guides you through a controlled crunching motion against resistance.\n\nThis version of the crunch machine features an updated design with improved seat and footrest adjustments for a more comfortable and effective abdominal workout.\n\nIt is widely used in bodybuilding, general fitness, and core strengthening programmes for building defined, strong abdominal muscles safely and efficiently."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly isolates the rectus abdominis with adjustable resistance\n- Fixed path of motion ensures proper form and reduces injury risk\n- Easy to progressively overload via the weight stack for continued strength gains\n- Removes hip flexor involvement compared to traditional floor crunches\n- Excellent for building visible abdominal definition and core strength\n- Suitable for all fitness levels from beginner to advanced\n- Allows for quick weight changes, making it ideal for drop sets and high-rep training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis\n\nSecondary: Obliques (Internal and External), Hip Flexors (minimal), Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat and footrest to your body's proportions to ensure stability.\n2. Sit on the machine with your back firmly against the backrest.\n3. Secure your feet under the footrest with your knees bent at approximately 90 degrees.\n4. Grasp the handles or place your arms against the pads as per the machine design.\n5. Engage your core before initiating the movement."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Squeeze your abs and keep your back pressed against the backrest.\n2. Exhale and curl your upper body forward, bringing your chest closer to your knees.\n3. Focus on contracting the abdominal muscles — do not pull with your arms.\n4. Hold the peak contraction briefly at the bottom of the crunch.\n5. Inhale and slowly return to the starting position with control.\n6. Do not let the weight stack slam — maintain tension throughout.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and relying on momentum instead of abdominal contraction\n- Pulling with the arms or hands instead of driving the movement with the abs\n- Not achieving a full range of motion — stopping short of full contraction\n- Rushing through repetitions instead of using slow, controlled movements\n- Letting the weight stack slam down between reps, losing tension\n- Holding the breath instead of exhaling during the crunch phase\n- Rounding the neck forward excessively, straining the cervical spine"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Abdominal Crunch Machine (V2 model with seat and footrest)\n- Weight stack with pin selection for easy load changes\n- Adjustable seat and footrest positions"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Seat Height: Adjust so the pivot point of the machine aligns with your midsection.\n2. Footrest: Set so your feet are securely held with knees at approximately 90 degrees.\n3. Weight: Start light to warm up and establish proper form before increasing.\n4. Handles/Pads: Ensure they sit comfortably against your chest or shoulders.\n5. Check the pin selection is secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Firmly against the backrest at the start of each rep.\n2. Feet: Secured under the footrest for stability.\n3. Knees: Bent at approximately 90 degrees.\n4. Core: Engaged and braced before initiating the crunch.\n5. Shoulders: Relaxed — avoid shrugging or tensing the neck.\n6. Hands: Lightly holding the handles — let the abs do the work."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["abdominal_crunch_machine", "bodyweight_crunch", "cable_crunch"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Abdominal Crunch Machine (Original): Standard version of the machine crunch\n- Bodyweight Crunch: Floor-based crunch with no equipment needed\n- Cable Crunch: Kneeling cable crunch for weighted abdominal training\n- Hanging Leg Raise: Advanced core exercise targeting the lower abs\n- Decline Sit-Up: Bench-based crunch with increased range of motion\n- Ab Roller: Wheel-based core exercise for advanced trainees"
+        },
+        {
+          "heading": "Crunch Machine Variations",
+          "content": "Standard Crunch Machine: Basic weighted crunch on the machine\nSlow Tempo Crunch: 3–4 second concentrics for increased time under tension\nPaused Crunch: Hold at peak contraction for 2–3 seconds per rep\nDrop Set Crunch: Reduce weight immediately after failure for extended sets\nHigh Rep Crunch: Sets of 20–30 reps with lighter weight for muscular endurance\nOblique Crunch: Rotate slightly to one side during the crunch to target the obliques\nNegative Emphasis Crunch: Slow 4–5 second eccentric returning to the start"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce the range of motion and use a lighter weight\nNeck Strain: Ensure you are not pulling with the neck — keep it in a neutral position\nHip Flexor Tightness: Focus on curling the torso rather than hinging at the hips\nBeginner: Start with minimal weight to learn to activate the abs properly\nNo Crunch Machine: Use cable crunches, floor crunches, or decline sit-ups as alternatives\nPost-Surgery: Consult a physiotherapist before performing any loaded abdominal exercises"
+        }
+      ]
+    }
+  }
+}

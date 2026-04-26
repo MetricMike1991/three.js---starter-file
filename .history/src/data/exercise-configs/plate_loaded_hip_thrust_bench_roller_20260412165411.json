@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_hip_thrust_bench_roller",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller/155.%20Plate%20Loaded%20Hip%20Thrust%20Bench%20Roller%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-4.299378412899414, 2.2039647722262545, 1.9904531395462817],
+    "rotation": [-0.7152051813026618, -0.7413956066715708, -0.5305043441261438],
+    "target": [-1.8889542777153043, 0.4776653557026801, 0.0030488159048580044]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-3.4453938800169226, 1.3843812836355953, 1.5704386175159708],
+    "rotation": [-0.5201398739115937, -0.6951801482195515, -0.3516138366103459],
+    "target": [-1.8914740425484657, 0.4584528897598984, -0.04620444956997177]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Hip Thrust Bench Roller is a glute-focused exercise performed on a dedicated hip thrust machine with a roller pad for comfort and stability.\n\nThe machine's design eliminates the need for manual barbell setup and provides a fixed path of motion, allowing you to focus entirely on maximal glute contraction.\n\nIt is one of the most effective exercises for building glute size, strength, and power, widely used in bodybuilding, athletic performance, and rehabilitation programmes."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the glutes with heavy loading in a safe, supported position\n- Roller pad provides comfort across the hips, reducing discomfort from heavy loads\n- Fixed machine path eliminates the need to stabilise a barbell, allowing heavier loading\n- Excellent for building glute size, strength, and power\n- Plate loaded design allows for easy and precise progressive overload\n- Reduces lower back stress compared to barbell hip thrusts\n- Suitable for all fitness levels from beginner to advanced"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Quadriceps, Core (as stabilisers), Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat and backrest height to fit your body.\n2. Load the desired weight plates securely onto the machine's loading pegs.\n3. Sit on the machine with your back firmly against the backrest.\n4. Place your feet on the foot platform with your knees bent at approximately 90 degrees.\n5. Position the roller pad comfortably across your hips.\n6. Engage your core and prepare for the movement."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your glutes and core before initiating the movement.\n2. Push through your heels to raise your hips upward.\n3. Continue until your body forms a straight line from your shoulders to your knees.\n4. Squeeze your glutes hard at the top of the movement and hold briefly.\n5. Slowly lower your hips back down to the starting position with control.\n6. Do not let the weight slam down — maintain tension throughout.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyperextending the lower back at the top instead of stopping at a straight line\n- Pushing through the toes instead of driving through the heels\n- Not fully extending the hips at the top, reducing glute activation\n- Rushing the eccentric phase instead of lowering with control\n- Placing the feet too far forward or too close to the body\n- Not engaging the core, allowing the lower back to take over\n- Using too much weight and compensating with momentum"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Hip Thrust Bench with roller pad\n- Weight plates (Olympic or standard depending on machine)\n- Adjustable seat and backrest"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Seat Height: Adjust so your back sits comfortably against the backrest with your shoulder blades at the top edge of the pad.\n2. Foot Platform: Position your feet so your knees are at approximately 90 degrees when hips are fully extended.\n3. Roller Pad: Ensure the roller sits across your hip crease for comfort.\n4. Weight: Load plates evenly on both sides of the machine.\n5. Check all plate collars and pins are secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Upper back and shoulder blades pressed against the backrest.\n2. Hips: Positioned under the roller pad at the hip crease.\n3. Feet: Shoulder-width apart on the foot platform, flat and stable.\n4. Knees: Tracking over the toes throughout the movement.\n5. Core: Braced throughout the entire set.\n6. Chin: Slightly tucked to maintain a neutral spine."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "bodyweight_hip_thrust", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Free-weight hip thrust using a barbell and bench\n- Bodyweight Hip Thrust: Unloaded variation for beginners or warm-ups\n- Glute Bridge: Floor-based glute exercise with shorter range of motion\n- Cable Pull-Through: Standing cable hip hinge for glute activation\n- Romanian Deadlift: Hip hinge movement targeting glutes and hamstrings\n- Smith Machine Hip Thrust: Guided barbell hip thrust variation"
+        },
+        {
+          "heading": "Hip Thrust Variations",
+          "content": "Plate Loaded Hip Thrust: Standard machine hip thrust with roller pad\nSingle-Leg Hip Thrust: Unilateral variation for balanced glute development\nBanded Hip Thrust: Add a resistance band around the knees for extra glute activation\nPaused Hip Thrust: Hold at the top for 2–3 seconds per rep for peak contraction\nSlow Tempo Hip Thrust: 3–4 second eccentric for increased time under tension\n1.5 Rep Hip Thrust: Full rep followed by a half rep for extended glute tension\nDrop Set Hip Thrust: Remove plates after failure for extended sets"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Focus on posterior pelvic tilt at the top — do not hyperextend\nKnee Discomfort: Adjust foot position — move feet slightly further from the body\nHip Pain: Reduce the range of motion and use a lighter load\nBeginner: Start with bodyweight or very light plates to learn the movement pattern\nNo Hip Thrust Machine: Use a barbell and bench setup or perform glute bridges on the floor\nPost-Injury: Consult a physiotherapist and work within a pain-free range of motion"
+        }
+      ]
+    }
+  }
+}

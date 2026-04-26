@@ -1,0 +1,113 @@
+{
+  "exerciseId": "kettlebell_hip_thrust_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/284.%20Kettlebell%20Hip%20Thrust/284.%20Kettlebell%20Hip%20Thrust%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/284.%20Kettlebell%20Hip%20Thrust/284.%20Kettlebell%20Hip%20Thrust%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Hip Thrust is a glute-focused hip extension exercise where the lifter rests their upper back on a bench and drives their hips up while a kettlebell is held over the hips for resistance.\n\nIt is a convenient loaded variation of the hip thrust for lifters who only have a kettlebell available, or as an accessory exercise alongside heavier barbell hip thrust work.\n\nThe movement produces a strong glute contraction and is suitable for beginners through advanced lifters."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the glutes through direct hip extension loading\n- Excellent option when no barbell is available\n- Easy to scale load with different kettlebell weights\n- Reinforces strong hip extension mechanics\n- Builds glute size, strength, and endurance\n- Supports better performance in compound lower body lifts\n- Can be progressed with tempo, pauses, or single leg variations"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Core, Erector Spinae, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Sit on the ground with your back against a bench, knees bent.\n2. Place your feet flat on the floor, shoulder-width apart.\n3. Place a kettlebell over your hips, holding it securely with both hands by the handle."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Position your shoulder blades against the bench.\n2. When you thrust upwards, your body should form a straight line from your shoulders to your knees at the top of the movement.\n3. Brace your core and grip the kettlebell handle to keep it stable."
+        },
+        {
+          "heading": "Lift",
+          "content": "1. Brace your core and drive through your heels.\n2. Lift your hips and the kettlebell upwards until your hips are fully extended.\n3. Squeeze your glutes at the top of the movement for maximum engagement."
+        },
+        {
+          "heading": "Lower and Repeat",
+          "content": "1. Lower your hips back to the starting position in a controlled manner.\n2. Keep tension in your glutes throughout the movement.\n3. Ensure the kettlebell remains securely positioned on your hips. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyper-extending the lower back at the top\n- Letting the kettlebell shift up the abdomen\n- Pushing through the toes instead of the heels\n- Letting the knees cave inward\n- Failing to fully extend the hips\n- Tucking the chin too aggressively or letting the head drop\n- Holding the breath through the rep"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell of appropriate weight\n- Stable bench or sturdy elevated surface\n- Athletic shoes for foot traction\n- Optional: Pad or towel for hip comfort\n- Optional: Mat for floor comfort"
+        },
+        {
+          "heading": "Kettlebell Adjustments",
+          "content": "1. Use a pad or folded towel under the kettlebell to protect the hips.\n2. Keep both hands firmly on the kettlebell handle throughout the rep.\n3. Place the bench against a wall to prevent it from sliding.\n4. Choose a load that allows controlled reps with full hip extension."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet flat on the floor, shoulder-width apart, toes slightly out.\n2. Torso: Shoulder blades on the bench, ribs stacked, core braced.\n3. Knees: Bent at roughly 90 degrees in the top position.\n4. Hips: Driven up to full extension, glutes squeezed.\n5. Head: Neutral, chin slightly tucked, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "dumbbell_hip_thrust_female"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Heavier loaded version\n- Dumbbell Hip Thrust: Loaded with a dumbbell\n- Bodyweight Hip Thrust: Unloaded learning variation\n- Glute Bridge: Floor-based hip extension\n- Single Leg Hip Thrust: Unilateral variation\n- Standing Hip Thrust Machine: Machine-based hip extension"
+        },
+        {
+          "heading": "Kettlebell Hip Thrust Variations",
+          "content": "Standard Kettlebell Hip Thrust: Described here\nSingle Leg Kettlebell Hip Thrust: One leg lifted for unilateral demand\nFeet Elevated Kettlebell Hip Thrust: Feet on a step or box for greater stretch\nB Stance Kettlebell Hip Thrust: One foot lightly placed for unilateral bias\nPaused Kettlebell Hip Thrust: Pause at the top for greater glute tension\nTempo Kettlebell Hip Thrust: Slow eccentric for hypertrophy"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Avoid over-extending at the top, focus on glute squeeze\nKnee Pain: Adjust foot position to reduce knee strain\nNo Bench: Perform a glute bridge on the floor instead\nShoulder Discomfort: Use a padded bench edge or towel for the upper back\nHip Discomfort: Use a folded towel under the kettlebell\nBeginners: Start with bodyweight hip thrusts before adding load"
+        }
+      ]
+    }
+  }
+}

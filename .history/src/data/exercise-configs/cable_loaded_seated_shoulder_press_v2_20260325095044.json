@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_loaded_seated_shoulder_press_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2/102.%20Cable%20Loaded%20Seated%20Shoulder%20Press%20V2%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Seated Shoulder Press is a machine-based overhead pressing movement that uses a cable-driven resistance system.\n\nPerformed from a seated position, this exercise provides consistent tension throughout the range of motion, targeting the deltoids while keeping the torso stable.\n\nThe guided path and cable resistance make it an excellent choice for building shoulder strength with reduced injury risk compared to free-weight overhead presses."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Constant cable tension throughout the entire range of motion\n- Seated position provides back support and isolates the shoulders\n- Reduced risk of injury compared to free-weight overhead pressing\n- Machine guides the movement path for consistent form\n- Excellent for building shoulder strength and muscle mass\n- Suitable for all fitness levels from beginner to advanced\n- Allows for controlled eccentric and concentric phases"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Lateral Deltoids\n\nSecondary: Triceps, Upper Trapezius, Serratus Anterior, Upper Chest"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the machine with your back straight and firmly against the back pad.\n2. Place your feet flat on the floor, about shoulder-width apart.\n3. Adjust the seat height so the handles are at shoulder level.\n4. Grasp the handles with an overhand grip at shoulder width."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Sit on the machine with your back straight and feet flat on the floor.\n2. Grasp the handles with an overhand grip and bring them to shoulder level.\n3. Press the handles up and away from your body by extending your arms overhead, exhaling as you do so.\n4. Pause briefly at the top of the movement with arms fully extended but not locked out.\n5. Slowly lower the handles back to shoulder level while inhaling.\n6. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back excessively during the press\n- Not maintaining contact with the back pad\n- Locking out the elbows aggressively at the top\n- Using momentum or bouncing the weight at the bottom\n- Flaring the elbows too far back, stressing the shoulder joint\n- Lifting the feet off the floor during the press\n- Shrugging the shoulders up towards the ears\n- Using too much weight and sacrificing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Shoulder Press Machine\n- Adjustable Seat\n- Weight Stack or Cable Pin for Resistance Selection"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so the handles align with your shoulders when seated.\n2. Select an appropriate weight on the cable stack.\n3. Ensure the back pad is positioned to support your upper back.\n4. Check that the cable pulleys and handles move smoothly before starting.\n5. Start with a lighter weight to warm up and familiarise yourself with the movement path."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Hips pushed back into the seat, back flat against the pad.\n2. Feet: Flat on the floor, shoulder-width apart for stability.\n3. Grip: Overhand grip on handles at shoulder level.\n4. Elbows: Positioned slightly in front of the body, not flared excessively.\n5. Head: Neutral position, looking straight ahead.\n6. Core: Engaged throughout the movement for stability.\n7. Shoulders: Pulled down and back before initiating the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Free-weight standing variation for greater core engagement\n- Barbell Seated Shoulder Press: Free-weight seated variation\n- Dumbbell Shoulder Press: Unilateral variation for balanced development\n- Machine Shoulder Press: Plate-loaded alternative with a fixed path\n- Smith Machine Shoulder Press: Guided barbell variation\n- Landmine Press: Angled pressing movement for shoulder-friendly training"
+        },
+        {
+          "heading": "Cable Shoulder Press Variations",
+          "content": "Cable Loaded Seated Shoulder Press: Standard seated press with cable resistance\nSingle Arm Cable Shoulder Press: Unilateral pressing for imbalance correction\nStanding Cable Shoulder Press: Adds core stability demands\nIncline Cable Press: Targets upper chest and front delts\nArnold Press (Dumbbell): Rotational pressing for full deltoid activation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion or try a neutral grip variation\nLower Back Issues: Ensure the back pad supports you fully, use a lighter weight\nElbow Discomfort: Avoid full lockout at the top of the press\nLimited Mobility: Start with a smaller range of motion and increase gradually\nNo Cable Machine: Substitute with dumbbell or barbell shoulder press\nBeginner: Start with lighter resistance and focus on controlled movements"
+        }
+      ]
+    }
+  }
+}

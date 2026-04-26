@@ -1,0 +1,79 @@
+{
+  "exerciseId": "tricep_dips_on_bench",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/268.%20Tricep%20Dips%20On%20Bench/268.%20Tricep%20Dips%20On%20Bench%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/268.%20Tricep%20Dips%20On%20Bench/268.%20Tricep%20Dips%20On%20Bench%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.102, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.7592241723731257, 2.529742121431119, 2.5623011006633787],
+    "rotation": [-0.6835412717742162, -0.7098926178286475, -0.4880416388831284],
+    "target": [0.02318036208655112, 0.48491333329196185, 0.05187715770524209]
+  },
+  "modelHQ": {
+    "position": [0, -0.102, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.75922417237242, 2.529742121429339, 2.5623011006656107],
+    "rotation": [-0.6835412717733548, -0.7098926178284295, -0.48804163888229457],
+    "target": [0.02318036208655112, 0.48491333329196185, 0.05187715770524209]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Tricep Dips On Bench",
+      "description": "Tricep Dips on Bench is a bodyweight exercise that targets the triceps using a stable bench for support. By lowering and pressing your body up with your arms, you build strength and definition in the back of the upper arms while also engaging the shoulders and chest.",
+      "primaryMuscles": ["Triceps"],
+      "secondaryMuscles": ["Shoulders", "Chest"],
+      "equipment": ["Bench"],
+      "difficulty": "Beginner"
+    },
+    "howToGuide": {
+      "title": "How To Perform Tricep Dips On Bench",
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Position yourself in front of a bench, facing away from it. Place your hands on the edge of the bench, fingers pointing towards your body, legs extended in front of you with heels on the ground."
+        },
+        {
+          "step": 2,
+          "instruction": "Slide your buttocks off the bench with your arms fully extended, supporting your body weight with your hands."
+        },
+        {
+          "step": 3,
+          "instruction": "Slowly lower your body by bending your elbows until they are at about a 90-degree angle. Keep your back close to the bench."
+        },
+        {
+          "step": 4,
+          "instruction": "Push back up by extending your elbows and lifting your body back to the starting position, focusing on using your triceps to perform the movement."
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Setup Guide",
+      "items": [
+        "Find a sturdy bench or stable elevated surface that will not move during the exercise.",
+        "Sit on the edge of the bench with your hands gripping the edge beside your hips, fingers pointing forward toward your body.",
+        "Extend your legs out in front of you with your heels on the floor (bend your knees for an easier variation).",
+        "Slide your hips off the bench so your weight is supported by your arms, with your back close to the bench.",
+        "Engage your core and keep your shoulders down and away from your ears throughout the movement."
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_skull_crusher_v2", "tricep_pushdown"]
+    }
+  }
+}

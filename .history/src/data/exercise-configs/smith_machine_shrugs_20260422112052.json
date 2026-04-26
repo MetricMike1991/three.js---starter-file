@@ -1,0 +1,94 @@
+{
+  "exerciseId": "smith_machine_shrugs",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/184.%20Smith%20Machine%20Shrugs/184.%20Smith%20Machine%20Shrugs%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/184.%20Smith%20Machine%20Shrugs/184.%20Smith%20Machine%20Shrugs%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/184.%20Smith%20Machine%20Shrugs/184.%20Smith%20Machine%20Shrugs%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.1829514320735652, 1.36610193264863, -2.87385943490635],
+    "rotation": [-2.9584019205268666, -0.4068513044661954, -3.0684094642672113],
+    "target": [-0.005783409450540867, 0.8684325589046806, -0.18764381212487805]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/184.%20Smith%20Machine%20Shrugs/Smith%20Machine%20Shrugs_250x250_2026-04-22T10-18-25.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Shrug is a trapezius-focused exercise that uses the fixed bar path of the Smith machine to isolate the upper trapezius.\n\nThe locked bar path allows the lifter to focus entirely on the shrug motion without worrying about balance or bar drift.\n\nThis variation is ideal for heavy trap training with reduced stabilizer demand and is popular for building size and strength in the upper back."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Fixed bar path allows focus on trap contraction\n- Emphasizes upper trapezius development\n- Safer than free barbell version — easy to rack\n- Allows heavier loading with reduced stabilizer demand\n- Ideal for beginners learning the shrug pattern\n- Consistent movement pattern for progressive overload\n- Reduces lower back involvement compared to free weights"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Trapezius\n\nSecondary: Levator Scapulae, Rhomboids, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand inside the Smith machine with your feet shoulder-width apart.\n2. Position the barbell of the Smith machine at thigh level.\n3. Hold the barbell with an overhand grip.\n4. Place your hands slightly wider than shoulder-width apart.\n5. Unrack the bar by rotating your wrists.\n6. Keep your back straight and chest lifted.\n7. Relax your arms and shoulders."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears.\n2. Squeeze your trapezius at the top of the movement.\n3. Lower your shoulders back down under control.\n4. Repeat the shrug for the desired number of repetitions.\n5. Focus on engaging your shoulder muscles.\n6. Maintain proper form throughout the movement.\n7. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of shrugging straight up\n- Using too much weight and compromising form\n- Bending the arms to assist the lift\n- Leaning forward or rounding the back\n- Insufficient range of motion\n- Jerking the weight with momentum\n- Not pausing at the top for full contraction\n- Standing too far from the bar"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith Machine\n- Weight Plates\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Flat-soled shoes recommended"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, inside the Smith machine.\n2. Bar Position: In front of thighs at arms' length.\n3. Grip: Overhand, slightly wider than shoulders.\n4. Arms: Fully extended, relaxed.\n5. Chest: Lifted, shoulders back.\n6. Back: Straight with natural arch.\n7. Head: Neutral, eyes forward.\n8. Core: Engaged for stability."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with light weight to master the movement.\n2. Set the bar at thigh height before loading.\n3. Focus on straight-up shrug motion.\n4. Add pauses at the top for greater contraction.\n5. Gradually increase weight as strength improves.\n6. Use straps when grip becomes the limiting factor.\n7. Keep reps in the 8-15 range for hypertrophy."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_shrugs", "dumbbell_shrug"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Shrug: Free-weight version with more stabilizer work\n- Dumbbell Shrug: Allows greater range of motion\n- Trap Bar Shrug: Neutral grip positioning\n- Smith Machine Behind Back Shrug: Behind-body variation\n- Cable Shrug: Constant tension variation\n- Kettlebell Shrug: Alternative implement"
+        },
+        {
+          "heading": "Trap Variations",
+          "content": "Barbell Shrug: Classic trap builder\nDumbbell Shrug: Free range of motion\nTrap Bar Shrug: Neutral hand position\nSmith Machine Behind Back Shrug: Rear-loaded variation\nFarmer's Carry: Dynamic trap and grip work\nRack Pull Shrug: Heavy overload for traps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Try dumbbell shrugs with neutral grip\nGrip Issues: Use lifting straps\nLower Back Pain: Smith machine is safer than free weights\nLimited Mobility: Use a trap bar instead\nNo Smith Machine: Use a free barbell or dumbbells\nBeginner: Smith machine is a great starting point"
+        }
+      ]
+    }
+  }
+}

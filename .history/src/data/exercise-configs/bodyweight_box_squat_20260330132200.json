@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bodyweight_box_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/113.%20Bodyweight%20Box%20Squat/113.%20Bodyweight%20Box%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/113.%20Bodyweight%20Box%20Squat/113.%20Bodyweight%20Box%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/113.%20Bodyweight%20Box%20Squat/113.%20Bodyweight%20Box%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/113.%20Bodyweight%20Box%20Squat/113.%20Bodyweight%20Box%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.5349620784193903, 1.3245031960746445, 2.109823378825757],
+    "rotation": [-0.2571114168571714, -0.6321488423663087, -0.15412836299484514],
+    "target": [-0.008844809626716715, 0.7946459963537862, 0.09462780774435779]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.4498440474416947, 0.8788436101915165, 1.2392942303103818],
+    "rotation": [-0.19735688154297382, -0.8646192397186065, -0.15098126014554158],
+    "target": [-0.02132040756487915, 0.6399434256381825, 0.04455301445182717]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Box Squat is a lower body exercise that uses a box or bench as a depth guide and momentary resting point at the bottom of the squat.\n\nThis variation is ideal for beginners learning proper squat mechanics, as well as experienced lifters looking to improve depth consistency and hip drive.\n\nBy sitting back onto the box, the movement emphasises the posterior chain while teaching proper hip hinge mechanics and controlled descent."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Teaches proper squat depth and consistency\n- Emphasises posterior chain activation through the sit-back motion\n- Requires no equipment other than a box or bench\n- Great for beginners learning squat mechanics\n- Reduces knee stress by encouraging a sit-back pattern\n- Builds explosive hip drive from the paused position\n- Improves confidence for those nervous about squatting to depth"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Core, Hip Flexors, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand in front of a sturdy box or bench with your feet shoulder-width apart.\n2. Point your toes slightly outward at about 15-30 degrees.\n3. Keep your arms in front of you or crossed over your chest for balance.\n4. Engage your core and maintain an upright torso.\n5. Ensure the box height allows your thighs to reach parallel or just below when seated."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Hinge at the hips and push them back as you begin to lower yourself.\n2. Keep your knees tracking in line with your toes throughout the descent.\n3. Lower yourself in a controlled manner until you are sitting on the box.\n4. Pause briefly on the box without relaxing completely — maintain core tension.\n5. Drive through your heels and push the floor away to stand back up.\n6. Squeeze your glutes at the top of the movement.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Plopping down onto the box instead of lowering with control\n- Rocking forward off the box instead of driving through the heels\n- Letting the knees cave inward during the ascent\n- Rounding the lower back at the bottom of the movement\n- Leaning too far forward and losing an upright torso\n- Completely relaxing on the box and losing core engagement\n- Using a box that is too high, limiting range of motion"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sturdy Box, Bench, or Step (appropriate height for your leg length)\n- Flat, Non-Slip Surface\n- Optional: Resistance band around knees for glute activation"
+        },
+        {
+          "heading": "Box Selection",
+          "content": "1. Choose a box height that allows thighs to reach parallel when seated.\n2. Standard heights range from 12-20 inches depending on your leg length.\n3. Ensure the box is sturdy and will not tip or slide.\n4. A flat bench can also be used as an alternative.\n5. Start with a higher box and progress to lower heights as mobility improves."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, toes slightly turned out.\n2. Stance: Positioned so you can sit back onto the box comfortably.\n3. Arms: Extended in front or crossed over chest for balance.\n4. Core: Braced and engaged throughout the movement.\n5. Back: Straight with a neutral spine.\n6. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_squat", "bulgarian_split_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Squat: Standard squat without the box for depth reference\n- Bulgarian Split Squat: Single-leg squat with rear foot elevated\n- Goblet Squat: Front-loaded squat using a dumbbell or kettlebell\n- Wall Sit: Isometric hold against a wall for quad endurance\n- Step Ups: Stepping onto a box for unilateral leg development"
+        },
+        {
+          "heading": "Variations",
+          "content": "Bodyweight Box Squat: Standard box squat with no added weight\nPaused Box Squat: Extended pause on the box for strength development\nSingle Leg Box Squat: One leg at a time for balance and imbalance correction\nNarrow Stance Box Squat: Feet closer together for greater quad emphasis\nWide Stance Box Squat: Feet wider apart for greater glute and adductor emphasis\nTempo Box Squat: Slow controlled descent for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Use a higher box to reduce range of motion and knee flexion\nHip Mobility Issues: Start with a higher box and work down as flexibility improves\nBalance Problems: Hold onto a wall or rack for stability\nLower Back Discomfort: Focus on keeping core tight and torso upright\nAnkle Mobility Restrictions: Elevate heels slightly on a small plate or wedge"
+        }
+      ]
+    }
+  }
+}

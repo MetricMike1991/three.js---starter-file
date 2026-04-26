@@ -1,0 +1,105 @@
+{
+  "exerciseId": "close_grip_bench_press_barbell",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/94.%20Close%20Grip%20Bench%20Press%20Barbell/94.%20Close%20Grip%20Bench%20Press%20Barbell%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/94.%20Close%20Grip%20Bench%20Press%20Barbell/94.%20Close%20Grip%20Bench%20Press%20Barbell%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/94.%20Close%20Grip%20Bench%20Press%20Barbell/94.%20Close%20Grip%20Bench%20Press%20Barbell%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/94.%20Close%20Grip%20Bench%20Press%20Barbell/94.%20Close%20Grip%20Bench%20Press%20Barbell%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Close Grip Bench Press is a compound pressing movement performed with a narrower hand placement on the barbell.\n\nBy bringing the hands closer together, this variation shifts the emphasis from the chest to the triceps, making it one of the most effective exercises for building tricep size and pressing strength.\n\nIt is commonly used by powerlifters to improve lockout strength and by bodybuilders to develop the triceps."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Primary tricep builder with heavy loading potential\n- Increases lockout strength for the standard bench press\n- Develops the chest and anterior deltoids as secondary movers\n- Allows progressive overload with significant weight\n- Strengthens the elbow extensors for all pressing movements\n- Improves pressing power and upper body strength\n- Easier on the shoulders than wide-grip bench pressing"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii\n\nSecondary: Pectoralis Major, Anterior Deltoids, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Assume the regular bench press setup — lie flat on a bench with feet firmly on the floor.\n2. Position your hands on the barbell more narrow than your regular width — shoulder width or slightly more narrow.\n3. Use less load than your regular bench press weight.\n4. Unrack the bar with arms fully extended above your chest.\n5. Retract your shoulder blades and maintain a slight arch in the upper back.\n6. Keep your feet flat and your glutes on the bench."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower the bar down towards your sternum in an arch-like motion, keeping your elbows tucked to your sides.\n2. Decrease the angle of the elbow as much as possible — aim to bring the bar to your lower chest or sternum.\n3. Maintain control throughout the lowering phase.\n4. Press the barbell back up to the start position by driving through the triceps.\n5. Lock out the elbows at the top without flaring them outward.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Gripping too narrow which causes wrist strain\n- Flaring the elbows out wide — defeating the purpose of the close grip\n- Using the same weight as regular bench press\n- Bouncing the bar off the chest\n- Not tucking the elbows close to the torso\n- Lifting the hips off the bench during the press\n- Lowering the bar too high towards the neck instead of the sternum"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Flat Bench with Rack or Power Rack with Bench\n- Optional: Wrist Wraps for joint support\n- Optional: Spotter for heavy sets"
+        },
+        {
+          "heading": "Grip Width",
+          "content": "1. Place hands shoulder-width apart or slightly narrower on the barbell.\n2. Avoid going too narrow — hands should not be touching.\n3. A grip that is too narrow places excessive stress on the wrists.\n4. Aim for roughly 12-16 inches between your hands.\n5. Adjust based on comfort and wrist mobility.\n6. Thumbs should wrap around the bar — avoid a false (thumbless) grip for safety."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Bench Position: Lie flat with eyes directly under the bar.\n2. Feet: Flat on the floor, driving into the ground.\n3. Back: Slight arch in upper back, shoulder blades retracted.\n4. Glutes: Firmly on the bench throughout the movement.\n5. Grip: Shoulder-width or slightly narrower.\n6. Elbows: Tucked close to the body during the press.\n7. Head: Flat on the bench, neutral position."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "tricep_rope_pushdown"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bench Press: Wider grip with more chest emphasis\n- Dumbbell Close Grip Press: Same movement pattern with dumbbells\n- Tricep Dips: Bodyweight compound tricep exercise\n- Skull Crushers: Isolation movement for the triceps\n- Tricep Rope Pushdown: Cable isolation for the triceps\n- JM Press: Hybrid between close grip press and skull crusher"
+        },
+        {
+          "heading": "Close Grip Press Variations",
+          "content": "Close Grip Bench Press: Standard barbell close grip on a flat bench\nClose Grip Incline Press: Performed on an incline bench for upper chest and triceps\nClose Grip Floor Press: Reduced range of motion, lockout focused\nClose Grip Board Press: Uses boards to limit range and overload the lockout\nSmith Machine Close Grip Press: Guided bar path for stability\nDumbbell Close Grip Press: Neutral grip pressing with dumbbells"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Widen the grip slightly or use wrist wraps for support\nShoulder Issues: Keep elbows tucked and avoid excessive depth\nElbow Pain: Reduce weight and avoid full lockout if it aggravates the joint\nNo Spotter: Use a power rack with safety pins set at chest height\nBeginner: Start with lighter weight to learn the elbow tuck and bar path\nNo Barbell: Use dumbbells with a neutral grip close press instead"
+        }
+      ]
+    }
+  }
+}

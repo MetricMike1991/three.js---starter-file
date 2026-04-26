@@ -1,0 +1,105 @@
+{
+  "exerciseId": "reverse_lunge_dumbbell",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/127.%20Reverse%20Lunge%20Dumbbell/127.%20Reverse%20Lunge%20Dumbbell%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/127.%20Reverse%20Lunge%20Dumbbell/127.%20Reverse%20Lunge%20Dumbbell%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/127.%20Reverse%20Lunge%20Dumbbell/127.%20Reverse%20Lunge%20Dumbbell%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/127.%20Reverse%20Lunge%20Dumbbell/127.%20Reverse%20Lunge%20Dumbbell%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Reverse Lunge with Dumbbells is a unilateral lower body exercise where you step backward into a lunge while holding a dumbbell in each hand.\n\nStepping backward rather than forward places less stress on the front knee, making it a knee-friendly lunge variation.\n\nThis exercise builds single-leg strength, improves balance, and targets the quads, glutes, and hamstrings effectively."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Less knee stress compared to forward lunges\n- Builds unilateral leg strength and corrects imbalances\n- Improves balance, coordination, and stability\n- Targets quads, glutes, and hamstrings simultaneously\n- Easily scalable by adjusting dumbbell weight\n- Functional movement pattern transferable to daily activities\n- Enhances hip mobility and ankle stability"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings\n\nSecondary: Calves, Core (Rectus Abdominis, Obliques), Hip Flexors, Adductors, Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart.\n2. Hold a dumbbell in each hand with arms hanging at your sides.\n3. Keep your chest up, shoulders back, and core engaged.\n4. Eyes looking straight ahead with a neutral spine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Step one foot back behind you, landing on the ball of your foot.\n2. Lower your back knee towards the ground, keeping your front knee bent at a 90-degree angle.\n3. Your front shin should remain roughly vertical throughout the descent.\n4. Lower until your back knee is just above the floor.\n5. Push through your front foot to return to the starting position.\n6. Repeat on the other side for the desired number of repetitions.\n7. Alternate legs with each rep or complete all reps on one side before switching."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Front knee caving inward during the lunge\n- Leaning the torso too far forward\n- Taking too short a step back, causing knee to travel past toes\n- Not lowering the back knee far enough\n- Losing balance due to narrow foot placement\n- Rushing through reps and losing control\n- Rounding the upper back under load"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight for your level)\n- Flat, Non-Slip Surface\n- Optional: Exercise Mat for knee comfort\n- Optional: Mirror for form checking"
+        },
+        {
+          "heading": "Weight Selection",
+          "content": "1. Beginners: Start with light dumbbells (5-10 kg each) or bodyweight only.\n2. Intermediate: Use moderate dumbbells (10-15 kg each).\n3. Advanced: Use heavier dumbbells (15-25 kg+ each).\n4. Focus on form and balance before increasing weight.\n5. If balance is an issue, reduce the weight until stability improves."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Hip-width apart for a stable base.\n2. Grip: Dumbbells held at sides with a neutral grip.\n3. Torso: Upright with chest proud and shoulders back.\n4. Core: Braced throughout the movement.\n5. Head: Neutral, eyes forward.\n6. Step Length: Long enough that both knees reach 90 degrees at the bottom.\n7. Ensure adequate space behind you for the step back."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bulgarian_split_squat", "bodyweight_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Forward Lunge: Step forward instead of backward\n- Walking Lunge: Continuous stepping lunges for distance\n- Bulgarian Split Squat: Rear foot elevated for greater range of motion\n- Goblet Squat: Front-loaded squat for quad emphasis\n- Step-Up: Single-leg movement onto an elevated surface\n- Barbell Reverse Lunge: Barbell on back for heavier loading"
+        },
+        {
+          "heading": "Reverse Lunge Variations",
+          "content": "Dumbbell Reverse Lunge: Standard reverse lunge with dumbbells at sides\nBarbell Reverse Lunge: Barbell across upper back for heavier loads\nDeficit Reverse Lunge: Front foot elevated for greater range of motion\nReverse Lunge to Knee Drive: Add a knee drive at the top for hip flexor work\nCurtsy Reverse Lunge: Step back and across for glute medius emphasis\nPulse Reverse Lunge: Add pulses at the bottom for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce range of motion or use bodyweight only\nBalance Issues: Hold one dumbbell and use a wall for support\nHip Tightness: Warm up with hip flexor stretches before lunging\nLower Back Pain: Keep torso more upright and reduce weight\nNo Dumbbells: Use kettlebells, a barbell, or bodyweight\nAnkle Mobility: Ensure proper footwear with slight heel elevation"
+        }
+      ]
+    }
+  }
+}

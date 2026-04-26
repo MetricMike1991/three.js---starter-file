@@ -1,0 +1,105 @@
+{
+  "exerciseId": "concentration_curl_dumbbell",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/105.%20Concentration%20Curl%20Dumbbell/105.%20Concentration%20Curl%20Dumbbell%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/105.%20Concentration%20Curl%20Dumbbell/105.%20Concentration%20Curl%20Dumbbell%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/105.%20Concentration%20Curl%20Dumbbell/105.%20Concentration%20Curl%20Dumbbell%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/105.%20Concentration%20Curl%20Dumbbell/105.%20Concentration%20Curl%20Dumbbell%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0.9788863261257005, 1.150331820304761, 2.036617797805567],
+    "rotation": [-0.3538989568825836, 0.4140323707942466, 0.14755239765908065],
+    "target": [0.04310549598643541, 0.41233180735154473, 0.03907161164577715]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [0.8458443410222968, 1.0048720957235133, 1.6840208182206637],
+    "rotation": [-0.391317090804656, 0.4493359463526881, 0.17733539889089744],
+    "target": [0.0030351849118230917, 0.338284605408846, 0.06842472775340823]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Concentration Curl is an isolation exercise that targets the biceps brachii.\n\nPerformed seated with the elbow braced against the inner thigh, this exercise eliminates momentum and forces strict bicep contraction.\n\nIt is one of the most effective exercises for building bicep peak and developing a strong mind-muscle connection."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent bicep isolation with minimal momentum\n- Bracing the elbow against the thigh prevents cheating\n- Builds bicep peak and overall arm definition\n- Improves mind-muscle connection\n- Unilateral exercise helps correct strength imbalances\n- Requires minimal equipment\n- Great for muscle activation and finishing sets"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii (short head emphasis)\n\nSecondary: Brachialis, Brachioradialis, Forearm Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on a bench with your feet flat on the floor, wider than shoulder-width apart.\n2. Hold a dumbbell in one hand with an underhand (supinated) grip.\n3. Lean forward slightly and place the back of your upper arm (elbow area) against the inside of your thigh on the same side.\n4. Allow the dumbbell to hang at arm's length towards the floor.\n5. Place your free hand on your opposite knee for support.\n6. Keep your back straight and core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. With your elbow braced against your inner thigh, slowly curl the dumbbell upward toward your shoulder.\n2. Exhale as you lift the weight, squeezing your bicep at the top of the movement.\n3. Pause briefly at the top and hold the contraction.\n4. Slowly lower the weight back to the starting position while inhaling.\n5. Keep your upper arm stationary throughout the movement — only your forearm should move.\n6. Repeat for the desired number of reps, then switch arms."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the weight or using momentum to lift\n- Moving the upper arm away from the thigh during the curl\n- Not fully extending the arm at the bottom of the movement\n- Rushing the eccentric (lowering) phase\n- Rounding the back or hunching the shoulders\n- Using too heavy a weight, sacrificing form\n- Not squeezing at the top of the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Dumbbell (appropriate weight for controlled reps)\n- Flat Bench or Sturdy Chair\n- Optional: Wrist Wraps (for additional support)"
+        },
+        {
+          "heading": "Finding Your Position",
+          "content": "1. Sit on the edge of a flat bench.\n2. Spread your feet wider than shoulder-width apart.\n3. Pick up the dumbbell with an underhand grip.\n4. Lean forward and brace your working arm's elbow firmly against your inner thigh.\n5. Your elbow should be positioned just below the knee, pressing into the inner thigh.\n6. Ensure your arm can fully extend downward without the dumbbell touching the floor.\n7. Adjust bench height if needed to allow full range of motion."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat on the floor, wider than shoulder-width.\n2. Torso: Leaning slightly forward, back straight.\n3. Working Arm: Elbow braced firmly against inner thigh.\n4. Non-Working Hand: Resting on opposite knee for stability.\n5. Grip: Underhand (supinated), wrist neutral.\n6. Head: Neutral position, eyes on the working arm.\n7. Core: Engaged to maintain a stable torso."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["alternating_dumbbell_bicep_curl", "barbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Alternating Dumbbell Bicep Curl: Standing bilateral curl with supination\n- Barbell Bicep Curl: Two-arm barbell curl for overall bicep mass\n- Hammer Curl: Neutral grip targets brachialis and brachioradialis\n- Preacher Curl: Bench-supported curl for strict isolation\n- Cable Bicep Curl: Constant tension throughout the range of motion\n- Incline Dumbbell Curl: Stretched position emphasises long head"
+        },
+        {
+          "heading": "Concentration Curl Variations",
+          "content": "Standing Concentration Curl: Performed standing, bent at the waist\nSeated Concentration Curl: Standard version seated on a bench\nSlow Tempo Concentration Curl: Controlled 3-4 second eccentric phase\nIsometric Hold Concentration Curl: Pause and hold at the midpoint\nCross-Body Concentration Curl: Curling across the body for a different angle"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Use a lighter weight and avoid full lockout at the bottom\nWrist Discomfort: Try a neutral (hammer) grip variation\nBack Issues: Ensure a stable seated position and avoid rounding the spine\nNo Bench: Perform standing bent-over concentration curls\nNo Dumbbells: Use a resistance band or cable machine for similar isolation"
+        }
+      ]
+    }
+  }
+}

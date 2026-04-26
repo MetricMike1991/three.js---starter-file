@@ -1,0 +1,105 @@
+{
+  "exerciseId": "suspended_ring_rows",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/265.%20Suspended%20Ring%20Rows/265.%20Suspended%20Ring%20Rows%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/265.%20Suspended%20Ring%20Rows/265.%20Suspended%20Ring%20Rows%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.9613945532792476, 2.7545439310178375, -2.5790514516447964],
+    "rotation": [-2.4311789145922433, -0.5012158215152164, -2.7496372280901573],
+    "target": [-0.031083922784865475, 0.4568836529908881, 0.09187531216952477]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.9613928202856676, 2.7545451852565956, -2.579051625142273],
+    "rotation": [-2.4311786768319266, -0.5012153296377821, -2.7496373752535535],
+    "target": [-0.031083922784865475, 0.4568836529908881, 0.09187531216952477]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Suspended Ring Row is a bodyweight horizontal pulling exercise performed with gymnastics rings hung from an anchor point above.\n\nWith the rings set to waist height, you grip them with a neutral grip, lean back into a suspended plank position, and pull your chest up to the rings while squeezing the shoulder blades together.\n\nThe instability of the rings dramatically increases the demand on the upper back, biceps, grip, and core compared to a fixed-bar inverted row, making it an excellent progression for developing pulling strength, scapular control, and overall upper body stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds horizontal pulling strength using bodyweight\n- Develops the upper back, lats, rear delts, and biceps\n- Strengthens scapular retractors for healthy posture\n- Increases core and glute engagement as stabilisers\n- Ring instability challenges shoulder and grip control\n- Adjustable difficulty by changing body angle\n- Excellent counter-balance to pressing exercises\n- Great progression toward pull-ups and muscle-ups\n- Wrist-friendly neutral grip option\n- Portable - rings can be set up almost anywhere"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Posterior Deltoids, Biceps Brachii, Brachialis, Forearms (grip), Core (stabiliser), Glutes (stabiliser)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the gymnastics rings so they hang at approximately waist height.\n2. Stand between the rings and grip them with palms facing each other (neutral grip).\n3. Walk your feet forward until your body is at a desired incline - more horizontal is harder, more vertical is easier.\n4. Extend your arms fully and let your body hang back from the rings.\n5. Form a straight line from your head through your hips to your heels.\n6. Engage your core and squeeze your glutes.\n7. Pull your shoulder blades down and slightly back.\n8. Keep your neck in a neutral position, eyes looking up at the rings.\n9. Take a deep breath and prepare to pull."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Exhale and pull your chest up towards the rings.\n2. Lead with your elbows, driving them back and down.\n3. Squeeze your shoulder blades together at the top.\n4. Keep your wrists neutral - rings should rotate naturally as you pull.\n5. Maintain a rigid body line - no sagging hips or raised glutes.\n6. Pull until your chest reaches the rings or your hands are at chest level.\n7. Pause briefly at the top with shoulder blades fully retracted.\n8. Inhale and lower yourself back to the starting position with control.\n9. Allow a slight stretch in the lats at the bottom without losing scapular control.\n10. Maintain control throughout the entire range of motion.\n11. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sagging hips or raised glutes (loss of neutral spine)\n- Pulling with the arms only and not engaging the back\n- Not retracting the shoulder blades at the top\n- Partial range of motion at the top or bottom\n- Allowing the head to crane forward toward the rings\n- Rocking the body or using momentum\n- Setting the body angle too vertical and reducing the challenge unintentionally\n- Holding the breath for multiple reps\n- Allowing the wrists to bend awkwardly under load\n- Letting the rings flare out wide and losing control"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Gymnastics Rings (wood or plastic) with adjustable straps\n- Sturdy Anchor Point (rig, beam, pull-up bar, or rated outdoor support)\n- Comfortable athletic clothing\n- Supportive, flat-soled footwear\n- Optional: Chalk for grip\n- Optional: Lifting Gloves for hand comfort\n- Non-slip flooring to prevent the feet from sliding"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 8-10 reps with a more vertical body angle.\n2. Intermediate: 3-4 sets of 10-12 reps with a moderate angle.\n3. Advanced: 4-5 sets of 8-12 reps with a near-horizontal body line.\n4. Hypertrophy Focus: 3-4 sets of 8-12 reps with controlled tempo.\n5. Endurance Focus: 2-3 sets of 15-20 reps with an easier angle.\n6. Tempo Focus: 3 sets of 8-10 reps with 3-second eccentric.\n7. Pause Focus: 3 sets of 6-8 reps with 2-second pause at the top.\n8. Rest: 60-120 seconds between sets.\n9. Progression: Lower the rings or elevate the feet to increase difficulty."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Ring Height: Approximately waist height for the standard variation.\n2. Grip: Neutral, palms facing each other.\n3. Body Line: Straight from head to heels.\n4. Body Angle: More horizontal = harder, more vertical = easier.\n5. Hips: Neither sagging nor raised.\n6. Shoulders: Pulled down and back at the top of each rep.\n7. Elbows: Driven back and down during the pull.\n8. Head: Neutral - do not crane forward.\n9. Core: Braced throughout the movement.\n10. Glutes: Squeezed to maintain body line.\n11. Breathing: Inhale on descent, exhale on the pull."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bentover_barbell_row", "pull_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Inverted Row (Fixed Bar): Same pattern with a stable bar\n- TRX Row: Suspension-trainer alternative with handles\n- Bentover Barbell Row: Loaded barbell horizontal pull\n- Dumbbell Row: Single-arm horizontal pull\n- Seated Cable Row: Machine-based horizontal pull\n- Chest-Supported Row: Reduces lower back stress\n- Pull-Up: Vertical pulling alternative\n- Lat Pulldown: Machine vertical pulling alternative"
+        },
+        {
+          "heading": "Suspended Ring Row Variations",
+          "content": "Standard Ring Row: Classic execution with neutral grip\nUnderhand Ring Row: Palms facing up for more biceps emphasis\nOverhand Ring Row: Palms facing down for more rear delts and upper back\nFeet-Elevated Ring Row: Feet on a box for increased difficulty\nWeighted Ring Row: Add a weight vest for extra resistance\nArcher Ring Row: Shift bodyweight side to side for unilateral focus\nSingle-Arm Ring Row: Advanced unilateral progression\nTempo Ring Row: 3-5 second eccentric for time under tension\nPause Ring Row: 2-3 second pause at the top with shoulder blades retracted\nL-Sit Ring Row: Legs held out in front for added core demand"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use the neutral grip and avoid extreme wrist angles\nShoulder Pain: Reduce range of motion or use a more vertical body angle\nElbow Pain: Avoid pulling too aggressively at the top\nLower Back Pain: Focus on bracing the core and squeezing the glutes\nLimited Strength: Use a more vertical body angle to reduce load\nGrip Issues: Use chalk, lifting gloves, or a thicker ring grip\nNo Rings: Substitute with a TRX, Smith machine bar, or barbell in a rack\nBeginner: Master fixed-bar inverted rows before progressing to rings\nShoulder Instability: Ensure shoulders are packed down and back before pulling"
+        }
+      ]
+    }
+  }
+}

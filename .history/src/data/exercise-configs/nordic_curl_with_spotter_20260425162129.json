@@ -1,0 +1,112 @@
+{
+  "exerciseId": "nordic_curl_with_spotter",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/288.%20Nordic%20Curl%20With%20Spotter/288.%20Nordic%20Curl%20With%20Spotter%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/288.%20Nordic%20Curl%20With%20Spotter/288.%20Nordic%20Curl%20With%20Spotter%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.7937805979128854, 1.5389095383215285, -2.4877498579845074],
+    "rotation": [-2.8071394981868267, -0.7979814348624021, -2.8977457561265454],
+    "target": [0.06960876650133803, 0.6223560030236118, 0.14975267455056926]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.793776973934958, 1.5389143617695167, -2.4877520980835293],
+    "rotation": [-2.8071381543144165, -0.7979801549791958, -2.897745033069376],
+    "target": [0.06960881676202288, 0.6223560790199345, 0.1497526644513918]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Nordic Curl With Spotter is an advanced bodyweight hamstring exercise performed on the floor while a spotter anchors the ankles.\n\nThe lifter lowers the torso towards the ground under hamstring control and then drives back up to the starting position.\n\nThis variation requires no specialised equipment and is one of the most effective ways to develop eccentric hamstring strength and reduce strain risk in athletes."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds eccentric hamstring strength\n- Reduces hamstring strain risk in sprinting and jumping athletes\n- Equipment-free and accessible anywhere a partner is available\n- Develops hamstring hypertrophy with bodyweight only\n- Strengthens glutes and core stabilisers\n- Improves control through deep ranges of motion\n- Highly scalable through tempo and assistance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus)\n\nSecondary: Gluteus Maximus, Gastrocnemius, Erector Spinae, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Kneel on a soft surface such as a mat or pad to protect your knees.\n2. Have a spotter kneel behind you and securely hold your ankles.\n3. Confirm the spotter has a firm grip before starting."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Cross your arms over your chest or place them behind your head.\n2. Maintain an upright torso with hips fully extended.\n3. Brace your core and engage your glutes."
+        },
+        {
+          "heading": "Lower Under Control",
+          "content": "1. Slowly lower your body towards the floor.\n2. Keep your hips straight without bending at the waist.\n3. Use your hamstrings to control the descent as much as possible."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Push against the floor with your hands to assist as needed.\n2. Use your hamstrings to pull yourself back to the starting upright position.\n3. Keep the motion controlled and repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bending at the hips instead of the knees\n- Dropping rapidly instead of resisting the eccentric\n- Hyperextending the lower back\n- Failing to brace the core\n- Spotter losing grip mid-rep\n- Choosing too long a range before strength is built\n- Skipping the warm-up of the hamstrings"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Padded mat or soft surface for the knees\n- Reliable training partner to anchor the ankles\n- Optional resistance band for assistance"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Knees on the pad with hips stacked over knees.\n2. Hips fully extended in line with the torso.\n3. Hands crossed at the chest or behind the head."
+        },
+        {
+          "heading": "Spotter Setup",
+          "content": "1. Spotter kneels directly behind the lifter.\n2. Hands placed firmly on the back of the ankles or shoes.\n3. Spotter braces with their bodyweight to prevent the heels lifting."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Begin with a short range of motion until strength develops\n- Use a soft surface to catch the chest if needed\n- Communicate clearly with the spotter throughout the set\n- Stop immediately if you feel sharp hamstring or knee pain\n- Avoid lower back hyperextension at the top of each rep"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other hamstring exercises that emphasise knee flexion or eccentric loading."
+        }
+      ],
+      "suggestedExercises": [
+        "nordic_curl",
+        "lying_leg_curl"
+      ]
+    }
+  }
+}

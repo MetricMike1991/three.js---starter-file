@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_leg_hamstring_curl",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/34.%20Single%20Leg%20Hamstring%20Curl/34.%20Single%20Leg%20Hamstring%20Curl%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/34.%20Single%20Leg%20Hamstring%20Curl/34.%20Single%20Leg%20Hamstring%20Curl%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/34.%20Single%20Leg%20Hamstring%20Curl/34.%20Single%20Leg%20Hamstring%20Curl%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/34.%20Single%20Leg%20Hamstring%20Curl/34.%20Single%20Leg%20Hamstring%20Curl%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Leg Hamstring Curl is a unilateral isolation exercise that targets the hamstrings one leg at a time using a standing curl machine.\n\nBy working each leg independently, this exercise helps identify and correct muscle imbalances between the left and right hamstrings.\n\nThe standing position and thigh pad support allow for a full range of motion, making it one of the best exercises for hamstring isolation and development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the hamstrings one leg at a time for balanced development\n- Identifies and corrects strength imbalances between legs\n- Full range of motion for maximum hamstring engagement\n- Thigh pad support ensures strict form and prevents cheating\n- Excellent for building hamstring strength and definition\n- Helps prevent hamstring injuries by strengthening each leg individually\n- Great for mind-muscle connection with single-leg focus\n- Supports progressive overload with controlled weight increments\n- Ideal for rehabilitation and prehabilitation work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus)\n\nSecondary: Gastrocnemius (Calves), Glutes (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the foot plate position so the roller pad is positioned just above the ankle on the calf muscle.\n2. Stand on the foot plate with the supporting leg.\n3. Grip the handles on the side you are standing on for stability.\n4. Position your thigh so that it is flat against the leg pad.\n5. This will have your leg angled slightly forward so that your leg can reach its full range of motion and hamstring length in each rep.\n6. Keep your standing leg slightly bent for balance."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Fully contract the hamstring by curling your leg and moving the roller pad upwards.\n2. Focus on driving the heel toward your glutes.\n3. Squeeze the hamstring at the top of the range while still keeping your thigh planted against the leg pad.\n4. Hold the peak contraction for a brief moment.\n5. Slowly return to the starting position with control.\n6. Do not let the weight drop — maintain tension throughout the eccentric.\n7. Repeat for the desired number of reps.\n8. Switch legs and repeat for equal reps on the other side."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the thigh off the leg pad during the curl\n- Using momentum or swinging the hip to curl the weight\n- Not achieving full range of motion at the top\n- Dropping the weight on the way down instead of controlling it\n- Roller pad positioned too high (on the calf) or too low (on the foot)\n- Standing leg fully locked out — keep it slightly bent\n- Rushing through reps without squeezing at the top\n- Not training both legs equally\n- Using too much weight and losing form\n- Leaning too far forward or backward"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Standing Single Leg Hamstring Curl Machine\n- Weight Stack or Plates (depending on machine type)\n- Optional: Ankle Strap for extra pad comfort\n- Recommended: Non-slip footwear"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the roller pad height so it sits just above the ankle on the calf muscle.\n2. Set the thigh pad so your upper leg rests comfortably against it.\n3. Select the appropriate weight on the stack or load plates.\n4. Test the range of motion with light weight first.\n5. Ensure the foot plate is at a comfortable height for standing."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Standing Leg: Positioned firmly on the foot plate with a slight bend in the knee.\n2. Working Leg: Behind the roller pad with the pad just above the ankle.\n3. Thigh: Flat against the leg pad for support and isolation.\n4. Hips: Square and facing forward — no twisting.\n5. Hands: Gripping the handles firmly for stability.\n6. Core: Engaged to maintain an upright torso.\n7. Head: Neutral position, looking straight ahead.\n8. Back: Straight and neutral — no excessive arching or rounding."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["romanian_deadlift_rdl", "barbell_deadlift", "dumbbell_walking_lunges"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Lying Hamstring Curl: Prone position bilateral hamstring curl\n- Seated Hamstring Curl: Seated machine bilateral variation\n- Romanian Deadlift: Hip hinge movement targeting hamstrings\n- Nordic Hamstring Curl: Advanced bodyweight hamstring exercise\n- Glute-Ham Raise: Compound posterior chain movement\n- Swiss Ball Hamstring Curl: Stability-challenged bodyweight variation"
+        },
+        {
+          "heading": "Hamstring Curl Variations",
+          "content": "Standing Single Leg Curl: Standard unilateral isolation\nLying Hamstring Curl: Bilateral prone position\nSeated Hamstring Curl: Bilateral seated position\nSlow Tempo Curl: 3-4 second eccentric for muscle building\nPause Curl: Hold at peak contraction for increased difficulty\nDrop Set Curl: Reduce weight progressively for exhaustion\n1.5 Rep Curl: Full rep then half rep counts as one for extra time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce range of motion and use lighter weight\nHamstring Strain: Start with very light weight and limited range of motion\nBalance Issues: Hold the handles firmly and focus on stability\nNo Standing Curl Machine: Use lying or seated hamstring curl machine\nNo Equipment: Try Nordic hamstring curls or Swiss ball curls\nPost-Injury: Use slow, controlled reps with minimal weight\nLearning Stage: Start with light weight and focus on the squeeze at the top"
+        }
+      ]
+    }
+  }
+}

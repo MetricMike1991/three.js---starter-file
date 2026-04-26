@@ -1,0 +1,105 @@
+{
+  "exerciseId": "battlerope",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/136.%20Battlerope/136.%20Battlerope%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/136.%20Battlerope/136.%20Battlerope%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/136.%20Battlerope/136.%20Battlerope%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/136.%20Battlerope/136.%20Battlerope%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0208861520121093, 1.7082398996023456, -1.6768557136299138],
+    "rotation": [-2.6802764179656653, -0.5196228474011302, -2.8995987757621378],
+    "target": [0.1736711992085935, 0.7787415409465199, 0.19302681984345663]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-0.46557275900859346, 0.8710307762839242, -1.0374218775124342],
+    "rotation": [-2.7859101022791974, -0.43863769687055487, -2.98511180640772],
+    "target": [0.11317875688424932, 0.4414180210123777, 0.11906249652446932]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Battle Rope exercise is a high-intensity, full-body conditioning movement that uses heavy ropes to create waves, slams, and other dynamic patterns.\n\nThis exercise is a staple in functional fitness and HIIT training, delivering an intense cardiovascular workout while building upper body endurance and core stability.\n\nBattle ropes are highly versatile and can be used for alternating waves, double waves, slams, circles, and many other variations to keep training challenging and engaging."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent cardiovascular conditioning and calorie burning\n- Builds upper body muscular endurance in shoulders, arms, and back\n- Develops core stability and anti-rotation strength\n- Low impact on joints compared to running or jumping\n- Improves grip strength and forearm endurance\n- Versatile exercise with many pattern variations\n- Can be used for both HIIT intervals and steady-state conditioning"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Shoulders, Forearms, Core\n\nSecondary: Biceps, Triceps, Back, Chest, Glutes, Quadriceps, Hamstrings"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold one end of the battle rope in each hand with an overhand grip.\n3. Bend your knees slightly into a quarter squat position.\n4. Hinge slightly forward at the hips while keeping your back straight.\n5. Keep your core engaged and shoulders relaxed.\n6. Arms should be extended in front of you with a slight bend at the elbows.\n7. Maintain a firm but not overly tight grip on the rope handles.\n8. Position yourself far enough from the anchor point to have slight slack in the ropes."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Begin creating waves by moving your hands up and down as quickly as possible.\n2. One hand should move up while the other moves down, creating an alternating wave pattern.\n3. Generate the movement from your shoulders while keeping your core braced.\n4. Keep the waves fluid and consistent along the entire length of the rope.\n5. Maintain your athletic stance throughout — don't stand upright.\n6. Breathe rhythmically; don't hold your breath.\n7. Keep your shoulders down and away from your ears.\n8. Continue the movement for the desired amount of time or reps.\n9. Aim for maximum speed and intensity while maintaining proper form."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Standing too upright instead of maintaining an athletic stance\n- Shrugging the shoulders up toward the ears\n- Using only the arms instead of engaging the whole body\n- Gripping the rope too tightly, causing early forearm fatigue\n- Standing too close to the anchor point, reducing rope movement\n- Letting the waves die out before reaching the anchor point\n- Holding the breath instead of breathing rhythmically\n- Moving the arms too far apart, reducing wave efficiency\n- Rounding the lower back instead of hinging at the hips"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Battle Rope (typically 30-50 feet long, 1.5-2 inches thick)\n- Sturdy Anchor Point (pole, heavy kettlebell, wall mount)\n- Open Floor Space (at least half the rope length)\n- Non-Slip Floor Surface\n- Optional: Gloves for grip comfort\n- Optional: Timer or interval app for timed sets"
+        },
+        {
+          "heading": "Rope Selection",
+          "content": "1. Beginners: Start with a thinner rope (1.5 inches) and shorter length (30 feet).\n2. Intermediate: Use a standard rope (1.5-2 inches) at 40 feet.\n3. Advanced: Use a thicker rope (2 inches) at 50 feet for maximum challenge.\n4. Heavier and longer ropes are more demanding.\n5. Thicker ropes challenge grip strength more.\n6. Ensure the rope is made of durable material (poly dacron or manila).\n7. Rope handles or taped ends improve comfort.\n8. The anchor point must be secure and at ground level."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Shoulder-width apart, knees slightly bent.\n2. Hips: Hinged slightly forward, not fully upright.\n3. Back: Flat and neutral, not rounded.\n4. Core: Braced and engaged throughout.\n5. Shoulders: Down and relaxed, away from ears.\n6. Grip: Firm overhand grip, hands at hip height.\n7. Arms: Extended with slight bend at elbows.\n8. Head: Neutral, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Kettlebell Swings: Similar hip hinge with cardiovascular demand\n- Medicine Ball Slams: Overhead slam for upper body power and cardio\n- Rowing Machine: Full-body cardio with pulling emphasis\n- Jump Rope: High-intensity cardiovascular conditioning\n- Boxing/Shadow Boxing: Upper body endurance and cardio\n- Sled Push/Pull: Full-body conditioning with resistance"
+        },
+        {
+          "heading": "Battle Rope Variations",
+          "content": "Alternating Waves: Standard alternating up-and-down motion\nDouble Waves: Both arms move up and down simultaneously\nPower Slams: Lift both ropes overhead and slam down forcefully\nCircles: Move arms in outward or inward circles\nSnakes: Move arms side to side creating horizontal waves\nGrappler Throws: Pivot and throw ropes to each side\nJumping Waves: Combine alternating waves with jump squats"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Issues: Use shorter, lighter ropes and reduce range of motion\nGrip Fatigue: Wear gloves or use shorter intervals with longer rest\nLower Back Pain: Focus on core bracing, reduce the forward hinge\nKnee Issues: Stand more upright and reduce the squat depth\nNo Battle Ropes: Use resistance band waves or medicine ball slams\nLearning Stage: Start with slow, controlled waves before increasing speed"
+        }
+      ]
+    }
+  }
+}

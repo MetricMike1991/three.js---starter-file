@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/205.%20Resistance%20Band%20Squat/205.%20Resistance%20Band%20Squat%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/205.%20Resistance%20Band%20Squat/205.%20Resistance%20Band%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/205.%20Resistance%20Band%20Squat/USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Squat is a lower-body exercise that adds band tension to a standard bodyweight squat by anchoring a band under the feet and holding the handles at the shoulders.\n\nThe band provides accommodating resistance, increasing in difficulty as you stand up and reducing at the bottom of the squat.\n\nIt is a convenient way to train the legs with scalable load, making it ideal for home, travel, or warm-up sets."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strength and endurance in the quads, glutes, and hamstrings\n- Accommodating resistance matches the strength curve of the squat\n- Portable and low-impact alternative to barbell squats\n- Scalable by changing band thickness or stance width\n- Teaches proper squat mechanics without heavy spinal loading\n- Engages the core for stabilization\n- Useful for warm-ups, conditioning, and higher-rep hypertrophy work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Adductors, Calves, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Anchor the Band",
+          "content": "1. Step on the resistance band with both feet.\n2. Set your feet shoulder-width apart.\n3. Check that the band is evenly balanced under your feet."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Hold the band's handles at shoulder height.\n2. Keep your palms facing inward.\n3. Keep your elbows bent and close to the body."
+        },
+        {
+          "heading": "Squat",
+          "content": "1. Inhale and begin the squat by bending at the hips and knees.\n2. Keep your back straight, chest up, and knees tracking over your toes.\n3. Lower until thighs are parallel to the floor or as far as your mobility allows."
+        },
+        {
+          "heading": "Stand and Repeat",
+          "content": "1. Exhale as you stand, pushing through your heels.\n2. Engage your core and maintain control throughout the movement.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Knees caving inward during the descent or ascent\n- Rounding the lower back at the bottom of the squat\n- Letting the band pull the torso forward\n- Rising onto the toes instead of pushing through the heels\n- Not reaching adequate depth\n- Losing band tension by collapsing the arms forward\n- Rushing reps and losing control on the eccentric"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Flat, stable surface to stand on\n- Athletic shoes for secure footing\n- Optional: Mirror to monitor form\n- Optional: Lighter and heavier bands for progression"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Stand on the middle of the band with both feet.\n2. Wider stance or raised hand position creates more tension.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on both handles is even before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, toes slightly turned out.\n2. Hands: Handles at shoulder height, elbows bent, palms inward.\n3. Torso: Upright, chest tall, core braced.\n4. Knees: Tracking over the toes throughout the squat.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "bodyweight_box_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Squat: Baseline squat without added resistance\n- Goblet Squat: Front-loaded squat with dumbbell or kettlebell\n- Barbell Back Squat: Heavy compound squat with bar on back\n- Front Squat: Bar racked on front delts for quad emphasis\n- Box Squat: Squat to a box for depth and control practice\n- Belt Squat: Machine-based squat with hip loading"
+        },
+        {
+          "heading": "Resistance Band Squat Variations",
+          "content": "Standard Band Squat: Described here\nWide Stance Band Squat: More adductor and glute emphasis\nNarrow Stance Band Squat: More quad emphasis\nTempo Band Squat: Slow eccentric for hypertrophy\nPause Band Squat: Pause at the bottom for control and strength\nJump Band Squat: Explosive variation for power training (use a light band)"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce depth, narrower stance, focus on tempo\nLower Back Issues: Keep torso upright, use a lighter band\nHip Mobility Issues: Work on mobility drills; limit depth to pain-free range\nBalance Issues: Perform near a wall or with a chair for support\nBand Too Light: Step wider or use a heavier band\nBeginners: Start with bodyweight squats to learn the pattern first"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_arm_dumbbell_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/189.%20Single%20Arm%20Dumbbell%20Shrug/189.%20Single%20Arm%20Dumbbell%20Shrug%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/189.%20Single%20Arm%20Dumbbell%20Shrug/189.%20Single%20Arm%20Dumbbell%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/189.%20Single%20Arm%20Dumbbell%20Shrug/189.%20Single%20Arm%20Dumbbell%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/189.%20Single%20Arm%20Dumbbell%20Shrug/189.%20Single%20Arm%20Dumbbell%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-0.019588171573916364, 1.5192285458139212, -2.816986549753783],
+    "rotation": [-2.9694498676671106, -0.00962714205151359, -3.139918871793002],
+    "target": [0.005669394923474316, 1.0698394874357713, -0.23226407208615]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-0.6841143186986479, 1.4414774455339725, -2.136451044483807],
+    "rotation": [-2.836137509258939, -0.31608853937233367, -3.0438860408176236],
+    "target": [-0.041437865569936075, 0.8505342094412507, -0.2623657458897222]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Arm Dumbbell Shrug is a unilateral trapezius exercise performed with a dumbbell in one hand while standing.\n\nBy loading one side at a time, this variation allows for greater range of motion, identifies and corrects muscular imbalances between sides, and improves mind-muscle connection with the trap.\n\nThis is an excellent accessory movement for balanced upper back development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Corrects left-right muscular imbalances\n- Greater range of motion per side\n- Improved mind-muscle connection\n- Core and obliques engage for stabilization\n- Reduced total spinal load compared to bilateral versions\n- Convenient — only one dumbbell required\n- Great accessory for heavier bilateral shrug work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Trapezius\n\nSecondary: Levator Scapulae, Rhomboids, Obliques, Core Stabilizers, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Select a dumbbell of appropriate weight.\n3. Hold the dumbbell in one hand by your side with a neutral grip.\n4. Let the free arm hang relaxed or rest on your hip.\n5. Keep your back straight and chest lifted.\n6. Engage your core for stability.\n7. Keep shoulders relaxed and down to start."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulder on the side with the dumbbell as high as possible by shrugging it towards your ear.\n2. Keep the arm straight throughout the movement.\n3. Squeeze the trapezius at the top of the movement.\n4. Lower your shoulder back down under control.\n5. Repeat the shrug for the desired number of repetitions.\n6. Focus on engaging your shoulder muscles.\n7. Maintain proper form throughout the movement.\n8. Switch to the other arm and repeat for balanced training.\n9. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Leaning sideways to assist the lift\n- Bending the arm during the shrug\n- Rolling the shoulder instead of shrugging straight up\n- Using too much weight and losing form\n- Insufficient range of motion\n- Rushing the reps without control\n- Not pausing at the top\n- Training one side significantly heavier than the other"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Single Dumbbell\n- Optional: Lifting Strap (for grip assistance)\n- Optional: Chalk (improves grip)\n- Flat-soled shoes recommended"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart.\n2. Grip: Neutral grip on the dumbbell.\n3. Working Arm: Fully extended at your side.\n4. Free Arm: Relaxed at your side or on your hip.\n5. Chest: Lifted, shoulders back.\n6. Back: Straight with natural arch.\n7. Head: Neutral, eyes forward.\n8. Core: Engaged to prevent side lean."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with a light dumbbell to learn the movement.\n2. Focus on straight-up shrug motion.\n3. Use the mirror to check for side-lean.\n4. Pause at the top for peak contraction.\n5. Start with the weaker side to ensure balanced volume.\n6. Gradually increase weight as strength improves.\n7. Use a strap when grip becomes limiting.\n8. Keep reps in the 10-15 range for hypertrophy."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_shrug", "seated_dumbbell_shrug"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Shrug: Bilateral standing variation\n- Seated Dumbbell Shrug: Removes lower body involvement\n- Barbell Shrug: Heaviest loading option\n- Smith Machine Shrug: Fixed bar path\n- Cable Shrug: Constant tension variation\n- Kettlebell Shrug: Alternative implement"
+        },
+        {
+          "heading": "Trap Variations",
+          "content": "Dumbbell Shrug: Classic bilateral variation\nSeated Dumbbell Shrug: Seated isolation\nBarbell Shrug: Heavy trap builder\nTrap Bar Shrug: Neutral hand position\nSmith Machine Shrug: Fixed path version\nFarmer's Carry: Dynamic trap and grip work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Neutral grip is usually shoulder-friendly\nGrip Issues: Use a lifting strap\nLower Back Pain: Engage the core firmly to prevent side-lean\nLimited Mobility: Reduce range of motion\nMuscle Imbalance: Start with and match reps to the weaker side\nBeginner: Start light to master balance and form"
+        }
+      ]
+    }
+  }
+}

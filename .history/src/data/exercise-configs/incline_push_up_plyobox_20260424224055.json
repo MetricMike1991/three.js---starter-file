@@ -1,0 +1,105 @@
+{
+  "exerciseId": "incline_push_up_plyobox",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/261.%20Incline%20Push%20Up%20Plyobox/261.%20Incline%20Push%20Up%20Plyobox%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/261.%20Incline%20Push%20Up%20Plyobox/261.%20Incline%20Push%20Up%20Plyobox%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Incline Push-Up on a Plyo Box is a bodyweight pressing exercise performed with the hands elevated on a plyometric box, reducing the percentage of bodyweight pressed and making the movement more accessible.\n\nBecause the hands are higher than the feet, the angle shifts emphasis towards the lower chest while still engaging the shoulders, triceps, and core.\n\nThe incline push-up is an excellent regression from the standard push-up, a useful warm-up exercise, and a great way to build pressing strength and muscular endurance when advanced variations are too challenging."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Reduces the percentage of bodyweight pressed, making it beginner-friendly\n- Builds pressing strength and muscular endurance\n- Emphasises the lower chest fibres\n- Develops triceps and anterior deltoid strength\n- Strengthens the core and serratus anterior as stabilisers\n- No barbells, dumbbells, or cable machines required\n- Excellent progression tool toward full push-ups\n- Easy to scale by adjusting box height\n- Great warm-up for heavier pressing movements\n- Portable - can be performed almost anywhere with a sturdy surface"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Lower/Sternal Head)\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core (stabiliser)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand facing a sturdy plyometric box.\n2. Place your hands on the edge of the box, slightly wider than shoulder-width apart.\n3. Spread your fingers and grip the surface firmly.\n4. Step your feet back until your legs are fully extended.\n5. Form a straight line from your head through your hips to your heels.\n6. Engage your core and squeeze your glutes.\n7. Pull your shoulder blades down and slightly back.\n8. Keep your neck in a neutral position, eyes looking slightly ahead of the box.\n9. Take a deep breath and prepare to press."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Inhale and lower your chest towards the box by bending your elbows.\n2. Keep your elbows tucked at approximately 45 degrees from your torso - not flared out.\n3. Maintain a rigid body line - no sagging hips or raised glutes.\n4. Lower until your chest lightly touches or comes close to the box.\n5. Pause briefly at the bottom.\n6. Exhale and push through your hands to return to the starting position.\n7. Extend your arms fully at the top without aggressively locking out the elbows.\n8. Keep your core braced and body line rigid throughout.\n9. Maintain control during both the lowering and pressing phases.\n10. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sagging hips or raised glutes (loss of neutral spine)\n- Flaring the elbows out at 90 degrees\n- Partial range of motion at the top or bottom\n- Pressing unevenly - one arm ahead of the other\n- Hand position too narrow or too wide\n- Using an unstable or lightweight box that shifts during the press\n- Dropping the head or craning the neck\n- Holding the breath for multiple reps\n- Rushing the tempo and losing control\n- Setting the box height so low that it matches a full push-up difficulty (choose height to match ability)"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plyometric Box (sturdy, non-slip surface)\n- Comfortable athletic clothing\n- Supportive, flat-soled footwear\n- Optional: Exercise Mat for foot grip\n- Optional: Push-Up Handles for wrist comfort\n- Non-slip flooring to prevent the box from shifting"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 8-10 reps with a higher box.\n2. Intermediate: 3-4 sets of 10-15 reps.\n3. Advanced: 4-5 sets of 15-20 reps with a lower box for increased difficulty.\n4. Hypertrophy Focus: 3-4 sets of 10-15 reps with controlled tempo.\n5. Endurance Focus: 2-3 sets of 20+ reps.\n6. Tempo Focus: 3 sets of 8-12 reps with 3-second eccentric.\n7. Rest: 45-90 seconds between sets depending on load and goal.\n8. Progression: Gradually lower the box height until you can perform standard push-ups."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Box Height: Chosen to match your current strength level.\n2. Hand Placement: Slightly wider than shoulder-width on the edge of the box.\n3. Body Line: Straight from head to heels.\n4. Hips: Neither sagging nor raised.\n5. Shoulders: Pulled down and slightly back, stacked over wrists at the top.\n6. Elbows: Tucked at approximately 45 degrees.\n7. Head: Neutral, eyes looking slightly ahead.\n8. Core: Braced throughout the movement.\n9. Glutes: Squeezed to maintain body line.\n10. Breathing: Inhale on descent, exhale on the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["push_up", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Bodyweight benchmark movement\n- Knee Push-Up: Easier regression from the floor\n- Decline Push-Up: Feet elevated for upper chest emphasis\n- Wall Push-Up: Easiest regression for beginners\n- Incline Dumbbell Bench Press: Weighted alternative\n- Bench Press: Classic barbell chest press\n- Machine Chest Press: Guided pressing alternative\n- Cable Chest Press: Constant-tension alternative"
+        },
+        {
+          "heading": "Incline Push-Up Variations",
+          "content": "Standard Incline Push-Up: Classic execution on a plyo box\nNarrow-Grip Incline Push-Up: Hands closer together for more triceps focus\nWide-Grip Incline Push-Up: Hands wider for more chest emphasis\nTempo Incline Push-Up: Slow 3-5 second eccentric for time under tension\nPause Incline Push-Up: 2-3 second pause at the bottom\nExplosive Incline Push-Up: Powerful press to build explosive strength\nPlyometric Incline Push-Up: Hands leave the box at the top\nArcher Incline Push-Up: Shift bodyweight side to side for unilateral emphasis\nSingle-Arm Incline Push-Up: Advanced unilateral variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or a neutral-grip variation\nShoulder Pain: Keep elbows tucked closer to the torso, reduce depth\nElbow Pain: Avoid aggressive lockout at the top\nLower Back Pain: Focus on bracing the core and squeezing the glutes\nLimited Strength: Use a taller box to reduce the load\nNo Plyo Box: Use a bench, step, countertop, or sturdy chair\nBeginner: Start with wall push-ups, progress to incline, then floor\nShoulder Instability: Ensure shoulders are packed down and back before pressing"
+        }
+      ]
+    }
+  }
+}

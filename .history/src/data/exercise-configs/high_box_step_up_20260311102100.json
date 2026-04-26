@@ -1,0 +1,105 @@
+{
+  "exerciseId": "high_box_step_up",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/44.%20The%20High%20Box%20Step%20up/44.%20The%20High%20Box%20Step%20up%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/44.%20The%20High%20Box%20Step%20up/44.%20The%20High%20Box%20Step%20up%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/44.%20The%20High%20Box%20Step%20up/44.%20The%20High%20Box%20Step%20up%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/44.%20The%20High%20Box%20Step%20up/44.%20The%20High%20Box%20Step%20up%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.344795462193545, 1.6881314141215904, -3.9529021124404395],
+    "rotation": [-2.951490027549422, -0.5088714518460177, -3.0481173240840693],
+    "target": [-0.022442000229647815, 0.901523675516384, 0.1349377302123098]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.8697531517083807, 1.7324858416588618, 2.5051841678173226],
+    "rotation": [-0.3371843768757814, 0.8181538849595529, 0.2505025884431115],
+    "target": [0.00878315351436096, 0.8460479627226534, -0.02336253798187842]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/44.%20The%20High%20Box%20Step%20up/The%20High%20Box%20Step%20Up_250x250_2026-03-11T10-20-30.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The High Box Step Up is a unilateral lower body exercise that targets the quadriceps, glutes, and hamstrings by stepping onto an elevated platform.\n\nUsing a higher box increases the range of motion compared to a standard step up, placing greater demand on the quads and glutes.\n\nThis exercise is excellent for building single-leg strength, addressing muscle imbalances, and improving functional movement patterns used in everyday activities like climbing stairs."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops single-leg strength and stability\n- Targets the quadriceps as the primary mover\n- Addresses left-to-right muscle imbalances\n- Improves balance and coordination\n- Low impact compared to jumping exercises\n- Builds functional strength for real-world activities\n- Easily scalable by adjusting box height or adding weight"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps\n\nSecondary: Glutes, Hamstrings, Calves, Hip Flexors, Core (Rectus Abdominis, Obliques)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand in front of a high box or bench with your feet shoulder-width apart.\n2. Keep your chest up and shoulders back.\n3. Engage your core to maintain an upright torso.\n4. Arms can hang naturally at your sides or be held in front for balance.\n5. Position yourself close enough to the box so you don't have to lunge forward to step up."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Stand in front of a high box or bench with your feet shoulder-width apart.\n2. Place one foot on top of the box or bench, keeping your knee in line with your toes.\n3. Push through your heel to stand on top of the box, keeping your core engaged and your knee in line with your toes.\n4. Step down from the box and repeat the movement with the opposite leg, alternating legs for the desired number of reps.\n5. Control the descent — do not drop down or let gravity pull you.\n6. Maintain an upright torso throughout the entire movement."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pushing off the back foot instead of driving through the lead leg\n- Letting the knee cave inward during the step up\n- Leaning too far forward and losing an upright torso\n- Using a box that is too high, causing the hips to tilt\n- Rushing through reps without controlling the step down\n- Not fully extending the hip and knee at the top\n- Placing the foot too close to the edge of the box"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- High box, bench, or sturdy elevated platform (knee height or above)\n- Flat, non-slip surface\n- Optional: Dumbbells or kettlebells for added resistance\n- Optional: Barbell across the upper back for advanced loading\n- Ensure the box is stable and will not slide or tip"
+        },
+        {
+          "heading": "Choosing Your Box Height",
+          "content": "1. A high box should bring your thigh to at least parallel when your foot is placed on top.\n2. Typical high box height is 20-24 inches (50-60 cm) depending on your leg length.\n3. Your knee should not rise above your hip when your foot is on the box.\n4. Start with a moderate height and progress upward as strength improves.\n5. The box must be sturdy and wide enough for your full foot to rest securely.\n6. Avoid using stacked plates or unstable surfaces."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, standing close to the box.\n2. Foot Placement: Entire foot flat on top of the box, centred and stable.\n3. Knee: Tracking over the toes, not caving inward.\n4. Core: Braced to maintain an upright posture.\n5. Chest: Up and proud, shoulders back.\n6. Arms: At your sides, or holding weights for added resistance.\n7. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_squat", "dumbbell_walking_lunges"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Step Up: Lower box height, less range of motion\n- Bulgarian Split Squat: Rear foot elevated for single-leg quad focus\n- Walking Lunges: Alternating legs with forward movement\n- Pistol Squat: Advanced single-leg bodyweight squat\n- Leg Press: Machine-based quad-dominant exercise\n- Goblet Squat: Bilateral squat with dumbbell or kettlebell"
+        },
+        {
+          "heading": "High Box Step Up Variations",
+          "content": "Bodyweight High Box Step Up: Standard variation with no added weight\nDumbbell High Box Step Up: Holding dumbbells at sides for added resistance\nBarbell High Box Step Up: Barbell across upper back for heavier loading\nLateral High Box Step Up: Stepping up from the side for adductor emphasis\nWeighted Vest Step Up: Added resistance without occupying the hands\nSlow Tempo Step Up: 3-4 second eccentric for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Lower the box height and focus on driving through the heel\nBalance Issues: Hold onto a wall or rack for support during the movement\nHip Mobility Restrictions: Use a lower box and gradually increase height\nLack of Strength: Start with a low step and bodyweight only\nAnkle Stiffness: Ensure full foot contact on the box, work on ankle mobility\nLearning Stage: Master standard step ups on a low box before progressing to a high box"
+        }
+      ]
+    }
+  }
+}

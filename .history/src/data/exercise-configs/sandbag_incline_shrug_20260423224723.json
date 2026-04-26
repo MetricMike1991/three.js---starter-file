@@ -1,0 +1,102 @@
+{
+  "exerciseId": "sandbag_incline_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/222.%20Sandbag%20Incline%20Shrug/222.%20Sandbag%20Incline%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/222.%20Sandbag%20Incline%20Shrug/222.%20Sandbag%20Incline%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/222.%20Sandbag%20Incline%20Shrug/222.%20Sandbag%20Incline%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.822094726562368, 2.413945327944327, 2.494470374329003],
+    "rotation": [-0.55904822199822, 0.508652952436536, 0.2957446728462395],
+    "target": [0.018937492526496392, 0.6987870370319984, -0.24704385060909212]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Sandbag Incline Shrug is a trap-focused isolation exercise performed chest-down on an incline bench while holding a sandbag.\n\nThe chest-supported angle changes the line of pull, biasing the upper and middle traps while removing momentum and lower-back involvement.\n\nIt is a joint-friendly option for adding upper-back thickness and postural strength with a portable, accessible load."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the upper and middle trapezius\n- Chest-supported position removes lower-back stress\n- Reduces momentum for cleaner, stricter reps\n- Strengthens scapular elevation and upward rotation\n- Portable and home-gym friendly\n- Easily scaled by changing sandbag weight\n- Great accessory for deadlifts, rows, and overhead pressing"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Trapezius, Middle Trapezius\n\nSecondary: Levator Scapulae, Rhomboids, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Set an incline bench at a moderate angle (about 30-45 degrees).\n2. Place the sandbag at the foot of the bench within easy reach.\n3. Brace the core and pack the shoulders."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie chest-down on the incline bench with feet planted.\n2. Grip the sandbag with an overhand grip.\n3. Let the sandbag hang fully toward the floor with the arms straight."
+        },
+        {
+          "heading": "Shrug",
+          "content": "1. Elevate the shoulders straight up toward the ears.\n2. Squeeze the traps at the top for a brief hold.\n3. Keep the arms straight; only the shoulders move."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Lower the sandbag back down under control.\n2. Fully release the shoulders at the bottom.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bending the elbows to \"row\" the bag instead of shrug\n- Rolling the shoulders in circles instead of straight up\n- Jerking or bouncing the reps\n- Not pausing or squeezing at the top\n- Using a sandbag that is too heavy and breaking form\n- Lifting the chest off the bench\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sandbag appropriate to your strength level\n- Adjustable incline bench\n- Flat, stable training surface\n- Athletic shoes with flat, stable soles\n- Optional: Lifting straps for heavier sets\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Bench and Sandbag Placement",
+          "content": "1. Set the bench at about 30-45 degrees.\n2. Position the sandbag so you can grip it without reaching.\n3. Choose a sandbag weight appropriate for your strength.\n4. Reset the bag between reps if the grip slips."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Position: Chest down on the incline, hips and chest supported.\n2. Torso: Ribs on the bench, core braced.\n3. Arms: Straight and hanging beneath the shoulders.\n4. Shoulders: Start fully depressed, end fully elevated.\n5. Head: Neutral, eyes toward the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Shrug: Standing free-weight variation\n- Barbell Shrug: Heaviest shrug variation\n- Trap Bar Shrug: Neutral-grip variation\n- Cable Shrug: Constant-tension cable version\n- Farmer's Carry: Isometric trap endurance exercise\n- Rack Pull: Heavy upper-back pull"
+        },
+        {
+          "heading": "Sandbag Incline Shrug Variations",
+          "content": "Chest-Supported Sandbag Shrug: Described here\nStanding Sandbag Shrug: Upright free-weight variation\nSandbag Behind-the-Back Shrug: Different line of pull\nTempo Sandbag Shrug: Slow eccentric for hypertrophy\nPause Sandbag Shrug: Pause at the top for more tension\nSandbag Farmer's Hold: Isometric variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Reduce load and keep the neck neutral\nShoulder Issues: Keep the movement straight up and down, not rolling\nLower Back Issues: Chest-supported setup already minimises this\nGrip Issues: Use lifting straps or a heavier-handle bag\nBag Too Light: Add sand or upgrade to a heavier bag\nBag Too Heavy: Use a lighter bag or reduce reps\nBeginners: Start with the dumbbell shrug first"
+        }
+      ]
+    }
+  }
+}

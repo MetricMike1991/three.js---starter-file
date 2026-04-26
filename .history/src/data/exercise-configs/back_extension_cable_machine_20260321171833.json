@@ -1,0 +1,105 @@
+{
+  "exerciseId": "back_extension_cable_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/87.%20Back%20Extension%20Cable%20Machine/87.%20Back%20Extension%20Cable%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/87.%20Back%20Extension%20Cable%20Machine/87.%20Back%20Extension%20Cable%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/87.%20Back%20Extension%20Cable%20Machine/87.%20Back%20Extension%20Cable%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/87.%20Back%20Extension%20Cable%20Machine/87.%20Back%20Extension%20Cable%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.897172265849311, 2.132121552250667, -1.8640142066202303],
+    "rotation": [-2.4600931637757704, -0.85039434818388, -2.59413839034977],
+    "target": [-0.0018408938874997626, 0.5311064667989386, 0.10975889558992744]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.4963020423453357, 2.133742600236331, 1.9245175350000423],
+    "rotation": [-0.6663742357185013, 0.7672169395742314, 0.49964856352174947],
+    "target": [-0.005472121144594919, 0.5300157010110268, -0.1148887039207439]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Back Extension Cable Machine is a seated machine exercise that targets the erector spinae and lower back muscles using cable-driven resistance.\n\nThe machine features upper and lower pads that guide the movement, allowing you to safely extend and flex your spine against resistance.\n\nThis exercise is ideal for strengthening the lower back, improving spinal extension strength, and supporting overall core stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates and strengthens the erector spinae and lower back muscles\n- Cable resistance provides smooth, constant tension throughout the range of motion\n- Seated position reduces compressive forces compared to standing variations\n- Machine pads guide proper movement mechanics and reduce injury risk\n- Easy to adjust resistance via the pin-loaded weight stack\n- Excellent for building lower back endurance and strength\n- Helps prevent lower back injuries by strengthening supporting muscles\n- Suitable for all experience levels from beginner to advanced"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Erector Spinae (Iliocostalis, Longissimus, Spinalis), Lower Back\n\nSecondary: Gluteus Maximus, Hamstrings, Core Stabilisers, Multifidus"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the upper roller pad so that it is in line with your shoulder blades.\n2. Sit into position and press your lower back against the lower pad.\n3. Place your feet firmly on the foot rest.\n4. Grip the handles or cross your arms over your chest.\n5. Start in a slightly crunched or flexed position.\n6. Keep your core engaged and your breathing steady.\n7. Ensure the weight is set to an appropriate level for your strength.\n8. Your head should remain in a neutral position throughout."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Push your upper back into the roller pad.\n3. Arch your lower back around the lower pad, extending your spine.\n4. Focus on contracting the erector spinae muscles as you push back.\n5. Continue extending until your torso is fully upright or slightly past vertical.\n6. Pause briefly at the fully extended position and squeeze the lower back muscles.\n7. Return back to the starting crunched position in a slow and controlled manner.\n8. Do not let the weight stack slam — maintain tension throughout.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and relying on momentum\n- Hyperextending the spine beyond a safe range of motion\n- Rushing through reps without controlling the eccentric (return) phase\n- Not engaging the core to stabilise the spine\n- Holding your breath instead of breathing steadily\n- Jerking or snapping into the extension rather than moving smoothly\n- Positioning the upper pad too high or too low\n- Lifting the feet off the foot rest during the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Back Extension Machine\n- Pin-loaded weight stack for easy resistance adjustment\n- No additional equipment required\n- Optional: Lifting belt for added lower back support on heavy sets"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select an appropriate weight using the pin on the weight stack.\n2. Start light to warm up the lower back before increasing load.\n3. Adjust the upper roller pad so it aligns with your shoulder blades.\n4. Ensure the lower pad sits comfortably against your lower back.\n5. Check that the foot rest is positioned so your feet can press firmly against it.\n6. Verify the cable and pulley system is running smoothly before starting.\n7. Test the range of motion with no weight to ensure the pads are correctly positioned."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Sit with your lower back pressed against the lower pad.\n2. Upper Pad: Aligned with your shoulder blades for proper resistance.\n3. Feet: Pressed firmly against the foot rest for stability.\n4. Grip: Hands on handles or arms crossed over the chest.\n5. Core: Braced and engaged throughout the movement.\n6. Head: Neutral position, eyes looking forward.\n7. Starting Position: Slightly flexed or crunched, ready to extend."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_deadlift", "romanian_deadlift_rdl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Deadlift: Compound lift for overall posterior chain development\n- Romanian Deadlift: Hip hinge movement emphasising hamstrings and lower back\n- 45-Degree Back Extension: Bodyweight or weighted back extension on a hyperextension bench\n- Reverse Hyper: Lower back and glute exercise using a specialised machine\n- Superman Hold: Bodyweight prone back extension exercise\n- Good Morning: Barbell hip hinge for lower back and hamstring development"
+        },
+        {
+          "heading": "Back Extension Variations",
+          "content": "Cable Machine Back Extension: Seated extension against cable resistance\n45-Degree Hyperextension: Angled bench for bodyweight or weighted back extensions\nFlat Bench Hyperextension: Lying prone on a flat bench for back extensions\nReverse Hyper: Machine-based glute and lower back extension\nSuperman Hold: Prone bodyweight isometric back extension\nBanded Back Extension: Using resistance bands for added load"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce the weight significantly and limit range of motion\nDisc Issues: Consult a professional before performing spinal extension exercises\nHip Tightness: Ensure you are seated correctly and the pads are adjusted properly\nCore Weakness: Start with very light weight to build foundational strength\nNo Machine Available: Use bodyweight back extensions on a hyperextension bench or floor\nRehabilitation: Start with very light weight and focus on slow, controlled reps"
+        }
+      ]
+    }
+  }
+}

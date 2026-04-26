@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bodyweight_hip_thrust",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/53.%20Bodyweight%20Hip%20Thrust/53.%20Bodyweight%20Hip%20Thrust%20SD%20(2)_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/53.%20Bodyweight%20Hip%20Thrust/53.%20Bodyweight%20Hip%20Thrust%20HD_compressed%20(1).glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/53.%20Bodyweight%20Hip%20Thrust/53.%20Bodyweight%20Hip%20Thrust%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/53.%20Bodyweight%20Hip%20Thrust/53.%20Bodyweight%20Hip%20Thrust%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.657930361025951, 1.4804454004332532, -1.4144267413320801],
+    "rotation": [-2.643827884754052, 0.9911165706401749, 2.7148932370433],
+    "target": [-0.04586853279880569, 0.6352377791808343, 0.14096867849200007]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.8673649734589863, 1.5824803857704248, 1.1367047573988327],
+    "rotation": [-0.7306536825815465, -0.897386584945899, -0.6110463836885947],
+    "target": [-0.004250585627749329, 0.5905026212003944, 0.029704607958806722]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Hip Thrust is a glute-dominant exercise performed with your upper back supported on a bench and no external resistance.\n\nThis movement isolates the glutes through a full range of hip extension, making it an excellent starting point for beginners or a high-rep burnout exercise for advanced lifters.\n\nWith no equipment needed beyond a bench, the bodyweight hip thrust is one of the most accessible glute exercises available."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- High glute activation with no equipment required\n- Perfect for beginners learning the hip thrust movement pattern\n- Minimal stress on the lower back\n- Can be performed anywhere with a bench or elevated surface\n- Great for high-rep glute burnouts and warm-ups\n- Builds foundational hip extension strength\n- Helps correct quad-dominant movement patterns"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes (Gluteus Maximus)\n\nSecondary: Hamstrings, Quadriceps, Hip Adductors, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the ground with your back against a bench, positioned at around shoulder blade height.\n2. Place your hands on your hips or out to the sides for balance.\n3. Place your feet flat on the ground, roughly shoulder-width apart.\n4. Bend your knees at approximately a 90-degree angle.\n5. Keep your chin slightly tucked and your gaze forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Drive through your heels to lift your hips off the ground.\n2. Push your hips upward until your thighs are parallel to the floor.\n3. Squeeze your glutes hard at the top of the movement.\n4. Maintain a neutral spine throughout — avoid hyperextending your lower back.\n5. Slowly lower your hips back down to the starting position with control.\n6. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyperextending the lower back at the top of the movement\n- Pushing through the toes instead of the heels\n- Allowing the knees to cave inward during the thrust\n- Positioning too far forward or back on the bench\n- Not achieving full hip extension at the top\n- Rushing through reps without controlling the descent\n- Not fully engaging the glutes at the top"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sturdy Flat Bench or Box\n- Flat, Non-Slip Floor Surface\n- No additional equipment required"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Position a sturdy bench against a wall or rack so it doesn't slide.\n2. The bench height should allow your shoulder blades to rest on the edge.\n3. Ensure the bench is stable and won't tip during the movement.\n4. If using a box, make sure it is heavy enough to stay in place.\n5. A standard flat bench height works well for most people."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, flat on the floor.\n2. Shins: Approximately vertical at the top of the movement.\n3. Back: Shoulder blades resting on the edge of the bench.\n4. Arms: Hands on hips or extended to the sides for balance.\n5. Head: Neutral position, chin slightly tucked.\n6. Core: Braced throughout the entire movement.\n7. Knees: Tracking in line with toes, bent at roughly 90 degrees."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["kettlebell_hip_thrust", "dumbbell_hip_thrust"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Hip Thrust: Added resistance with a dumbbell on the hips\n- Kettlebell Hip Thrust: Alternative loading with a kettlebell\n- Barbell Hip Thrust: Heavier loading potential with a barbell\n- Glute Bridge: Floor-based version without bench elevation\n- Single Leg Hip Thrust: Unilateral variation for balance correction\n- Banded Hip Thrust: Resistance band for added tension at lockout"
+        },
+        {
+          "heading": "Hip Thrust Variations",
+          "content": "Bodyweight Hip Thrust: Standard bench-supported thrust with no weight\nSingle Leg Bodyweight Hip Thrust: Unilateral version for imbalance correction\nPaused Hip Thrust: Hold at top for increased time under tension\nElevated Foot Hip Thrust: Feet raised to increase range of motion\nTempo Hip Thrust: Slow eccentric for enhanced muscle engagement\nPulse Hip Thrust: Small pulses at the top for glute burnout"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Bench Available: Perform glute bridges from the floor\nKnee Discomfort: Adjust foot position wider or narrower\nLower Back Pain: Focus on core bracing and avoid hyperextension\nLimited Mobility: Start with glute bridges and progress to hip thrusts\nWant More Resistance: Add a dumbbell, kettlebell, or barbell\nBalance Issues: Keep hands out to the sides for extra stability"
+        }
+      ]
+    }
+  }
+}

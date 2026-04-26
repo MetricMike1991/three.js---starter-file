@@ -1,0 +1,105 @@
+{
+  "exerciseId": "chest_supported_t_bar_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/89.%20Chest%20Supported%20T-Bar%20Row/89.%20Chest%20Supported%20T-Bar%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/89.%20Chest%20Supported%20T-Bar%20Row/89.%20Chest%20Supported%20T-Bar%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/89.%20Chest%20Supported%20T-Bar%20Row/89.%20Chest%20Supported%20T-Bar%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/89.%20Chest%20Supported%20T-Bar%20Row/89.%20Chest%20Supported%20T-Bar%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Chest Supported T-Bar Row is a machine-based compound pulling exercise that targets the middle and upper back muscles.\n\nBy lying chest-down against the pad, this exercise eliminates lower back strain and momentum, allowing you to focus entirely on back contraction.\n\nIt is an excellent exercise for building back thickness, improving posture, and developing the lats, rhomboids, and rear delts with strict form."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Eliminates lower back stress by supporting the chest against a pad\n- Prevents momentum and cheating, ensuring strict back engagement\n- Builds thickness in the middle and upper back\n- Targets the lats, rhomboids, and rear delts effectively\n- Easier to learn than bent-over barbell rows\n- Allows heavier loading without risk to the lower back\n- Excellent for improving posture and scapular retraction strength\n- Suitable for all experience levels from beginner to advanced"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius, Posterior Deltoids\n\nSecondary: Biceps Brachii, Brachialis, Forearms, Erector Spinae (isometric), Teres Major"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Position yourself on the chest-supported T-bar row machine.\n2. Press your chest firmly against the pad.\n3. Plant your feet securely on the foot platforms or ground.\n4. Reach down and grip the handles with an overhand or neutral grip.\n5. Start with your arms fully extended and hanging straight down.\n6. Keep your chest pressed firmly into the pad throughout.\n7. Retract your shoulder blades slightly to set your upper back.\n8. Engage your core to maintain a stable position on the machine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Pull the weight towards your chest by driving your elbows back.\n3. Keep your elbows close to your body as you row.\n4. Focus on squeezing your shoulder blades together at the top.\n5. Pause briefly at the top of the movement with the weight pulled in.\n6. Slowly lower the weight back down to the starting position under control.\n7. Allow your arms to fully extend at the bottom for a full stretch.\n8. Do not let the weight slam or bounce at the bottom.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the chest off the pad during the pull\n- Using too much weight and relying on momentum\n- Not achieving full scapular retraction at the top\n- Shrugging the shoulders up instead of pulling back\n- Rushing through reps without controlling the eccentric phase\n- Not allowing full arm extension at the bottom (short range of motion)\n- Flaring the elbows too wide, reducing lat engagement\n- Holding your breath instead of breathing steadily"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Chest Supported T-Bar Row Machine\n- Weight plates (Olympic or standard depending on machine)\n- No additional equipment required\n- Optional: Lifting straps for grip support on heavier sets\n- Optional: Different handle attachments for grip variation"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Load the appropriate weight plates onto the T-bar.\n2. Start light to warm up before increasing load.\n3. Adjust the chest pad height if the machine allows it.\n4. Ensure the pad sits at upper chest level for proper support.\n5. Check that the foot platforms are at a comfortable position.\n6. Select your preferred handle attachment (wide, narrow, or neutral grip).\n7. Ensure the plates are securely loaded with collars if required."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Chest: Pressed firmly against the pad throughout the movement.\n2. Feet: Securely planted on the foot platforms or floor.\n3. Grip: Overhand, underhand, or neutral depending on handle choice.\n4. Arms: Fully extended in the starting position.\n5. Shoulders: Slightly retracted and pulled down, not shrugged.\n6. Core: Braced to maintain stability on the pad.\n7. Head: Neutral position, looking slightly forward or down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_deadlift", "seated_cable_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bent-Over Row: Free weight row for overall back development\n- Seated Cable Row: Cable-based rowing for constant tension\n- Single Arm Dumbbell Row: Unilateral row for balanced back development\n- Landmine Row: T-bar variation using a barbell in a landmine attachment\n- Machine Seated Row: Plate or cable-loaded machine row\n- Inverted Row: Bodyweight horizontal pulling exercise"
+        },
+        {
+          "heading": "T-Bar Row Variations",
+          "content": "Chest Supported T-Bar Row: Pad-supported for strict form and no lower back stress\nStanding T-Bar Row: Traditional bent-over T-bar row\nLandmine Row: Barbell in a corner or landmine attachment\nSingle Arm Landmine Row: Unilateral variation for imbalance correction\nNeutral Grip T-Bar Row: Using a V-handle for neutral grip emphasis\nWide Grip T-Bar Row: Wider handle for rear delt and upper back focus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try a neutral grip handle to reduce shoulder stress\nLower Back Issues: This exercise is ideal as the chest pad supports the torso\nGrip Fatigue: Use lifting straps to maintain grip on heavier sets\nLimited Range of Motion: Work within a pain-free range and gradually increase\nNo Machine Available: Use a barbell in a landmine attachment with a bench for chest support\nRehabilitation: Start with very light weight and focus on controlled, slow reps"
+        }
+      ]
+    }
+  }
+}

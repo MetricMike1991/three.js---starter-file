@@ -1,0 +1,105 @@
+{
+  "exerciseId": "close_cable_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/73.%20Close%20Cable%20Row/73.%20Close%20Cable%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/73.%20Close%20Cable%20Row/73.%20Close%20Cable%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/73.%20Close%20Cable%20Row/73.%20Close%20Cable%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/73.%20Close%20Cable%20Row/73.%20Close%20Cable%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.9303346448041134, 1.805335270262558, -5.296422016004071],
+    "rotation": [-2.7335735701605244, -0.9140448559594451, -2.811744223636522],
+    "target": [0.0888773150760656, 0.88178290933137, -3.1599447218591434]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.4126688179939086, 1.6692024430773396, 4.744596933963172],
+    "rotation": [-0.5460806911600816, 0.9082489756371077, 0.44682707697104107],
+    "target": [-0.024566349925992062, 0.6816644277256323, 3.1196232501383236]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Close Cable Row is a seated pulling exercise performed on a cable row machine using a narrow, neutral-grip handle.\n\nFrom a seated position with feet braced on the platform, you pull the handles toward your torso while squeezing the shoulder blades together, targeting the middle back, lats, and biceps.\n\nThe close grip and neutral hand position place greater emphasis on the mid-back muscles and allow a longer range of motion compared to wider grip variations."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the latissimus dorsi, rhomboids, and middle trapezius for a thicker back\n- Close neutral grip reduces shoulder stress and allows a greater range of motion\n- Cable provides constant tension throughout the pulling and releasing phases\n- Seated position with chest pad or foot brace minimises lower back involvement\n- Pin-selected weight stack allows quick resistance adjustments\n- Builds pulling strength that transfers to deadlifts, pull-ups, and everyday activities\n- Effective for improving posture by strengthening the upper back muscles"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Biceps Brachii, Brachialis, Rear Deltoids, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so the handles are at mid-chest level.\n2. Select the appropriate weight on the pin-selected stack.\n3. Sit down and place your feet on the foot platform or braces.\n4. Grasp the close-grip handles with a neutral grip (palms facing each other).\n5. Sit upright with a slight natural arch in your lower back.\n6. Let your arms extend fully to feel a stretch in the lats."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Pull the handles toward your torso by driving your elbows straight back.\n2. Keep your elbows close to your body throughout the pull.\n3. Squeeze your shoulder blades together as the handles reach your midsection.\n4. Pause briefly at full contraction and hold the squeeze.\n5. Slowly extend your arms back to the starting position under control.\n6. Allow a slight stretch in the lats at the bottom without rounding your back.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Leaning too far back and turning the row into a body-weight assisted pull\n- Rounding the lower back, especially at the stretched position\n- Using momentum to swing the weight rather than pulling with the back\n- Shrugging the shoulders up instead of pulling the elbows back and squeezing\n- Not achieving full range of motion — cutting the pull short\n- Gripping too tightly with the hands, which takes emphasis off the back\n- Rushing through reps without pausing at the contracted position"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Seated Cable Row Machine\n- Close-grip / V-bar handle attachment\n- Pin-selected weight stack (built into the machine)\n- Optional: Lifting straps for heavier sets if grip is a limiting factor"
+        },
+        {
+          "heading": "Handle Options",
+          "content": "1. V-Bar (Close Neutral Grip): Standard close cable row handle — targets the mid-back and lats evenly.\n2. Double D Handle: Similar to V-bar with slightly wider grip.\n3. Straight Bar (Overhand): Shifts emphasis to the upper back and rear deltoids.\n4. Straight Bar (Underhand): More bicep involvement and lower lat emphasis.\n5. Rope Attachment: Allows the hands to separate at peak contraction for an extra squeeze.\n6. Choose the attachment that best suits your training goal and feels comfortable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat: Adjusted so handles align with your mid-chest when arms are extended.\n2. Feet: Firmly planted on the foot platform with a slight bend in the knees.\n3. Back: Upright with a natural arch — not rounded or excessively arched.\n4. Grip: Neutral (palms facing each other) for the standard close row.\n5. Arms: Fully extended at the start to achieve a full stretch.\n6. Shoulders: Down and back — avoid shrugging during the pull.\n7. Core: Lightly braced to maintain a stable torso position."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["single_arm_row", "barbell_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Wide Grip Cable Row: Wider hand position for more upper back and rear delt emphasis\n- Single Arm Dumbbell Row: Unilateral free-weight row for balanced development\n- Barbell Bent-Over Row: Free-weight compound back exercise\n- T-Bar Row: Plate-loaded rowing movement for back thickness\n- Chest-Supported Row: Machine or dumbbell row with chest support to isolate the back\n- Cable Lat Pulldown: Vertical pulling for lat width"
+        },
+        {
+          "heading": "Close Row Variations",
+          "content": "Standard Close Cable Row: Both arms pulling with a V-bar handle\nSingle Arm Close Cable Row: One arm at a time for unilateral development\nRope Close Cable Row: Rope attachment allowing separation at peak contraction\nPause Rep Close Row: Hold the contracted position for 2-3 seconds each rep\nSlow Eccentric Close Row: 3-4 second lowering phase for increased time under tension\nDrop Set Close Row: Reduce weight after failure and continue for additional reps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Keep torso upright, avoid leaning forward, and use lighter weight\nShoulder Issues: Use a neutral grip and avoid pulling the handles too high\nElbow Pain: Reduce weight and focus on pulling with the back rather than the arms\nWrist Discomfort: Try a rope attachment for a more natural wrist position\nGrip Fatigue: Use lifting straps to maintain grip on heavier sets\nBeginner: Start light, focus on the squeeze at peak contraction, and control the eccentric"
+        }
+      ]
+    }
+  }
+}

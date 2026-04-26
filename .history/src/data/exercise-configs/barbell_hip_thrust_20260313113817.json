@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_hip_thrust",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/55.%20The%20Barbell%20Hip%20Thrust/55.%20The%20Barbell%20Hip%20Thrust%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/55.%20The%20Barbell%20Hip%20Thrust/55.%20The%20Barbell%20Hip%20Thrust%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/55.%20The%20Barbell%20Hip%20Thrust/55.%20The%20Barbell%20Hip%20Thrust%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/55.%20The%20Barbell%20Hip%20Thrust/55.%20The%20Barbell%20Hip%20Thrust%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.989149387816146, 1.7447557664190638, -1.7032142296171116],
+    "rotation": [-2.5199205576778096, 0.7246027897698291, 2.6982411847730665],
+    "target": [-0.010325863528016257, 0.42931700936172523, 0.1328718223491514]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.7023839929412385, 1.4561146970008856, 1.224727473022256],
+    "rotation": [-0.6348038601207509, -0.7763513542749676, -0.47640521260224156],
+    "target": [0.0026826735315692834, 0.4265140748255367, -0.1732399778196192]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Hip Thrust is the gold standard of glute exercises, using a barbell across the hips for maximum loading potential.\n\nThis movement drives powerful hip extension against heavy resistance, making it one of the most effective exercises for developing glute strength, size, and power.\n\nWidely used by athletes, powerlifters, and bodybuilders, the barbell hip thrust allows for progressive overload to continually challenge the glutes."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Highest glute activation of any hip thrust variation\n- Allows for heavy progressive overload\n- Builds explosive hip extension power\n- Reduced stress on the lower back compared to squats and deadlifts\n- Improves lockout strength for squats, deadlifts, and athletic movements\n- Develops glute strength that transfers to sprinting and jumping\n- Targets the glutes through a full range of motion"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes (Gluteus Maximus)\n\nSecondary: Hamstrings, Quadriceps, Hip Adductors, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the ground with your upper back against a bench, positioned at around shoulder blade height.\n2. Roll the barbell up onto your lap and lean back against the bench.\n3. Hold the barbell securely with both hands to keep it stable.\n4. Place your feet flat on the ground, roughly shoulder-width apart.\n5. Bend your knees at approximately a 90-degree angle.\n6. Keep your chin slightly tucked and your gaze forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Drive through your heels to lift your hips off the ground.\n2. Push your hips upward until your thighs are parallel to the floor.\n3. Squeeze your glutes hard at the top of the movement.\n4. Maintain a neutral spine throughout — avoid hyperextending your lower back.\n5. Slowly lower your hips back down to the starting position with control.\n6. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyperextending the lower back at the top of the movement\n- Pushing through the toes instead of the heels\n- Allowing the knees to cave inward during the thrust\n- Positioning too far forward or back on the bench\n- Not achieving full hip extension at the top\n- Rushing through reps without controlling the descent\n- Letting the barbell roll or shift during the movement\n- Not using a barbell pad, causing hip discomfort"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Sturdy Flat Bench or Hip Thrust Station\n- Barbell Pad or Hip Thrust Pad (recommended for comfort)\n- Flat, Non-Slip Floor Surface\n- Optional: Resistance Band (for added tension at lockout)"
+        },
+        {
+          "heading": "Bench and Barbell Setup",
+          "content": "1. Position a sturdy bench against a wall or rack so it doesn't slide.\n2. The bench height should allow your shoulder blades to rest on the edge.\n3. Load the barbell with appropriate weight plates.\n4. Place a barbell pad in the center of the bar for hip comfort.\n5. Roll the barbell over your legs and position it across your hip crease.\n6. Ensure the bench is stable and won't tip during the movement."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, flat on the floor.\n2. Shins: Approximately vertical at the top of the movement.\n3. Back: Shoulder blades resting on the edge of the bench.\n4. Barbell: Centered across the hip crease, held with both hands.\n5. Head: Neutral position, chin slightly tucked.\n6. Core: Braced throughout the entire movement.\n7. Knees: Tracking in line with toes, bent at roughly 90 degrees.\n8. Grip: Hands on the bar to keep it stable, not to lift it."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_hip_thrust", "kettlebell_hip_thrust"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Hip Thrust: Lighter loading with a dumbbell on the hips\n- Kettlebell Hip Thrust: Alternative loading with a kettlebell\n- Bodyweight Hip Thrust: No equipment version for beginners\n- Glute Bridge: Floor-based version without bench elevation\n- Single Leg Hip Thrust: Unilateral variation for balance correction\n- Cable Pull-Through: Standing hip hinge with cable resistance"
+        },
+        {
+          "heading": "Hip Thrust Variations",
+          "content": "Barbell Hip Thrust: Standard heavy loaded bench-supported thrust\nSingle Leg Barbell Hip Thrust: Unilateral version for imbalance correction\nPaused Barbell Hip Thrust: Hold at top for increased time under tension\nBanded Barbell Hip Thrust: Added band resistance at lockout\nFoot-Elevated Hip Thrust: Feet raised to increase range of motion\nTempo Hip Thrust: Slow eccentric for enhanced muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Bench Available: Perform barbell glute bridges from the floor\nHip Discomfort: Use a thick barbell pad or folded towel\nKnee Discomfort: Adjust foot position wider or narrower\nLower Back Pain: Focus on core bracing and avoid hyperextension\nNo Barbell: Use a dumbbell, kettlebell, or resistance band\nLearning Stage: Start with bodyweight hip thrusts to master the pattern"
+        }
+      ]
+    }
+  }
+}

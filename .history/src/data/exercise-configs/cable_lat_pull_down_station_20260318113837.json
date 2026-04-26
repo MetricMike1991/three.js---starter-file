@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_lat_pull_down_station",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/74.%20Cable%20Lat%20Pull%20Down%20Station/74.%20Cable%20Lat%20Pull%20Down%20Station%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/74.%20Cable%20Lat%20Pull%20Down%20Station/74.%20Cable%20Lat%20Pull%20Down%20Station%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/74.%20Cable%20Lat%20Pull%20Down%20Station/74.%20Cable%20Lat%20Pull%20Down%20AR%20Station_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/74.%20Cable%20Lat%20Pull%20Down%20Station/74.%20Cable%20Lat%20Pull%20Down%20Station%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [3.8312806505637393, 1.970998947909698, 2.2025473410935366],
+    "rotation": [-0.4121221130657229, 1.0466900576829927, 0.36181610547675913],
+    "target": [0.011533404168280435, 1.0866072890940068, 0.17949242966047904]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.9401885358828004, 1.9116115589231704, -1.9217917572266108],
+    "rotation": [-2.7442211651682205, -0.9996300063820935, -2.8021765970253294],
+    "target": [0.006036205730205708, 1.1789163166496894, -0.17602515950569048]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Lat Pulldown is a seated vertical pulling exercise performed on a lat pulldown station using a wide bar and cable weight stack.\n\nSeated with your thighs secured under roller pads, you pull a wide bar from overhead down toward the top of your chest, targeting the latissimus dorsi and upper back.\n\nThis exercise is one of the most effective movements for building lat width and is an excellent alternative or complement to pull-ups for all fitness levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Primarily targets the latissimus dorsi for a wider back\n- Develops the upper back, rear deltoids, and biceps as secondary movers\n- Cable provides smooth, constant tension throughout the range of motion\n- Roller pads allow you to use heavier loads without lifting off the seat\n- Pin-selected weight stack makes changing resistance quick and easy\n- Scalable for beginners through to advanced lifters\n- Excellent pull-up alternative for those who cannot yet perform bodyweight pull-ups"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi\n\nSecondary: Teres Major, Rhomboids, Middle and Lower Trapezius, Rear Deltoids, Biceps Brachii, Brachialis"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the roller pads so you can sit down fully with your thighs tucked comfortably underneath.\n2. Stand up and grip the bar wider than shoulder-width with an overhand grip.\n3. Sit down and slide your legs under the roller pads to lock yourself in place.\n4. Let your arms extend fully overhead with tension on the cable.\n5. Sit tall with your chest up and a slight lean back.\n6. Brace your core lightly."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Pull the bar down toward the top of your chest by driving your elbows down and back.\n2. Lean back slightly as the bar descends to allow a full range of motion.\n3. Squeeze your shoulder blades together at the bottom of the movement.\n4. Pause briefly when the bar reaches the upper chest area.\n5. Slowly return the bar to the starting position with arms fully extended.\n6. Maintain control throughout — avoid letting the weight stack slam.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling the bar behind the neck, which places excessive stress on the shoulders\n- Leaning too far back and turning the movement into a row\n- Using momentum or swinging the body to pull the weight down\n- Gripping too narrow, reducing lat engagement\n- Not achieving full extension at the top, cutting the range of motion short\n- Pulling with the biceps instead of initiating the movement with the lats\n- Letting the weight stack slam at the top of each rep"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Lat Pulldown Station with high pulley\n- Wide lat pulldown bar\n- Pin-selected weight stack (built into the machine)\n- Optional: Lifting straps for heavier sets if grip is a limiting factor"
+        },
+        {
+          "heading": "Grip Options",
+          "content": "1. Wide Overhand Grip: Standard lat pulldown grip — maximum lat stretch and width development.\n2. Shoulder-Width Overhand Grip: Slightly more upper back and bicep involvement.\n3. Underhand (Supinated) Grip: Greater bicep engagement and lower lat emphasis.\n4. Neutral Grip (V-Bar): Close grip for mid-back thickness and comfortable wrist position.\n5. Single Arm Handle: Unilateral pulling for correcting muscle imbalances.\n6. Choose the grip that matches your training goal — wide overhand is the standard for lat width."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Thighs: Secured firmly under the roller pads with no gap.\n2. Feet: Flat on the floor for stability.\n3. Grip: Wider than shoulder-width, overhand on the bar.\n4. Torso: Upright with a slight backward lean — not excessive.\n5. Chest: Up and open to allow a full pull to the upper chest.\n6. Shoulders: Down and back at the start — avoid shrugging.\n7. Core: Lightly braced to maintain posture throughout the set."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_pull_up", "close_cable_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Pull-Up: Bodyweight vertical pulling for lat development\n- Chin-Up: Underhand grip pull-up with more bicep engagement\n- Close Cable Row: Horizontal pulling for back thickness\n- Straight Arm Pulldown: Lat isolation with locked elbows\n- Single Arm Lat Pulldown: Unilateral cable pulling\n- Barbell Bent-Over Row: Free-weight compound back builder"
+        },
+        {
+          "heading": "Lat Pulldown Variations",
+          "content": "Wide Grip Lat Pulldown: Standard overhand wide grip for maximum lat stretch\nClose Grip Lat Pulldown: V-bar or narrow handle for mid-back emphasis\nUnderhand Lat Pulldown: Supinated grip for lower lat and bicep focus\nSingle Arm Lat Pulldown: One arm at a time for unilateral work\nBehind the Neck Pulldown: Advanced variation (use with caution — requires good shoulder mobility)\nPause Rep Pulldown: Hold the contracted position for 2-3 seconds per rep"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use a narrower grip or neutral grip handle and avoid pulling behind the neck\nElbow Pain: Reduce weight and try an underhand or neutral grip\nLower Back Discomfort: Minimise the backward lean and keep the core braced\nGrip Fatigue: Use lifting straps to maintain grip on heavier sets\nCannot Do Pull-Ups: The lat pulldown is the ideal substitute — start light and progress\nBeginner: Focus on pulling with the elbows rather than the hands, and use a controlled tempo"
+        }
+      ]
+    }
+  }
+}

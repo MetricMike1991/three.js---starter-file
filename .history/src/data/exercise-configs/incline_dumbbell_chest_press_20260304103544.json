@@ -1,0 +1,105 @@
+{
+  "exerciseId": "incline_dumbbell_chest_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/18.%20Incline%20Dumbbell%20Chest%20Press/18.%20Incline%20Dumbbell%20Chest%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/18.%20Incline%20Dumbbell%20Chest%20Press/18.%20Incline%20Dumbbell%20Chest%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/18.%20Incline%20Dumbbell%20Chest%20Press/18.%20Incline%20Dumbbell%20Chest%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/18.%20Incline%20Dumbbell%20Chest%20Press/18.%20Incline%20Dumbbell%20Chest%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.8834951436843366, 1.724876863144022, -2.413042809325155],
+    "rotation": [-2.524725764461228, -0.8150342554377897, -2.6651386162914767],
+    "target": [-0.01889884897548785, 0.7083514160595317, -0.9796807683205645]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.0480401588141786, 1.5141036808440176, 2.701587324840909],
+    "rotation": [-0.403019662511644, 0.8273810651663824, 0.30413042112613825],
+    "target": [-0.005525531466244579, 0.7736378796094968, 0.9648610124069587]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/18.%20Incline%20Dumbbell%20Chest%20Press/Incline%20Dumbbell%20Chest%20Press_250x250_2026-03-04T10-35-08.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Incline Dumbbell Chest Press is a compound upper body exercise performed on an incline bench set between 30 and 45 degrees.\n\nThis angle shifts the emphasis to the upper portion of the pectoralis major (clavicular head) and the anterior deltoids.\n\nUsing dumbbells instead of a barbell allows each arm to move independently, promoting balanced development and greater range of motion through the chest."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the upper chest for a fuller, more developed appearance\n- Each arm works independently, correcting strength imbalances\n- Greater range of motion compared to barbell incline press\n- Increased stabilizer muscle recruitment\n- Builds shoulder and chest strength simultaneously\n- Versatile weight increments for progressive overload\n- Reduced risk of shoulder impingement with proper form"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Clavicular Head / Upper Chest)\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an adjustable bench to a 30-45 degree incline.\n2. Sit on the bench with a dumbbell in each hand resting on your thighs.\n3. Lie back and use your thighs to help kick the dumbbells up to shoulder level.\n4. Position the dumbbells at the sides of your upper chest, palms facing forward.\n5. Plant your feet firmly on the floor.\n6. Retract your shoulder blades and press them into the bench.\n7. Maintain a slight natural arch in your lower back.\n8. Elbows should be bent at roughly 90 degrees."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Push the dumbbells upward by extending your arms.\n3. Press in a slight arc, bringing the dumbbells closer together at the top.\n4. Fully extend your arms without locking the elbows.\n5. Pause briefly at the top with dumbbells nearly touching.\n6. Slowly lower the dumbbells back to the starting position.\n7. Keep your shoulder blades retracted throughout the movement.\n8. Lower until you feel a stretch in the upper chest.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Setting the bench angle too steep (turns it into a shoulder press)\n- Flaring elbows out too wide (increases shoulder strain)\n- Losing shoulder blade retraction during the press\n- Arching the back excessively to compensate for heavy weight\n- Not lowering the dumbbells far enough for full range\n- Using momentum or bouncing at the bottom\n- Uneven pressing — one arm extending faster than the other\n- Feet lifting off the floor during the press\n- Rushing the eccentric (lowering) phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight)\n- Adjustable Incline Bench\n- Optional: Spotter for heavy lifts\n- Optional: Wrist Wraps (for wrist support)\n- Recommended: Flat-soled shoes for stable foot placement"
+        },
+        {
+          "heading": "Bench Angle Setup",
+          "content": "1. Set the bench to 30-45 degrees for optimal upper chest activation.\n2. 30 degrees: More chest-dominant, less shoulder involvement.\n3. 45 degrees: More upper chest and anterior deltoid emphasis.\n4. Avoid angles above 45 degrees — this becomes more shoulder press.\n5. Ensure the bench is locked securely at the chosen angle.\n6. Position the bench with clearance on both sides for dumbbells."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat on the floor, shoulder-width apart or wider.\n2. Hips: Firmly on the bench seat throughout the movement.\n3. Back: Pressed into the incline pad, slight natural arch.\n4. Shoulders: Retracted and depressed (pulled back and down).\n5. Head: Resting naturally against the bench pad.\n6. Grip: Firm, neutral wrist position, palms facing forward.\n7. Elbows: At approximately 45-75 degree angle from torso."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flat_dumbbell_chest_press", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Flat Dumbbell Chest Press: Targets overall chest, less upper emphasis\n- Incline Barbell Bench Press: Fixed path, allows heavier loads\n- Low-to-High Cable Fly: Constant tension on upper chest\n- Landmine Press: Angled pressing with natural arc\n- Incline Push-Ups (feet elevated): Bodyweight upper chest option\n- Machine Incline Press: Guided movement, great for beginners"
+        },
+        {
+          "heading": "Incline Press Variations",
+          "content": "Incline Dumbbell Press: Standard upper chest builder with full range\nNeutral Grip Incline Press: Palms facing each other, easier on shoulders\nSingle-Arm Incline Press: Unilateral pressing for core and balance\nIncline Squeeze Press: Dumbbells pressed together for inner upper chest\nSlow Eccentric Incline Press: 3-4 second lowering for muscle growth\nPaused Incline Press: Pause at bottom for chest stretch and strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Lower the bench angle or try neutral grip (palms facing each other)\nWrist Discomfort: Use wrist wraps or switch to neutral grip\nLower Back Issues: Keep feet elevated or reduce arch, ensure hips stay on pad\nNo Adjustable Bench: Use a fixed incline bench or incline push-ups\nNo Dumbbells: Use barbell incline press or resistance bands\nLearning Stage: Start with lighter weights, focus on controlled movement"
+        }
+      ]
+    }
+  }
+}

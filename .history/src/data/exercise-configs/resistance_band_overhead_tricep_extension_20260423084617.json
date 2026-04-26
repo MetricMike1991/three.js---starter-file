@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_overhead_tricep_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/209.%20Resistance%20Band%20Overhead%20Tricep%20Extension/209.%20Resistance%20Band%20Overhead%20Tricep%20Extension%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/209.%20Resistance%20Band%20Overhead%20Tricep%20Extension/209.%20Resistance%20Band%20Overhead%20Tricep%20Extension%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/209.%20Resistance%20Band%20Overhead%20Tricep%20Extension/209.%20Resistance%20Band%20Overhead%20Tricep%20Extension%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Overhead Tricep Extension is an isolation exercise that targets the triceps, with particular emphasis on the long head, by pressing overhead against band tension.\n\nAnchoring the band under the back foot in a split stance creates constant accommodating resistance through the range of motion.\n\nIt is a joint-friendly movement for building arm size, lockout strength, and overhead shoulder stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the long head of the triceps through an overhead stretch\n- Constant band tension for continuous muscle engagement\n- Low-impact and joint-friendly\n- Portable and equipment-efficient\n- Improves lockout strength for pressing movements\n- Builds overhead shoulder stability and core control\n- Easily scaled by changing band thickness or stance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (especially Long Head)\n\nSecondary: Shoulders (Deltoids), Core, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Anchor the band securely under your back foot.\n2. Adopt a comfortable split stance for balance.\n3. Ensure the band has no slack before starting."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Grasp the handles and bring them overhead.\n2. Palms facing up, arms fully extended.\n3. Elbows close to the head, core braced."
+        },
+        {
+          "heading": "Extension",
+          "content": "1. Exhale as you extend your arms upward.\n2. Drive through the triceps to full lockout.\n3. Keep the elbows tucked and pointing forward."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Inhale while bending your elbows.\n2. Lower under control, maintaining tension.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring the elbows outward\n- Arching the lower back to press overhead\n- Using momentum instead of controlled triceps extension\n- Allowing the band to pull the arms forward out of position\n- Using a band that is too heavy and breaking form\n- Incomplete lockout at the top\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Athletic shoes for secure footing\n- Optional: Lighter and heavier bands for progression\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Step on the band with your back foot in a split stance.\n2. Wider stance creates more tension; narrower stance reduces it.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on both handles is even before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Split stance, back foot anchoring the band.\n2. Torso: Tall, ribs down, core braced.\n3. Arms: Fully extended overhead, elbows near the ears.\n4. Shoulders: Packed and down, not shrugged.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Overhead Tricep Extension: Free-weight variation\n- Cable Overhead Tricep Extension: Cable variation with constant tension\n- EZ-Bar Skullcrusher: Lying triceps extension\n- Tricep Pushdown: Standing cable triceps isolation\n- Bodyweight Triceps Extension: Using a bar or rings\n- Close-Grip Bench Press: Compound triceps movement"
+        },
+        {
+          "heading": "Resistance Band Overhead Tricep Extension Variations",
+          "content": "Two-Arm Band Overhead Extension: Described here\nSingle-Arm Band Overhead Extension: Unilateral variation\nSeated Band Overhead Extension: Seated for reduced core demand\nKneeling Band Overhead Extension: Kneeling variation\nTempo Band Overhead Extension: Slow eccentric for hypertrophy\nPause Band Overhead Extension: Pause at the stretch for more tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Reduce range or choose a non-overhead triceps variation\nElbow Pain: Lighten the band and keep elbows tracking forward\nLower Back Issues: Brace the core and avoid arching; try a seated version\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nBeginners: Start with a light band to learn the pattern"
+        }
+      ]
+    }
+  }
+}

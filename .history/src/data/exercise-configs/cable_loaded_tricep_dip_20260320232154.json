@@ -1,0 +1,94 @@
+{
+  "exerciseId": "cable_loaded_tricep_dip",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/83.%20Cable%20Loaded%20Tricep%20Dip/83.%20Cable%20Loaded%20Tricep%20Dip%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/83.%20Cable%20Loaded%20Tricep%20Dip/83.%20Cable%20Loaded%20Tricep%20Dip%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/83.%20Cable%20Loaded%20Tricep%20Dip/83.%20Cable%20Loaded%20Tricep%20Dip%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/83.%20Cable%20Loaded%20Tricep%20Dip/83.%20Cable%20Loaded%20Tricep%20Dip%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Tricep Dip is a machine-based pressing exercise that targets the triceps using cable-driven resistance.\n\nPerformed from a seated position with your back against a pad, you grip handles and press them downward by fully extending your arms, isolating the triceps through a controlled range of motion.\n\nThis exercise is excellent for building tricep size and strength while minimising stress on the shoulders and wrists compared to bodyweight dips."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the triceps through a full range of motion\n- Cable resistance provides smooth, consistent tension throughout the movement\n- Seated position with back pad support reduces stress on the shoulders and lower back\n- Easy to adjust resistance via the pin-loaded weight stack\n- Safer alternative to bodyweight dips for those with shoulder issues\n- Allows progressive overload with precise weight increments\n- Excellent for building tricep mass and lockout strength\n- Minimal technique required — great for beginners and advanced lifters alike"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (Long Head, Lateral Head, Medial Head)\n\nSecondary: Anterior Deltoids, Pectoralis Major (Lower Fibres), Core Stabilisers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so your elbows are fully bent when gripping the handles.\n2. Sit with your back firmly pressed against the back pad.\n3. Place your feet flat on the floor for stability.\n4. Grip the handles with a neutral or overhand grip.\n5. Pull your shoulders back and down, keeping your chest up.\n6. Engage your core and maintain an upright posture.\n7. Your elbows should be at approximately 90 degrees or slightly more.\n8. Ensure the weight is set to an appropriate level before beginning."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Drive your back firmly into the pad for stability.\n3. Press the handles downward by straightening your arms, focusing on contracting the triceps.\n4. Keep your elbows close to your body throughout the movement.\n5. Continue pressing until your arms are fully extended.\n6. Squeeze the triceps hard at the bottom of the movement.\n7. Slowly return the handles to the starting position under control.\n8. Do not let the weight stack slam — maintain tension throughout.\n9. Keep your shoulders pulled back and avoid rounding forward during the press."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and losing control of the movement\n- Leaning forward or lifting off the back pad during the press\n- Flaring elbows out wide instead of keeping them close to the body\n- Not fully extending the arms at the bottom of the movement\n- Rushing through reps without focusing on the tricep contraction\n- Letting the weight stack slam between reps\n- Holding your breath instead of breathing steadily\n- Incorrect seat height leading to poor elbow alignment"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Tricep Dip Machine\n- Pin-loaded weight stack for easy resistance adjustment\n- No additional equipment required\n- Optional: Wrist wraps for comfort on heavier sets"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select an appropriate weight using the pin on the weight stack.\n2. Start light to warm up the triceps before increasing load.\n3. Adjust the seat height so your elbows are at 90 degrees when gripping the handles.\n4. Ensure the back pad is in a comfortable position.\n5. Check that the handles are secure and the machine operates smoothly.\n6. Test the range of motion with no weight before loading up."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Sit with your back flat against the back pad.\n2. Arm Position: Grip the handles with elbows bent at approximately 90 degrees.\n3. Feet: Flat on the floor for stability.\n4. Grip: Firm neutral or overhand grip on the handles.\n5. Core: Braced and engaged throughout the movement.\n6. Shoulders: Pulled back and down, chest up.\n7. Back: Firmly pressed into the pad — drive into it as you press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["cable_loaded_adductors", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Tricep Dips: Using parallel bars or a dip station\n- Close Grip Bench Press: Barbell press with narrow grip for tricep emphasis\n- Tricep Pushdown: Standing cable tricep extension\n- Overhead Tricep Extension: Cable or dumbbell overhead extension\n- Skull Crushers: Lying barbell or dumbbell tricep extension\n- Diamond Push-Ups: Bodyweight tricep-focused push-up variation"
+        },
+        {
+          "heading": "Tricep Variations",
+          "content": "Cable Loaded Tricep Dip: Seated machine-based tricep press\nTricep Pushdown: Standing cable pushdown with rope or bar attachment\nOverhead Cable Extension: Standing or seated overhead tricep extension\nClose Grip Bench Press: Barbell press targeting triceps with narrow grip\nSkull Crushers: Lying tricep extension with barbell or dumbbells\nKickbacks: Dumbbell tricep kickback for isolation work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion or use lighter weight\nElbow Issues: Avoid locking out fully and reduce load\nWrist Pain: Try different grip positions or use wrist wraps\nLower Back Pain: Ensure your back stays firmly pressed against the pad\nNo Machine Available: Substitute with bodyweight dips, pushdowns, or close grip bench press\nRehabilitation: Start with very light weight and focus on controlled movement"
+        }
+      ]
+    }
+  }
+}

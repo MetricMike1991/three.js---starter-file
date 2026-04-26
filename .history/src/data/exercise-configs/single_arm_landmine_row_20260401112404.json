@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_arm_landmine_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/124.%20Single%20Arm%20Landmine%20Row/124.%20Single%20Arm%20Landmine%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/124.%20Single%20Arm%20Landmine%20Row/124.%20Single%20Arm%20Landmine%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/124.%20Single%20Arm%20Landmine%20Row/124.%20Single%20Arm%20Landmine%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/124.%20Single%20Arm%20Landmine%20Row/124.%20Single%20Arm%20Landmine%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Arm Landmine Row is a unilateral back exercise performed with one end of a barbell anchored in a landmine attachment or corner.\n\nThis rowing variation allows for a unique arc of motion that targets the lats, rhomboids, and mid-back muscles effectively.\n\nThe single arm approach helps identify and correct strength imbalances between sides while also engaging the core for stabilisation."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Unilateral movement corrects strength imbalances between sides\n- Unique arc of motion provides a different stimulus to the back muscles\n- Heavy core and anti-rotation demands improve stability\n- Joint-friendly movement pattern\n- Allows for a greater range of motion compared to some rowing variations\n- Can be loaded progressively with standard weight plates\n- Builds grip strength unilaterally\n- Great for developing thickness in the mid-back"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Mid-Trapezius\n\nSecondary: Rear Deltoids, Biceps Brachii, Core (Obliques and Transverse Abdominis), Erector Spinae, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place one end of the barbell into a landmine apparatus or into a corner of a wall.\n2. Load the free end of the barbell with the desired weight.\n3. Stand facing the barbell with your feet shoulder-width apart.\n4. Hinge at the hips and bend your knees slightly.\n5. Grab the barbell with one hand using an overhand grip near the loaded end.\n6. Keep your back straight and core engaged.\n7. Let the arm hang fully extended towards the barbell.\n8. Maintain a flat back with your torso at approximately 45 degrees."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Brace your core and maintain a straight back position.\n2. Pull the barbell towards your torso, driving your elbow back.\n3. Keep your elbow close to your body throughout the movement.\n4. Squeeze your back muscles at the top of the row.\n5. Lower the barbell back down to the starting position with control.\n6. Avoid rotating your torso during the pulling motion.\n7. Complete all reps on one side before switching to the other arm.\n8. Breathe out as you row up, breathe in as you lower the bar."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back during the row\n- Using momentum or jerking the weight up\n- Excessive rotation of the torso\n- Not pulling the elbow far enough back\n- Standing too upright, reducing back engagement\n- Gripping too far from the loaded end\n- Rushing the eccentric (lowering) phase\n- Shrugging the shoulder instead of retracting the scapula"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell\n- Landmine Attachment or Corner Setup\n- Weight Plates\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (for improved grip)"
+        },
+        {
+          "heading": "Landmine Setup",
+          "content": "1. Secure a landmine attachment to a squat rack or heavy base.\n2. Alternatively, wedge one end of the barbell into the corner of two walls or a machine.\n3. Load the free end of the barbell with the desired weight plates.\n4. Ensure the anchored end is stable and will not slip during the movement.\n5. Test with light weight first to confirm the setup is secure.\n6. Position yourself facing the free end of the barbell."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, facing the barbell.\n2. Hinge: Bend at the hips with knees slightly bent.\n3. Grip: One hand gripping near the loaded end, overhand grip.\n4. Back: Flat and neutral, approximately 45 degrees to the floor.\n5. Core: Braced and tight throughout the movement.\n6. Arm: Fully extended in the starting position.\n7. Head: Neutral, looking slightly ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bentover_barbell_row", "single_arm_dumbbell_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bent Over Barbell Row: Bilateral barbell rowing movement\n- Single Arm Dumbbell Row: Unilateral rowing with a dumbbell\n- T-Bar Row: Similar angle with both hands\n- Cable Single Arm Row: Constant tension unilateral rowing\n- Meadows Row: Landmine row variation with perpendicular stance"
+        },
+        {
+          "heading": "Landmine Variations",
+          "content": "Single Arm Landmine Row: Standard unilateral rowing movement\nDouble Arm Landmine Row: Both hands rowing together\nLandmine Meadows Row: Perpendicular stance for greater stretch\nLandmine T-Bar Row: Using a V-handle attachment for neutral grip\nLandmine Bent Over Row: Traditional bent over position"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Use a chest-supported row variation or reduce the hip hinge angle\nGrip Issues: Use lifting straps or chalk for better grip\nShoulder Pain: Adjust the rowing angle or try a neutral grip\nNo Landmine Attachment: Wedge the barbell into a corner securely\nBeginner: Start with just the bar to learn the movement pattern\nHamstring Tightness: Bend the knees more to reduce hamstring demand"
+        }
+      ]
+    }
+  }
+}

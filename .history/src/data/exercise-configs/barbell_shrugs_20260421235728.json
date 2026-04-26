@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_shrugs",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/180.%20Barbell%20Shrugs/180.%20Barbell%20Shrugs%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/180.%20Barbell%20Shrugs/180.%20Barbell%20Shrugs%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/180.%20Barbell%20Shrugs/180.%20Barbell%20Shrugs%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/180.%20Barbell%20Shrugs/180.%20Barbell%20Shrugs%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Shrug is a classic upper-back isolation exercise that targets the trapezius muscles.\n\nPerformed standing with a barbell held in front of the thighs, this lift allows for heavy loading and significant trap development.\n\nIt's a staple in strength and bodybuilding programs for building thick, powerful traps and improving upper-body posture."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Heavy loading potential for serious trap growth\n- Isolates and develops the upper trapezius\n- Improves grip strength and forearm endurance\n- Builds upper-back thickness and posture support\n- Simple movement pattern easy to learn\n- Great accessory work for deadlifts and pulls\n- Supports shoulder and neck health when done properly"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Trapezius (Upper), Levator Scapulae\n\nSecondary: Rhomboids, Deltoids, Forearms and Grip, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold a barbell in front of your thighs with an overhand grip, hands slightly wider than shoulder-width apart.\n3. Keep your back straight and chest lifted.\n4. Relax your arms and shoulders, core braced, eyes forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears.\n2. Pause briefly at the top to maximize the contraction.\n3. Lower your shoulders back down with control.\n4. Repeat the shrug for the desired number of repetitions.\n5. Focus on engaging your shoulder muscles and maintaining proper form throughout the movement.\n6. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of lifting straight up\n- Bending the elbows and turning it into a pull\n- Rushing reps and missing the top contraction\n- Rounding the back during the lift\n- Using excessive weight that limits range of motion\n- Letting the head jut forward\n- Not bracing the core\n- Leaning back to generate momentum"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Lifting Platform or Suitable Floor Surface\n- Optional: Lifting Straps for heavy sets\n- Optional: Lifting Belt for heavier loads\n- Optional: Chalk for improved grip\n- Recommended: Flat-soled shoes for stability"
+        },
+        {
+          "heading": "Choosing the Right Weight",
+          "content": "1. Select a load you can control through a full range of motion.\n2. Prioritize feeling the trap contraction over moving heavy weight.\n3. Use straps if grip fails before your traps do.\n4. Progress gradually with strict form.\n5. Keep reps controlled at the top and bottom.\n6. Moderate to higher reps work well for trap hypertrophy."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, knees soft.\n2. Grip: Overhand, hands slightly wider than shoulder-width.\n3. Torso: Upright with chest up and core braced.\n4. Shoulders: Relaxed to start, retracted slightly.\n5. Arms: Straight and relaxed throughout.\n6. Head: Neutral, eyes looking forward.\n7. Breathing: Exhale on the shrug up, inhale on the descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_shrug", "trap_bar_shrug"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Shrug: Free range of motion per side\n- Trap Bar Shrug: Centered, neutral-grip variation\n- Smith Machine Shrug: Fixed plane shrug variation\n- Cable Shrug: Constant tension variation\n- Kettlebell Shrug: Offset load variation\n- Farmers Walk Shrug: Combined carry and shrug"
+        },
+        {
+          "heading": "Barbell Shrug Variations",
+          "content": "Standard Barbell Shrug: Barbell in front of thighs\nBehind-the-Back Barbell Shrug: Hits a slightly different angle\nPaused Barbell Shrug: Hold at top for maximum contraction\nTempo Barbell Shrug: Slow eccentrics for muscle building\nSnatch Grip Barbell Shrug: Wider grip variation\nRack Barbell Shrug: Bar set in power rack for strict shrugs"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Reduce range and weight, keep chin tucked\nGrip Issues: Use straps or chalk\nLower Back Pain: Use a lighter load or try trap bar shrug\nShoulder Impingement: Focus on straight-up shrugs, avoid rolling\nNo Barbell: Substitute with dumbbells, trap bar, or cables\nLearning Stage: Start light and master the straight-up shrug pattern"
+        }
+      ]
+    }
+  }
+}

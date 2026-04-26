@@ -1,0 +1,105 @@
+{
+  "exerciseId": "incline_mountain_climbers",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/168.%20Incline%20Mountain%20Climbers/168%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/168.%20Incline%20Mountain%20Climbers/168%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/168.%20Incline%20Mountain%20Climbers/168%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/168.%20Incline%20Mountain%20Climbers/168%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-3.2846828626140483, 1.619644418331741, -1.274357407193386],
+    "rotation": [-2.391223657499167, -1.052382165577573, -2.460911117417332],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-3.0081636649612746, 0.7962104655991025, 0.04715915516200431],
+    "rotation": [-1.663306063001139, -1.421681039025218, -1.6643381608667782],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Incline Mountain Climber is a scaled variation of the classic mountain climber, performed with the hands elevated on a bench or sturdy raised surface.\n\nElevating the upper body reduces the load on the shoulders, core, and wrists compared to the floor version, making it a more accessible entry-point for beginners while still delivering excellent cardiovascular and core benefits.\n\nIt's an effective exercise for HIIT, warm-ups, finishers, and general conditioning programs."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds cardiovascular endurance and conditioning\n- Strengthens the core, hip flexors, and shoulders\n- Easier on the wrists and shoulders than floor mountain climbers\n- Great regression for beginners working up to full mountain climbers\n- Improves coordination and rhythmic leg drive\n- Helps improve hip mobility\n- Elevates heart rate quickly for effective calorie burn\n- Minimal equipment required"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Hip Flexors\n\nSecondary: Obliques, Transverse Abdominis, Shoulders, Pectorals, Quadriceps, Triceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place your hands on a stable bench or raised surface, shoulder-width apart.\n2. Position yourself in a high plank with hands directly under your shoulders.\n3. Extend your legs behind you with feet on the ground, hip-width apart.\n4. Keep your body in a straight line from head to heels.\n5. Brace your core and engage your glutes before starting."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core and lift one foot off the ground, driving your knee toward your chest while maintaining a straight line from head to heels.\n2. Quickly switch legs, extending the bent leg back as you bring the opposite knee toward your chest.\n3. Keep your hips level with your shoulders throughout each rep.\n4. Continue alternating legs in a smooth running motion on the inclined surface.\n5. Maintain a steady pace and controlled breathing.\n6. Keep your hands firmly planted and shoulders stacked over your hands.\n7. Continue for the desired time or number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips pike too high or sag too low\n- Allowing the shoulders to drift forward of the hands\n- Bouncing the feet rather than driving the knees\n- Moving too fast and sacrificing form\n- Holding the breath during the set\n- Rotating the torso excessively side to side\n- Using an unstable bench that slides or wobbles\n- Collapsing through the upper back between reps"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Stable Bench, Box, or Elevated Sturdy Surface\n- Non-slip flooring for foot grip\n- Optional: Athletic shoes with good traction\n- Optional: Mat under the feet if the floor is slick\n- Recommended: Enough space to fully extend behind the bench"
+        },
+        {
+          "heading": "Finding Your Position",
+          "content": "1. Ensure the bench is stable and won't slide during the movement.\n2. Place both hands on the bench, shoulder-width apart.\n3. Step your feet back until your body forms a straight line in a plank position.\n4. Stack shoulders directly over your hands.\n5. Set your feet hip-width apart for a stable base.\n6. Brace your core before initiating the first climb."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Shoulder-width on the bench, directly beneath the shoulders.\n2. Arms: Straight but not locked, elbows soft.\n3. Shoulders: Packed down and away from the ears.\n4. Core: Fully engaged throughout the set.\n5. Hips: Level with the shoulders.\n6. Legs: Alternating drive of the knees toward the chest.\n7. Head: Neutral, eyes looking down at the bench.\n8. Breathing: Steady, rhythmic breathing with the leg drive."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Mountain Climber: Full floor version for more difficulty\n- Medicine Ball Mountain Climber: Unstable surface variation\n- Slider Mountain Climber: Smooth controlled floor version with sliders\n- Plank Knee Tucks: Static plank with slower knee drives\n- High Knees: Standing cardio alternative\n- Bear Crawl: Full-body crawling movement with similar core demand"
+        },
+        {
+          "heading": "Mountain Climber Variations",
+          "content": "Incline Mountain Climber: Standard bench-elevated variation\nCross-Body Incline Mountain Climber: Knee drives toward the opposite elbow\nSlow Tempo Incline Mountain Climber: Controlled pace for core time under tension\nIncline Plank Hold: Isometric progression for beginners\nDecline Mountain Climber: Feet elevated for increased difficulty\nIncline Mountain Climber Sprints: Fast, interval-style variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles on the bench or perform on forearms\nShoulder Issues: Raise the bench higher to further reduce shoulder load\nCore Weakness: Start with incline plank holds before progressing\nKnee Pain: Slow the pace and reduce knee drive height\nLower Back Pain: Focus on core bracing and keep hips level\nNo Bench: Use a sturdy chair, step, or elevated stable surface"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "band_assisted_pull_up_knees",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/137.%20Band%20Assisted%20Pull%20Up%20Knees/137.%20Band%20Assisted%20Pull%20Up%20Knees%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/137.%20Band%20Assisted%20Pull%20Up%20Knees/137.%20Band%20Assisted%20Pull%20Up%20Knees%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/137.%20Band%20Assisted%20Pull%20Up%20Knees/137.%20Band%20Assisted%20Pull%20Up%20Knees%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/137.%20Band%20Assisted%20Pull%20Up%20Knees/137.%20Band%20Assisted%20Pull%20Up%20Knees%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.3100776046398726, 2.043551779116387, 3.673200029911064],
+    "rotation": [-0.2583661438486253, 0.37147580399496777, 0.09563600657238504],
+    "target": [-0.0031492636626137306, 1.1822481435101257, 0.4140542923958757]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.56795953339579, 1.84730888229133, 2.826574169921882],
+    "rotation": [-0.3038276802615108, 0.5559987423375288, 0.16399514900228282],
+    "target": [0.02249758283173008, 1.103229288129063, 0.4533809174019658]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Band Assisted Pull Up (Knees) is a modified pull-up variation that uses a resistance band looped around the knees to reduce the amount of bodyweight being lifted.\n\nThis exercise is ideal for beginners working towards unassisted pull-ups or for those looking to increase their pull-up volume with reduced load.\n\nThe knee placement on the band provides moderate assistance, making it a great progression step between machine-assisted pull-ups and full bodyweight pull-ups."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds back and arm strength progressively toward unassisted pull-ups\n- Resistance band provides variable assistance — most help at the bottom, least at the top\n- Develops proper pull-up movement patterns and muscle memory\n- Strengthens the lats, biceps, and grip simultaneously\n- Allows for higher rep ranges to build muscular endurance\n- Easy to adjust difficulty by changing band thickness\n- More natural movement pattern than machine-assisted pull-ups"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Biceps, Rhomboids\n\nSecondary: Rear Deltoids, Trapezius, Core, Forearms, Teres Major"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Secure a resistance band to a pull-up bar by looping it over the bar.\n2. Pull the band down so it hangs taut and secure.\n3. Loop the resistance band around one or both knees.\n4. Grasp the pull-up bar with both hands, palms facing away from you (overhand grip).\n5. Hands should be slightly wider than shoulder-width apart.\n6. Allow your body to hang with arms fully extended.\n7. Engage your core and keep your shoulders pulled down away from your ears.\n8. Cross your ankles if using the band on both knees for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your back muscles by squeezing your shoulder blades together.\n2. Using the assistance of the resistance band, pull yourself up toward the bar.\n3. Drive your elbows down and back as you pull.\n4. Continue pulling until your chin is above the bar.\n5. Pause briefly at the top of the movement.\n6. Slowly lower yourself back down to the starting position with control.\n7. Maintain tension in the resistance band throughout the movement.\n8. Fully extend your arms at the bottom before starting the next rep.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too thick a band, making the movement too easy\n- Kipping or swinging the body to generate momentum\n- Not pulling the chin fully above the bar\n- Dropping down too quickly instead of controlling the descent\n- Shrugging the shoulders up toward the ears\n- Not fully extending the arms at the bottom of each rep\n- Using only the arms instead of engaging the back muscles\n- Band not secured properly on the bar\n- Looking up excessively instead of maintaining a neutral neck"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pull-Up Bar (doorway, wall-mounted, or freestanding)\n- Resistance Band (loop style, appropriate thickness)\n- Optional: Chalk for improved grip\n- Optional: Step or box for getting into position"
+        },
+        {
+          "heading": "Choosing Your Band",
+          "content": "1. Bands come in different thicknesses providing varying levels of assistance.\n2. Thicker bands provide more assistance, thinner bands provide less.\n3. Start with a thicker band if you cannot do any unassisted pull-ups.\n4. Progress to thinner bands as you get stronger.\n5. Light band (thin): 5-15 lbs assistance — for those close to unassisted pull-ups.\n6. Medium band: 15-35 lbs assistance — for intermediate level.\n7. Heavy band (thick): 35-65 lbs assistance — for beginners.\n8. Goal is to eventually remove the band entirely."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Overhand (palms away), slightly wider than shoulder-width.\n2. Band Position: Looped securely around one or both knees.\n3. Arms: Fully extended at the starting position.\n4. Shoulders: Pulled down and back, away from ears.\n5. Core: Engaged throughout the movement.\n6. Legs: Knees bent with band providing upward assistance.\n7. Ankles: Crossed for stability if using band on both knees.\n8. Head: Neutral position, looking slightly upward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_pull_up", "lat_pulldown"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Pull Up: Unassisted version for advanced progression\n- Lat Pulldown: Machine-based alternative targeting the same muscles\n- Negative Pull Ups: Slow lowering phase to build pulling strength\n- Machine Assisted Pull Up: Weight stack provides consistent assistance\n- Inverted Row: Horizontal pulling for back development\n- Band Assisted Chin Up: Underhand grip variation with band assistance"
+        },
+        {
+          "heading": "Pull Up Progressions",
+          "content": "Dead Hang: Build grip and shoulder endurance\nScapular Pull Ups: Shoulder blade engagement practice\nNegative Pull Ups: Controlled lowering from the top\nBand Assisted Pull Up (Heavy Band): Maximum assistance\nBand Assisted Pull Up (Medium Band): Moderate assistance\nBand Assisted Pull Up (Light Band): Minimal assistance\nUnassisted Pull Up: Full bodyweight pull-up"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Grip Weakness: Use chalk or lifting straps for support\nShoulder Pain: Try a neutral grip or reduce range of motion\nElbow Issues: Use an underhand (chin-up) grip which may feel more comfortable\nNo Pull-Up Bar: Use a lat pulldown machine or inverted rows\nBand Too Difficult: Use a thicker band or start with machine-assisted pull-ups\nLearning Stage: Practice dead hangs and scapular pull-ups first"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,94 @@
+{
+  "exerciseId": "unilateral_leg_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/194.%20Unilateral%20Leg%20Extension/194.%20Unilateral%20Leg%20Extension%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/194.%20Unilateral%20Leg%20Extension/194.%20Unilateral%20Leg%20Extension%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/194.%20Unilateral%20Leg%20Extension/194.%20Unilateral%20Leg%20Extension%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.3286221961948848, 1.6552318635653238, 1.7680579906572487],
+    "rotation": [-0.5730241834773144, 0.5784714411380687, 0.3391523693065299],
+    "target": [-0.047645060821940526, 0.5125141908607892, -0.0029287549028379828]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/194.%20Unilateral%20Leg%20Extension/Unilateral%20Leg%20Extension_250x250_2026-04-22T14-41-17.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Unilateral Leg Extension is a single-leg isolation exercise performed on a plate-loaded leg extension machine.\n\nBy working one leg at a time, this variation addresses strength imbalances, increases quad activation, and allows greater focus on the target muscle.\n\nThis is a valuable accessory movement for quad development and can help reveal and fix left-right weaknesses."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Identifies and corrects left-right leg imbalances\n- Focused quadriceps isolation\n- Improved mind-muscle connection\n- Reduced compensatory patterns\n- Great for rehab and return-to-training work\n- Allows each leg to be trained to true failure\n- Lower back and hip-flexor friendly compared to bilateral version"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps (Rectus Femoris, Vastus Lateralis, Vastus Medialis, Vastus Intermedius)\n\nSecondary: Hip Flexors, Stabilizing Core Muscles"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat and footpad of the leg extension machine to your desired settings.\n2. Load an appropriate weight plate onto the machine.\n3. Sit on the machine with your back against the backrest.\n4. Position your feet securely under the footpad.\n5. Ensure your knees are aligned with the machine's pivot point.\n6. Grip the handles or the seat edge for stability.\n7. Keep the non-working leg relaxed."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Extend one leg fully, pushing against the footpad.\n2. Keep your back against the backrest throughout.\n3. Exhale as you perform the extension.\n4. Squeeze the quad at the top of the movement.\n5. Keep your movement controlled and avoid using momentum.\n6. Inhale as you slowly lower the weight by bending your knee.\n7. Return to the starting position under control.\n8. Repeat for the desired number of repetitions on one leg before switching to the other."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the back off the pad\n- Using momentum to swing the weight up\n- Incomplete range of motion at the top\n- Dropping the weight on the return\n- Not aligning the knee with the pivot point\n- Tensing the non-working leg or upper body\n- Turning the foot in/out (unless intentional)\n- Using too much weight and losing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate-Loaded Leg Extension Machine\n- Weight Plates\n- Optional: Knee Sleeves\n- Flat-soled shoes recommended\n- Comfortable training attire\n- Water bottle"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat: Back flush against the backrest.\n2. Knees: Aligned with the machine's pivot point.\n3. Foot Position: Ankle just under the footpad.\n4. Non-Working Leg: Relaxed and out of the way.\n5. Hips: Seated fully into the seat.\n6. Back: Flat against the pad throughout.\n7. Hands: Gripping the handles or seat edges.\n8. Core: Lightly braced for stability."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with light weight to learn the pattern.\n2. Begin with the weaker leg and match reps on the stronger side.\n3. Pause at the top for 1-2 seconds for peak contraction.\n4. Control the lowering phase to increase time under tension.\n5. Gradually increase weight as strength improves.\n6. Use sets of 10-15 reps for hypertrophy.\n7. Add a 1 and 1/4 rep technique for extra intensity.\n8. Avoid full lockout under heavy load if you have knee issues."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["leg_extension", "bulgarian_split_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bilateral Leg Extension: Two-leg variation\n- Bulgarian Split Squat: Unilateral compound alternative\n- Single Leg Press: Unilateral compound quad work\n- Step Up: Functional unilateral quad exercise\n- Cyclist Squat: Heel-elevated quad-biased squat\n- Sissy Squat: Bodyweight quad isolation"
+        },
+        {
+          "heading": "Quad Variations",
+          "content": "Bilateral Leg Extension: Two-leg isolation\nBulgarian Split Squat: Unilateral compound\nSingle Leg Press: Machine-based unilateral\nStep Up: Functional unilateral work\nGoblet Squat: Quad-friendly compound\nSissy Squat: Bodyweight quad isolation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce range of motion and avoid full lockout\nImbalance Issues: Start with the weaker side and match volume\nHip Flexor Tightness: Warm up thoroughly before starting\nLimited Mobility: Shorten the range of motion\nNo Unilateral Machine: Use a standard leg extension one leg at a time\nBeginner: Start light and focus on smooth, controlled reps"
+        }
+      ]
+    }
+  }
+}

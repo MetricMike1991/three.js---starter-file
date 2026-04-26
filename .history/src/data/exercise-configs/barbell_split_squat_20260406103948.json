@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_split_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/132.%20Barbell%20Split%20Squat/132.%20Barbell%20Split%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/132.%20Barbell%20Split%20Squat/132.%20Barbell%20Split%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/132.%20Barbell%20Split%20Squat/132.%20Barbell%20Split%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/132.%20Barbell%20Split%20Squat/132.%20Barbell%20Split%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.7888149359402354, 1.412914924771335, 2.248247951451469],
+    "rotation": [-0.2280723719252256, 0.6723503758229539, 0.14357022947906953],
+    "target": [-0.0010558202456003975, 0.9045656809224096, 0.05813499478932565]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.3493668831732095, 1.318447415030327, 1.9708486263272376],
+    "rotation": [-0.2837364114504588, 0.5937957716404825, 0.16173066909671036],
+    "target": [0.040491664644779345, 0.7756679567959556, 0.10949095123023651]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Split Squat is a unilateral lower body exercise that targets the quadriceps, glutes, and hamstrings.\n\nPerformed with a barbell across the upper back and feet in a staggered stance, this exercise develops single-leg strength, balance, and coordination.\n\nIt is an excellent exercise for addressing strength imbalances between legs and building functional lower body power."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops unilateral leg strength and corrects muscle imbalances\n- Targets quadriceps, glutes, and hamstrings simultaneously\n- Improves balance, coordination, and core stability\n- Builds functional strength applicable to sports and daily movements\n- Allows heavier loading than bodyweight split squats\n- Reduces spinal compression compared to bilateral squats\n- Enhances hip flexor flexibility on the trailing leg"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Hip Flexors, Core, Calves, Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart, holding a barbell across your upper back.\n2. Position the barbell on your upper traps, gripping the bar with hands wider than shoulder-width.\n3. Take a big step forward with one foot into a staggered stance.\n4. Keep your torso upright and chest up.\n5. Engage your core and maintain a neutral spine.\n6. Distribute your weight evenly between both feet.\n7. Ensure your front foot is flat on the ground.\n8. The back foot should be on the ball of the foot with heel raised."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Lower your body by bending both knees simultaneously.\n3. Keep your chest up and torso upright throughout the descent.\n4. Lower until your back knee is hovering just above the ground.\n5. Ensure your front knee tracks over your toes without caving inward.\n6. Push through your front foot to return to the starting position.\n7. Maintain control and balance throughout the movement.\n8. Complete all reps on one leg before switching to the other side.\n9. Repeat the movement on the other leg for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Leaning the torso too far forward during the descent\n- Front knee caving inward or extending past the toes excessively\n- Taking too short or too long of a stride\n- Not lowering deep enough to engage the glutes\n- Losing balance due to narrow foot placement\n- Rushing the movement and losing control\n- Not keeping the core engaged throughout\n- Placing too much weight on the back foot\n- Rounding the upper or lower back"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Squat Rack (to unrack the barbell safely)\n- Flat, Non-Slip Floor Surface\n- Optional: Lifting Belt (for heavy loads)\n- Optional: Weightlifting Shoes for improved stability\n- Optional: Mirror for form checking"
+        },
+        {
+          "heading": "Finding Your Stance",
+          "content": "1. Start with a stride length of approximately 2-3 feet.\n2. Both feet should be hip-width apart laterally for balance.\n3. Front foot flat on the floor, toes pointing forward.\n4. Back foot on the ball of the foot with heel raised.\n5. Adjust stride length so the front knee stays above the ankle at the bottom.\n6. The back knee should lower straight down when descending.\n7. Test with light weight first to find your optimal stance.\n8. A longer stride emphasises glutes, a shorter stride targets quads more."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Staggered, feet hip-width apart laterally.\n2. Bar Position: Across upper traps or rear delts.\n3. Grip: Wider than shoulder-width, secure on the bar.\n4. Torso: Upright throughout the movement.\n5. Core: Braced and engaged at all times.\n6. Front Knee: Tracks over toes, does not cave inward.\n7. Back Knee: Lowers straight down toward the floor.\n8. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bulgarian_split_squat", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bulgarian Split Squat: Rear foot elevated for greater range of motion\n- Barbell Back Squat: Bilateral squat for overall leg development\n- Dumbbell Split Squat: Lighter loading option with dumbbells at sides\n- Walking Lunges: Dynamic version with forward movement\n- Front Foot Elevated Split Squat: Increased range of motion at the bottom\n- Leg Press: Machine alternative for quad and glute focus"
+        },
+        {
+          "heading": "Split Squat Variations",
+          "content": "Barbell Split Squat: Standard barbell across upper back\nDumbbell Split Squat: Dumbbells held at sides for easier balance\nFront Rack Split Squat: Barbell held in front rack position\nBulgarian Split Squat: Rear foot elevated on bench\nDeficit Split Squat: Front foot elevated for deeper range\nPaused Split Squat: Pause at the bottom for strength development\nTempo Split Squat: Controlled eccentric for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Balance Issues: Use dumbbells instead of a barbell, or hold onto a rack\nKnee Pain: Reduce range of motion or try a shorter stride\nHip Tightness: Warm up hip flexors thoroughly before performing\nBack Issues: Use dumbbells at sides to reduce spinal loading\nNo Barbell: Use dumbbells, kettlebells, or bodyweight\nLearning Stage: Start with bodyweight split squats to master the pattern"
+        }
+      ]
+    }
+  }
+}

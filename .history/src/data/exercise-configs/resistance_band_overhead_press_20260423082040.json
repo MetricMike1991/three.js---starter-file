@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_overhead_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/207.%20Resistance%20Band%20Overhead%20Press/207.%20Resistance%20Band%20Overhead%20Press%20SD.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/207.%20Resistance%20Band%20Overhead%20Press/207.%20Resistance%20Band%20Overhead%20Press%20AR.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/207.%20Resistance%20Band%20Overhead%20Press/207.%20Resistance%20Band%20Overhead%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Overhead Press is a standing pressing exercise that uses a band anchored under the feet to provide accommodating resistance overhead.\n\nIt trains the deltoids and triceps while engaging the core and glutes for stability, much like a barbell overhead press but scalable and joint-friendly.\n\nIt is ideal for home workouts, warm-ups, rehab, and high-rep shoulder training without heavy loading."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds shoulder and triceps strength\n- Accommodating band tension increases at lockout\n- Strong core and trunk engagement from standing position\n- Low-impact and joint-friendly alternative to heavy barbell presses\n- Portable and equipment-efficient\n- Scalable by changing band thickness or stance width\n- Useful as a primary shoulder movement or warm-up"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Lateral Deltoids\n\nSecondary: Triceps, Upper Chest, Trapezius, Core, Glutes"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Anchor the Band",
+          "content": "1. Step on the band with both feet.\n2. Set your feet hip-width apart.\n3. Ensure the band is balanced evenly under both feet."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Hold the handles at shoulder height.\n2. Palms facing forward.\n3. Elbows bent, core braced, tall posture."
+        },
+        {
+          "heading": "Press",
+          "content": "1. Exhale and press the handles overhead.\n2. Extend arms fully with the handles tracking over the shoulders.\n3. Keep the ribs down and avoid excessive lower-back arch."
+        },
+        {
+          "heading": "Lower and Repeat",
+          "content": "1. Inhale and lower the handles with control back to shoulder height.\n2. Engage your core throughout the rep.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Excessive lower-back arch during the press\n- Pressing the handles forward instead of straight up\n- Losing core tension and letting the ribs flare\n- Flaring the elbows too wide\n- Using a band that is too heavy and breaking form\n- Shrugging the shoulders toward the ears\n- Rushing the eccentric and losing band tension"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Flat, stable surface to stand on\n- Athletic shoes for secure footing\n- Optional: Lighter and heavier bands for progression\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Stand on the middle of the band with both feet.\n2. Wider stance creates more tension; narrower stance reduces it.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on both handles is even before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, weight balanced through the whole foot.\n2. Core: Braced to protect the lower back.\n3. Glutes: Lightly squeezed to stabilize the pelvis.\n4. Shoulders: Packed, not shrugged.\n5. Grip: Firm but relaxed, wrists stacked over the forearms."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "arnold_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Classic heavy standing press\n- Dumbbell Shoulder Press: Free-weight pressing with more range\n- Machine Shoulder Press: Guided-path pressing\n- Arnold Press: Rotational dumbbell press variation\n- Landmine Press: Angled pressing using a landmine\n- Push Press: Leg-assisted explosive overhead press"
+        },
+        {
+          "heading": "Resistance Band Overhead Press Variations",
+          "content": "Two-Handed Band Overhead Press: Described here\nSingle-Arm Band Press: Unilateral variation for core and balance\nNeutral Grip Band Press: Palms facing each other for shoulder comfort\nTempo Band Press: Slow eccentric for hypertrophy\nPause Band Press: Pause at shoulder height for control\nHalf-Kneeling Band Press: Removes leg drive, emphasizes core"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use neutral grip, reduce range, lighter band\nLower Back Issues: Try half-kneeling or seated variation\nWrist Pain: Use wrist wraps or adjust grip angle\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nBeginners: Start with a light band to learn the pressing path"
+        }
+      ]
+    }
+  }
+}

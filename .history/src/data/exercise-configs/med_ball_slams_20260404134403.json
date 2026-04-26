@@ -1,0 +1,105 @@
+{
+  "exerciseId": "med_ball_slams",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/130.%20Med%20Ball%20Slams/130.%20Med%20Ball%20Slams%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/130.%20Med%20Ball%20Slams/130.%20Med%20Ball%20Slams%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/130.%20Med%20Ball%20Slams/130.%20Med%20Ball%20Slams%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/130.%20Med%20Ball%20Slams/130.%20Med%20Ball%20Slams%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.292129773457335, 1.131765059922437, 2.07847292229412],
+    "rotation": [-0.22986771489253718, 0.8221719059683096, 0.1697867031546137],
+    "target": [0.020037990560412017, 0.6508123657044615, 0.023153162396945804]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9857773926884088, 0.7970614075788998, 1.6255212117515292],
+    "rotation": [0.002454226214195625, 0.8702945875577153, -0.001876303797002823],
+    "target": [0.0233625643377085, 0.8011221737519886, -0.029076883821841093]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/130.%20Med%20Ball%20Slams/Med%20Ball%20Slams_250x250_2026-04-04T12-43-27.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Med Ball Slams are an explosive full-body exercise where you lift a medicine ball overhead and forcefully slam it into the ground.\n\nThis high-intensity movement combines power, speed, and core engagement, making it an excellent conditioning exercise.\n\nMed Ball Slams are widely used in athletic training, HIIT workouts, and functional fitness programs for building explosive power and cardiovascular endurance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Full-body explosive power development\n- Excellent cardiovascular conditioning\n- High calorie burn in a short time\n- Develops core strength and anti-extension control\n- Great stress relief through the slamming motion\n- Improves coordination and athletic performance\n- Engages the entire posterior chain and upper body simultaneously"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis (Abs), Obliques, Latissimus Dorsi, Deltoids (Shoulders)\n\nSecondary: Quadriceps, Glutes, Hamstrings, Triceps, Erector Spinae, Hip Flexors, Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold a medicine ball with both hands at chest level.\n3. Keep your chest up, shoulders back, and core engaged.\n4. Knees should be slightly bent in an athletic stance.\n5. Eyes looking straight ahead."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Raise the ball overhead, fully extending your arms and rising onto your toes.\n2. Engage your core and use your entire upper body to forcefully slam the ball into the ground in front of you.\n3. Hinge at the hips and bend your knees as you slam downward.\n4. Catch the ball on the bounce.\n5. Raise it overhead again and repeat for the desired number of reps.\n6. Maintain an explosive, powerful rhythm throughout the set."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Not using the full body — relying only on arms\n- Rounding the lower back during the slam\n- Not engaging the core throughout the movement\n- Slamming the ball too far in front, losing balance\n- Using a ball that is too heavy, compromising form\n- Not extending fully overhead before slamming\n- Catching the ball awkwardly on the bounce"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Medicine Ball or Slam Ball (dead bounce preferred)\n- Flat, Durable Surface (rubber flooring ideal)\n- Adequate ceiling height for overhead extension\n- Optional: Exercise Mat to protect flooring"
+        },
+        {
+          "heading": "Ball Selection",
+          "content": "1. Use a slam ball (dead bounce) rather than a standard medicine ball to prevent excessive bouncing.\n2. Beginners: Start with a lighter ball (3-5 kg).\n3. Intermediate: Use a moderate ball (5-8 kg).\n4. Advanced: Use a heavier ball (8-12 kg+).\n5. The ball should be heavy enough to challenge you but light enough to maintain speed and form.\n6. Ensure the ball is durable enough to withstand repeated slamming."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart in an athletic stance.\n2. Grip: Both hands firmly around the ball.\n3. Core: Braced throughout the movement.\n4. Hips: Hinge as you slam, don't just bend at the waist.\n5. Knees: Slightly bent, absorbing the impact.\n6. Start with controlled reps to learn the timing before increasing speed."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "bodyweight_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Battle Rope Slams: Similar slamming motion with ropes\n- Kettlebell Swings: Explosive hip hinge with conditioning benefits\n- Burpees: Full-body cardio movement\n- Box Jumps: Explosive lower body power\n- Woodchoppers: Rotational core power exercise\n- Overhead Medicine Ball Throws: Throwing variation for power"
+        },
+        {
+          "heading": "Med Ball Slam Variations",
+          "content": "Standard Med Ball Slam: Overhead slam straight down\nRotational Med Ball Slam: Slam to one side for oblique emphasis\nSingle Arm Med Ball Slam: One arm at a time for unilateral work\nMed Ball Slam to Burpee: Combine with a burpee for added intensity\nReverse Med Ball Slam: Scoop and throw upward against a wall\nSeated Med Ball Slam: Seated position for isolated core work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Issues: Reduce overhead range or use lighter ball\nLower Back Pain: Focus on hip hinge form and reduce ball weight\nNo Slam Ball: Use a sandbag or heavy bag on the ground\nNoise Restrictions: Use a dead bounce ball on rubber flooring\nLimited Space: Perform wall ball throws instead\nCardiovascular Limitations: Reduce tempo and take longer rest periods"
+        }
+      ]
+    }
+  }
+}

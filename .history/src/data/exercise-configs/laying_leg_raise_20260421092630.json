@@ -1,0 +1,105 @@
+{
+  "exerciseId": "laying_leg_raise",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/163.%20Laying%20Leg%20Raise/163%20SD_compressed.glb",
+  "modelUrlHQ": "",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/163.%20Laying%20Leg%20Raise/163%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/163.%20Laying%20Leg%20Raise/163%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0.9420530152089768, 0.6999103613801488, 0.7471581988296447],
+    "rotation": [-0.6969035341890772, 0.7762381217639506, 0.5303657934695115],
+    "target": [-0.000741702245795568, 0.08359224299207135, 0.010824173331626748]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Laying Leg Raise is a bodyweight core exercise performed lying flat on your back.\n\nIt primarily targets the lower abdominal muscles while also engaging the hip flexors and the entire rectus abdominis.\n\nThis exercise is a staple in core training programs because it requires no equipment, can be performed almost anywhere, and is highly effective at building strength and stability through the midsection."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strengthens the lower abdominals and rectus abdominis\n- Improves core stability and control\n- Develops hip flexor strength\n- Requires no equipment\n- Helps improve posture and spinal support\n- Builds the foundation for more advanced core movements\n- Reduces the risk of lower back injury when performed correctly\n- Easily scalable for beginners through advanced lifters"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis (especially lower abs)\n\nSecondary: Hip Flexors, Obliques, Transverse Abdominis, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie down on a yoga mat with your back flat against the ground and your legs extended.\n2. Place your arms by your sides, palms facing down, for stability.\n3. Keep your head and shoulders relaxed on the mat.\n4. Engage your core and press your lower back gently into the floor."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core muscles and keep your lower back pressed into the mat throughout the exercise.\n2. Slowly lift your legs off the ground, keeping them straight and together.\n3. Aim to raise them until they are perpendicular to the ground.\n4. Pause briefly at the top of the movement.\n5. Lower your legs back down to the starting position with control.\n6. Stop just before your heels touch the floor to keep tension on the abs.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the lower back to arch off the mat\n- Using momentum to swing the legs up\n- Lowering the legs too fast and losing core tension\n- Holding the breath throughout the movement\n- Bending the knees excessively (unless scaling)\n- Lifting the head and straining the neck\n- Not engaging the core before starting the lift\n- Going too deep on the lower phase if core strength is insufficient"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Yoga Mat or Exercise Mat (for comfort and back support)\n- Optional: Towel under the lower back for extra support\n- Optional: Ankle Weights for added resistance\n- Flat, clear floor space long enough to fully extend the legs"
+        },
+        {
+          "heading": "Finding Your Position",
+          "content": "1. Lie flat on your back on the mat.\n2. Extend your legs fully with feet together.\n3. Place arms by your sides with palms down.\n4. Ensure your lower back is in contact with the mat.\n5. Relax your neck and shoulders.\n6. Take a breath in and brace your core before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat against the mat, lower back pressed down.\n2. Legs: Straight, squeezed together, toes pointed or neutral.\n3. Arms: By your sides, palms down for stability.\n4. Core: Actively engaged throughout the set.\n5. Head: Resting on the mat, neck neutral.\n6. Breathing: Exhale as you lift, inhale as you lower."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Hanging Leg Raise: Advanced variation performed from a pull-up bar\n- Captain's Chair Leg Raise: Performed in a dedicated core station\n- Reverse Crunch: Shorter range of motion focused on lower abs\n- Flutter Kicks: Dynamic alternative hitting the lower abs and hip flexors\n- Lying Knee Raise: Bent-knee progression for beginners\n- V-Ups: Full-body core movement combining leg and torso flexion"
+        },
+        {
+          "heading": "Leg Raise Variations",
+          "content": "Laying Leg Raise: Standard straight-leg raise lying on the floor\nLying Bent-Knee Raise: Beginner-friendly scaled version\nLying Leg Raise with Hip Lift: Adds a posterior pelvic tilt at the top for extra lower ab engagement\nScissor Kicks: Alternating leg raises for dynamic core work\nWeighted Leg Raise: Ankle weights or medicine ball between the feet for added resistance\nDecline Bench Leg Raise: Performed on a decline bench for increased difficulty"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Keep knees bent and reduce range of motion\nWeak Core: Start with bent-knee raises and progress gradually\nHip Flexor Tightness: Warm up with hip mobility work before starting\nNeck Strain: Keep head fully relaxed on the mat, avoid lifting head\nNo Mat: Use a towel or carpeted area for cushioning\nBeginner Level: Perform one leg at a time (alternating leg raises)"
+        }
+      ]
+    }
+  }
+}

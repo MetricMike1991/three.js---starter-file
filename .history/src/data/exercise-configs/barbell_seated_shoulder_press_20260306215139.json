@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_seated_shoulder_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/25.%20Barbell%20Seated%20Shoulder%20Press/25.%20Barbell%20Seated%20Shoulder%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/25.%20Barbell%20Seated%20Shoulder%20Press/25.%20Barbell%20Seated%20Shoulder%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/25.%20Barbell%20Seated%20Shoulder%20Press/25.%20Barbell%20Seated%20Shoulder%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/25.%20Barbell%20Seated%20Shoulder%20Press/25.%20Barbell%20Seated%20Shoulder%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.04, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.110670200590488, 1.9468982249165356, -3.365760844885705],
+    "rotation": [-2.836830609905828, -0.5307224390919751, -2.9837004888895082],
+    "target": [0.08527929672949795, 0.8241450840921235, 0.20350115602074073]
+  },
+  "modelHQ": {
+    "position": [0, -0.04, -0.002],
+    "rotation": [0, -0.076, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.0104286045819193, 1.6172534073692892, 2.7832817669281384],
+    "rotation": [-0.2404741464453867, 0.5733727931045102, 0.132247349047788],
+    "target": [0.014192776110124749, 0.8809945815294177, -0.2191687690239713]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Seated Shoulder Press is a compound upper body exercise that primarily targets the deltoids, with secondary emphasis on the triceps and upper chest.\n\nPerformed seated on a bench with back support, this exercise allows for heavy loading and strict form by eliminating lower body momentum.\n\nIt is one of the most effective movements for building shoulder size and overhead pressing strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds overall shoulder mass and strength\n- Allows heavier loading than standing variations due to back support\n- Develops all three heads of the deltoid\n- Strengthens triceps and upper trapezius\n- Improves lockout strength for other pressing movements\n- Easy to progressively overload with small weight increments\n- Reduces lower back strain compared to standing overhead press\n- Excellent carryover to athletic overhead movements"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Lateral Deltoids\n\nSecondary: Triceps Brachii, Upper Trapezius, Upper Pectoralis Major, Serratus Anterior, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on a bench with back support, feet flat on the floor.\n2. Grip the barbell with hands slightly wider than shoulder-width apart, palms facing forward.\n3. Lift the barbell up to shoulder level.\n4. Keep your core engaged and your elbows directly beneath your wrists.\n5. Retract your shoulder blades slightly and press your back into the bench pad.\n6. Head in a neutral position, looking straight ahead."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Push the barbell upward until your arms are fully extended overhead.\n3. Keep your shoulder blades down and back throughout the press.\n4. The bar should travel in a slight arc, clearing your face and finishing directly overhead.\n5. Squeeze your shoulders at the top of the movement.\n6. Slowly lower the barbell back down to shoulder level in a controlled manner.\n7. Maintain control of the weight throughout the entire movement.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back excessively\n- Flaring elbows too far out or too far forward\n- Not fully extending arms at the top\n- Lowering the bar behind the neck (increases injury risk)\n- Using momentum or bouncing the weight\n- Grip too narrow or too wide\n- Not engaging the core throughout the lift\n- Rushing through reps without control\n- Tilting the head forward to avoid the bar path"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Seated Bench with Back Support and Rack\n- Optional: Power Rack with safety pins\n- Optional: Spotter for heavy lifts\n- Optional: Wrist Wraps\n- Optional: Lifting Belt for heavy sets"
+        },
+        {
+          "heading": "Bench and Rack Setup",
+          "content": "1. Set the bench back support to upright (approximately 85-90 degrees).\n2. Position the bench inside a rack so the barbell is at shoulder height when seated.\n3. Set safety pins just below shoulder level.\n4. Ensure the bench is centered and stable under the bar.\n5. Adjust the rack height so you can unrack the bar comfortably."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat on the floor, providing a stable base.\n2. Hips: Firmly on the seat at all times.\n3. Back: Pressed into the back pad for support.\n4. Shoulders: Slightly retracted and pressed into the pad.\n5. Head: Neutral position, looking straight ahead.\n6. Grip: Slightly wider than shoulder-width, full grip with thumbs wrapped.\n7. Wrists: Stacked straight over forearms, not bent back.\n8. Elbows: Directly beneath the wrists at the starting position."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "seated_dumbbell_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standing Barbell Overhead Press: Engages more core and stabilizers\n- Seated Dumbbell Shoulder Press: Greater range of motion, independent arms\n- Smith Machine Shoulder Press: Guided movement, beginner-friendly\n- Arnold Press: Rotational movement for all deltoid heads\n- Landmine Press: Angled pressing with shoulder-friendly mechanics\n- Machine Shoulder Press: Guided path for isolation"
+        },
+        {
+          "heading": "Shoulder Press Variations",
+          "content": "Standard Seated Barbell Press: Classic overhead pressing movement\nBehind-the-Neck Press: Advanced variation (requires excellent shoulder mobility)\nPush Press: Uses leg drive for heavier loads\nZ-Press: Seated on floor, no back support for core challenge\nBradford Press: Alternating front and behind-neck partial presses\nPartial Overhead Press: Pin press for lockout strength\nTempo Press: Controlled eccentric for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Lower the range of motion or switch to neutral grip dumbbells\nWrist Pain: Use wrist wraps, check grip width\nLower Back Pain: Ensure back is supported by the pad, use a belt\nNo Rack: Use dumbbells or clean the barbell to shoulders\nNo Spotter: Use a power rack with safety pins\nNo Barbell: Use dumbbells, kettlebells, or resistance bands\nLearning Stage: Start with just the bar, focus on bar path and control"
+        }
+      ]
+    }
+  }
+}

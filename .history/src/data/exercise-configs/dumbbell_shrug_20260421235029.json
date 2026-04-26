@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/179.%20Dumbbell%20Shrug/179.%20Dumbbell%20Shrug%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/179.%20Dumbbell%20Shrug/179.%20Dumbbell%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/179.%20Dumbbell%20Shrug/179.%20Dumbbell%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/179.%20Dumbbell%20Shrug/179.%20Dumbbell%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.6605711233733367, 1.5621882612781413, -2.4828981542483066],
+    "rotation": [-2.916738045455856, -0.5857171106933008, -3.015822956593798],
+    "target": [0.0062301027608702925, 1.0019617058076813, -0.03352443428591755]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [0.6116958299200909, 1.050798707615055, 0.9939392526357825],
+    "rotation": [-0.42599017452422594, 0.4635020798118632, 0.2001594405173733],
+    "target": [-0.0009407802011475813, 0.5443037788903579, -0.12223738174682443]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Shrug is a simple and effective isolation exercise that targets the upper trapezius muscles.\n\nPerformed standing with a dumbbell in each hand, this exercise uses a natural, unrestricted range of motion to lift the shoulders toward the ears.\n\nIt's a staple for building upper-back thickness, improving posture, and developing powerful, well-defined traps."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the upper trapezius muscles\n- Free range of motion compared to barbell variations\n- Neutral grip is comfortable on wrists and shoulders\n- Easy to scale and progress\n- Strengthens grip and forearms\n- Improves posture and upper-back thickness\n- Allows unilateral focus and balance correction\n- Great accessory work for deadlifts and presses"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Trapezius (Upper), Levator Scapulae\n\nSecondary: Rhomboids, Deltoids, Forearms and Grip, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart, holding a dumbbell in each hand by your sides.\n2. Keep your back straight and your chest lifted.\n3. Relax your arms and shoulders with a neutral grip, palms facing your body.\n4. Brace your core and look straight ahead."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears.\n2. Pause briefly at the top to maximize the contraction.\n3. Lower your shoulders back down with control.\n4. Repeat the shrug for the desired number of repetitions.\n5. Focus on engaging your shoulder muscles and maintaining proper form throughout the movement."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of lifting straight up\n- Using the biceps or arms to pull the weight\n- Rushing reps and missing the top contraction\n- Rounding the back during the lift\n- Bending the elbows during the shrug\n- Not bracing the core\n- Using excessive weight that limits range of motion\n- Letting the head jut forward"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells\n- Non-slip Floor Surface\n- Optional: Lifting Straps for heavy sets\n- Optional: Chalk for improved grip\n- Recommended: Flat-soled shoes for stability"
+        },
+        {
+          "heading": "Choosing the Right Weight",
+          "content": "1. Select a load you can control through a full range of motion.\n2. Prioritize feeling the trap contraction over moving heavy weight.\n3. Use straps if grip fails before your traps do.\n4. Progress gradually with strict form.\n5. Keep reps controlled at the top and bottom.\n6. Higher reps work well for trap hypertrophy."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, knees soft.\n2. Grip: Neutral, palms facing your body, firm hold.\n3. Torso: Upright with chest up and core braced.\n4. Shoulders: Relaxed to start, retracted slightly.\n5. Arms: Straight and relaxed throughout.\n6. Head: Neutral, eyes looking forward.\n7. Breathing: Exhale on the shrug up, inhale on the descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["trap_bar_shrug", "barbell_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Shrug: Heavier loading with both hands on one bar\n- Trap Bar Shrug: Centered, neutral-grip variation\n- Smith Machine Shrug: Fixed plane shrug variation\n- Cable Shrug: Constant tension variation\n- Kettlebell Shrug: Offset load variation\n- Farmers Walk Shrug: Combined carry and shrug"
+        },
+        {
+          "heading": "Dumbbell Shrug Variations",
+          "content": "Standard Dumbbell Shrug: Both arms shrugging together\nSingle Arm Dumbbell Shrug: Unilateral trap focus\nPaused Dumbbell Shrug: Hold at top for maximum contraction\nTempo Dumbbell Shrug: Slow eccentrics for muscle building\nBehind-the-Back Dumbbell Shrug: Hits a slightly different angle\nSeated Dumbbell Shrug: Removes lower body involvement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Reduce range and weight, keep chin tucked\nGrip Issues: Use straps or chalk\nLower Back Pain: Try seated dumbbell shrugs\nShoulder Impingement: Focus on straight-up shrugs, avoid rolling\nNo Dumbbells: Substitute with barbell, trap bar, or cables\nLearning Stage: Start light and master the straight-up shrug pattern"
+        }
+      ]
+    }
+  }
+}

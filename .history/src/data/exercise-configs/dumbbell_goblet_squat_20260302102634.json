@@ -1,0 +1,94 @@
+{
+  "exerciseId": "dumbbell_goblet_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/11.%20Dumbbell%20Goblet%20Squat/11.%20Dumbbell%20Goblet%202SDSquat_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/11.%20Dumbbell%20Goblet%20Squat/11.%20Dumbbell%20Goblet%20AR%20Squat_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/11.%20Dumbbell%20Goblet%20Squat/11.%20Dumbbell%20Goblet%20USDZSquat.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.0054887994484134, 1.7480172100140272, -2.3080645299676754],
+    "rotation": [-2.825095595487162, -0.6728033568105609, -2.9402620964785076],
+    "target": [-0.012973996291775912, 0.9697439591853076, 0.06829687787866988]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/11.%20Dumbbell%20Goblet%20Squat/Dumbbell%20Goblet%20Squat_250x250_2026-03-02T10-08-10.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Goblet Squat is a beginner-friendly squat variation where a single dumbbell is held at chest height in a 'goblet' position.\n\nThis front-loaded position naturally promotes an upright torso, making it an excellent exercise for learning proper squat mechanics.\n\nIt targets the quads, glutes, and core while being easier on the lower back than barbell squat variations."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Teaches proper squat mechanics and depth\n- Front-loaded position encourages upright torso\n- Easier on the lower back than barbell squats\n- Builds quad, glute, and core strength\n- Improves hip and ankle mobility\n- Can be performed almost anywhere with a single dumbbell\n- Great warm-up exercise before heavier squatting"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Core, Hip Adductors, Upper Back (from holding position)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart or slightly wider.\n2. Hold a dumbbell vertically by one end at chest height, cupping it between both hands.\n3. The other end of the dumbbell should hang down toward your torso.\n4. Keep your elbows pointing down and close to your body.\n5. Stand tall with your chest up and core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Initiate the squat by pushing your hips back and bending your knees.\n2. Keep your back slightly arched and chest up throughout the movement.\n3. Lower yourself down until your thighs are parallel to the floor (or slightly below).\n4. Keep your knees tracking over your toes — do not let them cave inward.\n5. Hold at the bottom for a count of one.\n6. Drive through your heels to return to the starting position.\n7. Keep the dumbbell close to your chest throughout the entire movement.\n8. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the knees cave inward during the squat\n- Rounding the lower back at the bottom\n- Leaning too far forward and losing the upright torso\n- Not squatting deep enough (thighs should reach parallel)\n- Letting the dumbbell drift away from the chest\n- Rising on the toes instead of driving through the heels\n- Rushing through the movement without control"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Single dumbbell (appropriate weight for your level)\n- Flat, stable surface to stand on\n- Optional: Mirror for form check\n- Optional: Squat pad or mat for comfort"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start with a light dumbbell to master the movement pattern.\n2. Focus on achieving full depth before increasing weight.\n3. You should be able to maintain an upright torso throughout.\n4. Gradually increase weight as your mobility and strength improve.\n5. Aim for a weight that challenges you in the 10-15 rep range."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart or slightly wider, toes pointed slightly out.\n2. Grip: Cup the top end of the dumbbell with both hands at chest height.\n3. Elbows: Pointing down, tucked close to the body.\n4. Torso: Upright with a slight arch in the lower back.\n5. Core: Braced and engaged throughout the movement.\n6. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "dumbbell_walking_lunges"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Heavier loading with barbell on upper back\n- Kettlebell Goblet Squat: Same movement using a kettlebell\n- Front Squat: Barbell held at front rack position\n- Bodyweight Squat: No weight, ideal for learning mechanics\n- Bulgarian Split Squat: Single-leg squat variation\n- Dumbbell Walking Lunges: Dynamic lower body alternative"
+        },
+        {
+          "heading": "Goblet Squat Variations",
+          "content": "Dumbbell Goblet Squat: Standard goblet squat with dumbbell\nKettlebell Goblet Squat: Using a kettlebell by the horns\nPaused Goblet Squat: Hold at the bottom for 2-3 seconds\nGoblet Squat to Press: Add an overhead press at the top\n1.5 Rep Goblet Squat: Go down, come halfway up, go back down, then stand\nTempo Goblet Squat: Slow 3-4 second descent for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce depth or try box squats for controlled range\nAnkle Mobility Issues: Place small plates under heels or use squat shoes\nLower Back Pain: Focus on keeping the torso upright and core braced\nHip Tightness: Widen stance and point toes out more\nNo Dumbbell: Use a kettlebell, plate, or bodyweight\nLearning Stage: Start with bodyweight squats, progress to light dumbbell"
+        }
+      ]
+    }
+  }
+}

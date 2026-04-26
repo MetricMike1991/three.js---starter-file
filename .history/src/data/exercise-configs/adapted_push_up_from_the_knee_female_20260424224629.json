@@ -1,0 +1,105 @@
+{
+  "exerciseId": "adapted_push_up_from_the_knee_female",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/262.%20Adapted%20Push%20Up%20From%20The%20Knee%20Female/262.%20Adapted%20Push%20Up%20From%20The%20Knee%20Female%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/262.%20Adapted%20Push%20Up%20From%20The%20Knee%20Female/262.%20Adapted%20Push%20Up%20From%20The%20Knee%20Female%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Adapted Push-Up From The Knee is a beginner-friendly bodyweight pressing exercise performed with the knees resting on the floor.\n\nReducing the lever arm by supporting the body on the knees instead of the toes decreases the percentage of bodyweight pressed, making it an accessible introduction to push-up mechanics.\n\nThis variation is an excellent stepping stone for building pressing strength, core stability, and movement confidence before progressing to the standard push-up."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Reduces the load on the upper body, making the movement more accessible\n- Builds pressing strength and muscular endurance\n- Develops the chest, shoulders, and triceps\n- Strengthens the core and serratus anterior as stabilisers\n- No equipment required - can be performed anywhere\n- Excellent progression tool toward full push-ups\n- Teaches correct push-up form without overwhelming fatigue\n- Great warm-up for heavier pressing movements\n- Suitable for rehabilitation and return-to-training phases\n- Builds confidence for beginners and improves movement quality"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core (stabiliser)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Begin on your knees on a comfortable surface or mat.\n2. Place your hands on the floor slightly wider than shoulder-width apart.\n3. Spread your fingers and grip the floor firmly.\n4. Walk your hands forward until you form a straight line from your knees to your shoulders.\n5. Cross your feet or keep them flat - whichever is most comfortable.\n6. Engage your core and squeeze your glutes.\n7. Pull your shoulder blades down and slightly back.\n8. Keep your neck in a neutral position, eyes looking slightly ahead.\n9. Take a deep breath and prepare to press."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Inhale and lower your body towards the floor by bending your elbows.\n2. Keep your elbows tucked at approximately 45 degrees from your torso - not flared out.\n3. Maintain a rigid body line - no sagging hips or raised glutes.\n4. Keep your core tight throughout the descent.\n5. Lower until your chest lightly touches or comes close to the floor.\n6. Pause briefly at the bottom.\n7. Exhale and push through your hands to return to the starting position.\n8. Extend your arms fully at the top without aggressively locking out the elbows.\n9. Keep your body line rigid from knees to shoulders throughout.\n10. Maintain control during both the lowering and pressing phases.\n11. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sagging hips or raised glutes (loss of neutral spine)\n- Flaring the elbows out at 90 degrees\n- Partial range of motion at the top or bottom\n- Pressing unevenly - one arm ahead of the other\n- Hand position too narrow or too wide\n- Dropping the head or craning the neck\n- Only moving the head and shoulders while the hips stay still\n- Holding the breath for multiple reps\n- Rushing the tempo and losing control\n- Resting on the wrists instead of pressing into the floor"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Exercise Mat or padded surface for knee comfort\n- Comfortable athletic clothing\n- Optional: Push-Up Handles for wrist comfort\n- Optional: Knee Pad or folded towel for added knee cushioning\n- Non-slip flooring to prevent hands or knees from shifting"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 8-10 reps.\n2. Intermediate: 3-4 sets of 10-15 reps.\n3. Advanced: 4-5 sets of 15-20 reps.\n4. Hypertrophy Focus: 3-4 sets of 10-15 reps with controlled tempo.\n5. Endurance Focus: 2-3 sets of 20+ reps.\n6. Tempo Focus: 3 sets of 8-12 reps with 3-second eccentric.\n7. Rest: 45-90 seconds between sets depending on load and goal.\n8. Progression: Gradually transition to full push-ups as strength improves."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Starting Surface: Exercise mat or padded floor.\n2. Hand Placement: Slightly wider than shoulder-width.\n3. Body Line: Straight from knees to shoulders.\n4. Hips: Neither sagging nor raised.\n5. Shoulders: Pulled down and slightly back, stacked over wrists at the top.\n6. Elbows: Tucked at approximately 45 degrees.\n7. Head: Neutral, eyes looking slightly ahead.\n8. Core: Braced throughout the movement.\n9. Glutes: Squeezed to maintain body line.\n10. Breathing: Inhale on descent, exhale on the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["push_up", "incline_push_up_plyobox"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Progression from the knee push-up\n- Incline Push-Up: Another beginner-friendly regression\n- Wall Push-Up: Easiest regression for beginners\n- Negative Push-Up: Slow eccentric push-up for strength gains\n- Machine Chest Press: Guided pressing alternative\n- Bench Press: Classic barbell chest press\n- Dumbbell Bench Press: Weighted alternative\n- Cable Chest Press: Constant-tension alternative"
+        },
+        {
+          "heading": "Knee Push-Up Variations",
+          "content": "Standard Knee Push-Up: Classic execution on the floor\nNarrow-Grip Knee Push-Up: Hands closer together for more triceps focus\nWide-Grip Knee Push-Up: Hands wider for more chest emphasis\nTempo Knee Push-Up: Slow 3-5 second eccentric for time under tension\nPause Knee Push-Up: 2-3 second pause at the bottom\nElevated-Hand Knee Push-Up: Hands on a raised surface for extra support\nArcher Knee Push-Up: Shift bodyweight side to side for unilateral emphasis\nDiamond Knee Push-Up: Hands close together in a diamond shape for triceps focus\nSingle-Leg Knee Push-Up: One leg lifted to increase core demand"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or a neutral-grip variation\nShoulder Pain: Keep elbows tucked closer to the torso, reduce depth\nElbow Pain: Avoid aggressive lockout at the top\nKnee Pain: Use extra padding or try an incline push-up instead\nLower Back Pain: Focus on bracing the core and squeezing the glutes\nLimited Strength: Start with wall push-ups, progress to knee push-ups\nBeginner: Focus on form with fewer reps before increasing volume\nPregnancy: Consult a qualified coach - may need an incline variation\nShoulder Instability: Ensure shoulders are packed down and back before pressing"
+        }
+      ]
+    }
+  }
+}

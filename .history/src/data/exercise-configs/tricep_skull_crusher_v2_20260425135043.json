@@ -1,0 +1,79 @@
+{
+  "exerciseId": "tricep_skull_crusher_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/267.%20Tricep%20Skull%20Crusher/267.%20Tricep%20Skull%20Crusher%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/267.%20Tricep%20Skull%20Crusher/267.%20Tricep%20Skull%20Crusher%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.6317363264757199, 3.191864556778233, 2.3509830809426813],
+    "rotation": [-0.8938338185888992, 0.45248114189331645, 0.4982373127260928],
+    "target": [-0.005677456136050537, 0.5663135899634307, 0.2409594115679559]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.6317363264919236, 3.1918645567776864, 2.350983080930791],
+    "rotation": [-0.8938338185915492, 0.4524811418981267, 0.49823731273252464],
+    "target": [-0.005677456136050537, 0.5663135899634307, 0.2409594115679559]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/267.%20Tricep%20Skull%20Crusher/Tricep%20Skull%20Crusher%20V2_250x250_2026-04-25T12-50-25.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Tricep Skull Crusher V2",
+      "description": "The Tricep Skull Crusher (also known as the lying tricep extension) is a classic isolation exercise targeting the triceps brachii. Performed lying on a bench with dumbbells, it emphasizes elbow extension to build size and strength in all three heads of the triceps.",
+      "primaryMuscles": ["Triceps"],
+      "secondaryMuscles": ["Shoulders", "Forearms"],
+      "equipment": ["Dumbbell", "Bench"],
+      "difficulty": "Intermediate"
+    },
+    "howToGuide": {
+      "title": "How To Perform Tricep Skull Crusher",
+      "steps": [
+        {
+          "step": 1,
+          "instruction": "Lie flat on a bench with your knees bent and feet flat on the floor. Start with a dumbbell in each hand, arms extended directly above your chest."
+        },
+        {
+          "step": 2,
+          "instruction": "Grip the dumbbells with your palms facing each other. This will be your starting position."
+        },
+        {
+          "step": 3,
+          "instruction": "Keeping your upper arms stationary, slowly bend your elbows to lower the dumbbells toward your forehead. Keep the movement controlled, focusing on moving only your forearms."
+        },
+        {
+          "step": 4,
+          "instruction": "Pause briefly when the dumbbells are near your forehead, then use your triceps to extend your elbows and return the dumbbells to the starting position."
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Setup Guide",
+      "items": [
+        "Select a pair of dumbbells with appropriate weight for controlled movement.",
+        "Position a flat bench in a clear area with adequate overhead space.",
+        "Lie flat on the bench with your feet planted firmly on the floor.",
+        "Bring the dumbbells up to a starting position with arms extended directly above your chest, palms facing each other.",
+        "Engage your core and keep your shoulders pressed into the bench throughout the exercise."
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_pushdown", "tricep_dips"]
+    }
+  }
+}

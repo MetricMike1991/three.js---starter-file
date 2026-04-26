@@ -1,0 +1,105 @@
+{
+  "exerciseId": "push_ups_with_band",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/126.%20Push%20Ups%20With%20Band/126.%20Push%20Ups%20With%20Band%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/126.%20Push%20Ups%20With%20Band/126.%20Push%20Ups%20With%20Band%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/126.%20Push%20Ups%20With%20Band/126.%20Push%20Ups%20With%20Band%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/126.%20Push%20Ups%20With%20Band/126.%20Push%20Ups%20With%20Band%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Push Up With Band is a progressive variation of the standard push-up that uses a resistance band draped across the upper back to add variable resistance.\n\nThe band increases tension at the top of the movement where the muscles are strongest, making the lockout portion significantly harder.\n\nThis is an excellent way to overload the push-up pattern without needing weight plates or a training partner."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Adds progressive resistance that increases through the range of motion\n- Greater chest, shoulder, and tricep activation at lockout\n- Improves explosive pushing power\n- Lightweight and portable — train anywhere with a band\n- Teaches acceleration through the concentric phase\n- Easily scalable by using different band resistances\n- Enhances muscle recruitment compared to standard push-ups"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest), Anterior Deltoids (Front Shoulders), Triceps\n\nSecondary: Core (Rectus Abdominis, Obliques), Serratus Anterior, Rhomboids, Lower Back"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a resistance band across your upper back, positioning it securely between your shoulder blades.\n2. Hold one end of the resistance band in each hand.\n3. Assume a plank position with your hands shoulder-width apart and your feet together.\n4. Ensure your body forms a straight line from head to heels.\n5. Arms should be fully extended with shoulders stacked over wrists."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your body in a straight line, bend your elbows to lower your body towards the ground.\n2. Maintain tension on the resistance band throughout the movement.\n3. Lower until your chest nearly touches the floor.\n4. Push through your hands to extend your elbows and return to the starting position.\n5. You will feel increased resistance as you push up and the band stretches.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Band slipping off the upper back during the movement\n- Letting the hips sag or pike upward\n- Not maintaining consistent tension on the band\n- Flaring elbows too wide, placing excess stress on shoulders\n- Rushing through reps and losing form\n- Using a band that is too heavy, compromising range of motion\n- Not securing the band properly in the hands"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band (loop or straight band)\n- Flat, Non-Slip Surface\n- Optional: Exercise Mat for wrist comfort"
+        },
+        {
+          "heading": "Band Selection",
+          "content": "1. Choose a band that provides appropriate resistance for your strength level.\n2. Light bands (thin): Good for beginners or high-rep sets.\n3. Medium bands: Suitable for intermediate lifters.\n4. Heavy bands (thick): For advanced athletes seeking significant overload.\n5. The band should allow you to complete full range of motion with good form.\n6. Start with a lighter band and progress as you build strength."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Band Position: Across upper back between shoulder blades.\n2. Hands: Shoulder-width apart, band secured under palms.\n3. Feet: Together or slightly apart for balance.\n4. Core: Braced tight to maintain a rigid plank position.\n5. Head: Neutral, looking slightly ahead of your hands.\n6. Shoulders: Pulled back and down, not shrugged.\n7. Ensure the band is evenly positioned on both sides."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "push_ups_with_plate"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Bodyweight only, great for beginners\n- Push-Up With Plate: Weighted plate on back for constant added resistance\n- Bench Press: Barbell pressing movement targeting the same muscles\n- Dumbbell Chest Press: Allows independent arm movement\n- Deficit Push-Up: Hands elevated for increased range of motion\n- Decline Push-Up: Feet elevated for greater upper chest activation"
+        },
+        {
+          "heading": "Banded Push-Up Variations",
+          "content": "Push-Up With Band: Standard banded push-up with band across back\nBanded Diamond Push-Up: Narrow hand position for tricep emphasis\nBanded Wide Push-Up: Wider hand placement for chest stretch\nBanded Explosive Push-Up: Focus on speed and power through the band\nBanded Decline Push-Up: Feet elevated with band for advanced difficulty"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or dumbbells to keep wrists neutral\nShoulder Issues: Reduce range of motion or switch to floor press\nBand Too Strong: Use a thinner band or double up a lighter one\nNo Band Available: Use a weight plate on back or weighted vest instead\nCore Weakness: Master standard push-ups before adding band resistance\nBand Slipping: Ensure band is flat across back and firmly under palms"
+        }
+      ]
+    }
+  }
+}

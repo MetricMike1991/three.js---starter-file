@@ -1,0 +1,106 @@
+{
+  "exerciseId": "belt_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/198.%20Belt%20Squat/198.%20Belt%20Squat%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/198.%20Belt%20Squat/198.%20Belt%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/198.%20Belt%20Squat/198.%20Belt%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.1069864533285756, 1.6078353807709767, 2.2238529775382996],
+    "rotation": [-0.44380900953103186, 0.7103145951541285, 0.30062633219649376],
+    "target": [-0.017134671099489168, 0.547393304095079, -0.006580589979205605]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Belt Squat is a lower-body exercise performed on a specialized machine where resistance is loaded through a belt attached around the waist rather than across the shoulders or back.\n\nThis setup allows the lifter to train the legs heavily while removing compressive load from the spine.\n\nBelt squats are popular for building leg strength and hypertrophy, especially for lifters with back issues or those wanting to add volume without additional axial loading."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Loads the legs without compressing the spine\n- Ideal for lifters with lower back issues or fatigue\n- Allows heavy leg training on recovery days\n- Strong emphasis on quads, glutes, and hamstrings\n- Easier to maintain an upright torso than a barbell squat\n- Great accessory movement for powerlifters and athletes\n- Can be used for high-volume hypertrophy work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings\n\nSecondary: Adductors, Calves, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the height of the machine's platform to match your body height.\n2. Ensure that the weight stack or loading mechanism is set to the desired resistance level.\n3. Check that safety pins and lever arms are properly positioned."
+        },
+        {
+          "heading": "Attach the Belt",
+          "content": "1. Put on the provided belt or harness and secure it around your waist.\n2. Make sure it is snug but not uncomfortably tight.\n3. Confirm the attachment point is centered on the front of the belt."
+        },
+        {
+          "heading": "Stand on the Platform",
+          "content": "1. Step onto the machine's platform with your feet shoulder-width apart.\n2. Position yourself so the weight stack is between your legs and the belt is securely attached to your waist.\n3. Stand tall with chest up and core braced before unracking the load."
+        },
+        {
+          "heading": "Squat",
+          "content": "1. Initiate the squat by bending at your hips and knees.\n2. Keep your back straight, chest up, and core engaged as you lower your body down.\n3. Lower yourself until your thighs are parallel to the ground or as far as your mobility allows."
+        },
+        {
+          "heading": "Return to Standing",
+          "content": "1. Exhale as you push through your heels and extend your hips and knees, lifting the weight stack or resistance.\n2. Stand back up to the starting position.\n3. Keep your movements controlled and maintain good form throughout the exercise."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Belt positioned too high or too low on the hips\n- Rounding the lower back at the bottom of the rep\n- Knees caving inward during the descent or ascent\n- Not reaching adequate depth\n- Using too much weight and cutting range of motion\n- Leaning excessively forward instead of staying upright\n- Bouncing out of the bottom position"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Belt Squat Machine (plate-loaded or selectorized)\n- Weight Plates (if plate-loaded)\n- Belt or Harness (usually provided with the machine)\n- Flat-soled or weightlifting shoes\n- Optional: Lifting Belt for core support"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Adjust platform height so the belt attachment aligns with your hips when standing tall.\n2. Set safety stops or end ranges if the machine allows.\n3. Load the desired resistance onto the weight stack or loading pin.\n4. Check that the lever arm or cable path moves smoothly before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, toes slightly turned out.\n2. Belt: Snug around the waist/hips, centered over the loading point.\n3. Torso: Upright, chest tall, core braced.\n4. Head: Neutral, eyes forward.\n5. Grip: Hold the handles lightly for balance, not to pull yourself up."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "leg_press", "hack_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Traditional loaded squat with bar on the back\n- Hack Squat Machine: Machine-based squat with fixed path\n- Leg Press: Seated press variation for quad and glute work\n- Goblet Squat: Front-loaded squat with dumbbell or kettlebell\n- Bulgarian Split Squat: Unilateral leg strength and balance\n- Landmine Squat: Barbell-based alternative with minimal spinal load"
+        },
+        {
+          "heading": "Belt Squat Variations",
+          "content": "Standard Belt Squat: Shoulder-width stance, full range of motion\nWide Stance Belt Squat: Greater adductor and glute emphasis\nClose Stance Belt Squat: Greater quad emphasis\nTempo Belt Squat: Slow eccentric for hypertrophy\nPause Belt Squat: Pause at the bottom for strength and control\nSingle-Leg Belt Squat: Advanced unilateral variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Issues: Belt squat is already a good alternative; keep load moderate and control depth\nKnee Pain: Reduce depth, use a narrower stance, focus on tempo\nHip Mobility Issues: Work on mobility drills; limit depth to pain-free range\nNo Belt Squat Machine: Use landmine squats, hack squat, or leg press as substitutes\nBalance Issues: Hold the machine handles lightly for stability\nBeginners: Start with light resistance and learn the movement pattern first"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "treadmill_running",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/249.%20Treadmill%20Running/249.%20Treadmill%20Running%20SD_compressed.glb",
+  "modelUrlHQ": "",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/249.%20Treadmill%20Running/249.%20Treadmill%20Running%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/249.%20Treadmill%20Running/249.%20Treadmill%20Running%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Treadmill Running is one of the most popular and accessible forms of cardiovascular exercise, allowing you to run indoors in a controlled environment regardless of weather conditions.\n\nBy adjusting speed and incline, you can simulate a wide variety of outdoor running conditions, from easy jogs to intense hill sprints, all while benefiting from the cushioned belt that is gentler on the joints than concrete.\n\nTreadmill running is a staple in cardiovascular conditioning programs, fat-loss routines, athletic training, and general fitness regimens due to its scalability, safety, and precision control over pace and intensity."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Improves cardiovascular and heart health\n- Burns significant calories for weight management\n- Builds lower body muscular endurance\n- Gentler on joints than road running (cushioned belt)\n- Weather-independent indoor training\n- Precise control over speed and incline\n- Excellent for interval training (HIIT)\n- Builds mental toughness and discipline\n- Data tracking (distance, pace, calories, heart rate)\n- Safe environment with emergency stop features\n- Can be used at any time of day\n- Great for progressive running programs"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Hamstrings, Glutes, Calves\n\nSecondary: Hip Flexors, Core, Lower Back, Tibialis Anterior, Shoulders (from arm swing)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Step onto the treadmill with feet on the side rails, not the belt.\n2. Attach the safety clip to your clothing.\n3. Stand tall with feet hip-width apart.\n4. Chest up, shoulders back and relaxed.\n5. Core lightly engaged.\n6. Arms bent at approximately 90 degrees.\n7. Select your desired program or manually set speed and incline.\n8. Start the treadmill at a slow walking pace to begin."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Begin with a 3-5 minute walking warm-up to get accustomed to the moving belt.\n2. Gradually increase the speed until you reach a comfortable jogging pace.\n3. Continue building to your target running speed.\n4. Maintain an upright posture - avoid leaning forward or back.\n5. Keep your eyes focused forward, not down at the belt.\n6. Use a natural arm swing, opposite arm to opposite leg.\n7. Land mid-foot under your centre of mass, not heel-striking far in front.\n8. Maintain rhythmic breathing - typically 2 steps in, 2 steps out.\n9. Run for your desired duration or distance.\n10. To finish, gradually decrease speed over 3-5 minutes to cool down.\n11. Walk at a slow pace until heart rate returns to normal.\n12. Stop the treadmill fully before stepping off onto the side rails."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Holding onto the handrails while running (disrupts natural form)\n- Looking down at the belt instead of forward\n- Leaning forward or back excessively\n- Over-striding (heel landing far ahead of body)\n- Tense shoulders or clenched fists\n- Skipping the warm-up and cool-down phases\n- Running at too high a speed for your current fitness level\n- Not using the safety clip\n- Stepping off while the belt is still moving\n- Ignoring proper footwear - use running-specific shoes\n- Breathing shallowly or erratically"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Treadmill\n- Supportive running shoes (replace every 300-500 miles)\n- Moisture-wicking athletic clothing\n- Water Bottle (most treadmills have a holder)\n- Towel for sweat management\n- Optional: Heart Rate Monitor or Fitness Tracker\n- Optional: Headphones for music or podcasts\n- Optional: Running fan to simulate outdoor wind"
+        },
+        {
+          "heading": "Setting Pace and Incline",
+          "content": "1. Beginner Walking: 2.5-3.5 mph (4-5.5 km/h).\n2. Moderate Jogging: 4-5.5 mph (6.5-9 km/h).\n3. Steady Running: 6-7.5 mph (9.5-12 km/h).\n4. Fast Running: 8+ mph (13+ km/h).\n5. Default Incline: 1-2% to simulate outdoor wind resistance.\n6. Hill Training: 4-10% incline at walking or jogging pace.\n7. HIIT Intervals: Alternate 30-60 seconds fast with 60-120 seconds recovery.\n8. Long Slow Run: 30-60 minutes at conversational pace.\n9. Always warm up 5 minutes and cool down 5 minutes."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Posture: Tall and upright, slight forward lean from the ankles.\n2. Eyes: Focused forward, not down.\n3. Shoulders: Relaxed, not hunched or shrugged.\n4. Arms: Bent ~90 degrees, swinging naturally.\n5. Hands: Relaxed, no clenched fists.\n6. Core: Lightly engaged for stability.\n7. Hips: Neutral, no excessive arch in the lower back.\n8. Feet: Mid-foot strike under your body.\n9. Cadence: Aim for 170-180 steps per minute.\n10. Breathing: Rhythmic and steady."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["walking", "crosstrainer"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Outdoor Running: Natural terrain running\n- Walking: Lower-intensity alternative\n- Crosstrainer / Elliptical: Lower-impact cardio\n- Stationary Bike: Seated cardio option\n- Stair Climber: Vertical cardio alternative\n- Air Assault Bike: Full-body high-intensity cardio\n- Rowing Machine: Full-body low-impact cardio"
+        },
+        {
+          "heading": "Treadmill Variations",
+          "content": "Steady-State Running: Continuous pace for 20-60 minutes\nInterval Training (HIIT): Fast sprints alternating with recovery\nHill Training: Using incline for strength and endurance\nTempo Run: Challenging but sustainable pace for 20-40 minutes\nFartlek Training: Unstructured speed play\nProgressive Run: Gradually increasing pace over time\nPyramid Intervals: Increasing then decreasing intensity\nWalk-Run Intervals: Alternating walking and running for beginners\nReverse Incline Walking: Walking backwards on a small incline\nSide-Shuffle Treadmill: Lateral movement at slow speeds (advanced)"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce speed, use walking or incline walking instead\nHip Pain: Start with walking and build gradually\nLower Back Pain: Focus on posture and shorter durations\nAnkle Issues: Stick to walking until strength improves\nBalance Concerns: Use the handrails lightly for support, reduce speed\nCardio Beginner: Start with walk-run intervals\nReturning from Injury: Begin with incline walking and progress slowly\nPregnancy: Walking is preferred over running - consult a physician\nJoint-Sensitive: Use the elliptical or bike as a lower-impact alternative"
+        }
+      ]
+    }
+  }
+}

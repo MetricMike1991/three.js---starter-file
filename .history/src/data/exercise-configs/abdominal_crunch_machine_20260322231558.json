@@ -1,0 +1,105 @@
+{
+  "exerciseId": "abdominal_crunch_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/91.%20Abdominal%20Crunch%20Machine/91.%20Abdominal%20Crunch%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/91.%20Abdominal%20Crunch%20Machine/91.%20Abdominal%20Crunch%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/91.%20Abdominal%20Crunch%20Machine/91.%20Abdominal%20Crunch%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/91.%20Abdominal%20Crunch%20Machine/91.%20Abdominal%20Crunch%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Abdominal Crunch Machine is a resistance-based exercise that targets the rectus abdominis through a controlled crunching motion.\n\nThe machine provides a fixed path of motion, making it easier to isolate the abs while supporting the lower back.\n\nIt is ideal for beginners learning to engage their core and for experienced lifters looking to add progressive overload to their ab training."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the abdominal muscles effectively\n- Allows progressive overload with adjustable weight\n- Supports the lower back throughout the movement\n- Fixed path of motion ensures consistent form\n- Suitable for all fitness levels\n- Reduces strain on the neck compared to floor crunches\n- Easy to track strength progress over time"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis\n\nSecondary: Obliques, Hip Flexors, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so your feet sit flat on the foot pads.\n2. Sit with your back firmly against the back pad.\n3. Grasp the handles or place your hands on the designated hand grips.\n4. Position your chest against the chest pad if applicable.\n5. Select an appropriate weight on the stack.\n6. Sit upright with your core engaged and shoulders relaxed."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Exhale as you contract your abs and bring your torso forward towards your thighs.\n2. Focus on curling your ribcage towards your pelvis rather than simply bending at the hips.\n3. Squeeze your abs at the bottom of the movement for a brief pause.\n4. Inhale as you slowly release the contraction and return to the starting position.\n5. Maintain controlled movement throughout — avoid using momentum.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and relying on momentum\n- Pulling with the arms instead of contracting the abs\n- Bending at the hips rather than curling the spine\n- Not controlling the eccentric (return) phase\n- Holding breath throughout the movement\n- Setting the seat too high or too low\n- Rushing through reps without proper muscle engagement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Abdominal Crunch Machine (plate-loaded or selectorized)\n- Optional: Towel for comfort on the chest pad"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Adjust the seat so your feet rest flat on the foot pads.\n2. The pivot point of the machine should align roughly with your mid-torso.\n3. Adjust the chest pad or handles so you can comfortably reach them.\n4. Select a weight that allows you to perform controlled reps.\n5. Start light to learn the movement pattern before adding resistance."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat: Adjusted so feet are flat and knees are at roughly 90 degrees.\n2. Back: Firmly pressed against the back pad.\n3. Hands: Gripping the handles lightly — do not pull with your arms.\n4. Core: Engaged before initiating the crunch.\n5. Shoulders: Relaxed, not shrugged up towards the ears.\n6. Head: Neutral position, avoid tucking the chin excessively."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "cable_crunch"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Crunch: No equipment needed, targets the same muscles\n- Cable Crunch: Kneeling crunch using a cable machine for resistance\n- Decline Sit-Up: Increased range of motion on a decline bench\n- Hanging Leg Raise: Advanced movement targeting lower abs\n- Ab Rollout: Challenges the entire core through anti-extension\n- Weighted Sit-Up: Free weight alternative for progressive overload"
+        },
+        {
+          "heading": "Crunch Variations",
+          "content": "Machine Crunch: Standard selectorized or plate-loaded machine crunch\nCable Crunch: Kneeling crunch with cable resistance from above\nDecline Crunch: Performed on a decline bench for greater range\nWeighted Crunch: Floor crunch holding a plate or dumbbell\nReverse Crunch: Targets lower abs by lifting hips off the floor\nOblique Crunch: Rotational crunch to target the obliques"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Machine crunch is a great option as it supports the neck\nLower Back Issues: Keep movement controlled and avoid excessive range of motion\nNo Machine Available: Use cable crunches or weighted floor crunches\nShoulder Injury: Adjust hand grip position or use a pad-style machine\nBeginner: Start with bodyweight crunches to build baseline core strength\nHip Flexor Dominance: Focus on curling the ribcage down rather than bending at the hips"
+        }
+      ]
+    }
+  }
+}

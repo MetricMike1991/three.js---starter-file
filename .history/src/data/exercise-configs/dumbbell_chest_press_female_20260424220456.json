@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_chest_press_female",
+  "modelUrlSQ": "",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/252.%20Dumbbell%20Chest%20Press%20Female/252.%20Dumbbell%20Chest%20Press%20Female%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Chest Press is a foundational upper body pressing exercise that targets the pectoral muscles while also engaging the shoulders and triceps.\n\nPerformed on a flat bench with a dumbbell in each hand, this movement allows for a greater range of motion than the barbell bench press and requires each side of the body to work independently, improving muscular balance and stabiliser engagement.\n\nThe Dumbbell Chest Press is a staple in chest development programs, bodybuilding routines, and general strength training, suitable for all fitness levels when scaled with appropriate weight."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds chest size and strength\n- Engages stabiliser muscles more than barbell pressing\n- Allows greater range of motion than the barbell version\n- Corrects muscle imbalances (each side works independently)\n- Strengthens the shoulders and triceps as secondary movers\n- Reduces shoulder strain with natural wrist rotation\n- Great for hypertrophy (muscle building)\n- Easier to learn than the barbell bench press\n- Scalable to any strength level\n- Safer than barbell pressing (no risk of being pinned under the bar)\n- Improves pushing strength transferable to daily activities and sports"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest)\n\nSecondary: Anterior Deltoids (Front Shoulders), Triceps Brachii, Serratus Anterior, Core (stabiliser)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Select appropriate dumbbells and place them on the floor next to a flat bench.\n2. Sit on the end of the bench with a dumbbell in each hand, resting on your thighs.\n3. Lie back on the bench, using your knees to help kick the dumbbells up into position.\n4. Position both feet flat on the floor, hip-width apart.\n5. Plant your back and glutes firmly on the bench.\n6. Hold the dumbbells at chest level, palms facing forward.\n7. Elbows bent at approximately 90 degrees, out to the sides and slightly down.\n8. Wrists stacked directly above the elbows.\n9. Core engaged, chest up."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Press the dumbbells upwards by extending your arms fully.\n3. Drive the dumbbells up and slightly inwards so they meet over the middle of your chest.\n4. Do not allow the dumbbells to clang together at the top.\n5. Keep your wrists straight and stacked over your elbows.\n6. Exhale as you press the weights up.\n7. Pause briefly at the top with arms fully extended.\n8. Inhale as you lower the dumbbells back to the starting position in a controlled manner.\n9. Bring the weights down to chest level with elbows at approximately 90 degrees.\n10. Maintain control throughout the entire range of motion.\n11. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and losing control\n- Bouncing the dumbbells off the chest\n- Flaring elbows out at 90 degrees (causes shoulder strain)\n- Not lowering through a full range of motion\n- Arching the lower back excessively off the bench\n- Lifting feet off the floor\n- Locking out the elbows aggressively at the top\n- Allowing the wrists to bend back (maintain neutral wrist)\n- Holding the breath during the entire rep\n- Uneven pressing - one arm extends before the other\n- Dropping the dumbbells at the end of the set (lower safely to the floor)"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells\n- Flat Bench\n- Comfortable athletic clothing\n- Supportive footwear\n- Optional: Lifting Gloves for grip\n- Optional: Wrist Wraps for heavy sets\n- Optional: Spotter (especially for heavier weights)"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 10-12 reps with light weight.\n2. Intermediate: 3-4 sets of 8-12 reps with moderate weight.\n3. Advanced: 4-5 sets of 6-10 reps with heavy weight.\n4. Hypertrophy Focus: 3-4 sets of 8-12 reps with controlled tempo.\n5. Strength Focus: 4-5 sets of 5-8 reps with heavier weight.\n6. Endurance Focus: 2-3 sets of 15-20 reps with lighter weight.\n7. Rest: 60-120 seconds between sets depending on goal.\n8. Progressive Overload: Gradually increase weight over weeks."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat on the bench with a slight natural arch in the lower back.\n2. Feet: Flat on the floor, hip-width apart for stability.\n3. Head: Resting on the bench throughout the movement.\n4. Shoulders: Pulled back and down, retracted into the bench.\n5. Chest: Lifted and proud throughout.\n6. Elbows: Approximately 45-75 degrees from the torso at the bottom.\n7. Wrists: Straight and stacked above the elbows.\n8. Core: Braced throughout the movement.\n9. Glutes: Engaged and pressing into the bench.\n10. Breathing: Inhale on the descent, exhale on the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bench Press: Compound chest press with a barbell\n- Incline Dumbbell Press: Upper chest emphasis\n- Decline Dumbbell Press: Lower chest emphasis\n- Dumbbell Floor Press: Reduced range of motion alternative\n- Machine Chest Press: Guided path, beginner-friendly\n- Smith Machine Bench Press: Stabilised barbell press\n- Push-Up: Bodyweight pressing alternative\n- Cable Chest Press: Constant tension variation"
+        },
+        {
+          "heading": "Dumbbell Chest Press Variations",
+          "content": "Standard Dumbbell Chest Press: Flat bench execution\nIncline Dumbbell Press: 30-45 degree incline for upper chest\nDecline Dumbbell Press: Decline angle for lower chest\nNeutral Grip (Hammer) Press: Palms facing each other - shoulder-friendly\nSingle-Arm Dumbbell Press: One arm at a time for core engagement\nAlternating Dumbbell Press: Alternating arms for unilateral work\nTempo Dumbbell Press: Slow eccentric for time under tension\nPause Dumbbell Press: 2-3 second pause at the bottom\nFloor Press: Reduced range to protect shoulders\n1.5 Rep Press: Full rep + half rep counts as one rep"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use neutral grip (palms facing) to reduce strain\nRotator Cuff Issues: Reduce range of motion or use floor press variation\nWrist Pain: Use wrist wraps or neutral grip\nElbow Pain: Keep elbows tucked closer to the body (45 degrees)\nLower Back Pain: Keep feet flat on floor, brace core, avoid arching\nBeginner: Start with very light dumbbells to learn technique\nPost-Surgery: Consult a physiotherapist before attempting\nLimited Grip Strength: Use lifting straps or wrist wraps\nNo Bench Available: Perform on the floor (floor press)"
+        }
+      ]
+    }
+  }
+}

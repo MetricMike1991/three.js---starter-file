@@ -1,0 +1,100 @@
+{
+  "exerciseId": "alternating_hammer_curls",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/10.%20Hammer%20Curls/10.%20Hammer%20Curls%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/10.%20Hammer%20Curls/10.%20Hammer%20Curls%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/10.%20Hammer%20Curls/10.%20Hammer%20Curls%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/10.%20Hammer%20Curls/10.%20Hammer%20Curls.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.5525913480705664, 1.5037579690239988, -2.4168830079203656],
+    "rotation": [-2.905974541661918, -0.5591453300374687, -3.0149226362031443],
+    "target": [0.0007970398512859023, 0.924255360651983, -0.003066708178174224]
+  },
+  "cameraHQ": {
+    "position": [1.2913049396310727, 1.6119657068418682, 2.1655306451278964],
+    "rotation": [-0.26996862160768637, 0.5083480546950585, 0.13388562788878638],
+    "target": [0.034988478029060646, 1.0106269261248477, -0.007529915942325907]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/10.%20Hammer%20Curls/10.%20Hammer%20Curls%20Thumbnail.webp",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Alternating Hammer Curl is a dumbbell exercise that targets the biceps and forearms using a neutral (palms facing in) grip.\n\nUnlike standard bicep curls, the hammer grip keeps your palms facing each other throughout the movement, placing greater emphasis on the brachialis and brachioradialis muscles.\n\nAlternating arms allows you to focus on each side individually, helping to correct imbalances and improve mind-muscle connection."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the brachialis for thicker, wider-looking arms\n- Strengthens the brachioradialis and forearm muscles\n- Neutral grip reduces stress on the wrists\n- Alternating movement improves balance between arms\n- Builds functional grip strength\n- Engages the core for stabilization\n- Can be performed standing or seated for variation"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii, Brachialis, Brachioradialis\n\nSecondary: Forearms, Core (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand straight holding a dumbbell in each hand with a neutral grip (palms facing in).\n2. Keep your arms fully extended at your sides.\n3. Your palms should be facing in toward your body.\n4. Tuck your elbows close to your sides.\n5. Stand tall with your chest up and core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your upper arm stationary, exhale and curl one dumbbell up toward your shoulder.\n2. Maintain the neutral grip throughout — do not rotate your wrist.\n3. Continue raising the dumbbell until your bicep is fully contracted and the dumbbell is at shoulder level.\n4. Hold for a count of one and squeeze your biceps.\n5. Return the dumbbell to the starting position in a smooth, controlled movement, inhaling as you do so.\n6. Repeat with the other arm.\n7. Continue alternating arms for the desired number of repetitions.\n8. Do not swing your body or use momentum to lift the weight."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the body or using momentum to curl the weight\n- Rotating the wrist during the movement (should stay neutral)\n- Letting elbows drift away from the torso\n- Not fully extending the arm at the bottom\n- Rushing the lowering (eccentric) phase\n- Using too much weight and sacrificing form\n- Leaning back excessively during the curl"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of dumbbells (appropriate weight for your level)\n- Flat, stable surface to stand on\n- Optional: Mirror for form check\n- Optional: Weight bench (for seated variation)"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start with a lighter weight to master the neutral grip pattern.\n2. You should be able to complete each rep with control and no swinging.\n3. Increase weight gradually once form is consistent.\n4. Hammer curls typically allow slightly heavier weight than standard curls.\n5. Aim for a weight that challenges you in the 8-15 rep range."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, knees slightly bent.\n2. Grip: Neutral grip (palms facing in) throughout the entire movement.\n3. Elbows: Pinned to your sides, do not let them drift.\n4. Torso: Upright and stable — no leaning or swaying.\n5. Core: Engaged to maintain balance during unilateral movement.\n6. Head: Neutral, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_bicep_curls", "alternating_dumbbell_bicep_curl", "barbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Bicep Curls: Supinated grip targets the biceps peak\n- Alternating Dumbbell Bicep Curl: Rotating grip for full bicep activation\n- Barbell Bicep Curl: Bilateral loading for heavier weights\n- Cross-Body Hammer Curl: Curling across the body for long head emphasis\n- Cable Rope Hammer Curl: Constant tension with neutral grip\n- Concentration Curl: Single-arm isolation for strict form"
+        },
+        {
+          "heading": "Hammer Curl Variations",
+          "content": "Alternating Hammer Curl: Standard alternating neutral grip curl\nSimultaneous Hammer Curl: Both arms curl at the same time\nSeated Hammer Curl: Performed seated for stricter form\nIncline Hammer Curl: On an incline bench for greater stretch\nCross-Body Hammer Curl: Curl toward opposite shoulder\nSlow Tempo Hammer Curl: 3-4 second eccentric for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Hammer curls are already wrist-friendly due to neutral grip\nElbow Discomfort: Reduce range of motion or use lighter weight\nShoulder Issues: Keep elbows pinned and avoid raising them during the curl\nNo Dumbbells: Use resistance bands or a cable rope attachment\nBalance Issues: Perform seated on a bench for added stability\nLearning Stage: Start with light weight, focus on keeping the neutral grip consistent"
+        }
+      ]
+    }
+  }
+}

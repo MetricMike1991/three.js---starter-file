@@ -1,0 +1,105 @@
+{
+  "exerciseId": "renegade_rows",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/173.%20Renegade%20Rows/173%20SD_compressed%20(1).glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/173.%20Renegade%20Rows/173.%20Renegade%20Rows%20HD_compressed%20(1).glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/173.%20Renegade%20Rows/173.%20Renegade%20Rows%20AR_compressed%20(1).glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/173.%20Renegade%20Rows/173.%20Renegade%20Rows%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Renegade Row is a compound exercise that combines a plank with a dumbbell row, challenging both upper body strength and core stability simultaneously.\n\nPerformed from a high plank position with a dumbbell in each hand, this movement demands full-body coordination and anti-rotational core strength.\n\nIt's a favorite in functional training, CrossFit, and athletic conditioning programs for its ability to build strength and stability at the same time."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds back and upper body pulling strength\n- Develops anti-rotational core stability\n- Improves shoulder stability and scapular control\n- Enhances total-body coordination\n- Strengthens grip and forearms\n- Time-efficient compound movement\n- Carries over to sports and functional movement\n- Exposes and corrects left/right strength imbalances"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Rear Deltoids, Core (Rectus Abdominis, Obliques, Transverse Abdominis)\n\nSecondary: Biceps, Trapezius, Triceps (stabilizing), Glutes, Shoulders, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Start in a high plank position with your hands holding a pair of dumbbells, each hand resting on the ground directly under your shoulders.\n2. Your feet should be shoulder-width apart, and your body forming a straight line from head to heels."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core and glutes to keep your body stable as you lift one dumbbell off the ground, rowing it up towards your chest while keeping your elbow close to your body.\n2. Lower the dumbbell back down to the ground, maintaining your plank position.\n3. Repeat the rowing motion on the other side, lifting the opposite dumbbell off the ground.\n4. Continue alternating sides for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the hips to rotate or sway side to side\n- Sagging hips or piking the butt upward\n- Rowing with the elbow flared out wide\n- Using dumbbells that roll (use hex dumbbells)\n- Feet too close together, reducing stability\n- Rushing the row and losing plank form\n- Holding breath instead of breathing steadily\n- Shrugging shoulders toward ears during the row"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Hex Dumbbells (flat-sided to prevent rolling)\n- Exercise Mat or Non-Slip Floor Surface\n- Optional: Wrist Wraps for wrist support\n- Recommended: Flat-soled training shoes for stability\n- Clear floor space to fully extend in plank position"
+        },
+        {
+          "heading": "Choosing the Right Weight",
+          "content": "1. Start light - form is critical before load.\n2. Use hex dumbbells so they don't roll away.\n3. Weight should allow you to maintain a rigid plank.\n4. If your hips rotate, the weight is too heavy.\n5. Progress gradually as core stability improves.\n6. Same weight in both hands for balanced loading.\n7. Consider lower weight for higher rep sets."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width or slightly wider for stability.\n2. Hand Position: Directly under shoulders, gripping dumbbells.\n3. Hips: Level with shoulders, forming a straight line.\n4. Core: Braced tight throughout the movement.\n5. Glutes: Squeezed to stabilize the pelvis.\n6. Head: Neutral, eyes looking slightly ahead of hands.\n7. Breathing: Exhale on the row, inhale on the return."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_chest_supported_rows", "bentover_barbell_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Single Arm Dumbbell Row: Bench-supported, isolates back\n- Plank Dumbbell Drag: Anti-rotation core with light pull\n- Bent Over Dumbbell Row: Traditional rowing pattern\n- Chest Supported Row: Removes core stability demand\n- TRX Row: Bodyweight pulling alternative\n- Kettlebell Renegade Row: Same pattern with kettlebells"
+        },
+        {
+          "heading": "Renegade Row Variations",
+          "content": "Standard Renegade Row: Alternating rows from plank\nRenegade Row with Push-Up: Add push-up between rows\nKnee Renegade Row: Easier variation from knees\nFeet Wider Renegade Row: More stable for beginners\nOne-Arm Renegade Row: Advanced anti-rotation challenge\nTempo Renegade Row: Slow eccentric for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or wrist wraps\nShoulder Instability: Start with chest-supported rows\nCore Weakness: Begin with knees down version\nNo Dumbbells: Use kettlebells or resistance bands\nBalance Issues: Widen your stance for stability\nLearning Stage: Practice plank holds before adding rows"
+        }
+      ]
+    }
+  }
+}

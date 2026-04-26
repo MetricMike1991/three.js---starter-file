@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_goblet_box_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/114.%20Kettlebell%20Goblet%20Box%20Squat/114.%20Kettlebell%20Goblet%20Box%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/114.%20Kettlebell%20Goblet%20Box%20Squat/114.%20Kettlebell%20Goblet%20Box%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/114.%20Kettlebell%20Goblet%20Box%20Squat/114.%20Kettlebell%20Goblet%20Box%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/114.%20Kettlebell%20Goblet%20Box%20Squat/114.%20Kettlebell%20Goblet%20Box%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Goblet Box Squat combines the front-loaded goblet position with a box squat to create a highly effective lower body exercise.\n\nHolding the kettlebell at chest height encourages an upright torso and engages the core, while the box provides a consistent depth target and teaches proper sit-back mechanics.\n\nThis exercise is excellent for beginners learning to squat with load, as well as intermediate lifters looking to improve squat depth and hip drive."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Front-loaded position promotes an upright torso and reduces lower back stress\n- Box provides consistent depth for every rep\n- Teaches proper sit-back mechanics and hip hinge pattern\n- Engages the core throughout the movement due to the goblet hold\n- Builds quadricep, glute, and core strength simultaneously\n- Kettlebell handle allows for a natural and comfortable grip\n- Great progression from bodyweight box squats to heavier loaded squats"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Core, Hamstrings, Upper Back, Forearms (grip), Hip Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Pick up a kettlebell and hold it by the horns (sides of the handle) close to your chest.\n2. Stand in front of a sturdy box or bench with your feet shoulder-width apart.\n3. Point your toes slightly outward at about 15-30 degrees.\n4. Keep the kettlebell tight against your chest with your elbows tucked in.\n5. Engage your core and maintain an upright posture."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Sit back and down towards the box, pushing your hips back.\n2. Keep your chest up and the kettlebell close to your body throughout the descent.\n3. Ensure your knees track over your toes and do not cave inward.\n4. Lower yourself in a controlled manner until you are seated on the box.\n5. Pause briefly on the box while maintaining core tension.\n6. Push through your heels to stand back up explosively.\n7. Squeeze your glutes at the top of the movement.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the kettlebell drift away from the chest during the descent\n- Plopping down onto the box instead of lowering with control\n- Rocking forward off the box to generate momentum\n- Letting the knees cave inward during the ascent\n- Rounding the upper or lower back under load\n- Completely relaxing on the box and losing core tension\n- Using a box that is too high, limiting range of motion"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for your fitness level)\n- Sturdy Box, Bench, or Step (appropriate height for your leg length)\n- Flat, Non-Slip Surface"
+        },
+        {
+          "heading": "Kettlebell Selection",
+          "content": "1. Choose a kettlebell weight that allows you to maintain proper form throughout all reps.\n2. Beginners should start light and focus on movement mechanics.\n3. Hold the kettlebell by the horns with both hands.\n4. Keep the bell portion of the kettlebell pointing upward.\n5. The kettlebell should sit comfortably against your upper chest."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, toes slightly turned out.\n2. Kettlebell: Held by the horns, tight against the chest.\n3. Elbows: Tucked in close to the body.\n4. Core: Braced and engaged throughout the movement.\n5. Back: Straight with a neutral spine, upright torso.\n6. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_box_squat", "bodyweight_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Box Squat: Unloaded version for learning the movement pattern\n- Bodyweight Squat: Standard squat without the box\n- Dumbbell Goblet Squat: Similar front-loaded position using a dumbbell\n- Barbell Back Squat: Heavier loaded squat with barbell on the back\n- Bulgarian Split Squat: Single-leg variation for unilateral development"
+        },
+        {
+          "heading": "Variations",
+          "content": "Kettlebell Goblet Box Squat: Standard goblet hold with box depth guide\nPaused Kettlebell Goblet Box Squat: Extended pause on the box for strength\nSlow Tempo Goblet Box Squat: Controlled descent for time under tension\nWide Stance Goblet Box Squat: Wider feet for greater glute and adductor emphasis\nNarrow Stance Goblet Box Squat: Closer feet for greater quad emphasis\nDouble Kettlebell Front Box Squat: Two kettlebells in the rack position for heavier loading"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Discomfort: Adjust grip on the kettlebell horns or switch to a dumbbell\nKnee Pain: Use a higher box to reduce range of motion\nLower Back Issues: Focus on keeping the chest up and core tight throughout\nShoulder Mobility Issues: Hold the kettlebell lower on the chest\nHip Mobility Restrictions: Start with a higher box and progress to lower heights"
+        }
+      ]
+    }
+  }
+}

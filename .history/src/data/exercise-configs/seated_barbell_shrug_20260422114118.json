@@ -1,0 +1,105 @@
+{
+  "exerciseId": "seated_barbell_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Seated Barbell Shrug is a trapezius-focused exercise performed from a seated position with the barbell held across the thighs.\n\nSitting eliminates momentum and reduces lower back involvement, allowing for strict isolation of the upper trapezius.\n\nThis variation is popular for bodybuilding-style trap work where controlled form and full contraction are prioritized over heavy loading."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Minimizes momentum and cheating\n- Strict isolation of the upper trapezius\n- Reduces lower back strain compared to standing variations\n- Shorter range of motion for focused contraction\n- Great for bodybuilders targeting trap development\n- Consistent movement pattern for progressive overload\n- Good option when standing shrugs cause fatigue"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Trapezius\n\nSecondary: Levator Scapulae, Rhomboids, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on a bench with back support, or on a chair, with your feet flat on the floor.\n2. Hold a barbell with an overhand grip.\n3. Place your hands slightly wider than shoulder-width apart.\n4. Position the barbell under your thighs.\n5. Keep your back straight and chest lifted.\n6. Relax your arms and shoulders."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears while holding the barbell.\n2. Squeeze your trapezius at the top of the movement.\n3. Lower your shoulders back down under control.\n4. Repeat the shrug for the desired number of repetitions.\n5. Focus on engaging your shoulder muscles.\n6. Maintain proper form throughout the movement.\n7. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of shrugging straight up\n- Using too much weight and compromising form\n- Bending the arms to assist the lift\n- Leaning forward to use momentum\n- Insufficient range of motion\n- Jerking the weight with momentum\n- Not pausing at the top for full contraction\n- Poor seated posture"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Bench with Back Support or Sturdy Chair\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Flat-soled shoes recommended"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat: Upright bench with back support.\n2. Feet: Flat on the floor, hip-width apart.\n3. Grip: Overhand, slightly wider than shoulders.\n4. Bar Position: Resting on or just above the thighs.\n5. Arms: Fully extended, relaxed.\n6. Chest: Lifted, shoulders back.\n7. Back: Pressed against the bench pad.\n8. Core: Engaged for stability."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with moderate weight to master the movement.\n2. Focus on straight-up shrug motion.\n3. Add pauses at the top for greater contraction.\n4. Gradually increase weight as strength improves.\n5. Use straps when grip becomes the limiting factor.\n6. Keep reps in the 10-15 range for hypertrophy.\n7. Try slow eccentrics to increase time under tension."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_shrugs", "seated_dumbbell_shrug"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Shrug (Standing): Classic free-weight variation\n- Seated Dumbbell Shrug: Unilateral seated variation\n- Trap Bar Shrug: Neutral grip positioning\n- Smith Machine Shrug: Fixed path for stability\n- Cable Shrug: Constant tension variation\n- Kettlebell Shrug: Alternative implement"
+        },
+        {
+          "heading": "Trap Variations",
+          "content": "Barbell Shrug Standing: Classic heavy trap builder\nDumbbell Shrug: Free range of motion\nTrap Bar Shrug: Neutral hand position\nCable Face Pull: Rear delt and upper trap combo\nFarmer's Carry: Dynamic trap and grip work\nRack Pull Shrug: Heavy overload for traps"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Try dumbbell shrugs with neutral grip\nGrip Issues: Use lifting straps\nLower Back Pain: Seated variation is ideal\nLimited Mobility: Reduce range of motion\nNo Barbell: Substitute dumbbells or kettlebells\nBeginner: Start with lighter weight and focus on form"
+        }
+      ]
+    }
+  }
+}

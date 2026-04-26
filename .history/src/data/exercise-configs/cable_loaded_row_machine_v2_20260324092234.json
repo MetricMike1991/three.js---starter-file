@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_loaded_row_machine_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/99.%20Cable%20Loaded%20Row%20Machine%20V2/99.%20Cable%20Loaded%20Row%20Machine%20V2%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/99.%20Cable%20Loaded%20Row%20Machine%20V2/99.%20Cable%20Loaded%20Row%20Machine%20V2%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/99.%20Cable%20Loaded%20Row%20Machine%20V2/99.%20Cable%20Loaded%20Row%20Machine%20V2%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/99.%20Cable%20Loaded%20Row%20Machine%20V2/99.%20Cable%20Loaded%20Row%20Machine%20V2%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.614230747618151, 1.6700890404703785, -2.4503554971493995],
+    "rotation": [-2.7860619360669197, -0.7854452754348323, -2.884821259041933],
+    "target": [0.14653145956387126, 0.709191550239017, 0.1375099934797904]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9856966262542985, 1.8470101154572665, 2.3408868449848415],
+    "rotation": [-0.5232858411751935, 0.7221287903178264, 0.36432031011604205],
+    "target": [-0.2806814192349383, 0.5612226003346856, 0.11222719947046514]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Row Machine is a seated rowing exercise performed on a plate-loaded or cable-loaded machine with a fixed movement path.\n\nThis exercise primarily targets the muscles of the mid and upper back, including the latissimus dorsi, rhomboids, and trapezius.\n\nThe machine provides a stable, guided range of motion, making it an excellent option for isolating back muscles while minimizing lower back strain."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the mid and upper back effectively\n- Guided movement path reduces risk of injury\n- Minimal lower back stress compared to free-weight rows\n- Easy to adjust resistance for progressive overload\n- Encourages proper scapular retraction\n- Great for building back thickness and width\n- Suitable for all fitness levels from beginner to advanced"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Trapezius (Mid/Lower)\n\nSecondary: Rear Deltoids, Biceps, Forearms, Erector Spinae, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the machine with your feet flat on the footrests.\n2. Adjust the chest pad or seat height so the handles are at mid-chest level.\n3. Grasp the handles with an overhand grip, arms fully extended.\n4. Sit with your back straight, chest up, and shoulders down and back.\n5. Engage your core to maintain a stable torso throughout the movement."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keep your arms extended in front of you to start.\n2. Pull the handles towards your torso by driving your elbows back.\n3. Focus on squeezing your shoulder blades together at the peak of the movement.\n4. Pause briefly at the fully contracted position.\n5. Slowly release the handles back to the starting position with control.\n6. Maintain a straight back and avoid using momentum.\n7. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or jerking the weight instead of controlled pulling\n- Rounding the back during the movement\n- Shrugging shoulders up towards ears\n- Not fully retracting the shoulder blades at peak contraction\n- Pulling with the arms instead of initiating with the back\n- Leaning too far back during the pull\n- Using too heavy a weight, compromising form\n- Rushing through reps without pausing at the contraction point"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Row Machine\n- Weight Plates (for plate-loaded versions)\n- Optional: Lifting Gloves or Straps (for grip assistance)\n- Optional: Chalk (improves grip on handles)"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so the handles align with your mid-chest.\n2. Set the chest pad (if available) to allow full arm extension.\n3. Select an appropriate weight for your fitness level.\n4. Ensure the foot plates are positioned so your knees are slightly bent.\n5. Check that the cable or pulley system moves smoothly before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat and firmly planted on the footrests.\n2. Knees: Slightly bent for stability.\n3. Torso: Upright with a neutral spine.\n4. Chest: Pressed lightly against the pad (if applicable).\n5. Shoulders: Down and back, away from ears.\n6. Grip: Overhand, shoulder-width apart on the handles.\n7. Core: Engaged throughout the exercise.\n8. Head: Neutral, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_cable_row", "barbell_bent_over_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Cable Row: Free cable version with more stabilization required\n- Barbell Bent Over Row: Free-weight compound row movement\n- Single Arm Dumbbell Row: Unilateral back work for muscle balance\n- T-Bar Row: Barbell variation with chest support option\n- Lat Pulldown: Vertical pulling for lat development\n- Inverted Row: Bodyweight alternative for back training"
+        },
+        {
+          "heading": "Machine Row Variations",
+          "content": "Cable Loaded Row Machine: Standard seated row with guided path\nWide Grip Row: Wider hand position for upper back emphasis\nClose Grip Row: Narrow grip for lat and mid-back focus\nUnderhand Grip Row: Supinated grip for more bicep engagement\nSingle Arm Machine Row: Unilateral version for imbalance correction\nPause Rep Row: Added pause at contraction for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Issues: Use a neutral grip and reduce range of motion\nLower Back Pain: Ensure chest pad support, keep torso upright\nWrist Discomfort: Try neutral or underhand grip variations\nGrip Fatigue: Use lifting straps for heavier sets\nNo Machine Available: Substitute with seated cable rows or resistance band rows\nLearning Stage: Start with light weight, focus on the mind-muscle connection with the back"
+        }
+      ]
+    }
+  }
+}

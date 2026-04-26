@@ -1,0 +1,94 @@
+{
+  "exerciseId": "neutral_grip_chin_ups",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/230.%20Neutral%20Grip%20Chin%20Ups/230.%20Neutral%20Grip%20Chin%20Ups%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/230.%20Neutral%20Grip%20Chin%20Ups/230.%20Neutral%20Grip%20Chin%20Ups%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/230.%20Neutral%20Grip%20Chin%20Ups/230.%20Neutral%20Grip%20Chin%20Ups%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.0998891505236563, 2.320490335752879, 2.8705497407775753],
+    "rotation": [-0.43011392861691816, 0.6369118278049839, 0.2663486692039693],
+    "target": [0.035910973718989915, 1.157096664987146, 0.3345910612729521]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Neutral Grip Chin Up is a vertical pulling exercise performed with the palms facing each other on parallel handles or a neutral-grip pull-up bar.\n\nThe neutral grip places the shoulders and wrists in a more joint-friendly position than a pronated pull-up.\n\nIt balances emphasis between the lats, biceps, and brachialis, making it a strong all-round upper body pulling movement."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds lat, biceps, and brachialis strength\n- Shoulder-friendly grip position\n- Reduced wrist stress compared to pronated pull-ups\n- Strong carryover to rowing and pulling patterns\n- Develops grip strength and core stability\n- Scalable with bands, assistance, or added weight\n- Minimal equipment footprint"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Biceps Brachii, Brachialis\n\nSecondary: Teres Major, Rhomboids, Trapezius, Core, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Hang from a pull-up bar with palms facing each other in a neutral grip.\n2. Keep your hands shoulder-width apart or slightly wider.\n3. Arms fully extended, shoulders packed down and back.\n4. Engage your core and squeeze your glutes.\n5. Cross your ankles and keep the body in a slight hollow position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core and pull your body upward.\n2. Drive the elbows down and back as you rise.\n3. Continue pulling until your chin clears the bar.\n4. Pause briefly at the top with chest up.\n5. Lower your body in a controlled manner to the starting position.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Kipping or swinging to create momentum\n- Not reaching full arm extension at the bottom\n- Shrugging the shoulders up toward the ears\n- Pulling with the arms only, neglecting the back\n- Flaring the elbows out too wide\n- Dropping out of the top position uncontrolled\n- Holding the breath throughout the rep"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pull-Up Bar with Neutral/Parallel Handles\n- Optional: Resistance Band for Assistance\n- Optional: Dip Belt or Weighted Vest for Progression\n- Optional: Chalk for Grip\n- Flat, Stable Surface Beneath the Bar"
+        },
+        {
+          "heading": "Bar Setup",
+          "content": "1. Confirm the bar is rated for your bodyweight plus any added load.\n2. Set neutral handles at shoulder-width or slightly wider.\n3. Ensure clear space above and below the bar.\n4. For assistance, loop a band securely over the bar.\n5. For added load, attach plates to a dip belt before hanging.\n6. Test the grip position before committing to a full rep."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Palms facing each other on parallel handles.\n2. Shoulders: Packed down, away from the ears.\n3. Core: Braced throughout the set.\n4. Legs: Crossed at the ankles, slight hollow hold.\n5. Head: Neutral, eyes forward or slightly up.\n6. Breathing: Exhale on the pull, inhale on the descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["weighted_chin_ups", "band_assisted_pull_up_knees"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Chin Up: Supinated grip, stronger biceps emphasis\n- Pull Up: Pronated grip, greater lat emphasis\n- Lat Pulldown (Neutral Grip): Machine-based alternative\n- Inverted Row (Neutral Grip): Horizontal pulling variation\n- Ring Chin Up: Rotating grip on gymnastics rings\n- Weighted Chin Up: Progression with added load"
+        },
+        {
+          "heading": "Neutral Grip Variations",
+          "content": "Neutral Grip Chin Up: Standard bodyweight version\nWeighted Neutral Grip Chin Up: Added plate via dip belt\nBand-Assisted Neutral Grip Chin Up: Regression for beginners\nTempo Neutral Grip Chin Up: Slow eccentric for hypertrophy\nArcher Neutral Grip Chin Up: Unilateral progression\nIsometric Hold at Top: Build top-position strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range, avoid full dead hang\nElbow Pain: Warm up thoroughly, reduce volume\nGrip Issues: Use chalk or lifting straps\nLimited Strength: Use a resistance band or assisted machine\nNo Neutral Handles: Use two parallel bars or gym rings\nLearning Stage: Start with negatives or scapular pulls"
+        }
+      ]
+    }
+  }
+}

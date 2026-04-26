@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_loaded_upright_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/71.%20Cable%20Loaded%20Upright%20Row/71.%20Cable%20Loaded%20Upright%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/71.%20Cable%20Loaded%20Upright%20Row/71.%20Cable%20Loaded%20Upright%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/71.%20Cable%20Loaded%20Upright%20Row/71.%20Cable%20Loaded%20Upright%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/71.%20Cable%20Loaded%20Upright%20Row/71.%20Cable%20Loaded%20Upright%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.7436393734509372, 2.0734007537095334, -2.648553566327229],
+    "rotation": [-2.819791891839993, -0.792520101540725, -2.90849364469656],
+    "target": [-0.030739970123372318, 1.2275127754174793, -0.11131426545675928]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.4049988434851324, 1.9185887730723805, 3.0712086049126492],
+    "rotation": [-0.25687739950442384, 0.6633133070314725, 0.1603520097011439],
+    "target": [-0.005455815579297855, 1.1348897464190126, 0.08774257154098453]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Upright Row is a standing pulling exercise that targets the shoulders and upper traps using a cable machine.\n\nPerformed by pulling a straight bar or rope attachment from waist height up toward the chin, the movement emphasizes the lateral and anterior deltoids along with the upper trapezius.\n\nThe cable provides constant tension throughout the range of motion, making it an effective alternative to barbell or dumbbell upright rows with less stress on the wrists."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the lateral deltoids and upper trapezius for broader-looking shoulders\n- Cable provides smooth, constant tension throughout the lift\n- Less wrist strain compared to barbell upright rows\n- Rope attachment allows a more natural hand path and wrist rotation\n- Easy to adjust resistance with a pin-selected weight stack\n- Can be performed with various attachments (straight bar, EZ bar, rope)\n- Effective for building shoulder width and upper back thickness"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Deltoids (Lateral and Anterior heads), Upper Trapezius\n\nSecondary: Biceps Brachii, Brachialis, Rhomboids, Infraspinatus, Teres Minor"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Attach a straight bar or rope to the low pulley of a cable machine.\n2. Stand facing the machine approximately one step back from the pulley.\n3. Grasp the bar or rope with an overhand grip, hands shoulder-width apart.\n4. Stand tall with feet shoulder-width apart and a slight bend in the knees.\n5. Let your arms hang fully extended with the cable under tension.\n6. Brace your core and keep your chest up."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Pull the bar or rope upward toward your chin, keeping it close to your body.\n2. Lead with your elbows, driving them up and out to the sides.\n3. Raise your elbows until they are at or slightly above shoulder height.\n4. Pause briefly at the top of the movement and squeeze your shoulders.\n5. Slowly lower the bar or rope back to the starting position under control.\n6. Maintain an upright torso throughout — avoid leaning back or using momentum.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling the weight too high above shoulder level, which can impinge the shoulder joint\n- Using momentum or swinging the body to lift the weight\n- Gripping too narrow, which increases internal shoulder rotation and injury risk\n- Shrugging the shoulders up instead of leading with the elbows\n- Allowing the wrists to bend excessively at the top\n- Leaning backward to compensate for heavy weight\n- Rushing the lowering phase instead of controlling the eccentric"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable machine with a low pulley\n- Straight bar, EZ bar, or rope attachment\n- Pin-selected weight stack (built into the machine)\n- Optional: Lifting straps for heavier sets if grip is a limiting factor"
+        },
+        {
+          "heading": "Attachment Options",
+          "content": "1. Straight Bar: Classic grip, best for consistent hand width and heavier loads.\n2. EZ Bar: Angled grip reduces wrist strain and allows a more comfortable pulling position.\n3. Rope: Allows the hands to move independently and rotate naturally, which can reduce shoulder impingement risk.\n4. V-Bar: Narrow grip option for a closer hand position.\n5. Choose the attachment that feels most comfortable on your wrists and shoulders."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, standing tall.\n2. Grip: Overhand (pronated), hands approximately shoulder-width apart.\n3. Arms: Fully extended at the start with tension on the cable.\n4. Core: Braced to prevent swaying or leaning.\n5. Elbows: Lead the movement — always higher than the hands.\n6. Shoulders: Down and back at the start, not shrugged.\n7. Distance: Stand far enough from the pulley to maintain tension at the bottom."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Upright Row: Free-weight version with a barbell\n- Dumbbell Upright Row: Allows independent arm movement and wrist rotation\n- Dumbbell Lateral Raise: Isolation movement for the lateral deltoids\n- Cable Lateral Raise: Constant tension lateral delt isolation\n- Face Pulls: Targets rear delts and upper traps with a rope attachment\n- Barbell Overhead Press: Compound pressing movement for overall shoulder development"
+        },
+        {
+          "heading": "Upright Row Variations",
+          "content": "Cable Straight Bar Upright Row: Standard grip with fixed hand position\nCable Rope Upright Row: Natural hand path with rotation at the top\nCable EZ Bar Upright Row: Angled grip for wrist comfort\nWide Grip Upright Row: More lateral deltoid emphasis, less trap involvement\nNarrow Grip Upright Row: Greater upper trap emphasis\nSingle Arm Cable Upright Row: Unilateral version for correcting imbalances"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Use a rope attachment, don't pull above shoulder height, and widen your grip\nWrist Pain: Switch to a rope or EZ bar attachment for a neutral or angled grip\nLower Back Issues: Keep the core braced and avoid leaning; reduce weight if needed\nElbow Pain: Reduce range of motion and avoid excessively narrow grips\nNo Cable Machine: Substitute with dumbbell upright rows or dumbbell lateral raises\nBeginner: Start light, focus on leading with the elbows, and limit pull height to shoulder level"
+        }
+      ]
+    }
+  }
+}

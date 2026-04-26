@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_preacher_curl_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine/31.%20Plate%20Loaded%20Preacher%20Curl%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Preacher Curl Machine is an isolation exercise that targets the biceps brachii using a preacher pad to stabilize the upper arms.\n\nThe angled pad eliminates momentum and cheating, forcing the biceps to do all the work through a full range of motion.\n\nThis machine is one of the most effective tools for building bicep peak and overall arm size, as it isolates the biceps more effectively than standing curls."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the biceps with minimal cheating\n- Preacher pad eliminates swing and momentum\n- Plate-loaded design provides a natural resistance curve\n- Builds bicep peak and overall arm thickness\n- Targets both the long and short head of the biceps\n- Easy to progressively overload with small weight increments\n- Great for drop sets by quickly removing plates\n- Reduces strain on the lower back compared to standing curls"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii (Long Head and Short Head)\n\nSecondary: Brachialis, Brachioradialis, Forearm Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat position so you can place the back of your upper arms (tricep area) flat against the pad.\n2. Sit down and position your chest against the back of the preacher pad.\n3. Grip the handles with an underhand (supinated) grip.\n4. Arms should be fully extended at the starting position.\n5. Keep your upper arms pressed firmly against the pad throughout."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Fully contract the biceps and curl the handles up toward your face.\n2. Keep your upper arms pressed firmly against the pad at all times.\n3. Squeeze the biceps hard at the top of the movement.\n4. Hold the peak contraction for a brief moment.\n5. Slowly lower the handles back to the starting position with control.\n6. Do not let the weight drop — maintain tension throughout the eccentric.\n7. Stop just short of full arm extension to keep tension on the biceps.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the upper arms off the pad during the curl\n- Using momentum or swinging the body\n- Not achieving full range of motion\n- Dropping the weight on the eccentric (lowering phase)\n- Hyperextending the elbows at the bottom\n- Gripping too tightly, causing forearm fatigue\n- Seat too high or too low, causing improper arm placement\n- Rushing through reps without squeezing at the top\n- Using too much weight and compensating with shoulders"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Preacher Curl Machine\n- Weight Plates (Olympic size)\n- Optional: Wrist Wraps (for wrist support)\n- Recommended: Non-slip footwear"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so the back of your upper arms rest flat on the preacher pad.\n2. Your armpits should be near the top edge of the pad.\n3. Load equal weight on both sides of the machine.\n4. Ensure all pins and safety mechanisms are secured.\n5. Test the range of motion with no weight before loading."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Upper Arms: Back of arms (tricep area) flat against the preacher pad.\n2. Chest: Pressed lightly against the back of the pad.\n3. Feet: Flat on the floor for stability.\n4. Grip: Underhand (supinated), shoulder-width apart.\n5. Elbows: Aligned with the pivot point of the machine.\n6. Shoulders: Down and relaxed, not shrugging up.\n7. Core: Engaged to prevent swaying.\n8. Head: Neutral position, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bicep_curl", "dumbbell_bicep_curls", "alternating_dumbbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Preacher Curl: Free-weight version on a preacher bench\n- Dumbbell Preacher Curl: Unilateral preacher curl variation\n- EZ-Bar Preacher Curl: Angled grip for wrist comfort\n- Cable Preacher Curl: Constant tension through the range\n- Concentration Curl: Seated single-arm isolation\n- Spider Curl: Chest-supported curl for strict isolation"
+        },
+        {
+          "heading": "Preacher Curl Variations",
+          "content": "Standard Preacher Curl: Classic bicep isolation movement\nSingle-Arm Preacher Curl: Unilateral for balanced development\nReverse Grip Preacher Curl: Targets brachioradialis and forearms\nSlow Tempo Preacher Curl: 3-4 second eccentric for muscle building\nPause Preacher Curl: Hold at midpoint for increased difficulty\n21s Preacher Curl: 7 bottom half, 7 top half, 7 full range reps\nDrop Set Preacher Curl: Remove plates progressively for exhaustion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Reduce weight, avoid full extension at the bottom\nWrist Pain: Try a neutral grip if handles allow, use wrist wraps\nShoulder Pain: Adjust seat height, ensure arms are properly positioned\nNo Preacher Curl Machine: Use a preacher bench with barbell or dumbbells\nNo Equipment: Perform concentration curls with a dumbbell\nGrip Weakness: Use lighter weight and focus on controlled reps\nLearning Stage: Start with very light weight, focus on the squeeze"
+        }
+      ]
+    }
+  }
+}

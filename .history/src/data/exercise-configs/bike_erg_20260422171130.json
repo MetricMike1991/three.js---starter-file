@@ -1,0 +1,98 @@
+{
+  "exerciseId": "bike_erg",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/197.%20Bike%20Erg/197.%20Bike%20Erg%20HD_compressed.glb",
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bike Erg is a stationary cycling machine (such as the Concept2 BikeErg) used for cardiovascular training and lower-body conditioning.\n\nIt uses a flywheel with adjustable air resistance (damper setting) to simulate the feel of real cycling while providing accurate performance metrics.\n\nBike Ergs are popular in functional fitness, endurance training, and low-impact cardio workouts, offering a full cardio workout while being easy on the joints."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent low-impact cardiovascular exercise\n- Strengthens and conditions the lower body\n- Burns calories and improves endurance\n- Adjustable resistance suits all fitness levels\n- Easy on the knees and joints compared to running\n- Accurate performance data (distance, pace, watts, calories)\n- Great for HIIT, steady-state cardio, and recovery sessions"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings, Calves\n\nSecondary: Hip Flexors, Core, Lower Back"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Adjust the seat height and handlebar position to your comfort.\n2. Set the desired resistance level using the damper setting.\n3. Check that the monitor is powered on and ready to record your session."
+        },
+        {
+          "heading": "Mount the BikeErg",
+          "content": "1. Straddle the bike and place your feet on the pedals.\n2. Adjust the foot straps if equipped so your feet are secure.\n3. Settle into the saddle with a slight bend in the knees at the bottom of the pedal stroke."
+        },
+        {
+          "heading": "Begin Cycling",
+          "content": "1. Start pedaling in a smooth and controlled motion.\n2. You can choose between various programs or simply ride at your own pace.\n3. Maintain an even cadence and breathe steadily."
+        },
+        {
+          "heading": "Monitor Stats",
+          "content": "1. Keep an eye on the monitor for information like speed, distance, time, and resistance level.\n2. Adjust your workout intensity as desired.\n3. Use interval or pace targets to structure your session."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Seat height set too low or too high\n- Rounding the back or slouching over the handlebars\n- Gripping the handlebars too tightly\n- Pedaling only with the quads instead of driving through the full stroke\n- Setting the damper too high too soon\n- Ignoring cadence and focusing only on resistance\n- Not warming up before high-intensity efforts"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Bike Erg Machine (e.g., Concept2 BikeErg)\n- Athletic shoes with stiff soles\n- Water bottle\n- Towel\n- Optional: Heart rate monitor\n- Optional: Cycling shorts for comfort on longer sessions"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Seat Height: When seated, your leg should be almost fully extended at the bottom of the pedal stroke with a slight bend.\n2. Handlebar Height/Reach: Adjust so your torso is in a comfortable, slightly forward-leaning position.\n3. Damper Setting: Start around mid-range (3-5) and adjust based on preferred feel.\n4. Monitor: Power on, set your workout type (just ride, intervals, distance, time).\n5. Foot Straps: Adjust snugly across the widest part of your foot."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Posture: Torso slightly forward, back neutral, shoulders relaxed.\n2. Grip: Light grip on the handlebars, wrists neutral.\n3. Legs: Knees tracking in line with the feet throughout the pedal stroke.\n4. Feet: Pushing through the ball of the foot, not the toes.\n5. Breathing: Steady and rhythmic, matched to your cadence."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["concept_rower", "ski_erg", "battlerope"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Concept Rower: Full-body cardio using a rowing motion\n- Ski Erg: Upper-body focused cardio machine\n- Assault Bike: Fan bike with both arm and leg involvement\n- Spin Bike: Road-bike-style indoor cycling\n- Upright Stationary Bike: Traditional gym cardio bike\n- Recumbent Bike: Low-impact seated cycling for back support"
+        },
+        {
+          "heading": "Bike Erg Variations",
+          "content": "Steady-State Ride: Long, moderate-effort session for endurance\nIntervals: Short hard efforts with rest periods for conditioning\nSprints: Maximal efforts of 10-30 seconds\nPyramids: Increasing then decreasing work intervals\nDistance Challenge: Set a target distance and track pace\nWatt/Pace Targets: Hold a specific power output for time"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Raise seat slightly, reduce damper, use easier pace\nLower Back Issues: Adjust handlebars higher to reduce forward lean\nHip Mobility: Shorten session length, focus on smooth pedal stroke\nBalance Issues: Bike Erg is already stable; keep straps secure\nBeginners: Start with short sessions at moderate resistance to build conditioning\nNo Bike Erg: Use a spin bike, assault bike, or recumbent bike as substitutes"
+        }
+      ]
+    }
+  }
+}

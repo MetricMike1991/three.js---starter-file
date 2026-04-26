@@ -1,0 +1,105 @@
+{
+  "exerciseId": "ab_wheel_roll_outs",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/160.%20Ab%20Wheel%20Roll%20Outs/160.%20Ab%20Wheel%20Roll%20Outs%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/160.%20Ab%20Wheel%20Roll%20Outs/160.%20Ab%20Wheel%20Roll%20Outs%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/160.%20Ab%20Wheel%20Roll%20Outs/160.%20Ab%20Wheel%20Roll%20Outs%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/160.%20Ab%20Wheel%20Roll%20Outs/160.%20Ab%20Wheel%20Roll%20Outs%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [3.0720847264123505, 1.2573506876237288, 0.5169030238200257],
+    "rotation": [-1.7996868845366125, 1.2878793193140359, 1.8088158642766696],
+    "target": [0.020742359923505392, 0.39341506018936495, 0.7181770447158237]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [3.0720847335076034, 1.2573506673388148, 0.5169030443152852],
+    "rotation": [-1.799686867223321, 1.2878793273125397, 1.808815845791911],
+    "target": [0.020742359923505392, 0.39341506018936495, 0.7181770447158237]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Ab Wheel Roll Out is an advanced core exercise that uses a small wheel with handles to train the abdominal muscles through a dynamic extending and contracting movement.\n\nPerformed from a kneeling position, the exercise challenges anti-extension strength as you roll the wheel forward and pull it back using your core muscles.\n\nIt is widely used in strength training, athletic conditioning, and bodyweight fitness programmes for building exceptional core strength and stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the entire anterior core — rectus abdominis and transverse abdominis\n- Builds anti-extension strength critical for spinal health\n- Engages the lats, shoulders, and hip flexors as stabilisers\n- Highly effective for developing core endurance and control\n- Minimal equipment required — just an ab wheel\n- Scalable difficulty by adjusting roll-out distance\n- Translates directly to improved performance in compound lifts"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Transverse Abdominis\n\nSecondary: Latissimus Dorsi, Deltoids, Hip Flexors, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Kneel on the floor on a mat for comfort.\n2. Place the ab wheel on the ground in front of you.\n3. Grip the handles of the ab wheel with an overhand grip.\n4. Position your shoulders directly over the wheel.\n5. Engage your core and maintain a neutral spine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core muscles and brace your abdominals.\n2. Slowly roll the wheel forward, extending your arms and allowing your body to move forward.\n3. Keep your back straight throughout — do not allow your lower back to sag.\n4. Continue rolling forward until you feel a deep stretch in your abdominal muscles without losing control.\n5. Pause briefly at the fully extended position.\n6. Slowly reverse the movement by pulling the wheel back towards your knees, using your core muscles to control the motion.\n7. Return to the starting position and repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the lower back to sag or hyperextend during the roll-out\n- Using the arms and shoulders to pull back instead of the core\n- Rolling out too far before building adequate core strength\n- Not engaging the core before initiating the movement\n- Moving too quickly and losing control of the wheel\n- Flaring the elbows out instead of keeping them tucked\n- Holding the breath instead of breathing out on the roll-out and in on the return"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Ab wheel (roller with handles)\n- Exercise mat (recommended for knee comfort)"
+        },
+        {
+          "heading": "Space Requirements",
+          "content": "1. Find a flat, open area with enough space to fully extend your body forward from a kneeling position.\n2. Use an exercise mat to protect your knees.\n3. Ensure the floor surface provides enough grip for the wheel to roll smoothly without slipping."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Knees: On the mat, hip-width apart.\n2. Hands: Gripping the ab wheel handles with an overhand grip.\n3. Arms: Extended but not locked, shoulders over the wheel.\n4. Core: Fully engaged and braced before rolling out.\n5. Back: Neutral spine — slight posterior pelvic tilt to protect the lower back.\n6. Head: In line with the spine — do not crane the neck up.\n7. Breathing: Exhale as you roll out, inhale as you pull back."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flutter_kicks", "jack_knife", "star_plank"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Roll Out: Using a loaded barbell instead of an ab wheel\n- Stability Ball Roll Out: Forearms on a Swiss ball for a similar movement pattern\n- TRX Fallout: Suspension trainer version of the roll-out\n- Plank: Isometric core hold for anti-extension strength\n- Dead Bug: Supine anti-extension exercise for core control\n- Body Saw: Plank variation with forward and backward movement"
+        },
+        {
+          "heading": "Ab Wheel Roll Out Variations",
+          "content": "Kneeling Roll Out: Standard version from the knees\nStanding Roll Out: Advanced — rolling out from a standing position\nSingle Arm Roll Out: Unilateral version for added core challenge\nOblique Roll Out: Rolling at an angle to target the obliques\nBanded Roll Out: Using a resistance band for assistance on the return\nWall Roll Out: Rolling towards a wall to limit range of motion for beginners\nSlow Eccentric Roll Out: Emphasising a slow, controlled roll-out for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce the roll-out distance and focus on maintaining a posterior pelvic tilt\nShoulder Issues: Keep the range of motion short and avoid full extension overhead\nWrist Discomfort: Ensure the handles are comfortable — use padded grips if needed\nBeginner: Start with wall roll-outs to limit range of motion and build strength progressively\nKnee Pain: Use a thick mat or folded towel under the knees for extra cushioning\nPost-Injury: Consult a physiotherapist before performing dynamic core extension exercises"
+        }
+      ]
+    }
+  }
+}

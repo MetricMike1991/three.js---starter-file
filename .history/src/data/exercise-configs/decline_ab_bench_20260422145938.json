@@ -1,0 +1,105 @@
+{
+  "exerciseId": "decline_ab_bench",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/192.%20Decline%20Ab%20Bench/192.%20Decline%20Ab%20Bench%20SD_compressed%20(1).glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/192.%20Decline%20Ab%20Bench/192.%20Decline%20Ab%20Bench%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/192.%20Decline%20Ab%20Bench/192.%20Decline%20Ab%20Bench%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/192.%20Decline%20Ab%20Bench/192.%20Decline%20Ab%20Bench%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.08, -0.0519999999999999],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.7355364155770208, 1.5484390979154516, -0.7977826316614518],
+    "rotation": [-2.2527940909110393, -0.8773898955739313, -2.3833203291360805],
+    "target": [0.012649497438374173, 0.4205459812831591, 0.11803375121774601]
+  },
+  "modelHQ": {
+    "position": [0, -0.102, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.615745881017299, 1.2891434985725851, -1.0073641373389925],
+    "rotation": [-2.432560762137603, -0.8358666645304497, -2.5748250667621484],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/192.%20Decline%20Ab%20Bench/Decline%20Ab%20Bench_250x250_2026-04-22T13-59-15.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Decline Ab Bench Crunch is a bodyweight abdominal exercise performed on a decline bench with feet anchored at the top.\n\nThe decline angle increases the range of motion and extends the abdominals at the bottom of the rep, creating more tension on the core compared to a flat-ground crunch.\n\nThis is an excellent core-building exercise for intermediate lifters looking to progress beyond floor-based ab work."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increased range of motion vs floor crunch\n- Greater stretch on the abs at the start\n- Adjustable difficulty via bench angle\n- Targets the full rectus abdominis\n- Reduced hip flexor dominance with correct form\n- Progressive — can add weight to load further\n- Excellent for building visible ab definition"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis\n\nSecondary: Obliques, Transverse Abdominis, Hip Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the decline ab bench to your desired angle.\n2. Secure your feet at the top end of the bench.\n3. Lie back with your upper body reclined.\n4. Cross your arms over your chest or place your hands behind your head.\n5. Keep your neck in a neutral position.\n6. Engage your core before initiating the movement.\n7. Take a breath in to prepare."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Exhale as you lift your upper body off the bench by contracting your abdominal muscles.\n2. Keep your neck neutral and focus on using your abs to lift.\n3. Squeeze your abs at the top of the movement.\n4. Inhale as you slowly lower your upper body back to the starting position.\n5. Control the movement throughout.\n6. Avoid letting your back slam down at the bottom.\n7. Repeat for your desired number of reps.\n8. Maintain proper form throughout the set."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling on the neck with the hands\n- Using momentum instead of the abs to lift\n- Sitting up too far — reduces constant tension\n- Holding breath throughout the rep\n- Rounding the lower back or tucking the chin excessively\n- Going too fast and losing form\n- Not controlling the lowering phase\n- Using too steep a decline angle before you are ready"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Decline Ab Bench\n- Optional: Weight Plate (for added resistance)\n- Optional: Exercise Mat for any floor components\n- Flat-soled shoes recommended\n- Comfortable training attire"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Bench Angle: Start shallow and progress as strength improves.\n2. Foot Position: Secured firmly under the foot pads.\n3. Hip/Knee: Hips flexed, knees bent at roughly 90 degrees.\n4. Back: Flat against the bench in the starting position.\n5. Arms: Crossed over chest or fingers lightly touching temples.\n6. Neck: Neutral, with a fist-sized gap under the chin.\n7. Core: Braced before each rep.\n8. Head: Neutral — do not pull or crane forward."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with a shallow decline to learn the movement.\n2. Focus on full ab contraction rather than sitting up fully.\n3. Pause at the top of each rep for extra tension.\n4. Slow the lowering phase to increase time under tension.\n5. Increase the bench angle as you get stronger.\n6. Hold a weight plate against the chest to add load.\n7. Try twisting crunches to target the obliques.\n8. Keep reps in the 10-20 range for hypertrophy."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["abdominal_crunch_machine", "ab_wheel_roll_outs"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Floor Crunch: Easier bodyweight alternative\n- Abdominal Crunch Machine: Machine-loaded variation\n- Cable Crunch: Heavy weighted variation\n- Ab Wheel Roll Out: Full-core dynamic exercise\n- Sit Up: Fuller range of motion\n- Hanging Leg Raise: Lower ab focused alternative"
+        },
+        {
+          "heading": "Ab Variations",
+          "content": "Floor Crunch: Beginner-friendly base exercise\nCable Crunch: Heavy weighted progression\nDecline Sit Up: Fuller range of motion version\nTwisting Decline Crunch: Oblique emphasis\nWeighted Decline Crunch: Progressive overload\nAb Wheel Rollout: Dynamic anti-extension variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce bench angle and range of motion\nNeck Issues: Cross arms over chest and avoid pulling on head\nNo Decline Bench: Use floor crunches with raised feet\nHip Flexor Tightness: Reduce decline angle and focus on abs\nLimited Mobility: Start at a flat angle and progress gradually\nBeginner: Start with shallow decline and fewer reps to build capacity"
+        }
+      ]
+    }
+  }
+}

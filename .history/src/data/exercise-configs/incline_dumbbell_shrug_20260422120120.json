@@ -1,0 +1,105 @@
+{
+  "exerciseId": "incline_dumbbell_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/187.%20Incline%20Dumbbell%20Shrug/187.%20Incline%20Dumbbell%20Shrug%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/187.%20Incline%20Dumbbell%20Shrug/187.%20Incline%20Dumbbell%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/187.%20Incline%20Dumbbell%20Shrug/187.%20Incline%20Dumbbell%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/187.%20Incline%20Dumbbell%20Shrug/187.%20Incline%20Dumbbell%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.6669071252971994, 2.2323435350137983, 1.4707394440418635],
+    "rotation": [-0.7523926658957297, 0.5957224715445858, 0.4836339695590964],
+    "target": [0.10066752735788002, 0.6533684000967727, -0.21606347773950305]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.5386208031273036, 1.9061854646551013, 1.3038232468421582],
+    "rotation": [-0.7083578563034012, 0.6057281077455726, 0.45380653306324853],
+    "target": [0.1502221656555154, 0.6019663784967343, -0.21859250729628013]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/187.%20Incline%20Dumbbell%20Shrug/Incline%20Dumbbell%20Shrug_250x250_2026-04-22T11-01-03.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Incline Dumbbell Shrug is a trapezius exercise performed face-down on an incline bench with a dumbbell in each hand.\n\nBy lying chest-down on the incline, this variation eliminates the ability to cheat with body momentum and places maximum tension directly on the upper traps.\n\nThis is a strict isolation movement ideal for shaping the upper back and improving mind-muscle connection with the trapezius."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Prevents cheating by removing momentum\n- Strict isolation of upper traps\n- Reduced lower back stress\n- Promotes better mind-muscle connection\n- Free range of motion with dumbbells\n- Improves posture and upper back thickness\n- Great accessory movement for heavy shrug work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Trapezius\n\nSecondary: Levator Scapulae, Rhomboids, Rear Deltoids, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an incline bench to a comfortable angle, typically around 30 to 45 degrees.\n2. Select a pair of dumbbells of appropriate weight.\n3. Lay chest-down on the incline bench.\n4. Rest your chest on the upright pad.\n5. Plant your feet firmly on the floor for support.\n6. Hold a dumbbell in each hand with a neutral grip.\n7. Let the dumbbells hang straight down with arms extended."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears.\n2. Keep your arms straight throughout the movement.\n3. Squeeze your trapezius at the top of the movement.\n4. Lower your shoulders back down under control.\n5. Repeat the shrug for the desired number of repetitions.\n6. Focus on engaging your shoulder muscles.\n7. Maintain proper form throughout the movement.\n8. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bending the arms during the lift\n- Rolling the shoulders instead of shrugging straight up\n- Using too much weight and losing form\n- Lifting the chest off the pad\n- Insufficient range of motion\n- Rushing the reps without control\n- Not pausing at the top\n- Setting the bench at too steep an angle"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Adjustable Incline Bench\n- Pair of Dumbbells\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Flat-soled shoes recommended"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Bench Angle: 30 to 45 degrees.\n2. Chest: Resting firmly on the upright pad.\n3. Feet: Planted on the floor for support.\n4. Grip: Neutral grip on each dumbbell.\n5. Arms: Fully extended, hanging straight down.\n6. Head: Neutral, slightly off the top of the pad.\n7. Core: Engaged for stability.\n8. Shoulders: Relaxed and allowed to drop fully."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with light dumbbells to learn the movement.\n2. Focus on straight-up shrug motion.\n3. Pause at the top for 1-2 seconds for peak contraction.\n4. Gradually increase weight as form improves.\n5. Use straps when grip becomes limiting.\n6. Keep reps in the 10-15 range for hypertrophy.\n7. Pair with heavier standing shrugs for full trap development."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_dumbbell_shrug", "dumbbell_shrug"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Shrug: Standing free-weight variation\n- Seated Dumbbell Shrug: Removes lower body involvement\n- Barbell Shrug: Heavy trap builder\n- Smith Machine Shrug: Fixed bar path\n- Trap Bar Shrug: Neutral grip position\n- Cable Shrug: Constant tension variation"
+        },
+        {
+          "heading": "Trap Variations",
+          "content": "Dumbbell Shrug: Classic standing variation\nSeated Dumbbell Shrug: Seated isolation\nBarbell Shrug: Heaviest loading option\nTrap Bar Shrug: Neutral hand position\nSmith Machine Shrug: Fixed path version\nFarmer's Carry: Dynamic trap and grip work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Neutral grip is usually shoulder-friendly\nGrip Issues: Use lifting straps\nLower Back Pain: Incline position reduces spinal loading\nLimited Mobility: Reduce range of motion\nNo Incline Bench: Use a standing dumbbell shrug instead\nBeginner: Start with light dumbbells to master the pattern"
+        }
+      ]
+    }
+  }
+}

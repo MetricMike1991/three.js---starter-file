@@ -1,0 +1,94 @@
+{
+  "exerciseId": "sandbag_hip_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/228.%20Sandbag%20Hip%20Extension/228.%20Sandbag%20Hip%20Extension%20SD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.729657641355203, 2.5520613286985734, -1.569225207564072],
+    "rotation": [-2.324806553097, -0.632462586096862, -2.5797945826247006],
+    "target": [0.000493153253177668, 0.8312206476992686, 0.046842396268706586]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Sandbag Hip Extension is a posterior chain exercise performed on a hyperextension (45 or 90 degree) bench with a sandbag loaded across the upper back.\n\nIt reinforces hip hinge mechanics while loading the glutes, hamstrings, and erector spinae through a full range of motion.\n\nThe sandbag adds a conforming, unstable load that further challenges core bracing and spinal stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strengthens glutes, hamstrings, and lower back\n- Reinforces a clean hip hinge pattern\n- Builds spinal erector endurance for heavier lifts\n- Unstable sandbag load increases core engagement\n- Minimal equipment footprint\n- Accessible progression from bodyweight hyperextensions\n- Supports deadlift and squat lockout strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus, Hamstrings, Erector Spinae\n\nSecondary: Core, Adductors, Upper Back"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie facedown with hips at the edge of a hyperextension bench.\n2. Place a sandbag across your upper back, securing it with your arms if needed.\n3. Cross arms over your chest or place hands behind your head.\n4. Keep legs straight or slightly bent, heels anchored under the pads.\n5. Set a neutral spine from head to hips before beginning."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Hinge only at the hip joint, lowering your torso toward the floor.\n2. Keep the spine neutral throughout the descent.\n3. Drive your hips into the pad to extend back up.\n4. Squeeze glutes at the top, maintaining a neutral spine.\n5. Avoid hyperextending past a straight line with the legs.\n6. Lower down with control. Repeat for desired reps, emphasizing contraction in the lower back and glutes."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding or hyperextending the lower back\n- Using momentum instead of controlled tempo\n- Letting the sandbag shift or slide during reps\n- Bending from the waist rather than the hips\n- Overloading before mastering bodyweight form\n- Jerking the head up at the top of the rep\n- Holding the breath throughout the full set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Hyperextension Bench (45 or 90 degree)\n- Sandbag (start light and progress cautiously)\n- Optional: Towel or Pad for Upper Back Comfort\n- Optional: Spotter to Place or Remove the Sandbag\n- Optional: Lifting Belt for Additional Bracing"
+        },
+        {
+          "heading": "Bench Adjustment",
+          "content": "1. Set the foot pad so heels sit firmly against it.\n2. Adjust the hip pad so its upper edge is just below your hip crease.\n3. Too high pinches the hips; too low limits range of motion.\n4. Lock all adjustments before loading the sandbag.\n5. Test the range of motion without load first.\n6. Confirm stable footing for the bench on the floor."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Sandbag Position: Centered across the upper back, not the neck.\n2. Grip: Hands crossed on chest or cradling the sandbag.\n3. Hips: Aligned so the hinge happens at the hip, not the low back.\n4. Legs: Straight or with a soft knee bend.\n5. Core: Braced throughout the set.\n6. Head: Neutral, eyes looking at the floor in line with spine.\n7. Breathing: Inhale on descent, exhale on extension."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "barbell_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Back Extension (Bodyweight): Foundational unloaded version\n- Barbell Back Extension: Heavier loading with a bar\n- Good Morning: Standing hip hinge with barbell\n- Romanian Deadlift: Free-standing hip hinge with load\n- Reverse Hyperextension: Hip extension with legs moving instead of torso\n- Glute-Ham Raise: Combined hip and knee extension for hamstrings"
+        },
+        {
+          "heading": "Hip Extension Variations",
+          "content": "Sandbag Hip Extension: Soft, unstable load across upper back\nWeighted Plate Hip Extension: Plate held to chest for loading\nBanded Hip Extension: Resistance band anchored under the bench\nIsometric Hip Extension: Pause at the top for glute activation\nSingle-Leg Hip Extension: Unilateral variation for balance\nTempo Hip Extension: Slow eccentric for hypertrophy"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce load, shorten range of motion\nHip Mobility Issues: Warm up the hips thoroughly before loading\nNo Hyperextension Bench: Use a stability ball or glute bridges\nBalance Issues: Use a 45-degree bench for greater stability\nNeck Discomfort: Reposition sandbag lower on the upper back\nLearning Stage: Master bodyweight reps before adding a sandbag"
+        }
+      ]
+    }
+  }
+}

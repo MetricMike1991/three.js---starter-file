@@ -1,0 +1,105 @@
+{
+  "exerciseId": "box_jump",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/242.%20Box%20Jump/242.%20Box%20Jump%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/242.%20Box%20Jump/242.%20Box%20Jump%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/242.%20Box%20Jump/242.%20Box%20Jump%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/242.%20Box%20Jump/242.%20Box%20Jump%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.4937047208020064, 1.0352103343096353, 2.2992439928311303],
+    "rotation": [-0.22515461907971204, 0.6653055169892018, 0.14045416207330694],
+    "target": [-0.06805676613223219, 0.5908362284875718, 0.3590684661704874]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.4937047208020064, 1.0352103343096353, 2.2992439928311303],
+    "rotation": [-0.22515461907971204, 0.6653055169892018, 0.14045416207330694],
+    "target": [-0.06805676613223219, 0.5908362284875718, 0.3590684661704874]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/242.%20Box%20Jump/Box%20Jump_250x250_2026-04-24T10-08-47.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Box Jump is a powerful plyometric exercise that develops explosive lower body strength, athletic power, and coordination.\n\nBy jumping from a stationary position onto an elevated box, you train the muscles responsible for explosive force production while also challenging balance, timing, and neuromuscular control.\n\nBox Jumps are a staple in athletic performance training, CrossFit, and general conditioning programs due to their carryover to sprinting, jumping, and overall lower body power."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops explosive lower body power\n- Improves vertical jump height and athletic performance\n- Enhances fast-twitch muscle fibre recruitment\n- Strengthens quads, glutes, hamstrings, and calves\n- Improves coordination, timing, and balance\n- Builds ankle, knee, and hip stability\n- Trains force absorption on landing\n- Burns calories and boosts cardiovascular conditioning\n- Requires minimal equipment - just a box\n- Translates to sports performance (sprinting, jumping, change of direction)\n- Builds mental toughness and confidence"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings, Calves\n\nSecondary: Hip Flexors, Core, Lower Back, Shoulders (from arm swing)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand facing the box with feet shoulder-width apart.\n2. Position yourself a comfortable distance from the box (roughly 6-12 inches away).\n3. Chest up, shoulders back, core engaged.\n4. Arms relaxed at your sides, ready to swing.\n5. Eyes focused on the top edge of the box.\n6. Ensure the box is stable and on a non-slip surface."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower into a semi-squat position (quarter to half squat depth).\n2. Simultaneously swing your arms back behind your hips to load the jump.\n3. Explode upwards and forwards, fully extending hips, knees, and ankles.\n4. Swing your arms forward and up to generate additional momentum.\n5. Tuck your knees up towards your chest during the flight phase.\n6. Land softly on the box with both feet flat and knees slightly bent.\n7. Absorb the landing by bending through the hips, knees, and ankles.\n8. Stand up tall on the box to complete the rep.\n9. Step back down carefully one foot at a time (do not jump down).\n10. Reset your stance and prepare for the next repetition."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Choosing a box that is too tall for your ability\n- Landing with straight or locked knees (risk of injury)\n- Landing with knees caving inward\n- Using only the legs and neglecting the arm swing\n- Landing on toes instead of the whole foot\n- Jumping down from the box (use stepping down instead to protect joints)\n- Not fully extending the hips at the top of the jump\n- Poor posture - rounding the back during the load phase\n- Rushing reps without resetting proper form\n- Insufficient rest between jumps reducing power output"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plyometric Box (wooden, foam, or metal)\n- Non-slip flat surface\n- Supportive athletic footwear\n- Optional: Athletic tape for grip on box surface\n- Optional: Gym mat around box for fall safety"
+        },
+        {
+          "heading": "Choosing Box Height",
+          "content": "1. Beginner: 12-18 inches (30-45 cm).\n2. Intermediate: 20-24 inches (50-60 cm).\n3. Advanced: 24-30 inches (60-75 cm).\n4. Elite Athlete: 30+ inches (75+ cm).\n5. Start with a conservative height and progress only when form is perfect.\n6. If unsure, choose a lower box - power and form matter more than height.\n7. Soft foam boxes are recommended for beginners to reduce shin injury risk."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, pointed straight ahead.\n2. Stance Distance: 6-12 inches from the box.\n3. Knees: Tracking in line with toes during loading and landing.\n4. Hips: Hinged slightly back during the load phase.\n5. Core: Braced throughout the movement.\n6. Chest: Lifted and open.\n7. Arms: Loose and relaxed, ready to swing.\n8. Eyes: Focused on the top edge of the box.\n9. Breathing: Inhale during the load, exhale powerfully on the jump."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "barbell_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Squat Jump: Plyometric without the box\n- Broad Jump: Horizontal explosive power\n- Depth Jump: Stepping off box then jumping up immediately\n- Tuck Jump: Knees to chest on each rep\n- Step-Up: Lower intensity alternative\n- Bulgarian Split Squat: Builds single-leg strength without impact\n- Kettlebell Swing: Hip-drive power development"
+        },
+        {
+          "heading": "Box Jump Variations",
+          "content": "Standard Box Jump: Two-footed takeoff and landing\nSingle-Leg Box Jump: One leg takeoff and landing (advanced)\nLateral Box Jump: Jumping sideways onto the box\nBox Jump Over: Jumping onto then off the other side\nSeated Box Jump: Starting from a seated position (pure concentric power)\nWeighted Box Jump: Holding dumbbells or wearing a weighted vest\nDepth Jump: Step off box, land, then immediately jump onto another box\nBox Jump to Step Down: Standard protocol - always step down, don't jump down"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce box height or switch to Step-Ups\nAnkle Issues: Start with very low box (6-12 inches) or use Squat Jumps on flat ground\nBalance Concerns: Use a foam box and start with lower heights\nBack Pain: Focus on squat patterning first before reintroducing jumps\nBeginner: Practise the arm swing and squat pattern before adding the jump\nReturning from Injury: Start with Step-Ups and progress to low Box Jumps\nNo Box Available: Use Squat Jumps, Tuck Jumps, or Broad Jumps for similar benefits"
+        }
+      ]
+    }
+  }
+}

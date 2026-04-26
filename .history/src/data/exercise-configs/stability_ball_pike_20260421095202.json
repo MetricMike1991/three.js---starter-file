@@ -1,0 +1,105 @@
+{
+  "exerciseId": "stability_ball_pike",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/165.%20Stability%20Ball%20Pike/165%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/165.%20Stability%20Ball%20Pike/165.%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/165.%20Stability%20Ball%20Pike/165%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/165.%20Stability%20Ball%20Pike/165%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.5819446711104814, 1.6931667357052738, -1.6496224833091147],
+    "rotation": [-2.5319720992016688, 0.9036608358407902, 2.639805594204641],
+    "target": [0.002135113173658791, 0.5298100869229992, 0.01623222040644099]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.4248675237732125, 1.2532710086949206, -0.78242110253927],
+    "rotation": [-2.268438114195469, 0.844962007508671, 2.4130733049845894],
+    "target": [-0.010635244144962306, 0.2769848280134237, 0.03596554843122161]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Stability Ball Pike is an advanced bodyweight core exercise that combines a plank with a hip-flexion pike movement while the feet are balanced on a stability ball.\n\nIt heavily targets the abdominals and hip flexors while also challenging the shoulders, chest, and serratus anterior as stabilizers.\n\nThe unstable surface of the ball forces the core to work harder to maintain control, making it a highly effective exercise for building dynamic core strength and total-body stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strongly targets the rectus abdominis and hip flexors\n- Builds shoulder stability and scapular control\n- Engages the serratus anterior and upper back\n- Challenges balance and proprioception\n- Trains the core under both static and dynamic conditions\n- Improves hip mobility through a controlled flexion pattern\n- Bridges the gap between planks and more advanced gymnastic movements\n- Requires minimal equipment"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Hip Flexors\n\nSecondary: Obliques, Transverse Abdominis, Anterior Deltoids, Pectorals, Serratus Anterior, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a stability ball on the floor in an open area.\n2. Get into a high plank with your feet resting on top of the ball.\n3. Position your hands directly under your shoulders, fingers spread.\n4. Keep your body in a straight line from head to heels.\n5. Brace your core and engage your glutes before beginning."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core muscles and slowly lift your hips toward the ceiling.\n2. Roll the stability ball toward your chest as your hips rise.\n3. Keep your arms straight and shoulders stacked over your hands.\n4. Pause briefly at the top with hips high and back flat.\n5. Keep your core engaged and maintain control as you roll the ball back to the starting position.\n6. Finish fully extended in a high plank.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag in the plank position\n- Rushing the movement and losing control of the ball\n- Piking from the lower back instead of the hips and abs\n- Allowing shoulders to drift forward of the hands\n- Bending the knees excessively during the pike\n- Holding the breath throughout the rep\n- Not fully extending back to plank between reps\n- Placing feet too far forward or back on the ball for stability"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Stability Ball (sized appropriately for your height)\n- Non-slip floor surface or exercise mat\n- Open space to extend fully in plank position\n- Optional: Wall behind you for ball control when learning\n- Optional: Yoga mat under the hands for grip and comfort"
+        },
+        {
+          "heading": "Finding Your Position",
+          "content": "1. Kneel behind the stability ball and lay your torso across it.\n2. Walk your hands forward until the ball is under your shins or feet.\n3. For beginners, keep the ball under the shins; advanced users position it under the feet.\n4. Set hands directly beneath the shoulders.\n5. Create a straight line from head to heels.\n6. Brace the core before initiating the movement."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Directly under shoulders, fingers spread for support.\n2. Shoulders: Stacked over hands, pushed away from ears.\n3. Core: Fully engaged and braced.\n4. Hips: Level with shoulders in the plank, lifted high in the pike.\n5. Legs: Straight, feet balanced on the ball.\n6. Head: Neutral, eyes looking between your hands.\n7. Breathing: Exhale as you pike up, inhale as you return to plank."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Stability Ball Knee Tuck: Easier progression with bent knees\n- TRX Pike: Suspension trainer version with similar mechanics\n- Ab Wheel Roll Outs: Loaded core movement on the anterior chain\n- Hanging Leg Raise: Advanced core raise from a pull-up bar\n- V-Ups: Floor-based dynamic core flexion\n- Pike Push Up: Shoulder-focused variation of the pike position"
+        },
+        {
+          "heading": "Pike Variations",
+          "content": "Stability Ball Pike: Standard version with feet on the ball\nStability Ball Knee Tuck: Beginner progression with knees drawn in\nTRX Pike: Performed with feet in suspension straps\nSlider Pike: Feet on furniture sliders or towels on a smooth floor\nPike Push Up: Static pike position with a shoulder press movement\nWeighted Pike: Advanced variation with a small weight placed on the hips"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion or switch to planks with knee tucks\nWrist Pain: Use push-up handles or perform on forearms (modified variation)\nCore Weakness: Start with stability ball knee tucks before progressing to full pikes\nBalance Issues: Place the ball against a wall for extra stability\nLower Back Pain: Reduce pike height and focus on core bracing\nNo Stability Ball: Use furniture sliders, towels on a hard floor, or a TRX"
+        }
+      ]
+    }
+  }
+}

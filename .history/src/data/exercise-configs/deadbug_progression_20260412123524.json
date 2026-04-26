@@ -1,0 +1,105 @@
+{
+  "exerciseId": "deadbug_progression",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/143.%20Deadbug%20Progression/143.%20Deadbug%20Progression%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/143.%20Deadbug%20Progression/143.%20Deadbug%20Progression%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/143.%20Deadbug%20Progression/143.%20Deadbug%20Progression%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/143.%20Deadbug%20Progression/143.%20Deadbug%20Progression%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Deadbug Progression is a core stability exercise performed lying on your back with arms and legs in the air.\n\nIt involves alternating opposite arm and leg extensions while maintaining a braced core and a flat lower back against the floor.\n\nWidely used in physiotherapy, athletic training, and general fitness, the Deadbug is one of the most effective anti-extension core exercises for building a strong, stable midsection."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops deep core stability and anti-extension strength\n- Teaches proper bracing and coordination between the upper and lower body\n- Low impact and spine-friendly — suitable for all fitness levels\n- Improves posture and pelvic control\n- Helps prevent lower back pain by strengthening the stabilising muscles\n- Enhances motor control and contralateral (opposite side) coordination\n- Easily scalable — progressions available for beginners through advanced athletes"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Transverse Abdominis, Obliques\n\nSecondary: Hip Flexors, Erector Spinae (isometric), Diaphragm, Quadriceps (eccentric control during leg extension)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie flat on your back on an exercise mat or firm surface.\n2. Extend both arms straight up toward the ceiling, directly above your shoulders.\n3. Lift your legs so your hips and knees are both bent at 90-degree angles, with your shins parallel to the floor.\n4. Press your lower back firmly into the floor — there should be no gap between your back and the ground.\n5. Engage your core by pulling your belly button in toward your spine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Slowly lower your right arm overhead and your left leg toward the floor simultaneously, keeping them just above the ground.\n3. Keep your lower back pressed firmly into the floor throughout the entire movement.\n4. Pause briefly at the bottom, then return your arm and leg to the starting position.\n5. Repeat on the opposite side — lower your left arm and right leg.\n6. Continue alternating sides for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the lower back to arch off the floor as the limbs extend\n- Moving too quickly and losing core control\n- Holding the breath instead of maintaining steady breathing\n- Extending the limbs too far before building adequate core strength\n- Not fully returning to the starting position between reps\n- Lifting the head or straining the neck\n- Using momentum rather than slow, controlled movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Exercise mat or padded surface for comfort\n- Clear floor space\n- No additional equipment required — this is a bodyweight exercise\n- Optional: Small towel or yoga block under the lower back for proprioceptive feedback\n- Optional: Resistance band around feet for advanced progression"
+        },
+        {
+          "heading": "Progression Levels",
+          "content": "1. Beginner: Extend only the legs while keeping both arms stationary overhead.\n2. Intermediate: Alternate opposite arm and leg extensions (standard Deadbug).\n3. Advanced: Add a slow tempo (3–5 seconds per rep) for increased time under tension.\n4. Advanced: Hold a light dumbbell or medicine ball in your hands.\n5. Advanced: Wear ankle weights to increase the demand on the core.\n6. Always master the current level before progressing — form is paramount."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Firmly pressed into the floor with no arch at any point.\n2. Arms: Extended straight up above the shoulders to start.\n3. Legs: Hips and knees at 90 degrees, shins parallel to the floor.\n4. Core: Braced throughout — imagine pulling your belly button to the floor.\n5. Breathing: Exhale as you extend the limbs, inhale as you return.\n6. Head: Resting on the floor in a neutral position — do not lift or strain the neck."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "stability_ball_plank"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Plank: Isometric core hold targeting similar stabilising muscles\n- Bird Dog: Opposite arm and leg extension from a hands-and-knees position\n- Hollow Body Hold: Anti-extension hold with arms and legs extended\n- Pallof Press: Anti-rotation core exercise using cables or bands\n- Ab Wheel Rollout: Advanced anti-extension core movement\n- Reverse Crunch: Targets lower abdominals with spinal flexion"
+        },
+        {
+          "heading": "Deadbug Variations",
+          "content": "Standard Deadbug: Alternating opposite arm and leg extensions\nLegs-Only Deadbug: Arms stay stationary, only legs extend — beginner variation\nBanded Deadbug: Resistance band around feet for added core demand\nWeighted Deadbug: Hold a dumbbell or medicine ball for extra resistance\nTempo Deadbug: Slow 3–5 second extensions for increased time under tension\nSingle-Side Deadbug: Extend same-side arm and leg for a different stability challenge"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Ensure your back stays flat — regress to legs-only if needed\nHip Flexor Tightness: Reduce the range of leg extension until mobility improves\nShoulder Mobility Issues: Keep arms bent or reduce overhead range of motion\nNeck Strain: Keep your head resting on the floor and avoid lifting\nBeginner: Start with legs-only Deadbugs and progress to full alternating once form is solid\nPost-Injury: Consult a physiotherapist — the Deadbug is commonly used in rehabilitation programmes"
+        }
+      ]
+    }
+  }
+}

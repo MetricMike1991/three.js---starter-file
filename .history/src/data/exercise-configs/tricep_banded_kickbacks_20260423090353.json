@@ -1,0 +1,102 @@
+{
+  "exerciseId": "tricep_banded_kickbacks",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/211.%20Tricep%20Banded%20Kickbacks/211.%20Tricep%20Banded%20Kickbacks%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/211.%20Tricep%20Banded%20Kickbacks/211.%20Tricep%20Banded%20Kickbacks%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/211.%20Tricep%20Banded%20Kickbacks/211.%20Tricep%20Banded%20Kickbacks%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.8533541850839463, 2.0272508848864543, -0.552518344869986],
+    "rotation": [-2.4138616087400444, 0.9439628344051394, 2.516594749021517],
+    "target": [-0.14541005011835498, 0.5825306294909196, 1.069232759994325]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tricep Banded Kickback is an isolation exercise that targets the triceps, with particular emphasis on the lateral head, by extending the arm back against band tension.\n\nPerformed in a hinged position with the upper arm pinned to the torso, it produces peak contraction at lockout and a strong pump.\n\nIt is a joint-friendly accessory movement for adding arm size, elbow extension strength, and upper-body detail."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the triceps with peak contraction at lockout\n- Accommodating band tension through the range of motion\n- Low-impact and joint-friendly\n- Portable and equipment-efficient\n- Trains scapular stability through the hinge position\n- Easily scaled by changing band thickness or stance\n- Great finisher for upper-body training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (all three heads, emphasis on Lateral Head)\n\nSecondary: Rear Deltoids, Core, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Step on the band with one or both feet to anchor it.\n2. Hinge forward at the hips with a flat back, chest up.\n3. Grasp the handle(s) with a neutral grip."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Pin the upper arm tight to the side of the torso.\n2. Bend the elbow to about 90 degrees.\n3. Brace the core and pack the shoulder."
+        },
+        {
+          "heading": "Kickback",
+          "content": "1. Exhale and extend the arm straight back until the elbow locks out.\n2. Keep the upper arm still; only the forearm moves.\n3. Squeeze the triceps hard at full extension."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Inhale and bend the elbow back to 90 degrees under control.\n2. Maintain tension on the band throughout.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the upper arm to drop or swing\n- Rounding the lower back in the hinge\n- Using momentum instead of controlled triceps extension\n- Shrugging the shoulder during the rep\n- Using a band that is too heavy and breaking form\n- Incomplete lockout at the top\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Athletic shoes for secure footing\n- Optional: Lighter and heavier bands for progression\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Step on the band with a comfortable stance width.\n2. Wider stance creates more tension; narrower stance reduces it.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on the handle(s) is secure before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Staggered or parallel, depending on preference.\n2. Torso: Hinged forward, flat back, chest up.\n3. Upper Arm: Pinned tight to the torso, parallel to the floor.\n4. Shoulders: Packed and down, not shrugged.\n5. Head: Neutral, eyes slightly ahead of the hands."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Tricep Kickback: Free-weight variation\n- Cable Tricep Kickback: Cable variation with constant tension\n- Tricep Pushdown: Standing cable triceps isolation\n- Overhead Tricep Extension: Long-head focused variation\n- Bench Dips: Bodyweight triceps movement\n- Close-Grip Bench Press: Compound triceps movement"
+        },
+        {
+          "heading": "Tricep Banded Kickback Variations",
+          "content": "Two-Arm Band Kickback: Described here\nSingle-Arm Band Kickback: Unilateral variation\nBench-Supported Band Kickback: Chest supported on a bench\nTempo Band Kickback: Slow eccentric for hypertrophy\nPause Band Kickback: Pause at peak contraction\nKneeling Band Kickback: Kneeling variation for stability"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Lighten the band and keep the upper arm still\nLower Back Issues: Shorten the hinge or use a bench-supported variation\nShoulder Issues: Keep the shoulder packed and reduce range\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nBeginners: Start with a light band to learn the pattern"
+        }
+      ]
+    }
+  }
+}

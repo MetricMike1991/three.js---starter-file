@@ -1,0 +1,105 @@
+{
+  "exerciseId": "single_arm_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/64.%20The%20Single%20Arm%20Row%20(SAR)/64.%20The%20Single%20Arm%20Row%20(SAR)%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/64.%20The%20Single%20Arm%20Row%20(SAR)/64.%20The%20Single%20Arm%20Row%20(SAR)%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/64.%20The%20Single%20Arm%20Row%20(SAR)/64.%20The%20Single%20Arm%20Row%20(SAR)%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/64.%20The%20Single%20Arm%20Row%20(SAR)/64.%20The%20Single%20Arm%20Row%20(SAR)%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.8047162667709657, 1.7612551644714882, -2.01918256080668],
+    "rotation": [-2.38070748694574, -1.0488440747430396, -2.451579541416875],
+    "target": [-0.20292545668598824, 0.7293671100753366, -0.9354232596501958]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.6822885388831645, 1.0830817888367918, 1.9196751407916526],
+    "rotation": [-0.3197387264010939, 1.1721928047081789, 0.2961680367748126],
+    "target": [0.17129393816310112, 0.750689754751753, 0.9157712681124017]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Single Arm Row is a unilateral back exercise performed with a dumbbell and a flat bench for support.\n\nBy training one arm at a time, it helps identify and correct muscle imbalances between the left and right sides of the back.\n\nThis exercise primarily targets the latissimus dorsi, rhomboids, and middle trapezius, while also engaging the biceps and rear deltoids as secondary movers."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Addresses muscle imbalances between left and right sides\n- Allows a greater range of motion than bilateral rows\n- Reduced lower back stress due to bench support\n- Builds a thicker, wider back\n- Improves grip strength and forearm development\n- Excellent for mind-muscle connection with the lats\n- Versatile — can be performed with various grips and angles"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Biceps, Rear Deltoids, Forearms, Core (anti-rotation stability)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place one hand and the same-side knee on a flat bench for support.\n2. The opposite foot stays on the floor, slightly behind the hip for stability.\n3. Hold a dumbbell in the free hand with a neutral grip (palm facing the bench).\n4. Keep your back flat and parallel to the floor.\n5. Let the dumbbell hang directly below the shoulder with the arm fully extended.\n6. Brace your core to prevent rotation of the torso."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Initiate the pull by driving your elbow straight back towards the ceiling.\n2. Keep the dumbbell close to your body as it travels upward.\n3. Squeeze your shoulder blade towards the spine at the top of the movement.\n4. Pause briefly at the top for a full contraction.\n5. Lower the dumbbell under control back to the dead hang starting position.\n6. Avoid rotating or twisting the torso throughout the movement.\n7. Complete all reps on one side before switching to the other arm."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rotating the torso to swing the weight up\n- Using momentum or jerking the dumbbell\n- Rounding the lower back during the lift\n- Not achieving full range of motion at the bottom\n- Shrugging the shoulder instead of retracting the scapula\n- Flaring the elbow too far from the body\n- Rushing the eccentric (lowering) phase\n- Using a weight that is too heavy, compromising form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Dumbbell (appropriate weight for your strength level)\n- Flat Bench or sturdy elevated surface\n- Optional: Lifting straps (for grip assistance on heavier loads)\n- Optional: Chalk (improves grip)\n- Recommended: Flat-soled shoes for stable footing"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Position the bench in an open area with space on both sides.\n2. Place one hand flat on the bench directly under your shoulder.\n3. Place the same-side knee on the bench for support.\n4. The opposite foot should be flat on the floor, slightly behind the hip.\n5. Your torso should be roughly parallel to the floor.\n6. Ensure the bench is stable and will not slide during the exercise."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat and parallel to the floor throughout.\n2. Head: Neutral alignment with spine, eyes looking slightly ahead.\n3. Support Arm: Locked with hand directly under shoulder on the bench.\n4. Working Arm: Hanging straight down, shoulder packed (not shrugging).\n5. Hips: Square to the floor, avoid rotation.\n6. Core: Braced to maintain a rigid torso.\n7. Feet: Supporting foot flat and firmly planted for stability."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_deadlift", "conventional_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bent Over Barbell Row: Bilateral rowing movement for overall back mass\n- Seated Cable Row: Machine-based row with constant tension\n- T-Bar Row: Bilateral row with chest support option\n- Chest-Supported Dumbbell Row: Removes lower back involvement\n- Meadows Row: Landmine variation for a unique angle\n- Inverted Row: Bodyweight alternative for beginners"
+        },
+        {
+          "heading": "Single Arm Row Variations",
+          "content": "Single Arm Dumbbell Row: Standard version with bench support\nSingle Arm Row Without Bench: Free-standing with hip hinge\nPaused Single Arm Row: Pause at the top for peak contraction\nSingle Arm Cable Row: Constant tension throughout range of motion\nSingle Arm Kettlebell Row: Offset grip for forearm engagement\nRenegade Row: Plank position row for core and back together"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use lifting straps or a neutral-grip handle\nShoulder Issues: Reduce range of motion or use lighter weight\nLower Back Pain: Ensure bench support is correct, brace core tightly\nGrip Weakness: Use chalk or straps to maintain hold\nNo Bench Available: Lean on a sturdy surface or perform unsupported\nBeginner: Start with a light dumbbell and focus on form before adding weight"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "pec_fly_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/150.%20Pec%20Fly%20Machine/150.%20Pec%20Fly%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/150.%20Pec%20Fly%20Machine/150.%20Pec%20Fly%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/150.%20Pec%20Fly%20Machine/150.%20Pec%20Fly%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/150.%20Pec%20Fly%20Machine/150.%20Pec%20Fly%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.4504320909672737, 1.4235890528623867, 3.0637343396776235],
+    "rotation": [-0.27393157669071555, 0.42794106586657016, 0.1160883667383552],
+    "target": [0.04595192593984011, 0.59063193712937, 0.09942650580860399]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.2560950525250316, 1.8865341044186001, 2.919346689363277],
+    "rotation": [-0.4449910151576171, 0.36808964130509947, 0.16994660843299664],
+    "target": [0.01111369975121415, 0.4969884971875721, 0.005594271920246767]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Pec Fly Machine is a chest isolation exercise performed on a dedicated machine that guides the arms through a horizontal adduction movement.\n\nThe machine's fixed path of motion makes it an excellent choice for safely targeting the pectoral muscles without the stabilisation demands of free-weight flys.\n\nIt is widely used in bodybuilding, general fitness, and rehabilitation programmes for building chest size, definition, and a strong mind-muscle connection."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Effectively isolates the pectoral muscles through a controlled range of motion\n- Fixed machine path reduces the risk of shoulder injury compared to free-weight flys\n- Provides constant tension throughout the entire movement\n- Excellent for building a strong mind-muscle connection with the chest\n- Easy to learn and suitable for all fitness levels\n- Allows for quick weight changes, making it ideal for drop sets\n- Provides a deep stretch at the starting position for increased chest activation"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal and Clavicular heads)\n\nSecondary: Anterior Deltoids, Serratus Anterior, Biceps (as stabilisers)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so that the handles are at chest level when seated.\n2. Sit on the machine with your back firmly against the backrest.\n3. Grasp the handles with an overhand or neutral grip.\n4. Keep your feet flat on the floor and your knees slightly bent.\n5. Extend your arms out to the sides, parallel to the floor, feeling a comfortable stretch across your chest."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping a slight bend in your elbows, squeeze your chest muscles to bring the handles forward.\n2. Continue until the handles meet or cross slightly in front of your chest.\n3. Squeeze your pecs hard at the peak contraction and hold for a brief moment.\n4. Slowly return the handles back to the starting position with control, allowing your chest muscles to stretch.\n5. Do not let the weight stack slam at any point — maintain tension throughout.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and recruiting the shoulders to complete the movement\n- Letting the weight stack slam down between reps, losing tension\n- Rounding the shoulders forward instead of keeping the chest proud\n- Not achieving a full stretch at the starting position\n- Rushing the movement instead of using slow, controlled reps\n- Lifting the back off the backrest to generate momentum\n- Gripping the handles too tightly, creating unnecessary forearm tension"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pec Fly Machine (also known as a Pec Deck or Butterfly Machine)\n- Adjustable seat and handle positions (varies by machine)\n- Weight stack with pin selection for easy load changes"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Seat Height: Adjust so the handles align with the middle of your chest.\n2. Handle Position: Set so your arms are extended to the sides with a comfortable chest stretch — not overstretched.\n3. Weight: Start light to warm up and find the right working weight.\n4. Back Pad: Ensure your back is fully supported against the backrest.\n5. Some machines have arm pads instead of handles — adjust the pad height to sit against the inner forearms.\n6. Check all pin selections are secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Firmly pressed against the backrest at all times.\n2. Chest: Proud and lifted — do not round the shoulders forward.\n3. Arms: Extended to the sides with a slight bend in the elbows.\n4. Feet: Flat on the floor for stability.\n5. Head: Resting against the pad (if available) in a neutral position.\n6. Grip: Firm but not overly tight — let the chest do the work."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["stability_ball_dumbbell_fly", "stability_ball_chest_press", "barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Fly: Free-weight chest isolation on a flat or incline bench\n- Cable Fly: Constant tension chest isolation using a cable machine\n- Stability Ball Dumbbell Fly: Unstable surface fly for added core engagement\n- Svend Press: Plate squeeze press for chest contraction focus\n- Low Cable Crossover: Standing cable fly targeting the upper and inner chest\n- Resistance Band Fly: Portable alternative with increasing resistance"
+        },
+        {
+          "heading": "Pec Fly Variations",
+          "content": "Pec Fly Machine: Standard machine-guided chest fly\nReverse Pec Fly: Turn around on the machine to target rear delts\nSingle-Arm Pec Fly: Unilateral variation for balanced chest development\nSlow Tempo Pec Fly: 3–5 second concentrics for increased time under tension\nPaused Pec Fly: Hold at peak contraction for 2–3 seconds per rep\nDrop Set Pec Fly: Reduce weight immediately after failure for extended sets"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion — do not stretch beyond a comfortable point\nElbow Discomfort: Use the arm pad version of the machine if available\nNo Pec Fly Machine: Use cable flys or dumbbell flys as an alternative\nBeginner: Start with a light weight to learn the movement pattern and build chest activation\nPost-Surgery: Consult a physiotherapist before using — the machine's guided path can be beneficial for controlled rehab\nMobility Limitations: Adjust the starting handle position to a narrower range and progress outward over time"
+        }
+      ]
+    }
+  }
+}

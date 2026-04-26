@@ -1,0 +1,105 @@
+{
+  "exerciseId": "close_grip_bodyweight_push_up",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up%20%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up%20%20HD.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up%20%20AR.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up/42.%20The%20Close%20Grip%20Bodyweight%20Push%20Up%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Close Grip Bodyweight Push Up is a variation of the standard push up that targets the triceps more intensely by placing the hands closer together.\n\nBy narrowing your hand placement to be in line with your chest and keeping your elbows tucked close to your body, you shift the load from the chest to the triceps.\n\nThis exercise is an excellent bodyweight movement for building triceps strength, arm size, and upper body pushing power without any equipment."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Greater triceps activation compared to standard push ups\n- Builds functional upper body pressing strength\n- No equipment required — can be done anywhere\n- Strengthens the chest, shoulders, and core as secondary muscles\n- Improves lockout strength beneficial for bench press performance\n- Develops elbow joint stability and tendon strength\n- Easily scalable by adjusting tempo, reps, or elevation"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps\n\nSecondary: Chest (Pectoralis Major), Anterior Deltoids, Core (Rectus Abdominis, Obliques), Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Get into a plank position with your body forming a straight line from head to heels.\n2. Place your hands in line with your chest, close to your body — roughly shoulder-width apart or narrower.\n3. Keep your fingers pointing forward and elbows close to your torso.\n4. Engage your core and glutes to maintain a flat, rigid back.\n5. Your feet can be together or slightly apart for balance."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Start with your hands in line with your chest, keeping them close into your body.\n2. With a straight back, plank-like position, press yourself up until your arms are fully extended.\n3. Lower your body back down until your chest touches the floor while keeping your elbows tucked in and maintaining a neutral spine.\n4. Repeat for reps.\n5. Focus on controlled movement throughout — avoid flaring your elbows outward.\n6. Breathe in as you lower, breathe out as you press up."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Flaring the elbows outward instead of keeping them tucked\n- Letting the hips sag or pike upward, breaking the plank position\n- Not lowering fully to the floor, reducing range of motion\n- Hands placed too far forward (should be in line with chest, not face)\n- Rushing through reps without controlling the eccentric (lowering) phase\n- Holding your breath instead of breathing rhythmically\n- Shrugging the shoulders up toward the ears"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- No equipment required\n- A flat, stable surface (floor, mat, or ground)\n- Optional: Exercise mat for wrist and hand comfort\n- Optional: Resistance band around the back for added difficulty\n- Optional: Elevated surface for feet to increase difficulty"
+        },
+        {
+          "heading": "Hand Placement",
+          "content": "1. Place hands directly under or slightly inside your shoulders.\n2. Hands should be in line with your chest, not your face or neck.\n3. Keep fingers spread and pointing forward for a stable base.\n4. Ensure both hands are evenly spaced — symmetry is key.\n5. Avoid placing hands too close together (diamond position) unless intentionally progressing.\n6. Wrists should be in a neutral, comfortable alignment."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Plank Position: Maintain a straight line from head to heels.\n2. Core: Brace your abs as if preparing for a punch.\n3. Glutes: Squeeze to keep hips level and prevent sagging.\n4. Head: Keep in a neutral position, looking slightly ahead of your hands.\n5. Feet: Together or hip-width apart for stability.\n6. Elbows: Stay tight to the body throughout the movement.\n7. Shoulders: Depressed and away from your ears."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "incline_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push Up: Wider hand placement, more chest emphasis\n- Diamond Push Up: Hands touching in a diamond shape, maximum triceps focus\n- Incline Push Up: Hands elevated, easier variation for beginners\n- Tricep Dips: Bodyweight movement targeting triceps from a different angle\n- Decline Push Up: Feet elevated for increased difficulty and upper chest engagement\n- Bench Press Close Grip: Barbell equivalent for heavier loading"
+        },
+        {
+          "heading": "Close Grip Push Up Variations",
+          "content": "Close Grip Push Up: Standard close hand placement on floor\nElevated Close Grip Push Up: Feet on bench for added difficulty\nSlow Tempo Close Grip Push Up: 3-4 second eccentric for time under tension\nBanded Close Grip Push Up: Band around back for added resistance\nWeighted Close Grip Push Up: Plate on back for progressive overload\nPause Rep Close Grip Push Up: Pause at the bottom for strength gains"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push up handles or fists to keep wrists neutral\nShoulder Discomfort: Reduce range of motion or try incline variation\nLack of Strength: Start with incline close grip push ups on a bench or wall\nElbow Pain: Widen hand placement slightly and reduce depth\nLower Back Issues: Focus on core bracing, consider knee push up variation\nLearning Stage: Begin with standard push ups and gradually narrow grip over time"
+        }
+      ]
+    }
+  }
+}

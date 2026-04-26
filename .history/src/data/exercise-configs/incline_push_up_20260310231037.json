@@ -1,0 +1,105 @@
+{
+  "exerciseId": "incline_push_up",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/41.%20The%20Incline%20Push%20Up/41.%20The%20Incline%20Push%20Up%20%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/41.%20The%20Incline%20Push%20Up/41.%20The%20Incline%20Push%20Up%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/41.%20The%20Incline%20Push%20Up/41.%20The%20Incline%20Push%20Up%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/41.%20The%20Incline%20Push%20Up/41.%20The%20Incline%20Push%20Up%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.1294992066292417, 1.800694873395773, -2.336122274531534],
+    "rotation": [-2.596011084465294, -0.6449997441587936, -2.791659492762021],
+    "target": [-0.006579349552033012, 0.33645077608819773, 0.07597343378211031]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.181925919884612, 1.3047903297086618, -0.8607574296714204],
+    "rotation": [-2.3528087864589597, 1.0213183514563937, 2.4321318564841237],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Incline Push Up is a beginner-friendly push up variation performed with hands elevated on a bench or sturdy surface.\n\nBy raising the hands above the feet, the angle reduces the percentage of bodyweight being pushed, making it easier than a standard push up.\n\nThis exercise is an excellent progression tool for those working toward full push ups, and it primarily targets the lower chest, shoulders, and triceps."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Easier than standard push ups, making it ideal for beginners\n- Reduces load on the wrists and shoulders compared to floor push ups\n- Targets the lower portion of the pectoralis major\n- Builds foundational pushing strength for progression to harder variations\n- Requires minimal equipment — just a bench, step, or sturdy surface\n- Can be adjusted by changing the height of the surface\n- Great for warm-ups or high-rep endurance sets"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Lower Chest), Anterior Deltoids (Front Shoulders), Triceps\n\nSecondary: Core (Rectus Abdominis, Obliques), Serratus Anterior, Upper Back Stabilisers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place your hands on an elevated surface such as a bench, step, or sturdy box.\n2. Position your hands slightly wider than shoulder-width apart.\n3. Step your feet back so your body forms a straight line from head to heels.\n4. Keep your feet together or hip-width apart for stability.\n5. Engage your core and glutes to maintain a rigid torso.\n6. Arms should be fully extended with a slight forward lean."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower your body by bending your elbows, keeping them at approximately a 45-degree angle to your torso.\n2. Descend in a controlled manner until your chest nearly touches the bench.\n3. Keep your core braced and body in a straight line throughout the descent.\n4. Push yourself back up to the starting position by straightening your arms.\n5. Fully extend your arms at the top without locking out aggressively.\n6. Exhale as you push up, inhale as you lower down.\n7. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag or pike up, breaking the straight body line\n- Using a surface that is not stable or secure\n- Flaring elbows out to 90 degrees, placing excess stress on shoulders\n- Not lowering deep enough — aim for chest near the surface\n- Placing hands too close together or too far apart\n- Rushing the movement without control\n- Not engaging the core throughout the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Bench, step, box, or any sturdy elevated surface\n- The higher the surface, the easier the exercise\n- Ensure the surface is stable and will not slide\n- Optional: Exercise mat for foot grip"
+        },
+        {
+          "heading": "Choosing the Right Height",
+          "content": "1. A higher surface (e.g., countertop or wall) makes the exercise easier.\n2. A lower surface (e.g., a low step or bench) increases difficulty.\n3. Start with a height that allows you to complete 8-12 reps with good form.\n4. As you get stronger, progressively lower the surface height.\n5. The goal is to eventually progress to floor push ups."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Slightly wider than shoulder-width on the elevated surface.\n2. Feet: Together or hip-width apart, on the floor behind you.\n3. Core: Engaged throughout — maintain a rigid torso.\n4. Hips: In line with shoulders and ankles — no sagging or piking.\n5. Head: Neutral position, gaze slightly ahead of your hands.\n6. Shoulders: Pulled down and back, away from ears.\n7. Elbows: Track at roughly 45 degrees to your body during descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "adapted_push_up_from_knees"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push Up: Full bodyweight version for increased difficulty\n- Knee Push Up: Alternative modified push up with knees on the ground\n- Wall Push Up: Easiest push up variation, standing against a wall\n- Bench Press: Barbell or dumbbell pressing for similar muscle targeting\n- Decline Push Up: Feet elevated for increased difficulty and upper chest focus"
+        },
+        {
+          "heading": "Push Up Progressions",
+          "content": "Wall Push Up: Easiest — standing upright pushing against a wall\nIncline Push Up: This exercise — hands on a raised surface\nKnee Push Up: Knees on the ground as pivot point\nStandard Push Up: Full bodyweight from toes\nDecline Push Up: Feet elevated for increased difficulty\nWeighted Push Up: Adding resistance for advanced strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use a surface that allows a neutral grip, or use push up handles\nShoulder Issues: Use a higher surface to reduce load on the shoulders\nLower Back Pain: Focus on core engagement and maintaining a straight back\nBeginner: Start with a higher surface and gradually lower it over time\nNeed More Challenge: Lower the surface height or progress to floor push ups\nBalance Issues: Use a wider foot stance for more stability"
+        }
+      ]
+    }
+  }
+}
