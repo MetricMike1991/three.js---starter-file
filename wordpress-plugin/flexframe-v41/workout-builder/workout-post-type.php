@@ -525,6 +525,24 @@ function flexframe_create_email_captures_table() {
     if (empty($col3)) {
         $wpdb->query("ALTER TABLE $table ADD COLUMN workout_links text DEFAULT '' AFTER workout_count");
     }
+
+    // Lead capture fields for dashboard contact form
+    $col_source = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'source'");
+    if (empty($col_source)) {
+        $wpdb->query("ALTER TABLE $table ADD COLUMN source varchar(50) DEFAULT 'workout' AFTER ip_address");
+    }
+    $col_name = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'lead_name'");
+    if (empty($col_name)) {
+        $wpdb->query("ALTER TABLE $table ADD COLUMN lead_name varchar(255) DEFAULT '' AFTER source");
+    }
+    $col_phone = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'phone'");
+    if (empty($col_phone)) {
+        $wpdb->query("ALTER TABLE $table ADD COLUMN phone varchar(50) DEFAULT '' AFTER lead_name");
+    }
+    $col_message = $wpdb->get_results("SHOW COLUMNS FROM $table LIKE 'message'");
+    if (empty($col_message)) {
+        $wpdb->query("ALTER TABLE $table ADD COLUMN message text DEFAULT '' AFTER phone");
+    }
 }
 
 /**
@@ -538,6 +556,88 @@ function flexframe_register_email_capture_api() {
     ));
 }
 add_action('rest_api_init', 'flexframe_register_email_capture_api');
+
+/**
+ * REST endpoint: capture dashboard lead (email-only or contact form)
+ */
+function flexframe_register_dashboard_lead_api() {
+    register_rest_route('flexframe/v1', '/dashboard-lead', array(
+        'methods'  => 'POST',
+        'callback' => 'flexframe_handle_dashboard_lead',
+        'permission_callback' => '__return_true',
+    ));
+}
+add_action('rest_api_init', 'flexframe_register_dashboard_lead_api');
+
+function flexframe_handle_dashboard_lead($request) {
+    $params  = $request->get_json_params();
+    $email   = isset($params['email']) ? sanitize_email($params['email']) : '';
+    $name    = isset($params['name']) ? sanitize_text_field($params['name']) : '';
+    $phone   = isset($params['phone']) ? sanitize_text_field($params['phone']) : '';
+    $message = isset($params['message']) ? sanitize_textarea_field($params['message']) : '';
+    $consent = !empty($params['marketingConsent']) ? 1 : 0;
+    $mode    = isset($params['mode']) ? sanitize_text_field($params['mode']) : 'email';
+
+    if (!is_email($email)) {
+        return new WP_Error('invalid_email', 'Please enter a valid email address.', array('status' => 400));
+    }
+
+    global $wpdb;
+    $table = $wpdb->prefix . 'flexframe_email_captures';
+
+    // Ensure table exists with new columns
+    flexframe_create_email_captures_table();
+
+    // Check if this email already exists
+    $existing = $wpdb->get_row($wpdb->prepare("SELECT * FROM $table WHERE email = %s", $email));
+
+    if ($existing) {
+        // Update existing record with latest info
+        $update_data = array(
+            'captured_at' => current_time('mysql'),
+            'source'      => 'dashboard',
+        );
+        $update_format = array('%s', '%s');
+
+        if (!empty($name)) {
+            $update_data['lead_name'] = $name;
+            $update_format[] = '%s';
+        }
+        if (!empty($phone)) {
+            $update_data['phone'] = $phone;
+            $update_format[] = '%s';
+        }
+        if (!empty($message)) {
+            $update_data['message'] = $message;
+            $update_format[] = '%s';
+        }
+        if ($consent && !$existing->marketing_consent) {
+            $update_data['marketing_consent'] = 1;
+            $update_format[] = '%d';
+        }
+
+        $wpdb->update($table, $update_data, array('id' => $existing->id), $update_format, array('%d'));
+    } else {
+        // New lead — insert
+        $wpdb->insert($table, array(
+            'email'             => $email,
+            'marketing_consent' => $consent,
+            'day_pass_requested'=> 0,
+            'workout_count'     => 0,
+            'workout_links'     => '[]',
+            'workout_name'      => '',
+            'workout_hash'      => '',
+            'ip_address'        => sanitize_text_field($_SERVER['REMOTE_ADDR'] ?? ''),
+            'source'            => 'dashboard',
+            'lead_name'         => $name,
+            'phone'             => $phone,
+            'message'           => $message,
+            'captured_at'       => current_time('mysql'),
+        ), array('%s', '%d', '%d', '%d', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s', '%s'));
+    }
+
+    return rest_ensure_response(array('success' => true));
+}
 
 function flexframe_handle_email_capture($request) {
     $params = $request->get_json_params();
@@ -677,7 +777,7 @@ function flexframe_ajax_export_email_captures() {
     header('Content-Disposition: attachment; filename=flexframe-email-captures-' . date('Y-m-d') . '.csv');
 
     $out = fopen('php://output', 'w');
-    fputcsv($out, array('Email', 'Marketing Consent', 'Day Pass Requested', 'Workouts Shared', 'Workout Links', 'Last Workout', 'IP Address', 'Last Activity'));
+    fputcsv($out, array('Email', 'Name', 'Phone', 'Source', 'Message', 'Marketing Consent', 'Day Pass Requested', 'Workouts Shared', 'Workout Links', 'Last Workout', 'IP Address', 'Last Activity'));
 
     foreach ($rows as $row) {
         // Format workout links as readable list
@@ -691,6 +791,10 @@ function flexframe_ajax_export_email_captures() {
         }
         fputcsv($out, array(
             $row->email,
+            $row->lead_name ?? '',
+            $row->phone ?? '',
+            $row->source ?? 'workout',
+            $row->message ?? '',
             $row->marketing_consent ? 'Yes' : 'No',
             $row->day_pass_requested ? 'Yes' : 'No',
             $row->workout_count ?? 1,

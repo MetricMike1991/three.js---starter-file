@@ -1,0 +1,102 @@
+{
+  "exerciseId": "sandbag_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/221.%20Sandbag%20Row/221.%20Sandbag%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.7992799408265159, 1.515245315396172, -1.8995407225347094],
+    "rotation": [-2.797313453553245, -0.7530258237357058, -2.901136400124139],
+    "target": [-0.005604773079847326, 0.8693249252892513, -0.0981059829491364]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/221.%20Sandbag%20Row/Sandbag%20Row_250x250_2026-04-23T21-35-59.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Sandbag Row is a bent-over pulling exercise that targets the back, lats, and rear shoulders using a sandbag as the load.\n\nThe awkward, shifting nature of the sandbag increases grip, core, and upper-back stability demands compared with a barbell or dumbbell row.\n\nIt is a joint-friendly, portable alternative for building a strong, thick back in home gyms or outdoor training."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds overall back thickness and pulling strength\n- Targets the lats, rhomboids, and mid-traps\n- Challenges grip and forearm endurance\n- Reinforces a strong hip hinge and braced core\n- Portable and home-gym friendly\n- Easily scaled by changing sandbag weight\n- Great accessory for deadlifts and pull-ups"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Rear Deltoids, Biceps, Forearms, Lower Back, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Stand with feet hip-width apart, sandbag on the floor in front of you.\n2. Grip the sandbag handles with an overhand grip.\n3. Brace the core and pack the shoulders."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Hinge at the hips, pushing them back.\n2. Keep the back flat and chest up.\n3. Lower the sandbag toward the ground with the knees slightly bent."
+        },
+        {
+          "heading": "Row",
+          "content": "1. Pull the sandbag toward your hips or lower ribs.\n2. Drive the elbows back and squeeze the shoulder blades together.\n3. Keep the torso still; do not use momentum."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Lower the sandbag back down under control.\n2. Maintain the hinge position throughout the set.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back in the hinge\n- Jerking the bag up with the lower back\n- Shrugging the shoulders toward the ears\n- Standing up with each rep instead of holding the hinge\n- Using a sandbag that is too heavy and breaking form\n- Incomplete range of motion at the bottom\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sandbag appropriate to your strength level\n- Flat, stable training surface\n- Athletic shoes with flat, stable soles\n- Optional: Lifting belt for heavier sets\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Sandbag Placement",
+          "content": "1. Position the sandbag on the floor, centred between the feet.\n2. Use the handles or grip the ends of the bag.\n3. Choose a sandbag weight appropriate for your strength.\n4. Reset the bag position between sets if it has drifted."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Hip-width apart, feet flat on the floor.\n2. Torso: Hinged forward, flat back, chest up.\n3. Knees: Slightly bent, shins roughly vertical.\n4. Shoulders: Packed and down, not shrugged.\n5. Head: Neutral, eyes slightly ahead of the hands."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bent-Over Barbell Row: Heaviest bilateral row variation\n- Dumbbell Row: Unilateral free-weight variation\n- Cable Row: Seated cable variation\n- T-Bar Row: Landmine-loaded row\n- Chest-Supported Row: Lower-back-friendly variation\n- Inverted Row: Bodyweight row variation"
+        },
+        {
+          "heading": "Sandbag Row Variations",
+          "content": "Bent-Over Sandbag Row: Described here\nSingle-Arm Sandbag Row: Unilateral variation\nSandbag Chest-Supported Row: Supported on a bench\nSandbag Pendlay Row: Dead-stop from the floor each rep\nTempo Sandbag Row: Slow eccentric for hypertrophy\nPause Sandbag Row: Pause at peak contraction"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Issues: Use a chest-supported variation\nGrip Issues: Use lifting straps or row the ends of the bag\nShoulder Issues: Reduce range and keep shoulders packed\nBag Too Light: Add sand or upgrade to a heavier bag\nBag Too Heavy: Use a lighter bag or reduce reps\nBeginners: Master the dumbbell row first"
+        }
+      ]
+    }
+  }
+}

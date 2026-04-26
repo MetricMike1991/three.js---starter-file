@@ -1937,6 +1937,43 @@ function flexframe_register_settings() {
         'default' => ''
     ));
     
+    // ========== Lead Capture Settings (Dashboard) ==========
+    register_setting('flexframe_settings_group', 'flexframe_lead_capture_mode', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'off'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_lead_capture_heading', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'Stay Connected'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_lead_capture_description', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'Enter your email to get updates and exclusive offers.'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_lead_capture_button_text', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'Submit'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_lead_capture_success_msg', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'Thanks! We\'ll be in touch.'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_lead_capture_consent_text', array(
+        'type' => 'string',
+        'sanitize_callback' => 'sanitize_text_field',
+        'default' => 'I agree to receive marketing emails'
+    ));
+    register_setting('flexframe_settings_group', 'flexframe_lead_capture_show_phone', array(
+        'type' => 'boolean',
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'default' => false
+    ));
+    
     // ========== UI Settings (Step 5) ==========
     
     // Loading Spinner
@@ -4248,6 +4285,23 @@ function flexframe_settings_page() {
                             <?php endif; ?>
                         </div>
                         
+                        <!-- Login Page Shortcode -->
+                        <div class="client-login-info" style="margin-top: 12px;">
+                            <div class="client-login-url-box">
+                                <span class="dashicons dashicons-shortcode"></span>
+                                <div>
+                                    <strong><?php _e('Login Page Shortcode', 'flexframe-viewer'); ?></strong>
+                                    <code id="client-login-shortcode" style="display:inline-block;background:#f0f0f1;padding:3px 10px;border-radius:4px;font-size:13px;color:#1d2327;user-select:all;">[flexframe_login]</code>
+                                    <p class="description" style="margin-top:4px;font-size:12px;color:#888;">
+                                        <?php _e('Place this shortcode on any page to display a branded full-screen client login form. Uses your logo, primary color, and gradient background from the settings above.', 'flexframe-viewer'); ?>
+                                    </p>
+                                </div>
+                                <button type="button" class="button button-small" id="copy-login-shortcode" title="Copy Shortcode">
+                                    <span class="dashicons dashicons-clipboard" style="margin-top: 3px;"></span>
+                                </button>
+                            </div>
+                        </div>
+                        
                         <!-- Create New Client Account -->
                         <div class="flexframe-client-create-section">
                             <h3><span class="dashicons dashicons-admin-users"></span> <?php _e('Create Client Account', 'flexframe-viewer'); ?></h3>
@@ -4630,7 +4684,7 @@ function flexframe_settings_page() {
                             </div>
                             <div class="custom-panel-content" id="workout-emails-content">
                                 <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px;">
-                                    <p style="margin: 0; color: #666; font-size: 13px;">Emails collected when users share workouts. Includes marketing consent status.</p>
+                                    <p style="margin: 0; color: #666; font-size: 13px;">All captured leads — from workout sharing and dashboard contact forms. Includes marketing consent status.</p>
                                     <div style="display: flex; gap: 8px;">
                                         <button type="button" class="button button-secondary" id="flexframe-refresh-email-captures">
                                             <span class="dashicons dashicons-update" style="vertical-align: middle; margin-right: 4px;"></span> Refresh
@@ -4644,18 +4698,21 @@ function flexframe_settings_page() {
                                     <table class="wp-list-table widefat fixed striped" id="flexframe-email-captures-table" style="margin-bottom: 12px;">
                                         <thead>
                                             <tr>
-                                                <th style="width: 20%;">Email</th>
-                                                <th style="width: 7%;">Consent</th>
-                                                <th style="width: 7%;">Day Pass</th>
-                                                <th style="width: 7%;">Workouts</th>
-                                                <th style="width: 25%;">Workout Links</th>
-                                                <th style="width: 12%;">Last Workout</th>
-                                                <th style="width: 13%;">Last Active</th>
+                                                <th style="width: 6%;">Source</th>
+                                                <th style="width: 15%;">Email</th>
+                                                <th style="width: 9%;">Name</th>
+                                                <th style="width: 7%;">Phone</th>
+                                                <th style="width: 6%;">Consent</th>
+                                                <th style="width: 6%;">Day Pass</th>
+                                                <th style="width: 5%;">Wkts</th>
+                                                <th style="width: 15%;">Message / Workout Links</th>
+                                                <th style="width: 10%;">Last Workout</th>
+                                                <th style="width: 12%;">Last Active</th>
                                                 <th style="width: 9%;">Actions</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr><td colspan="8" style="text-align: center; padding: 20px; color: #666;">Click "Refresh" to load email captures.</td></tr>
+                                            <tr><td colspan="11" style="text-align: center; padding: 20px; color: #666;">Click "Refresh" to load email captures.</td></tr>
                                         </tbody>
                                     </table>
                                     <div id="flexframe-email-pagination" style="text-align: center;"></div>
@@ -4730,6 +4787,15 @@ function flexframe_settings_page() {
                 $login_enabled = get_option('flexframe_dash_login_enabled', true);
                 $login_label   = get_option('flexframe_dash_login_label', 'Client Login');
                 $login_url     = get_option('flexframe_dash_login_url', '');
+                
+                // Lead capture settings
+                $lead_capture_mode        = get_option('flexframe_lead_capture_mode', 'off');
+                $lead_capture_heading     = get_option('flexframe_lead_capture_heading', 'Stay Connected');
+                $lead_capture_description = get_option('flexframe_lead_capture_description', 'Enter your email to get updates and exclusive offers.');
+                $lead_capture_button_text = get_option('flexframe_lead_capture_button_text', 'Submit');
+                $lead_capture_success_msg = get_option('flexframe_lead_capture_success_msg', "Thanks! We'll be in touch.");
+                $lead_capture_consent_text = get_option('flexframe_lead_capture_consent_text', 'I agree to receive marketing emails');
+                $lead_capture_show_phone  = get_option('flexframe_lead_capture_show_phone', false);
                 ?>
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="10">
@@ -4935,6 +5001,92 @@ function flexframe_settings_page() {
                                     <strong><?php _e('Note:', 'flexframe-viewer'); ?></strong>
                                     <?php _e('The dashboard automatically uses your logo (Step 2), primary color (Step 3), and background settings (Step 6).', 'flexframe-viewer'); ?>
                                 </p>
+                            </div>
+                        </div>
+                        
+                        <!-- Lead Capture -->
+                        <div class="custom-panel-section">
+                            <div class="custom-panel-header">
+                                <span class="getting-started-icon">📧</span>
+                                <h3><?php _e('Lead Capture', 'flexframe-viewer'); ?></h3>
+                            </div>
+                            <p class="description" style="margin-bottom: 16px;">
+                                <?php _e('Display an email signup box or full contact form popup on your dashboard page to capture leads. All submissions are saved and can be exported from the Workout Builder → Email Captures panel.', 'flexframe-viewer'); ?>
+                            </p>
+                            
+                            <!-- Mode Selection -->
+                            <div style="margin-bottom: 20px;">
+                                <label style="display: block; margin-bottom: 8px; font-weight: 600;"><?php _e('Lead Capture Mode:', 'flexframe-viewer'); ?></label>
+                                <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: <?php echo $lead_capture_mode === 'off' ? '#f0f6fc' : '#f9f9f9'; ?>; border: 2px solid <?php echo $lead_capture_mode === 'off' ? '#2271b1' : '#e0e0e0'; ?>; border-radius: 8px; cursor: pointer; transition: all 0.2s;">
+                                        <input type="radio" name="flexframe_lead_capture_mode" value="off" <?php checked($lead_capture_mode, 'off'); ?> style="margin: 0;">
+                                        <span style="font-size: 13px;">🚫 <?php _e('Off', 'flexframe-viewer'); ?></span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: <?php echo $lead_capture_mode === 'email' ? '#f0f6fc' : '#f9f9f9'; ?>; border: 2px solid <?php echo $lead_capture_mode === 'email' ? '#2271b1' : '#e0e0e0'; ?>; border-radius: 8px; cursor: pointer; transition: all 0.2s;">
+                                        <input type="radio" name="flexframe_lead_capture_mode" value="email" <?php checked($lead_capture_mode, 'email'); ?> style="margin: 0;">
+                                        <span style="font-size: 13px;">📩 <?php _e('Email Capture', 'flexframe-viewer'); ?></span>
+                                    </label>
+                                    <label style="display: flex; align-items: center; gap: 8px; padding: 12px 16px; background: <?php echo $lead_capture_mode === 'contact' ? '#f0f6fc' : '#f9f9f9'; ?>; border: 2px solid <?php echo $lead_capture_mode === 'contact' ? '#2271b1' : '#e0e0e0'; ?>; border-radius: 8px; cursor: pointer; transition: all 0.2s;">
+                                        <input type="radio" name="flexframe_lead_capture_mode" value="contact" <?php checked($lead_capture_mode, 'contact'); ?> style="margin: 0;">
+                                        <span style="font-size: 13px;">📝 <?php _e('Contact Form Popup', 'flexframe-viewer'); ?></span>
+                                    </label>
+                                </div>
+                                <p class="description" style="margin-top: 8px;">
+                                    <?php _e('<strong>Email Capture</strong> — Shows an inline email input below the navigation buttons.<br><strong>Contact Form Popup</strong> — Adds a "Contact Us" button that opens a modal with name, email, phone (optional), and message fields.', 'flexframe-viewer'); ?>
+                                </p>
+                            </div>
+                            
+                            <!-- Lead Capture Customization (shown when mode != off) -->
+                            <div id="lead-capture-options" style="<?php echo $lead_capture_mode === 'off' ? 'display:none;' : ''; ?>">
+                                <div style="padding: 16px; background: #f9f9f9; border: 1px solid #e0e0e0; border-radius: 8px;">
+                                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;">
+                                        <div style="flex: 1; min-width: 250px;">
+                                            <label for="flexframe_lead_capture_heading" style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #1d2327;"><?php _e('Heading Text:', 'flexframe-viewer'); ?></label>
+                                            <input type="text" id="flexframe_lead_capture_heading" name="flexframe_lead_capture_heading" 
+                                                   value="<?php echo esc_attr($lead_capture_heading); ?>" class="regular-text" style="width: 100%;"
+                                                   placeholder="Stay Connected" />
+                                        </div>
+                                        <div style="flex: 1; min-width: 250px;">
+                                            <label for="flexframe_lead_capture_button_text" style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #1d2327;"><?php _e('Button Text:', 'flexframe-viewer'); ?></label>
+                                            <input type="text" id="flexframe_lead_capture_button_text" name="flexframe_lead_capture_button_text" 
+                                                   value="<?php echo esc_attr($lead_capture_button_text); ?>" class="regular-text" style="width: 100%;"
+                                                   placeholder="Submit" />
+                                        </div>
+                                    </div>
+                                    <div style="margin-bottom: 16px;">
+                                        <label for="flexframe_lead_capture_description" style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #1d2327;"><?php _e('Description Text:', 'flexframe-viewer'); ?></label>
+                                        <input type="text" id="flexframe_lead_capture_description" name="flexframe_lead_capture_description" 
+                                               value="<?php echo esc_attr($lead_capture_description); ?>" class="regular-text" style="width: 100%;"
+                                               placeholder="Enter your email to get updates and exclusive offers." />
+                                    </div>
+                                    <div style="display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px;">
+                                        <div style="flex: 1; min-width: 250px;">
+                                            <label for="flexframe_lead_capture_success_msg" style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #1d2327;"><?php _e('Success Message:', 'flexframe-viewer'); ?></label>
+                                            <input type="text" id="flexframe_lead_capture_success_msg" name="flexframe_lead_capture_success_msg" 
+                                                   value="<?php echo esc_attr($lead_capture_success_msg); ?>" class="regular-text" style="width: 100%;"
+                                                   placeholder="Thanks! We'll be in touch." />
+                                        </div>
+                                        <div style="flex: 1; min-width: 250px;">
+                                            <label for="flexframe_lead_capture_consent_text" style="display: block; margin-bottom: 4px; font-size: 12px; font-weight: 600; color: #1d2327;"><?php _e('Consent Checkbox Text:', 'flexframe-viewer'); ?></label>
+                                            <input type="text" id="flexframe_lead_capture_consent_text" name="flexframe_lead_capture_consent_text" 
+                                                   value="<?php echo esc_attr($lead_capture_consent_text); ?>" class="regular-text" style="width: 100%;"
+                                                   placeholder="I agree to receive marketing emails" />
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Contact Form specific options -->
+                                    <div id="lead-capture-contact-options" style="<?php echo $lead_capture_mode !== 'contact' ? 'display:none;' : ''; ?>padding-top: 12px; border-top: 1px dashed #ccd0d4;">
+                                        <div style="display: flex; align-items: center; gap: 12px;">
+                                            <label class="toggle-switch" style="flex-shrink: 0;">
+                                                <input type="hidden" name="flexframe_lead_capture_show_phone" value="0">
+                                                <input type="checkbox" name="flexframe_lead_capture_show_phone" value="1" <?php checked($lead_capture_show_phone); ?>>
+                                                <span class="toggle-slider"></span>
+                                            </label>
+                                            <span style="font-size: 13px;"><?php _e('Show Phone Number Field', 'flexframe-viewer'); ?></span>
+                                        </div>
+                                        <p class="description" style="margin-top: 6px;"><?php _e('When enabled, the contact form popup includes an optional phone number field.', 'flexframe-viewer'); ?></p>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         
@@ -11292,6 +11444,7 @@ function flexframe_settings_page() {
             allowFullscreen: true,
             hdModel: false,
             showParticles: true,
+            showWatermark: true,
             transparentBg: false,
             borderRadius: 8,
             borderStyle: 'none'
@@ -11372,6 +11525,11 @@ function flexframe_settings_page() {
             modalHtml += '      </div>';
 
             modalHtml += '      <div class="embed-toggle-row">';
+            modalHtml += '        <div class="embed-toggle-label"><span class="label-title">Show Logo Watermark</span><span class="label-desc">Show the background logo watermark behind the model</span></div>';
+            modalHtml += '        <label class="embed-toggle-switch"><input type="checkbox" id="embed-show-watermark" ' + (embedDefaults.showWatermark ? 'checked' : '') + ' /><span class="embed-toggle-slider"></span></label>';
+            modalHtml += '      </div>';
+
+            modalHtml += '      <div class="embed-toggle-row">';
             modalHtml += '        <div class="embed-toggle-label"><span class="label-title">Transparent Background</span><span class="label-desc">Remove background so the model floats over the page</span></div>';
             modalHtml += '        <label class="embed-toggle-switch"><input type="checkbox" id="embed-transparent-bg" ' + (embedDefaults.transparentBg ? 'checked' : '') + ' /><span class="embed-toggle-slider"></span></label>';
             modalHtml += '      </div>';
@@ -11425,7 +11583,7 @@ function flexframe_settings_page() {
         });
 
         // Update embed code whenever an option changes
-        $(document).on('input change', '#embed-width, #embed-height, #embed-border-radius, #embed-border-style, #embed-responsive, #embed-autoplay, #embed-show-player, #embed-fullscreen, #embed-hd-model, #embed-show-particles, #embed-transparent-bg', function() {
+        $(document).on('input change', '#embed-width, #embed-height, #embed-border-radius, #embed-border-style, #embed-responsive, #embed-autoplay, #embed-show-player, #embed-fullscreen, #embed-hd-model, #embed-show-particles, #embed-show-watermark, #embed-transparent-bg', function() {
             updateEmbedCode();
             // Gray out width/height when responsive is on
             var isResponsive = $('#embed-responsive').is(':checked');
@@ -11496,6 +11654,7 @@ function flexframe_settings_page() {
             var fullscreen = $('#embed-fullscreen').is(':checked');
             var hdModel = $('#embed-hd-model').is(':checked');
             var showParticles = $('#embed-show-particles').is(':checked');
+            var showWatermark = $('#embed-show-watermark').is(':checked');
             var transparentBg = $('#embed-transparent-bg').is(':checked');
             var borderRadius = parseInt($('#embed-border-radius').val()) || 0;
             var borderStyle = $('#embed-border-style').val();
@@ -11508,6 +11667,7 @@ function flexframe_settings_page() {
             if (!fullscreen) iframeUrl += '&hideFullscreen=1';
             if (hdModel) iframeUrl += '&hdModel=1';
             if (!showParticles) iframeUrl += '&hideParticles=1';
+            if (!showWatermark) iframeUrl += '&hideWatermark=1';
             if (transparentBg) iframeUrl += '&transparentBg=1';
 
             // Add camera position params if captured
@@ -12604,6 +12764,17 @@ function flexframe_settings_page() {
             });
         });
         
+        // Copy login shortcode to clipboard
+        $('#copy-login-shortcode').on('click', function() {
+            navigator.clipboard.writeText('[flexframe_login]').then(function() {
+                var $btn = $('#copy-login-shortcode');
+                $btn.find('.dashicons').removeClass('dashicons-clipboard').addClass('dashicons-yes');
+                setTimeout(function() {
+                    $btn.find('.dashicons').removeClass('dashicons-yes').addClass('dashicons-clipboard');
+                }, 1500);
+            });
+        });
+        
         // Create Login Page
         $('#create-login-page-btn').on('click', function() {
             var $btn = $(this);
@@ -12949,6 +13120,30 @@ function flexframe_settings_page() {
             });
         });
 
+        // ── Lead Capture Mode Toggle ──
+        $('input[name="flexframe_lead_capture_mode"]').on('change', function() {
+            var mode = $(this).val();
+            // Update radio card styles
+            $('input[name="flexframe_lead_capture_mode"]').each(function() {
+                var $label = $(this).closest('label');
+                if ($(this).is(':checked')) {
+                    $label.css({'background': '#f0f6fc', 'border-color': '#2271b1'});
+                } else {
+                    $label.css({'background': '#f9f9f9', 'border-color': '#e0e0e0'});
+                }
+            });
+            if (mode === 'off') {
+                $('#lead-capture-options').slideUp(200);
+            } else {
+                $('#lead-capture-options').slideDown(200);
+                if (mode === 'contact') {
+                    $('#lead-capture-contact-options').slideDown(200);
+                } else {
+                    $('#lead-capture-contact-options').slideUp(200);
+                }
+            }
+        });
+
         // ── Email Captures Panel ──
         var emailCapturePage = 1;
 
@@ -12959,7 +13154,7 @@ function flexframe_settings_page() {
             var $pagination = $('#flexframe-email-pagination');
             var $total = $('#flexframe-email-total');
 
-            $tbody.html('<tr><td colspan="7" style="text-align:center;padding:20px;color:#666;">Loading...</td></tr>');
+            $tbody.html('<tr><td colspan="11" style="text-align:center;padding:20px;color:#666;">Loading...</td></tr>');
 
             $.ajax({
                 url: ajaxurl,
@@ -12967,42 +13162,56 @@ function flexframe_settings_page() {
                 data: { action: 'flexframe_get_email_captures', page_num: page },
                 success: function(response) {
                     if (!response.success) {
-                        $tbody.html('<tr><td colspan="8" style="text-align:center;color:#d63638;">Error loading data.</td></tr>');
+                        $tbody.html('<tr><td colspan="11" style="text-align:center;color:#d63638;">Error loading data.</td></tr>');
                         return;
                     }
                     var d = response.data;
-                    $total.text(d.total + ' total email' + (d.total !== 1 ? 's' : '') + ' captured');
+                    $total.text(d.total + ' total lead' + (d.total !== 1 ? 's' : '') + ' captured');
 
                     if (d.rows.length === 0) {
-                        $tbody.html('<tr><td colspan="8" style="text-align:center;padding:20px;color:#666;">No email captures yet.</td></tr>');
+                        $tbody.html('<tr><td colspan="11" style="text-align:center;padding:20px;color:#666;">No leads captured yet.</td></tr>');
                         $pagination.empty();
                         return;
                     }
 
                     var html = '';
                     $.each(d.rows, function(i, row) {
+                        var source = row.source || 'workout';
+                        var sourceBadge = source === 'dashboard' 
+                            ? '<span style="background:#e7f5ff;color:#1971c2;padding:2px 6px;border-radius:4px;font-size:11px;">Dashboard</span>' 
+                            : '<span style="background:#fff3e0;color:#e65100;padding:2px 6px;border-radius:4px;font-size:11px;">Workout</span>';
+                        
                         html += '<tr data-id="' + row.id + '">';
+                        html += '<td>' + sourceBadge + '</td>';
                         html += '<td>' + $('<span>').text(row.email).html() + '</td>';
+                        html += '<td>' + $('<span>').text(row.lead_name || '—').html() + '</td>';
+                        html += '<td>' + $('<span>').text(row.phone || '—').html() + '</td>';
                         html += '<td>' + (parseInt(row.marketing_consent) ? '<span style="color:#00a32a;">Yes</span>' : '<span style="color:#d63638;">No</span>') + '</td>';
                         html += '<td>' + (parseInt(row.day_pass_requested) ? '<span style="color:#00a32a;">Yes</span>' : '<span style="color:#888;">No</span>') + '</td>';
-                        html += '<td style="text-align:center;font-weight:700;">' + (parseInt(row.workout_count) || 1) + '</td>';
+                        html += '<td style="text-align:center;font-weight:700;">' + (parseInt(row.workout_count) || 0) + '</td>';
 
-                        // Workout Links column — clickable list
-                        var linksHtml = '—';
-                        try {
-                            var links = JSON.parse(row.workout_links || '[]');
-                            if (links.length > 0) {
-                                var baseUrl = d.workoutBaseUrl || '';
-                                linksHtml = '<div style="max-height:80px;overflow-y:auto;font-size:12px;line-height:1.6;">';
-                                $.each(links, function(li, lnk) {
-                                    var url = baseUrl + (lnk.hash || '');
-                                    var name = lnk.name || 'Workout';
-                                    linksHtml += '<a href="' + url + '" target="_blank" style="display:block;color:#2271b1;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="' + $('<span>').text(name).html() + '">' + $('<span>').text(name).html() + '</a>';
-                                });
-                                linksHtml += '</div>';
-                            }
-                        } catch(e) { linksHtml = '—'; }
-                        html += '<td>' + linksHtml + '</td>';
+                        // Message / Workout Links column
+                        var contentHtml = '';
+                        if (row.message && row.message.trim()) {
+                            contentHtml = '<div style="max-height:60px;overflow-y:auto;font-size:12px;line-height:1.4;color:#555;">' + $('<span>').text(row.message).html() + '</div>';
+                        } else {
+                            try {
+                                var links = JSON.parse(row.workout_links || '[]');
+                                if (links.length > 0) {
+                                    var baseUrl = d.workoutBaseUrl || '';
+                                    contentHtml = '<div style="max-height:60px;overflow-y:auto;font-size:12px;line-height:1.6;">';
+                                    $.each(links, function(li, lnk) {
+                                        var url = baseUrl + (lnk.hash || '');
+                                        var name = lnk.name || 'Workout';
+                                        contentHtml += '<a href="' + url + '" target="_blank" style="display:block;color:#2271b1;text-decoration:none;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;" title="' + $('<span>').text(name).html() + '">' + $('<span>').text(name).html() + '</a>';
+                                    });
+                                    contentHtml += '</div>';
+                                } else {
+                                    contentHtml = '—';
+                                }
+                            } catch(e) { contentHtml = '—'; }
+                        }
+                        html += '<td>' + contentHtml + '</td>';
 
                         html += '<td>' + $('<span>').text(row.workout_name || '—').html() + '</td>';
                         html += '<td>' + $('<span>').text(row.captured_at || '').html() + '</td>';
@@ -13027,7 +13236,7 @@ function flexframe_settings_page() {
                     }
                 },
                 error: function() {
-                    $tbody.html('<tr><td colspan="8" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
+                    $tbody.html('<tr><td colspan="11" style="text-align:center;color:#d63638;">Request failed.</td></tr>');
                 }
             });
         }

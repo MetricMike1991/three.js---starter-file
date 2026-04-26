@@ -1,0 +1,105 @@
+{
+  "exerciseId": "medicine_ball_push_up_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/263.%20Medicine%20Ball%20Push%20Up/263.%20Medicine%20Ball%20Push%20Up%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/263.%20Medicine%20Ball%20Push%20Up/263.%20Medicine%20Ball%20Push%20Up%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.3767096476061944, 2.7877488351501305, -2.2110909412743562],
+    "rotation": [-2.310969867486941, -0.6064028701855482, -2.5837530247785994],
+    "target": [-0.05168007805413062, 0.31262825301864183, 0.049703531407305476]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.376707536917179, 2.7877487589187506, -2.2110931953896795],
+    "rotation": [-2.310970379308294, -0.6064022405474861, -2.5837538940907505],
+    "target": [-0.05168007805413062, 0.31262825301864183, 0.049703531407305476]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/263.%20Medicine%20Ball%20Push%20Up/Medicine%20Ball%20Push%20Up%20V2_250x250_2026-04-24T21-55-34.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Medicine Ball Push-Up is an advanced bodyweight pressing exercise performed with one hand placed on a medicine ball while the other remains on the floor.\n\nThe unstable surface created by the medicine ball challenges balance, grip, and unilateral strength, increasing the demand on the chest, shoulders, triceps, and core.\n\nBy alternating the ball between hands each rep, this variation builds pressing strength, stability, and shoulder control while addressing imbalances between sides."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds unilateral pressing strength and stability\n- Challenges balance and proprioception\n- Increases core and shoulder stabiliser engagement\n- Addresses left-right strength imbalances\n- Develops wrist and grip control on the unstable surface\n- Adds variety and a power element to pressing work\n- Excellent progression from standard push-ups\n- Improves shoulder and scapular control\n- Portable - only requires a medicine ball\n- Builds athletic, functional strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major\n\nSecondary: Anterior Deltoids, Triceps Brachii, Serratus Anterior, Core (stabiliser), Obliques"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Begin in a high plank position with your hands slightly wider than shoulder-width.\n2. Place a medicine ball under one hand and rest your palm firmly on top of it.\n3. Keep the other hand flat on the floor directly under your shoulder.\n4. Extend your legs back with feet together or slightly apart for balance.\n5. Form a straight line from your head through your hips to your heels.\n6. Engage your core and squeeze your glutes.\n7. Pull your shoulder blades down and slightly back.\n8. Keep your neck in a neutral position, eyes looking slightly ahead.\n9. Take a deep breath and prepare to press."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Inhale and lower your body towards the floor by bending your elbows.\n2. Keep your body straight - no sagging hips or raised glutes.\n3. Maintain balance by keeping even pressure on both hands.\n4. Lower until your chest is close to the floor or just above it.\n5. Pause briefly at the bottom.\n6. Exhale and push through both hands to return to the starting position.\n7. Extend your arms fully at the top without aggressively locking out the elbows.\n8. Keep the medicine ball stable throughout the movement.\n9. At the top, switch the medicine ball to the other hand.\n10. Repeat the push-up with the ball now under the opposite hand.\n11. Continue alternating hands for the desired number of repetitions per side."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Losing body line - sagging hips or raised glutes\n- Flaring the elbows out at 90 degrees\n- Partial range of motion at the top or bottom\n- Uneven pressing - leaning heavily on one hand\n- Allowing the medicine ball to roll or shift during the press\n- Rushing the transition when switching hands\n- Dropping the head or craning the neck\n- Holding the breath for multiple reps\n- Using a medicine ball that is too large or too small for your hand\n- Attempting the exercise before mastering standard push-ups"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Medicine Ball (firm, non-slip surface)\n- Comfortable athletic clothing\n- Supportive, flat-soled footwear\n- Optional: Exercise Mat for grip and comfort\n- Optional: Push-Up Handles for the floor-side hand\n- Non-slip flooring to prevent the medicine ball from rolling away"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 5-8 reps per side (regress to knees if needed).\n2. Intermediate: 3-4 sets of 8-12 reps per side.\n3. Advanced: 4-5 sets of 12-15 reps per side.\n4. Hypertrophy Focus: 3-4 sets of 10-12 reps with controlled tempo.\n5. Endurance Focus: 2-3 sets of 15+ reps per side.\n6. Tempo Focus: 3 sets of 6-8 reps with 3-second eccentric.\n7. Rest: 60-90 seconds between sets.\n8. Progression: Work toward fluid, controlled alternating reps."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hand Placement: One on the medicine ball, one flat on the floor, slightly wider than shoulder-width.\n2. Body Line: Straight from head to heels.\n3. Hips: Neither sagging nor raised.\n4. Shoulders: Pulled down and slightly back, stacked over wrists.\n5. Elbows: Tucked at approximately 45 degrees.\n6. Head: Neutral, eyes looking slightly ahead.\n7. Core: Braced throughout the movement.\n8. Glutes: Squeezed to maintain body line.\n9. Feet: Together or slightly apart for balance.\n10. Breathing: Inhale on descent, exhale on the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["push_up", "medicine_ball_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Foundational bodyweight pressing movement\n- Medicine Ball Push-Up (Both Hands): Ball under both hands for symmetrical instability\n- Single-Arm Push-Up: Advanced unilateral progression\n- Archer Push-Up: Lateral shift alternative for unilateral focus\n- Stability Ball Push-Up: Similar instability challenge using a gym ball\n- Plyometric Push-Up: Explosive pressing alternative\n- Ring Push-Up: Suspension-trainer instability alternative\n- Dumbbell Bench Press: Weighted pressing alternative"
+        },
+        {
+          "heading": "Medicine Ball Push-Up Variations",
+          "content": "Alternating Medicine Ball Push-Up: One hand on ball, alternate sides between reps\nBoth-Hands Medicine Ball Push-Up: Both hands on a single ball for extra instability\nDouble Medicine Ball Push-Up: One ball under each hand\nMedicine Ball Roll Push-Up: Roll the ball to the opposite hand at the top\nPlyometric Medicine Ball Push-Up: Explosively switch hands between reps\nArcher Medicine Ball Push-Up: Ball under the working-side hand, shift weight\nTempo Medicine Ball Push-Up: 3-5 second eccentric for time under tension\nPause Medicine Ball Push-Up: 2-3 second pause at the bottom\nElevated-Foot Medicine Ball Push-Up: Feet elevated for extra difficulty"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use a smaller, firmer ball or regress to standard push-ups\nShoulder Pain: Keep elbows tucked closer to the torso, reduce depth\nElbow Pain: Avoid aggressive lockout at the top\nLower Back Pain: Focus on bracing the core and squeezing the glutes\nLimited Strength: Regress to knee push-ups or standard floor push-ups first\nBalance Issues: Use a larger, more stable medicine ball or dense foam ball\nNo Medicine Ball: Use a basketball, stability ball, or BOSU ball\nBeginner: Master the standard push-up before attempting this variation\nShoulder Instability: Ensure shoulders are packed down and back before pressing"
+        }
+      ]
+    }
+  }
+}

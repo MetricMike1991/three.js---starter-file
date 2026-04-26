@@ -1,0 +1,105 @@
+{
+  "exerciseId": "rear_delt_fly_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/153.%20Rear%20Delt%20Fly%20Machine/153.%20Rear%20Delt%20Fly%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/153.%20Rear%20Delt%20Fly%20Machine/153.%20Rear%20Delt%20Fly%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/153.%20Rear%20Delt%20Fly%20Machine/153.%20Rear%20Delt%20Fly%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/153.%20Rear%20Delt%20Fly%20Machine/153.%20Rear%20Delt%20Fly%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.5542454179073069, 1.6063230895000764, 2.8061622549666008],
+    "rotation": [-0.3074335991113602, -0.48857133092487187, -0.14793468005747945],
+    "target": [0.0343788612834998, 0.7019203711283543, -0.042349483759289874]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.4544674590216775, 1.9647019119251334, 1.9956043208647252],
+    "rotation": [-0.5273397486822643, -0.5776055060759051, -0.3078639816212462],
+    "target": [0.002484663929208128, 0.8397468123359012, 0.06385034392575456]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/153.%20Rear%20Delt%20Fly%20Machine/Rear%20Delt%20Fly%20Machine_250x250_2026-04-12T15-33-24.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Rear Delt Fly Machine is an isolation exercise performed on a dedicated machine that targets the posterior (rear) deltoids.\n\nThe machine's guided path allows you to focus entirely on contracting the rear delts without worrying about balance or stabilisation, making it one of the most effective exercises for building the often-neglected rear shoulder muscles.\n\nIt is widely used in bodybuilding, strength training, and corrective exercise programmes for improving shoulder balance, posture, and upper back thickness."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly isolates the rear deltoids with a controlled, guided movement\n- Fixed path of motion reduces the risk of using momentum or incorrect form\n- Helps correct muscular imbalances between the front and rear shoulders\n- Improves posture by strengthening the upper back and rear shoulder complex\n- Easy to adjust weight via the pin stack for progressive overload and drop sets\n- Supports shoulder health by strengthening the muscles around the rotator cuff\n- Suitable for all fitness levels from beginner to advanced"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Posterior Deltoids\n\nSecondary: Rhomboids, Middle Trapezius, Infraspinatus, Teres Minor"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height and position on the Rear Delt Fly machine according to your comfort.\n2. Sit facing the machine with your chest firmly pressed against the pad.\n3. Grasp the handles with an overhand grip at chest or shoulder height.\n4. Maintain a slight bend in your elbows and keep your back straight.\n5. Start with your arms extended in front of you, hands close together."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Squeeze your shoulder blades together as you pull the handles back and outward.\n2. Keep a slight bend in your elbows throughout the entire movement.\n3. Continue until your arms are extended out to the sides and you feel a strong contraction in your rear delts.\n4. Hold the peak contraction briefly, squeezing your shoulder blades together.\n5. Slowly return the handles back to the starting position with control.\n6. Feel the stretch in your rear deltoids at the bottom without letting the weight stack rest.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and relying on momentum to swing the handles back\n- Lifting the chest off the pad, turning it into a rowing movement\n- Fully straightening the elbows, placing excessive stress on the joints\n- Not achieving a full range of motion — stopping short of full contraction\n- Shrugging the shoulders upward, recruiting the upper traps instead of the rear delts\n- Rushing through repetitions instead of using slow, controlled movements\n- Gripping the handles too tightly, shifting tension to the forearms"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Rear Delt Fly Machine (also known as Reverse Pec Deck)\n- Adjustable seat and handle positions (varies by machine)\n- Weight stack with pin selection for easy load changes"
+        },
+        {
+          "heading": "Machine Adjustments",
+          "content": "1. Seat Height: Adjust so the handles align with your shoulders when seated with your chest against the pad.\n2. Handle Position: Set so your arms can extend comfortably in front of you at the start.\n3. Weight: Start light — rear delt exercises require less weight than compound movements.\n4. Chest Pad: Ensure your chest is firmly pressed against the pad for stability.\n5. Some machines allow you to adjust the starting handle width — set it so you feel a slight stretch at the start.\n6. Check all pin selections are secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Chest: Firmly pressed against the chest pad throughout the movement.\n2. Back: Straight with a natural arch — do not round forward.\n3. Shoulders: Down and back — avoid shrugging upward.\n4. Elbows: Maintain a slight bend throughout — do not lock out.\n5. Feet: Flat on the floor for stability.\n6. Grip: Firm but relaxed — let the rear delts do the work."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["rear_delt_dumbbell_fly", "rear_delt_dumbbell_fly_seated", "chest_supported_front_raise"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Rear Delt Dumbbell Fly: Free-weight rear delt isolation, standing or bent over\n- Rear Delt Dumbbell Fly Seated: Seated bent-over variation for strict form\n- Face Pull: Cable exercise targeting rear delts and external rotators\n- Reverse Cable Fly: Standing cable variation for constant tension\n- Band Pull-Apart: Resistance band rear delt isolation\n- Prone Y-Raise: Lying face-down rear delt and lower trap exercise"
+        },
+        {
+          "heading": "Rear Delt Fly Variations",
+          "content": "Standard Rear Delt Fly Machine: Overhand grip, chest against pad\nNeutral Grip Rear Delt Fly: Palms facing each other for a different angle\nSingle-Arm Rear Delt Fly: Unilateral variation for balanced development\nSlow Tempo Rear Delt Fly: 3–4 second concentrics for increased time under tension\nPaused Rear Delt Fly: Hold at peak contraction for 2–3 seconds per rep\nDrop Set Rear Delt Fly: Reduce weight immediately after failure for extended sets\n1.5 Rep Rear Delt Fly: Full rep followed by a half rep for prolonged tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion and use a lighter weight\nRotator Cuff Issues: Focus on slow, controlled movements and avoid overloading\nNo Rear Delt Fly Machine: Use dumbbells, cables, or resistance bands as alternatives\nBeginner: Start with minimal weight to establish a strong mind-muscle connection\nNeck Tension: Ensure you are not shrugging — keep shoulders down and relaxed\nLimited Mobility: Adjust the starting handle position to a comfortable range and progress gradually"
+        }
+      ]
+    }
+  }
+}

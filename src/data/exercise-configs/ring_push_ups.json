@@ -1,0 +1,105 @@
+{
+  "exerciseId": "ring_push_ups",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/149.%20Ring%20Push%20Ups/149.%20Ring%20Push%20Ups%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/149.%20Ring%20Push%20Ups/149.%20Ring%20Push%20Ups%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/149.%20Ring%20Push%20Ups/149.%20Ring%20Push%20Ups%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/149.%20Ring%20Push%20Ups/149.%20Ring%20Push%20Ups%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.6629822291029988, 1.7638366947724426, 1.8516263066270768],
+    "rotation": [-0.5687628545328584, 0.6804750345348467, 0.38238081809268254],
+    "target": [-0.10153782282853463, 0.5897603368647936, 0.01490646299547736]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.5081386921738194, 1.3617398114020625, 1.6517996462785105],
+    "rotation": [-0.40897577947580754, 0.7411816660345389, 0.2846760267157637],
+    "target": [-0.0940011479777194, 0.6656277917733042, 0.045686447316384673]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/149.%20Ring%20Push%20Ups/Ring%20Push%20Ups_250x250_2026-04-12T13-00-27.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Ring Push Ups are an advanced bodyweight pushing exercise performed with the hands gripping gymnastic rings instead of the floor.\n\nThe instability of the rings forces the chest, shoulders, triceps, and core to work significantly harder to stabilise and control the movement through the full range of motion.\n\nThis exercise is a staple in gymnastics, calisthenics, and functional training programmes, building superior pushing strength and shoulder stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Greater chest and shoulder activation compared to standard push-ups due to ring instability\n- Develops exceptional shoulder stability and joint integrity\n- Allows for a deeper range of motion than floor push-ups\n- Engages the core intensely to prevent swinging and maintain body alignment\n- Improves proprioception and body control\n- Scalable by adjusting ring height — higher rings make it easier, lower rings harder\n- Excellent progression toward more advanced ring movements like ring dips and muscle-ups"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major, Anterior Deltoids, Triceps\n\nSecondary: Serratus Anterior, Core (Rectus Abdominis, Obliques, Transverse Abdominis), Rotator Cuff muscles, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set up the gymnastic rings at an appropriate height — the lower the rings, the more challenging the exercise.\n2. Grip each ring firmly with your palms facing inward.\n3. Walk your feet back and extend your body into a plank position with your arms straight.\n4. Position your hands slightly wider than shoulder-width apart.\n5. Maintain a straight line from your head to your heels with your core braced."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your body rigid and core engaged, slowly lower your chest toward the rings by bending your elbows.\n2. Allow the rings to move slightly outward as you descend for a natural pressing path.\n3. Lower until your chest is level with or just below the rings — aim for a deep stretch across the chest.\n4. Pause briefly at the bottom of the movement.\n5. Push through your palms to extend your arms and return to the starting position.\n6. At the top, turn the rings slightly outward for full lockout and repeat."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag or pike up, breaking the straight body line\n- Allowing the rings to flare too wide, placing excessive stress on the shoulders\n- Not achieving full depth — aim for chest level with the rings\n- Rushing the movement instead of using slow, controlled reps\n- Not locking out fully at the top of each rep\n- Holding the breath instead of breathing steadily\n- Attempting ring push-ups before mastering standard floor push-ups"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of gymnastic rings with adjustable straps\n- A sturdy overhead anchor point (pull-up bar, ceiling mount, or outdoor rig)\n- Clear floor space beneath and behind the rings\n- Optional: Exercise mat for comfort under your feet\n- Optional: Weight vest for added resistance once bodyweight becomes easy"
+        },
+        {
+          "heading": "Ring Height and Difficulty",
+          "content": "1. Higher rings (chest height): Easier — suitable for beginners transitioning from floor push-ups.\n2. Medium rings (hip to waist height): Moderate difficulty — standard ring push-up height.\n3. Lower rings (shin to knee height): Hardest — maximum instability and chest activation.\n4. Ensure both straps are the same length for even loading.\n5. The rings should hang freely without touching the straps to each other.\n6. Test with a static hold in the top position before performing full reps."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Firm grip with palms facing inward, wrists neutral.\n2. Arms: Fully extended at the top, hands slightly wider than shoulder-width.\n3. Shoulders: Depressed and stable — do not shrug.\n4. Core: Braced tightly to maintain a rigid plank position.\n5. Hips: In line with shoulders and ankles — no sagging or piking.\n6. Feet: Together or hip-width apart on the floor behind you.\n7. Head: Neutral, looking slightly ahead of the rings."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["ring_dips", "adapted_push_up_from_knees", "barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Floor-based variation — master this first before progressing to rings\n- Ring Dips: Vertical pushing on rings for triceps and chest\n- Dumbbell Chest Press: Loaded pressing movement targeting similar muscles\n- TRX Push-Up: Suspension trainer alternative with similar instability\n- Decline Push-Up: Feet elevated for increased upper chest and shoulder demand\n- Archer Push-Up: Unilateral floor push-up variation for advanced strength"
+        },
+        {
+          "heading": "Ring Push-Up Variations",
+          "content": "Ring Push-Ups: Standard bodyweight ring push-up\nElevated Ring Push-Ups: Rings set higher for a beginner-friendly version\nRing Push-Up with Turn Out: Rotate rings outward at the top for extra chest activation\nRing Archer Push-Up: Shift weight to one arm for unilateral strength\nRing Wide Push-Up: Wider hand placement for greater chest stretch\nWeighted Ring Push-Up: Add a weight vest for increased resistance"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Set rings higher to reduce load and range of motion; ensure proper form\nWrist Discomfort: The neutral ring grip is often easier on wrists than floor push-ups\nInsufficient Strength: Start with rings at chest height and gradually lower them over time\nCore Weakness: Master standard planks and floor push-ups before progressing to rings\nNo Rings: Perform standard or decline push-ups on the floor\nBeginner: Start with elevated ring push-ups and build to lower ring heights progressively"
+        }
+      ]
+    }
+  }
+}

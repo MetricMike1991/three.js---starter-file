@@ -1,0 +1,105 @@
+{
+  "exerciseId": "rear_delt_dumbbell_fly",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/147.%20Rear%20Delt%20Dumbbell%20Fly/147.%20Rear%20Delt%20Dumbbell%20Fly%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/147.%20Rear%20Delt%20Dumbbell%20Fly/147.%20Rear%20Delt%20Dumbbell%20Fly%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/147.%20Rear%20Delt%20Dumbbell%20Fly/147.%20Rear%20Delt%20Dumbbell%20Fly%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/147.%20Rear%20Delt%20Dumbbell%20Fly/147.%20Rear%20Delt%20Dumbbell%20Fly%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.096723661337954, 1.9282287350463692, -2.0537991777919222],
+    "rotation": [-2.5650416719892437, 0.4099159149729477, 2.888025071270526],
+    "target": [-0.051525515872835555, 0.4877071532609177, 0.1615356535942329]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.082621399273634, 1.94280790580118, -1.8615889608622556],
+    "rotation": [-2.523931460764225, 0.4351297803873614, 2.8506434220392713],
+    "target": [-0.07368250919911268, 0.5022177417036223, 0.16631429464215036]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/147.%20Rear%20Delt%20Dumbbell%20Fly/Rear%20Delt%20Dumbbell%20Fly_250x250_2026-04-12T12-46-44.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Rear Delt Dumbbell Fly is a standing isolation exercise that targets the posterior deltoids by raising dumbbells out to the sides while bent over at the hips.\n\nThis bent-over variation allows for a full range of motion and engages more stabilising muscles than the seated version, as the entire posterior chain must work to maintain the hip-hinge position.\n\nIt is a staple exercise in shoulder and upper back training, essential for balanced shoulder development and improved posture."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Effectively isolates the rear deltoids through a full range of motion\n- Engages the posterior chain including hamstrings and glutes to maintain position\n- Strengthens the posterior shoulder for improved joint stability and balance\n- Helps correct postural imbalances from excessive pressing and front delt work\n- Builds upper back thickness and shoulder definition\n- Improves shoulder health by strengthening the muscles around the rear of the joint\n- Requires only dumbbells — can be performed anywhere"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Posterior Deltoids\n\nSecondary: Rhomboids, Middle Trapezius, Infraspinatus, Teres Minor, Erector Spinae (isometric), Hamstrings and Glutes (isometric), Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart, holding a pair of dumbbells with palms facing each other.\n2. Hinge forward at the hips, pushing your hips back and keeping your back straight.\n3. Lower your torso until it is almost parallel to the ground.\n4. Let the dumbbells hang directly below your shoulders with a slight bend in your elbows.\n5. Keep your core engaged, your knees slightly bent, and your head in a neutral position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your torso stationary and core braced, raise the dumbbells out to your sides in a wide arc.\n2. Lead with your elbows, not your hands, and keep your wrists straight throughout the movement.\n3. Lift until your arms are roughly in line with your shoulders or parallel to the floor.\n4. Squeeze your rear delts and upper back muscles at the top of the movement.\n5. Pause briefly, then slowly lower the dumbbells back down to the starting position with control.\n6. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum by swinging the torso or jerking the weights up\n- Not hinging forward enough at the hips, shifting emphasis to the medial delts\n- Rounding the upper or lower back during the movement\n- Lifting too heavy, causing the traps to take over\n- Straightening the arms fully, placing excessive stress on the elbows\n- Raising the torso as you lift the weights, reducing rear delt engagement\n- Rushing the movement instead of using slow, controlled reps"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of light to moderate dumbbells\n- Clear floor space\n- Optional: Mirror to check form and hip-hinge depth\n- Optional: Wrist wraps for grip support with heavier weights"
+        },
+        {
+          "heading": "Finding the Right Hip Hinge",
+          "content": "1. Stand with feet shoulder-width apart, soft bend in the knees.\n2. Push your hips back as if closing a door with your backside.\n3. Keep your chest proud and spine neutral as you hinge forward.\n4. Your torso should be close to parallel with the ground — at least 45 degrees.\n5. You should feel a stretch in your hamstrings at the bottom of the hinge.\n6. If you can't maintain a flat back, don't hinge as deeply — work on hamstring flexibility over time."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, toes pointing forward or slightly outward.\n2. Knees: Slightly bent to protect the lower back.\n3. Hips: Hinged back, torso close to parallel with the floor.\n4. Back: Flat and neutral — avoid rounding at any point.\n5. Arms: Hanging below with a slight elbow bend, palms facing each other.\n6. Core: Braced throughout to support the bent-over position.\n7. Head: Neutral, looking slightly ahead toward the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["rear_delt_dumbbell_fly_seated", "chest_supported_front_raise", "arnold_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Rear Delt Fly: Same movement performed seated for stricter isolation\n- Chest Supported Rear Delt Fly: Face-down on incline bench for maximum isolation\n- Cable Reverse Fly: Constant tension through the range of motion\n- Face Pull: Targets rear delts and external rotators with cables or bands\n- Reverse Pec Deck: Machine-based rear delt isolation\n- Band Pull-Apart: Light resistance band exercise for rear delt activation"
+        },
+        {
+          "heading": "Rear Delt Fly Variations",
+          "content": "Standing Bent-Over Fly: Standard hip-hinge variation with both arms\nSeated Rear Delt Fly: Performed seated on a bench for added stability\nChest Supported Fly: Face-down on incline bench for strict isolation\nSingle-Arm Bent-Over Fly: Unilateral variation for focused contraction\nCable Reverse Fly: Using a cable machine for constant tension\nAlternating Rear Delt Fly: One arm at a time for greater mind-muscle connection"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce the range of motion or try a neutral grip with thumbs pointing up\nLower Back Discomfort: Switch to the seated or chest-supported variation to eliminate back strain\nHamstring Tightness: Don't hinge as deeply — work within a comfortable range\nNeck Strain: Keep your head neutral and eyes toward the floor\nBeginner: Start with very light dumbbells — rear delt work requires less weight than you think\nBalance Issues: Use a wider stance or try the seated variation for more stability"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "ez_barbell_curls",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/75.%20Ez%20Barbell%20Curls/75.%20Ez%20Barbell%20Curls%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/75.%20Ez%20Barbell%20Curls/75.%20Ez%20Barbell%20Curls%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/75.%20Ez%20Barbell%20Curls/75.%20Ez%20Barbell%20Curls%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/75.%20Ez%20Barbell%20Curls/75.%20Ez%20Barbell%20Curls%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.2860734669626477, 1.487882934837422, -2.8807366084626898],
+    "rotation": [-3.001861056820349, -0.4281029859232404, -3.0832693862156972],
+    "target": [-0.005046636920205877, 1.0968957683636515, -0.10084149008842276]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.8875218956131175, 1.6548571974903015, 2.688267518837429],
+    "rotation": [-0.18912843517358954, 0.6169982054538352, 0.1103018696577332],
+    "target": [0.025007292595033162, 1.1612504096885419, 0.1095577747785885]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/75.%20Ez%20Barbell%20Curls/Ez%20Barbell%20Curls_250x250_2026-03-18T11-58-03.webp",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The EZ Barbell Curl is a standing isolation exercise that targets the biceps using an EZ curl bar.\n\nThe angled grip of the EZ bar places the wrists in a more natural, semi-supinated position compared to a straight barbell, reducing wrist and forearm strain while still effectively loading the biceps.\n\nThis is one of the most popular bicep exercises for building arm size and strength, suitable for lifters of all levels."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the biceps brachii for arm size and peak development\n- EZ bar angle reduces wrist strain compared to straight barbell curls\n- Engages the brachialis and brachioradialis as secondary movers\n- Allows heavier loading than dumbbell curls due to bilateral grip\n- Simple movement pattern that is easy to learn and execute\n- Versatile — can be performed standing, seated, or on a preacher bench\n- Effective for both strength and hypertrophy training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii (Long Head and Short Head)\n\nSecondary: Brachialis, Brachioradialis, Forearm Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart on a flat surface.\n2. Grasp the EZ barbell with an underhand (supinated) grip on the angled portions of the bar.\n3. Hands should be slightly wider than shoulder-width apart.\n4. Let the bar hang at arm's length in front of your thighs.\n5. Keep your elbows pinned close to your sides.\n6. Stand tall with your chest up and core braced."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Curl the barbell upward by flexing at the elbows.\n2. Keep your elbows stationary and close to your sides throughout the movement.\n3. Continue curling until the bar reaches shoulder height and your biceps are fully contracted.\n4. Squeeze the biceps hard at the top of the movement.\n5. Pause briefly at the peak contraction.\n6. Slowly lower the barbell back to the starting position under control.\n7. Fully extend your arms at the bottom without swinging.\n8. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the body or using momentum to lift the weight\n- Allowing the elbows to drift forward or flare out during the curl\n- Not achieving full range of motion — cutting the curl short at the top or bottom\n- Dropping the weight too quickly on the lowering phase\n- Gripping too tightly, which fatigues the forearms before the biceps\n- Leaning back excessively to cheat the weight up\n- Using too much weight at the expense of proper form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- EZ Curl Bar\n- Weight plates and collars\n- Optional: Wrist wraps for heavier sets\n- Flat, stable surface to stand on"
+        },
+        {
+          "heading": "Grip Guide",
+          "content": "1. Wide Grip (outer angles): Emphasises the short head (inner bicep) for width.\n2. Narrow Grip (inner angles): Emphasises the long head (outer bicep) for peak.\n3. Standard Grip (middle angles): Balanced engagement of both heads.\n4. The EZ bar's angled grips place the wrists between fully supinated and neutral.\n5. Choose the grip width that feels most comfortable and targets your desired area.\n6. Wrap your thumbs around the bar for a secure grip."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, flat on the floor.\n2. Knees: Slightly bent for stability — not locked out.\n3. Hips: Neutral position, not tilted forward or backward.\n4. Core: Lightly braced to prevent swaying.\n5. Elbows: Pinned to your sides throughout the entire set.\n6. Shoulders: Down and back — avoid shrugging during the curl.\n7. Head: Neutral, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bicep_curl", "dumbbell_bicep_curls"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Straight Barbell Curl: Standard barbell curl with a fully supinated grip\n- Dumbbell Bicep Curl: Allows independent arm movement and supination\n- Alternating Dumbbell Curl: One arm at a time for focused contraction\n- Hammer Curl: Neutral grip curl targeting the brachialis and brachioradialis\n- Cable Bicep Curl: Constant tension curl using a cable machine\n- Preacher Curl: Isolates the biceps by eliminating body momentum"
+        },
+        {
+          "heading": "EZ Bar Curl Variations",
+          "content": "Standing EZ Bar Curl: Standard standing bilateral curl\nPreacher EZ Bar Curl: Arms supported on a preacher bench for strict isolation\nSeated EZ Bar Curl: Performed seated to reduce momentum\nReverse Grip EZ Bar Curl: Overhand grip for brachioradialis and forearm emphasis\nSlow Eccentric EZ Bar Curl: 3-4 second lowering phase for increased time under tension\n21s EZ Bar Curl: 7 bottom-half reps, 7 top-half reps, 7 full reps for intense pump"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: The EZ bar is already wrist-friendly — try adjusting grip width or reducing weight\nElbow Pain: Avoid full lockout at the bottom and reduce weight\nShoulder Issues: Keep elbows pinned to your sides and avoid swinging\nForearm Fatigue: Use a lighter grip and focus on curling with the biceps\nLower Back Discomfort: Brace your core, avoid leaning back, or perform seated\nBeginner: Start with a light weight to master the strict curling motion before adding load"
+        }
+      ]
+    }
+  }
+}

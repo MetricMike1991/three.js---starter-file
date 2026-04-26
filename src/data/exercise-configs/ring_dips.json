@@ -1,0 +1,105 @@
+{
+  "exerciseId": "ring_dips",
+  "modelUrlSQ": "",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/148.%20Ring%20Dips/148.%20Ring%20Dips%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Ring Dips are an advanced bodyweight exercise performed on gymnastic rings that targets the chest, triceps, and shoulders.\n\nThe instability of the rings demands significantly more stabilisation from the shoulders, core, and arms compared to bar dips, making this one of the most challenging upper-body pushing exercises available.\n\nWidely used in gymnastics, CrossFit, and calisthenics training, Ring Dips build exceptional pushing strength, shoulder stability, and upper-body muscle control."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds superior pushing strength through an unstable range of motion\n- Develops exceptional shoulder stability and joint integrity\n- Engages the chest, triceps, and anterior deltoids intensely\n- Requires significant core activation to control the ring movement\n- Improves proprioception and body awareness\n- Transfers well to other pressing and gymnastics movements\n- Scalable with bands for assistance or weight vests for added resistance"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps, Pectoralis Major, Anterior Deltoids\n\nSecondary: Rhomboids, Latissimus Dorsi (stabilisers), Core (Rectus Abdominis, Obliques), Forearms and Grip, Rotator Cuff muscles"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set up the gymnastic rings at an appropriate height — they should be high enough that your feet don't touch the ground at the bottom of the dip.\n2. Grip each ring firmly with your palms facing inward.\n3. Jump or press up to the top position with your arms fully extended and the rings turned outward slightly.\n4. Keep your body upright, core braced, and legs together or slightly crossed behind you.\n5. Lock out your arms at the top and stabilise before beginning the descent."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Slowly lower your body by bending your elbows, keeping the rings close to your body.\n2. Descend until your upper arms are at least parallel to the ground or slightly below.\n3. Keep your torso upright and avoid excessive forward lean.\n4. Maintain control of the rings throughout — do not let them flare outward.\n5. Push through your palms to straighten your arms and drive back up to the starting position.\n6. Lock out fully at the top, stabilise, and repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the rings flare out wide, placing excessive stress on the shoulders\n- Not achieving full depth — upper arms should reach at least parallel\n- Excessive forward lean, shifting the emphasis away from the triceps\n- Not locking out fully at the top of each rep\n- Rushing the movement instead of controlling the descent and ascent\n- Neglecting to stabilise at the top before descending\n- Attempting ring dips before mastering bar dips and ring support holds"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- A pair of gymnastic rings with adjustable straps\n- A sturdy overhead anchor point (pull-up bar, ceiling mount, or outdoor rig)\n- Sufficient overhead clearance\n- Optional: Resistance band for assisted ring dips\n- Optional: Weight vest or dip belt for added resistance\n- Clear floor space beneath the rings"
+        },
+        {
+          "heading": "Ring Setup",
+          "content": "1. Hang the rings from a sturdy overhead bar or mount at an equal height.\n2. Set the ring height so your feet clear the ground at the bottom of the dip.\n3. Ensure both straps are the same length for even loading.\n4. The rings should be approximately shoulder-width apart.\n5. Check all buckles and straps are secure before loading your bodyweight.\n6. Test with a ring support hold (arms locked at the top) before attempting full dips."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Firm grip with palms facing inward, wrists neutral.\n2. Arms: Fully locked out at the top position before starting.\n3. Shoulders: Depressed and retracted — do not shrug up toward the ears.\n4. Core: Braced tightly throughout to prevent swinging.\n5. Legs: Together and slightly behind you, or crossed at the ankles.\n6. Head: Neutral, looking slightly forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["assisted_dips", "adapted_push_up_from_knees"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bar Dips: Stable surface dip — ideal progression toward ring dips\n- Assisted Dips: Machine-assisted for building base strength\n- Push-Ups: Fundamental pushing movement for beginners\n- Close-Grip Bench Press: Targets triceps with barbell loading\n- Ring Push-Ups: Unstable push-up variation to build ring familiarity\n- Weighted Dips: Bar dips with added load for strength progression"
+        },
+        {
+          "heading": "Ring Dip Variations",
+          "content": "Ring Dips: Standard bodyweight ring dip\nBanded Ring Dips: Resistance band looped under feet for assistance\nWeighted Ring Dips: Added load via weight vest or dip belt\nRing Dip Negatives: Slow eccentric-only descent for building strength\nL-Sit Ring Dips: Legs extended in front for advanced core and tricep challenge\nRing Support Hold: Isometric hold at the top for shoulder stability development"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Master bar dips first and ensure full shoulder mobility before attempting rings\nInsufficient Strength: Start with banded ring dips or ring dip negatives to build up\nWrist Discomfort: Ensure a neutral wrist position and consider wrist wraps\nNo Rings: Perform bar dips or bench dips as an alternative\nBeginner: Progress through push-ups, bar dips, ring support holds, then ring dips\nInstability Issues: Practice ring support holds for time before attempting full dips"
+        }
+      ]
+    }
+  }
+}

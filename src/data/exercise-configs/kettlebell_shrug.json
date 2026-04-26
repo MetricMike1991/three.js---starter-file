@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/181.%20Kettlebell%20Shrug/181.%20Kettlebell%20Shrug%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/181.%20Kettlebell%20Shrug/181.%20Kettlebell%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/181.%20Kettlebell%20Shrug/181.%20Kettlebell%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/181.%20Kettlebell%20Shrug/181.%20Kettlebell%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-0.7481450322511162, 1.4842356728578459, -2.3956033884750907],
+    "rotation": [-2.8698291772151543, -0.3003289315035089, -3.05934211904694],
+    "target": [0.009278925288934712, 0.8277360127078405, -0.039666837168027505]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-0.6741028364948496, 1.4782123577809592, -2.024714999923013],
+    "rotation": [-2.818935096108974, -0.3040736594007815, -3.0418200579475543],
+    "target": [0.042838586369700025, 0.7537709945216652, 0.14205621298871718]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/181.%20Kettlebell%20Shrug/Kettlebell%20Shrug_250x250_2026-04-22T09-32-59.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Shrug is an isolation exercise that targets the upper trapezius muscles using a pair of kettlebells held at your sides.\n\nThe offset load of kettlebells and their center of mass hanging below the hand provide a slightly different stimulus compared to dumbbells, demanding additional grip and shoulder stability.\n\nIt's a great accessory movement for building upper-back thickness, improving posture, and strengthening the traps."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates and develops the upper trapezius\n- Offset load increases grip and shoulder stability demand\n- Neutral grip is comfortable on wrists and shoulders\n- Builds upper-back thickness and posture support\n- Improves grip strength and forearm endurance\n- Allows unilateral focus and balance correction\n- Great accessory work for deadlifts and pulls"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Trapezius (Upper), Levator Scapulae\n\nSecondary: Rhomboids, Deltoids, Forearms and Grip, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart, holding a kettlebell in each hand by your sides.\n2. Keep your back straight and your chest lifted.\n3. Relax your arms and shoulders, palms facing your body.\n4. Brace your core and look straight ahead."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears.\n2. Pause briefly at the top to maximize the contraction.\n3. Lower your shoulders back down with control.\n4. Repeat the shrug for the desired number of repetitions.\n5. Focus on engaging your shoulder muscles and maintaining proper form throughout the movement.\n6. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of lifting straight up\n- Using the biceps or arms to pull the weight\n- Rushing reps and missing the top contraction\n- Rounding the back during the lift\n- Bending the elbows during the shrug\n- Not bracing the core\n- Using excessive weight that limits range of motion\n- Letting the head jut forward"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Kettlebells\n- Non-slip Floor Surface\n- Optional: Lifting Straps for heavy sets\n- Optional: Chalk for improved grip\n- Recommended: Flat-soled shoes for stability"
+        },
+        {
+          "heading": "Choosing the Right Weight",
+          "content": "1. Select a load you can control through a full range of motion.\n2. Prioritize feeling the trap contraction over moving heavy weight.\n3. Use straps if grip fails before your traps do.\n4. Progress gradually with strict form.\n5. Keep reps controlled at the top and bottom.\n6. Moderate to higher reps work well for trap hypertrophy."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, knees soft.\n2. Grip: Neutral, palms facing your body, firm hold on the handles.\n3. Torso: Upright with chest up and core braced.\n4. Shoulders: Relaxed to start, retracted slightly.\n5. Arms: Straight and relaxed throughout.\n6. Head: Neutral, eyes looking forward.\n7. Breathing: Exhale on the shrug up, inhale on the descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_shrug", "barbell_shrugs"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Shrug: Free range of motion per side\n- Barbell Shrug: Heavier loading with both hands on one bar\n- Trap Bar Shrug: Centered, neutral-grip variation\n- Smith Machine Shrug: Fixed plane shrug variation\n- Cable Shrug: Constant tension variation\n- Farmers Walk Shrug: Combined carry and shrug"
+        },
+        {
+          "heading": "Kettlebell Shrug Variations",
+          "content": "Standard Kettlebell Shrug: Both hands shrugging together\nSingle Arm Kettlebell Shrug: Unilateral trap focus\nPaused Kettlebell Shrug: Hold at top for maximum contraction\nTempo Kettlebell Shrug: Slow eccentrics for muscle building\nRack Position Kettlebell Shrug: Kettlebells held in rack position\nSeated Kettlebell Shrug: Removes lower body involvement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Reduce range and weight, keep chin tucked\nGrip Issues: Use straps or chalk\nLower Back Pain: Try seated kettlebell shrugs\nShoulder Impingement: Focus on straight-up shrugs, avoid rolling\nNo Kettlebells: Substitute with dumbbells, barbell, or cables\nLearning Stage: Start light and master the straight-up shrug pattern"
+        }
+      ]
+    }
+  }
+}

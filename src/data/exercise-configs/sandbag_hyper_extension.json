@@ -1,0 +1,94 @@
+{
+  "exerciseId": "sandbag_hyper_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/229.%20Sandbag%20Hyper%20Extension/229.%20Sandbag%20Hyper%20Extension%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/229.%20Sandbag%20Hyper%20Extension/229.%20Sandbag%20Hyper%20Extension%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/229.%20Sandbag%20Hyper%20Extension/229.%20Sandbag%20Hyper%20Extension%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.2443773367809783, 2.1764312979024387, -1.7291078246582228],
+    "rotation": [-2.519174251191293, -0.7974894723317772, -2.667208335434835],
+    "target": [0.01612304194999587, 0.8900460897436465, 0.06359787152030755]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/229.%20Sandbag%20Hyper%20Extension/Sandbag%20Hyper%20Extension_250x250_2026-04-23T22-46-05.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Sandbag Hyper Extension is a back-focused exercise performed on a hyperextension bench with a sandbag loaded across the upper back.\n\nUnlike a strict hip hinge, this variation emphasizes spinal extension — rounding and then extending through the back against external load.\n\nThe sandbag adds an unstable, conforming load that further challenges the erectors, lats, and rear chain stabilizers."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Strengthens the erector spinae through full spinal extension\n- Develops rear chain control and bracing\n- Builds upper back stability under load\n- Sandbag load increases core and postural demand\n- Useful accessory for deadlift and squat strength\n- Minimal equipment footprint\n- Accessible progression from bodyweight hypers"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Erector Spinae, Gluteus Maximus, Hamstrings\n\nSecondary: Upper Back, Core, Rear Deltoids"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie facedown with hips at the edge of a hyperextension bench.\n2. Place a sandbag across your upper back, securing it with your arms if needed.\n3. Cross arms over your chest or place hands behind your head.\n4. Keep legs straight or slightly bent, heels anchored under the pads.\n5. Begin from a slightly rounded spine position at the bottom."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Round your back while keeping your glutes contracted.\n2. Extend segment by segment up through the spine.\n3. Continue extending until you reach full, controlled spinal extension.\n4. Pause briefly at the top without overextending.\n5. Lower down with control, reversing the segmental motion.\n6. Repeat for desired reps, emphasizing contraction in the lower and upper back through spinal extension."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Jerking or swinging to create momentum\n- Overextending aggressively past neutral at the top\n- Letting the sandbag slide or shift during reps\n- Loading too heavy before mastering bodyweight form\n- Holding the breath through the entire rep\n- Hyperextending the neck instead of the spine\n- Losing glute engagement, turning it into a lower-back-only movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Hyperextension Bench (45 or 90 degree)\n- Sandbag (start light and progress cautiously)\n- Optional: Towel or Pad for Upper Back Comfort\n- Optional: Spotter to Place or Remove the Sandbag\n- Optional: Lifting Belt for Additional Bracing"
+        },
+        {
+          "heading": "Bench Adjustment",
+          "content": "1. Set the foot pad so heels sit firmly against it.\n2. Adjust the hip pad so its upper edge is just below your hip crease.\n3. Too high pinches the hips; too low limits range of motion.\n4. Lock all adjustments before loading the sandbag.\n5. Test the range of motion without load first.\n6. Confirm stable footing for the bench on the floor."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Sandbag Position: Centered across the upper back, not the neck.\n2. Grip: Hands crossed on chest or cradling the sandbag.\n3. Spine: Allowed to round slightly at the bottom for this variation.\n4. Legs: Straight or with a soft knee bend.\n5. Core: Braced throughout the set.\n6. Head: Neutral, in line with the spine — avoid cranking it up.\n7. Breathing: Inhale on descent, exhale on extension."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["back_extension_cable_machine", "barbell_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Back Extension (Bodyweight): Foundational unloaded version\n- Barbell Back Extension: Heavier loading with a bar\n- Good Morning: Standing hip hinge with barbell\n- Reverse Hyperextension: Hip extension with legs moving instead of torso\n- Jefferson Curl: Weighted spinal flexion/extension progression\n- Glute-Ham Raise: Combined hip and knee extension for hamstrings"
+        },
+        {
+          "heading": "Hyper Extension Variations",
+          "content": "Sandbag Hyper Extension: Soft, unstable load across upper back\nWeighted Plate Hyper Extension: Plate held to chest for loading\nBanded Hyper Extension: Resistance band anchored under the bench\nIsometric Hyper Extension: Pause at the top for erector activation\n45-Degree Hyper Extension: Angled bench for greater range\nTempo Hyper Extension: Slow eccentric for hypertrophy"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce load, shorten range of motion\nDisc Issues: Skip spinal flexion, use strict hip-hinge hypers instead\nNo Hyperextension Bench: Use a stability ball or Supermans on the floor\nBalance Issues: Use a 45-degree bench for greater stability\nNeck Discomfort: Reposition sandbag lower on the upper back\nLearning Stage: Master bodyweight reps before adding a sandbag"
+        }
+      ]
+    }
+  }
+}

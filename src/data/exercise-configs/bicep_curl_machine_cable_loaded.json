@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bicep_curl_machine_cable_loaded",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.168778334387654, 1.7160039556434152, -1.5781021828781183],
+    "rotation": [-2.608936192593159, -0.8955633633443674, -2.7103434073338404],
+    "target": [0.03352613954870815, 0.8203954682863125, -0.058810996955124026]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.0675001388629344, 1.879933678985771, 1.6801748241324426],
+    "rotation": [-0.5406799927854207, 0.8246907214483914, 0.4152296043636206],
+    "target": [-0.04274306261480699, 0.875922527655085, 0.0078105066380168495]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/84.%20Bicep%20Curl%20Machine%20Cable%20Loaded/Bicep%20Curl%20Machine%20Cable%20Loaded_250x250_2026-03-21T12-30-03.webp",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bicep Curl Machine (Cable Loaded) is a seated isolation exercise that targets the biceps brachii using a cable-driven resistance system.\n\nThe machine features an arm pad that stabilises the upper arms, ensuring strict form and eliminating momentum from the movement.\n\nThis exercise is ideal for beginners and experienced lifters alike, providing consistent tension throughout the full range of motion thanks to the cable pulley mechanism."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the biceps with minimal involvement of other muscle groups\n- Cable resistance provides smooth, constant tension throughout the curl\n- Arm pad prevents cheating and swinging, enforcing strict form\n- Easy to adjust resistance via the pin-loaded weight stack\n- Reduced risk of injury compared to free weight curls\n- Excellent for building bicep peak and overall arm size\n- Suitable for all experience levels from beginner to advanced\n- Great for drop sets and high-rep burnout training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii (long head and short head)\n\nSecondary: Brachialis, Brachioradialis, Forearm Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so the back of your arms are flush with the upper pad.\n2. Sit down and place the back of your upper arms firmly on the arm pad.\n3. Grip the handles with an underhand (supinated) grip.\n4. Start with your arms fully extended but not locked out.\n5. Keep your chest up and shoulders back against the seat.\n6. Plant your feet flat on the floor for stability.\n7. Engage your core slightly to maintain an upright posture.\n8. Ensure both arms are evenly positioned on the pad."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Begin the movement by curling your hands and handles up towards your face.\n3. Focus on squeezing the biceps as you curl the weight upward.\n4. Keep your upper arms pressed firmly against the arm pad throughout.\n5. Continue curling until your forearms are nearly vertical and biceps are fully contracted.\n6. Fully squeeze your biceps at the top of the movement and hold briefly.\n7. Slowly lower the handles back to the starting position under control.\n8. Do not let the weight stack slam at the bottom — maintain tension.\n9. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the elbows off the arm pad during the curl\n- Using too much weight and relying on momentum\n- Not achieving a full range of motion at the top or bottom\n- Rushing through reps without controlling the eccentric (lowering) phase\n- Leaning back or arching the spine to assist the curl\n- Gripping the handles too tightly, causing forearm fatigue\n- Letting the weight stack slam between reps\n- Uneven arm positioning on the pad"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Bicep Curl Machine\n- Pin-loaded weight stack for easy resistance adjustment\n- No additional equipment required\n- Optional: Wrist wraps for additional grip support"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select an appropriate weight using the pin on the weight stack.\n2. Start light to warm up the biceps before increasing load.\n3. Adjust the seat height so the top of the arm pad aligns with your armpits.\n4. Ensure the back of your upper arms sit flat on the pad.\n5. Check that the handles are within comfortable reach when arms are extended.\n6. If the machine has adjustable pad angles, set it to a comfortable position.\n7. Verify the cable and pulley system is running smoothly before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Height: Adjusted so arms rest flat on the pad with armpits at the top edge.\n2. Arm Position: Back of upper arms pressed firmly against the arm pad.\n3. Grip: Underhand (supinated) grip on the handles.\n4. Feet: Flat on the floor for stability.\n5. Back: Straight and pressed against the seat back.\n6. Core: Lightly braced to maintain posture.\n7. Shoulders: Relaxed and pulled back, not hunched forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bicep_curl", "alternating_dumbbell_bicep_curl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Bicep Curl: Free weight standing curl for overall bicep development\n- Alternating Dumbbell Bicep Curl: Unilateral curl for balanced arm development\n- Bicep Cable Curl: Standing cable curl using a straight or EZ bar attachment\n- Alternating Hammer Curls: Neutral grip curl targeting the brachialis\n- Preacher Curl: Bench-supported curl for strict bicep isolation\n- Concentration Curl: Seated single-arm curl for peak contraction"
+        },
+        {
+          "heading": "Bicep Curl Variations",
+          "content": "Machine Bicep Curl: Seated cable-loaded curl with arm pad support\nPreacher Curl: Using a preacher bench for strict isolation\nSpider Curl: Lying face down on an incline bench for constant tension\nIncline Dumbbell Curl: Seated on an incline to stretch the long head\nCable Rope Hammer Curl: Using a rope attachment for brachialis emphasis\n21s: Partial and full range reps combined for intense bicep pump"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Reduce the weight and avoid locking out at the bottom\nWrist Discomfort: Try a neutral grip handle if available, or use wrist wraps\nShoulder Issues: Ensure the seat is set correctly so shoulders are not strained\nLimited Range of Motion: Work within a pain-free range and gradually increase\nNo Machine Available: Use barbell curls, dumbbell curls, or resistance band curls\nRehabilitation: Start with very light weight and focus on controlled, slow reps"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_split_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/131.%20Dumbbell%20Split%20Squat/131.%20Dumbbell%20Split%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/131.%20Dumbbell%20Split%20Squat/131.%20Dumbbell%20Split%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/131.%20Dumbbell%20Split%20Squat/131.%20Dumbbell%20Split%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/131.%20Dumbbell%20Split%20Squat/131.%20Dumbbell%20Split%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.5376518072858003, 1.7831283221091452, 2.255257867265499],
+    "rotation": [-0.4574084720878549, 0.5919949699042759, 0.26805971266108897],
+    "target": [-0.14019222433943804, 0.6812199760045178, 0.01663157446700187]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.2750645482362093, 1.5019745861646374, 2.3983455416448862],
+    "rotation": [-0.32484027037254654, 0.7525108344436485, 0.2262330606692991],
+    "target": [-0.10179935439733254, 0.6917686087205994, -0.007469153115739843]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/131.%20Dumbbell%20Split%20Squat/Dumbbell%20Split%20Squat_250x250_2026-04-04T15-44-22.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Split Squat is a unilateral lower body exercise performed in a staggered stance while holding a dumbbell in each hand.\n\nUnlike a lunge, the feet remain stationary throughout the movement, allowing you to focus on controlled descent and ascent without the balance demands of stepping.\n\nThis exercise is excellent for building quad and glute strength, correcting muscle imbalances, and developing single-leg stability."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds unilateral leg strength and addresses muscle imbalances\n- Targets quads, glutes, and hamstrings effectively\n- Less balance demand than walking or stepping lunges\n- Easily scalable by adjusting dumbbell weight\n- Improves hip mobility and ankle stability\n- Functional movement pattern for sport and daily activities\n- Lower spinal load compared to barbell squats"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Calves, Core (Rectus Abdominis, Obliques), Adductors, Forearms (grip)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet hip-width apart, holding a dumbbell in each hand.\n2. Take a big step forward with one foot into a staggered stance.\n3. Your front foot should be flat on the ground, rear foot on the ball of the foot.\n4. Keep your chest up, shoulders back, and core engaged.\n5. Arms hang straight at your sides with dumbbells."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower your body by bending both knees until your back knee is hovering just above the ground.\n2. Keep your front knee tracking over your toes without caving inward.\n3. Maintain an upright torso with your chest up and core engaged.\n4. Push through your front foot to return to the starting position.\n5. Complete all reps on one side before switching legs, or alternate legs each rep.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Stance too narrow, causing balance issues\n- Front knee caving inward during the descent\n- Leaning the torso too far forward\n- Not lowering deep enough for full range of motion\n- Placing too much weight on the back foot\n- Rushing through reps and losing control\n- Taking too short a stride, causing the front knee to travel past the toes"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight for your level)\n- Flat, Non-Slip Surface\n- Optional: Exercise Mat for knee comfort\n- Optional: Mirror for form checking"
+        },
+        {
+          "heading": "Weight Selection",
+          "content": "1. Beginners: Start with light dumbbells (5-10 kg each) or bodyweight only.\n2. Intermediate: Use moderate dumbbells (10-15 kg each).\n3. Advanced: Use heavier dumbbells (15-25 kg+ each).\n4. Focus on form and depth before increasing weight.\n5. If balance is an issue, reduce the weight until stability improves."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Staggered, about 2-3 feet between front and back foot.\n2. Front Foot: Flat on the ground, toes pointing forward.\n3. Back Foot: On the ball of the foot, heel raised.\n4. Grip: Dumbbells held at sides with a neutral grip.\n5. Torso: Upright with chest proud and shoulders back.\n6. Core: Braced throughout the movement.\n7. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bulgarian_split_squat", "reverse_lunge_dumbbell"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bulgarian Split Squat: Rear foot elevated for greater range of motion\n- Reverse Lunge: Stepping backward into each rep\n- Forward Lunge: Stepping forward into each rep\n- Walking Lunge: Continuous stepping lunges for distance\n- Goblet Squat: Front-loaded squat for quad emphasis\n- Barbell Split Squat: Barbell across upper back for heavier loading"
+        },
+        {
+          "heading": "Split Squat Variations",
+          "content": "Dumbbell Split Squat: Standard split squat with dumbbells at sides\nBarbell Split Squat: Barbell across upper back for heavier loads\nGoblet Split Squat: Single dumbbell or kettlebell held at chest\nDeficit Split Squat: Front foot elevated for greater range of motion\nPulse Split Squat: Add pulses at the bottom for time under tension\nIsometric Split Squat Hold: Hold the bottom position for time"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce range of motion or use bodyweight only\nBalance Issues: Hold one dumbbell and use a wall for support\nHip Tightness: Warm up with hip flexor stretches before squatting\nAnkle Mobility: Ensure proper footwear or place a small plate under heels\nLower Back Pain: Keep torso more upright and reduce weight\nNo Dumbbells: Use kettlebells, a barbell, or bodyweight only"
+        }
+      ]
+    }
+  }
+}

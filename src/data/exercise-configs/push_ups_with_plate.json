@@ -1,0 +1,105 @@
+{
+  "exerciseId": "push_ups_with_plate",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/125.%20Push%20ups%20With%20Plate/125.%20Push%20ups%20With%20Plate%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/125.%20Push%20ups%20With%20Plate/125.%20Push%20ups%20With%20Plate%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/125.%20Push%20ups%20With%20Plate/125.%20Push%20ups%20With%20Plate%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/125.%20Push%20ups%20With%20Plate/125.%20Push%20ups%20With%20Plate%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.2600134557912788, 1.0515755733832353, 1.9267321223068683],
+    "rotation": [-0.365132723291749, 0.8583443173698462, 0.28160264926481565],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.2835554935132336, 1.0420854050714223, 2.0461878156786417],
+    "rotation": [-0.3403212694587689, 0.8367392064345205, 0.25708704277385963],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/125.%20Push%20ups%20With%20Plate/Push%20Ups%20With%20Plate_250x250_2026-04-04T10-57-31.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Push Up With Plate is an advanced variation of the standard push-up that adds resistance by placing a weighted plate on the upper back.\n\nThis extra load increases the demand on the chest, shoulders, and triceps while also challenging core stability to keep the body aligned.\n\nIt is an effective bodyweight-plus exercise for building upper body pushing strength without the need for a bench or heavy equipment."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increases resistance beyond standard bodyweight push-ups\n- Greater chest, shoulder, and tricep activation\n- Enhances core stability to support the added weight\n- Requires minimal equipment (just a weight plate)\n- Can be performed anywhere with a flat surface\n- Easily scalable by changing plate weight\n- Builds functional pressing strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Chest), Anterior Deltoids (Front Shoulders), Triceps\n\nSecondary: Core (Rectus Abdominis, Obliques), Serratus Anterior, Rhomboids, Lower Back"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a weighted plate on your upper back, between your shoulder blades.\n2. Assume a push-up position with your hands placed slightly wider than shoulder-width apart.\n3. Keep your feet together and your body in a straight line from head to heels.\n4. Engage your core and glutes to stabilise the plate on your back.\n5. Arms should be fully extended with shoulders stacked over wrists."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower your body by bending your elbows, keeping them close to your sides.\n2. Descend until your chest nearly touches the ground.\n3. Push yourself back up to the starting position by straightening your arms.\n4. Keep your core engaged and your body in a straight line throughout the movement.\n5. Repeat the movement for the desired number of reps while maintaining control of the plate on your back."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the hips sag or pike upward\n- Plate sliding off due to poor positioning\n- Flaring elbows too wide, placing excess stress on shoulders\n- Not achieving full range of motion\n- Rushing repetitions and losing plate stability\n- Holding breath instead of breathing steadily\n- Placing hands too far forward or too far back"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Weight Plate (start light, e.g. 5-10 kg)\n- Flat, Non-Slip Surface\n- Optional: Exercise Mat for wrist comfort\n- Optional: A partner to help place and remove the plate"
+        },
+        {
+          "heading": "Plate Placement",
+          "content": "1. Position the plate on your upper back between your shoulder blades.\n2. The plate should sit flat and centred across your back.\n3. If training alone, start seated, place the plate on your back, then carefully walk your hands out into position.\n4. Alternatively, have a training partner place the plate once you are in the push-up position.\n5. Choose a plate size that sits securely — a larger diameter plate may be more stable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Slightly wider than shoulder-width apart, fingers spread.\n2. Feet: Together or slightly apart for balance.\n3. Core: Braced tight to maintain a rigid plank position.\n4. Head: Neutral, looking slightly ahead of your hands.\n5. Shoulders: Pulled back and down, not shrugged.\n6. Start with a lighter plate to master balance before progressing."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_push_up", "bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push-Up: Bodyweight only, great for beginners\n- Bench Press: Barbell pressing movement targeting the same muscles\n- Dumbbell Chest Press: Allows independent arm movement\n- Resistance Band Push-Up: Band around back for progressive resistance\n- Deficit Push-Up: Hands elevated for increased range of motion\n- Decline Push-Up: Feet elevated for greater upper chest activation"
+        },
+        {
+          "heading": "Weighted Push-Up Variations",
+          "content": "Push-Up With Plate: Standard weighted push-up with plate on back\nWeighted Vest Push-Up: Vest distributes load evenly for stability\nBand-Resisted Push-Up: Resistance increases at the top of the movement\nChain Push-Up: Chains draped over back for accommodating resistance\nBackpack Push-Up: Loaded backpack as an accessible weighted option"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or dumbbells to keep wrists neutral\nShoulder Issues: Reduce range of motion or switch to floor press\nCore Weakness: Master standard push-ups before adding weight\nNo Partner: Place plate yourself from a kneeling position\nLimited Plates: Use a resistance band across your back instead\nBalance Issues: Start with a lighter plate until control improves"
+        }
+      ]
+    }
+  }
+}

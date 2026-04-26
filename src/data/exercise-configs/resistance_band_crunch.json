@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_crunch",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/202.%20Resistance%20Band%20Crunch/202.%20Resistance%20Band%20Crunch%20AR_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/202.%20Resistance%20Band%20Crunch/202.%20Resistance%20Band%20Crunch%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/202.%20Resistance%20Band%20Crunch/202.%20Resistance%20Band%20Crunch%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.2222596675844832, 1.6968265441938983, 2.0460049706265306],
+    "rotation": [-0.6085014604893554, -0.38666815770188495, -0.25691908127837104],
+    "target": [-0.005859520571938498, -0.01093442523318553, -0.4052422242417034]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/202.%20Resistance%20Band%20Crunch/Resistance%20Band%20Crunch_250x250_2026-04-23T06-34-16.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Crunch is a core exercise that combines the mechanics of a traditional abdominal crunch with added resistance from a band anchored above the head.\n\nThe band provides constant tension through the range of motion, making the crunch more challenging as the abs shorten.\n\nIt is a simple, joint-friendly way to add load to abdominal training without the spinal compression of weighted crunches."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Adds progressive resistance to a basic crunch\n- Constant tension improves time under tension for the abs\n- Low impact and easy on the spine compared to weighted variations\n- Portable and equipment-efficient (only a band needed)\n- Scalable by changing band thickness or anchor distance\n- Helps improve mind-muscle connection with the rectus abdominis\n- Good accessory for core strength and hypertrophy"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis\n\nSecondary: Obliques, Hip Flexors, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Anchor the Band",
+          "content": "1. Secure one end of the resistance band to a stable object, such as a bench, rig, or low attachment point.\n2. Set the anchor roughly at head level so the band pulls overhead when you lie down.\n3. Test the anchor is stable before beginning."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Position yourself on your back with your head near the anchor point.\n2. Bend your knees and keep your feet flat on the floor.\n3. Keep your lower back in a neutral position."
+        },
+        {
+          "heading": "Grip the Band",
+          "content": "1. Hold the other end of the resistance band beside your ears with both hands.\n2. Keep your elbows out to the sides.\n3. Start with some tension on the band in the bottom position."
+        },
+        {
+          "heading": "Crunch",
+          "content": "1. Exhale as you lift your head, neck, and shoulders off the ground using your core muscles.\n2. Keep your hands near your ears throughout the rep.\n3. Squeeze the abs at the top, then lower under control back to the starting position."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Pulling the head forward with the hands\n- Using momentum instead of the abs\n- Holding your breath through the rep\n- Anchoring the band too high or too low\n- Lifting the lower back off the floor instead of curling the upper back\n- Going too fast and losing tension on the band\n- Feet flaring or hips shifting to generate movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band (loop or tube, with a secure anchor option)\n- Sturdy Anchor Point (bench leg, rig, door anchor, or rack)\n- Exercise Mat for comfort\n- Optional: Ankle or Foot Strap if additional stabilization is needed"
+        },
+        {
+          "heading": "Anchor Adjustments",
+          "content": "1. Choose an anchor point that is solid and cannot move under tension.\n2. Set the anchor at head level from the floor.\n3. Adjust the distance from the anchor so the band has mild tension at the bottom of the movement.\n4. Use a heavier or lighter band to scale difficulty."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Position: Flat on your back, knees bent, feet hip-width apart.\n2. Head: Neutral, looking straight up at the ceiling.\n3. Arms: Elbows flared, hands at the sides of the head.\n4. Core: Ribs down, lower back in a neutral position.\n5. Breathing: Exhale on the way up, inhale on the way down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["abdominal_crunch_machine", "ab_wheel_roll_outs"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Crunch: Same movement pattern without resistance\n- Abdominal Crunch Machine: Machine-based seated crunch\n- Cable Crunch: Kneeling crunch using a cable stack\n- Weighted Crunch: Crunch holding a plate or dumbbell on the chest\n- Ab Wheel Roll Outs: Extended-range core exercise\n- Decline Sit-Up: Increased range of motion sit-up on a decline bench"
+        },
+        {
+          "heading": "Resistance Band Crunch Variations",
+          "content": "Standard Resistance Band Crunch: Described here\nStanding Band Crunch: Performed kneeling or standing with band overhead\nOblique Band Crunch: Twist during the crunch to hit the obliques\nTempo Band Crunch: Slow eccentric for hypertrophy\nPartial Reps: Short-range pulses at the top for a burnout\nFeet-Elevated Band Crunch: Feet on a bench to remove hip flexor drive"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Neck Pain: Support your head lightly with your hands; keep movement small\nLower Back Issues: Keep your lower back pressed into the floor; shorten the range\nNo Anchor Point: Loop the band around your feet (feet-anchored version)\nBand Too Light: Step closer to the anchor or use a heavier band\nBand Too Heavy: Use a lighter band or move further from the anchor\nBeginners: Start with bodyweight crunches to learn the pattern first"
+        }
+      ]
+    }
+  }
+}

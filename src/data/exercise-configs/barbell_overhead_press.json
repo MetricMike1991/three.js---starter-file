@@ -1,10 +1,10 @@
 {
   "exerciseId": "barbell_overhead_press",
-  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20OIverhead%20Press%20GLB%20SD.glb",
-  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20Overhead%20Press%20HD.glb",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/03.%20Barbell%20Overhead%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/03.%20Barbell%20Overhead%20Press%20HD_compressed.glb",
   "ar": {
-    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20OIverhead%20Press%20GLB%20SD.glb",
-    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20Overhead%20Press%20USDZ.usdz"
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/03.%20Barbell%20Overhead%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/03.%20Barbell%20Overhead%20Press%20USDZ.usdz"
   },
   "model": {
     "position": [0, 0, 0],
@@ -12,16 +12,25 @@
     "scale": [1, 1, 1]
   },
   "camera": {
-    "position": [-1.0928264698826224, 1.1184336317012207, -1.689669951455272],
-    "rotation": [-2.826385058746882, -0.5484591956480145, -2.973193896810562],
-    "target": [-0.0036100299903389977, 0.565767120940778, 0.0052148703225515305]
+    "position": [-2.268244666232533, 2.0035008932819376, -2.751925606715232],
+    "rotation": [-2.8380886213393683, -0.6661528683425947, -2.950421653606826],
+    "target": [0.03552063469081357, 1.1275377805325009, 0.045072228528070205]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
   },
   "cameraHQ": {
-    "position": [1.1612606573002884, 1.2361629110311865, 1.636909712653463],
-    "rotation": [-0.3672402811371892, 0.5822741812172891, 0.20847767969647304],
-    "target": [-0.003693570291971901, 0.6009086457552157, -0.014423876727463675]
+    "position": [1.815086460519711, 1.8742947390830462, 2.6045650587750293],
+    "rotation": [-0.30663506052545475, 0.573151171908826, 0.1700401190833488],
+    "target": [-0.016711363652255246, 1.0175973448236402, -0.10118301512628558]
   },
   "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/003.%20Barbell%20Overhead%20Press/Barbell%20Overhead%20Press_250x250_2026-03-03T06-17-25.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
   "rightMenuTabs": {
     "exerciseInformation": {
       "title": "Exercise Information",

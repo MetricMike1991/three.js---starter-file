@@ -1,0 +1,105 @@
+{
+  "exerciseId": "renegade_rows_with_push_ups_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.2809352509214165, 0.9605883092469766, -1.332978243585889],
+    "rotation": [-2.867565969362267, -0.9349117660997806, -2.919177666628798],
+    "target": [-0.07187284394902473, 0.519316412318389, 0.23683631678825195]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.9656160750428953, 2.2896175881012897, -1.1655424529016765],
+    "rotation": [-2.2926264361109885, -0.7013650843627615, -2.5090656568779153],
+    "target": [-0.08126259253966829, 0.6150376410826569, 0.308608739328577]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/177.%20Renegade%20Rows%20With%20Push%20Ups%20V2/Renegade%20Rows%20With%20Push%20Ups%20V2_250x250_2026-04-21T22-35-24.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Renegade Rows With Push Ups V2 is an advanced compound exercise combining a plank, dumbbell rows, and a push-up into one flowing movement.\n\nThis updated variation blends pulling and pressing patterns while demanding total-body stability, coordination, and anti-rotational core strength.\n\nIt's a high-value addition to functional, CrossFit, and athletic conditioning workouts for building strength and endurance simultaneously."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Combines pulling and pressing in one efficient movement\n- Builds back, chest, shoulder, and core strength\n- Develops anti-rotational core stability\n- Improves shoulder stability and scapular control\n- Enhances full-body coordination\n- Strengthens grip and forearms\n- Time-efficient conditioning tool\n- Corrects left/right strength imbalances"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Pectoralis Major, Core (Rectus Abdominis, Obliques, Transverse Abdominis)\n\nSecondary: Triceps, Anterior and Rear Deltoids, Biceps, Trapezius, Glutes, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Start in a high plank position with hands on dumbbells, wrists stacked under shoulders.\n2. Feet shoulder-width apart, body in a straight line from head to heels.\n3. Core and glutes engaged to stabilize the torso."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Perform a row with one dumbbell, pulling it up toward your chest while keeping the elbow close to your body.\n2. Lower the dumbbell back to the ground with control.\n3. Do a push-up by bending your elbows and lowering your chest toward the floor.\n4. Press back up to the plank position.\n5. Alternate rows and push-ups with each arm.\n6. Focus on control and engaging your core throughout."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hips rotating or swaying during the row\n- Sagging hips or piking the butt during the push-up\n- Flaring elbows wide on the row or push-up\n- Using dumbbells that roll (use hex dumbbells)\n- Feet too close together, reducing stability\n- Partial range of motion on the push-up\n- Rushing reps and losing plank integrity\n- Holding the breath instead of breathing steadily"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Hex Dumbbells (flat-sided to prevent rolling)\n- Exercise Mat or Non-Slip Floor Surface\n- Optional: Wrist Wraps for wrist support\n- Recommended: Flat-soled training shoes for stability\n- Clear floor space to fully extend in plank position"
+        },
+        {
+          "heading": "Choosing the Right Weight",
+          "content": "1. Start lighter than a standard renegade row.\n2. Use hex dumbbells so they don't roll during push-ups.\n3. Weight must allow a full push-up with good form.\n4. If hips rotate during the row, reduce the weight.\n5. Progress gradually as both strength and stability improve.\n6. Match weights in both hands for balanced loading.\n7. Lower load for higher rep conditioning work."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width or slightly wider for stability.\n2. Hand Position: Directly under shoulders, gripping dumbbells.\n3. Hips: Level with shoulders, straight line from head to heels.\n4. Core: Braced tight through every phase.\n5. Glutes: Squeezed to stabilize the pelvis.\n6. Head: Neutral, eyes slightly ahead of hands.\n7. Breathing: Exhale on the row and press, inhale on the descent."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["renegade_row_with_push_up", "renegade_rows"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Renegade Row: Rowing pattern without the push-up\n- Dumbbell Push-Up: Push-up component in isolation\n- Single Arm Dumbbell Row: Bench-supported rowing variation\n- Plank to Push-Up: Core and push-up focus\n- TRX Row with Push-Up: Suspension trainer variation\n- Kettlebell Renegade Row with Push-Up: Same pattern using kettlebells"
+        },
+        {
+          "heading": "Variations",
+          "content": "Standard Version: Alternating rows with push-up between\nKnee Variation: Easier option performed from the knees\nRenegade Row Only: Remove push-up for a simpler version\nDouble Push-Up Version: Two push-ups between rows\nTempo Version: Slow eccentrics for muscle building\nOne-Arm Push-Up Version: Advanced unilateral challenge"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push-up handles or wrist wraps\nShoulder Instability: Start with standard renegade rows first\nCore Weakness: Regress to knee version\nNo Dumbbells: Substitute kettlebells or resistance bands\nBalance Issues: Widen your stance for stability\nLearning Stage: Master renegade rows and push-ups separately first"
+        }
+      ]
+    }
+  }
+}

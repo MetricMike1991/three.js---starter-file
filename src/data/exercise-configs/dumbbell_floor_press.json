@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_floor_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/237.%20Dumbbell%20Floor%20Press/237.%20Dumbbell%20Floor%20Press%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/237.%20Dumbbell%20Floor%20Press/237.%20Dumbbell%20Floor%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/237.%20Dumbbell%20Floor%20Press/237.%20Dumbbell%20Floor%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/237.%20Dumbbell%20Floor%20Press/237.%20Dumbbell%20Floor%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.9313264985639063, 1.5698641530760717, -1.7291970744635694],
+    "rotation": [-2.550156747319856, 0.7273777783005719, 2.7215859551068577],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9313264985639063, 1.5698641530760717, -1.7291970744635694],
+    "rotation": [-2.550156747319856, 0.7273777783005719, 2.7215859551068577],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/237.%20Dumbbell%20Floor%20Press/Dumbbell%20Floor%20Press_250x250_2026-04-24T09-07-25.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Floor Press is an upper-body pressing exercise performed while lying flat on the floor, using dumbbells instead of a barbell or bench.\n\nThe floor naturally limits range of motion when the upper arms make contact, making this variation excellent for triceps lockout strength and shoulder-friendly pressing.\n\nThis movement is ideal for lifters without access to a bench, those rehabilitating shoulder injuries, or anyone looking to focus on the top half of the press."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Shoulder-friendly pressing variation\n- Strong emphasis on triceps and lockout strength\n- Great for lifters without a bench\n- Reduced shoulder extension protects the rotator cuff\n- Unilateral loading corrects left/right imbalances\n- Natural stopping point teaches controlled eccentric\n- Excellent accessory for bench press lockout\n- Engages core for stability\n- Develops pressing power from a dead stop"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (mid/lower chest), Triceps Brachii\n\nSecondary: Anterior Deltoids, Core, Serratus Anterior, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the floor with dumbbells resting on your thighs.\n2. Carefully roll back onto your back while bringing the dumbbells up.\n3. Lie flat on the floor with knees bent, feet flat.\n4. Hold a dumbbell in each hand above your chest, arms extended.\n5. Grip the dumbbells firmly with palms facing forward (pronated).\n6. Keep wrists straight and stacked over the elbows.\n7. Engage your core and press your lower back gently into the floor."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Lower the dumbbells with control by bending your elbows.\n3. Allow your upper arms (triceps) to make gentle contact with the floor.\n4. Pause briefly in the bottom position - do not bounce off the floor.\n5. Press the dumbbells back up by extending your arms.\n6. Drive through your chest and triceps to return to the start.\n7. Keep the dumbbells stacked over your shoulders at the top.\n8. Repeat for the desired number of repetitions with controlled tempo."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Bouncing the elbows off the floor for momentum\n- Flaring elbows out at 90 degrees (stress on shoulders)\n- Letting the dumbbells drift away from the chest line\n- Arching the lower back excessively\n- Dropping the dumbbells to the sides at the bottom\n- Uneven pressing - one arm lagging\n- Not fully extending at the top\n- Poor grip control at the end of sets\n- Using too much weight and losing form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight for your strength level)\n- Flat, stable floor surface\n- Optional: Yoga Mat or Padded Surface for back comfort\n- Optional: Wrist Wraps (for heavier sets)\n- Recommended: Clear space to safely get in and out of position\n- Recommended: Spotter for heavier loads"
+        },
+        {
+          "heading": "Getting Into Position Safely",
+          "content": "1. Start in a seated position with dumbbells on your thighs.\n2. Lie back while using your thighs to lift the dumbbells up.\n3. 'Kick up' each dumbbell by pushing with your thighs as you lie down.\n4. Once on your back, position the dumbbells above your chest.\n5. To exit: lower dumbbells to chest, roll to your side, then sit up.\n6. Never drop dumbbells beside you from a pressed position.\n7. Start with lighter weights to master the entry technique."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Position: Flat on back, knees bent, feet flat on the floor.\n2. Grip: Pronated (palms forward), firm grip on dumbbells.\n3. Elbows: Tucked at approximately 45 degrees from the torso.\n4. Wrists: Straight, stacked over elbows.\n5. Core: Braced throughout the entire movement.\n6. Lower Back: Gentle contact with the floor (no excessive arch).\n7. Head: Rested on floor, eyes looking up.\n8. Breathing: Inhale on descent, exhale on press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bench_press", "barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Floor Press: Barbell version with similar range limits\n- Flat Dumbbell Bench Press: Full range of motion on a bench\n- Dumbbell Bench Press: Standard bench-based pressing\n- Push-Up: Bodyweight alternative with similar muscle emphasis\n- Close-Grip Bench Press: Triceps-focused pressing\n- Board Press: Limits range of motion like floor press"
+        },
+        {
+          "heading": "Floor Press Variations",
+          "content": "Dumbbell Floor Press: Standard bilateral version\nBarbell Floor Press: Barbell variant for heavier loads\nSingle-Arm Dumbbell Floor Press: Unilateral stability challenge\nNeutral Grip Floor Press: Palms facing each other for shoulder comfort\nPaused Floor Press: Pause at bottom for strength development\nTempo Floor Press: Slow eccentric for hypertrophy\nAlternating Floor Press: One arm at a time for anti-rotation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Use neutral grip, reduce weight, or try push-ups\nLower Back Pain: Keep feet flat, brace core hard, reduce load\nWrist Pain: Use wrist wraps or neutral grip variation\nNo Dumbbells: Use a barbell or kettlebells instead\nLimited Floor Space: Perform on a bench if available\nBeginner Stage: Start with light weights to master the kick-up entry technique"
+        }
+      ]
+    }
+  }
+}

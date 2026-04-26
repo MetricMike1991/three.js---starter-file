@@ -1,0 +1,105 @@
+{
+  "exerciseId": "barbell_push_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/169.%20Barbell%20Push%20Press/169.%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/169.%20Barbell%20Push%20Press/169%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/169.%20Barbell%20Push%20Press/169%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/169.%20Barbell%20Push%20Press/169%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.1057613226136502, 2.0388354006670504, 2.3114523329275265],
+    "rotation": [-0.4073198279792048, 0.7319133545088038, 0.28072042822804155],
+    "target": [0.020698985819262165, 1.1193947249567873, 0.18039657323201508]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.1254159445515237, 1.8269690955420224, 2.5642086259491976],
+    "rotation": [-0.34332262692776283, 0.38713938492507266, 0.13415263978594386],
+    "target": [-0.01957956733059091, 0.8816375765812263, -0.08022567013692561]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/169.%20Barbell%20Push%20Press/Barbell%20Push%20Press_250x250_2026-04-21T10-05-04.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Barbell Push Press is a dynamic compound overhead pressing movement that uses a short dip and drive of the legs to help propel the barbell from the shoulders to a locked-out position overhead.\n\nBy combining lower-body drive with an overhead press, the Push Press allows you to move heavier loads than a strict press and develops explosive full-body power.\n\nIt is a staple lift in strength, conditioning, CrossFit, Olympic weightlifting, and athletic programs for building shoulder strength, power output, and total-body coordination."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds powerful, strong shoulders and triceps\n- Trains full-body explosive power via leg-to-arm transfer\n- Allows heavier overhead loads than a strict press\n- Improves core stability under overhead loads\n- Enhances athletic performance and power output\n- Reinforces a solid front rack position\n- Great carryover to jerks, thrusters, and Olympic lifts\n- Develops coordination, rhythm, and timing"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoids, Triceps, Quadriceps\n\nSecondary: Upper Chest, Lateral Deltoids, Trapezius, Glutes, Core, Calves"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Grasp the barbell with an overhand grip, hands slightly wider than shoulder-width apart.\n3. Position the barbell at shoulder level in a front rack position.\n4. Keep your elbows slightly in front of the bar.\n5. Brace your core and keep your torso upright.\n6. Look straight ahead with a neutral head position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Bend your knees slightly and engage your core muscles to prepare the leg drive.\n2. Keep your torso upright and avoid leaning forward during the dip.\n3. Explosively extend your legs, driving through your heels.\n4. Use the momentum from your legs to press the barbell overhead.\n5. Lock out your arms at the top of the movement, fully extending your elbows.\n6. Keep the bar stacked over your mid-foot at the top.\n7. Lower the barbell back down to the starting position with control.\n8. Reset and repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Dipping too deeply and turning the movement into a squat\n- Leaning forward during the dip, causing the bar to shift forward\n- Pressing out before the legs fully extend\n- Not locking out the arms overhead\n- Allowing the elbows to flare out during the press\n- Catching the bar with soft knees instead of a solid stance\n- Pressing the bar in front of the face rather than overhead\n- Using excessive back extension instead of leg drive"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates (bumper plates recommended)\n- Squat Rack or Power Rack\n- Optional: Lifting Belt for heavy loads\n- Optional: Wrist Wraps for overhead support\n- Recommended: Flat-soled shoes or weightlifting shoes"
+        },
+        {
+          "heading": "Finding Your Rack Position",
+          "content": "1. Set the barbell in the rack at shoulder height.\n2. Step under the bar and rest it on the front of your shoulders.\n3. Place your hands just outside shoulder-width.\n4. Keep elbows forward and up, slightly in front of the bar.\n5. Un-rack the bar and step back with a stable stance.\n6. Set your feet shoulder-width apart with toes slightly turned out."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Shoulder-width, feet firmly planted.\n2. Grip: Slightly wider than shoulder-width, full grip on the bar.\n3. Rack Position: Bar resting on the front delts, elbows forward.\n4. Core: Braced throughout the entire lift.\n5. Torso: Upright during the dip and drive.\n6. Knees: Soft dip, then explosive extension.\n7. Arms: Locked out overhead with the bar over the mid-foot.\n8. Breathing: Inhale and brace before the dip, exhale after lockout."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_thruster"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Strict press with no leg drive\n- Barbell Push Jerk: Similar drive with a re-bend of the knees to catch\n- Barbell Split Jerk: Split stance catch for maximum overhead load\n- Dumbbell Push Press: Dumbbell version allowing more natural movement\n- Kettlebell Push Press: Unilateral or bilateral kettlebell variation\n- Barbell Thruster: Full squat combined with an overhead press"
+        },
+        {
+          "heading": "Push Press Variations",
+          "content": "Barbell Push Press: Standard two-arm version\nDumbbell Push Press: Dumbbells allow independent arm movement\nKettlebell Push Press: Unilateral version with a kettlebell\nSingle-Arm Barbell Push Press: Core and stability challenge\nBehind-the-Neck Push Press: Advanced overhead variation\nPush Press + Jerk Complex: Combines both movements for conditioning"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Work on thoracic and shoulder mobility first\nLower Back Pain: Use a belt and focus on bracing, reduce load\nKnee Pain: Reduce dip depth, focus on a shallow, crisp drive\nWrist Pain: Use wrist wraps and maintain a full grip\nNo Rack: Clean the bar to the shoulders to start each set\nBeginner Level: Start with strict press to build overhead strength"
+        }
+      ]
+    }
+  }
+}

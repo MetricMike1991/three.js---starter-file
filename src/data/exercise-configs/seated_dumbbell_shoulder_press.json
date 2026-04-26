@@ -1,0 +1,105 @@
+{
+  "exerciseId": "seated_dumbbell_shoulder_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/19.%20Seated%20Dumbbell%20Shoulder%20Press/19.%20Seated%20Dumbbell%20Shoulder%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/19.%20Seated%20Dumbbell%20Shoulder%20Press/19.%20Seated%20Dumbbell%20Shoulder%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/19.%20Seated%20Dumbbell%20Shoulder%20Press/19.%20Seated%20Dumbbell%20Shoulder%20Press%20%20AR.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/19.%20Seated%20Dumbbell%20Shoulder%20Press/19.%20Seated%20Dumbbell%20Shoulder%20Press%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.340864450403125, 1.5013516922206187, -2.4578712068461357],
+    "rotation": [-2.894328803319819, -0.7571615229232108, -2.9699154224089703],
+    "target": [0.000912063417026388, 0.8948797931579258, -0.05533057289172489]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.035087975410008, 1.805281135737743, 2.622548509339889],
+    "rotation": [-0.3636470542455703, 0.6311812513590991, 0.22091017400419],
+    "target": [-0.000540432299393081, 0.8146975669218791, 0.019670123446518615]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/19.%20Seated%20Dumbbell%20Shoulder%20Press/Seated%20Dumbbell%20Shoulder%20Press_250x250_2026-03-05T10-26-34.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Seated Dumbbell Shoulder Press is a fundamental compound exercise that targets the deltoid muscles.\n\nPerformed seated on a bench with back support, this exercise isolates the shoulders more effectively than standing variations by removing lower body momentum.\n\nUsing dumbbells allows each arm to work independently, promoting balanced shoulder development and requiring greater stabilizer muscle activation."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Primary shoulder mass and strength builder\n- Each arm works independently, correcting imbalances\n- Greater range of motion than barbell overhead press\n- Seated position reduces lower body compensation\n- Builds functional overhead pressing strength\n- Develops all three deltoid heads with emphasis on the anterior and lateral\n- Improved shoulder stability and joint health"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Anterior Deltoid, Lateral Deltoid\n\nSecondary: Triceps Brachii, Upper Trapezius, Serratus Anterior, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set an adjustable bench to a 90-degree upright position (or slight incline at 85 degrees).\n2. Sit on the bench with your back firmly against the pad.\n3. Pick up a dumbbell in each hand and bring them to shoulder height.\n4. Position the dumbbells at the sides of your shoulders, palms facing forward.\n5. Elbows should be bent at approximately 90 degrees.\n6. Plant your feet firmly on the floor, shoulder-width apart.\n7. Engage your core and maintain a neutral spine."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Press the dumbbells upward by extending your arms overhead.\n3. Press in a slight arc, bringing the dumbbells closer together at the top.\n4. Fully extend your arms without locking the elbows.\n5. Pause briefly at the top with dumbbells nearly touching.\n6. Slowly lower the dumbbells back to the starting position at shoulder level.\n7. Keep your back pressed against the pad throughout the movement.\n8. Maintain control during the lowering phase — don't let gravity take over.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back excessively during the press\n- Flaring the elbows too far back (increases shoulder impingement risk)\n- Using momentum or jerking the weight up\n- Not lowering the dumbbells far enough for full range\n- Locking the elbows aggressively at the top\n- Leaning to one side during the press\n- Shrugging the shoulders up toward the ears\n- Pressing the dumbbells too far in front of the body\n- Rushing the eccentric (lowering) phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of Dumbbells (appropriate weight)\n- Adjustable Bench with Back Support (set to 85-90 degrees)\n- Optional: Spotter for heavy lifts\n- Optional: Lifting Belt (for heavy loads)\n- Recommended: Flat-soled shoes for stable foot placement"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Set the bench to an upright 90-degree position (or 85 degrees for slight comfort).\n2. Ensure the back pad is locked securely.\n3. Adjust the seat height so feet can be flat on the floor.\n4. Position the bench with clearance overhead and on both sides.\n5. Have dumbbells within easy reach on the floor."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Flat on the floor, shoulder-width apart or slightly wider.\n2. Hips: Firmly on the seat, pressed back into the bench.\n3. Back: Fully supported against the back pad, natural curve maintained.\n4. Shoulders: Pulled back and down, not shrugged.\n5. Head: Resting naturally against the back pad, chin neutral.\n6. Grip: Firm, neutral wrist position, palms facing forward.\n7. Elbows: At approximately 90 degrees, slightly in front of the body."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "dumbbell_lateral_raise"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Standing variation, allows heavier loads\n- Standing Dumbbell Press: More core engagement, less isolation\n- Arnold Press: Rotational variation targeting all deltoid heads\n- Machine Shoulder Press: Guided movement, great for beginners\n- Landmine Press: Angled pressing, easier on shoulders\n- Pike Push-Ups: Bodyweight shoulder press alternative"
+        },
+        {
+          "heading": "Shoulder Press Variations",
+          "content": "Seated Dumbbell Press: Standard shoulder builder with back support\nArnold Press: Rotating press from palms-in to palms-forward\nSingle-Arm Seated Press: Unilateral pressing for balance and core\nNeutral Grip Press: Palms facing each other, easier on shoulders\nSlow Eccentric Press: 3-4 second lowering for muscle growth\nPaused Shoulder Press: Pause at the bottom for strength development"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Try neutral grip (palms facing each other) or reduce range of motion\nNeck Discomfort: Ensure head is neutral, avoid looking up during the press\nLower Back Issues: Use a bench with firm back support, keep core engaged\nWrist Pain: Use wrist wraps or try neutral grip position\nNo Bench: Try standing dumbbell press or use a sturdy chair\nNo Dumbbells: Use barbell overhead press, resistance bands, or kettlebells\nLearning Stage: Start with lighter weights, master the movement pattern first"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bodyweight_chin_ups",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/231.%20Bodyweight%20Chin%20Ups/231.%20Bodyweight%20Chin%20Ups%20SD%20(2)_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/231.%20Bodyweight%20Chin%20Ups/231.%20Bodyweight%20Chin%20Ups%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/231.%20Bodyweight%20Chin%20Ups/231.%20Bodyweight%20Chin%20Ups%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/231.%20Bodyweight%20Chin%20Ups/231.%20Bodyweight%20Chin%20Ups%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.9992271062995124, 2.7103998171218455, -3.9962508999958923],
+    "rotation": [-2.812213132971604, -0.4872644533459209, -2.982889421600041],
+    "target": [0.00874706378387185, 1.4846658545289118, -0.41046928916939357]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.1554916523678054, 1.2049347084942457, 1.898730377354355],
+    "rotation": [-0.28220780608554935, 0.5850107063934704, 0.1587632042964521],
+    "target": [-0.005133589211845831, 0.7169669721501464, 0.21577086333483828]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/231.%20Bodyweight%20Chin%20Ups/Bodyweight%20Chin%20Ups_250x250_2026-04-24T08-22-00.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bodyweight Chin Up is a fundamental upper-body pulling exercise performed by hanging from a bar and pulling your bodyweight up until your chin clears the bar.\n\nIt is one of the most effective compound movements for developing a strong back, biceps, and grip using nothing but your own bodyweight.\n\nChin ups are a staple of calisthenics, strength training, and athletic conditioning programs worldwide."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds significant upper-body pulling strength\n- Develops a wide, strong back (lats, rhomboids, traps)\n- Strengthens biceps, forearms, and grip\n- Improves core stability and body control\n- Enhances shoulder health and posture\n- Requires minimal equipment - just a bar\n- Scales with bodyweight for progressive overload\n- Excellent indicator of relative strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Biceps Brachii, Brachialis\n\nSecondary: Rhomboids, Trapezius (lower/middle), Teres Major, Posterior Deltoids, Forearms, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand beneath a sturdy pull-up bar.\n2. Reach up and grip the bar with an overhand grip.\n3. Place hands slightly wider than shoulder-width apart.\n4. Hang from the bar with arms fully extended.\n5. Engage your core and depress your shoulder blades.\n6. Keep your body in a straight line with a slight backward lean.\n7. Cross your feet behind you if desired for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core and brace your midsection.\n2. Pull your body upward by driving your elbows down and back.\n3. Focus on squeezing your shoulder blades together.\n4. Continue pulling until your chin clears the bar.\n5. Pause briefly at the top in the fully contracted position.\n6. Lower your body in a slow, controlled manner.\n7. Return to a full hang with arms extended.\n8. Repeat for the desired number of repetitions, maintaining proper form."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or kipping instead of strict form\n- Not achieving full range of motion (chin must clear the bar)\n- Failing to fully extend arms at the bottom\n- Shrugging shoulders up toward ears\n- Flaring elbows excessively\n- Dropping down too quickly without control\n- Holding breath throughout the entire set\n- Swinging or kicking legs for momentum\n- Neglecting core engagement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sturdy Pull-Up Bar (doorway, wall-mounted, power rack, or outdoor bar)\n- Optional: Chalk (for improved grip)\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Wrist Wraps\n- Recommended: Clear space overhead and around the bar"
+        },
+        {
+          "heading": "Finding Your Grip",
+          "content": "1. Stand directly under the bar.\n2. Reach up with both hands using an overhand grip.\n3. Hands should be slightly wider than shoulder-width.\n4. Wrap thumbs fully around the bar for a secure grip.\n5. Ensure wrists are stacked and not bent awkwardly.\n6. Grip firmly but avoid excessive tension in the forearms.\n7. Adjust hand width if shoulders feel uncomfortable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Overhand, slightly wider than shoulder-width.\n2. Arms: Fully extended at the start of each rep.\n3. Shoulders: Depressed (pulled down away from ears).\n4. Core: Engaged and braced throughout.\n5. Legs: Straight or crossed behind the body.\n6. Torso: Slight backward lean from vertical.\n7. Head: Neutral, eyes looking forward or slightly up.\n8. Breathing: Exhale on the way up, inhale on the way down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["weighted_chin_ups", "neutral_grip_chin_ups", "band_assisted_pull_up_knees"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Pull Up: Wider overhand grip, more lat emphasis\n- Neutral Grip Chin Up: Palms facing each other, easier on shoulders\n- Weighted Chin Up: Added load for advanced strength development\n- Band Assisted Chin Up: Resistance band assistance for beginners\n- Cable Assisted Pull Up: Machine-guided pulling pattern\n- Lat Pulldown: Seated machine alternative"
+        },
+        {
+          "heading": "Chin Up Variations",
+          "content": "Standard Chin Up: Overhand grip bodyweight version\nWeighted Chin Up: Added resistance via belt or dip belt\nNeutral Grip Chin Up: Parallel handles for shoulder comfort\nCommando Chin Up: Alternating sides over the bar\nArcher Chin Up: One-arm emphasis progression\nTempo Chin Up: Slow eccentric for hypertrophy\nIsometric Hold: Pause at top or mid-range"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Cannot Do A Full Rep: Use band assistance or an assisted pull-up machine\nShoulder Pain: Try neutral grip variation instead\nElbow Pain (Tendinitis): Reduce volume, warm up thoroughly, use neutral grip\nGrip Issues: Use chalk, straps, or thicker grips for forearm development\nNo Pull-Up Bar: Use suspension trainer rows or inverted rows\nBeginner Stage: Start with negatives (slow lowering) to build strength"
+        }
+      ]
+    }
+  }
+}

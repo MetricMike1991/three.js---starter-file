@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v41
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.41.468
+ * Version: 1.42.0
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.41.483');
+define('FLEXFRAME_VERSION', '1.42.0');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Force HTTPS to prevent mixed-content warnings on SSL sites
 define('FLEXFRAME_PLUGIN_URL', str_replace('http://', 'https://', plugin_dir_url(__FILE__)));
@@ -482,7 +482,17 @@ function flexframe_render_login_page($content) {
     $login_page_id = get_option('flexframe_client_login_page_id', 0);
     if (!is_page($login_page_id)) return $content;
     
-    // If already logged in, redirect to settings
+    // Don't run redirects during REST API, AJAX, admin, or CLI requests
+    if ( (defined('REST_REQUEST') && REST_REQUEST)
+      || wp_doing_ajax()
+      || (defined('WP_CLI') && WP_CLI)
+      || (defined('DOING_CRON') && DOING_CRON)
+      || is_admin()
+    ) {
+        return $content;
+    }
+    
+    // If already logged in, redirect to settings (front-end only)
     if (is_user_logged_in()) {
         $user = wp_get_current_user();
         if (flexframe_is_client_user($user) || current_user_can('manage_options')) {
@@ -610,7 +620,7 @@ function flexframe_render_login_page($content) {
         </form>
         
         <p style="text-align: center; margin-top: 20px; font-size: 12px; color: #999;">
-            Powered by FlexFrame
+            Powered by FitFlexion
         </p>
     </div>
     <?php
@@ -623,7 +633,17 @@ add_filter('the_content', 'flexframe_render_login_page');
  * [flexframe_login] - Renders a branded full-screen login page.
  */
 function flexframe_login_shortcode($atts) {
-    // If already logged in, redirect to settings
+    // Don't run redirects during REST API, AJAX, admin, or CLI requests
+    if ( (defined('REST_REQUEST') && REST_REQUEST)
+      || wp_doing_ajax()
+      || (defined('WP_CLI') && WP_CLI)
+      || (defined('DOING_CRON') && DOING_CRON)
+      || is_admin()
+    ) {
+        return '<p style="text-align:center;color:#888;padding:40px;">&#128274; FlexFrame Client Login Form</p>';
+    }
+    
+    // If already logged in, redirect to settings (front-end only)
     if (is_user_logged_in()) {
         $user = wp_get_current_user();
         if (flexframe_is_client_user($user) || current_user_can('manage_options')) {
@@ -813,7 +833,7 @@ function flexframe_login_shortcode($atts) {
         
         <!-- Powered by footer -->
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;z-index:1;opacity:0.35;font-size:11px;letter-spacing:0.5px;color:#fff;">
-            Powered by FlexFrame
+            Powered by FitFlexion
         </div>
         
         <style>
@@ -1440,7 +1460,7 @@ function flexframe_enqueue_assets() {
         // Enqueue Vite-generated CSS
         wp_enqueue_style(
             'flexframe-viewer-style',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-pfdeJkuX.css',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BKQLnaGu.css',
             array(),
             FLEXFRAME_VERSION
         );
@@ -4267,7 +4287,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B0g6t8nD.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DnrWTkuF.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5189,6 +5209,7 @@ function flexframe_embed_mode_redirect() {
     $hide_fullscreen = isset($_GET['hideFullscreen']) && $_GET['hideFullscreen'] === '1';
     $hd_model = isset($_GET['hdModel']) && $_GET['hdModel'] === '1';
     $hide_particles = isset($_GET['hideParticles']) && $_GET['hideParticles'] === '1';
+    $hide_watermark = isset($_GET['hideWatermark']) && $_GET['hideWatermark'] === '1';
     $exercise = isset($_GET['exercise']) ? sanitize_text_field($_GET['exercise']) : '';
     
     // Parse camera position params (floats)
@@ -5203,8 +5224,8 @@ function flexframe_embed_mode_redirect() {
                          && $cam_target_x !== null && $cam_target_y !== null && $cam_target_z !== null);
     
     // Get the CSS and JS asset URLs
-    $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-pfdeJkuX.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B0g6t8nD.js';
+    $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BKQLnaGu.css';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DnrWTkuF.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -5401,6 +5422,7 @@ function flexframe_embed_mode_redirect() {
         'embedHideFullscreen' => $hide_fullscreen,
         'embedHDModel' => $hd_model,
         'embedHideParticles' => $hide_particles,
+        'embedHideWatermark' => $hide_watermark,
         'embedTransparentBg' => $transparent_bg,
         'embedCameraPosition' => $has_camera_position ? array(
             'position' => array('x' => $cam_pos_x, 'y' => $cam_pos_y, 'z' => $cam_pos_z),
@@ -5522,13 +5544,15 @@ function flexframe_embed_mode_redirect() {
     /* Hide only the fullscreen button when hideFullscreen=1 */
     .fullscreen-btn { display: none !important; }
     <?php endif; ?>
+    <?php if ($hide_watermark): ?>
+    /* Hide background logo watermark */
+    #flexframe-watermark-wrap,
+    #flexframe-watermark { display: none !important; }
+    <?php endif; ?>
     <?php if ($transparent_bg): ?>
     /* Transparent background mode */
     #flexframe-viewer-container { background: transparent !important; }
     canvas.webgl { background: transparent !important; }
-    /* Hide background logo watermark on transparent bg */
-    #flexframe-watermark-wrap,
-    #flexframe-watermark { display: none !important; }
     <?php endif; ?>
 </style>
 </head>
@@ -5585,6 +5609,15 @@ function flexframe_dashboard_shortcode($atts) {
     $login_enabled = get_option('flexframe_dash_login_enabled', true);
     $login_label   = esc_html(get_option('flexframe_dash_login_label', 'Client Login'));
     $login_url     = esc_url(get_option('flexframe_dash_login_url', ''));
+    
+    // Lead capture settings
+    $lead_mode        = get_option('flexframe_lead_capture_mode', 'off');
+    $lead_heading     = esc_html(get_option('flexframe_lead_capture_heading', 'Stay Connected'));
+    $lead_description = esc_html(get_option('flexframe_lead_capture_description', 'Enter your email to get updates and exclusive offers.'));
+    $lead_btn_text    = esc_html(get_option('flexframe_lead_capture_button_text', 'Submit'));
+    $lead_success_msg = esc_attr(get_option('flexframe_lead_capture_success_msg', "Thanks! We'll be in touch."));
+    $lead_consent_txt = esc_html(get_option('flexframe_lead_capture_consent_text', 'I agree to receive marketing emails'));
+    $lead_show_phone  = get_option('flexframe_lead_capture_show_phone', false);
     
     // Background colors from theme settings
     $bg_top = esc_attr(get_option('flexframe_bg_gradient_top', '#3865ad'));
@@ -5745,7 +5778,140 @@ function flexframe_dashboard_shortcode($atts) {
                 <?php endif; ?>
             </div>
             
-            <?php if (!$has_buttons) : ?>
+            <?php if ($lead_mode === 'email') : ?>
+            <!-- Email Capture Inline -->
+            <div id="ffdb-lead-capture" style="
+                margin-top: 28px;
+                width: 100%;
+                max-width: 340px;
+                animation: ffdb-fadeInUp 0.8s ease-out 0.7s both;
+            ">
+                <?php if (!empty($lead_heading)) : ?>
+                <p style="font-size: 14px; font-weight: 600; margin: 0 0 4px 0; opacity: 0.9;"><?php echo $lead_heading; ?></p>
+                <?php endif; ?>
+                <?php if (!empty($lead_description)) : ?>
+                <p style="font-size: 12px; margin: 0 0 12px 0; opacity: 0.55; line-height: 1.4;"><?php echo $lead_description; ?></p>
+                <?php endif; ?>
+                <form id="ffdb-email-form" style="display: flex; gap: 8px;">
+                    <input type="email" id="ffdb-email-input" required placeholder="your@email.com" style="
+                        flex: 1;
+                        padding: 12px 14px;
+                        border: 1px solid rgba(255,255,255,0.2);
+                        border-radius: 10px;
+                        background: rgba(255,255,255,0.1);
+                        color: #fff;
+                        font-size: 14px;
+                        outline: none;
+                        backdrop-filter: blur(10px);
+                        -webkit-backdrop-filter: blur(10px);
+                    " />
+                    <button type="submit" style="
+                        padding: 12px 20px;
+                        border: none;
+                        border-radius: 10px;
+                        background: <?php echo $primary_color; ?>;
+                        color: #fff;
+                        font-size: 14px;
+                        font-weight: 600;
+                        cursor: pointer;
+                        transition: opacity 0.2s;
+                        white-space: nowrap;
+                    "><?php echo $lead_btn_text; ?></button>
+                </form>
+                <label style="display: flex; align-items: center; gap: 6px; margin-top: 8px; font-size: 11px; opacity: 0.5; cursor: pointer;">
+                    <input type="checkbox" id="ffdb-consent" style="width: 14px; height: 14px; accent-color: <?php echo $primary_color; ?>;">
+                    <?php echo $lead_consent_txt; ?>
+                </label>
+                <div id="ffdb-lead-msg" style="margin-top: 10px; font-size: 13px; display: none;"></div>
+            </div>
+            <?php endif; ?>
+            
+            <?php if ($lead_mode === 'contact') : ?>
+            <!-- Contact Form Button -->
+            <div style="margin-top: 28px; width: 100%; max-width: 340px; animation: ffdb-fadeInUp 0.8s ease-out 0.7s both;">
+                <button type="button" id="ffdb-contact-btn" class="ffdb-nav-btn" style="<?php echo $btn_style; ?> width: 100%;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                        <polyline points="22,6 12,13 2,6"/>
+                    </svg>
+                    <?php echo $lead_heading; ?>
+                </button>
+            </div>
+            
+            <!-- Contact Form Modal -->
+            <div id="ffdb-contact-modal" style="
+                display: none;
+                position: fixed;
+                top: 0; left: 0;
+                width: 100vw; height: 100vh;
+                background: rgba(0,0,0,0.6);
+                z-index: 100000;
+                align-items: center;
+                justify-content: center;
+                backdrop-filter: blur(4px);
+                -webkit-backdrop-filter: blur(4px);
+            ">
+                <div style="
+                    background: linear-gradient(135deg, <?php echo $bg_top; ?> 0%, <?php echo $bg_bottom; ?> 100%);
+                    border: 1px solid rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.3);
+                    border-radius: 16px;
+                    padding: 32px;
+                    width: 90%;
+                    max-width: 420px;
+                    max-height: 90vh;
+                    overflow-y: auto;
+                    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+                    position: relative;
+                ">
+                    <button type="button" id="ffdb-contact-close" style="
+                        position: absolute; top: 12px; right: 12px;
+                        background: rgba(255,255,255,0.1); border: none;
+                        color: #fff; width: 32px; height: 32px;
+                        border-radius: 50%; cursor: pointer;
+                        font-size: 18px; display: flex;
+                        align-items: center; justify-content: center;
+                    ">&times;</button>
+                    
+                    <h2 style="font-size: 22px; font-weight: 700; margin: 0 0 6px 0; color: #fff;"><?php echo $lead_heading; ?></h2>
+                    <p style="font-size: 13px; opacity: 0.6; margin: 0 0 20px 0; color: #fff;"><?php echo $lead_description; ?></p>
+                    
+                    <form id="ffdb-contact-form" style="display: flex; flex-direction: column; gap: 12px;">
+                        <input type="text" id="ffdb-contact-name" required placeholder="Your Name" style="
+                            padding: 12px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
+                            background: rgba(255,255,255,0.1); color: #fff; font-size: 14px; outline: none;
+                        " />
+                        <input type="email" id="ffdb-contact-email" required placeholder="Email Address" style="
+                            padding: 12px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
+                            background: rgba(255,255,255,0.1); color: #fff; font-size: 14px; outline: none;
+                        " />
+                        <?php if ($lead_show_phone) : ?>
+                        <input type="tel" id="ffdb-contact-phone" placeholder="Phone (optional)" style="
+                            padding: 12px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
+                            background: rgba(255,255,255,0.1); color: #fff; font-size: 14px; outline: none;
+                        " />
+                        <?php endif; ?>
+                        <textarea id="ffdb-contact-message" required rows="3" placeholder="Your Message" style="
+                            padding: 12px 14px; border: 1px solid rgba(255,255,255,0.2); border-radius: 10px;
+                            background: rgba(255,255,255,0.1); color: #fff; font-size: 14px; outline: none;
+                            resize: vertical; font-family: inherit;
+                        "></textarea>
+                        <label style="display: flex; align-items: center; gap: 6px; font-size: 12px; opacity: 0.55; cursor: pointer; color: #fff;">
+                            <input type="checkbox" id="ffdb-contact-consent" style="width: 14px; height: 14px; accent-color: <?php echo $primary_color; ?>;">
+                            <?php echo $lead_consent_txt; ?>
+                        </label>
+                        <button type="submit" style="
+                            padding: 14px 20px; border: none; border-radius: 10px;
+                            background: <?php echo $primary_color; ?>; color: #fff;
+                            font-size: 15px; font-weight: 600; cursor: pointer;
+                            transition: opacity 0.2s;
+                        "><?php echo $lead_btn_text; ?></button>
+                    </form>
+                    <div id="ffdb-contact-msg" style="margin-top: 12px; font-size: 13px; text-align: center; color: #fff; display: none;"></div>
+                </div>
+            </div>
+            <?php endif; ?>
+            
+            <?php if (!$has_buttons && $lead_mode === 'off') : ?>
             <p style="opacity: 0.6; font-size: 14px; margin-top: 16px;">
                 Configure navigation buttons in FlexFrame Settings → Step 10.
             </p>
@@ -5754,7 +5920,7 @@ function flexframe_dashboard_shortcode($atts) {
         
         <!-- Powered by footer -->
         <div style="position:absolute;bottom:16px;left:0;right:0;text-align:center;z-index:1;opacity:0.35;font-size:11px;letter-spacing:0.5px;">
-            Powered by FlexFrame
+            Powered by FitFlexion
         </div>
         
         <!-- Inline styles for hover effects and animations -->
@@ -5788,7 +5954,145 @@ function flexframe_dashboard_shortcode($atts) {
             #flexframe-dashboard * {
                 box-sizing: border-box;
             }
+            /* Lead capture input focus */
+            #ffdb-lead-capture input[type="email"]:focus,
+            #ffdb-contact-modal input:focus,
+            #ffdb-contact-modal textarea:focus {
+                border-color: rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.6) !important;
+                box-shadow: 0 0 0 2px rgba(<?php echo $r; ?>, <?php echo $g; ?>, <?php echo $b; ?>, 0.2);
+            }
+            #ffdb-lead-capture button[type="submit"]:hover,
+            #ffdb-contact-modal button[type="submit"]:hover {
+                opacity: 0.85;
+            }
+            #ffdb-contact-modal input::placeholder,
+            #ffdb-contact-modal textarea::placeholder,
+            #ffdb-lead-capture input::placeholder {
+                color: rgba(255,255,255,0.4);
+            }
         </style>
+        
+        <?php if ($lead_mode !== 'off') : ?>
+        <!-- Lead capture script -->
+        <script>
+        (function(){
+            var restUrl = '<?php echo esc_js(rest_url('flexframe/v1/dashboard-lead')); ?>';
+            var successMsg = '<?php echo esc_js($lead_success_msg); ?>';
+            
+            function showMsg(el, text, isError) {
+                el.style.display = 'block';
+                el.style.color = isError ? '#ff6b6b' : '#69db7c';
+                el.textContent = text;
+            }
+            
+            <?php if ($lead_mode === 'email') : ?>
+            // Email capture form
+            var emailForm = document.getElementById('ffdb-email-form');
+            if (emailForm) {
+                emailForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var email = document.getElementById('ffdb-email-input').value.trim();
+                    var consent = document.getElementById('ffdb-consent').checked ? true : false;
+                    var msgEl = document.getElementById('ffdb-lead-msg');
+                    var btn = emailForm.querySelector('button[type="submit"]');
+                    
+                    if (!email) return;
+                    btn.disabled = true;
+                    btn.textContent = '...';
+                    
+                    fetch(restUrl, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({email: email, marketingConsent: consent, mode: 'email'})
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.success) {
+                            showMsg(msgEl, successMsg, false);
+                            emailForm.style.display = 'none';
+                        } else {
+                            showMsg(msgEl, data.message || 'Something went wrong.', true);
+                            btn.disabled = false;
+                            btn.textContent = '<?php echo esc_js($lead_btn_text); ?>';
+                        }
+                    })
+                    .catch(function() {
+                        showMsg(msgEl, 'Network error. Please try again.', true);
+                        btn.disabled = false;
+                        btn.textContent = '<?php echo esc_js($lead_btn_text); ?>';
+                    });
+                });
+            }
+            <?php endif; ?>
+            
+            <?php if ($lead_mode === 'contact') : ?>
+            // Contact form modal
+            var modal = document.getElementById('ffdb-contact-modal');
+            var openBtn = document.getElementById('ffdb-contact-btn');
+            var closeBtn = document.getElementById('ffdb-contact-close');
+            var contactForm = document.getElementById('ffdb-contact-form');
+            
+            if (openBtn && modal) {
+                openBtn.addEventListener('click', function() {
+                    modal.style.display = 'flex';
+                });
+                closeBtn.addEventListener('click', function() {
+                    modal.style.display = 'none';
+                });
+                modal.addEventListener('click', function(e) {
+                    if (e.target === modal) modal.style.display = 'none';
+                });
+            }
+            
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    var name = document.getElementById('ffdb-contact-name').value.trim();
+                    var email = document.getElementById('ffdb-contact-email').value.trim();
+                    var phone = document.getElementById('ffdb-contact-phone') ? document.getElementById('ffdb-contact-phone').value.trim() : '';
+                    var message = document.getElementById('ffdb-contact-message').value.trim();
+                    var consent = document.getElementById('ffdb-contact-consent').checked ? true : false;
+                    var msgEl = document.getElementById('ffdb-contact-msg');
+                    var btn = contactForm.querySelector('button[type="submit"]');
+                    
+                    if (!name || !email || !message) return;
+                    btn.disabled = true;
+                    btn.textContent = 'Sending...';
+                    
+                    fetch(restUrl, {
+                        method: 'POST',
+                        headers: {'Content-Type': 'application/json'},
+                        body: JSON.stringify({
+                            email: email,
+                            name: name,
+                            phone: phone,
+                            message: message,
+                            marketingConsent: consent,
+                            mode: 'contact'
+                        })
+                    })
+                    .then(function(r) { return r.json(); })
+                    .then(function(data) {
+                        if (data.success) {
+                            showMsg(msgEl, successMsg, false);
+                            contactForm.style.display = 'none';
+                        } else {
+                            showMsg(msgEl, data.message || 'Something went wrong.', true);
+                            btn.disabled = false;
+                            btn.textContent = '<?php echo esc_js($lead_btn_text); ?>';
+                        }
+                    })
+                    .catch(function() {
+                        showMsg(msgEl, 'Network error. Please try again.', true);
+                        btn.disabled = false;
+                        btn.textContent = '<?php echo esc_js($lead_btn_text); ?>';
+                    });
+                });
+            }
+            <?php endif; ?>
+        })();
+        </script>
+        <?php endif; ?>
         
         <!-- Floating particles script -->
         <script>

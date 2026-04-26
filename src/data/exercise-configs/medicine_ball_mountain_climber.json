@@ -1,0 +1,105 @@
+{
+  "exerciseId": "medicine_ball_mountain_climber",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/167.%20Medicine%20Ball%20Mountain%20Climber/167%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/167.%20Medicine%20Ball%20Mountain%20Climber/167%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/167.%20Medicine%20Ball%20Mountain%20Climber/167%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/167.%20Medicine%20Ball%20Mountain%20Climber/167%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.850093514219202, 1.0443209090993557, 0.3290298032495601],
+    "rotation": [-1.2379879240344542, -1.316614206252431, -1.2277740434691888],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.7155240333913304, 0.9815101790551977, 0.1291507991443059],
+    "rotation": [-1.5068682003080895, -1.339993476599002, -1.505131781220843],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/167.%20Medicine%20Ball%20Mountain%20Climber/Medicine%20Ball%20Mountain%20Climber_250x250_2026-04-21T09-37-20.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Medicine Ball Mountain Climber is a dynamic full-body conditioning exercise that combines a plank, a cardio-based mountain climber pattern, and the instability of a medicine ball under the hands.\n\nBy placing the hands on a medicine ball instead of the floor, the exercise dramatically increases demand on the core, shoulders, and stabilizers while still delivering a strong cardiovascular stimulus.\n\nIt is an excellent choice for conditioning circuits, HIIT workouts, and athletic training programs."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds cardiovascular endurance and conditioning\n- Strengthens the core, shoulders, and hip flexors\n- Improves balance, coordination, and proprioception\n- Trains deep stabilizers through the unstable surface\n- Boosts calorie burn in short timeframes\n- Develops dynamic core control under fatigue\n- Great finisher or HIIT interval exercise\n- Minimal equipment and space required"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Hip Flexors\n\nSecondary: Obliques, Transverse Abdominis, Anterior Deltoids, Pectorals, Quadriceps, Triceps, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place a medicine ball on the floor in an open area.\n2. Get into a high plank position with both hands on top of the medicine ball.\n3. Position your hands directly under your shoulders on the ball.\n4. Extend your legs straight behind you, feet hip-width apart.\n5. Keep your body in a straight line from head to heels.\n6. Brace your core and engage your glutes before starting."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core and lift one foot off the ground, driving your knee toward your chest while maintaining your balance on the medicine ball.\n2. Quickly switch legs, extending the bent leg back as you bring the opposite knee toward your chest.\n3. Maintain balance and control on the medicine ball throughout each rep.\n4. Continue alternating legs in a smooth running motion.\n5. Keep your hips low and in line with your shoulders.\n6. Maintain a steady pace and controlled breathing.\n7. Continue for the desired time or number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the hips to pike too high or sag too low\n- Losing control of the medicine ball during switches\n- Letting the shoulders drift forward of the hands\n- Moving too fast and sacrificing form\n- Holding the breath during the set\n- Bouncing the feet rather than driving the knees\n- Rotating the torso excessively side to side\n- Collapsing through the upper back between reps"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Medicine Ball (firm, non-bouncing preferred for stability)\n- Non-slip floor surface or exercise mat\n- Open space to extend fully in plank position\n- Optional: Yoga mat under the feet for grip and comfort\n- Recommended: A ball with a textured surface for better grip"
+        },
+        {
+          "heading": "Finding Your Position",
+          "content": "1. Place the medicine ball on a non-slip surface.\n2. Kneel in front of the ball and place both hands on top.\n3. Step back into a full plank position with arms straight.\n4. Stack your shoulders directly over the ball.\n5. Set your feet hip-width apart for a stable base.\n6. Brace your core before initiating the first climb."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hands: Both on top of the medicine ball, directly beneath the shoulders.\n2. Arms: Straight but not locked, slight bend at the elbows.\n3. Shoulders: Packed down and away from the ears.\n4. Core: Fully engaged throughout the entire set.\n5. Hips: Level with the shoulders, neither sagging nor piking.\n6. Legs: Alternating drive of the knees toward the chest.\n7. Head: Neutral, eyes looking down at the ball.\n8. Breathing: Steady, rhythmic breathing with the leg drive."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Mountain Climber: Bodyweight version performed on the floor\n- BOSU Ball Mountain Climber: Similar instability from a different tool\n- Slider Mountain Climber: Feet on sliders for a smooth, controlled variation\n- Plank to Push Up: Core and upper body conditioning\n- Stability Ball Pike: Static-to-dynamic core movement on a ball\n- Spider Plank: Oblique-focused alternative from a plank"
+        },
+        {
+          "heading": "Mountain Climber Variations",
+          "content": "Medicine Ball Mountain Climber: Standard variation with hands on a ball\nCross-Body Medicine Ball Mountain Climber: Drive the knee toward the opposite elbow\nSlow Tempo Medicine Ball Mountain Climber: Controlled pace to maximise core time under tension\nMedicine Ball Plank Hold: Isometric progression for beginners\nPush Up + Mountain Climber Combo: Adds a push up between climbs\nMedicine Ball Mountain Climber Sprints: Fast, interval-style variation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Replace with slider or floor mountain climbers on forearms\nShoulder Issues: Use a more stable surface or reduce range of motion\nCore Weakness: Start with standard floor mountain climbers before progressing\nBalance Issues: Place the ball against a wall or use a heavier, more stable ball\nKnee Pain: Slow the pace and reduce knee drive height\nNo Medicine Ball: Use a stability ball, BOSU, or perform standard mountain climbers"
+        }
+      ]
+    }
+  }
+}

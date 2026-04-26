@@ -1,0 +1,105 @@
+{
+  "exerciseId": "bulgarian_split_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/15.%20Bulgarian%20Split%20Squat/15.%20Bulgarian%20Split%20Squat_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/15.%20Bulgarian%20Split%20Squat/15.%20Bulgarian%20Split%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/15.%20Bulgarian%20Split%20Squat/15.%20Bulgarian%20Split%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/15.%20Bulgarian%20Split%20Squat/15.%20Bulgarian%20Split%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.943930546332673, 1.7097993223849803, -3.458065432421391],
+    "rotation": [-2.765789883388827, -0.6860360110937097, -2.896670367065825],
+    "target": [-0.009879497262378084, 0.8427664981200661, -1.2605645183149177]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.2639621207338028, 1.4230206004561106, 2.785654810656098],
+    "rotation": [-0.4601691167901267, 0.8900314152111133, 0.36765926526743836],
+    "target": [0.022523468956782502, 0.6168011001439719, 1.159095376181806]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/15.%20Bulgarian%20Split%20Squat/Bulgarian%20Split%20Squat_250x250_2026-03-04T07-33-32.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Bulgarian Split Squat is a single-leg exercise performed with one foot elevated on a bench or platform behind you.\n\nThis unilateral movement places significant demand on the quads, glutes, and hamstrings of the front leg while also challenging balance, stability, and core strength.\n\nWidely regarded as one of the most effective lower body exercises, it helps correct muscle imbalances between legs and builds impressive single-leg strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets quads and glutes with intense unilateral loading\n- Corrects strength and size imbalances between legs\n- Improves balance, coordination, and stability\n- Increases hip flexor flexibility on the rear leg\n- Reduces spinal loading compared to bilateral squats\n- Enhances athletic performance for running, jumping, and cutting\n- Builds core strength through stabilisation demands\n- Versatile — can be loaded with dumbbells, barbells, or bodyweight"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Hamstrings, Calves, Core, Hip Flexors, Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand approximately 2-3 feet in front of a bench or elevated platform, facing away from it.\n2. Place the top of one foot (laces down) on the bench behind you.\n3. Your front foot should be far enough forward that your knee stays behind your toes at the bottom.\n4. Hold dumbbells at your sides or keep hands on hips for bodyweight variation.\n5. Keep your chest up, shoulders back, and core engaged.\n6. Eyes looking forward, head in a neutral position.\n7. Ensure your front foot is firmly planted with weight distributed evenly."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Brace your core and maintain an upright torso.\n2. Bend your front knee and lower your body in a controlled manner.\n3. Descend until your back knee is hovering just above the ground.\n4. Your front thigh should be approximately parallel to the floor at the bottom.\n5. Keep your front knee tracking over your toes — do not let it cave inward.\n6. Push through your front heel and mid-foot to drive yourself back up.\n7. Squeeze your glute at the top of the movement.\n8. Complete all reps on one leg before switching to the other side.\n9. Maintain balance and control throughout the entire range of motion."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Standing too close to the bench (knee drifting too far forward)\n- Standing too far from the bench (losing balance, overextending hip)\n- Leaning the torso excessively forward\n- Front knee caving inward during the descent\n- Not lowering deep enough for full range of motion\n- Pushing off the back foot instead of driving through the front leg\n- Losing balance due to poor foot placement\n- Rushing through reps without control\n- Not keeping the core engaged throughout the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Bench, box, or elevated platform (approximately knee height)\n- Optional: Dumbbells held at sides for added resistance\n- Optional: Barbell across upper back for heavier loading\n- Optional: Kettlebell held in goblet position\n- Recommended: Flat, stable surface with good grip\n- Recommended: Supportive athletic shoes"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Use a stable bench or platform approximately 14-18 inches high.\n2. Ensure the bench will not slide or tip during the exercise.\n3. Position yourself about 2-3 feet in front of the bench.\n4. The ideal distance allows both knees to reach approximately 90 degrees at the bottom.\n5. If the bench is too high, it may cause excessive hip flexor stretch.\n6. A lower platform is better for beginners.\n7. Test your distance with a few bodyweight reps before adding load."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Front Foot: Firmly planted, weight through heel and mid-foot.\n2. Rear Foot: Top of foot (laces) resting on the bench.\n3. Stance Width: Front foot roughly in line with the hip, not on a tightrope.\n4. Torso: Upright with a slight forward lean — do not round.\n5. Core: Braced and tight throughout the movement.\n6. Hands: Holding dumbbells at sides, or on hips for bodyweight.\n7. Knees: Front knee tracks over toes, back knee descends straight down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "dumbbell_walking_lunges"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Walking Lunges: Dynamic forward stepping lunge for quads and glutes\n- Reverse Lunges: Stepping backward for a similar unilateral pattern\n- Step-Ups: Stepping onto a platform for single-leg quad work\n- Pistol Squat: Advanced bodyweight single-leg squat\n- Front Foot Elevated Split Squat: Increased range of motion variation\n- Goblet Split Squat: Holding a weight at chest for added load"
+        },
+        {
+          "heading": "Bulgarian Split Squat Variations",
+          "content": "Bodyweight Bulgarian Split Squat: No added weight, great for beginners\nDumbbell Bulgarian Split Squat: Dumbbells at sides for moderate loading\nBarbell Bulgarian Split Squat: Bar across upper back for heavy loading\nGoblet Bulgarian Split Squat: Kettlebell or dumbbell at chest\nDeficit Bulgarian Split Squat: Front foot elevated for extra depth\nPause Bulgarian Split Squat: Hold at the bottom for increased time under tension\nTempo Bulgarian Split Squat: Slow eccentric for muscle building"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Balance Issues: Hold onto a wall or rack for support, or use a lower bench\nKnee Pain: Adjust front foot distance; try a shorter range of motion\nHip Flexor Tightness: Use a lower bench and warm up with hip stretches\nAnkle Mobility Issues: Place a small plate under the front heel\nLower Back Pain: Keep torso upright and reduce loading\nNo Bench Available: Perform standard split squats with both feet on the ground\nLearning Stage: Start with bodyweight only and master balance before adding load"
+        }
+      ]
+    }
+  }
+}

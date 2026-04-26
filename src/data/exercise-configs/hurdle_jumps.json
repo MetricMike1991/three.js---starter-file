@@ -1,0 +1,112 @@
+{
+  "exerciseId": "hurdle_jumps",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/293.%20Hurdle%20Jumps/293.%20Hurdle%20Jumps%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/293.%20Hurdle%20Jumps/293.%20Hurdle%20Jumps%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-3.9124453550827507, 1.8414915831627159, 0.8281013006057296],
+    "rotation": [-0.8275175862500694, -1.2599769782077206, -0.8030124712648309],
+    "target": [0.15776512883968763, 0.8788556327829, -0.05667659798966415]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-3.912445355619315, 1.8414915822012685, 0.8281012991834732],
+    "rotation": [-0.8275175862500701, -1.259976978207719, -0.8030124712648313],
+    "target": [0.15776512830312453, 0.8788556318214454, -0.05667659941192645]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/293.%20Hurdle%20Jumps/Hurdle%20Jumps_250x250_2026-04-25T19-51-05.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Body Weight",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "Hurdle Jumps are a plyometric exercise where the athlete jumps over a series of hurdles in succession to develop reactive strength and explosive power.\n\nThe focus is on minimal ground contact time, soft landings, and quick rebounds between hurdles.\n\nThis drill is widely used in athletic conditioning to build coordination, jumping power, and reactive ability for sprinting and sport performance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops reactive strength and elasticity\n- Improves vertical and horizontal explosive power\n- Reduces ground contact time\n- Builds coordination and rhythm\n- Reinforces soft, balanced landings\n- Highly transferable to sprinting and field sports\n- Adjustable difficulty by changing hurdle height and spacing"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Gluteus Maximus, Hamstrings, Calves\n\nSecondary: Hip Flexors, Core, Shoulders"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Place a series of hurdles in a straight line at an appropriate height and spacing.\n2. Ensure the surface is flat and non-slip.\n3. Wear supportive athletic footwear."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart, facing the first hurdle.\n2. Focus on the path ahead.\n3. Brace your core and prepare to move."
+        },
+        {
+          "heading": "Jump Over the Hurdle",
+          "content": "1. Approach the first hurdle with a controlled run-up, maintaining a steady pace and rhythm.\n2. Jump over the hurdle by driving with your knees and using your arms for momentum.\n3. Aim to clear the hurdle smoothly without touching it."
+        },
+        {
+          "heading": "Land and Continue",
+          "content": "1. Land softly on both feet with your knees slightly bent to absorb the impact.\n2. Immediately prepare for the next jump.\n3. Continue over each hurdle in succession, keeping ground contact times short."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Landing with stiff legs and no knee bend\n- Letting the knees collapse inward on landing\n- Failing to use the arms for momentum\n- Excessive ground contact time between hurdles\n- Choosing hurdle heights beyond your current ability\n- Performing reps when fatigued, leading to poor mechanics\n- Skipping the warm-up before plyometrics"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Required",
+          "content": "- Set of plyometric hurdles at an appropriate height\n- Flat, non-slip training surface\n- Supportive athletic footwear"
+        },
+        {
+          "heading": "Body Position",
+          "content": "1. Feet shoulder-width apart facing the hurdles.\n2. Knees soft, hips ready to load.\n3. Arms ready to drive through each jump."
+        },
+        {
+          "heading": "Movement Setup",
+          "content": "1. Equal spacing between hurdles to maintain rhythm.\n2. Powerful triple extension on each take-off.\n3. Soft two-foot landings between hurdles."
+        },
+        {
+          "heading": "Safety Considerations",
+          "content": "- Use collapsible hurdles where possible to reduce trip risk\n- Warm up the lower body thoroughly before plyometrics\n- Stop the session if landings become sloppy\n- Limit volume to maintain quality of each rep\n- Stop immediately if you feel sharp knee or ankle pain"
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "sections": [
+        {
+          "heading": "Similar Movements",
+          "content": "Other lower body plyometric exercises that develop explosive power and reactive strength."
+        }
+      ],
+      "suggestedExercises": [
+        "box_jump_v2",
+        "broad_jump"
+      ]
+    }
+  }
+}

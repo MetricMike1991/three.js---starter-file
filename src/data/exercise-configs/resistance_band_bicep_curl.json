@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_bicep_curl",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/213.%20Resistance%20Band%20Bicep%20Curl/213.%20Resistance%20Band%20Bicep%20Curl%20SD.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/213.%20Resistance%20Band%20Bicep%20Curl/213.%20Resistance%20Band%20Bicep%20Curl%20AR.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/213.%20Resistance%20Band%20Bicep%20Curl/213.%20Resistance%20Band%20Bicep%20Curl%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.629643047572721, 1.8124340163042594, 2.4380499380417904],
+    "rotation": [-0.32486398047431986, 0.5770910061557704, 0.18172493240661883],
+    "target": [0.008640238752273587, 1.0176926287829877, 0.07834056533981133]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/213.%20Resistance%20Band%20Bicep%20Curl/Resistance%20Band%20Bicep%20Curl_250x250_2026-04-23T08-19-04.webp",
+  "primaryMuscleGroup": "Biceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Bicep Curl is an isolation exercise that targets the biceps brachii using a band anchored beneath the feet.\n\nStanding upright and curling the handles toward the shoulders produces constant, accommodating tension throughout the range of motion.\n\nIt is a joint-friendly, portable alternative to dumbbell or cable curls and is effective for building arm size and elbow flexion strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the biceps brachii\n- Accommodating band tension increases as you curl\n- Low-impact and joint-friendly\n- Portable and equipment-efficient\n- Reinforces core and postural control\n- Easily scaled by changing band thickness or stance width\n- Great warm-up or finisher for arm training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Biceps Brachii\n\nSecondary: Brachialis, Brachioradialis, Forearms, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Step on the band with both feet, hip-width apart.\n2. Ensure the band is balanced evenly under both feet.\n3. Stand tall with a neutral spine."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Grasp the handles with palms facing forward (supinated grip).\n2. Let the arms hang by the sides with a slight tension on the band.\n3. Tuck the elbows close to the torso."
+        },
+        {
+          "heading": "Curl",
+          "content": "1. Exhale and bend the elbows to curl the handles toward the shoulders.\n2. Keep the upper arms still; only the forearms move.\n3. Squeeze the biceps at the top of the rep."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Inhale and lower the handles under control.\n2. Maintain tension on the band throughout.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the torso to lift the handles\n- Letting the elbows drift forward\n- Using momentum instead of controlled elbow flexion\n- Shrugging the shoulders during the curl\n- Using a band that is too heavy and breaking form\n- Incomplete range of motion\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Athletic shoes for secure footing\n- Optional: Lighter and heavier bands for progression\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Step on the middle of the band with both feet flat on the floor.\n2. Wider stance creates more tension; narrower stance reduces it.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on both handles is even before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Hip-width apart, feet flat on the floor.\n2. Torso: Tall, ribs down, core braced.\n3. Arms: Elbows tucked close to the sides, wrists neutral.\n4. Shoulders: Packed and down, not shrugged.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Bicep Curl: Free-weight variation\n- Barbell Bicep Curl: Heavier bilateral variation\n- Cable Bicep Curl: Constant-tension cable version\n- Hammer Curl: Neutral-grip variation\n- Preacher Curl: Bench-supported variation\n- Chin-Up: Bodyweight compound biceps movement"
+        },
+        {
+          "heading": "Resistance Band Bicep Curl Variations",
+          "content": "Two-Arm Band Curl: Described here\nSingle-Arm Band Curl: Unilateral variation\nHammer Band Curl: Neutral grip for brachialis emphasis\nReverse-Grip Band Curl: Pronated grip for brachioradialis\nTempo Band Curl: Slow eccentric for hypertrophy\nPause Band Curl: Pause at peak contraction"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Lighten the band and use a neutral grip\nWrist Pain: Switch to a hammer or neutral grip\nShoulder Issues: Keep the shoulders packed and avoid shrugging\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nBeginners: Start with a light band to learn the pattern"
+        }
+      ]
+    }
+  }
+}

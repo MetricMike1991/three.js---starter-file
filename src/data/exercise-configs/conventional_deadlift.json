@@ -1,10 +1,10 @@
 {
   "exerciseId": "conventional_deadlift",
-  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/conventional%20deadlift%20SD.glb",
-  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/Conventional%20Deadlift%20HD.glb",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/02.%20Conventional%20Deadlift%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/02.%20Conventional%20Deadlift%20HD_compressed.glb",
   "ar": {
-    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/conventional%20deadlift%20SD.glb",
-    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/Conventional%20Deadlift%20USDZ.usdz"
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/02.%20Conventional%20Deadlift%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/02.%20Conventional%20Deadlift%20USDZ.usdz"
   },
   "model": {
     "position": [0, 0, 0],
@@ -12,11 +12,25 @@
     "scale": [1, 1, 1]
   },
   "camera": {
-    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
-    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
-    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+    "position": [-1.9086953908153974, 1.416334703916137, -2.3456411567981656],
+    "rotation": [-2.8857087645222803, -0.6360134757079237, -2.987425905154809],
+    "target": [-0.0007915580868285628, 0.7623340601323942, 0.15418031605167498]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.7406738973019293, 1.3627013867663962, 2.3647134132212533],
+    "rotation": [-0.21977943915627457, 0.5898942157329028, 0.12363089432525683],
+    "target": [0.012437122933113996, 0.7998404986321239, -0.15494424166714135]
   },
   "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/002.%20Conventional%20Deadlift/Conventional%20Deadlift_250x250_2026-03-03T05-29-26.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Barbell",
+  "type": "Strength",
   "rightMenuTabs": {
     "exerciseInformation": {
       "title": "Exercise Information",

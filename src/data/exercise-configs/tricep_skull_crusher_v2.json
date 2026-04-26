@@ -1,0 +1,113 @@
+{
+  "exerciseId": "tricep_skull_crusher_v2",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/267.%20Tricep%20Skull%20Crusher/267.%20Tricep%20Skull%20Crusher%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/267.%20Tricep%20Skull%20Crusher/267.%20Tricep%20Skull%20Crusher%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.6317363264757199, 3.191864556778233, 2.3509830809426813],
+    "rotation": [-0.8938338185888992, 0.45248114189331645, 0.4982373127260928],
+    "target": [-0.005677456136050537, 0.5663135899634307, 0.2409594115679559]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.6317363264919236, 3.1918645567776864, 2.350983080930791],
+    "rotation": [-0.8938338185915492, 0.4524811418981267, 0.49823731273252464],
+    "target": [-0.005677456136050537, 0.5663135899634307, 0.2409594115679559]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/267.%20Tricep%20Skull%20Crusher/Tricep%20Skull%20Crusher%20V2_250x250_2026-04-25T12-50-25.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tricep Skull Crusher (also known as the lying tricep extension) is a classic isolation exercise targeting the triceps brachii.\n\nPerformed lying on a bench with dumbbells, it emphasizes elbow extension to build size and strength in all three heads of the triceps.\n\nUsing dumbbells with a neutral grip is generally easier on the wrists and elbows than a barbell or EZ-bar variation."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets all three heads of the triceps brachii\n- Builds upper-arm size and lockout strength\n- Neutral grip with dumbbells is joint-friendly\n- Stable bench position allows focused isolation\n- Easily scaled by adjusting weight\n- Reinforces shoulder stability and core control\n- Excellent accessory for bench press and overhead pressing"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (Long, Lateral, Medial Heads)\n\nSecondary: Anterior Deltoids, Forearms, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Lie flat on a bench with your knees bent and feet flat on the floor.\n2. Start with a dumbbell in each hand.\n3. Press the dumbbells up so the arms are extended directly above your chest."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Grip the dumbbells with your palms facing each other (neutral grip).\n2. Keep the upper arms vertical and stacked over the shoulders.\n3. Brace the core and press the shoulders into the bench."
+        },
+        {
+          "heading": "Lower",
+          "content": "1. Keeping your upper arms stationary, slowly bend your elbows.\n2. Lower the dumbbells toward your forehead under control.\n3. Move only the forearms; the elbows should not flare out wide."
+        },
+        {
+          "heading": "Extend and Repeat",
+          "content": "1. Pause briefly when the dumbbells are near your forehead.\n2. Use the triceps to extend your elbows and return to the start.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the elbows flare out wide\n- Moving the upper arms instead of just the forearms\n- Lowering the dumbbells past a comfortable range\n- Using momentum at the bottom of the rep\n- Locking out the elbows aggressively at the top\n- Lifting the head off the bench\n- Choosing a weight too heavy to control"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of dumbbells with appropriate weight\n- Sturdy flat bench\n- Athletic shoes for foot traction\n- Optional: Spotter for heavier sets\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Bench Adjustments",
+          "content": "1. Position a flat bench in a clear area with adequate overhead space.\n2. Confirm the bench is stable and will not move during the lift.\n3. Plant both feet firmly on the floor.\n4. Lie back so your head, upper back, and hips remain in contact with the bench."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet flat on the floor, hip- to shoulder-width apart.\n2. Torso: Lying flat with shoulders pressed into the bench.\n3. Arms: Extended above the chest, palms facing each other.\n4. Shoulders: Packed and stable, not shrugged.\n5. Head: Resting on the bench, neutral neck."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_dips_on_bench", "tricep_pushdown"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Skull Crusher: Heavier bilateral variation\n- EZ-Bar Skull Crusher: Wrist-friendly bar variation\n- Cable Skull Crusher: Constant-tension cable version\n- Tricep Pushdown: Standing isolation movement\n- Overhead Tricep Extension: Long-head focused isolation\n- Close-Grip Bench Press: Compound triceps press"
+        },
+        {
+          "heading": "Tricep Skull Crusher Variations",
+          "content": "Dumbbell Skull Crusher: Described here\nIncline Skull Crusher: Bench inclined for greater long-head stretch\nDecline Skull Crusher: Bench declined for lateral-head emphasis\nSingle-Arm Skull Crusher: Unilateral variation for symmetry\nTempo Skull Crusher: Slow eccentric for hypertrophy\nPause Skull Crusher: Pause near the forehead for greater tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Reduce range of motion and lighten the weight\nWrist Pain: Use a neutral grip with dumbbells\nShoulder Issues: Keep the upper arms vertical and avoid drifting\nWeight Too Heavy: Drop down a dumbbell size\nWeight Too Light: Add weight or slow the eccentric\nBeginners: Start with light dumbbells to learn the elbow-only path"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "hack_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/65.%20Hack%20Squat/65.%20Hack%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/65.%20Hack%20Squat/65.%20Hack%20Squat%20%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/65.%20Hack%20Squat/65.%20Hack%20Squat%20%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/65.%20Hack%20Squat/65.%20Hack%20Squat%20%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0.00860015647459167, 2.5557349262669833, -2.993462121787627],
+    "rotation": [-2.565962413873547, -0.4811391856089862, -2.8498396781033093],
+    "target": [1.609360274655058, 0.8865856225856007, -0.421348668992966]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [0.511013972244974, 2.4524824697494685, 2.6250792093173336],
+    "rotation": [-0.62656603577842, 0.6714345083850342, 0.42312462873004125],
+    "target": [-1.631377144865986, 0.8715114649344903, 0.4410204763823011]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/65.%20Hack%20Squat/Hack%20Squat_250x250_2026-03-17T11-56-17.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Hack Squat is a machine-based compound exercise that primarily targets the quadriceps while also engaging the glutes and hamstrings.\n\nPerformed on a sled that travels along fixed rails at an angle, this exercise allows heavy loading with reduced balance demands and lower back stress compared to free-weight squats.\n\nThe fixed path of motion makes it an excellent choice for isolating the quads and building overall leg size and strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Heavy quad emphasis due to the fixed angle and foot placement\n- Reduced lower back stress compared to barbell squats\n- Fixed path of motion removes balance requirements\n- Allows heavier loading for progressive overload on the legs\n- Excellent for developing quad sweep and overall leg mass\n- Safer to train to failure without a spotter\n- Adjustable foot placement shifts emphasis between quads and glutes"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps (Vastus Lateralis, Vastus Medialis, Rectus Femoris)\n\nSecondary: Glutes, Hamstrings, Calves (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Step onto the hack squat platform and position your back flat against the pad.\n2. Place your shoulders under the upper shoulder pads.\n3. Set your feet about shoulder-width apart on the foot platform.\n4. Point your toes slightly outward at roughly 15-30 degrees.\n5. Grip the safety catch handles on either side.\n6. Press upward into a full standing position and release the safety handles together."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. With the safety handles released, begin lowering the sled by bending at the knees.\n2. Keep your knees pointed outward in line with your toes as you descend.\n3. Lower as deep as you can while keeping your lower back flat against the pad and feet fully flat on the platform.\n4. Pause briefly at the bottom of the movement.\n5. Drive through the full foot to press the sled back up to the starting position.\n6. Do not fully lock out the knees at the top to keep tension on the quads.\n7. Repeat for the desired number of reps, then engage the safety handles before stepping off."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the knees to cave inward during the squat\n- Heels lifting off the foot platform at the bottom\n- Lower back coming off the pad, causing spinal rounding\n- Locking out the knees aggressively at the top\n- Placing feet too high or too low on the platform without intent\n- Using too much weight and cutting the range of motion short\n- Descending too quickly without control\n- Forgetting to engage the safety catches after the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Hack Squat Machine\n- Weight Plates (for loading the sled)\n- Optional: Lifting Belt (for heavy sets)\n- Optional: Knee Sleeves (for joint support)\n- Recommended: Flat-soled or squat shoes for stable foot contact"
+        },
+        {
+          "heading": "Foot Placement Guide",
+          "content": "1. Standard (shoulder-width, mid-platform): Balanced quad, glute, and hamstring engagement.\n2. Low on platform: Greater quad emphasis, higher knee flexion.\n3. High on platform: Greater glute and hamstring emphasis.\n4. Narrow stance: More outer quad (vastus lateralis) focus.\n5. Wide stance: More inner quad (vastus medialis) and adductor engagement.\n6. Toes pointed slightly outward for natural knee tracking.\n7. Experiment to find the placement that feels strongest and most comfortable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Fully flat against the pad from upper back to lower back.\n2. Shoulders: Firmly under the shoulder pads.\n3. Head: Resting naturally against the pad, eyes forward.\n4. Hands: Gripping the safety handles during setup and re-rack.\n5. Feet: Flat on the platform, shoulder-width apart.\n6. Knees: Tracking over the toes throughout the movement.\n7. Core: Braced throughout to support the spine.\n8. Hips: Staying in contact with the pad at all times."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "bodyweight_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Free-weight squat for overall leg and core development\n- Leg Press: Machine pressing with adjustable foot position\n- Front Squat: Barbell squat with anterior loading for quad emphasis\n- Bulgarian Split Squat: Unilateral squat for balance and quad focus\n- Goblet Squat: Dumbbell squat ideal for beginners\n- Smith Machine Squat: Fixed-path squat with barbell"
+        },
+        {
+          "heading": "Hack Squat Variations",
+          "content": "Standard Hack Squat: Shoulder-width stance, mid-platform placement\nNarrow Stance Hack Squat: Feet together for outer quad emphasis\nWide Stance Hack Squat: Wider feet for inner quad and adductor work\nHigh Foot Hack Squat: Feet high on platform for glute emphasis\nSingle Leg Hack Squat: Unilateral version for imbalance correction\nSlow Tempo Hack Squat: 3-4 second eccentric for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce depth and avoid locking out at the top\nLower Back Issues: Ensure back stays fully on the pad, reduce weight if needed\nAnkle Mobility: Place feet higher on the platform or use squat shoes\nHip Tightness: Start with a moderate stance width and shallow depth\nNo Hack Squat Machine: Use leg press or Smith machine squats as alternatives\nBeginner: Start with the sled only (no added weight) to learn the movement pattern"
+        }
+      ]
+    }
+  }
+}
