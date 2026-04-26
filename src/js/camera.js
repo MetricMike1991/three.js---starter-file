@@ -127,6 +127,12 @@ class CameraManager {
         // Spacebar to reset camera completely
         window.addEventListener('keydown', (event) => {
             if (event.code === 'Space' && !event.repeat) {
+                // Don't hijack space when user is typing in an input, textarea, or editable element
+                const target = event.target;
+                const tag = target?.tagName;
+                if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target?.isContentEditable) {
+                    return;
+                }
                 event.preventDefault();
                 this.resetCamera();
             }

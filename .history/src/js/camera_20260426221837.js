@@ -59,7 +59,31 @@ class CameraManager {
     init() {
         // Create perspective camera with default FOV 50
         this.camera = new THREE.PerspectiveCamera(50, this.sizes.width / this.sizes.height, 0.1, 100);
-        this.camera.position.set(-0.9767395667747095, 0.6513489013452174, -0.5290562260411343);
+        
+        // Zoom out more on mobile devices - use higher FOV for wider view
+        const isMobile = window.innerWidth <= 768;
+        const mobileZoomFactor = 1.8; // How much further to position camera on mobile
+        
+        if (isMobile) {
+            // Use wider FOV on mobile for better model visibility
+            this.camera.fov = 60;
+            this.camera.updateProjectionMatrix();
+            // Position camera further away on mobile
+            this.camera.position.set(
+                -0.9767395667747095 * mobileZoomFactor, 
+                0.6513489013452174 * mobileZoomFactor, 
+                -0.5290562260411343 * mobileZoomFactor
+            );
+            // Also update original position for reset
+            this.originalPosition = new THREE.Vector3(
+                -0.9767395667747095 * mobileZoomFactor,
+                0.6513489013452174 * mobileZoomFactor,
+                -0.5290562260411343 * mobileZoomFactor
+            );
+            console.log('[FlexFrame Camera] Mobile mode: zoomed out with FOV 60, factor:', mobileZoomFactor);
+        } else {
+            this.camera.position.set(-0.9767395667747095, 0.6513489013452174, -0.5290562260411343);
+        }
         this.camera.rotation.set(-2.6863117716033176, -0.9484795935271679, -2.7629820926703275, 'XYZ');
 
         // Create orbit controls
@@ -72,6 +96,13 @@ class CameraManager {
         this.controls.minDistance = 0.146;  // User's preferred close zoom
         this.controls.maxDistance = 19;     // User's preferred far zoom
         
+        // Set mouse buttons: left = rotate, right/middle = pan
+        this.controls.mouseButtons = {
+            LEFT: THREE.MOUSE.ROTATE,
+            MIDDLE: THREE.MOUSE.PAN,
+            RIGHT: THREE.MOUSE.PAN
+        };
+        
         this.controls.target.set(-0.018058106108908126, 0.34892644576978554, 0.08865572603297185);
         this.controls.update();
     }
@@ -82,9 +113,9 @@ class CameraManager {
         this.controls.addEventListener('change', () => {
             if (cameraLogTimeout) clearTimeout(cameraLogTimeout);
             cameraLogTimeout = setTimeout(() => {
-                console.log('Camera position:', this.camera.position);
-                console.log('Camera rotation (radians):', this.camera.rotation);
-                console.log('Controls target:', this.controls.target);
+                // console.log('Camera position:', this.camera.position);
+                // console.log('Camera rotation (radians):', this.camera.rotation);
+                // console.log('Controls target:', this.controls.target);
             }, 2000);
         });
 
@@ -96,6 +127,12 @@ class CameraManager {
         // Spacebar to reset camera completely
         window.addEventListener('keydown', (event) => {
             if (event.code === 'Space' && !event.repeat) {
+                // Don't hijack space when user is typing in an input, textarea, or editable element
+                const target = event.target;
+                const tag = target?.tagName;
+                if (tag === 'INPUT' || tag === 'TEXTAREA' || tag === 'SELECT' || target?.isContentEditable) {
+                    return;
+                }
                 event.preventDefault();
                 this.resetCamera();
             }
@@ -420,7 +457,7 @@ class CameraManager {
         this.zoomMomentum = this.zoomVelocity;
         this.lastScrollTime = now;
         
-        console.log('Zoom momentum set:', this.zoomMomentum, 'velocity:', this.zoomVelocity);
+        // console.log('Zoom momentum set:', this.zoomMomentum, 'velocity:', this.zoomVelocity);
     }
 
     updateZoomMomentum() {
@@ -449,7 +486,7 @@ class CameraManager {
                     direction.multiplyScalar(clampedDistance)
                 );
                 
-                console.log('Applying momentum:', momentumZoom, 'new distance:', clampedDistance);
+                // console.log('Applying momentum:', momentumZoom, 'new distance:', clampedDistance);
             }
             
             // Decay momentum
@@ -458,7 +495,7 @@ class CameraManager {
             // Force controls update
             this.controls.update();
         } else if (this.zoomMomentum !== 0) {
-            console.log('Momentum stopped, was:', this.zoomMomentum);
+            // console.log('Momentum stopped, was:', this.zoomMomentum);
             this.zoomMomentum = 0;
         }
     }
