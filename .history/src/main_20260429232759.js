@@ -2993,7 +2993,7 @@ class ThreeJSApp {
                                 </div>
                             </div>
                             <button type="button" class="ss-btn ss-ai-capture-angle">Capture Current View</button>
-                            <p class="ss-ai-angles-hint">Tip: You can Generate An AI Instagram Post from any angle and position in the timeline. Capture One OR Two images and press "Generate" to experiment with image generations. When you are done Generate yourself a caption to share on Instagram.</p>
+                            <p class="ss-ai-angles-hint">Tip: capture one angle, then move the camera or timeline and capture another. Both will be sent for a richer multi-angle result. Leave empty to use a single live capture.</p>
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>
                         <div class="ss-ai-status"></div>
@@ -3250,11 +3250,11 @@ class ThreeJSApp {
             }
             .ss-ai-angles-clear:hover { color: #fff; }
             .ss-ai-angles-strip {
-                display: flex; flex-direction: row; gap: 8px;
+                display: flex; flex-direction: column; gap: 6px;
                 align-items: flex-start;
             }
             .ss-ai-angle-slot {
-                width: 72px; height: 72px;
+                width: 56px; height: 56px;
                 border: 1px dashed rgba(255,255,255,0.25);
                 border-radius: 6px;
                 background: rgba(255,255,255,0.04);

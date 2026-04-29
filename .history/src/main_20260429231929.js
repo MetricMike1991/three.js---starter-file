@@ -2974,8 +2974,8 @@ class ThreeJSApp {
                         <div class="ss-ai-style-row">
                             <label class="ss-ai-style-label">Figure style</label>
                             <div class="ss-ai-style-toggle">
-                                <button type="button" class="ss-ai-style-btn" data-style="glass">Anatomy</button>
-                                <button type="button" class="ss-ai-style-btn active" data-style="male">Male</button>
+                                <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy</button>
+                                <button type="button" class="ss-ai-style-btn" data-style="male">Male</button>
                                 <button type="button" class="ss-ai-style-btn" data-style="female">Female</button>
                             </div>
                         </div>
@@ -2993,7 +2993,7 @@ class ThreeJSApp {
                                 </div>
                             </div>
                             <button type="button" class="ss-btn ss-ai-capture-angle">Capture Current View</button>
-                            <p class="ss-ai-angles-hint">Tip: You can Generate An AI Instagram Post from any angle and position in the timeline. Capture One OR Two images and press "Generate" to experiment with image generations. When you are done Generate yourself a caption to share on Instagram.</p>
+                            <p class="ss-ai-angles-hint">Tip: capture one angle, then move the camera or timeline and capture another. Both will be sent for a richer multi-angle result. Leave empty to use a single live capture.</p>
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>
                         <div class="ss-ai-status"></div>
@@ -3013,8 +3013,7 @@ class ThreeJSApp {
                 border: 1px solid rgba(255, 255, 255, 0.2);
                 border-radius: 12px;
                 padding: 0;
-                width: 320px;
-                max-width: calc(100vw - 20px);
+                min-width: 280px;
                 z-index: 10000;
                 font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
                 color: #fff;
@@ -3250,18 +3249,16 @@ class ThreeJSApp {
             }
             .ss-ai-angles-clear:hover { color: #fff; }
             .ss-ai-angles-strip {
-                display: flex; flex-direction: row; gap: 8px;
-                align-items: flex-start;
+                display: flex; gap: 8px;
             }
             .ss-ai-angle-slot {
-                width: 72px; height: 72px;
+                flex: 1; aspect-ratio: 1 / 1;
                 border: 1px dashed rgba(255,255,255,0.25);
                 border-radius: 6px;
                 background: rgba(255,255,255,0.04);
                 display: flex; align-items: center; justify-content: center;
                 overflow: hidden;
                 position: relative;
-                flex: 0 0 auto;
             }
             .ss-ai-angle-slot.filled {
                 border: 1px solid rgba(139,92,246,0.6);
@@ -3883,27 +3880,14 @@ class ThreeJSApp {
         };
 
         try {
-            const aspectVal = panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square';
-            const captured = Array.isArray(this._aiCapturedAngles) ? this._aiCapturedAngles.filter(Boolean) : [];
-            let screenshot;
-            let extraAngle = null;
-            if (captured.length >= 2) {
-                screenshot = captured[0];
-                extraAngle = captured[1];
-                setStatus('Using 2 captured angles...');
-            } else if (captured.length === 1) {
-                screenshot = captured[0];
-                setStatus('Using captured angle...');
-            } else {
-                screenshot = await this.captureBlobForAi(1024, aspectVal);
-            }
+            const screenshot = await this.captureBlobForAi(1024, panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square');
 
-            startCountdown(90);
+            startCountdown(75);
 
             const exerciseName = this.currentExerciseName || 'Exercise';
             const provider = panel?.querySelector('.ss-ai-provider')?.value || '';
-            const style = panel?.querySelector('.ss-ai-style-btn.active')?.dataset.style || 'male';
-            const aspect = aspectVal;
+            const style = panel?.querySelector('.ss-ai-style-btn.active')?.dataset.style || 'glass';
+            const aspect = panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square';
 
             const response = await fetch(settings.restUrl + 'ai-render', {
                 method: 'POST',
@@ -3914,7 +3898,6 @@ class ThreeJSApp {
                 },
                 body: JSON.stringify({
                     screenshot,
-                    screenshot2: extraAngle,
                     exerciseName,
                     provider,
                     style,

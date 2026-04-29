@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BwP2IVDF.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BSMXIV1w.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5313,7 +5313,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BwP2IVDF.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BSMXIV1w.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6770,17 +6770,6 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
 
     // Gather reference images (logo, theme, person) when enabled.
     $references = array();
-
-    // Inject the optional second angle as the FIRST reference so it's prioritized.
-    if (!empty($screenshot2_binary)) {
-        $references[] = array(
-            'binary' => $screenshot2_binary,
-            'mime'   => 'image/png',
-            'label'  => 'alternate angle of same exercise',
-        );
-        $prompt .= "\n\nMULTI-ANGLE INPUT: Two screenshots of the SAME 3D model performing \"{$exercise_name}\" are provided as the primary references — Image 1 is the main angle, the next reference image is an alternate angle / different timeline frame of the SAME exercise on the SAME subject. Use BOTH together to better understand the pose, biomechanics and 3D form of the exercise. The final composition should still be a single cohesive infographic; use the alternate angle to inform any inset / secondary view in the layout, but do not split the canvas into separate disconnected frames.";
-    }
-
     $use_refs   = (bool) get_option('flexframe_ai_use_references', true);
     if ($use_refs) {
         $ref_logo_url   = (string) get_option('flexframe_ai_reference_logo_url', '');
