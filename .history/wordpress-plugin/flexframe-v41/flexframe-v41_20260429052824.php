@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v41
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.42.16
+ * Version: 1.42.15
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.42.16');
+define('FLEXFRAME_VERSION', '1.42.15');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Force HTTPS to prevent mixed-content warnings on SSL sites
 define('FLEXFRAME_PLUGIN_URL', str_replace('http://', 'https://', plugin_dir_url(__FILE__)));

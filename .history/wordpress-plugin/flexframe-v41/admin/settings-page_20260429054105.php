@@ -5220,35 +5220,6 @@ function flexframe_settings_page() {
         .flexframe-step-section.collapsed .step-toggle-icon {
             transform: rotate(-90deg);
         }
-        /* Page-tool variant (Workout Builder, Dashboard) — visually distinct from numbered setup steps */
-        .flexframe-step-section--page-tool {
-            border-color: #50575e;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-        }
-        .flexframe-step-section--page-tool .flexframe-step-header {
-            background: linear-gradient(135deg, #2c3338 0%, #3c434a 100%);
-            border-bottom-color: #1d2327;
-        }
-        .flexframe-step-section--page-tool .flexframe-step-header h2 {
-            color: #fff;
-        }
-        .flexframe-step-section--page-tool .step-toggle-icon {
-            color: #c3c4c7;
-        }
-        .flexframe-step-section--page-tool .page-tool-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.12);
-            color: #fff;
-            font-size: 22px;
-        }
-        .flexframe-step-section--page-tool .page-tool-icon::before {
-            font-size: 22px;
-        }
         .flexframe-step-content {
             padding: 20px;
         }

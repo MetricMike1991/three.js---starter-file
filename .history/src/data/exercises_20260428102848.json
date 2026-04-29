@@ -2599,7 +2599,7 @@
     "name": "Trap Bar Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/178.%20Trap%20Bar%20Shrug/Trap%20Bar%20Shrug_250x250_2026-04-21T22-43-18.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/178.%20Trap%20Bar%20Shrug/trap_bar_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Barbell"],
     "type": "Strength",
     "information": {
@@ -2614,7 +2614,7 @@
     "name": "Dumbbell Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/179.%20Dumbbell%20Shrug/Dumbbell%20Shrug_250x250_2026-04-21T22-50-47.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/179.%20Dumbbell%20Shrug/dumbbell_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Dumbbell"],
     "type": "Strength",
     "information": {
@@ -2629,7 +2629,7 @@
     "name": "Barbell Shrugs",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/180.%20Barbell%20Shrugs/Barbell%20Shrugs_250x250_2026-04-21T23-01-14.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/180.%20Barbell%20Shrugs/barbell_shrugs.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Barbell"],
     "type": "Strength",
     "information": {
@@ -2644,7 +2644,7 @@
     "name": "Kettlebell Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/181.%20Kettlebell%20Shrug/Kettlebell%20Shrug_250x250_2026-04-22T09-32-59.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/181.%20Kettlebell%20Shrug/kettlebell_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Kettlebell"],
     "type": "Strength",
     "information": {
@@ -2659,7 +2659,7 @@
     "name": "Barbell Shrugs Behind Back",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/182.%20Barbell%20Shrugs%20Behind%20Back/Barbell%20Shrugs%20Behind%20Back_250x250_2026-04-22T09-48-24.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/182.%20Barbell%20Shrugs%20Behind%20Back/barbell_shrugs_behind_back.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Barbell"],
     "type": "Strength",
     "information": {
@@ -2674,7 +2674,7 @@
     "name": "Smith Machine Behind Back Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/183.%20Smith%20Machine%20Behind%20Back%20Shrug/Smith%20Machine%20Behind%20Back%20Shrug_250x250_2026-04-22T10-00-09.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/183.%20Smith%20Machine%20Behind%20Back%20Shrug/smith_machine_behind_back_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Machines"],
     "type": "Strength",
     "information": {
@@ -2689,7 +2689,7 @@
     "name": "Seated Dumbbell Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/185.%20Seated%20Dumbbell%20Shrug/Seated%20Dumbbell%20Shrug_250x250_2026-04-22T10-10-42.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/185.%20Seated%20Dumbbell%20Shrug/seated_dumbbell_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Dumbbell"],
     "type": "Strength",
     "information": {
@@ -2704,7 +2704,7 @@
     "name": "Smith Machine Shrugs",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/184.%20Smith%20Machine%20Shrugs/Smith%20Machine%20Shrugs_250x250_2026-04-22T10-18-25.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/184.%20Smith%20Machine%20Shrugs/smith_machine_shrugs.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Machines"],
     "type": "Strength",
     "information": {
@@ -2719,7 +2719,7 @@
     "name": "Seated Barbell Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/Seated%20Barbell%20Shrug_250x250_2026-04-22T10-43-54.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/seated_barbell_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Barbell"],
     "type": "Strength",
     "information": {
@@ -2734,7 +2734,7 @@
     "name": "Plate Loaded Shrug Machine",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/188.%20Plate%20Loaded%20Shrug%20Machine/Plate%20Loaded%20Shrug%20Machine_250x250_2026-04-22T10-52-37.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/188.%20Plate%20Loaded%20Shrug%20Machine/plate_loaded_shrug_machine.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Machines"],
     "type": "Strength",
     "information": {
@@ -2749,7 +2749,7 @@
     "name": "Incline Dumbbell Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/187.%20Incline%20Dumbbell%20Shrug/Incline%20Dumbbell%20Shrug_250x250_2026-04-22T11-01-03.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/187.%20Incline%20Dumbbell%20Shrug/incline_dumbbell_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Dumbbell"],
     "type": "Strength",
     "information": {
@@ -2764,7 +2764,7 @@
     "name": "Single Arm Dumbbell Shrug",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/189.%20Single%20Arm%20Dumbbell%20Shrug/Single%20Arm%20Dumbbell%20Shrug_250x250_2026-04-22T11-09-16.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/189.%20Single%20Arm%20Dumbbell%20Shrug/single_arm_dumbbell_shrug.json",
-    "muscleGroup": ["Back"],
+    "muscleGroup": ["Shoulders"],
     "equipment": ["Dumbbell"],
     "type": "Strength",
     "information": {
@@ -2779,7 +2779,7 @@
     "name": "Prowler Sled Push",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/Prowler%20Sled%20Push_250x250_2026-04-22T11-30-30.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/prowler_sled_push.json",
-    "muscleGroup": ["Glutes"],
+    "muscleGroup": ["Quads"],
     "equipment": ["Machines"],
     "type": "Cardio",
     "information": {
@@ -2809,7 +2809,7 @@
     "name": "Tank Sled Push",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/191.%20Tank%20Sled%20Push/Tank%20Sled%20Push_250x250_2026-04-22T14-08-04.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/191.%20Tank%20Sled%20Push/tank_sled_push.json",
-    "muscleGroup": ["Glutes"],
+    "muscleGroup": ["Quads"],
     "equipment": ["Machines"],
     "type": "Cardio",
     "information": {

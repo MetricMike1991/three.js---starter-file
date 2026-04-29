@@ -1,10 +1,10 @@
 {
   "exerciseId": "ring_dips",
-  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/148.%20Ring%20Dips/148.%20Ring%20Dips%20HD_compressed.glb",
+  "modelUrlSQ": "",
   "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/148.%20Ring%20Dips/148.%20Ring%20Dips%20HD_compressed.glb",
   "ar": {
-    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/148.%20Ring%20Dips/148.%20Ring%20Dips%20AR_compressed.glb",
-    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/148.%20Ring%20Dips/148.%20Ring%20Dips%20USDZ.usdz"
+    "glb": "",
+    "usdz": ""
   },
   "model": {
     "position": [0, 0, 0],
@@ -27,7 +27,7 @@
     "target": [0.03772625078942144, 1.3484799304507709, 0.44412720398803435]
   },
   "customTextures": {},
-  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/148.%20Ring%20Dips/Ring%20Dips_250x250_2026-04-28T09-25-16.webp",
+  "thumbnailUrl": "",
   "primaryMuscleGroup": "Triceps",
   "equipmentType": "Body Weight",
   "type": "Strength",

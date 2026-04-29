@@ -2779,7 +2779,7 @@
     "name": "Prowler Sled Push",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/Prowler%20Sled%20Push_250x250_2026-04-22T11-30-30.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/prowler_sled_push.json",
-    "muscleGroup": ["Glutes"],
+    "muscleGroup": ["Quads"],
     "equipment": ["Machines"],
     "type": "Cardio",
     "information": {
@@ -2809,7 +2809,7 @@
     "name": "Tank Sled Push",
     "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/191.%20Tank%20Sled%20Push/Tank%20Sled%20Push_250x250_2026-04-22T14-08-04.webp",
     "configUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/191.%20Tank%20Sled%20Push/tank_sled_push.json",
-    "muscleGroup": ["Glutes"],
+    "muscleGroup": ["Quads"],
     "equipment": ["Machines"],
     "type": "Cardio",
     "information": {

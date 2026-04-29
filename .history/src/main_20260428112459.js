@@ -3968,13 +3968,6 @@ class ThreeJSApp {
                             
                             mats.forEach(mat => {
                                 if (mat.name) {
-                                    // Normalize Blender-duplicate suffixes so e.g. "METAL.001",
-                                    // "Metal.002", "COLOR1.003" all match their base material name.
-                                    // Strips a trailing ".###" (1+ digits) added by Blender on export.
-                                    const _stripped = mat.name.replace(/\.\d+$/, '');
-                                    if (_stripped !== mat.name) {
-                                        mat.name = _stripped;
-                                    }
                                     // console.log('Found material:', mat.name);
                                     
                                     // Convert MUSCLE materials to MeshPhysicalMaterial for sheen support

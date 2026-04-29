@@ -1485,21 +1485,14 @@ class ThemeEditor {
         const roughness = this.currentSettings[roughnessKey];
         
         // Material name in model is uppercase (e.g. 'BARBELL', 'BUMPER', 'COLOR1')
-        // Some equipment keys correspond to multiple material name aliases in the GLB
-        // (e.g. 'color1' is the brand color and is shared by COLOR1, COLOR_1, BUMPER,
-        //  XCOLOR and XBUMPER). Match all aliases so live edits in the Theme Editor
-        //  affect every mesh that uses the brand color.
-        const equipmentAliases = {
-            'color1': ['COLOR1', 'COLOR_1', 'BUMPER', 'XCOLOR', 'XBUMPER']
-        };
-        const targetNames = equipmentAliases[matKey] || [matKey.toUpperCase()];
+        const targetName = matKey.toUpperCase();
         
         window.model.traverse((child) => {
             if (child.isMesh && child.material) {
                 const materials = Array.isArray(child.material) ? child.material : [child.material];
                 
                 materials.forEach(mat => {
-                    if (mat.name && targetNames.includes(mat.name.toUpperCase())) {
+                    if (mat.name && mat.name.toUpperCase() === targetName) {
                         if (color) mat.color.set(color);
                         if (opacity !== undefined) {
                             mat.opacity = opacity;

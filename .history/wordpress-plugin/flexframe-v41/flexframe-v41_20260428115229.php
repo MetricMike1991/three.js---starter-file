@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame v41
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.42.16
+ * Version: 1.42.14
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,25 +33,10 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.42.16');
+define('FLEXFRAME_VERSION', '1.42.14');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Force HTTPS to prevent mixed-content warnings on SSL sites
 define('FLEXFRAME_PLUGIN_URL', str_replace('http://', 'https://', plugin_dir_url(__FILE__)));
-
-/**
- * Super-admin gate for hidden plugin settings.
- *
- * Returns true only when the site owner (you) has explicitly opted in by adding
- *     define('FLEXFRAME_SUPER_ADMIN', true);
- * to the site's wp-config.php. Clients with normal admin/super-admin WP roles
- * still see the regular settings; only the wp-config flag unlocks gated panels.
- *
- * Usage in admin views:
- *     <?php if (flexframe_is_super_admin()) : ?> ... <?php endif; ?>
- */
-function flexframe_is_super_admin() {
-    return defined('FLEXFRAME_SUPER_ADMIN') && FLEXFRAME_SUPER_ADMIN === true;
-}
 
 // Include Workout Builder modules
 require_once FLEXFRAME_PLUGIN_DIR . 'workout-builder/workout-post-type.php';

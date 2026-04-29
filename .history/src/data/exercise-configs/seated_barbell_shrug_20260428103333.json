@@ -1,6 +1,6 @@
 {
   "exerciseId": "seated_barbell_shrug",
-  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20HD_compressed.glb",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20SD_compressed.glb",
   "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20HD_compressed.glb",
   "ar": {
     "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/186.%20Seated%20Barbell%20Shrug%20AR_compressed.glb",
@@ -28,7 +28,7 @@
   },
   "customTextures": {},
   "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/186.%20Seated%20Barbell%20Shrug/Seated%20Barbell%20Shrug_250x250_2026-04-22T10-43-54.webp",
-  "primaryMuscleGroup": "Back",
+  "primaryMuscleGroup": "Shoulders",
   "equipmentType": "Barbell",
   "type": "Strength",
   "rightMenuTabs": {

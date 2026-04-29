@@ -4038,12 +4038,11 @@ function flexframe_settings_page() {
                             </div>
                         </div>
                         </div><!-- End of manual-theme-settings -->
-                        <?php endif; // flexframe_is_super_admin ?>
                     </div>
                 </div>
                 
-                <!-- Step 6: Gym Demo Pages (Super Admin Only) -->
-                <?php if (flexframe_is_super_admin()) : ?>
+                <!-- Step 6: Gym Demo Pages (Admin Only) -->
+                <?php if ($is_admin_user) : ?>
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="6">
                         <span class="step-number">6</span>
@@ -4400,10 +4399,10 @@ function flexframe_settings_page() {
                         </div>
                     </div>
                 </div>
-                <?php endif; ?><!-- End Super-Admin Steps 6 & 7 -->
+                <?php endif; ?><!-- End Admin-only Steps 6 & 7 -->
                 
-                <!-- Step 8: Model Tester (Super Admin Only) -->
-                <?php if (flexframe_is_super_admin()) : ?>
+                <!-- Step 8: Model Tester (Admin Only) -->
+                <?php if ($is_admin_user) : ?>
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="8">
                         <span class="step-number">8</span>
@@ -4566,9 +4565,9 @@ function flexframe_settings_page() {
                 <?php endif; ?><!-- End Step 8 -->
                 
                 <!-- Step 9: Workout Builder Page -->
-                <div class="flexframe-step-section flexframe-step-section--page-tool collapsed">
+                <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="9">
-                        <span class="page-tool-icon dashicons dashicons-list-view"></span>
+                        <span class="step-number">9</span>
                         <h2><?php _e('Workout Builder Page', 'flexframe-viewer'); ?></h2>
                         <span class="step-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                         <button type="submit" class="button button-primary step-save-btn">
@@ -4799,9 +4798,9 @@ function flexframe_settings_page() {
                 $lead_capture_consent_text = get_option('flexframe_lead_capture_consent_text', 'I agree to receive marketing emails');
                 $lead_capture_show_phone  = get_option('flexframe_lead_capture_show_phone', false);
                 ?>
-                <div class="flexframe-step-section flexframe-step-section--page-tool collapsed">
+                <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="10">
-                        <span class="page-tool-icon dashicons dashicons-dashboard"></span>
+                        <span class="step-number">10</span>
                         <h2><?php _e('Dashboard Page', 'flexframe-viewer'); ?></h2>
                         <span class="step-toggle-icon dashicons dashicons-arrow-down-alt2"></span>
                         <button type="submit" class="button button-primary step-save-btn">
@@ -5219,35 +5218,6 @@ function flexframe_settings_page() {
         }
         .flexframe-step-section.collapsed .step-toggle-icon {
             transform: rotate(-90deg);
-        }
-        /* Page-tool variant (Workout Builder, Dashboard) — visually distinct from numbered setup steps */
-        .flexframe-step-section--page-tool {
-            border-color: #50575e;
-            box-shadow: 0 1px 0 rgba(0,0,0,0.04);
-        }
-        .flexframe-step-section--page-tool .flexframe-step-header {
-            background: linear-gradient(135deg, #2c3338 0%, #3c434a 100%);
-            border-bottom-color: #1d2327;
-        }
-        .flexframe-step-section--page-tool .flexframe-step-header h2 {
-            color: #fff;
-        }
-        .flexframe-step-section--page-tool .step-toggle-icon {
-            color: #c3c4c7;
-        }
-        .flexframe-step-section--page-tool .page-tool-icon {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 36px;
-            height: 36px;
-            border-radius: 8px;
-            background: rgba(255, 255, 255, 0.12);
-            color: #fff;
-            font-size: 22px;
-        }
-        .flexframe-step-section--page-tool .page-tool-icon::before {
-            font-size: 22px;
         }
         .flexframe-step-content {
             padding: 20px;
