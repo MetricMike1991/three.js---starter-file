@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BfIEwAcT.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CDOLWj9m.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5313,7 +5313,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BfIEwAcT.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CDOLWj9m.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6390,18 +6390,11 @@ add_action('rest_api_init', 'flexframe_register_ai_render_api');
  *   {gymName}, {exerciseName}, {siteUrl}
  */
 function flexframe_ai_default_caption_template() {
-    return "Write a SHORT Instagram caption about the {exerciseName} exercise for {gymName}.\n\n" .
-        "Structure (use real blank lines between each block so it spaces out properly on Instagram):\n" .
-        "1. One short hook line with one relevant emoji.\n" .
-        "2. ONE genuinely interesting / surprising fact about the {exerciseName} that most people would not already know (1-2 sentences). Sprinkle a couple of tasteful emojis.\n" .
-        "3. The call to action, EXACTLY this wording: 'Did you know we have a full interactive exercise library and workout builder available for free where you can explore this exercise ({exerciseName}) in interactive 3D. Visit {siteUrl}'\n" .
-        "4. Exactly 5 relevant hashtags on the final line, separated by spaces.\n\n" .
-        "Rules:\n" .
-        "- Keep the whole caption under 90 words total.\n" .
-        "- Use a friendly, motivating tone.\n" .
-        "- Use a small number of emojis (around 3-5 total) placed naturally in the hook and the fact, NOT in the call to action.\n" .
-        "- Separate each of the 4 blocks above with a single blank line so it reads well on Instagram.\n" .
-        "- Do NOT include any preamble, headings, or labels like 'Hook:' or 'Fact:'. Output the caption only.";
+    return "Write an engaging social media caption (Instagram-style) about the {exerciseName} exercise for {gymName}. " .
+        "Briefly describe what the exercise is and its main benefits (muscles worked, why people should do it, who it suits). " .
+        "Use a friendly, motivating tone. Include 5-8 relevant hashtags at the end. " .
+        "End with this call to action exactly: 'Did you know we have a full interactive exercise library and workout builder available for free where you can explore this exercise ({exerciseName}) in interactive 3D. Visit {siteUrl}'. " .
+        "Keep the whole caption under 220 words. Do not use emojis excessively (max 3 total).";
 }
 
 /**
@@ -6567,70 +6560,7 @@ function flexframe_ai_caption_gemini($prompt, $exercise_name, $gym_name) {
  * If reference images are uploaded, additional context is appended automatically.
  */
 function flexframe_ai_default_prompt_template() {
-    return <<<PROMPT
-Create a premium square Instagram fitness infographic (1:1 ratio) for "{gymName}" featuring the exercise "{exerciseName}".
-
-Make image Photorealistic
-
-Turn the provided exercise screenshot into a polished, high-end branded social media graphic that looks professional, aspirational, modern, and highly shareable.
-
-REFERENCE PRIORITY:
-Image 1 = Primary exercise reference. Use for pose, biomechanics, equipment, movement accuracy, and camera angle.
-Image 2 (if provided) = Gym logo only. Use subtly and professionally.
-Image 3 (if provided) = Brand style reference. Use for colors, lighting mood, typography feel, and overall aesthetic.
-Image 4 (if provided) = Athlete appearance reference. Use for face, physique style, hair, and vibe while preserving Image 1 pose.
-
-Ignore any missing optional references completely.
-
-CORE REQUIREMENTS:
-- Preserve correct exercise form for "{exerciseName}".
-- Convert the 3D model into a realistic premium fitness athlete.
-- Keep the athlete as the main focal point.
-- Final result should feel like a luxury modern gym advertisement.
-
-TEXT CONTENT (minimal and clean):
-- Exercise title: "{exerciseName}"
-- 2 to 3 short coaching cues somewhere in the layout
-- Primary muscles worked
-
-ANNOTATIONS ON THE ATHLETE (REQUIRED):
-- Add EXACTLY TWO small annotation callouts that point directly to the athlete's body using thin clean lines or arrows.
-- Each annotation must be a short coaching cue (3-6 words max) tied to a specific body region for "{exerciseName}" (e.g. "Brace core", "Drive through heels", "Neutral spine", "Elbows tucked").
-- Annotation typography must be small, modern, and easy to read; lines must NOT cover the face or critical body parts.
-- The two annotations must point to two DIFFERENT body regions and feel like a professional coaching diagram, not clutter.
-
-CALL TO ACTION BANNER (REQUIRED):
-- Place a small, tasteful banner / pill / ribbon in one of the corners of the image (top-right or bottom-left preferred) that reads exactly: "Explore Exercise In Full 3D".
-- The banner must be readable but must NOT dominate the composition. Use the brand colors and feel like a premium UI badge, not an intrusive sticker.
-- There should be a themed arrow or line annotation pointing in the direction from the banner to the person doing the exercise.
-
-STYLE:
-- Cinematic lighting
-- Strong contrast
-- Sharp detail
-- Premium composition
-- Bold modern typography
-- Clean spacing
-- Minimal clutter
-- Instagram-ready quality
-
-LAYOUT:
-- Square 1:1 composition
-- Safe margins on all sides
-- Subject centered or hero positioned
-- Text never covers important body parts (face, working joints)
-- Logo small and tasteful
-- Balanced composition with clear visual hierarchy: athlete > title > annotations > CTA banner > muscles/cues > watermark
-
-WATERMARK:
-Add a very small subtle footer near the bottom edge that reads: "Made with FitFlexion.com"
-
-NEGATIVE CONSTRAINTS:
-No cartoon style. No extra limbs. No anatomy errors. No messy collage. No giant logo. No unreadable text. No clutter. No low-quality CGI. No distorted face. No excessive text blocks. No more than two annotation callouts. No CTA banner larger than a small corner badge.
-
-FINAL RESULT:
-An eye-catching premium, photorealistic, branded exercise infographic for "{exerciseName}" that gym members would proudly share on Instagram.
-PROMPT;
+    return 'I need you to turn this screenshot of a 3D model from a 3D exercise library for "{gymName}" of the {exerciseName} exercise into a very cool themed and branded infographic of the exercise for our social media. Take your time to use correct information for the exercise. Use the 3D model to make a photorealistic graphic of the exercise. Add text prompts, tips and cues of the exercise, muscles worked, etc. Include brand color themes from the image. Add a small watermark at the bottom of the image: "Powered by FitFlexion.com". The image must be square for Instagram.';
 }
 
 /**
@@ -6731,29 +6661,6 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
         '{exerciseName}' => $exercise_name,
     ));
 
-    // Style override: "glass" (preserve the 3D model's translucent skin /
-    // visible skeleton & muscle look) or "realistic" (replace the 3D model
-    // with a photorealistic real human performing the exercise).
-    $style = sanitize_text_field((string) $request->get_param('style'));
-    if (!in_array($style, array('glass', 'realistic'), true)) {
-        $style = 'glass';
-    }
-
-    // Aspect ratio: 'square' (1:1, default) or 'story' (9:16 / portrait).
-    $aspect = sanitize_text_field((string) $request->get_param('aspect'));
-    if (!in_array($aspect, array('square', 'story'), true)) {
-        $aspect = 'square';
-    }
-    if ($aspect === 'story') {
-        $prompt .= "\n\nIMPORTANT FORMAT OVERRIDE: The output image MUST be a vertical 9:16 Instagram Story (portrait) composition, NOT square. Re-plan the layout for a tall vertical canvas with safe margins for Instagram Story UI at the very top and bottom edges. Keep the athlete as the hero, position the title near the top safe area, and the muscles/cues + watermark near the bottom safe area. Annotations and the corner CTA banner still apply. Do not letterbox or pad — fill the full 9:16 frame.";
-    }
-    if ($style === 'realistic') {
-        $prompt .= "\n\nIMPORTANT STYLE OVERRIDE: Do NOT preserve the look of the 3D model in the screenshot. Replace the figure with a photorealistic real human athlete performing the same {exerciseName} exercise in the same pose, body position and camera angle. Use natural skin, realistic gym attire and a professional fitness-photography aesthetic. The 3D screenshot is provided ONLY as a pose / framing reference.";
-        $prompt = strtr($prompt, array('{exerciseName}' => $exercise_name));
-    } else {
-        $prompt .= "\n\nIMPORTANT STYLE OVERRIDE: Preserve the distinctive look of the 3D model from the screenshot — a figure with translucent glass-like skin showing the internal skeleton and muscle attachments underneath. Keep this anatomical glass-skin aesthetic in the final image; do NOT replace it with a normal opaque human.";
-    }
-
     // Gather reference images (logo, theme, person) when enabled.
     $references = array();
     $use_refs   = (bool) get_option('flexframe_ai_use_references', true);
@@ -6792,16 +6699,16 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
     }
 
     if ($provider === 'gemini') {
-        return flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references, $aspect);
+        return flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references);
     }
-    return flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name, $references, $aspect);
+    return flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name, $references);
 }
 
 /**
  * OpenAI gpt-image-2 via /v1/images/edits (multipart).
  * The Edits endpoint accepts multiple input images via image[] (up to ~16).
  */
-function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name, $references = array(), $aspect = 'square') {
+function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name, $references = array()) {
     // Write all input images (screenshot + references) to temp files.
     $tmp_files = array();
     $cleanup = function () use (&$tmp_files) {
@@ -6815,15 +6722,11 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
     file_put_contents($main_tmp, $screenshot_binary);
     $tmp_files[] = $main_tmp;
 
-    // Aspect ratio: gpt-image-2 supports 1024x1024 (square), 1024x1536 (portrait/story 2:3),
-    // 1536x1024 (landscape). For Instagram Story we use the closest portrait size.
-    $size = ($aspect === 'story') ? '1024x1536' : '1024x1024';
-
     // Multipart fields. OpenAI expects image[] for multi-image edits.
     $post_fields = array(
         'model'   => 'gpt-image-2',
         'prompt'  => $prompt,
-        'size'    => $size,
+        'size'    => '1024x1024',
         'quality' => 'medium',
         'n'       => 1,
     );
@@ -6898,7 +6801,7 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
  * Endpoint: POST /v1beta/models/gemini-2.5-flash-image:generateContent?key=API_KEY
  * Multi-image input is supported by including additional inline_data parts.
  */
-function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references = array(), $aspect = 'square') {
+function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references = array()) {
     $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=' . urlencode(FLEXFRAME_GEMINI_KEY);
 
     $parts = array(

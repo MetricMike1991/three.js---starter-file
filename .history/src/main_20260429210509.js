@@ -2959,20 +2959,12 @@ class ThreeJSApp {
                 <div class="ss-ai-section" style="display:none;">
                     <div class="ss-ai-divider"></div>
                     <div class="ss-ai-label">AI Social Media Post</div>
-                    <input type="hidden" class="ss-ai-provider" value="openai" />
-                    <div class="ss-ai-style-row">
-                        <label class="ss-ai-style-label">Figure style</label>
-                        <div class="ss-ai-style-toggle">
-                            <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy 3D</button>
-                            <button type="button" class="ss-ai-style-btn" data-style="realistic">Real Human</button>
-                        </div>
-                    </div>
-                    <div class="ss-ai-style-row">
-                        <label class="ss-ai-style-label">Format</label>
-                        <div class="ss-ai-style-toggle ss-ai-aspect-toggle">
-                            <button type="button" class="ss-ai-aspect-btn active" data-aspect="square">Post 1:1</button>
-                            <button type="button" class="ss-ai-aspect-btn" data-aspect="story">Story 9:16</button>
-                        </div>
+                    <div class="ss-ai-provider-row">
+                        <label>Provider</label>
+                        <select class="ss-ai-provider">
+                            <option value="openai">OpenAI (gpt-image-2)</option>
+                            <option value="gemini">Gemini (Nano Banana)</option>
+                        </select>
                     </div>
                     <button class="ss-btn ss-ai-generate">Generate AI Post</button>
                     <div class="ss-ai-status"></div>
@@ -3142,34 +3134,6 @@ class ThreeJSApp {
                 font-size: 12px;
             }
             .ss-ai-provider option { background: #1e1e1e; color: #fff; }
-            .ss-ai-style-row {
-                display: flex; flex-direction: column; gap: 6px;
-                margin-bottom: 8px;
-            }
-            .ss-ai-style-label {
-                font-size: 11px; opacity: 0.85; color: #fff;
-            }
-            .ss-ai-style-toggle {
-                display: flex; gap: 0;
-                border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 6px; overflow: hidden;
-                background: rgba(255,255,255,0.05);
-            }
-            .ss-ai-style-btn {
-                flex: 1; padding: 8px 10px;
-                background: transparent; color: #fff;
-                border: none; cursor: pointer;
-                font-size: 12px; font-weight: 500;
-                transition: background 0.15s;
-            }
-            .ss-ai-style-btn + .ss-ai-style-btn {
-                border-left: 1px solid rgba(255,255,255,0.2);
-            }
-            .ss-ai-style-btn:hover { background: rgba(255,255,255,0.08); }
-            .ss-ai-style-btn.active {
-                background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-                color: #fff;
-            }
             .ss-ai-generate {
                 width: 100%;
                 padding: 10px 16px;
@@ -3262,27 +3226,25 @@ class ThreeJSApp {
         // AI Post button - only visible when server says AI is available
         const aiSection = panel.querySelector('.ss-ai-section');
         const aiBtn = panel.querySelector('.ss-ai-generate');
+        const aiProviderSelect = panel.querySelector('.ss-ai-provider');
         const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
         if (window.flexframeSettings?.aiRenderEnabled && aiSection && aiBtn && !isMobileViewport()) {
             aiSection.style.display = 'block';
 
-            // Style toggle: only one button can be active at a time.
-            const styleButtons = panel.querySelectorAll('.ss-ai-style-btn');
-            styleButtons.forEach(b => {
-                b.addEventListener('click', () => {
-                    styleButtons.forEach(x => x.classList.remove('active'));
-                    b.classList.add('active');
+            // Filter provider <option>s based on which server-side keys are configured.
+            const available = window.flexframeSettings?.aiProviders || {};
+            if (aiProviderSelect) {
+                Array.from(aiProviderSelect.options).forEach(opt => {
+                    if (available[opt.value] === false) {
+                        opt.remove();
+                    }
                 });
-            });
-
-            // Aspect ratio toggle: only one button can be active at a time.
-            const aspectButtons = panel.querySelectorAll('.ss-ai-aspect-btn');
-            aspectButtons.forEach(b => {
-                b.addEventListener('click', () => {
-                    aspectButtons.forEach(x => x.classList.remove('active'));
-                    b.classList.add('active');
-                });
-            });
+                // If only one remains, hide the row entirely.
+                if (aiProviderSelect.options.length <= 1) {
+                    const row = panel.querySelector('.ss-ai-provider-row');
+                    if (row) row.style.display = 'none';
+                }
+            }
 
             aiBtn.addEventListener('click', () => {
                 this.generateAiSocialPost();
@@ -3581,24 +3543,16 @@ class ThreeJSApp {
     /**
      * Capture the current viewer canvas at a target size and return a base64 data URL.
      * Used by the AI Social Post feature. Does NOT trigger a download.
-     *
-     * Renders against a flat neutral studio-gray backdrop instead of the live
-     * gradient background. This gives the AI image model a much higher-contrast,
-     * clean silhouette of the 3D model so it can identify the subject reliably.
      */
-    async captureBlobForAi(size = 1024, aspect = 'square') {
+    async captureBlobForAi(size = 1024) {
         const renderer = this.renderer;
         const scene = this.sceneManager.getScene();
         const camera = this.cameraManager.getCamera();
 
-        // Output dimensions: square (1:1) or story (9:16 portrait).
-        const width  = (aspect === 'story') ? Math.round(size * 9 / 16) : size;
-        const height = (aspect === 'story') ? size : size;
-
-        // Use a temp canvas + temp renderer at the target dimensions.
+        // Use a temp canvas + temp renderer at the target square size.
         const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = size;
+        canvas.height = size;
 
         const tempRenderer = new THREE.WebGLRenderer({
             canvas,
@@ -3606,25 +3560,19 @@ class ThreeJSApp {
             preserveDrawingBuffer: true,
             alpha: false
         });
-        tempRenderer.setSize(width, height);
+        tempRenderer.setSize(size, size);
         tempRenderer.setPixelRatio(1);
         tempRenderer.shadowMap.enabled = renderer.shadowMap.enabled;
         tempRenderer.shadowMap.type = renderer.shadowMap.type;
         tempRenderer.toneMapping = renderer.toneMapping;
         tempRenderer.toneMappingExposure = renderer.toneMappingExposure;
 
-        // Neutral studio backdrop: light gray gives strong contrast for the model
-        // silhouette while staying friendly to AI image-to-image conditioning.
-        const STUDIO_GRAY = 0xe5e5e5;
-        tempRenderer.setClearColor(STUDIO_GRAY, 1);
-
-        // Temporarily strip the scene's gradient/textured background so the
-        // clear color shows through. Restore afterwards.
-        const originalBackground = scene.background;
-        scene.background = null;
+        const clearColor = renderer.getClearColor(new THREE.Color());
+        const clearAlpha = renderer.getClearAlpha();
+        tempRenderer.setClearColor(clearColor, clearAlpha);
 
         const tempCamera = camera.clone();
-        tempCamera.aspect = width / height;
+        tempCamera.aspect = 1;
         tempCamera.updateProjectionMatrix();
 
         try {
@@ -3632,7 +3580,6 @@ class ThreeJSApp {
             const dataUrl = canvas.toDataURL('image/png');
             return dataUrl;
         } finally {
-            scene.background = originalBackground;
             tempRenderer.dispose();
         }
     }
@@ -3662,41 +3609,13 @@ class ThreeJSApp {
         if (btn) btn.disabled = true;
         setStatus('Capturing screenshot...');
 
-        // Countdown timer state
-        let countdownTimer = null;
-        const startCountdown = (estimatedSeconds = 60) => {
-            let remaining = estimatedSeconds;
-            const tick = () => {
-                if (remaining > 0) {
-                    const m = Math.floor(remaining / 60);
-                    const s = remaining % 60;
-                    const mm = m.toString();
-                    const ss = s.toString().padStart(2, '0');
-                    setStatus(`Generating AI image... ${mm}:${ss} remaining`);
-                    remaining--;
-                } else {
-                    setStatus('Almost there, just a few more seconds...');
-                }
-            };
-            tick();
-            countdownTimer = setInterval(tick, 1000);
-        };
-        const stopCountdown = () => {
-            if (countdownTimer) {
-                clearInterval(countdownTimer);
-                countdownTimer = null;
-            }
-        };
-
         try {
-            const screenshot = await this.captureBlobForAi(1024, panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square');
+            const screenshot = await this.captureBlobForAi(1024);
 
-            startCountdown(75);
+            setStatus('Generating AI image (may take 30–60s)...');
 
             const exerciseName = this.currentExerciseName || 'Exercise';
             const provider = panel?.querySelector('.ss-ai-provider')?.value || '';
-            const style = panel?.querySelector('.ss-ai-style-btn.active')?.dataset.style || 'glass';
-            const aspect = panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square';
 
             const response = await fetch(settings.restUrl + 'ai-render', {
                 method: 'POST',
@@ -3708,14 +3627,11 @@ class ThreeJSApp {
                 body: JSON.stringify({
                     screenshot,
                     exerciseName,
-                    provider,
-                    style,
-                    aspect
+                    provider
                 })
             });
 
             const json = await response.json();
-            stopCountdown();
 
             if (!response.ok || !json.success || !json.image) {
                 const msg = json.message || json.code || 'AI render failed';
@@ -3727,11 +3643,9 @@ class ThreeJSApp {
             setStatus('Done!', 'success');
             this.showAiResultModal(json.image, exerciseName);
         } catch (err) {
-            stopCountdown();
             console.error('[FlexFrame AI] Request failed:', err);
             setStatus('Error: ' + (err.message || 'request failed'), 'error');
         } finally {
-            stopCountdown();
             if (btn) btn.disabled = false;
         }
     }
@@ -3756,21 +3670,8 @@ class ThreeJSApp {
                 <div class="ss-ai-modal-body">
                     <img class="ss-ai-modal-image" src="${imageDataUrl}" alt="AI generated post" />
                 </div>
-                <div class="ss-ai-caption-section">
-                    <div class="ss-ai-caption-controls">
-                        <button class="ss-btn ss-ai-caption-generate">Generate Caption</button>
-                        <span class="ss-ai-caption-status"></span>
-                    </div>
-                    <div class="ss-ai-caption-result" style="display:none;">
-                        <textarea class="ss-ai-caption-text" rows="10" readonly></textarea>
-                        <div class="ss-ai-caption-actions">
-                            <button class="ss-btn ss-ai-caption-copy">Copy Caption</button>
-                            <button class="ss-btn ss-ai-caption-regen">Regenerate</button>
-                        </div>
-                    </div>
-                </div>
                 <div class="ss-ai-modal-footer">
-                    <button class="ss-btn ss-ai-modal-download">Download Image</button>
+                    <button class="ss-btn ss-ai-modal-download">Download</button>
                 </div>
             </div>
         `;
@@ -3788,10 +3689,9 @@ class ThreeJSApp {
             }
             .ss-ai-modal-content {
                 position: relative; background: #1e1e1e; color: #fff;
-                border-radius: 12px; max-width: 90vw; max-height: 92vh;
+                border-radius: 12px; max-width: 90vw; max-height: 90vh;
                 box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
                 display: flex; flex-direction: column;
-                width: 600px;
             }
             .ss-ai-modal-header {
                 display: flex; justify-content: space-between; align-items: center;
@@ -3808,50 +3708,9 @@ class ThreeJSApp {
                 overflow: auto;
             }
             .ss-ai-modal-image {
-                max-width: 100%; max-height: 50vh;
+                max-width: 100%; max-height: 70vh;
                 border-radius: 8px;
             }
-            .ss-ai-caption-section {
-                padding: 0 16px 12px 16px;
-                border-top: 1px solid rgba(255, 255, 255, 0.08);
-                padding-top: 12px;
-            }
-            .ss-ai-caption-controls {
-                display: flex; align-items: center; gap: 12px;
-                margin-bottom: 8px;
-            }
-            .ss-ai-caption-generate,
-            .ss-ai-caption-regen {
-                background: linear-gradient(135deg, #4a9eff 0%, #8b5cf6 100%);
-                color: #fff; padding: 8px 14px; border: none;
-                border-radius: 6px; cursor: pointer; font-weight: 600; font-size: 12px;
-            }
-            .ss-ai-caption-generate:hover,
-            .ss-ai-caption-regen:hover { filter: brightness(1.1); }
-            .ss-ai-caption-generate:disabled,
-            .ss-ai-caption-regen:disabled { opacity: 0.6; cursor: not-allowed; }
-            .ss-ai-caption-status {
-                font-size: 12px; opacity: 0.85;
-            }
-            .ss-ai-caption-status.error { color: #ff6b6b; }
-            .ss-ai-caption-status.success { color: #4ade80; }
-            .ss-ai-caption-text {
-                width: 100%; box-sizing: border-box;
-                background: rgba(255,255,255,0.06);
-                color: #fff; border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 6px; padding: 10px;
-                font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-                font-size: 13px; line-height: 1.5; resize: vertical;
-            }
-            .ss-ai-caption-actions {
-                margin-top: 8px; display: flex; gap: 8px; justify-content: flex-end;
-            }
-            .ss-ai-caption-copy {
-                background: rgba(255,255,255,0.12);
-                color: #fff; padding: 6px 12px; border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 6px; cursor: pointer; font-size: 12px;
-            }
-            .ss-ai-caption-copy:hover { background: rgba(255,255,255,0.2); }
             .ss-ai-modal-footer {
                 padding: 12px 16px;
                 border-top: 1px solid rgba(255, 255, 255, 0.1);
@@ -3881,84 +3740,7 @@ class ThreeJSApp {
             document.body.removeChild(link);
         });
 
-        // Caption generation
-        const captionBtn    = modal.querySelector('.ss-ai-caption-generate');
-        const captionRegen  = modal.querySelector('.ss-ai-caption-regen');
-        const captionStatus = modal.querySelector('.ss-ai-caption-status');
-        const captionResult = modal.querySelector('.ss-ai-caption-result');
-        const captionText   = modal.querySelector('.ss-ai-caption-text');
-        const captionCopy   = modal.querySelector('.ss-ai-caption-copy');
-
-        const runCaption = async () => {
-            captionBtn.disabled = true;
-            if (captionRegen) captionRegen.disabled = true;
-            captionStatus.className = 'ss-ai-caption-status';
-            captionStatus.textContent = 'Generating caption...';
-            try {
-                const text = await this.generateAiCaption(exerciseName);
-                captionText.value = text;
-                captionResult.style.display = 'block';
-                captionStatus.textContent = 'Done';
-                captionStatus.classList.add('success');
-            } catch (err) {
-                console.error('[FlexFrame AI] Caption failed:', err);
-                captionStatus.textContent = 'Error: ' + (err.message || 'request failed');
-                captionStatus.classList.add('error');
-            } finally {
-                captionBtn.disabled = false;
-                if (captionRegen) captionRegen.disabled = false;
-            }
-        };
-
-        captionBtn.addEventListener('click', runCaption);
-        if (captionRegen) captionRegen.addEventListener('click', runCaption);
-
-        captionCopy.addEventListener('click', async () => {
-            try {
-                await navigator.clipboard.writeText(captionText.value);
-                captionCopy.textContent = 'Copied!';
-                setTimeout(() => { captionCopy.textContent = 'Copy Caption'; }, 1500);
-            } catch (err) {
-                // Fallback: select the textarea
-                captionText.removeAttribute('readonly');
-                captionText.select();
-                document.execCommand('copy');
-                captionText.setAttribute('readonly', 'readonly');
-                captionCopy.textContent = 'Copied!';
-                setTimeout(() => { captionCopy.textContent = 'Copy Caption'; }, 1500);
-            }
-        });
-
         document.body.appendChild(modal);
-    }
-
-    /**
-     * Request a social-media caption from the server for the given exercise.
-     * Uses the same provider toggle as image generation.
-     */
-    async generateAiCaption(exerciseName) {
-        const settings = window.flexframeSettings || {};
-        if (!settings.restUrl) {
-            throw new Error('REST URL not available');
-        }
-        const provider = this.screenshotPanel?.querySelector('.ss-ai-provider')?.value || '';
-        const response = await fetch(settings.restUrl + 'ai-caption', {
-            method: 'POST',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-WP-Nonce': settings.restNonce || ''
-            },
-            body: JSON.stringify({
-                exerciseName: exerciseName || 'Exercise',
-                provider
-            })
-        });
-        const json = await response.json();
-        if (!response.ok || !json.success || !json.caption) {
-            throw new Error(json.message || json.code || 'Caption request failed');
-        }
-        return json.caption;
     }
 
     /**

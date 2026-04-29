@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BfIEwAcT.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-L6wh_Klq.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5313,7 +5313,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BfIEwAcT.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-L6wh_Klq.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6898,7 +6898,7 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
  * Endpoint: POST /v1beta/models/gemini-2.5-flash-image:generateContent?key=API_KEY
  * Multi-image input is supported by including additional inline_data parts.
  */
-function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references = array(), $aspect = 'square') {
+function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references = array()) {
     $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=' . urlencode(FLEXFRAME_GEMINI_KEY);
 
     $parts = array(

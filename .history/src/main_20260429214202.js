@@ -2960,20 +2960,6 @@ class ThreeJSApp {
                     <div class="ss-ai-divider"></div>
                     <div class="ss-ai-label">AI Social Media Post</div>
                     <input type="hidden" class="ss-ai-provider" value="openai" />
-                    <div class="ss-ai-style-row">
-                        <label class="ss-ai-style-label">Figure style</label>
-                        <div class="ss-ai-style-toggle">
-                            <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy 3D</button>
-                            <button type="button" class="ss-ai-style-btn" data-style="realistic">Real Human</button>
-                        </div>
-                    </div>
-                    <div class="ss-ai-style-row">
-                        <label class="ss-ai-style-label">Format</label>
-                        <div class="ss-ai-style-toggle ss-ai-aspect-toggle">
-                            <button type="button" class="ss-ai-aspect-btn active" data-aspect="square">Post 1:1</button>
-                            <button type="button" class="ss-ai-aspect-btn" data-aspect="story">Story 9:16</button>
-                        </div>
-                    </div>
                     <button class="ss-btn ss-ai-generate">Generate AI Post</button>
                     <div class="ss-ai-status"></div>
                 </div>
@@ -3142,34 +3128,6 @@ class ThreeJSApp {
                 font-size: 12px;
             }
             .ss-ai-provider option { background: #1e1e1e; color: #fff; }
-            .ss-ai-style-row {
-                display: flex; flex-direction: column; gap: 6px;
-                margin-bottom: 8px;
-            }
-            .ss-ai-style-label {
-                font-size: 11px; opacity: 0.85; color: #fff;
-            }
-            .ss-ai-style-toggle {
-                display: flex; gap: 0;
-                border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 6px; overflow: hidden;
-                background: rgba(255,255,255,0.05);
-            }
-            .ss-ai-style-btn {
-                flex: 1; padding: 8px 10px;
-                background: transparent; color: #fff;
-                border: none; cursor: pointer;
-                font-size: 12px; font-weight: 500;
-                transition: background 0.15s;
-            }
-            .ss-ai-style-btn + .ss-ai-style-btn {
-                border-left: 1px solid rgba(255,255,255,0.2);
-            }
-            .ss-ai-style-btn:hover { background: rgba(255,255,255,0.08); }
-            .ss-ai-style-btn.active {
-                background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-                color: #fff;
-            }
             .ss-ai-generate {
                 width: 100%;
                 padding: 10px 16px;
@@ -3265,25 +3223,6 @@ class ThreeJSApp {
         const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
         if (window.flexframeSettings?.aiRenderEnabled && aiSection && aiBtn && !isMobileViewport()) {
             aiSection.style.display = 'block';
-
-            // Style toggle: only one button can be active at a time.
-            const styleButtons = panel.querySelectorAll('.ss-ai-style-btn');
-            styleButtons.forEach(b => {
-                b.addEventListener('click', () => {
-                    styleButtons.forEach(x => x.classList.remove('active'));
-                    b.classList.add('active');
-                });
-            });
-
-            // Aspect ratio toggle: only one button can be active at a time.
-            const aspectButtons = panel.querySelectorAll('.ss-ai-aspect-btn');
-            aspectButtons.forEach(b => {
-                b.addEventListener('click', () => {
-                    aspectButtons.forEach(x => x.classList.remove('active'));
-                    b.classList.add('active');
-                });
-            });
-
             aiBtn.addEventListener('click', () => {
                 this.generateAiSocialPost();
             });
@@ -3586,19 +3525,15 @@ class ThreeJSApp {
      * gradient background. This gives the AI image model a much higher-contrast,
      * clean silhouette of the 3D model so it can identify the subject reliably.
      */
-    async captureBlobForAi(size = 1024, aspect = 'square') {
+    async captureBlobForAi(size = 1024) {
         const renderer = this.renderer;
         const scene = this.sceneManager.getScene();
         const camera = this.cameraManager.getCamera();
 
-        // Output dimensions: square (1:1) or story (9:16 portrait).
-        const width  = (aspect === 'story') ? Math.round(size * 9 / 16) : size;
-        const height = (aspect === 'story') ? size : size;
-
-        // Use a temp canvas + temp renderer at the target dimensions.
+        // Use a temp canvas + temp renderer at the target square size.
         const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = size;
+        canvas.height = size;
 
         const tempRenderer = new THREE.WebGLRenderer({
             canvas,
@@ -3606,7 +3541,7 @@ class ThreeJSApp {
             preserveDrawingBuffer: true,
             alpha: false
         });
-        tempRenderer.setSize(width, height);
+        tempRenderer.setSize(size, size);
         tempRenderer.setPixelRatio(1);
         tempRenderer.shadowMap.enabled = renderer.shadowMap.enabled;
         tempRenderer.shadowMap.type = renderer.shadowMap.type;
@@ -3624,7 +3559,7 @@ class ThreeJSApp {
         scene.background = null;
 
         const tempCamera = camera.clone();
-        tempCamera.aspect = width / height;
+        tempCamera.aspect = 1;
         tempCamera.updateProjectionMatrix();
 
         try {
@@ -3689,14 +3624,12 @@ class ThreeJSApp {
         };
 
         try {
-            const screenshot = await this.captureBlobForAi(1024, panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square');
+            const screenshot = await this.captureBlobForAi(1024);
 
-            startCountdown(75);
+            startCountdown(60);
 
             const exerciseName = this.currentExerciseName || 'Exercise';
             const provider = panel?.querySelector('.ss-ai-provider')?.value || '';
-            const style = panel?.querySelector('.ss-ai-style-btn.active')?.dataset.style || 'glass';
-            const aspect = panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square';
 
             const response = await fetch(settings.restUrl + 'ai-render', {
                 method: 'POST',
@@ -3708,9 +3641,7 @@ class ThreeJSApp {
                 body: JSON.stringify({
                     screenshot,
                     exerciseName,
-                    provider,
-                    style,
-                    aspect
+                    provider
                 })
             });
 

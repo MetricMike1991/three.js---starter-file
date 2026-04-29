@@ -5126,8 +5126,7 @@ function flexframe_settings_page() {
                 </div>
                 <!-- End Step 10 -->
 
-                <?php if (function_exists('flexframe_is_super_admin') && flexframe_is_super_admin()) : ?>
-                <!-- Step 11: AI Social Media Generator (super admin only) -->
+                <!-- Step 11: AI Social Media Generator -->
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="11">
                         <span class="step-number">11</span>
@@ -5289,7 +5288,6 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 <!-- End Step 11 -->
-                <?php endif; ?>
 
                 <div class="flexframe-button-row">
                     <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
@@ -9071,13 +9069,6 @@ function flexframe_settings_page() {
             e.preventDefault();
             var defaultPrompt = $(this).data('default') || '';
             $('#flexframe_ai_prompt_template').val(defaultPrompt);
-        });
-
-        // Reset caption template to default
-        $(document).on('click', '#flexframe_ai_reset_caption', function(e) {
-            e.preventDefault();
-            var defaultCaption = $(this).data('default') || '';
-            $('#flexframe_ai_caption_template').val(defaultCaption);
         });
         
         // Quick-link pills in welcome hero — scroll to & expand step

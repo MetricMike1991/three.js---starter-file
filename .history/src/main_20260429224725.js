@@ -3586,19 +3586,15 @@ class ThreeJSApp {
      * gradient background. This gives the AI image model a much higher-contrast,
      * clean silhouette of the 3D model so it can identify the subject reliably.
      */
-    async captureBlobForAi(size = 1024, aspect = 'square') {
+    async captureBlobForAi(size = 1024) {
         const renderer = this.renderer;
         const scene = this.sceneManager.getScene();
         const camera = this.cameraManager.getCamera();
 
-        // Output dimensions: square (1:1) or story (9:16 portrait).
-        const width  = (aspect === 'story') ? Math.round(size * 9 / 16) : size;
-        const height = (aspect === 'story') ? size : size;
-
-        // Use a temp canvas + temp renderer at the target dimensions.
+        // Use a temp canvas + temp renderer at the target square size.
         const canvas = document.createElement('canvas');
-        canvas.width = width;
-        canvas.height = height;
+        canvas.width = size;
+        canvas.height = size;
 
         const tempRenderer = new THREE.WebGLRenderer({
             canvas,
@@ -3606,7 +3602,7 @@ class ThreeJSApp {
             preserveDrawingBuffer: true,
             alpha: false
         });
-        tempRenderer.setSize(width, height);
+        tempRenderer.setSize(size, size);
         tempRenderer.setPixelRatio(1);
         tempRenderer.shadowMap.enabled = renderer.shadowMap.enabled;
         tempRenderer.shadowMap.type = renderer.shadowMap.type;
@@ -3624,7 +3620,7 @@ class ThreeJSApp {
         scene.background = null;
 
         const tempCamera = camera.clone();
-        tempCamera.aspect = width / height;
+        tempCamera.aspect = 1;
         tempCamera.updateProjectionMatrix();
 
         try {
@@ -3689,7 +3685,7 @@ class ThreeJSApp {
         };
 
         try {
-            const screenshot = await this.captureBlobForAi(1024, panel?.querySelector('.ss-ai-aspect-btn.active')?.dataset.aspect || 'square');
+            const screenshot = await this.captureBlobForAi(1024);
 
             startCountdown(75);
 

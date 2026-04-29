@@ -5126,8 +5126,7 @@ function flexframe_settings_page() {
                 </div>
                 <!-- End Step 10 -->
 
-                <?php if (function_exists('flexframe_is_super_admin') && flexframe_is_super_admin()) : ?>
-                <!-- Step 11: AI Social Media Generator (super admin only) -->
+                <!-- Step 11: AI Social Media Generator -->
                 <div class="flexframe-step-section collapsed">
                     <div class="flexframe-step-header" data-step="11">
                         <span class="step-number">11</span>
@@ -5144,19 +5143,17 @@ function flexframe_settings_page() {
 
                         <?php
                         $ai_prompt_tpl     = get_option('flexframe_ai_prompt_template', flexframe_ai_default_prompt_template());
-                        $ai_caption_tpl    = get_option('flexframe_ai_caption_template', flexframe_ai_default_caption_template());
                         $ai_ref_logo       = get_option('flexframe_ai_reference_logo_url', '');
                         $ai_ref_theme      = get_option('flexframe_ai_reference_theme_url', '');
                         $ai_ref_person     = get_option('flexframe_ai_reference_person_url', '');
                         $ai_use_references = (bool) get_option('flexframe_ai_use_references', true);
                         $ai_default_tpl    = flexframe_ai_default_prompt_template();
-                        $ai_default_cap    = flexframe_ai_default_caption_template();
                         ?>
 
-                        <!-- Image Prompt template -->
+                        <!-- Prompt template -->
                         <div class="flexframe-setting-row" style="flex-direction: column; align-items: stretch;">
                             <label for="flexframe_ai_prompt_template" style="margin-bottom: 6px;">
-                                <strong><?php _e('Image Prompt Template', 'flexframe-viewer'); ?></strong>
+                                <strong><?php _e('Prompt Template', 'flexframe-viewer'); ?></strong>
                             </label>
                             <p class="description" style="margin: 0 0 8px 0;">
                                 <?php _e('Use placeholders <code>{gymName}</code> and <code>{exerciseName}</code> — they are replaced automatically when an image is generated.', 'flexframe-viewer'); ?>
@@ -5171,29 +5168,6 @@ function flexframe_settings_page() {
                             <div style="margin-top: 6px;">
                                 <button type="button" class="button button-secondary" id="flexframe_ai_reset_prompt"
                                         data-default="<?php echo esc_attr($ai_default_tpl); ?>">
-                                    <?php _e('Reset to Default', 'flexframe-viewer'); ?>
-                                </button>
-                            </div>
-                        </div>
-
-                        <!-- Caption Prompt template -->
-                        <div class="flexframe-setting-row" style="flex-direction: column; align-items: stretch; margin-top: 16px;">
-                            <label for="flexframe_ai_caption_template" style="margin-bottom: 6px;">
-                                <strong><?php _e('Caption Prompt Template', 'flexframe-viewer'); ?></strong>
-                            </label>
-                            <p class="description" style="margin: 0 0 8px 0;">
-                                <?php _e('Used when generating the social-media caption that goes alongside the image. Placeholders: <code>{gymName}</code>, <code>{exerciseName}</code>, <code>{siteUrl}</code>.', 'flexframe-viewer'); ?>
-                            </p>
-                            <textarea
-                                id="flexframe_ai_caption_template"
-                                name="flexframe_ai_caption_template"
-                                rows="8"
-                                class="large-text code"
-                                style="font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; font-size: 13px;"
-                            ><?php echo esc_textarea($ai_caption_tpl); ?></textarea>
-                            <div style="margin-top: 6px;">
-                                <button type="button" class="button button-secondary" id="flexframe_ai_reset_caption"
-                                        data-default="<?php echo esc_attr($ai_default_cap); ?>">
                                     <?php _e('Reset to Default', 'flexframe-viewer'); ?>
                                 </button>
                             </div>
@@ -5289,7 +5263,6 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 <!-- End Step 11 -->
-                <?php endif; ?>
 
                 <div class="flexframe-button-row">
                     <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
@@ -9071,13 +9044,6 @@ function flexframe_settings_page() {
             e.preventDefault();
             var defaultPrompt = $(this).data('default') || '';
             $('#flexframe_ai_prompt_template').val(defaultPrompt);
-        });
-
-        // Reset caption template to default
-        $(document).on('click', '#flexframe_ai_reset_caption', function(e) {
-            e.preventDefault();
-            var defaultCaption = $(this).data('default') || '';
-            $('#flexframe_ai_caption_template').val(defaultCaption);
         });
         
         // Quick-link pills in welcome hero — scroll to & expand step
