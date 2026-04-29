@@ -1,0 +1,202 @@
+{
+  "exerciseId": "seated_lat_pulldown",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Lat%20Pull%20Down%20Cables%20LQ.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Lat%20Pull%20Down%20Cables%20HQ.glb",
+  "model": {
+    "position": [
+      0,
+      -0.02,
+      0
+    ],
+    "rotation": [
+      0,
+      0,
+      0
+    ],
+    "scale": [
+      1,
+      1,
+      1
+    ]
+  },
+  "camera": {
+    "position": [
+      1.342976765905393,
+      0.9382330800010474,
+      0.930468433099614
+    ],
+    "rotation": [
+      -0.5054415914682538,
+      0.997283438228281,
+      0.435131889425729
+    ],
+    "target": [
+      0.005258628190929977,
+      0.519850776204371,
+      0.17443222542697617
+    ]
+  },
+  "modelHQ": {
+    "model": {
+      "position": [
+        0,
+        -0.02,
+        0
+      ],
+      "rotation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        1,
+        1,
+        1
+      ]
+    },
+    "camera": {
+      "position": [
+        -1.7417557875839762,
+        0.9061639258265874,
+        -1.260564187798012
+      ],
+      "rotation": [
+        -2.8370351383555525,
+        -0.8774125680724396,
+        -2.904391100633564
+      ],
+      "target": [
+        -0.04930514937357274,
+        0.48439660491333686,
+        0.08120399013242571
+      ]
+    }
+  },
+  "lighting": {
+    "directionalLight": {
+      "intensity": 1.43,
+      "color": "#ffffff",
+      "castShadow": true,
+      "shadowBias": 0,
+      "shadowBlur": 1,
+      "shadowMapWidth": 1024,
+      "shadowMapHeight": 1024,
+      "posX": 1.35,
+      "posY": 1.57,
+      "posZ": 0.9,
+      "showHelper": false,
+      "position": {
+        "x": 1.35,
+        "y": 1.57,
+        "z": 0.9
+      }
+    },
+    "ambientLight": {
+      "intensity": 0.4,
+      "color": "#ffffff"
+    }
+  },
+  "ground": {
+    "mode": "Infinite Canvas",
+    "color": "#222222",
+    "roughness": 1,
+    "metalness": 0,
+    "shadowOpacity": 0.4,
+    "receiveShadow": true,
+    "castShadow": false,
+    "visible": true
+  },
+  "background": {
+    "gradientTop": "#3865ad",
+    "gradientBottom": "#0101bc",
+    "gradientAlpha": 1
+  },
+  "dustParticles": {
+    "count": 1150,
+    "size": 0.0095,
+    "sizeRandomness": 1.4,
+    "color": "#0d529c",
+    "opacity": 1,
+    "speed": 0.5,
+    "horizontalRange": 3,
+    "verticalRange": 2,
+    "verticalOffset": 1,
+    "visible": true,
+    "blur": 0.31,
+    "depthBlur": false,
+    "depthBlurStrength": 0.16,
+    "depthFocusDistance": 2,
+    "depthFocusRange": 1
+  },
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Seated Lat Pulldown is a fundamental upper body compound exercise that primarily targets the latissimus dorsi muscles.\n\nIt's one of the most effective exercises for building back width and developing a V-taper physique.\n\nThis cable-based movement allows for controlled resistance throughout the entire range of motion."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops back width and thickness\n- Improves upper body pulling strength\n- Enhances shoulder stability and posture\n- Easier to learn than pull-ups for beginners\n- Builds grip strength\n- Allows for progressive overload with adjustable weight"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi (Lats)\n\nSecondary: Biceps Brachii, Rhomboids, Trapezius (Middle and Lower), Rear Deltoids, Teres Major"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the thigh pad to secure your legs in place.\n2. Stand and grab the bar with a wide, overhand grip (wider than shoulder-width).\n3. Sit down and position your thighs under the pads.\n4. Lean back slightly (about 10-15 degrees) with chest up.\n5. Arms should be fully extended overhead with slight elbow bend."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Pull the bar down in a controlled motion toward your upper chest.\n3. Lead with your elbows, keeping them pointed down and back.\n4. Squeeze your shoulder blades together at the bottom.\n5. The bar should reach your upper chest/collarbone area.\n6. Pause briefly at the bottom position.\n7. Slowly return the bar to the starting position with control.\n8. Maintain tension in your lats throughout the movement."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using momentum or swinging the torso excessively\n- Pulling the bar behind the neck (can cause shoulder injury)\n- Not achieving full range of motion\n- Leaning back too far (turns it into a row)\n- Using too much weight and compromising form\n- Letting shoulders shrug up toward ears\n- Gripping too narrow (reduces lat activation)"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Lat Pulldown Machine\n- Wide Lat Bar Attachment\n- Weight Stack or Plate-Loaded System\n- Thigh Pad/Restraint\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Different Bar Attachments (V-bar, close grip, etc.)"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust seat height so thighs fit snugly under the pad.\n2. Thigh pad should hold you down without excessive pressure.\n3. Select appropriate weight on the stack (start lighter).\n4. Attach the wide bar to the high pulley cable.\n5. Ensure the cable moves smoothly without obstruction.\n6. Position yourself centered with the cable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Wide overhand grip, hands 1.5x shoulder-width apart.\n2. Thumb Position: Full grip (thumbs wrapped around bar).\n3. Body Position: Slight backward lean (10-15°), chest up.\n4. Feet: Flat on floor or foot platform.\n5. Core: Engaged throughout the movement.\n6. Shoulders: Down and back, not shrugged.\n7. Eyes: Looking straight ahead or slightly upward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_pull_up", "cable_lat_pull_down_station"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Pull-Ups/Chin-Ups: Bodyweight alternative, harder variation\n- Assisted Pull-Up Machine: Similar movement pattern\n- Cable Straight-Arm Pulldown: Isolates lats more\n- Single-Arm Lat Pulldown: Unilateral variation\n- Bent-Over Barbell Row: Free weight back exercise\n- T-Bar Row: Alternative back thickness builder"
+        },
+        {
+          "heading": "Grip Variations",
+          "content": "Wide Grip: Maximum lat width emphasis\nClose Grip: More bicep and inner back involvement\nNeutral Grip: Easier on shoulders, good middle ground\nUnderhand Grip: More bicep activation\nV-Bar Attachment: Targets middle back more"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Issues: Use neutral grip bar, reduce range of motion\nGrip Strength: Use lifting straps or assisted grip attachments\nLower Back Pain: Reduce backward lean, focus on strict form\nNo Lat Pulldown Machine: Resistance band pulldowns, assisted pull-ups\nMobility Issues: Use smaller range of motion, gradually increase"
+        }
+      ]
+    }
+  }
+}
