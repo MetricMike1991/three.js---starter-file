@@ -2921,7 +2921,7 @@ class ThreeJSApp {
                 <button class="screenshot-panel-close">✕</button>
             </div>
             <div class="screenshot-panel-content">
-                <div class="ss-group collapsed" data-group="screenshot">
+                <div class="ss-group" data-group="screenshot">
                     <div class="ss-group-header">
                         <span class="ss-group-title">Screenshot</span>
                         <span class="ss-group-chevron">▾</span>
@@ -2964,7 +2964,7 @@ class ThreeJSApp {
                         </div>
                     </div>
                 </div>
-                <div class="ss-ai-section ss-group" data-group="ai" style="display:none;">
+                <div class="ss-ai-section ss-group collapsed" data-group="ai" style="display:none;">
                     <div class="ss-group-header">
                         <span class="ss-group-title">AI Social Media Post</span>
                         <span class="ss-group-chevron">▾</span>
@@ -2974,9 +2974,15 @@ class ThreeJSApp {
                         <div class="ss-ai-style-row">
                             <label class="ss-ai-style-label">Figure style</label>
                             <div class="ss-ai-style-toggle">
-                                <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy</button>
-                                <button type="button" class="ss-ai-style-btn" data-style="male">Male</button>
-                                <button type="button" class="ss-ai-style-btn" data-style="female">Female</button>
+                                <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy 3D</button>
+                                <button type="button" class="ss-ai-style-btn" data-style="realistic">Real Human</button>
+                            </div>
+                        </div>
+                        <div class="ss-ai-style-row">
+                            <label class="ss-ai-style-label">Format</label>
+                            <div class="ss-ai-style-toggle ss-ai-aspect-toggle">
+                                <button type="button" class="ss-ai-aspect-btn active" data-aspect="square">Post 1:1</button>
+                                <button type="button" class="ss-ai-aspect-btn" data-aspect="story">Story 9:16</button>
                             </div>
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>
@@ -3112,49 +3118,7 @@ class ThreeJSApp {
                 filter: brightness(1.1);
             }
             .ss-ai-section {
-                margin-top: 12px;
-            }
-            .ss-group {
-                border: 1px solid rgba(255, 255, 255, 0.12);
-                border-radius: 8px;
-                overflow: hidden;
-                margin-bottom: 10px;
-                background: rgba(255, 255, 255, 0.02);
-            }
-            .ss-group-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                padding: 10px 12px;
-                cursor: pointer;
-                user-select: none;
-                background: rgba(255, 255, 255, 0.04);
-                transition: background 0.15s;
-            }
-            .ss-group-header:hover {
-                background: rgba(255, 255, 255, 0.08);
-            }
-            .ss-group-title {
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: 0.5px;
-                text-transform: uppercase;
-                opacity: 0.9;
-            }
-            .ss-group-chevron {
-                font-size: 12px;
-                opacity: 0.7;
-                transition: transform 0.2s;
-            }
-            .ss-group.collapsed .ss-group-chevron {
-                transform: rotate(-90deg);
-            }
-            .ss-group-body {
-                padding: 12px;
-                display: block;
-            }
-            .ss-group.collapsed .ss-group-body {
-                display: none;
+                margin-top: 16px;
             }
             .ss-ai-divider {
                 height: 1px;
@@ -3271,13 +3235,6 @@ class ThreeJSApp {
         // Setup event listeners
         panel.querySelector('.screenshot-panel-close').addEventListener('click', () => {
             this.toggleScreenshotPanel(false);
-        });
-
-        // Collapsible group headers
-        panel.querySelectorAll('.ss-group-header').forEach(header => {
-            header.addEventListener('click', () => {
-                header.parentElement.classList.toggle('collapsed');
-            });
         });
         
         // Update frame when dimensions change (frame is always visible)

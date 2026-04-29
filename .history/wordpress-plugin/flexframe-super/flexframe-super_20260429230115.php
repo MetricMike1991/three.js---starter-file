@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BSMXIV1w.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BiEPbxAZ.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5313,7 +5313,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BSMXIV1w.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BiEPbxAZ.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6750,6 +6750,12 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
     if ($style === 'male' || $style === 'female') {
         $gender_label = ($style === 'male') ? 'male' : 'female';
         $prompt .= "\n\nIMPORTANT STYLE OVERRIDE: Do NOT preserve the look of the 3D model in the screenshot. Replace the figure with a photorealistic {$gender_label} fitness athlete performing the same {$exercise_name} exercise in the same pose, body position and camera angle. Use natural skin, realistic gym attire and a professional fitness-photography aesthetic. The 3D screenshot is provided ONLY as a pose / framing reference. The athlete must clearly be {$gender_label}.";
+    } else {
+        $prompt .= "\n\nIMPORTANT STYLE OVERRIDE: Preserve the distinctive look of the 3D model from the screenshot — a figure with translucent glass-like skin showing the internal skeleton and muscle attachments underneath. Keep this anatomical glass-skin aesthetic in the final image; do NOT replace it with a normal opaque human.";
+    }
+    if ($style === 'realistic') {
+        $prompt .= "\n\nIMPORTANT STYLE OVERRIDE: Do NOT preserve the look of the 3D model in the screenshot. Replace the figure with a photorealistic real human athlete performing the same {exerciseName} exercise in the same pose, body position and camera angle. Use natural skin, realistic gym attire and a professional fitness-photography aesthetic. The 3D screenshot is provided ONLY as a pose / framing reference.";
+        $prompt = strtr($prompt, array('{exerciseName}' => $exercise_name));
     } else {
         $prompt .= "\n\nIMPORTANT STYLE OVERRIDE: Preserve the distinctive look of the 3D model from the screenshot — a figure with translucent glass-like skin showing the internal skeleton and muscle attachments underneath. Keep this anatomical glass-skin aesthetic in the final image; do NOT replace it with a normal opaque human.";
     }

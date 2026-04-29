@@ -2974,9 +2974,8 @@ class ThreeJSApp {
                         <div class="ss-ai-style-row">
                             <label class="ss-ai-style-label">Figure style</label>
                             <div class="ss-ai-style-toggle">
-                                <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy</button>
-                                <button type="button" class="ss-ai-style-btn" data-style="male">Male</button>
-                                <button type="button" class="ss-ai-style-btn" data-style="female">Female</button>
+                                <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy 3D</button>
+                                <button type="button" class="ss-ai-style-btn" data-style="realistic">Real Human</button>
                             </div>
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>

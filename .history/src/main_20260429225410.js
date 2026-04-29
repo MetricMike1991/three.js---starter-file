@@ -2921,7 +2921,7 @@ class ThreeJSApp {
                 <button class="screenshot-panel-close">✕</button>
             </div>
             <div class="screenshot-panel-content">
-                <div class="ss-group collapsed" data-group="screenshot">
+                <div class="ss-group" data-group="screenshot">
                     <div class="ss-group-header">
                         <span class="ss-group-title">Screenshot</span>
                         <span class="ss-group-chevron">▾</span>
@@ -2964,7 +2964,7 @@ class ThreeJSApp {
                         </div>
                     </div>
                 </div>
-                <div class="ss-ai-section ss-group" data-group="ai" style="display:none;">
+                <div class="ss-ai-section ss-group collapsed" data-group="ai" style="display:none;">
                     <div class="ss-group-header">
                         <span class="ss-group-title">AI Social Media Post</span>
                         <span class="ss-group-chevron">▾</span>
@@ -2974,9 +2974,15 @@ class ThreeJSApp {
                         <div class="ss-ai-style-row">
                             <label class="ss-ai-style-label">Figure style</label>
                             <div class="ss-ai-style-toggle">
-                                <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy</button>
-                                <button type="button" class="ss-ai-style-btn" data-style="male">Male</button>
-                                <button type="button" class="ss-ai-style-btn" data-style="female">Female</button>
+                                <button type="button" class="ss-ai-style-btn active" data-style="glass">Anatomy 3D</button>
+                                <button type="button" class="ss-ai-style-btn" data-style="realistic">Real Human</button>
+                            </div>
+                        </div>
+                        <div class="ss-ai-style-row">
+                            <label class="ss-ai-style-label">Format</label>
+                            <div class="ss-ai-style-toggle ss-ai-aspect-toggle">
+                                <button type="button" class="ss-ai-aspect-btn active" data-aspect="square">Post 1:1</button>
+                                <button type="button" class="ss-ai-aspect-btn" data-aspect="story">Story 9:16</button>
                             </div>
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>
