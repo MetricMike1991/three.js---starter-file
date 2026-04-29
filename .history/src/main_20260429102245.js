@@ -3610,7 +3610,6 @@ class ThreeJSApp {
             setStatus('Generating AI image (may take 30–60s)...');
 
             const exerciseName = this.currentExerciseName || 'Exercise';
-            const provider = panel?.querySelector('.ss-ai-provider')?.value || '';
 
             const response = await fetch(settings.restUrl + 'ai-render', {
                 method: 'POST',
@@ -3621,8 +3620,7 @@ class ThreeJSApp {
                 },
                 body: JSON.stringify({
                     screenshot,
-                    exerciseName,
-                    provider
+                    exerciseName
                 })
             });
 

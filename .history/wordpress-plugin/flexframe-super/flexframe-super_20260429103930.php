@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BJqGweo6.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-RS2x306D.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5313,7 +5313,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BJqGweo6.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-RS2x306D.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6530,52 +6530,13 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
 
 /**
  * OpenAI gpt-image-2 via /v1/images/edits (multipart).
- * The Edits endpoint accepts multiple input images via image[] (up to ~16).
  */
-function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name, $references = array()) {
-    // Write all input images (screenshot + references) to temp files.
-    $tmp_files = array();
-    $cleanup = function () use (&$tmp_files) {
-        foreach ($tmp_files as $f) { @unlink($f); }
-    };
-
-    $main_tmp = wp_tempnam('flexframe-ai-main-');
-    if (!$main_tmp) {
+function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name) {
+    $tmp_file = wp_tempnam('flexframe-ai-');
+    if (!$tmp_file) {
         return new WP_Error('flexframe_tmp_fail', 'Could not create temp file.', array('status' => 500));
     }
-    file_put_contents($main_tmp, $screenshot_binary);
-    $tmp_files[] = $main_tmp;
-
-    // Multipart fields. OpenAI expects image[] for multi-image edits.
-    $post_fields = array(
-        'model'   => 'gpt-image-2',
-        'prompt'  => $prompt,
-        'size'    => '1024x1024',
-        'quality' => 'medium',
-        'n'       => 1,
-    );
-
-    if (!empty($references)) {
-        // Use array form for multiple inputs.
-        $post_fields['image[]'] = new CURLFile($main_tmp, 'image/png', 'screenshot.png');
-        $i = 0;
-        foreach ($references as $ref) {
-            $i++;
-            $rtmp = wp_tempnam('flexframe-ai-ref-');
-            file_put_contents($rtmp, $ref['binary']);
-            $tmp_files[] = $rtmp;
-            $ext = (strpos($ref['mime'], 'jpeg') !== false) ? 'jpg' : 'png';
-            // CURLFile array key trick: when only one 'image[]' entry is supported
-            // by curl's POSTFIELDS, we have to pass them as separate keys with
-            // bracketed names. PHP's curl will preserve the keys verbatim.
-            $post_fields['image[' . $i . ']'] = new CURLFile($rtmp, $ref['mime'], 'reference_' . $i . '.' . $ext);
-        }
-        // Re-key the main image to image[0].
-        $post_fields['image[0]'] = $post_fields['image[]'];
-        unset($post_fields['image[]']);
-    } else {
-        $post_fields['image'] = new CURLFile($main_tmp, 'image/png', 'screenshot.png');
-    }
+    file_put_contents($tmp_file, $screenshot_binary);
 
     $ch = curl_init('https://api.openai.com/v1/images/edits');
     curl_setopt_array($ch, array(
@@ -6584,8 +6545,15 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
         CURLOPT_HTTPHEADER     => array(
             'Authorization: Bearer ' . FLEXFRAME_OPENAI_KEY,
         ),
-        CURLOPT_POSTFIELDS     => $post_fields,
-        CURLOPT_TIMEOUT        => 180,
+        CURLOPT_POSTFIELDS     => array(
+            'model'   => 'gpt-image-2',
+            'image'   => new CURLFile($tmp_file, 'image/png', 'screenshot.png'),
+            'prompt'  => $prompt,
+            'size'    => '1024x1024',
+            'quality' => 'medium',
+            'n'       => 1,
+        ),
+        CURLOPT_TIMEOUT        => 120,
     ));
 
     $response_body = curl_exec($ch);
@@ -6593,7 +6561,7 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
     $curl_err      = curl_error($ch);
     curl_close($ch);
 
-    $cleanup();
+    @unlink($tmp_file);
 
     if ($response_body === false) {
         return new WP_Error('flexframe_curl_fail', 'OpenAI request failed: ' . $curl_err, array('status' => 502));
@@ -6623,40 +6591,32 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
  * Google Gemini 2.5 Flash Image (Nano Banana) via generativelanguage.googleapis.com.
  *
  * Endpoint: POST /v1beta/models/gemini-2.5-flash-image:generateContent?key=API_KEY
- * Multi-image input is supported by including additional inline_data parts.
+ * Body: { contents: [{ parts: [{ text: prompt }, { inline_data: { mime_type, data: base64 } }] }] }
+ * Response: candidates[0].content.parts[].inline_data.data (base64 PNG)
  */
-function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references = array()) {
+function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name) {
     $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=' . urlencode(FLEXFRAME_GEMINI_KEY);
-
-    $parts = array(
-        array('text' => $prompt),
-        array(
-            'inline_data' => array(
-                'mime_type' => 'image/png',
-                'data'      => $screenshot_b64,
-            ),
-        ),
-    );
-
-    foreach ($references as $ref) {
-        $parts[] = array(
-            'inline_data' => array(
-                'mime_type' => $ref['mime'],
-                'data'      => base64_encode($ref['binary']),
-            ),
-        );
-    }
 
     $body = array(
         'contents' => array(
-            array('parts' => $parts),
+            array(
+                'parts' => array(
+                    array('text' => $prompt),
+                    array(
+                        'inline_data' => array(
+                            'mime_type' => 'image/png',
+                            'data'      => $screenshot_b64,
+                        ),
+                    ),
+                ),
+            ),
         ),
     );
 
     $response = wp_remote_post($url, array(
         'headers' => array('Content-Type' => 'application/json'),
         'body'    => wp_json_encode($body),
-        'timeout' => 180,
+        'timeout' => 120,
     ));
 
     if (is_wp_error($response)) {

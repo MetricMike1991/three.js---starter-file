@@ -8994,52 +8994,6 @@ function flexframe_settings_page() {
             $section.toggleClass('collapsed');
             $content.slideToggle(200);
         });
-
-        // ========================================================
-        // AI Social Media Generator - reference image uploaders
-        // ========================================================
-        var aiRefMediaFrame = null;
-        $(document).on('click', '.flexframe-ai-upload', function(e) {
-            e.preventDefault();
-            var $btn       = $(this);
-            var targetId   = $btn.data('target');
-            var frameTitle = $btn.data('title') || 'Select Image';
-
-            aiRefMediaFrame = wp.media({
-                title: frameTitle,
-                button: { text: 'Use this image' },
-                multiple: false,
-                library: { type: 'image' }
-            });
-
-            aiRefMediaFrame.on('select', function() {
-                var attachment = aiRefMediaFrame.state().get('selection').first().toJSON();
-                var url = attachment.url;
-                $('#' + targetId).val(url);
-                var $preview = $('.ai-ref-preview[data-target="' + targetId + '"]');
-                $preview.html('<img src="' + url + '" style="max-width:100%; max-height:120px;">');
-                $btn.siblings('.flexframe-ai-remove').show();
-            });
-
-            aiRefMediaFrame.open();
-        });
-
-        $(document).on('click', '.flexframe-ai-remove', function(e) {
-            e.preventDefault();
-            var $btn     = $(this);
-            var targetId = $btn.data('target');
-            $('#' + targetId).val('');
-            var $preview = $('.ai-ref-preview[data-target="' + targetId + '"]');
-            $preview.html('<span style="color:#999; font-size:12px;">No image selected</span>');
-            $btn.hide();
-        });
-
-        // Reset prompt template to default
-        $(document).on('click', '#flexframe_ai_reset_prompt', function(e) {
-            e.preventDefault();
-            var defaultPrompt = $(this).data('default') || '';
-            $('#flexframe_ai_prompt_template').val(defaultPrompt);
-        });
         
         // Quick-link pills in welcome hero — scroll to & expand step
         $('.quick-link[data-scroll-step]').on('click', function() {

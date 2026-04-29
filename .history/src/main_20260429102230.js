@@ -3113,27 +3113,6 @@ class ThreeJSApp {
                 letter-spacing: 0.5px;
                 text-transform: uppercase;
             }
-            .ss-ai-provider-row {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-                margin-bottom: 10px;
-                gap: 8px;
-            }
-            .ss-ai-provider-row label {
-                font-size: 12px;
-                opacity: 0.85;
-            }
-            .ss-ai-provider {
-                flex: 1;
-                background: rgba(255, 255, 255, 0.1);
-                border: 1px solid rgba(255, 255, 255, 0.2);
-                color: #fff;
-                padding: 6px 8px;
-                border-radius: 6px;
-                font-size: 12px;
-            }
-            .ss-ai-provider option { background: #1e1e1e; color: #fff; }
             .ss-ai-generate {
                 width: 100%;
                 padding: 10px 16px;
@@ -3222,25 +3201,8 @@ class ThreeJSApp {
         // AI Post button - only visible when server says AI is available
         const aiSection = panel.querySelector('.ss-ai-section');
         const aiBtn = panel.querySelector('.ss-ai-generate');
-        const aiProviderSelect = panel.querySelector('.ss-ai-provider');
         if (window.flexframeSettings?.aiRenderEnabled && aiSection && aiBtn) {
             aiSection.style.display = 'block';
-
-            // Filter provider <option>s based on which server-side keys are configured.
-            const available = window.flexframeSettings?.aiProviders || {};
-            if (aiProviderSelect) {
-                Array.from(aiProviderSelect.options).forEach(opt => {
-                    if (available[opt.value] === false) {
-                        opt.remove();
-                    }
-                });
-                // If only one remains, hide the row entirely.
-                if (aiProviderSelect.options.length <= 1) {
-                    const row = panel.querySelector('.ss-ai-provider-row');
-                    if (row) row.style.display = 'none';
-                }
-            }
-
             aiBtn.addEventListener('click', () => {
                 this.generateAiSocialPost();
             });
@@ -3610,7 +3572,6 @@ class ThreeJSApp {
             setStatus('Generating AI image (may take 30–60s)...');
 
             const exerciseName = this.currentExerciseName || 'Exercise';
-            const provider = panel?.querySelector('.ss-ai-provider')?.value || '';
 
             const response = await fetch(settings.restUrl + 'ai-render', {
                 method: 'POST',
@@ -3621,8 +3582,7 @@ class ThreeJSApp {
                 },
                 body: JSON.stringify({
                     screenshot,
-                    exerciseName,
-                    provider
+                    exerciseName
                 })
             });
 

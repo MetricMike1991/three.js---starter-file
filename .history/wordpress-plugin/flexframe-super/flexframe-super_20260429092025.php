@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BJqGweo6.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DFGguGDC.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -4587,14 +4587,7 @@ function flexframe_enqueue_assets() {
             'isLoggedIn' => is_user_logged_in(),
             'restUrl' => esc_url_raw(rest_url('flexframe/v1/')),
             'restNonce' => wp_create_nonce('wp_rest'),
-            'aiRenderEnabled' => is_user_logged_in() && (
-                (defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '') ||
-                (defined('FLEXFRAME_GEMINI_KEY') && FLEXFRAME_GEMINI_KEY !== '')
-            ),
-            'aiProviders' => array(
-                'openai' => defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '',
-                'gemini' => defined('FLEXFRAME_GEMINI_KEY') && FLEXFRAME_GEMINI_KEY !== '',
-            )
+            'aiRenderEnabled' => is_user_logged_in() && defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== ''
         );
         
         flexframe_log('Passing settings to JavaScript', $settings_data);
@@ -5313,7 +5306,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BJqGweo6.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DFGguGDC.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6378,71 +6371,9 @@ function flexframe_register_ai_render_api() {
 }
 add_action('rest_api_init', 'flexframe_register_ai_render_api');
 
-/**
- * Default AI prompt template. Supports placeholders:
- *   {gymName}, {exerciseName}
- * If reference images are uploaded, additional context is appended automatically.
- */
-function flexframe_ai_default_prompt_template() {
-    return 'I need you to turn this screenshot of a 3D model from a 3D exercise library for "{gymName}" of the {exerciseName} exercise into a very cool themed and branded infographic of the exercise for our social media. Take your time to use correct information for the exercise. Use the 3D model to make a photorealistic graphic of the exercise. Add text prompts, tips and cues of the exercise, muscles worked, etc. Include brand color themes from the image. Add a small watermark at the bottom of the image: "Powered by FitFlexion.com". The image must be square for Instagram.';
-}
-
-/**
- * Fetch a referenced image URL and return its raw bytes + mime type.
- * Returns array('binary' => string, 'mime' => string) or null on failure.
- */
-function flexframe_ai_fetch_reference_image($url) {
-    if (empty($url)) {
-        return null;
-    }
-
-    // Prefer reading from disk if it's a local upload (cheaper than HTTP).
-    $attachment_id = attachment_url_to_postid($url);
-    if ($attachment_id) {
-        $path = get_attached_file($attachment_id);
-        if ($path && file_exists($path)) {
-            $bin  = file_get_contents($path);
-            $mime = get_post_mime_type($attachment_id);
-            if ($bin !== false) {
-                return array('binary' => $bin, 'mime' => $mime ?: 'image/png');
-            }
-        }
-    }
-
-    // Fallback to HTTP fetch.
-    $response = wp_remote_get($url, array('timeout' => 15));
-    if (is_wp_error($response)) {
-        return null;
-    }
-    $bin  = wp_remote_retrieve_body($response);
-    $mime = wp_remote_retrieve_header($response, 'content-type');
-    if (empty($bin)) {
-        return null;
-    }
-    if (empty($mime) || strpos($mime, 'image/') !== 0) {
-        $mime = 'image/png';
-    }
-    return array('binary' => $bin, 'mime' => $mime);
-}
-
 function flexframe_handle_ai_render(WP_REST_Request $request) {
-    $provider = sanitize_text_field((string) $request->get_param('provider'));
-    if (!in_array($provider, array('openai', 'gemini'), true)) {
-        // Default: prefer OpenAI if its key is set, else Gemini.
-        if (defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '') {
-            $provider = 'openai';
-        } elseif (defined('FLEXFRAME_GEMINI_KEY') && FLEXFRAME_GEMINI_KEY !== '') {
-            $provider = 'gemini';
-        } else {
-            return new WP_Error('flexframe_no_key', 'No AI provider key configured on server.', array('status' => 500));
-        }
-    }
-
-    if ($provider === 'openai' && (!defined('FLEXFRAME_OPENAI_KEY') || FLEXFRAME_OPENAI_KEY === '')) {
+    if (!defined('FLEXFRAME_OPENAI_KEY') || empty(FLEXFRAME_OPENAI_KEY)) {
         return new WP_Error('flexframe_no_key', 'OpenAI API key not configured on server.', array('status' => 500));
-    }
-    if ($provider === 'gemini' && (!defined('FLEXFRAME_GEMINI_KEY') || FLEXFRAME_GEMINI_KEY === '')) {
-        return new WP_Error('flexframe_no_key', 'Gemini API key not configured on server.', array('status' => 500));
     }
 
     $screenshot_data_url = $request->get_param('screenshot');
@@ -6453,12 +6384,9 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
     }
 
     // Strip the "data:image/png;base64," prefix if present.
-    $screenshot_b64 = '';
     if (preg_match('/^data:image\/(png|jpeg|jpg|webp);base64,(.+)$/i', $screenshot_data_url, $m)) {
-        $screenshot_b64    = $m[2];
         $screenshot_binary = base64_decode($m[2]);
     } else {
-        $screenshot_b64    = $screenshot_data_url;
         $screenshot_binary = base64_decode($screenshot_data_url);
     }
 
@@ -6475,108 +6403,22 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
         $gym_name = 'this gym';
     }
 
-    // Build prompt from the admin-editable template (falls back to default).
-    $template = get_option('flexframe_ai_prompt_template', '');
-    if (empty($template)) {
-        $template = flexframe_ai_default_prompt_template();
-    }
-    $prompt = strtr($template, array(
-        '{gymName}'      => $gym_name,
-        '{exerciseName}' => $exercise_name,
-    ));
-
-    // Gather reference images (logo, theme, person) when enabled.
-    $references = array();
-    $use_refs   = (bool) get_option('flexframe_ai_use_references', true);
-    if ($use_refs) {
-        $ref_logo_url   = (string) get_option('flexframe_ai_reference_logo_url', '');
-        $ref_theme_url  = (string) get_option('flexframe_ai_reference_theme_url', '');
-        $ref_person_url = (string) get_option('flexframe_ai_reference_person_url', '');
-
-        $ref_descriptions = array();
-
-        if ($ref_logo_url) {
-            $img = flexframe_ai_fetch_reference_image($ref_logo_url);
-            if ($img) {
-                $references[] = array_merge($img, array('label' => 'brand logo'));
-                $ref_descriptions[] = 'a brand logo to incorporate prominently into the design';
-            }
-        }
-        if ($ref_theme_url) {
-            $img = flexframe_ai_fetch_reference_image($ref_theme_url);
-            if ($img) {
-                $references[] = array_merge($img, array('label' => 'social media theme'));
-                $ref_descriptions[] = 'a social media style/theme reference whose visual style, color palette, typography, and layout you should match closely';
-            }
-        }
-        if ($ref_person_url) {
-            $img = flexframe_ai_fetch_reference_image($ref_person_url);
-            if ($img) {
-                $references[] = array_merge($img, array('label' => 'reference athlete'));
-                $ref_descriptions[] = 'a reference athlete/person whose appearance, build and styling should inspire the figure performing the exercise';
-            }
-        }
-
-        if (!empty($ref_descriptions)) {
-            $prompt .= "\n\nAdditional reference images are provided: " . implode('; ', $ref_descriptions) . '.';
-        }
-    }
-
-    if ($provider === 'gemini') {
-        return flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references);
-    }
-    return flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name, $references);
-}
-
-/**
- * OpenAI gpt-image-2 via /v1/images/edits (multipart).
- * The Edits endpoint accepts multiple input images via image[] (up to ~16).
- */
-function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name, $gym_name, $references = array()) {
-    // Write all input images (screenshot + references) to temp files.
-    $tmp_files = array();
-    $cleanup = function () use (&$tmp_files) {
-        foreach ($tmp_files as $f) { @unlink($f); }
-    };
-
-    $main_tmp = wp_tempnam('flexframe-ai-main-');
-    if (!$main_tmp) {
-        return new WP_Error('flexframe_tmp_fail', 'Could not create temp file.', array('status' => 500));
-    }
-    file_put_contents($main_tmp, $screenshot_binary);
-    $tmp_files[] = $main_tmp;
-
-    // Multipart fields. OpenAI expects image[] for multi-image edits.
-    $post_fields = array(
-        'model'   => 'gpt-image-2',
-        'prompt'  => $prompt,
-        'size'    => '1024x1024',
-        'quality' => 'medium',
-        'n'       => 1,
+    // Build the prompt (templatized version of the prompt user tested in ChatGPT).
+    $prompt = sprintf(
+        'I need you to turn this screenshot of a 3D model from a 3D exercise library for "%1$s" of the %2$s exercise into a very cool themed and branded infographic of the exercise for our social media. Take your time to use correct information for the exercise. Use the 3D model to make a photorealistic graphic of the exercise. Add text prompts, tips and cues of the exercise, muscles worked, etc. Include brand color themes from the image. Add a small watermark at the bottom of the image: "Powered by FitFlexion.com". The image must be square for Instagram.',
+        $gym_name,
+        $exercise_name
     );
 
-    if (!empty($references)) {
-        // Use array form for multiple inputs.
-        $post_fields['image[]'] = new CURLFile($main_tmp, 'image/png', 'screenshot.png');
-        $i = 0;
-        foreach ($references as $ref) {
-            $i++;
-            $rtmp = wp_tempnam('flexframe-ai-ref-');
-            file_put_contents($rtmp, $ref['binary']);
-            $tmp_files[] = $rtmp;
-            $ext = (strpos($ref['mime'], 'jpeg') !== false) ? 'jpg' : 'png';
-            // CURLFile array key trick: when only one 'image[]' entry is supported
-            // by curl's POSTFIELDS, we have to pass them as separate keys with
-            // bracketed names. PHP's curl will preserve the keys verbatim.
-            $post_fields['image[' . $i . ']'] = new CURLFile($rtmp, $ref['mime'], 'reference_' . $i . '.' . $ext);
-        }
-        // Re-key the main image to image[0].
-        $post_fields['image[0]'] = $post_fields['image[]'];
-        unset($post_fields['image[]']);
-    } else {
-        $post_fields['image'] = new CURLFile($main_tmp, 'image/png', 'screenshot.png');
+    // Write screenshot to a temp file so we can stream it as multipart form data.
+    $tmp_file = wp_tempnam('flexframe-ai-');
+    if (!$tmp_file) {
+        return new WP_Error('flexframe_tmp_fail', 'Could not create temp file.', array('status' => 500));
     }
+    file_put_contents($tmp_file, $screenshot_binary);
 
+    // Call OpenAI Images Edits endpoint with gpt-image-2.
+    // Using cURL directly because WordPress's wp_remote_post doesn't support multipart with CURLFile cleanly.
     $ch = curl_init('https://api.openai.com/v1/images/edits');
     curl_setopt_array($ch, array(
         CURLOPT_RETURNTRANSFER => true,
@@ -6584,8 +6426,15 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
         CURLOPT_HTTPHEADER     => array(
             'Authorization: Bearer ' . FLEXFRAME_OPENAI_KEY,
         ),
-        CURLOPT_POSTFIELDS     => $post_fields,
-        CURLOPT_TIMEOUT        => 180,
+        CURLOPT_POSTFIELDS     => array(
+            'model'           => 'gpt-image-2',
+            'image'           => new CURLFile($tmp_file, 'image/png', 'screenshot.png'),
+            'prompt'          => $prompt,
+            'size'            => '1024x1024',
+            'quality'         => 'medium',
+            'n'               => 1,
+        ),
+        CURLOPT_TIMEOUT        => 120,
     ));
 
     $response_body = curl_exec($ch);
@@ -6593,7 +6442,7 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
     $curl_err      = curl_error($ch);
     curl_close($ch);
 
-    $cleanup();
+    @unlink($tmp_file);
 
     if ($response_body === false) {
         return new WP_Error('flexframe_curl_fail', 'OpenAI request failed: ' . $curl_err, array('status' => 502));
@@ -6612,97 +6461,7 @@ function flexframe_ai_render_openai($screenshot_binary, $prompt, $exercise_name,
 
     return rest_ensure_response(array(
         'success'      => true,
-        'provider'     => 'openai',
         'image'        => 'data:image/png;base64,' . $decoded['data'][0]['b64_json'],
-        'exerciseName' => $exercise_name,
-        'gymName'      => $gym_name,
-    ));
-}
-
-/**
- * Google Gemini 2.5 Flash Image (Nano Banana) via generativelanguage.googleapis.com.
- *
- * Endpoint: POST /v1beta/models/gemini-2.5-flash-image:generateContent?key=API_KEY
- * Multi-image input is supported by including additional inline_data parts.
- */
-function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $gym_name, $references = array()) {
-    $url = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-image:generateContent?key=' . urlencode(FLEXFRAME_GEMINI_KEY);
-
-    $parts = array(
-        array('text' => $prompt),
-        array(
-            'inline_data' => array(
-                'mime_type' => 'image/png',
-                'data'      => $screenshot_b64,
-            ),
-        ),
-    );
-
-    foreach ($references as $ref) {
-        $parts[] = array(
-            'inline_data' => array(
-                'mime_type' => $ref['mime'],
-                'data'      => base64_encode($ref['binary']),
-            ),
-        );
-    }
-
-    $body = array(
-        'contents' => array(
-            array('parts' => $parts),
-        ),
-    );
-
-    $response = wp_remote_post($url, array(
-        'headers' => array('Content-Type' => 'application/json'),
-        'body'    => wp_json_encode($body),
-        'timeout' => 180,
-    ));
-
-    if (is_wp_error($response)) {
-        return new WP_Error('flexframe_gemini_fail', 'Gemini request failed: ' . $response->get_error_message(), array('status' => 502));
-    }
-
-    $http_code     = wp_remote_retrieve_response_code($response);
-    $response_body = wp_remote_retrieve_body($response);
-    $decoded       = json_decode($response_body, true);
-
-    if ($http_code < 200 || $http_code >= 300) {
-        $err_msg = isset($decoded['error']['message']) ? $decoded['error']['message'] : 'Gemini returned HTTP ' . $http_code;
-        return new WP_Error('flexframe_gemini_error', $err_msg, array('status' => 502, 'http_code' => $http_code));
-    }
-
-    // Find the first inline_data part with image bytes.
-    $image_b64 = '';
-    $mime_type = 'image/png';
-    if (!empty($decoded['candidates'][0]['content']['parts']) && is_array($decoded['candidates'][0]['content']['parts'])) {
-        foreach ($decoded['candidates'][0]['content']['parts'] as $part) {
-            if (!empty($part['inline_data']['data'])) {
-                $image_b64 = $part['inline_data']['data'];
-                if (!empty($part['inline_data']['mime_type'])) {
-                    $mime_type = $part['inline_data']['mime_type'];
-                }
-                break;
-            }
-            // Some SDK shapes use camelCase
-            if (!empty($part['inlineData']['data'])) {
-                $image_b64 = $part['inlineData']['data'];
-                if (!empty($part['inlineData']['mimeType'])) {
-                    $mime_type = $part['inlineData']['mimeType'];
-                }
-                break;
-            }
-        }
-    }
-
-    if (empty($image_b64)) {
-        return new WP_Error('flexframe_bad_response', 'Gemini response did not contain an image.', array('status' => 502, 'raw' => $response_body));
-    }
-
-    return rest_ensure_response(array(
-        'success'      => true,
-        'provider'     => 'gemini',
-        'image'        => 'data:' . $mime_type . ';base64,' . $image_b64,
         'exerciseName' => $exercise_name,
         'gymName'      => $gym_name,
     ));
