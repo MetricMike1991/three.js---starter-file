@@ -3116,6 +3116,7 @@ function flexframe_settings_page() {
                         </div>
                         
                         <!-- Divider with "OR" -->
+                        <?php if (flexframe_is_super_admin()) : ?>
                         <div class="theme-settings-divider">
                             <span class="divider-line"></span>
                             <span class="divider-text"><?php _e('OR', 'flexframe-viewer'); ?></span>
@@ -3571,7 +3572,7 @@ function flexframe_settings_page() {
                                             'bumper' => array('name' => 'Bumper Plates', 'icon' => '⚫'),
                                             'cable' => array('name' => 'Cable', 'icon' => '🔗'),
                                             'chrome' => array('name' => 'Chrome', 'icon' => '✨'),
-                                            'color1' => array('name' => 'Primary Accent Color', 'icon' => '🎨'),
+                                            'color1' => array('name' => 'Brand Color (COLOR1)', 'icon' => '🎨'),
                                             'metal' => array('name' => 'Metal', 'icon' => '🔩'),
                                             'pad' => array('name' => 'Pad / Cushion', 'icon' => '🛋️'),
                                             'plastic' => array('name' => 'Plastic', 'icon' => '🧱'),
@@ -4037,6 +4038,7 @@ function flexframe_settings_page() {
                             </div>
                         </div>
                         </div><!-- End of manual-theme-settings -->
+                        <?php endif; // flexframe_is_super_admin ?>
                     </div>
                 </div>
                 
@@ -12217,12 +12219,6 @@ function flexframe_settings_page() {
             var menuTextColor = $('#flexframe_menu_text_color').val();
             
             function hexToRgba(hex, alpha) {
-                // Defensive: when super-admin-gated inputs aren't rendered,
-                // $('#...').val() is undefined. Fall back to transparent black.
-                if (typeof hex !== 'string' || hex.charAt(0) !== '#' || hex.length < 7) {
-                    return 'rgba(0, 0, 0, 0)';
-                }
-                if (isNaN(alpha)) { alpha = 1; }
                 var r = parseInt(hex.slice(1, 3), 16);
                 var g = parseInt(hex.slice(3, 5), 16);
                 var b = parseInt(hex.slice(5, 7), 16);
@@ -12324,10 +12320,6 @@ function flexframe_settings_page() {
         
         // Helper function to adjust color brightness
         function adjustBrightness(hex, percent) {
-            // Defensive: gated inputs may yield undefined values.
-            if (typeof hex !== 'string' || hex.charAt(0) !== '#' || hex.length < 7) {
-                return '#000000';
-            }
             var r = parseInt(hex.slice(1, 3), 16);
             var g = parseInt(hex.slice(3, 5), 16);
             var b = parseInt(hex.slice(5, 7), 16);

@@ -3571,7 +3571,7 @@ function flexframe_settings_page() {
                                             'bumper' => array('name' => 'Bumper Plates', 'icon' => '⚫'),
                                             'cable' => array('name' => 'Cable', 'icon' => '🔗'),
                                             'chrome' => array('name' => 'Chrome', 'icon' => '✨'),
-                                            'color1' => array('name' => 'Primary Accent Color', 'icon' => '🎨'),
+                                            'color1' => array('name' => 'Brand Color (COLOR1)', 'icon' => '🎨'),
                                             'metal' => array('name' => 'Metal', 'icon' => '🔩'),
                                             'pad' => array('name' => 'Pad / Cushion', 'icon' => '🛋️'),
                                             'plastic' => array('name' => 'Plastic', 'icon' => '🧱'),

@@ -700,11 +700,6 @@ class ThreeJSApp {
             'XBUMPER': { section: 'HD Bumper (= BUMPER)' },
             'XCLEAR': { section: 'HD Clear (= SKIN transmission)' },
             'XBODY': { section: 'HD Body (depthWrite ON)' },
-            'XPLASTIC': { section: 'HD Plastic (= PLASTIC)' },
-            'XPAD': { section: 'HD Pad (= PAD)' },
-            'XCABLE': { section: 'HD Cable (= CABLE)' },
-            'XCHROME': { section: 'HD Chrome (= CHROME)' },
-            'XBARBELL': { section: 'HD Barbell (= BARBELL)' },
             'LOGO': { section: 'Logo (Step 2)' }
         };
         
