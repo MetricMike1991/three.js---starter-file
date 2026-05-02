@@ -100,6 +100,32 @@ function flexframe_enqueue_workout_builder_assets() {
         'viewerPageUrl' => get_option('flexframe_viewer_page_url', ''),
         'privacyPolicyUrl' => get_option('flexframe_privacy_policy_url', ''),
     ));
+
+    // ── AI Coach (logged-in users only, requires OpenAI key) ──
+    $coach_enabled = is_user_logged_in()
+        && defined('FLEXFRAME_OPENAI_KEY')
+        && FLEXFRAME_OPENAI_KEY !== '';
+
+    if ($coach_enabled) {
+        wp_enqueue_style(
+            'flexframe-ai-coach',
+            $plugin_url . 'ai-coach.css',
+            array('flexframe-workout-builder'),
+            FLEXFRAME_VERSION
+        );
+        wp_enqueue_script(
+            'flexframe-ai-coach',
+            $plugin_url . 'ai-coach.js',
+            array('flexframe-workout-builder'),
+            FLEXFRAME_VERSION,
+            true
+        );
+        wp_localize_script('flexframe-ai-coach', 'flexframeCoachSettings', array(
+            'restUrl'    => esc_url_raw(rest_url('flexframe/v1/')),
+            'nonce'      => wp_create_nonce('wp_rest'),
+            'isLoggedIn' => true,
+        ));
+    }
 }
 add_action('wp_enqueue_scripts', 'flexframe_enqueue_workout_builder_assets');
 
@@ -302,6 +328,53 @@ function flexframe_workout_builder_shortcode($atts) {
             <div class="ffwb-print-qr"></div>
         </div>
     </div>
+    <?php
+    // ── AI Coach floating chat (logged-in users only, requires API key) ──
+    $coach_enabled = is_user_logged_in()
+        && defined('FLEXFRAME_OPENAI_KEY')
+        && FLEXFRAME_OPENAI_KEY !== '';
+    if ($coach_enabled) :
+    ?>
+    <div id="flexframe-ai-coach" class="ffc-root">
+        <button class="ffc-bubble" type="button" aria-label="Open FlexFrame Coach">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+            <span class="ffc-bubble-dot"></span>
+        </button>
+        <div class="ffc-panel" role="dialog" aria-label="FlexFrame Coach chat">
+            <div class="ffc-header">
+                <div class="ffc-header-icon">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-6h2v6zm0-8h-2V7h2v4z"/></svg>
+                </div>
+                <div class="ffc-header-text">
+                    <div class="ffc-header-title">FlexFrame Coach</div>
+                    <div class="ffc-header-sub">AI workout builder · beta</div>
+                </div>
+                <div class="ffc-header-actions">
+                    <button class="ffc-header-btn ffc-header-reset" type="button" title="New chat">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg>
+                    </button>
+                    <button class="ffc-header-btn ffc-header-close" type="button" title="Close">
+                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+                    </button>
+                </div>
+            </div>
+            <div class="ffc-messages"></div>
+            <div class="ffc-chips">
+                <button type="button" class="ffc-chip" data-mode="wod" data-prompt="WOD please — surprise me with today's Workout of the Day.">WOD</button>
+                <button type="button" class="ffc-chip" data-prompt="Build me a 45-minute push day at the gym (intermediate, no injuries).">45-min push day</button>
+                <button type="button" class="ffc-chip" data-prompt="I'm a beginner. Give me a full-body workout I can do at home with dumbbells in 30 minutes.">Beginner home (DBs)</button>
+                <button type="button" class="ffc-chip" data-prompt="Hypertrophy leg day, 60 minutes, full gym access.">Leg hypertrophy</button>
+                <button type="button" class="ffc-chip" data-prompt="Quick 20-minute fat-loss circuit with minimal equipment.">20-min fat loss</button>
+            </div>
+            <div class="ffc-input-bar">
+                <textarea class="ffc-input" rows="1" placeholder="Tell me your goal, time, equipment…"></textarea>
+                <button class="ffc-send" type="button" aria-label="Send">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    <?php endif; ?>
     <?php
     return ob_get_clean();
 }

@@ -1354,6 +1354,60 @@
         }
     }
 
+    // ─── AI Coach handoff ──────────────────────────────────────
+    /**
+     * Populate the builder from an AI-proposed workout.
+     * Shape: { name: string, exercises: [{exerciseId, sets, reps, rest, rir, notes, groupId, ...}] }
+     */
+    function loadFromAI(workout) {
+        if (!workout || !Array.isArray(workout.exercises) || !workout.exercises.length) {
+            showToast('No workout to load');
+            return;
+        }
+
+        // Clear existing state (autosave-safe — we'll write fresh state through autosave loop)
+        workoutExercises = [];
+        workoutId = null;
+        workoutHash = null;
+
+        if (workoutNameInput) workoutNameInput.value = workout.name || 'AI Workout';
+
+        workout.exercises.forEach((ex, idx) => {
+            const catalogueMatch = exerciseCatalogue.find(c => c.id === ex.exerciseId) || {};
+            workoutExercises.push({
+                uid: generateUid(),
+                exerciseId: ex.exerciseId,
+                name: ex.name || catalogueMatch.name || ex.exerciseId,
+                thumbnailUrl: ex.thumbnailUrl || catalogueMatch.thumbnailUrl || '',
+                muscleGroup: catalogueMatch.muscleGroup || [],
+                configUrl: catalogueMatch.configUrl || '',
+                sets: ex.sets || 3,
+                reps: ex.reps || '10',
+                rest: ex.rest || 60,
+                weight: ex.weight || '',
+                rir: ex.rir || '2',
+                notes: ex.notes || '',
+                groupId: ex.groupId || null,
+                order: typeof ex.order === 'number' ? ex.order : idx,
+            });
+        });
+
+        renderExerciseList();
+        updateStats();
+        if (typeof renderFinderResults === 'function') renderFinderResults();
+
+        showToast('<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg> Workout loaded from Coach!');
+    }
+
+    // Expose to other scripts (AI coach widget)
+    window.flexframeBuilder = window.flexframeBuilder || {};
+    window.flexframeBuilder.loadFromAI = loadFromAI;
+
+    // Custom-event fallback
+    document.addEventListener('flexframe:ai-load-workout', (e) => {
+        if (e && e.detail) loadFromAI(e.detail);
+    });
+
     // ─── Like / Heart ──────────────────────────────────────────
     function initLikeButton(hash, likeCount) {
         if (!likeBtn) return;

@@ -7006,9 +7006,444 @@ function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $g
     ));
 }
 
+/* =========================================================================
+ * AI Workout Coach (Workout Builder chat)
+ * POST /wp-json/flexframe/v1/coach-chat
+ * Body: { messages: [{role, content}, ...] }
+ * Returns: { message: string|null, workout: {name, exercises:[]}|null, finished: bool }
+ *
+ * Uses OpenAI gpt-4o-mini with function/tool calling. The model can either
+ * reply with a normal chat message OR call the `propose_workout` tool to
+ * deliver the final program in the exact shape the workout builder accepts.
+ * ========================================================================= */
 
+/**
+ * Coerce any rep string the AI might emit ("8-10", "30s", "12 reps", etc.)
+ * into one of the workout builder's allowed dropdown values.
+ */
+function flexframe_coach_normalize_reps($reps) {
+    static $allowed = array('1','2','3','4','5','6','7','8','9','10','12','15','20','25','30','AMRAP');
 
+    $reps = trim((string) $reps);
+    if ($reps === '') return '10';
 
+    // Direct match (case-insensitive for AMRAP)
+    if (in_array($reps, $allowed, true)) return $reps;
+    if (strcasecmp($reps, 'amrap') === 0) return 'AMRAP';
+    if (stripos($reps, 'max') !== false || stripos($reps, 'failure') !== false) return 'AMRAP';
+
+    // Range like "8-10", "8 to 10", "8–10"  → take the upper bound
+    if (preg_match('/(\d+)\s*[\-\x{2013}\x{2014}to]+\s*(\d+)/u', $reps, $m)) {
+        $n = (int) $m[2];
+    }
+    // Duration like "30s", "30 sec", "1 min" → convert minutes, then snap
+    elseif (preg_match('/^(\d+)\s*m(in)?/i', $reps, $m)) {
+        $n = (int) $m[1] * 60; // treat as seconds-of-work then snap
+    }
+    elseif (preg_match('/(\d+)/', $reps, $m)) {
+        $n = (int) $m[1];
+    } else {
+        return '10';
+    }
+
+    if ($n <= 0) return '10';
+
+    // Snap to nearest allowed numeric value
+    $numeric = array(1,2,3,4,5,6,7,8,9,10,12,15,20,25,30);
+    $best = $numeric[0];
+    $bestDiff = abs($n - $best);
+    foreach ($numeric as $v) {
+        $d = abs($n - $v);
+        if ($d < $bestDiff) { $best = $v; $bestDiff = $d; }
+    }
+    return (string) $best;
+}
+
+/**
+ * Build a randomised brief for the WOD (Workout of the Day) mode.
+ * Returns a system message that locks the model into a specific style
+ * for today's workout so each WOD click feels different.
+ */
+function flexframe_coach_build_wod_brief() {
+    $styles = array(
+        'a full-body strength session using a mix of barbell and dumbbell compound lifts',
+        'an all-DUMBBELL workout — every exercise must use dumbbells only',
+        'an all-KETTLEBELL workout — every exercise must use kettlebells only (swings, goblet squats, presses, etc.)',
+        'a glute-focused lower-body session — hip thrusts, glute bridges, RDLs, abductions, lunges',
+        'an upper-body push & pull session (chest, back, shoulders) — no legs',
+        'a lower-body strength session focused on quads and posterior chain',
+        'a posterior-chain focused session — hamstrings, glutes, lower & upper back',
+        'a "pull day" workout — back and biceps, varied angles',
+        'a "push day" workout — chest, shoulders, triceps, varied angles',
+        'a bodyweight-only / minimal-equipment circuit',
+        'a conditioning circuit alternating between strength and metabolic finishers, with at least one superset',
+        'a core & abs focused session with full-body compounds for warm-up',
+        'a shoulder & arm hypertrophy session',
+        'a powerlifting-style session — one heavy compound + accessories',
+        'a functional / athletic session (carries, lunges, presses, rotational core work)',
+    );
+
+    $durations = array(30, 35, 40, 45, 50, 60, 75, 90);
+    $levels    = array('beginner', 'intermediate', 'intermediate-to-advanced');
+
+    // Deterministic per-day so the SAME user clicking WOD twice in a row gets
+    // the same WOD (it is, after all, the workout of the day) — but it changes
+    // tomorrow.
+    $seed_str = 'flexframe_wod_' . gmdate('Y-m-d') . '_' . get_current_user_id();
+    $seed     = crc32($seed_str);
+    mt_srand($seed);
+
+    $style    = $styles[mt_rand(0, count($styles) - 1)];
+    $duration = $durations[mt_rand(0, count($durations) - 1)];
+    $level    = $levels[mt_rand(0, count($levels) - 1)];
+    $count    = mt_rand(5, 9); // exercise count
+
+    // Reset RNG so we don't pollute later random calls
+    mt_srand();
+
+    $today = gmdate('l, j F'); // e.g. "Friday, 2 May"
+
+    return "WOD MODE — TODAY IS {$today}.\n\n" .
+        "The user pressed the 'WOD' (Workout of the Day) button. They want ONE click, no questions, instant workout. Today's brief:\n" .
+        "• Style: {$style}\n" .
+        "• Duration: approximately {$duration} minutes\n" .
+        "• Level: {$level}\n" .
+        "• Number of exercises: around {$count}\n" .
+        "• Assume NO injuries or limitations.\n" .
+        "• Assume full gym access (unless the style above restricts equipment).\n\n" .
+        "BEHAVIOUR — STRICT:\n" .
+        "1. Do NOT ask any clarifying questions. Do NOT reply with text.\n" .
+        "2. Immediately call the `propose_workout` tool with a complete workout matching the brief above.\n" .
+        "3. Pick exercises that genuinely fit the style — e.g. for 'all kettlebell', every exerciseId must be a kettlebell-equipment exercise from the catalogue. If the catalogue lacks enough exercises for a given style, fall back to the closest available alternatives.\n" .
+        "4. Vary exercise selection from previous sessions — be creative, not repetitive.\n" .
+        "5. Notes can still be brief but should reference 'today's WOD' and explain the placement/purpose of each exercise.\n" .
+        "6. Title the workout something fun and descriptive of the style and date (e.g. 'Friday Glute Burner', 'Kettlebell Chaos', 'Push Day Power').\n\n" .
+        "Call the tool now.";
+}
+
+function flexframe_register_coach_chat_api() {
+    register_rest_route('flexframe/v1', '/coach-chat', array(
+        'methods'             => 'POST',
+        'callback'            => 'flexframe_handle_coach_chat',
+        'permission_callback' => function () {
+            return is_user_logged_in();
+        },
+    ));
+}
+add_action('rest_api_init', 'flexframe_register_coach_chat_api');
+
+/**
+ * Bust the catalogue cache whenever the admin changes the
+ * available-exercise selections or custom exercises.
+ */
+function flexframe_coach_invalidate_index_cache() {
+    delete_transient('flexframe_coach_ex_index');
+}
+add_action('update_option_flexframe_hidden_exercises', 'flexframe_coach_invalidate_index_cache');
+add_action('add_option_flexframe_hidden_exercises',    'flexframe_coach_invalidate_index_cache');
+add_action('update_option_flexframe_custom_exercises', 'flexframe_coach_invalidate_index_cache');
+add_action('add_option_flexframe_custom_exercises',    'flexframe_coach_invalidate_index_cache');
+
+/**
+ * Build a slim, token-efficient exercise index for the model.
+ * Cached in a 1-hour transient. Fetches the same CDN catalogue the
+ * workout builder uses, plus custom exercises stored in options.
+ */
+function flexframe_get_coach_exercise_index() {
+    $cached = get_transient('flexframe_coach_ex_index');
+    if (is_array($cached) && !empty($cached)) {
+        return $cached;
+    }
+
+    $cdn_url = 'https://FlexFrame.b-cdn.net/Exercise%20Catalogue%20For%20Menus%20%26%20Thumbnails/exercises.json';
+    $index   = array();
+
+    // Hidden exercises = admin-deselected. The AI must NEVER include these.
+    $hidden_json = get_option('flexframe_hidden_exercises', '[]');
+    $hidden      = json_decode($hidden_json, true);
+    if (!is_array($hidden)) $hidden = array();
+    $hidden_map  = array_flip(array_map('strval', $hidden));
+
+    $resp = wp_remote_get($cdn_url, array('timeout' => 20));
+    if (!is_wp_error($resp) && wp_remote_retrieve_response_code($resp) === 200) {
+        $list = json_decode(wp_remote_retrieve_body($resp), true);
+        if (is_array($list)) {
+            foreach ($list as $ex) {
+                if (empty($ex['id']) || empty($ex['name'])) continue;
+                if (isset($hidden_map[(string) $ex['id']])) continue; // admin-hidden
+                $index[] = array(
+                    'id'        => (string) $ex['id'],
+                    'name'      => (string) $ex['name'],
+                    'type'      => isset($ex['type']) ? (string) $ex['type'] : 'Strength',
+                    'muscles'   => isset($ex['muscleGroup']) && is_array($ex['muscleGroup']) ? array_values(array_slice($ex['muscleGroup'], 0, 4)) : array(),
+                    'equipment' => isset($ex['equipment']) && is_array($ex['equipment']) ? array_values(array_slice($ex['equipment'], 0, 3)) : array(),
+                );
+            }
+        }
+    }
+
+    // Merge custom exercises (also subject to hidden list + showInWorkout flag)
+    $custom_json = get_option('flexframe_custom_exercises', '[]');
+    $custom      = json_decode($custom_json, true);
+    if (is_array($custom)) {
+        foreach ($custom as $ce) {
+            if (empty($ce['id']) || empty($ce['name'])) continue;
+            if (isset($ce['showInWorkout']) && $ce['showInWorkout'] === false) continue;
+            if (isset($hidden_map[(string) $ce['id']])) continue;
+            $index[] = array(
+                'id'        => (string) $ce['id'],
+                'name'      => (string) $ce['name'],
+                'type'      => isset($ce['type']) ? (string) $ce['type'] : 'Strength',
+                'muscles'   => isset($ce['muscleGroup']) && is_array($ce['muscleGroup']) ? array_values($ce['muscleGroup']) : array(),
+                'equipment' => isset($ce['equipment']) && is_array($ce['equipment']) ? array_values($ce['equipment']) : array(),
+            );
+        }
+    }
+
+    if (!empty($index)) {
+        set_transient('flexframe_coach_ex_index', $index, HOUR_IN_SECONDS);
+    }
+    return $index;
+}
+
+/**
+ * System prompt for the coach.
+ */
+function flexframe_coach_system_prompt() {
+    $gym = get_bloginfo('name') ?: 'this gym';
+    return "You are FlexFrame Coach, a friendly, knowledgeable personal trainer chat assistant on the {$gym} workout builder page.\n\n" .
+        "Your job:\n" .
+        "1. Through a short, natural conversation (3-6 quick questions max), gather the essentials needed to build ONE workout session: training goal (strength / hypertrophy / fat loss / general / sport-specific), experience level (beginner / intermediate / advanced), available time (minutes), available equipment or gym setup, target body area or split (full body, push, pull, legs, upper, lower, etc.), and any injuries or limitations to avoid.\n" .
+        "2. Ask one or two questions per message. Keep messages SHORT and conversational. Confirm assumptions briefly before building.\n" .
+        "3. When you have enough information, call the `propose_workout` tool with a complete single-session workout. Do NOT describe the workout in chat text once you have called the tool — the UI will render it.\n\n" .
+        "STRICT RULES for the workout you propose:\n" .
+        "- The catalogue provided in the next system message is the ONLY list of exercises this gym offers — exercises not on that list are unavailable. NEVER invent, substitute, or reference exercises outside that list, even if the user asks for them. If the user requests something missing (e.g. \"barbell squat\" but it's not in the list), pick the closest available alternative from the catalogue and briefly say so.\n" .
+        "- Pick exercises ONLY from the catalogue list. Use each exercise's exact `id` value as `exerciseId`.\n" .
+        "- 4-10 exercises total for the session, ordered logically (compound lifts first, accessories after).\n" .
+        "- Sets: integer 1-6. Reps: MUST be one of these exact string values (the builder's dropdown allows nothing else): \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"12\", \"15\", \"20\", \"25\", \"30\", or \"AMRAP\". Do NOT use ranges like \"8-10\" or durations like \"30s\" — pick a single value from that list. Rest: integer seconds (30-300).\n" .
+        "- RIR (reps in reserve): string \"0\"-\"4\", default \"2\".\n" .
+        "- Notes: a short, PERSONAL coaching cue (max ~280 chars). Make every note feel hand-written for THIS user — reference their name (if given), goal, experience level, available time, equipment, and especially any injuries or limitations they mentioned. Briefly say WHY you chose this exercise and WHY it sits at this point in the session (e.g. \"Leading with this, Sarah, because you said you want to prioritise upper-body strength and you're fresh\", or \"Picked the machine version since your shoulder is still recovering — keeps the path fixed and load controlled\", or \"Placed last as a finisher because you've only got 30 mins\"). Avoid generic gym clichés. If the user gave very little context, keep notes shorter but still tied to what they DID say.\n" .
+        "- Supersets: give consecutive exercises the SAME `groupId` string (e.g. \"g1\", \"g2\"). Stand-alone exercises use `null`. When you superset, mention in the notes WHY those two are paired.\n" .
+        "- Respect injuries the user mentioned — never include exercises that load an injured area.\n" .
+        "- Prefer exercises whose `equipment` matches what the user said is available.\n\n" .
+        "Tone: warm, encouraging, concise. No medical claims. If the user asks for something outside scope (nutrition plans, multi-week programs, medical advice), briefly redirect to single-session programming.";
+}
+
+function flexframe_handle_coach_chat(WP_REST_Request $request) {
+    if (!defined('FLEXFRAME_OPENAI_KEY') || FLEXFRAME_OPENAI_KEY === '') {
+        return new WP_Error('flexframe_no_key', 'OpenAI API key not configured on server.', array('status' => 500));
+    }
+
+    // Per-user rate limit: 40 messages per hour
+    $user_id  = get_current_user_id();
+    $rl_key   = 'ffcoach_rl_' . $user_id;
+    $rl_count = (int) get_transient($rl_key);
+    if ($rl_count >= 40) {
+        return new WP_Error('flexframe_rate_limit', 'Too many messages. Please try again in a little while.', array('status' => 429));
+    }
+    set_transient($rl_key, $rl_count + 1, HOUR_IN_SECONDS);
+
+    $messages_in = $request->get_param('messages');
+    if (!is_array($messages_in) || empty($messages_in)) {
+        return new WP_Error('flexframe_bad_request', 'messages array required.', array('status' => 400));
+    }
+
+    // Sanitize + cap conversation history (last 20 turns)
+    $history = array();
+    foreach (array_slice($messages_in, -20) as $m) {
+        if (!is_array($m) || empty($m['role']) || !isset($m['content'])) continue;
+        $role = in_array($m['role'], array('user', 'assistant'), true) ? $m['role'] : 'user';
+        $content = (string) $m['content'];
+        if (strlen($content) > 4000) $content = substr($content, 0, 4000);
+        $history[] = array('role' => $role, 'content' => $content);
+    }
+    if (empty($history)) {
+        return new WP_Error('flexframe_bad_request', 'No valid messages.', array('status' => 400));
+    }
+
+    $catalogue = flexframe_get_coach_exercise_index();
+    if (empty($catalogue)) {
+        return new WP_Error('flexframe_no_catalogue', 'Exercise catalogue unavailable.', array('status' => 503));
+    }
+
+    // ── WOD mode: skip the Q&A, randomise the brief, force tool call ──
+    $mode    = sanitize_key((string) $request->get_param('mode'));
+    $is_wod  = ($mode === 'wod');
+    $wod_brief = '';
+    if ($is_wod) {
+        $wod_brief = flexframe_coach_build_wod_brief();
+    }
+
+    // Tool definition matching the workout builder's loadSharedWorkout shape.
+    $tool = array(
+        'type'     => 'function',
+        'function' => array(
+            'name'        => 'propose_workout',
+            'description' => 'Submit a complete single-session workout to populate the workout builder. Call this ONLY when you have gathered enough info from the user.',
+            'parameters'  => array(
+                'type'                 => 'object',
+                'additionalProperties' => false,
+                'required'             => array('name', 'exercises'),
+                'properties'           => array(
+                    'name' => array(
+                        'type'        => 'string',
+                        'description' => 'Short workout title, e.g. "Upper Push Day".',
+                    ),
+                    'exercises' => array(
+                        'type'     => 'array',
+                        'minItems' => 1,
+                        'maxItems' => 12,
+                        'items'    => array(
+                            'type'                 => 'object',
+                            'additionalProperties' => false,
+                            'required'             => array('exerciseId', 'sets', 'reps', 'rest'),
+                            'properties'           => array(
+                                'exerciseId' => array('type' => 'string', 'description' => 'Exact id from the provided catalogue.'),
+                                'sets'       => array('type' => 'integer', 'minimum' => 1, 'maximum' => 6),
+                                'reps'       => array(
+                                    'type'        => 'string',
+                                    'enum'        => array('1','2','3','4','5','6','7','8','9','10','12','15','20','25','30','AMRAP'),
+                                    'description' => 'Reps. Must match one of the builder\'s allowed dropdown values exactly.',
+                                ),
+                                'rest'       => array('type' => 'integer', 'minimum' => 15, 'maximum' => 360, 'description' => 'Rest in seconds.'),
+                                'rir'        => array('type' => 'string', 'description' => 'Reps in reserve "0"-"4". Default "2".'),
+                                'notes'      => array('type' => 'string', 'description' => 'Short coaching cue.'),
+                                'groupId'    => array('type' => array('string', 'null'), 'description' => 'Same id on consecutive items = superset. null otherwise.'),
+                            ),
+                        ),
+                    ),
+                ),
+            ),
+        ),
+    );
+
+    // Build messages: system prompt + catalogue (as system) + history.
+    $catalogue_msg = "Available exercise catalogue (use exerciseId = id field). JSON list:\n" .
+        wp_json_encode($catalogue);
+
+    $messages = array(
+        array('role' => 'system', 'content' => flexframe_coach_system_prompt()),
+        array('role' => 'system', 'content' => $catalogue_msg),
+    );
+    if ($is_wod && $wod_brief !== '') {
+        $messages[] = array('role' => 'system', 'content' => $wod_brief);
+    }
+    foreach ($history as $m) $messages[] = $m;
+
+    $body = array(
+        'model'       => 'gpt-4o-mini',
+        'messages'    => $messages,
+        'tools'       => array($tool),
+        'tool_choice' => $is_wod
+            ? array('type' => 'function', 'function' => array('name' => 'propose_workout'))
+            : 'auto',
+        'temperature' => $is_wod ? 0.95 : 0.6,
+    );
+
+    $resp = wp_remote_post('https://api.openai.com/v1/chat/completions', array(
+        'headers' => array(
+            'Content-Type'  => 'application/json',
+            'Authorization' => 'Bearer ' . FLEXFRAME_OPENAI_KEY,
+        ),
+        'body'    => wp_json_encode($body),
+        'timeout' => 60,
+    ));
+
+    if (is_wp_error($resp)) {
+        return new WP_Error('flexframe_openai_fail', 'OpenAI request failed: ' . $resp->get_error_message(), array('status' => 502));
+    }
+    $code    = wp_remote_retrieve_response_code($resp);
+    $raw     = wp_remote_retrieve_body($resp);
+    $decoded = json_decode($raw, true);
+    if ($code < 200 || $code >= 300) {
+        $err = isset($decoded['error']['message']) ? $decoded['error']['message'] : ('OpenAI HTTP ' . $code);
+        return new WP_Error('flexframe_openai_error', $err, array('status' => 502));
+    }
+
+    $choice  = isset($decoded['choices'][0]['message']) ? $decoded['choices'][0]['message'] : array();
+    $message = isset($choice['content']) ? trim((string) $choice['content']) : '';
+    $workout = null;
+
+    if (!empty($choice['tool_calls']) && is_array($choice['tool_calls'])) {
+        foreach ($choice['tool_calls'] as $tc) {
+            if (isset($tc['function']['name']) && $tc['function']['name'] === 'propose_workout') {
+                $args = isset($tc['function']['arguments']) ? json_decode($tc['function']['arguments'], true) : null;
+                if (is_array($args)) {
+                    $workout = flexframe_validate_coach_workout($args, $catalogue);
+                }
+                break;
+            }
+        }
+    }
+
+    return rest_ensure_response(array(
+        'success'  => true,
+        'message'  => $message !== '' ? $message : null,
+        'workout'  => $workout,
+        'finished' => $workout !== null,
+    ));
+}
+
+/**
+ * Validate & sanitise the AI-proposed workout. Drops unknown exerciseIds,
+ * clamps numeric fields, normalises groupIds to strings, ensures order.
+ * Returns null if no valid exercises remain.
+ */
+function flexframe_validate_coach_workout($args, $catalogue) {
+    $valid_ids = array();
+    foreach ($catalogue as $c) $valid_ids[$c['id']] = $c['name'];
+
+    $name      = isset($args['name']) ? sanitize_text_field((string) $args['name']) : 'AI Generated Workout';
+    $exercises = isset($args['exercises']) && is_array($args['exercises']) ? $args['exercises'] : array();
+
+    $clean = array();
+    $order = 0;
+    foreach ($exercises as $ex) {
+        if (!is_array($ex)) continue;
+        $id = isset($ex['exerciseId']) ? (string) $ex['exerciseId'] : '';
+        if (!isset($valid_ids[$id])) continue; // skip unknown
+
+        $sets = isset($ex['sets']) ? (int) $ex['sets'] : 3;
+        $sets = max(1, min(6, $sets));
+
+        $reps = isset($ex['reps']) ? sanitize_text_field((string) $ex['reps']) : '10';
+        $reps = flexframe_coach_normalize_reps($reps);
+
+        $rest = isset($ex['rest']) ? (int) $ex['rest'] : 60;
+        $rest = max(15, min(360, $rest));
+
+        $rir = isset($ex['rir']) ? sanitize_text_field((string) $ex['rir']) : '2';
+        if (!preg_match('/^[0-4]$/', $rir)) $rir = '2';
+
+        $notes = isset($ex['notes']) ? sanitize_text_field((string) $ex['notes']) : '';
+        if (strlen($notes) > 400) $notes = substr($notes, 0, 400);
+
+        $group_id = null;
+        if (isset($ex['groupId']) && $ex['groupId'] !== null && $ex['groupId'] !== '') {
+            $group_id = sanitize_text_field((string) $ex['groupId']);
+        }
+
+        $clean[] = array(
+            'exerciseId' => $id,
+            'name'       => $valid_ids[$id],
+            'sets'       => $sets,
+            'reps'       => $reps,
+            'rest'       => $rest,
+            'rir'        => $rir,
+            'weight'     => '',
+            'notes'      => $notes,
+            'groupId'    => $group_id,
+            'order'      => $order++,
+        );
+    }
+
+    if (empty($clean)) return null;
+
+    return array(
+        'name'      => $name !== '' ? $name : 'AI Generated Workout',
+        'exercises' => $clean,
+    );
+}
 
 
 
