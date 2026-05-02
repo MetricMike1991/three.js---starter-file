@@ -1910,12 +1910,6 @@ function flexframe_register_settings() {
     register_setting('flexframe_settings_group', 'flexframe_ai_image_logged_out_enabled', array(
         'type' => 'boolean', 'sanitize_callback' => 'rest_sanitize_boolean', 'default' => false
     ));
-    register_setting('flexframe_settings_group', 'flexframe_ai_chat_restrictions_logged_in', array(
-        'type' => 'boolean', 'sanitize_callback' => 'rest_sanitize_boolean', 'default' => true
-    ));
-    register_setting('flexframe_settings_group', 'flexframe_ai_chat_restrictions_logged_out', array(
-        'type' => 'boolean', 'sanitize_callback' => 'rest_sanitize_boolean', 'default' => true
-    ));
     register_setting('flexframe_settings_group', 'flexframe_ai_coach_wod_enabled', array(
         'type' => 'boolean', 'sanitize_callback' => 'rest_sanitize_boolean', 'default' => true
     ));
@@ -4850,8 +4844,6 @@ function flexframe_settings_page() {
                                 $ai_bot_avatar    = get_option('flexframe_ai_coach_bot_avatar_url', '');
                                 $ai_image_li      = (bool) get_option('flexframe_ai_image_logged_in_enabled', true);
                                 $ai_image_lo      = (bool) get_option('flexframe_ai_image_logged_out_enabled', false);
-                                $ai_restrict_li   = (bool) get_option('flexframe_ai_chat_restrictions_logged_in', true);
-                                $ai_restrict_lo   = (bool) get_option('flexframe_ai_chat_restrictions_logged_out', true);
                                 $ai_key_defined   = defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '';
                                 ?>
 
@@ -4918,22 +4910,6 @@ function flexframe_settings_page() {
                                             <label><input type="hidden" name="flexframe_ai_image_logged_out_enabled" value="0"><input type="checkbox" name="flexframe_ai_image_logged_out_enabled" value="1" <?php checked($ai_image_lo); ?>>
                                                 <?php _e('Show the “A.I Image” button to anonymous (logged-out) users.', 'flexframe-viewer'); ?></label>
                                             <p class="description"><?php _e('Only relevant when Public access is ON. Recommended OFF unless you trust your audience.', 'flexframe-viewer'); ?></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><?php _e('Chat restrictions (logged-in)', 'flexframe-viewer'); ?></th>
-                                        <td>
-                                            <label><input type="hidden" name="flexframe_ai_chat_restrictions_logged_in" value="0"><input type="checkbox" name="flexframe_ai_chat_restrictions_logged_in" value="1" <?php checked($ai_restrict_li); ?>>
-                                                <?php _e('Apply strict topic guardrails for logged-in users.', 'flexframe-viewer'); ?></label>
-                                            <p class="description"><?php _e('When ON: bot stays strictly on workout-building, refuses medical/nutrition/political/off-topic requests, and prompt-injection phrases (“ignore previous instructions”, “pretend you are…”, etc.) are auto-redacted. When OFF: bot can chat freely about general fitness, nutrition, recovery, lifestyle — still avoids specific medical/drug advice but no automatic redaction.', 'flexframe-viewer'); ?></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><?php _e('Chat restrictions (logged-out)', 'flexframe-viewer'); ?></th>
-                                        <td>
-                                            <label><input type="hidden" name="flexframe_ai_chat_restrictions_logged_out" value="0"><input type="checkbox" name="flexframe_ai_chat_restrictions_logged_out" value="1" <?php checked($ai_restrict_lo); ?>>
-                                                <?php _e('Apply strict topic guardrails for anonymous users.', 'flexframe-viewer'); ?></label>
-                                            <p class="description" style="color: #b32d2e;"><?php _e('⚠ Strongly recommended ON for anonymous users — disabling allows public visitors to use your OpenAI quota for general conversation. Only relevant when Public access is ON.', 'flexframe-viewer'); ?></p>
                                         </td>
                                     </tr>
                                     <tr>

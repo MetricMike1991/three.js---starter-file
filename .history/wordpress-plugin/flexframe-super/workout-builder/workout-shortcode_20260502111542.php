@@ -113,9 +113,6 @@ function flexframe_enqueue_workout_builder_assets() {
     $ai_image_li    = (bool) get_option('flexframe_ai_image_logged_in_enabled', true);
     $ai_image_lo    = (bool) get_option('flexframe_ai_image_logged_out_enabled', false);
     $ai_image_eff   = is_user_logged_in() ? $ai_image_li : $ai_image_lo;
-    $ai_restrict_li = (bool) get_option('flexframe_ai_chat_restrictions_logged_in', true);
-    $ai_restrict_lo = (bool) get_option('flexframe_ai_chat_restrictions_logged_out', true);
-    $ai_restrict_eff = is_user_logged_in() ? $ai_restrict_li : $ai_restrict_lo;
     $ai_has_key     = defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '';
     $ai_user_ok     = is_user_logged_in() || $ai_public;
     $coach_enabled  = $ai_master && $ai_has_key && $ai_user_ok;
@@ -148,7 +145,6 @@ function flexframe_enqueue_workout_builder_assets() {
             'chatEnabled'  => $ai_chat_effective,
             'wodEnabled'   => $ai_wod_on,
             'imageEnabled' => $ai_image_eff,
-            'restrictionsEnabled' => $ai_restrict_eff,
             'botName'      => $ai_bot_name,
             'botAvatar'    => $ai_bot_avatar,
             'primaryColor' => get_option('flexframe_primary_color_mode', 'default') === 'custom'

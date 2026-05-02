@@ -7398,7 +7398,7 @@ function flexframe_coach_system_prompt($strict = true) {
         "USER PROFILE:\n" .
         "If a system message titled 'USER PROFILE' is present, the user has ALREADY filled in a quick-start form. Treat those values as final — DO NOT re-ask the user for name, age, experience, location, duration, goals, or injuries. Use the profile silently. You may ask at most ONE short stylistic follow-up if genuinely needed (e.g. \"Want to focus on push or pull today?\"), then immediately call the tool. If the request specifies 'mode=generate', call the tool right away with no follow-up question.\n\n" .
         "BUILDING THE WORKOUT — call the `propose_workout` tool with these rules:\n" .
-        "- The catalogue provided in the next system message is the EXACT list of exercises currently visible in this gym's workout builder. It contains: (a) the standard exercises the admin has chosen to keep visible (admin-hidden ones are already excluded), AND (b) any custom exercises the admin has added. This list IS the truth. Treat every entry as a fully available exercise — including ones marked `source: 'custom'`. NEVER invent, substitute, or claim an exercise is unavailable if it appears in the list. NEVER add exercises that are NOT in the list. If the user requests something missing, pick the closest available alternative from the list and briefly explain.\n" .
+        "- The catalogue provided in the next system message is the ONLY list of exercises available — exercises not on that list are unavailable. NEVER invent or substitute. If the user requests something missing, pick the closest available alternative from the catalogue and briefly explain.\n" .
         "- Use each exercise's exact `id` value as `exerciseId`.\n" .
         "- 4-10 exercises total per session, ordered logically (compounds first, accessories after).\n" .
         "- Sets: integer 1-6. Reps: MUST be exactly one of: \"1\", \"2\", \"3\", \"4\", \"5\", \"6\", \"7\", \"8\", \"9\", \"10\", \"12\", \"15\", \"20\", \"25\", \"30\", \"AMRAP\". No ranges, no durations. Rest: integer seconds 30-300.\n" .
@@ -7472,14 +7472,6 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
         return new WP_Error('flexframe_wod_disabled', 'Workout of the Day is disabled.', array('status' => 403));
     }
 
-    // ── Resolve effective chat-restrictions/guardrails flag for this caller ──
-    // When ON: strict scope prompt + prompt-injection regex stripping.
-    // When OFF: relaxed scope (general fitness/nutrition chat allowed) + no
-    // automatic redaction of user input (admin opt-in only).
-    $strict_li = (bool) get_option('flexframe_ai_chat_restrictions_logged_in', true);
-    $strict_lo = (bool) get_option('flexframe_ai_chat_restrictions_logged_out', true);
-    $strict    = is_user_logged_in() ? $strict_li : $strict_lo;
-
     // ── Per-session message cap ──
     $session_count = count(array_filter($messages_in, function ($m) {
         return is_array($m) && isset($m['role']) && $m['role'] === 'user';
@@ -7496,8 +7488,8 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
         $role = in_array($m['role'], array('user', 'assistant'), true) ? $m['role'] : 'user';
         $content = (string) $m['content'];
         if (strlen($content) > 1200) $content = substr($content, 0, 1200);
-        // Strip suspected prompt-injection phrases on user messages (only when restrictions are on)
-        if ($strict && $role === 'user' && preg_match($injection_re, $content)) {
+        // Strip suspected prompt-injection phrases on user messages
+        if ($role === 'user' && preg_match($injection_re, $content)) {
             $content = preg_replace($injection_re, '[redacted]', $content);
         }
         $history[] = array('role' => $role, 'content' => $content);
@@ -7595,7 +7587,7 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
         "JSON list:\n" . wp_json_encode($catalogue);
 
     $messages = array(
-        array('role' => 'system', 'content' => flexframe_coach_system_prompt($strict)),
+        array('role' => 'system', 'content' => flexframe_coach_system_prompt()),
         array('role' => 'system', 'content' => $catalogue_msg),
     );
     if ($profile) {

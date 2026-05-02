@@ -110,8 +110,6 @@
         if (!bar) return;
         // If admin disabled free-form chat, the input bar is permanently hidden
         if (SETTINGS.chatEnabled === false) { bar.style.display = 'none'; return; }
-        // If restrictions are OFF (unrestricted chat), the input bar is always visible
-        if (SETTINGS.restrictionsEnabled === false) { bar.style.display = 'flex'; return; }
         bar.style.display = show ? 'flex' : 'none';
     }
 
