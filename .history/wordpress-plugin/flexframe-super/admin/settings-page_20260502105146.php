@@ -4913,14 +4913,6 @@ function flexframe_settings_page() {
                                     </tr>
                                 </table>
 
-                                <p style="margin-top: 16px;">
-                                    <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin-post.php?action=flexframe_flush_coach_cache'), 'flexframe_flush_coach_cache')); ?>" class="button">
-                                        <span class="dashicons dashicons-update" style="vertical-align: text-bottom;"></span>
-                                        <?php _e('Refresh AI exercise cache', 'flexframe-viewer'); ?>
-                                    </a>
-                                    <span style="margin-left: 8px; color: #666; font-size: 12px;"><?php _e('The AI keeps a 5-minute snapshot of your exercise list. Click if a freshly added exercise isn\'t showing up in chat answers yet.', 'flexframe-viewer'); ?></span>
-                                </p>
-
                                 <script>
                                 jQuery(function($){
                                     var ffcAvatarFrame;

@@ -7018,154 +7018,6 @@ function flexframe_ai_render_gemini($screenshot_b64, $prompt, $exercise_name, $g
  * ========================================================================= */
 
 /**
- * Sanitise the quick-start profile from the client form.
- * Returns null on hopelessly invalid input, otherwise an associative array
- * of cleaned values.
- */
-function flexframe_coach_sanitize_profile($p) {
-    $out = array();
-
-    // First name (optional, 30 chars max, letters/space/hyphen/apostrophe)
-    if (!empty($p['firstName'])) {
-        $name = sanitize_text_field((string) $p['firstName']);
-        $name = preg_replace("/[^A-Za-z' \-]/", '', $name);
-        $name = trim(substr($name, 0, 30));
-        if ($name !== '') $out['firstName'] = $name;
-    }
-
-    // Age (optional, 10-100)
-    if (isset($p['age']) && $p['age'] !== '') {
-        $age = (int) $p['age'];
-        if ($age >= 10 && $age <= 100) $out['age'] = $age;
-    }
-
-    // Experience
-    $exp_allowed = array('beginner', 'intermediate', 'advanced');
-    if (!empty($p['experience'])) {
-        $e = strtolower(sanitize_text_field((string) $p['experience']));
-        if (in_array($e, $exp_allowed, true)) $out['experience'] = $e;
-    }
-
-    // Location: home / gym
-    $loc_allowed = array('home', 'gym');
-    if (!empty($p['location'])) {
-        $l = strtolower(sanitize_text_field((string) $p['location']));
-        if (in_array($l, $loc_allowed, true)) $out['location'] = $l;
-    }
-
-    // Duration: accept either a token ('quick'|'regular'|'long') OR a legacy
-    // integer in 15-120. Stored as the token plus a resolved minute range so
-    // the prompt can give the model a concrete length without exposing it to
-    // the user.
-    $duration_bands = array(
-        'quick'   => array(20, 40),
-        'regular' => array(40, 60),
-        'long'    => array(60, 90),
-    );
-    if (isset($p['duration']) && $p['duration'] !== '') {
-        $raw = $p['duration'];
-        if (is_string($raw) && isset($duration_bands[strtolower($raw)])) {
-            $token = strtolower($raw);
-            $out['duration']      = $token;
-            $out['durationMin']   = $duration_bands[$token][0];
-            $out['durationMax']   = $duration_bands[$token][1];
-        } else {
-            $d = (int) $raw;
-            if ($d >= 15 && $d <= 120) {
-                // Legacy numeric — derive token + tight range around it.
-                if ($d <= 40)      { $token = 'quick';   $range = $duration_bands['quick']; }
-                elseif ($d <= 60)  { $token = 'regular'; $range = $duration_bands['regular']; }
-                else               { $token = 'long';    $range = $duration_bands['long']; }
-                $out['duration']    = $token;
-                $out['durationMin'] = $range[0];
-                $out['durationMax'] = $range[1];
-            }
-        }
-    }
-
-    // Goals: array, allowed values
-    $goal_allowed = array('strength', 'hypertrophy', 'cardio', 'hybrid', 'fat_loss', 'abs', 'glutes', 'mobility', 'sport');
-    if (!empty($p['goals']) && is_array($p['goals'])) {
-        $clean = array();
-        foreach ($p['goals'] as $g) {
-            $g = strtolower(sanitize_text_field((string) $g));
-            $g = str_replace(array(' ', '-'), '_', $g);
-            if (in_array($g, $goal_allowed, true) && !in_array($g, $clean, true)) {
-                $clean[] = $g;
-            }
-            if (count($clean) >= 5) break;
-        }
-        if (!empty($clean)) $out['goals'] = $clean;
-    }
-
-    // Techniques: optional array (supersets/trisets/giantsets)
-    $tech_allowed = array('supersets', 'trisets', 'giantsets');
-    if (!empty($p['techniques']) && is_array($p['techniques'])) {
-        $clean_t = array();
-        foreach ($p['techniques'] as $t) {
-            $t = strtolower(sanitize_text_field((string) $t));
-            $t = str_replace(array(' ', '-', '_'), '', $t);
-            if (in_array($t, $tech_allowed, true) && !in_array($t, $clean_t, true)) {
-                $clean_t[] = $t;
-            }
-        }
-        if (!empty($clean_t)) $out['techniques'] = $clean_t;
-    }
-
-    // Injuries: bool + optional details
-    if (!empty($p['hasInjuries'])) {
-        $out['hasInjuries'] = true;
-        if (!empty($p['injuryDetails'])) {
-            $d = sanitize_text_field((string) $p['injuryDetails']);
-            $d = trim(substr($d, 0, 300));
-            if ($d !== '') $out['injuryDetails'] = $d;
-        }
-    } else {
-        $out['hasInjuries'] = false;
-    }
-
-    return $out;
-}
-
-/**
- * Render the profile as a compact text block for the system message.
- */
-function flexframe_coach_format_profile($p) {
-    $lines = array();
-    $lines[] = '- Name: '       . (!empty($p['firstName'])  ? $p['firstName']  : '(not given)');
-    $lines[] = '- Age: '        . (!empty($p['age'])        ? $p['age']        : '(not given)');
-    $lines[] = '- Experience: ' . (!empty($p['experience']) ? $p['experience'] : '(not given)');
-    $lines[] = '- Location: '   . (!empty($p['location'])   ? $p['location']   : '(not given)') .
-        (!empty($p['location']) && $p['location'] === 'home' ? ' — restrict to bodyweight, kettlebell, and resistance-band exercises only' : '');
-    $duration_label = '(not given)';
-    if (!empty($p['duration'])) {
-        $tok = is_string($p['duration']) ? $p['duration'] : '';
-        $min = isset($p['durationMin']) ? (int) $p['durationMin'] : 0;
-        $max = isset($p['durationMax']) ? (int) $p['durationMax'] : 0;
-        if ($min > 0 && $max > 0) {
-            $duration_label = ucfirst($tok) . " (target session length {$min}-{$max} minutes — size the workout to fit this window; pick exercise count, sets, and rest accordingly. Do NOT mention the minute figures to the user; they only chose the qualitative label.)";
-        } else {
-            $duration_label = (string) $p['duration'] . ' minutes';
-        }
-    }
-    $lines[] = '- Duration: '   . $duration_label;
-    $lines[] = '- Goals: '      . (!empty($p['goals'])      ? implode(', ', $p['goals']) : '(not given)');
-    if (!empty($p['techniques'])) {
-        $lines[] = '- Time-saver techniques ALLOWED: ' . implode(', ', $p['techniques']) .
-            '  (you MAY use these, but only following the rules below; do not feel obligated to use any)';
-    } else {
-        $lines[] = '- Time-saver techniques: NONE — do NOT use supersets, trisets, or giant sets. Every exercise must be a standalone block (groupId unique).';
-    }
-    if (!empty($p['hasInjuries'])) {
-        $lines[] = '- Injuries: YES — ' . (!empty($p['injuryDetails']) ? $p['injuryDetails'] : 'details not provided') .
-            '  (avoid loading the affected area; choose alternatives)';
-    } else {
-        $lines[] = '- Injuries: none reported';
-    }
-    return implode("\n", $lines);
-}
-
-/**
  * Coerce any rep string the AI might emit ("8-10", "30s", "12 reps", etc.)
  * into one of the workout builder's allowed dropdown values.
  */
@@ -7274,10 +7126,6 @@ function flexframe_register_coach_chat_api() {
         'methods'             => 'POST',
         'callback'            => 'flexframe_handle_coach_chat',
         'permission_callback' => function () {
-            // Master kill-switch
-            if (!get_option('flexframe_ai_coach_enabled', true)) return false;
-            // Public mode allows anonymous access; otherwise require login
-            if (get_option('flexframe_ai_coach_public', false)) return true;
             return is_user_logged_in();
         },
     ));
@@ -7295,17 +7143,6 @@ add_action('update_option_flexframe_hidden_exercises', 'flexframe_coach_invalida
 add_action('add_option_flexframe_hidden_exercises',    'flexframe_coach_invalidate_index_cache');
 add_action('update_option_flexframe_custom_exercises', 'flexframe_coach_invalidate_index_cache');
 add_action('add_option_flexframe_custom_exercises',    'flexframe_coach_invalidate_index_cache');
-// Belt-and-braces: also flush whenever the main settings form is submitted
-// (covers any edge case where the option value happens to match the previous
-// value and update_option_* doesn't fire, e.g. a re-save after a failed write).
-add_action('update_option_flexframe_logo_url', 'flexframe_coach_invalidate_index_cache');
-add_action('admin_post_flexframe_flush_coach_cache', function () {
-    if (!current_user_can('manage_options')) wp_die('forbidden');
-    check_admin_referer('flexframe_flush_coach_cache');
-    flexframe_coach_invalidate_index_cache();
-    wp_safe_redirect(wp_get_referer() ?: admin_url());
-    exit;
-});
 
 /**
  * Build a slim, token-efficient exercise index for the model.
@@ -7340,7 +7177,6 @@ function flexframe_get_coach_exercise_index() {
                     'type'      => isset($ex['type']) ? (string) $ex['type'] : 'Strength',
                     'muscles'   => isset($ex['muscleGroup']) && is_array($ex['muscleGroup']) ? array_values(array_slice($ex['muscleGroup'], 0, 4)) : array(),
                     'equipment' => isset($ex['equipment']) && is_array($ex['equipment']) ? array_values(array_slice($ex['equipment'], 0, 3)) : array(),
-                    'source'    => 'catalogue',
                 );
             }
         }
@@ -7348,7 +7184,7 @@ function flexframe_get_coach_exercise_index() {
 
     // Merge custom exercises (also subject to hidden list + showInWorkout flag)
     $custom_json = get_option('flexframe_custom_exercises', '[]');
-    $custom      = is_string($custom_json) ? json_decode($custom_json, true) : $custom_json;
+    $custom      = json_decode($custom_json, true);
     if (is_array($custom)) {
         foreach ($custom as $ce) {
             if (empty($ce['id']) || empty($ce['name'])) continue;
@@ -7360,15 +7196,12 @@ function flexframe_get_coach_exercise_index() {
                 'type'      => isset($ce['type']) ? (string) $ce['type'] : 'Strength',
                 'muscles'   => isset($ce['muscleGroup']) && is_array($ce['muscleGroup']) ? array_values($ce['muscleGroup']) : array(),
                 'equipment' => isset($ce['equipment']) && is_array($ce['equipment']) ? array_values($ce['equipment']) : array(),
-                'source'    => 'custom',
             );
         }
     }
 
     if (!empty($index)) {
-        // Short TTL so admin edits to the catalogue (custom adds, hidden toggles)
-        // reach the AI promptly even if a save action skipped the invalidation hook.
-        set_transient('flexframe_coach_ex_index', $index, 5 * MINUTE_IN_SECONDS);
+        set_transient('flexframe_coach_ex_index', $index, HOUR_IN_SECONDS);
     }
     return $index;
 }
@@ -7378,9 +7211,7 @@ function flexframe_get_coach_exercise_index() {
  */
 function flexframe_coach_system_prompt() {
     $gym = get_bloginfo('name') ?: 'this gym';
-    $bot_name = trim((string) get_option('flexframe_ai_coach_bot_name', 'FlexFrame Coach'));
-    if ($bot_name === '') { $bot_name = 'FlexFrame Coach'; }
-    return "You are {$bot_name}, a friendly, knowledgeable personal trainer chat assistant on the {$gym} workout builder page.\n\n" .
+    return "You are FlexFrame Coach, a friendly, knowledgeable personal trainer chat assistant on the {$gym} workout builder page.\n\n" .
         "SCOPE — STRICT:\n" .
         "- You ONLY help build single workout sessions. Nothing else.\n" .
         "- You do NOT give medical advice, nutrition plans, supplement recommendations, multi-week programmes, weight-loss diet plans, or any form of professional advice outside of single-session workout programming. If asked, briefly redirect: \"I'm just here to build you a workout — for that, please speak to a qualified professional.\"\n" .
@@ -7397,18 +7228,6 @@ function flexframe_coach_system_prompt() {
         "- RIR (reps in reserve): string \"0\"-\"4\", default \"2\".\n" .
         "- Notes: a SHORT, PERSONAL coaching cue (max ~280 chars). Reference the user's name/goal/experience/duration/injuries when given. Briefly say WHY this exercise and WHY here in the session. Avoid generic clichés.\n" .
         "- Supersets: consecutive exercises with the SAME `groupId` string (\"g1\", \"g2\", …). Stand-alones use `null`. When you superset, mention WHY in the notes.\n" .
-        "\n" .
-        "GROUPING RULES — STRICT (read carefully):\n" .
-        "- A 'compound' = a multi-joint barbell/dumbbell lift such as: squat (back/front/goblet), deadlift (any variation), bench press, overhead/military press, push press, pull-up, chin-up, bent-over row, Pendlay row, hip thrust, clean, snatch, lunge variations with significant load. Treat any heavy multi-joint barbell movement as a compound.\n" .
-        "- DEFAULT (no `techniques` allowed in profile): every exercise stands alone. `groupId` MUST be null for every exercise. Do NOT pair anything.\n" .
-        "- If the user's profile lists `techniques`, you MAY use ONLY those listed (supersets / trisets / giantsets). You are NOT required to use any.\n" .
-        "- Maximum TWO supersets per workout. (A superset = exactly 2 exercises sharing one groupId.)\n" .
-        "- NEVER superset two compounds together. A superset must be: compound + isolation, OR isolation + isolation. Two compounds in the same group is FORBIDDEN.\n" .
-        "- Trisets (3 exercises sharing one groupId): allowed only if 'trisets' is in techniques. A triset may contain AT MOST ONE compound — the other two MUST be isolation/accessory movements.\n" .
-        "- Giant sets (4+ exercises sharing one groupId): allowed only if 'giantsets' is in techniques. A giant set may contain AT MOST ONE compound. Use sparingly (max one per workout).\n" .
-        "- Beginners: prefer no grouping at all even if techniques are allowed.\n" .
-        "- Whenever you group, briefly justify it in the `notes` of the FIRST exercise in the group (e.g. \"Paired with X to save time — both upper-body isolation, low CNS cost.\").\n" .
-        "\n" .
         "- Respect injuries — never load an injured area.\n\n" .
         "Tone: warm, encouraging, concise. Once you've called the tool, do NOT describe the workout again in chat — the UI renders it.";
 }
@@ -7419,49 +7238,21 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
     }
 
     // ── Rate limits ──
-    // ── Rate limits ──
-    // For logged-in users: key by user_id. For anonymous (public mode): key by IP.
-    $user_id  = get_current_user_id();
-    $is_anon  = ($user_id === 0);
-    if ($is_anon) {
-        $ip = isset($_SERVER['REMOTE_ADDR']) ? preg_replace('/[^0-9a-fA-F:.]/', '', (string) $_SERVER['REMOTE_ADDR']) : 'unknown';
-        $rl_key = 'ip_' . md5($ip);
-        // Stricter limits for anonymous users
-        $hour_cap = 10;
-        $day_cap  = 30;
-    } else {
-        $rl_key = 'u_' . $user_id;
-        $hour_cap = 25;
-        $day_cap  = 100;
-    }
-    $rl_hour = (int) get_transient('ffcoach_rl_h_' . $rl_key);
-    $rl_day  = (int) get_transient('ffcoach_rl_d_' . $rl_key);
-    if ($rl_hour >= $hour_cap) {
+    $user_id = get_current_user_id();
+    $rl_hour = (int) get_transient('ffcoach_rl_h_' . $user_id);
+    $rl_day  = (int) get_transient('ffcoach_rl_d_' . $user_id);
+    if ($rl_hour >= 25) {
         return new WP_Error('flexframe_rate_limit', 'You have reached the hourly chat limit. Please try again later.', array('status' => 429));
     }
-    if ($rl_day >= $day_cap) {
+    if ($rl_day >= 100) {
         return new WP_Error('flexframe_rate_limit', 'Daily chat limit reached. Please come back tomorrow.', array('status' => 429));
     }
-    set_transient('ffcoach_rl_h_' . $rl_key, $rl_hour + 1, HOUR_IN_SECONDS);
-    set_transient('ffcoach_rl_d_' . $rl_key, $rl_day + 1, DAY_IN_SECONDS);
+    set_transient('ffcoach_rl_h_' . $user_id, $rl_hour + 1, HOUR_IN_SECONDS);
+    set_transient('ffcoach_rl_d_' . $user_id, $rl_day + 1, DAY_IN_SECONDS);
 
     $messages_in = $request->get_param('messages');
     if (!is_array($messages_in) || empty($messages_in)) {
         return new WP_Error('flexframe_bad_request', 'messages array required.', array('status' => 400));
-    }
-
-    // ── Enforce admin "Chat disabled" mode: only allow generate or wod requests ──
-    $chat_admin_on = (bool) get_option('flexframe_ai_coach_chat_enabled', true);
-    $chat_login_only = (bool) get_option('flexframe_ai_coach_chat_logged_in_only', true);
-    $wod_admin_on  = (bool) get_option('flexframe_ai_coach_wod_enabled', true);
-    $req_mode_raw  = sanitize_key((string) $request->get_param('mode'));
-    // Effective chat permission for this caller
-    $chat_effective = $chat_admin_on && (!$is_anon || !$chat_login_only);
-    if (!$chat_effective && !in_array($req_mode_raw, array('generate', 'wod'), true)) {
-        return new WP_Error('flexframe_chat_disabled', 'Free-form chat is not available for your account. Use the form + Generate Now.', array('status' => 403));
-    }
-    if (!$wod_admin_on && $req_mode_raw === 'wod') {
-        return new WP_Error('flexframe_wod_disabled', 'Workout of the Day is disabled.', array('status' => 403));
     }
 
     // ── Per-session message cap ──
@@ -7508,12 +7299,6 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
         $home_allowed = array('body weight', 'kettlebell', 'resistance band');
         $filtered = array();
         foreach ($catalogue as $ex) {
-            // Always preserve admin-added custom exercises — the admin has
-            // explicitly opted them in and may rely on them at home.
-            if (isset($ex['source']) && $ex['source'] === 'custom') {
-                $filtered[] = $ex;
-                continue;
-            }
             $eq_lower = array_map('strtolower', $ex['equipment']);
             foreach ($eq_lower as $e) {
                 if (in_array($e, $home_allowed, true)) { $filtered[] = $ex; break; }
@@ -7569,14 +7354,8 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
     );
 
     // Build messages: system prompt + catalogue (as system) + history.
-    // Count custom exercises so we can call them out explicitly to the model.
-    $custom_count = 0;
-    foreach ($catalogue as $ex) {
-        if (isset($ex['source']) && $ex['source'] === 'custom') { $custom_count++; }
-    }
-    $catalogue_msg = "Available exercise catalogue (use exerciseId = id field). Each entry has a 'source' field: 'catalogue' = the standard library, 'custom' = a gym-specific exercise the admin has explicitly added (treat these as fully equal to catalogue exercises — they ARE available, never claim otherwise). " .
-        ($custom_count > 0 ? "There are {$custom_count} custom exercise(s) in this list. " : '') .
-        "JSON list:\n" . wp_json_encode($catalogue);
+    $catalogue_msg = "Available exercise catalogue (use exerciseId = id field). JSON list:\n" .
+        wp_json_encode($catalogue);
 
     $messages = array(
         array('role' => 'system', 'content' => flexframe_coach_system_prompt()),

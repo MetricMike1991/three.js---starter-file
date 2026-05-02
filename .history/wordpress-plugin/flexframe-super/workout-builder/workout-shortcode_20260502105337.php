@@ -409,7 +409,7 @@ function flexframe_workout_builder_shortcode($atts) {
             <div class="ffc-input-bar">
                 <textarea class="ffc-input" rows="1" placeholder="Tell me your goal, time, equipment…"></textarea>
                 <button class="ffc-send" type="button" aria-label="Send">
-                    <span aria-hidden="true">➤</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </button>
             </div>
         </div>

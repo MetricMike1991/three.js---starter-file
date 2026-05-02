@@ -246,14 +246,7 @@
     transition: border-color 0.15s, box-shadow 0.15s;
     -webkit-appearance: none;
     appearance: none;
-    overflow-y: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.25) transparent;
 }
-.ffc-input.ffc-input-scroll { overflow-y: auto; }
-.ffc-input::-webkit-scrollbar { width: 6px; }
-.ffc-input::-webkit-scrollbar-track { background: transparent; }
-.ffc-input::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 3px; }
 .ffc-input::placeholder { color: #9aa0a6 !important; }
 .ffc-input:focus,
 .ffc-input:hover,
@@ -270,12 +263,10 @@
     border-radius: 10px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    font-size: 18px; line-height: 1; font-weight: 700;
-    padding: 0;
 }
 .ffc-send:hover { filter: brightness(1.1); }
 .ffc-send:disabled { opacity: 0.5; cursor: not-allowed; }
-.ffc-send svg { width: 18px; height: 18px; display: block; fill: #fff; color: #fff; }
+.ffc-send svg { width: 18px; height: 18px; }
 
 /* Toast inside chat */
 .ffc-error {

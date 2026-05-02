@@ -1,0 +1,235 @@
+/* FlexFrame AI Coach — chat widget for the workout builder */
+
+.ffc-root {
+    --ffc-bg: #1f1f23;
+    --ffc-bg-alt: #2a2a30;
+    --ffc-border: #3a3a42;
+    --ffc-text: #f0f0f2;
+    --ffc-muted: #9a9aa3;
+    --ffc-primary: var(--ffwb-primary, #ec2f2c);
+    position: fixed;
+    z-index: 99998;
+    bottom: 20px;
+    right: 20px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: var(--ffc-text);
+}
+
+/* Floating bubble */
+.ffc-bubble {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--ffc-primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.ffc-bubble:hover { transform: scale(1.06); box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
+.ffc-bubble svg { width: 26px; height: 26px; }
+.ffc-bubble .ffc-bubble-dot {
+    position: absolute; top: 6px; right: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: #2ecc71; border: 2px solid var(--ffc-bg);
+}
+
+/* Panel */
+.ffc-panel {
+    width: 380px;
+    max-width: calc(100vw - 24px);
+    height: 560px;
+    max-height: calc(100vh - 100px);
+    background: var(--ffc-bg);
+    border: 1px solid var(--ffc-border);
+    border-radius: 14px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+.ffc-root.ffc-open .ffc-panel { display: flex; }
+.ffc-root.ffc-open .ffc-bubble { display: none; }
+
+/* Header */
+.ffc-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 12px 14px;
+    background: linear-gradient(135deg, var(--ffc-primary), rgba(0,0,0,0.4));
+    border-bottom: 1px solid var(--ffc-border);
+}
+.ffc-header-icon {
+    width: 32px; height: 32px; border-radius: 50%;
+    background: rgba(255,255,255,0.18);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.ffc-header-icon svg { width: 18px; height: 18px; color: #fff; }
+.ffc-header-text { flex: 1; min-width: 0; }
+.ffc-header-title { font-weight: 600; font-size: 14px; color: #fff; line-height: 1.2; }
+.ffc-header-sub { font-size: 11px; color: rgba(255,255,255,0.85); }
+.ffc-header-actions { display: flex; gap: 4px; }
+.ffc-header-btn {
+    background: transparent; border: none; color: #fff;
+    width: 28px; height: 28px; border-radius: 6px;
+    cursor: pointer; display: flex; align-items: center; justify-content: center;
+    opacity: 0.85;
+}
+.ffc-header-btn:hover { background: rgba(255,255,255,0.15); opacity: 1; }
+.ffc-header-btn svg { width: 16px; height: 16px; }
+
+/* Messages */
+.ffc-messages {
+    flex: 1;
+    overflow-y: auto;
+    padding: 14px;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.ffc-msg { display: flex; max-width: 88%; }
+.ffc-msg-bubble {
+    padding: 9px 12px;
+    border-radius: 14px;
+    font-size: 13.5px;
+    line-height: 1.45;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+.ffc-msg.user { align-self: flex-end; }
+.ffc-msg.user .ffc-msg-bubble {
+    background: var(--ffc-primary); color: #fff;
+    border-bottom-right-radius: 4px;
+}
+.ffc-msg.assistant { align-self: flex-start; }
+.ffc-msg.assistant .ffc-msg-bubble {
+    background: var(--ffc-bg-alt); color: var(--ffc-text);
+    border-bottom-left-radius: 4px;
+}
+.ffc-msg.system .ffc-msg-bubble {
+    background: transparent; color: var(--ffc-muted); font-size: 12px; font-style: italic;
+    padding: 4px 0;
+}
+
+/* Typing indicator */
+.ffc-typing { display: flex; gap: 4px; align-items: center; padding: 4px 8px; }
+.ffc-typing span {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--ffc-muted);
+    animation: ffc-bounce 1.2s infinite ease-in-out;
+}
+.ffc-typing span:nth-child(2) { animation-delay: 0.15s; }
+.ffc-typing span:nth-child(3) { animation-delay: 0.3s; }
+@keyframes ffc-bounce {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.5; }
+    30% { transform: translateY(-4px); opacity: 1; }
+}
+
+/* Workout result card */
+.ffc-result {
+    background: var(--ffc-bg-alt);
+    border: 1px solid var(--ffc-border);
+    border-radius: 12px;
+    padding: 12px;
+    margin-top: 4px;
+}
+.ffc-result-title {
+    font-size: 13px; font-weight: 600; margin-bottom: 8px;
+    color: var(--ffc-text);
+    display: flex; align-items: center; gap: 6px;
+}
+.ffc-result-title svg { width: 14px; height: 14px; color: var(--ffc-primary); }
+.ffc-result-list {
+    list-style: none; margin: 0 0 10px 0; padding: 0;
+    font-size: 12px; color: var(--ffc-muted); line-height: 1.5;
+    max-height: 130px; overflow-y: auto;
+}
+.ffc-result-list li { padding: 2px 0; }
+.ffc-result-list .ffc-superset { color: var(--ffc-primary); font-weight: 600; }
+.ffc-result-actions { display: flex; gap: 6px; flex-wrap: wrap; }
+.ffc-btn {
+    flex: 1; min-width: 120px;
+    background: var(--ffc-primary); color: #fff;
+    border: none; padding: 8px 10px;
+    border-radius: 8px; font-size: 12px; font-weight: 600;
+    cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 6px;
+}
+.ffc-btn:hover { filter: brightness(1.1); }
+.ffc-btn.ffc-btn-secondary {
+    background: transparent; color: var(--ffc-text);
+    border: 1px solid var(--ffc-border);
+}
+.ffc-btn.ffc-btn-secondary:hover { background: var(--ffc-bg); }
+.ffc-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.ffc-btn svg { width: 13px; height: 13px; }
+
+/* Suggestion chips */
+.ffc-chips {
+    display: flex; flex-wrap: wrap; gap: 6px;
+    padding: 0 14px 10px 14px;
+}
+.ffc-chip {
+    background: var(--ffc-bg-alt);
+    color: var(--ffc-text);
+    border: 1px solid var(--ffc-border);
+    border-radius: 16px;
+    padding: 6px 12px;
+    font-size: 12px;
+    cursor: pointer;
+}
+.ffc-chip:hover { border-color: var(--ffc-primary); color: var(--ffc-primary); }
+
+/* Input bar */
+.ffc-input-bar {
+    border-top: 1px solid var(--ffc-border);
+    padding: 10px;
+    display: flex; gap: 8px; align-items: flex-end;
+    background: var(--ffc-bg);
+}
+.ffc-input {
+    flex: 1;
+    background: var(--ffc-bg-alt);
+    border: 1px solid var(--ffc-border);
+    border-radius: 10px;
+    color: var(--ffc-text);
+    font-size: 13.5px;
+    padding: 9px 12px;
+    resize: none;
+    max-height: 120px;
+    line-height: 1.4;
+    font-family: inherit;
+}
+.ffc-input:focus { outline: none; border-color: var(--ffc-primary); }
+.ffc-send {
+    background: var(--ffc-primary); color: #fff;
+    border: none; width: 38px; height: 38px;
+    border-radius: 10px; cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+}
+.ffc-send:hover { filter: brightness(1.1); }
+.ffc-send:disabled { opacity: 0.5; cursor: not-allowed; }
+.ffc-send svg { width: 18px; height: 18px; }
+
+/* Toast inside chat */
+.ffc-error {
+    background: rgba(231, 76, 60, 0.15);
+    color: #ff6b5e;
+    border: 1px solid rgba(231, 76, 60, 0.4);
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 12px;
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+    .ffc-root { bottom: 12px; right: 12px; left: 12px; }
+    .ffc-bubble { margin-left: auto; }
+    .ffc-panel {
+        width: 100%;
+        height: calc(100vh - 80px);
+        max-height: none;
+    }
+}

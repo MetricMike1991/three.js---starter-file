@@ -38,20 +38,6 @@
 }
 .ffc-bubble:hover { transform: scale(1.06); box-shadow: 0 8px 24px rgba(0,0,0,0.45); }
 .ffc-bubble svg { width: 26px; height: 26px; }
-/* When an admin-uploaded avatar is present, fill the bubble with it edge-to-edge */
-.ffc-root.ffc-has-avatar .ffc-bubble { background: #fff; padding: 0; overflow: hidden; }
-.ffc-bubble-avatar {
-    width: 100%; height: 100%;
-    object-fit: cover; border-radius: 50%;
-    display: block;
-}
-/* Header avatar fills the round 32x32 slot */
-.ffc-root.ffc-has-avatar .ffc-header-icon { background: #fff; padding: 0; overflow: hidden; }
-.ffc-header-avatar {
-    width: 100%; height: 100%;
-    object-fit: cover; border-radius: 50%;
-    display: block;
-}
 .ffc-bubble .ffc-bubble-dot {
     position: absolute; top: 6px; right: 6px;
     width: 10px; height: 10px; border-radius: 50%;
@@ -87,23 +73,20 @@
     background: rgba(255,255,255,0.18);
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    color: #fff; font-weight: 700; font-size: 12px; letter-spacing: 0.5px;
 }
 .ffc-header-icon svg { width: 18px; height: 18px; color: #fff; }
 .ffc-header-text { flex: 1; min-width: 0; }
 .ffc-header-title { font-weight: 600; font-size: 14px; color: #fff; line-height: 1.2; }
 .ffc-header-sub { font-size: 11px; color: rgba(255,255,255,0.85); }
-.ffc-header-actions { display: flex; gap: 6px; }
+.ffc-header-actions { display: flex; gap: 4px; }
 .ffc-header-btn {
-    background: rgba(255,255,255,0.18); border: none; color: #fff;
-    width: 32px; height: 32px; border-radius: 8px;
+    background: transparent; border: none; color: #fff;
+    width: 28px; height: 28px; border-radius: 6px;
     cursor: pointer; display: flex; align-items: center; justify-content: center;
-    opacity: 1; transition: background 0.15s, transform 0.2s;
-    font-size: 18px; line-height: 1; font-weight: 600;
-    padding: 0;
+    opacity: 0.85;
 }
-.ffc-header-btn:hover { background: rgba(255,255,255,0.32); }
-.ffc-header-reset:hover { transform: rotate(-60deg); }
+.ffc-header-btn:hover { background: rgba(255,255,255,0.15); opacity: 1; }
+.ffc-header-btn svg { width: 16px; height: 16px; }
 
 /* Messages */
 .ffc-messages {
@@ -233,10 +216,10 @@
 }
 .ffc-input {
     flex: 1;
-    background: #ffffff !important;
+    background: #ffffff;
     border: 1px solid var(--ffc-border);
-    border-radius: 18px !important;
-    color: #111 !important;
+    border-radius: 18px;
+    color: #111;
     font-size: 13.5px;
     padding: 9px 14px;
     resize: none;
@@ -244,23 +227,11 @@
     line-height: 1.4;
     font-family: inherit;
     transition: border-color 0.15s, box-shadow 0.15s;
-    -webkit-appearance: none;
-    appearance: none;
-    overflow-y: hidden;
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0,0,0,0.25) transparent;
 }
-.ffc-input.ffc-input-scroll { overflow-y: auto; }
-.ffc-input::-webkit-scrollbar { width: 6px; }
-.ffc-input::-webkit-scrollbar-track { background: transparent; }
-.ffc-input::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.25); border-radius: 3px; }
-.ffc-input::placeholder { color: #9aa0a6 !important; }
-.ffc-input:focus,
-.ffc-input:hover,
-.ffc-input:active {
+.ffc-input::placeholder { color: #9aa0a6; }
+.ffc-input:focus {
     outline: none;
-    background: #ffffff !important;
-    color: #111 !important;
+    background: #ffffff;
     border-color: var(--ffc-primary);
     box-shadow: 0 0 0 2px rgba(var(--ffc-primary-rgb), 0.25);
 }
@@ -270,12 +241,10 @@
     border-radius: 10px; cursor: pointer;
     display: flex; align-items: center; justify-content: center;
     flex-shrink: 0;
-    font-size: 18px; line-height: 1; font-weight: 700;
-    padding: 0;
 }
 .ffc-send:hover { filter: brightness(1.1); }
 .ffc-send:disabled { opacity: 0.5; cursor: not-allowed; }
-.ffc-send svg { width: 18px; height: 18px; display: block; fill: #fff; color: #fff; }
+.ffc-send svg { width: 18px; height: 18px; }
 
 /* Toast inside chat */
 .ffc-error {
@@ -320,35 +289,24 @@
 }
 .ffc-form-opt { color: var(--ffc-muted); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 11px; }
 
-.ffc-form-input,
-.ffc-form input[type="text"],
-.ffc-form input[type="number"],
-.ffc-form textarea {
-    background: #ffffff !important;
-    border: 1px solid var(--ffc-border) !important;
-    border-radius: 10px !important;
-    color: #111 !important;
+.ffc-form-input {
+    background: #ffffff;
+    border: 1px solid var(--ffc-border);
+    border-radius: 10px;
+    color: #111;
     font-size: 13px;
-    padding: 8px 12px !important;
+    padding: 8px 12px;
     font-family: inherit;
     width: 100%;
     box-sizing: border-box;
     transition: border-color 0.15s, box-shadow 0.15s;
-    -webkit-appearance: none;
-    appearance: none;
-    line-height: 1.4;
 }
-.ffc-form-input::placeholder { color: #9aa0a6 !important; }
-.ffc-form-input:focus,
-.ffc-form-input:hover,
-.ffc-form-input:active,
-.ffc-form input:focus,
-.ffc-form textarea:focus {
-    outline: none !important;
-    background: #ffffff !important;
-    color: #111 !important;
-    border-color: var(--ffc-primary) !important;
-    box-shadow: 0 0 0 2px rgba(var(--ffc-primary-rgb), 0.25) !important;
+.ffc-form-input::placeholder { color: #9aa0a6; }
+.ffc-form-input:focus {
+    outline: none;
+    background: #ffffff;
+    border-color: var(--ffc-primary);
+    box-shadow: 0 0 0 2px rgba(var(--ffc-primary-rgb), 0.25);
 }
 .ffc-form-row-narrow .ffc-form-input { max-width: 100px; }
 

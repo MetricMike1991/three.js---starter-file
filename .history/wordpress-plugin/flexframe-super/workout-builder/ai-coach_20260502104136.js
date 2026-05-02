@@ -58,8 +58,7 @@
         });
 
         // Greeting + intake form
-        const botName = (SETTINGS.botName && String(SETTINGS.botName).trim()) || 'FlexFrame Coach';
-        addAssistantMessage("Hey! I'm your " + botName + ". Fill in the quick form below, then hit Generate Now — or hit WOD for a surprise.");
+        addAssistantMessage("Hey! I'm your FlexFrame Coach. Fill in the quick form below, then hit Generate Now — or hit WOD for a surprise.");
         renderIntakeForm();
         setInputVisible(false);
     }
@@ -102,10 +101,7 @@
 
     function setInputVisible(show) {
         const bar = root.querySelector('.ffc-input-bar');
-        if (!bar) return;
-        // If admin disabled free-form chat, the input bar is permanently hidden
-        if (SETTINGS.chatEnabled === false) { bar.style.display = 'none'; return; }
-        bar.style.display = show ? 'flex' : 'none';
+        if (bar) bar.style.display = show ? 'flex' : 'none';
     }
 
     function openPanel() {
@@ -129,10 +125,7 @@
 
     function autoGrow() {
         inputEl.style.height = 'auto';
-        const next = Math.min(inputEl.scrollHeight, 120);
-        inputEl.style.height = next + 'px';
-        // Only show the scrollbar once the textarea has actually hit its max height
-        inputEl.classList.toggle('ffc-input-scroll', inputEl.scrollHeight > 120);
+        inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
     }
 
     async function onSend(opts) {
@@ -421,11 +414,14 @@
                 </div>
             </div>
             <div class="ffc-form-row">
-                <label>Duration</label>
+                <label>Duration <span class="ffc-form-opt">(min)</span></label>
                 <div class="ffc-pills" data-field="duration" data-multi="false">
-                    <button type="button" class="ffc-pill" data-value="quick">Quick</button>
-                    <button type="button" class="ffc-pill" data-value="regular">Regular</button>
-                    <button type="button" class="ffc-pill" data-value="long">Long</button>
+                    <button type="button" class="ffc-pill" data-value="20">20</button>
+                    <button type="button" class="ffc-pill" data-value="30">30</button>
+                    <button type="button" class="ffc-pill" data-value="45">45</button>
+                    <button type="button" class="ffc-pill" data-value="60">60</button>
+                    <button type="button" class="ffc-pill" data-value="75">75</button>
+                    <button type="button" class="ffc-pill" data-value="90">90</button>
                 </div>
             </div>
             <div class="ffc-form-row">
@@ -504,7 +500,7 @@
         });
         // Coerce types
         if (data.age) data.age = parseInt(data.age, 10) || undefined;
-        // duration is now a token: 'quick' | 'regular' | 'long' — leave as string
+        if (data.duration) data.duration = parseInt(data.duration, 10);
         if (data.hasInjuries === 'true') data.hasInjuries = true;
         else if (data.hasInjuries === 'false') data.hasInjuries = false;
         return data;
@@ -555,7 +551,7 @@
         if (p.firstName)  parts.push('name=' + p.firstName);
         parts.push('experience=' + p.experience);
         parts.push('location=' + p.location);
-        parts.push('duration=' + p.duration);
+        parts.push('duration=' + p.duration + 'min');
         parts.push('goals=' + (p.goals || []).join('+'));
         parts.push('techniques=' + ((p.techniques && p.techniques.length) ? p.techniques.join('+') : 'none'));
         parts.push('injuries=' + (p.hasInjuries ? (p.injuryDetails || 'yes') : 'none'));
@@ -571,7 +567,7 @@
 
         const lines = [];
         if (p.firstName) lines.push(`<strong>${escapeHtml(p.firstName)}</strong>`);
-        lines.push(cap(p.experience) + ' · ' + cap(p.location) + ' · ' + cap(p.duration));
+        lines.push(cap(p.experience) + ' · ' + cap(p.location) + ' · ' + p.duration + ' min');
         if (p.goals && p.goals.length) {
             lines.push('Goals: ' + p.goals.map(g => GOAL_OPTIONS.find(o => o.id === g)?.label || g).join(', '));
         }

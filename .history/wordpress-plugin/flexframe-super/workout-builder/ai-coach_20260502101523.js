@@ -9,9 +9,7 @@
     'use strict';
 
     const SETTINGS = window.flexframeCoachSettings || null;
-    if (!SETTINGS || !SETTINGS.enabled) return;
-    // Allow logged-in users always; allow anonymous only if public mode is on
-    if (!SETTINGS.isLoggedIn && !SETTINGS.isPublicMode) return;
+    if (!SETTINGS || !SETTINGS.isLoggedIn) return;
 
     let root, bubbleBtn, panel, messagesEl, inputEl, sendBtn, actionsEl;
     let conversation = []; // [{role:'user'|'assistant', content:string}]
@@ -25,13 +23,6 @@
     function init() {
         root = document.getElementById('flexframe-ai-coach');
         if (!root) return;
-
-        // Inherit primary color from the workout builder settings
-        if (SETTINGS.primaryColor) {
-            root.style.setProperty('--ffc-primary', SETTINGS.primaryColor);
-            const rgb = hexToRgb(SETTINGS.primaryColor);
-            if (rgb) root.style.setProperty('--ffc-primary-rgb', rgb);
-        }
 
         bubbleBtn  = root.querySelector('.ffc-bubble');
         panel      = root.querySelector('.ffc-panel');
@@ -58,8 +49,7 @@
         });
 
         // Greeting + intake form
-        const botName = (SETTINGS.botName && String(SETTINGS.botName).trim()) || 'FlexFrame Coach';
-        addAssistantMessage("Hey! I'm your " + botName + ". Fill in the quick form below, then hit Generate Now — or hit WOD for a surprise.");
+        addAssistantMessage("Hey! I'm your FlexFrame Coach. Fill in the quick form below, then hit Generate Now — or hit WOD for a surprise.");
         renderIntakeForm();
         setInputVisible(false);
     }
@@ -102,10 +92,7 @@
 
     function setInputVisible(show) {
         const bar = root.querySelector('.ffc-input-bar');
-        if (!bar) return;
-        // If admin disabled free-form chat, the input bar is permanently hidden
-        if (SETTINGS.chatEnabled === false) { bar.style.display = 'none'; return; }
-        bar.style.display = show ? 'flex' : 'none';
+        if (bar) bar.style.display = show ? 'flex' : 'none';
     }
 
     function openPanel() {
@@ -122,17 +109,15 @@
         profile = null;
         formShown = false;
         messagesEl.innerHTML = '';
-        addAssistantMessage("Fresh start! Fill in the form below — then hit Generate Now.");
+        chipsEl.style.display = '';
+        addAssistantMessage("Fresh start! Fill in the form below and I'll build you a workout.");
         renderIntakeForm();
         setInputVisible(false);
     }
 
     function autoGrow() {
         inputEl.style.height = 'auto';
-        const next = Math.min(inputEl.scrollHeight, 120);
-        inputEl.style.height = next + 'px';
-        // Only show the scrollbar once the textarea has actually hit its max height
-        inputEl.classList.toggle('ffc-input-scroll', inputEl.scrollHeight > 120);
+        inputEl.style.height = Math.min(inputEl.scrollHeight, 120) + 'px';
     }
 
     async function onSend(opts) {
@@ -140,6 +125,7 @@
         const text = inputEl.value.trim();
         if (!text) return;
 
+        chipsEl.style.display = 'none';
         inputEl.value = '';
         inputEl.style.height = 'auto';
 
@@ -405,6 +391,10 @@
                 <label>First name <span class="ffc-form-opt">(optional)</span></label>
                 <input type="text" class="ffc-form-input" data-field="firstName" maxlength="30" placeholder="e.g. Alex" autocomplete="given-name">
             </div>
+            <div class="ffc-form-row ffc-form-row-narrow">
+                <label>Age <span class="ffc-form-opt">(optional)</span></label>
+                <input type="number" class="ffc-form-input" data-field="age" min="10" max="100" placeholder="e.g. 35">
+            </div>
             <div class="ffc-form-row">
                 <label>Experience</label>
                 <div class="ffc-pills" data-field="experience" data-multi="false">
@@ -421,11 +411,14 @@
                 </div>
             </div>
             <div class="ffc-form-row">
-                <label>Duration</label>
+                <label>Duration <span class="ffc-form-opt">(min)</span></label>
                 <div class="ffc-pills" data-field="duration" data-multi="false">
-                    <button type="button" class="ffc-pill" data-value="quick">Quick</button>
-                    <button type="button" class="ffc-pill" data-value="regular">Regular</button>
-                    <button type="button" class="ffc-pill" data-value="long">Long</button>
+                    <button type="button" class="ffc-pill" data-value="20">20</button>
+                    <button type="button" class="ffc-pill" data-value="30">30</button>
+                    <button type="button" class="ffc-pill" data-value="45">45</button>
+                    <button type="button" class="ffc-pill" data-value="60">60</button>
+                    <button type="button" class="ffc-pill" data-value="75">75</button>
+                    <button type="button" class="ffc-pill" data-value="90">90</button>
                 </div>
             </div>
             <div class="ffc-form-row">
@@ -452,7 +445,8 @@
             </div>
             <div class="ffc-form-error" style="display:none;"></div>
             <div class="ffc-form-actions">
-                <button type="button" class="ffc-btn ffc-form-save">Save profile</button>
+                <button type="button" class="ffc-btn ffc-form-generate">Generate now</button>
+                <button type="button" class="ffc-btn ffc-btn-secondary ffc-form-chat">Chat first</button>
             </div>
         `;
 
@@ -476,7 +470,8 @@
             });
         });
 
-        form.querySelector('.ffc-form-save').addEventListener('click', () => submitForm(form, false));
+        form.querySelector('.ffc-form-generate').addEventListener('click', () => submitForm(form, true));
+        form.querySelector('.ffc-form-chat').addEventListener('click', () => submitForm(form, false));
 
         wrap.appendChild(form);
         messagesEl.appendChild(wrap);
@@ -504,7 +499,7 @@
         });
         // Coerce types
         if (data.age) data.age = parseInt(data.age, 10) || undefined;
-        // duration is now a token: 'quick' | 'regular' | 'long' — leave as string
+        if (data.duration) data.duration = parseInt(data.duration, 10);
         if (data.hasInjuries === 'true') data.hasInjuries = true;
         else if (data.hasInjuries === 'false') data.hasInjuries = false;
         return data;
@@ -541,21 +536,25 @@
         setInputVisible(true);
 
         if (generateNow) {
+            // Force tool call
+            chipsEl.style.display = 'none';
             const summary = profileSummaryString(profile);
             addUserMessage('Generate my workout');
             conversation.push({ role: 'user', content: 'Generate my workout. ' + summary });
             sendToServer({ mode: 'generate' });
         } else {
-            addAssistantMessage("Got it. Tap ‘Generate Now’ when you're ready, or use Chat to refine — style, focus, exercises to include or avoid.");
+            chipsEl.style.display = 'none';
+            addAssistantMessage("Got it. Anything else you'd like me to factor in — preferred style, exercises to include or avoid, supersets, anything?");
         }
     }
 
     function profileSummaryString(p) {
         const parts = [];
         if (p.firstName)  parts.push('name=' + p.firstName);
+        if (p.age)        parts.push('age=' + p.age);
         parts.push('experience=' + p.experience);
         parts.push('location=' + p.location);
-        parts.push('duration=' + p.duration);
+        parts.push('duration=' + p.duration + 'min');
         parts.push('goals=' + (p.goals || []).join('+'));
         parts.push('techniques=' + ((p.techniques && p.techniques.length) ? p.techniques.join('+') : 'none'));
         parts.push('injuries=' + (p.hasInjuries ? (p.injuryDetails || 'yes') : 'none'));
@@ -570,8 +569,9 @@
         card.className = 'ffc-profile-card';
 
         const lines = [];
-        if (p.firstName) lines.push(`<strong>${escapeHtml(p.firstName)}</strong>`);
-        lines.push(cap(p.experience) + ' · ' + cap(p.location) + ' · ' + cap(p.duration));
+        if (p.firstName) lines.push(`<strong>${escapeHtml(p.firstName)}</strong>${p.age ? ', ' + p.age : ''}`);
+        else if (p.age)  lines.push(`Age ${p.age}`);
+        lines.push(cap(p.experience) + ' · ' + cap(p.location) + ' · ' + p.duration + ' min');
         if (p.goals && p.goals.length) {
             lines.push('Goals: ' + p.goals.map(g => GOAL_OPTIONS.find(o => o.id === g)?.label || g).join(', '));
         }
@@ -598,6 +598,7 @@
             profile = null;
             formShown = false;
             messagesEl.innerHTML = '';
+            chipsEl.style.display = '';
             addAssistantMessage("No worries — update your details below.");
             renderIntakeForm();
             setInputVisible(false);
@@ -616,13 +617,5 @@
     function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
     function escapeHtml(s) {
         return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-    }
-    function hexToRgb(hex) {
-        if (!hex) return null;
-        const m = String(hex).trim().replace('#', '');
-        const full = m.length === 3 ? m.split('').map(c => c + c).join('') : m;
-        if (!/^[0-9a-f]{6}$/i.test(full)) return null;
-        const n = parseInt(full, 16);
-        return ((n >> 16) & 255) + ', ' + ((n >> 8) & 255) + ', ' + (n & 255);
     }
 })();

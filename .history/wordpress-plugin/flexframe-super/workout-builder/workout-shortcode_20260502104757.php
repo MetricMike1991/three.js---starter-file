@@ -107,9 +107,6 @@ function flexframe_enqueue_workout_builder_assets() {
     $ai_chat_on     = (bool) get_option('flexframe_ai_coach_chat_enabled', true);
     $ai_chat_login  = (bool) get_option('flexframe_ai_coach_chat_logged_in_only', true);
     $ai_wod_on      = (bool) get_option('flexframe_ai_coach_wod_enabled', true);
-    $ai_bot_name    = trim((string) get_option('flexframe_ai_coach_bot_name', 'FlexFrame Coach'));
-    if ($ai_bot_name === '') { $ai_bot_name = 'FlexFrame Coach'; }
-    $ai_bot_avatar  = (string) get_option('flexframe_ai_coach_bot_avatar_url', '');
     $ai_has_key     = defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '';
     $ai_user_ok     = is_user_logged_in() || $ai_public;
     $coach_enabled  = $ai_master && $ai_has_key && $ai_user_ok;
@@ -141,8 +138,6 @@ function flexframe_enqueue_workout_builder_assets() {
             'enabled'      => true,
             'chatEnabled'  => $ai_chat_effective,
             'wodEnabled'   => $ai_wod_on,
-            'botName'      => $ai_bot_name,
-            'botAvatar'    => $ai_bot_avatar,
             'primaryColor' => get_option('flexframe_primary_color_mode', 'default') === 'custom'
                 ? get_option('flexframe_primary_color', '#ec2f2c')
                 : '#ec2f2c',
@@ -357,9 +352,6 @@ function flexframe_workout_builder_shortcode($atts) {
     $coach_chat_on  = (bool) get_option('flexframe_ai_coach_chat_enabled', true);
     $coach_chat_li  = (bool) get_option('flexframe_ai_coach_chat_logged_in_only', true);
     $coach_wod_on   = (bool) get_option('flexframe_ai_coach_wod_enabled', true);
-    $coach_bot_name = trim((string) get_option('flexframe_ai_coach_bot_name', 'FlexFrame Coach'));
-    if ($coach_bot_name === '') { $coach_bot_name = 'FlexFrame Coach'; }
-    $coach_bot_avatar = (string) get_option('flexframe_ai_coach_bot_avatar_url', '');
     $coach_has_key  = defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '';
     $coach_user_ok  = is_user_logged_in() || $coach_public;
     $coach_enabled  = $coach_master && $coach_has_key && $coach_user_ok;
@@ -367,24 +359,16 @@ function flexframe_workout_builder_shortcode($atts) {
     $coach_chat_eff = $coach_chat_on && (is_user_logged_in() || !$coach_chat_li);
     if ($coach_enabled) :
     ?>
-    <div id="flexframe-ai-coach" class="ffc-root<?php echo $coach_bot_avatar ? ' ffc-has-avatar' : ''; ?>">
-        <button class="ffc-bubble" type="button" aria-label="<?php echo esc_attr(sprintf(__('Open %s', 'flexframe-viewer'), $coach_bot_name)); ?>">
-            <?php if ($coach_bot_avatar): ?>
-            <img class="ffc-bubble-avatar" src="<?php echo esc_url($coach_bot_avatar); ?>" alt="" />
-            <?php else: ?>
+    <div id="flexframe-ai-coach" class="ffc-root">
+        <button class="ffc-bubble" type="button" aria-label="Open FlexFrame Coach">
             <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
-            <?php endif; ?>
             <span class="ffc-bubble-dot"></span>
         </button>
-        <div class="ffc-panel" role="dialog" aria-label="<?php echo esc_attr(sprintf(__('%s chat', 'flexframe-viewer'), $coach_bot_name)); ?>">
+        <div class="ffc-panel" role="dialog" aria-label="FlexFrame Coach chat">
             <div class="ffc-header">
-                <div class="ffc-header-icon" aria-hidden="true">
-                    <?php if ($coach_bot_avatar): ?>
-                    <img class="ffc-header-avatar" src="<?php echo esc_url($coach_bot_avatar); ?>" alt="" />
-                    <?php else: ?>FF<?php endif; ?>
-                </div>
+                <div class="ffc-header-icon" aria-hidden="true">FF</div>
                 <div class="ffc-header-text">
-                    <div class="ffc-header-title"><?php echo esc_html($coach_bot_name); ?></div>
+                    <div class="ffc-header-title">FlexFrame Coach</div>
                     <div class="ffc-header-sub">AI workout builder · beta</div>
                 </div>
                 <div class="ffc-header-actions">
@@ -409,7 +393,7 @@ function flexframe_workout_builder_shortcode($atts) {
             <div class="ffc-input-bar">
                 <textarea class="ffc-input" rows="1" placeholder="Tell me your goal, time, equipment…"></textarea>
                 <button class="ffc-send" type="button" aria-label="Send">
-                    <span aria-hidden="true">➤</span>
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
                 </button>
             </div>
         </div>

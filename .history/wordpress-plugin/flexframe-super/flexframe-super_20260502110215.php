@@ -7053,34 +7053,10 @@ function flexframe_coach_sanitize_profile($p) {
         if (in_array($l, $loc_allowed, true)) $out['location'] = $l;
     }
 
-    // Duration: accept either a token ('quick'|'regular'|'long') OR a legacy
-    // integer in 15-120. Stored as the token plus a resolved minute range so
-    // the prompt can give the model a concrete length without exposing it to
-    // the user.
-    $duration_bands = array(
-        'quick'   => array(20, 40),
-        'regular' => array(40, 60),
-        'long'    => array(60, 90),
-    );
+    // Duration: 15-120
     if (isset($p['duration']) && $p['duration'] !== '') {
-        $raw = $p['duration'];
-        if (is_string($raw) && isset($duration_bands[strtolower($raw)])) {
-            $token = strtolower($raw);
-            $out['duration']      = $token;
-            $out['durationMin']   = $duration_bands[$token][0];
-            $out['durationMax']   = $duration_bands[$token][1];
-        } else {
-            $d = (int) $raw;
-            if ($d >= 15 && $d <= 120) {
-                // Legacy numeric — derive token + tight range around it.
-                if ($d <= 40)      { $token = 'quick';   $range = $duration_bands['quick']; }
-                elseif ($d <= 60)  { $token = 'regular'; $range = $duration_bands['regular']; }
-                else               { $token = 'long';    $range = $duration_bands['long']; }
-                $out['duration']    = $token;
-                $out['durationMin'] = $range[0];
-                $out['durationMax'] = $range[1];
-            }
-        }
+        $d = (int) $p['duration'];
+        if ($d >= 15 && $d <= 120) $out['duration'] = $d;
     }
 
     // Goals: array, allowed values
@@ -7137,18 +7113,7 @@ function flexframe_coach_format_profile($p) {
     $lines[] = '- Experience: ' . (!empty($p['experience']) ? $p['experience'] : '(not given)');
     $lines[] = '- Location: '   . (!empty($p['location'])   ? $p['location']   : '(not given)') .
         (!empty($p['location']) && $p['location'] === 'home' ? ' — restrict to bodyweight, kettlebell, and resistance-band exercises only' : '');
-    $duration_label = '(not given)';
-    if (!empty($p['duration'])) {
-        $tok = is_string($p['duration']) ? $p['duration'] : '';
-        $min = isset($p['durationMin']) ? (int) $p['durationMin'] : 0;
-        $max = isset($p['durationMax']) ? (int) $p['durationMax'] : 0;
-        if ($min > 0 && $max > 0) {
-            $duration_label = ucfirst($tok) . " (target session length {$min}-{$max} minutes — size the workout to fit this window; pick exercise count, sets, and rest accordingly. Do NOT mention the minute figures to the user; they only chose the qualitative label.)";
-        } else {
-            $duration_label = (string) $p['duration'] . ' minutes';
-        }
-    }
-    $lines[] = '- Duration: '   . $duration_label;
+    $lines[] = '- Duration: '   . (!empty($p['duration'])   ? $p['duration'] . ' minutes' : '(not given)');
     $lines[] = '- Goals: '      . (!empty($p['goals'])      ? implode(', ', $p['goals']) : '(not given)');
     if (!empty($p['techniques'])) {
         $lines[] = '- Time-saver techniques ALLOWED: ' . implode(', ', $p['techniques']) .
@@ -7295,17 +7260,6 @@ add_action('update_option_flexframe_hidden_exercises', 'flexframe_coach_invalida
 add_action('add_option_flexframe_hidden_exercises',    'flexframe_coach_invalidate_index_cache');
 add_action('update_option_flexframe_custom_exercises', 'flexframe_coach_invalidate_index_cache');
 add_action('add_option_flexframe_custom_exercises',    'flexframe_coach_invalidate_index_cache');
-// Belt-and-braces: also flush whenever the main settings form is submitted
-// (covers any edge case where the option value happens to match the previous
-// value and update_option_* doesn't fire, e.g. a re-save after a failed write).
-add_action('update_option_flexframe_logo_url', 'flexframe_coach_invalidate_index_cache');
-add_action('admin_post_flexframe_flush_coach_cache', function () {
-    if (!current_user_can('manage_options')) wp_die('forbidden');
-    check_admin_referer('flexframe_flush_coach_cache');
-    flexframe_coach_invalidate_index_cache();
-    wp_safe_redirect(wp_get_referer() ?: admin_url());
-    exit;
-});
 
 /**
  * Build a slim, token-efficient exercise index for the model.

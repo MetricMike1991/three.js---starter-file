@@ -7053,34 +7053,10 @@ function flexframe_coach_sanitize_profile($p) {
         if (in_array($l, $loc_allowed, true)) $out['location'] = $l;
     }
 
-    // Duration: accept either a token ('quick'|'regular'|'long') OR a legacy
-    // integer in 15-120. Stored as the token plus a resolved minute range so
-    // the prompt can give the model a concrete length without exposing it to
-    // the user.
-    $duration_bands = array(
-        'quick'   => array(20, 40),
-        'regular' => array(40, 60),
-        'long'    => array(60, 90),
-    );
+    // Duration: 15-120
     if (isset($p['duration']) && $p['duration'] !== '') {
-        $raw = $p['duration'];
-        if (is_string($raw) && isset($duration_bands[strtolower($raw)])) {
-            $token = strtolower($raw);
-            $out['duration']      = $token;
-            $out['durationMin']   = $duration_bands[$token][0];
-            $out['durationMax']   = $duration_bands[$token][1];
-        } else {
-            $d = (int) $raw;
-            if ($d >= 15 && $d <= 120) {
-                // Legacy numeric — derive token + tight range around it.
-                if ($d <= 40)      { $token = 'quick';   $range = $duration_bands['quick']; }
-                elseif ($d <= 60)  { $token = 'regular'; $range = $duration_bands['regular']; }
-                else               { $token = 'long';    $range = $duration_bands['long']; }
-                $out['duration']    = $token;
-                $out['durationMin'] = $range[0];
-                $out['durationMax'] = $range[1];
-            }
-        }
+        $d = (int) $p['duration'];
+        if ($d >= 15 && $d <= 120) $out['duration'] = $d;
     }
 
     // Goals: array, allowed values
@@ -7137,18 +7113,7 @@ function flexframe_coach_format_profile($p) {
     $lines[] = '- Experience: ' . (!empty($p['experience']) ? $p['experience'] : '(not given)');
     $lines[] = '- Location: '   . (!empty($p['location'])   ? $p['location']   : '(not given)') .
         (!empty($p['location']) && $p['location'] === 'home' ? ' — restrict to bodyweight, kettlebell, and resistance-band exercises only' : '');
-    $duration_label = '(not given)';
-    if (!empty($p['duration'])) {
-        $tok = is_string($p['duration']) ? $p['duration'] : '';
-        $min = isset($p['durationMin']) ? (int) $p['durationMin'] : 0;
-        $max = isset($p['durationMax']) ? (int) $p['durationMax'] : 0;
-        if ($min > 0 && $max > 0) {
-            $duration_label = ucfirst($tok) . " (target session length {$min}-{$max} minutes — size the workout to fit this window; pick exercise count, sets, and rest accordingly. Do NOT mention the minute figures to the user; they only chose the qualitative label.)";
-        } else {
-            $duration_label = (string) $p['duration'] . ' minutes';
-        }
-    }
-    $lines[] = '- Duration: '   . $duration_label;
+    $lines[] = '- Duration: '   . (!empty($p['duration'])   ? $p['duration'] . ' minutes' : '(not given)');
     $lines[] = '- Goals: '      . (!empty($p['goals'])      ? implode(', ', $p['goals']) : '(not given)');
     if (!empty($p['techniques'])) {
         $lines[] = '- Time-saver techniques ALLOWED: ' . implode(', ', $p['techniques']) .
@@ -7274,10 +7239,6 @@ function flexframe_register_coach_chat_api() {
         'methods'             => 'POST',
         'callback'            => 'flexframe_handle_coach_chat',
         'permission_callback' => function () {
-            // Master kill-switch
-            if (!get_option('flexframe_ai_coach_enabled', true)) return false;
-            // Public mode allows anonymous access; otherwise require login
-            if (get_option('flexframe_ai_coach_public', false)) return true;
             return is_user_logged_in();
         },
     ));
@@ -7295,17 +7256,6 @@ add_action('update_option_flexframe_hidden_exercises', 'flexframe_coach_invalida
 add_action('add_option_flexframe_hidden_exercises',    'flexframe_coach_invalidate_index_cache');
 add_action('update_option_flexframe_custom_exercises', 'flexframe_coach_invalidate_index_cache');
 add_action('add_option_flexframe_custom_exercises',    'flexframe_coach_invalidate_index_cache');
-// Belt-and-braces: also flush whenever the main settings form is submitted
-// (covers any edge case where the option value happens to match the previous
-// value and update_option_* doesn't fire, e.g. a re-save after a failed write).
-add_action('update_option_flexframe_logo_url', 'flexframe_coach_invalidate_index_cache');
-add_action('admin_post_flexframe_flush_coach_cache', function () {
-    if (!current_user_can('manage_options')) wp_die('forbidden');
-    check_admin_referer('flexframe_flush_coach_cache');
-    flexframe_coach_invalidate_index_cache();
-    wp_safe_redirect(wp_get_referer() ?: admin_url());
-    exit;
-});
 
 /**
  * Build a slim, token-efficient exercise index for the model.
@@ -7340,7 +7290,6 @@ function flexframe_get_coach_exercise_index() {
                     'type'      => isset($ex['type']) ? (string) $ex['type'] : 'Strength',
                     'muscles'   => isset($ex['muscleGroup']) && is_array($ex['muscleGroup']) ? array_values(array_slice($ex['muscleGroup'], 0, 4)) : array(),
                     'equipment' => isset($ex['equipment']) && is_array($ex['equipment']) ? array_values(array_slice($ex['equipment'], 0, 3)) : array(),
-                    'source'    => 'catalogue',
                 );
             }
         }
@@ -7348,7 +7297,7 @@ function flexframe_get_coach_exercise_index() {
 
     // Merge custom exercises (also subject to hidden list + showInWorkout flag)
     $custom_json = get_option('flexframe_custom_exercises', '[]');
-    $custom      = is_string($custom_json) ? json_decode($custom_json, true) : $custom_json;
+    $custom      = json_decode($custom_json, true);
     if (is_array($custom)) {
         foreach ($custom as $ce) {
             if (empty($ce['id']) || empty($ce['name'])) continue;
@@ -7360,15 +7309,12 @@ function flexframe_get_coach_exercise_index() {
                 'type'      => isset($ce['type']) ? (string) $ce['type'] : 'Strength',
                 'muscles'   => isset($ce['muscleGroup']) && is_array($ce['muscleGroup']) ? array_values($ce['muscleGroup']) : array(),
                 'equipment' => isset($ce['equipment']) && is_array($ce['equipment']) ? array_values($ce['equipment']) : array(),
-                'source'    => 'custom',
             );
         }
     }
 
     if (!empty($index)) {
-        // Short TTL so admin edits to the catalogue (custom adds, hidden toggles)
-        // reach the AI promptly even if a save action skipped the invalidation hook.
-        set_transient('flexframe_coach_ex_index', $index, 5 * MINUTE_IN_SECONDS);
+        set_transient('flexframe_coach_ex_index', $index, HOUR_IN_SECONDS);
     }
     return $index;
 }
@@ -7378,9 +7324,7 @@ function flexframe_get_coach_exercise_index() {
  */
 function flexframe_coach_system_prompt() {
     $gym = get_bloginfo('name') ?: 'this gym';
-    $bot_name = trim((string) get_option('flexframe_ai_coach_bot_name', 'FlexFrame Coach'));
-    if ($bot_name === '') { $bot_name = 'FlexFrame Coach'; }
-    return "You are {$bot_name}, a friendly, knowledgeable personal trainer chat assistant on the {$gym} workout builder page.\n\n" .
+    return "You are FlexFrame Coach, a friendly, knowledgeable personal trainer chat assistant on the {$gym} workout builder page.\n\n" .
         "SCOPE — STRICT:\n" .
         "- You ONLY help build single workout sessions. Nothing else.\n" .
         "- You do NOT give medical advice, nutrition plans, supplement recommendations, multi-week programmes, weight-loss diet plans, or any form of professional advice outside of single-session workout programming. If asked, briefly redirect: \"I'm just here to build you a workout — for that, please speak to a qualified professional.\"\n" .
@@ -7419,49 +7363,21 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
     }
 
     // ── Rate limits ──
-    // ── Rate limits ──
-    // For logged-in users: key by user_id. For anonymous (public mode): key by IP.
-    $user_id  = get_current_user_id();
-    $is_anon  = ($user_id === 0);
-    if ($is_anon) {
-        $ip = isset($_SERVER['REMOTE_ADDR']) ? preg_replace('/[^0-9a-fA-F:.]/', '', (string) $_SERVER['REMOTE_ADDR']) : 'unknown';
-        $rl_key = 'ip_' . md5($ip);
-        // Stricter limits for anonymous users
-        $hour_cap = 10;
-        $day_cap  = 30;
-    } else {
-        $rl_key = 'u_' . $user_id;
-        $hour_cap = 25;
-        $day_cap  = 100;
-    }
-    $rl_hour = (int) get_transient('ffcoach_rl_h_' . $rl_key);
-    $rl_day  = (int) get_transient('ffcoach_rl_d_' . $rl_key);
-    if ($rl_hour >= $hour_cap) {
+    $user_id = get_current_user_id();
+    $rl_hour = (int) get_transient('ffcoach_rl_h_' . $user_id);
+    $rl_day  = (int) get_transient('ffcoach_rl_d_' . $user_id);
+    if ($rl_hour >= 25) {
         return new WP_Error('flexframe_rate_limit', 'You have reached the hourly chat limit. Please try again later.', array('status' => 429));
     }
-    if ($rl_day >= $day_cap) {
+    if ($rl_day >= 100) {
         return new WP_Error('flexframe_rate_limit', 'Daily chat limit reached. Please come back tomorrow.', array('status' => 429));
     }
-    set_transient('ffcoach_rl_h_' . $rl_key, $rl_hour + 1, HOUR_IN_SECONDS);
-    set_transient('ffcoach_rl_d_' . $rl_key, $rl_day + 1, DAY_IN_SECONDS);
+    set_transient('ffcoach_rl_h_' . $user_id, $rl_hour + 1, HOUR_IN_SECONDS);
+    set_transient('ffcoach_rl_d_' . $user_id, $rl_day + 1, DAY_IN_SECONDS);
 
     $messages_in = $request->get_param('messages');
     if (!is_array($messages_in) || empty($messages_in)) {
         return new WP_Error('flexframe_bad_request', 'messages array required.', array('status' => 400));
-    }
-
-    // ── Enforce admin "Chat disabled" mode: only allow generate or wod requests ──
-    $chat_admin_on = (bool) get_option('flexframe_ai_coach_chat_enabled', true);
-    $chat_login_only = (bool) get_option('flexframe_ai_coach_chat_logged_in_only', true);
-    $wod_admin_on  = (bool) get_option('flexframe_ai_coach_wod_enabled', true);
-    $req_mode_raw  = sanitize_key((string) $request->get_param('mode'));
-    // Effective chat permission for this caller
-    $chat_effective = $chat_admin_on && (!$is_anon || !$chat_login_only);
-    if (!$chat_effective && !in_array($req_mode_raw, array('generate', 'wod'), true)) {
-        return new WP_Error('flexframe_chat_disabled', 'Free-form chat is not available for your account. Use the form + Generate Now.', array('status' => 403));
-    }
-    if (!$wod_admin_on && $req_mode_raw === 'wod') {
-        return new WP_Error('flexframe_wod_disabled', 'Workout of the Day is disabled.', array('status' => 403));
     }
 
     // ── Per-session message cap ──
@@ -7508,12 +7424,6 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
         $home_allowed = array('body weight', 'kettlebell', 'resistance band');
         $filtered = array();
         foreach ($catalogue as $ex) {
-            // Always preserve admin-added custom exercises — the admin has
-            // explicitly opted them in and may rely on them at home.
-            if (isset($ex['source']) && $ex['source'] === 'custom') {
-                $filtered[] = $ex;
-                continue;
-            }
             $eq_lower = array_map('strtolower', $ex['equipment']);
             foreach ($eq_lower as $e) {
                 if (in_array($e, $home_allowed, true)) { $filtered[] = $ex; break; }
@@ -7569,14 +7479,8 @@ function flexframe_handle_coach_chat(WP_REST_Request $request) {
     );
 
     // Build messages: system prompt + catalogue (as system) + history.
-    // Count custom exercises so we can call them out explicitly to the model.
-    $custom_count = 0;
-    foreach ($catalogue as $ex) {
-        if (isset($ex['source']) && $ex['source'] === 'custom') { $custom_count++; }
-    }
-    $catalogue_msg = "Available exercise catalogue (use exerciseId = id field). Each entry has a 'source' field: 'catalogue' = the standard library, 'custom' = a gym-specific exercise the admin has explicitly added (treat these as fully equal to catalogue exercises — they ARE available, never claim otherwise). " .
-        ($custom_count > 0 ? "There are {$custom_count} custom exercise(s) in this list. " : '') .
-        "JSON list:\n" . wp_json_encode($catalogue);
+    $catalogue_msg = "Available exercise catalogue (use exerciseId = id field). JSON list:\n" .
+        wp_json_encode($catalogue);
 
     $messages = array(
         array('role' => 'system', 'content' => flexframe_coach_system_prompt()),

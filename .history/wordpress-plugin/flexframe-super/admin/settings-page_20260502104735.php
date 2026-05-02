@@ -1898,12 +1898,6 @@ function flexframe_register_settings() {
     register_setting('flexframe_settings_group', 'flexframe_ai_coach_chat_logged_in_only', array(
         'type' => 'boolean', 'sanitize_callback' => 'rest_sanitize_boolean', 'default' => true
     ));
-    register_setting('flexframe_settings_group', 'flexframe_ai_coach_bot_name', array(
-        'type' => 'string', 'sanitize_callback' => 'sanitize_text_field', 'default' => 'FlexFrame Coach'
-    ));
-    register_setting('flexframe_settings_group', 'flexframe_ai_coach_bot_avatar_url', array(
-        'type' => 'string', 'sanitize_callback' => 'esc_url_raw', 'default' => ''
-    ));
     register_setting('flexframe_settings_group', 'flexframe_ai_coach_wod_enabled', array(
         'type' => 'boolean', 'sanitize_callback' => 'rest_sanitize_boolean', 'default' => true
     ));
@@ -4834,8 +4828,6 @@ function flexframe_settings_page() {
                                 $ai_chat_enabled  = (bool) get_option('flexframe_ai_coach_chat_enabled', true);
                                 $ai_chat_login    = (bool) get_option('flexframe_ai_coach_chat_logged_in_only', true);
                                 $ai_wod_enabled   = (bool) get_option('flexframe_ai_coach_wod_enabled', true);
-                                $ai_bot_name      = get_option('flexframe_ai_coach_bot_name', 'FlexFrame Coach');
-                                $ai_bot_avatar    = get_option('flexframe_ai_coach_bot_avatar_url', '');
                                 $ai_key_defined   = defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '';
                                 ?>
 
@@ -4888,67 +4880,7 @@ function flexframe_settings_page() {
                                             <p class="description"><?php _e('When OFF, the WOD button is hidden — users must fill the form to generate a workout.', 'flexframe-viewer'); ?></p>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <th scope="row"><label for="flexframe_ai_coach_bot_name"><?php _e('Bot name', 'flexframe-viewer'); ?></label></th>
-                                        <td>
-                                            <input type="text" id="flexframe_ai_coach_bot_name" name="flexframe_ai_coach_bot_name" value="<?php echo esc_attr($ai_bot_name); ?>" class="regular-text" maxlength="40" placeholder="FlexFrame Coach">
-                                            <p class="description"><?php _e('Display name for the AI assistant. Shown in the chat header and used by the model when it refers to itself.', 'flexframe-viewer'); ?></p>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row"><?php _e('Bot avatar', 'flexframe-viewer'); ?></th>
-                                        <td>
-                                            <div class="flexframe-coach-avatar-upload">
-                                                <input type="hidden" id="flexframe_ai_coach_bot_avatar_url" name="flexframe_ai_coach_bot_avatar_url" value="<?php echo esc_attr($ai_bot_avatar); ?>">
-                                                <div id="ffc-avatar-preview-wrap" style="display:flex;align-items:center;gap:12px;margin-bottom:8px;">
-                                                    <div id="ffc-avatar-preview" style="width:64px;height:64px;border-radius:50%;background:#eee;background-size:cover;background-position:center;border:1px solid #ccd0d4;<?php echo $ai_bot_avatar ? "background-image:url('" . esc_url($ai_bot_avatar) . "');" : ''; ?>"></div>
-                                                    <div>
-                                                        <button type="button" class="button" id="ffc-avatar-upload-btn"><?php _e('Choose image', 'flexframe-viewer'); ?></button>
-                                                        <button type="button" class="button" id="ffc-avatar-remove-btn" <?php echo empty($ai_bot_avatar) ? 'style="display:none;"' : ''; ?>><?php _e('Remove', 'flexframe-viewer'); ?></button>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <p class="description"><?php _e('Square image recommended (e.g. 128×128 or 256×256). Displayed as a circular avatar on the floating bubble (closed) and in the chat header (open). Leave empty to use the default “FF” monogram.', 'flexframe-viewer'); ?></p>
-                                        </td>
-                                    </tr>
                                 </table>
-
-                                <p style="margin-top: 16px;">
-                                    <a href="<?php echo esc_url(wp_nonce_url(admin_url('admin-post.php?action=flexframe_flush_coach_cache'), 'flexframe_flush_coach_cache')); ?>" class="button">
-                                        <span class="dashicons dashicons-update" style="vertical-align: text-bottom;"></span>
-                                        <?php _e('Refresh AI exercise cache', 'flexframe-viewer'); ?>
-                                    </a>
-                                    <span style="margin-left: 8px; color: #666; font-size: 12px;"><?php _e('The AI keeps a 5-minute snapshot of your exercise list. Click if a freshly added exercise isn\'t showing up in chat answers yet.', 'flexframe-viewer'); ?></span>
-                                </p>
-
-                                <script>
-                                jQuery(function($){
-                                    var ffcAvatarFrame;
-                                    $('#ffc-avatar-upload-btn').on('click', function(e){
-                                        e.preventDefault();
-                                        if (ffcAvatarFrame) { ffcAvatarFrame.open(); return; }
-                                        ffcAvatarFrame = wp.media({
-                                            title: '<?php echo esc_js(__('Select Bot Avatar', 'flexframe-viewer')); ?>',
-                                            button: { text: '<?php echo esc_js(__('Use this image', 'flexframe-viewer')); ?>' },
-                                            library: { type: 'image' },
-                                            multiple: false
-                                        });
-                                        ffcAvatarFrame.on('select', function(){
-                                            var att = ffcAvatarFrame.state().get('selection').first().toJSON();
-                                            $('#flexframe_ai_coach_bot_avatar_url').val(att.url);
-                                            $('#ffc-avatar-preview').css('background-image', 'url(' + att.url + ')');
-                                            $('#ffc-avatar-remove-btn').show();
-                                        });
-                                        ffcAvatarFrame.open();
-                                    });
-                                    $('#ffc-avatar-remove-btn').on('click', function(e){
-                                        e.preventDefault();
-                                        $('#flexframe_ai_coach_bot_avatar_url').val('');
-                                        $('#ffc-avatar-preview').css('background-image', '');
-                                        $(this).hide();
-                                    });
-                                });
-                                </script>
                             </div>
                         </div>
 
