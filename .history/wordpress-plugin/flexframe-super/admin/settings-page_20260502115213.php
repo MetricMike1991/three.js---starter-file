@@ -5007,7 +5007,7 @@ function flexframe_settings_page() {
                                         <strong><?php _e('Workout Caption Prompt Template', 'flexframe-viewer'); ?></strong>
                                     </label>
                                     <p class="description" style="margin: 0 0 8px 0;">
-                                        <?php _e('Used when the user taps <em>Generate Caption</em> on the produced workout image. Placeholders: <code>{gymName}</code>, <code>{workoutName}</code>, <code>{exerciseList}</code>, <code>{shareUrl}</code> (the live link to open this exact workout), <code>{siteUrl}</code>.', 'flexframe-viewer'); ?>
+                                        <?php _e('Used when the user taps <em>Generate Caption</em> on the produced workout image. Placeholders: <code>{gymName}</code>, <code>{workoutName}</code>, <code>{exerciseList}</code>, <code>{siteUrl}</code>.', 'flexframe-viewer'); ?>
                                     </p>
                                     <textarea
                                         id="flexframe_ai_workout_caption_template"

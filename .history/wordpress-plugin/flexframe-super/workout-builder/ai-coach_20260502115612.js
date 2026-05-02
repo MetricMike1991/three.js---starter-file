@@ -640,30 +640,8 @@
         }
 
         busy = true;
-        addAssistantMessage("Saving your workout, capturing it as an image, then sending it to the AI to be turned into a branded Instagram post. This usually takes around 90 seconds — hang tight, the countdown will tick down below.");
-        const countdown = addCountdownCard(90);
-
-        // 1. Save the workout publicly so we get a share URL to embed in the caption.
-        let shareUrl = '';
-        try {
-            const saveRes = await fetch(SETTINGS.restUrl + 'workouts/share', {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: wo.name,
-                    exercises: wo.exercises,
-                }),
-            });
-            const saveData = await saveRes.json();
-            if (saveRes.ok && saveData && saveData.shareUrl) {
-                shareUrl = saveData.shareUrl;
-            } else {
-                console.warn('[AI Coach] Could not save workout for share URL', saveData);
-            }
-        } catch (err) {
-            console.warn('[AI Coach] Share-save failed (non-fatal)', err);
-        }
+        const typingEl = addTypingIndicator();
+        addAssistantMessage("Capturing your workout…");
 
         let screenshotDataUrl = '';
         try {
@@ -684,7 +662,7 @@
             bubbleBtn.style.display = bubbleVisible;
             if (wasOpen) root.classList.add('ffc-open');
         } catch (err) {
-            countdown.stop(true);
+            typingEl.remove();
             busy = false;
             console.error('[AI Coach] Screenshot failed', err);
             addErrorMessage('Could not capture the workout: ' + (err.message || err));
@@ -717,71 +695,23 @@
                 }),
             });
             const data = await res.json();
-            countdown.stop(true);
+            typingEl.remove();
             busy = false;
             if (!res.ok || !data.success || !data.image) {
                 const msg = (data && (data.message || data.code)) || ('Error ' + res.status);
                 addErrorMessage('AI image failed: ' + msg);
                 return;
             }
-            addImageCard(data.image, wo.name, exerciseList, shareUrl);
+            addImageCard(data.image, wo.name, exerciseList);
         } catch (err) {
-            countdown.stop(true);
+            typingEl.remove();
             busy = false;
             console.error('[AI Coach] AI render failed', err);
             addErrorMessage('Network error while generating image. Please try again.');
         }
     }
 
-    function addCountdownCard(seconds) {
-        const wrap = document.createElement('div');
-        wrap.className = 'ffc-msg assistant';
-        wrap.style.maxWidth = '100%';
-
-        const card = document.createElement('div');
-        card.className = 'ffc-countdown';
-        card.innerHTML = `
-            <div class="ffc-countdown-head">
-                <div class="ffc-countdown-spinner" aria-hidden="true"></div>
-                <div class="ffc-countdown-text">
-                    <div class="ffc-countdown-title">Generating your Instagram post…</div>
-                    <div class="ffc-countdown-sub">Turning your workout into a branded social post. Please don't close this window.</div>
-                </div>
-            </div>
-            <div class="ffc-countdown-timer"><span class="ffc-countdown-num">${seconds}</span><span class="ffc-countdown-unit">s</span></div>
-            <div class="ffc-countdown-bar"><div class="ffc-countdown-fill"></div></div>
-        `;
-
-        wrap.appendChild(card);
-        messagesEl.appendChild(wrap);
-        scrollToBottom();
-
-        const numEl  = card.querySelector('.ffc-countdown-num');
-        const fillEl = card.querySelector('.ffc-countdown-fill');
-        let remaining = seconds;
-        let tickId = setInterval(() => {
-            remaining = Math.max(0, remaining - 1);
-            numEl.textContent = remaining;
-            const pct = Math.max(0, Math.min(100, ((seconds - remaining) / seconds) * 100));
-            fillEl.style.width = pct + '%';
-            if (remaining <= 0) {
-                clearInterval(tickId);
-                tickId = null;
-                // If the request hasn't finished by 0, switch the message so the user knows we're still waiting.
-                const sub = card.querySelector('.ffc-countdown-sub');
-                if (sub) sub.textContent = "Almost done — finishing up the final render…";
-            }
-        }, 1000);
-
-        return {
-            stop: function (remove) {
-                if (tickId) { clearInterval(tickId); tickId = null; }
-                if (remove) wrap.remove();
-            }
-        };
-    }
-
-    function addImageCard(imageDataUrl, workoutName, exerciseList, shareUrl) {
+    function addImageCard(imageDataUrl, workoutName, exerciseList) {
         const wrap = document.createElement('div');
         wrap.className = 'ffc-msg assistant';
         wrap.style.maxWidth = '100%';
@@ -817,7 +747,7 @@
         const capBtn = document.createElement('button');
         capBtn.className = 'ffc-btn ffc-btn-secondary';
         capBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg> Generate Caption';
-        capBtn.addEventListener('click', () => generateWorkoutCaption(capBtn, card, workoutName, exerciseList, shareUrl));
+        capBtn.addEventListener('click', () => generateWorkoutCaption(capBtn, card, workoutName, exerciseList));
 
         actions.appendChild(dlBtn);
         actions.appendChild(capBtn);
@@ -828,7 +758,7 @@
         scrollToBottom();
     }
 
-    async function generateWorkoutCaption(btn, card, workoutName, exerciseList, shareUrl) {
+    async function generateWorkoutCaption(btn, card, workoutName, exerciseList) {
         if (btn.disabled) return;
         btn.disabled = true;
         const original = btn.innerHTML;
@@ -845,7 +775,6 @@
                     mode: 'workout',
                     workoutName: workoutName,
                     exerciseList: exerciseList,
-                    shareUrl: shareUrl || '',
                     provider: 'openai',
                 }),
             });

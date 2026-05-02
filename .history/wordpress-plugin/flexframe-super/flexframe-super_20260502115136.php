@@ -6395,7 +6395,7 @@ function flexframe_ai_default_workout_caption_template() {
         "Structure (use real blank lines between each block so it spaces out properly on Instagram):\n" .
         "1. One short hook line with one relevant emoji about the WORKOUT (not a single exercise).\n" .
         "2. ONE short, motivating sentence about what kind of session this is or who it's perfect for (1-2 sentences). A couple of tasteful emojis are fine.\n" .
-        "3. The call to action, EXACTLY this wording: 'Want to try this exact workout? Open it directly in our free interactive workout builder, swap exercises, and start training in 3D. {shareUrl}'\n" .
+        "3. The call to action, EXACTLY this wording: 'Want to try this exact workout? Open it in our free interactive workout builder, swap exercises, and start training in 3D. Visit {siteUrl}'\n" .
         "4. Exactly 5 relevant hashtags on the final line, separated by spaces.\n\n" .
         "Rules:\n" .
         "- Keep the whole caption under 90 words total.\n" .
@@ -6457,9 +6457,6 @@ function flexframe_handle_ai_caption(WP_REST_Request $request) {
         $exercise_list = wp_kses_post($exercise_list);
         if (empty($exercise_list)) { $exercise_list = '(no exercises listed)'; }
 
-        $share_url = esc_url_raw((string) $request->get_param('shareUrl'));
-        if (empty($share_url)) { $share_url = $site_url; }
-
         $template = get_option('flexframe_ai_workout_caption_template', '');
         if (empty($template)) {
             $template = flexframe_ai_default_workout_caption_template();
@@ -6468,7 +6465,6 @@ function flexframe_handle_ai_caption(WP_REST_Request $request) {
             '{gymName}'     => $gym_name,
             '{workoutName}' => $workout_name,
             '{exerciseList}'=> $exercise_list,
-            '{shareUrl}'    => $share_url,
             '{siteUrl}'     => $site_url,
         ));
         // Pass workout name as the 'exercise_name' positional arg so existing return shape works.

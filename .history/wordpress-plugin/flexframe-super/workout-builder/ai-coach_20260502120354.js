@@ -640,30 +640,8 @@
         }
 
         busy = true;
-        addAssistantMessage("Saving your workout, capturing it as an image, then sending it to the AI to be turned into a branded Instagram post. This usually takes around 90 seconds — hang tight, the countdown will tick down below.");
+        addAssistantMessage("📸 Capturing your workout, then sending it off to the AI to be turned into a branded Instagram post. This usually takes around 90 seconds — hang tight, the countdown will tick down below.");
         const countdown = addCountdownCard(90);
-
-        // 1. Save the workout publicly so we get a share URL to embed in the caption.
-        let shareUrl = '';
-        try {
-            const saveRes = await fetch(SETTINGS.restUrl + 'workouts/share', {
-                method: 'POST',
-                credentials: 'same-origin',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
-                    name: wo.name,
-                    exercises: wo.exercises,
-                }),
-            });
-            const saveData = await saveRes.json();
-            if (saveRes.ok && saveData && saveData.shareUrl) {
-                shareUrl = saveData.shareUrl;
-            } else {
-                console.warn('[AI Coach] Could not save workout for share URL', saveData);
-            }
-        } catch (err) {
-            console.warn('[AI Coach] Share-save failed (non-fatal)', err);
-        }
 
         let screenshotDataUrl = '';
         try {
@@ -724,7 +702,7 @@
                 addErrorMessage('AI image failed: ' + msg);
                 return;
             }
-            addImageCard(data.image, wo.name, exerciseList, shareUrl);
+            addImageCard(data.image, wo.name, exerciseList);
         } catch (err) {
             countdown.stop(true);
             busy = false;
@@ -781,7 +759,7 @@
         };
     }
 
-    function addImageCard(imageDataUrl, workoutName, exerciseList, shareUrl) {
+    function addImageCard(imageDataUrl, workoutName, exerciseList) {
         const wrap = document.createElement('div');
         wrap.className = 'ffc-msg assistant';
         wrap.style.maxWidth = '100%';
@@ -817,7 +795,7 @@
         const capBtn = document.createElement('button');
         capBtn.className = 'ffc-btn ffc-btn-secondary';
         capBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg> Generate Caption';
-        capBtn.addEventListener('click', () => generateWorkoutCaption(capBtn, card, workoutName, exerciseList, shareUrl));
+        capBtn.addEventListener('click', () => generateWorkoutCaption(capBtn, card, workoutName, exerciseList));
 
         actions.appendChild(dlBtn);
         actions.appendChild(capBtn);
@@ -828,7 +806,7 @@
         scrollToBottom();
     }
 
-    async function generateWorkoutCaption(btn, card, workoutName, exerciseList, shareUrl) {
+    async function generateWorkoutCaption(btn, card, workoutName, exerciseList) {
         if (btn.disabled) return;
         btn.disabled = true;
         const original = btn.innerHTML;
@@ -845,7 +823,6 @@
                     mode: 'workout',
                     workoutName: workoutName,
                     exerciseList: exerciseList,
-                    shareUrl: shareUrl || '',
                     provider: 'openai',
                 }),
             });

@@ -1405,21 +1405,14 @@
     window.flexframeBuilder.getCurrentWorkout = function () {
         return {
             name: (workoutNameInput && workoutNameInput.value.trim()) || 'My Workout',
-            exercises: workoutExercises
-                .filter(e => e.exerciseId)
-                .map((e, i) => ({
-                    exerciseId: e.exerciseId,
-                    name: e.name || e.exerciseId || ('Exercise ' + (i + 1)),
-                    thumbnailUrl: e.thumbnailUrl || '',
-                    sets: parseInt(e.sets) || 3,
-                    reps: e.reps,
-                    rest: parseInt(e.rest) || 60,
-                    rir: e.rir || '2',
-                    weight: e.weight || '',
-                    notes: e.notes || '',
-                    groupId: e.groupId || null,
-                    order: typeof e.order === 'number' ? e.order : i,
-                })),
+            exercises: workoutExercises.map((e, i) => ({
+                name: e.name || e.exerciseId || ('Exercise ' + (i + 1)),
+                sets: e.sets,
+                reps: e.reps,
+                rest: e.rest,
+                groupId: e.groupId || null,
+                order: typeof e.order === 'number' ? e.order : i,
+            })),
         };
     };
 

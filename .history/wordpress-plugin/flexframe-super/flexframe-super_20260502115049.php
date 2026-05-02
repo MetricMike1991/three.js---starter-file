@@ -6395,7 +6395,7 @@ function flexframe_ai_default_workout_caption_template() {
         "Structure (use real blank lines between each block so it spaces out properly on Instagram):\n" .
         "1. One short hook line with one relevant emoji about the WORKOUT (not a single exercise).\n" .
         "2. ONE short, motivating sentence about what kind of session this is or who it's perfect for (1-2 sentences). A couple of tasteful emojis are fine.\n" .
-        "3. The call to action, EXACTLY this wording: 'Want to try this exact workout? Open it directly in our free interactive workout builder, swap exercises, and start training in 3D. {shareUrl}'\n" .
+        "3. The call to action, EXACTLY this wording: 'Want to try this exact workout? Open it in our free interactive workout builder, swap exercises, and start training in 3D. Visit {siteUrl}'\n" .
         "4. Exactly 5 relevant hashtags on the final line, separated by spaces.\n\n" .
         "Rules:\n" .
         "- Keep the whole caption under 90 words total.\n" .
@@ -6457,9 +6457,6 @@ function flexframe_handle_ai_caption(WP_REST_Request $request) {
         $exercise_list = wp_kses_post($exercise_list);
         if (empty($exercise_list)) { $exercise_list = '(no exercises listed)'; }
 
-        $share_url = esc_url_raw((string) $request->get_param('shareUrl'));
-        if (empty($share_url)) { $share_url = $site_url; }
-
         $template = get_option('flexframe_ai_workout_caption_template', '');
         if (empty($template)) {
             $template = flexframe_ai_default_workout_caption_template();
@@ -6468,7 +6465,6 @@ function flexframe_handle_ai_caption(WP_REST_Request $request) {
             '{gymName}'     => $gym_name,
             '{workoutName}' => $workout_name,
             '{exerciseList}'=> $exercise_list,
-            '{shareUrl}'    => $share_url,
             '{siteUrl}'     => $site_url,
         ));
         // Pass workout name as the 'exercise_name' positional arg so existing return shape works.
@@ -6605,70 +6601,6 @@ function flexframe_ai_caption_gemini($prompt, $exercise_name, $gym_name) {
         'exerciseName' => $exercise_name,
         'gymName'      => $gym_name,
     ));
-}
-
-/**
- * Default AI prompt template for WORKOUT social media images.
- * Supports placeholders: {gymName}, {workoutName}, {exerciseList}
- */
-function flexframe_ai_default_workout_image_prompt_template() {
-    return <<<PROMPT
-Create a premium SQUARE Instagram fitness infographic (1:1 ratio) for "{gymName}" promoting the workout titled "{workoutName}".
-
-Make the image photorealistic and luxury-gym quality.
-
-The attached screenshot is the EXACT workout that has been built in our online workout builder. Use it as the structural / content reference for what exercises and ordering to feature in the design — do NOT copy the screenshot's UI verbatim, but DO faithfully use its workout name, exercise names and the order they appear in.
-
-Workout name: "{workoutName}"
-Exercise list (in order):
-{exerciseList}
-
-REFERENCE PRIORITY:
-Image 1 = Screenshot of the actual built workout (from our app). Use it for: workout title, exact exercise names, and ordering.
-Image 2 (if provided) = Gym logo. Use subtly and professionally somewhere in the layout.
-Image 3 (if provided) = Brand style reference. Use for colors, lighting mood, typography feel and overall aesthetic.
-
-Ignore any missing optional references completely.
-
-CORE REQUIREMENTS:
-- The final image must be a beautifully designed Instagram-ready WORKOUT INFOGRAPHIC — NOT a screenshot of an app.
-- Include a hero header / banner with the workout name "{workoutName}".
-- Render the list of exercises as a stylish, easy-to-scan numbered list (1, 2, 3…), reproducing each exercise name accurately and in the same order as the screenshot.
-- Tasteful fitness imagery / iconography behind or beside the list (athletic figure, equipment silhouettes, abstract gym energy) — photorealistic / cinematic style.
-- Strong brand-feeling typography. Modern, bold, but readable.
-- Clean composition with strong visual hierarchy: workout title > exercise list > CTA banner > logo / watermark.
-
-CALL TO ACTION BANNER (REQUIRED):
-- Place a small, tasteful banner / pill / ribbon in one of the corners of the image (top-right or bottom-left preferred) that reads exactly: "Build & Customise This Workout In 3D".
-- The banner must be readable but must NOT dominate the composition. Use the brand colors and feel like a premium UI badge, not an intrusive sticker.
-
-STYLE:
-- Cinematic lighting
-- Strong contrast
-- Sharp detail
-- Premium composition
-- Bold modern typography
-- Clean spacing
-- Minimal clutter
-- Instagram-ready quality
-
-LAYOUT:
-- Square 1:1 composition
-- Safe margins on all sides
-- Workout title clearly visible at the top
-- Numbered exercise list clearly readable
-- CTA banner in a corner
-- Logo small and tasteful
-
-WATERMARK:
-Add a very small subtle footer near the bottom edge that reads: "Made with FitFlexion.com"
-
-NEGATIVE CONSTRAINTS:
-No cartoon style. No giant logo. No unreadable text. No clutter. No low-quality CGI. Do NOT make this look like a screenshot of an app or a UI mockup. Do NOT skip or invent exercises — use ONLY the exercise names from the provided list, in the exact order given. No more than the listed exercises. No CTA banner larger than a small corner badge.
-
-FINAL RESULT:
-A premium, photorealistic, branded WORKOUT infographic for "{workoutName}" that gym members would proudly share on Instagram, with the exercise list rendered accurately and a clear call to action to build / customise the workout online.
-PROMPT;
 }
 
 /**
@@ -6845,64 +6777,6 @@ function flexframe_handle_ai_render(WP_REST_Request $request) {
         $gym_name = 'this gym';
     }
 
-    // ── WORKOUT MODE ────────────────────────────────────────────────
-    // When mode=workout, we're generating an Instagram infographic of an entire
-    // workout (not a single exercise). Use the workout-specific prompt template
-    // and skip the style-override (glass/male/female) logic which is exercise-only.
-    $mode = sanitize_text_field((string) $request->get_param('mode'));
-    if ($mode === 'workout') {
-        $workout_name = sanitize_text_field((string) $request->get_param('workoutName'));
-        if (empty($workout_name)) { $workout_name = 'Workout'; }
-        $exercise_list = (string) $request->get_param('exerciseList');
-        $exercise_list = wp_kses_post($exercise_list);
-        if (empty($exercise_list)) { $exercise_list = '(no exercises listed)'; }
-
-        $template = get_option('flexframe_ai_workout_image_prompt_template', '');
-        if (empty($template)) {
-            $template = flexframe_ai_default_workout_image_prompt_template();
-        }
-        $prompt = strtr($template, array(
-            '{gymName}'      => $gym_name,
-            '{workoutName}'  => $workout_name,
-            '{exerciseList}' => $exercise_list,
-        ));
-
-        // Workout images are always square (Instagram feed). Story format is exercise-only.
-        $aspect = 'square';
-
-        // Reference images (logo + theme only — athlete reference is exercise-specific).
-        $references = array();
-        $use_refs   = (bool) get_option('flexframe_ai_use_references', true);
-        if ($use_refs) {
-            $ref_logo_url  = (string) get_option('flexframe_ai_reference_logo_url', '');
-            $ref_theme_url = (string) get_option('flexframe_ai_reference_theme_url', '');
-            $ref_descriptions = array();
-            if ($ref_logo_url) {
-                $img = flexframe_ai_fetch_reference_image($ref_logo_url);
-                if ($img) {
-                    $references[] = array_merge($img, array('label' => 'brand logo'));
-                    $ref_descriptions[] = 'a brand logo to incorporate prominently into the design';
-                }
-            }
-            if ($ref_theme_url) {
-                $img = flexframe_ai_fetch_reference_image($ref_theme_url);
-                if ($img) {
-                    $references[] = array_merge($img, array('label' => 'social media theme'));
-                    $ref_descriptions[] = 'a social media style/theme reference whose visual style, color palette, typography, and layout you should match closely';
-                }
-            }
-            if (!empty($ref_descriptions)) {
-                $prompt .= "\n\nAdditional reference images are provided: " . implode('; ', $ref_descriptions) . '.';
-            }
-        }
-
-        if ($provider === 'gemini') {
-            return flexframe_ai_render_gemini($screenshot_b64, $prompt, $workout_name, $gym_name, $references, $aspect);
-        }
-        return flexframe_ai_render_openai($screenshot_binary, $prompt, $workout_name, $gym_name, $references, $aspect);
-    }
-
-    // ── EXERCISE MODE (legacy / default) ────────────────────────────
     // Build prompt from the admin-editable template (falls back to default).
     $template = get_option('flexframe_ai_prompt_template', '');
     if (empty($template)) {

@@ -640,7 +640,7 @@
         }
 
         busy = true;
-        addAssistantMessage("Saving your workout, capturing it as an image, then sending it to the AI to be turned into a branded Instagram post. This usually takes around 90 seconds — hang tight, the countdown will tick down below.");
+        addAssistantMessage("📸 Saving your workout, capturing it as an image, then sending it to the AI to be turned into a branded Instagram post. This usually takes around 90 seconds — hang tight, the countdown will tick down below.");
         const countdown = addCountdownCard(90);
 
         // 1. Save the workout publicly so we get a share URL to embed in the caption.
