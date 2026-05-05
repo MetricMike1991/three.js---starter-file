@@ -3029,15 +3029,8 @@ class ThreeJSApp {
                                 </div>
                                 <button class="ss-vid-capture-btn" data-slot="2">Capture 3</button>
                             </div>
-                            <div class="ss-vid-angle-slot" data-slot="3">
-                                <div class="ss-vid-angle-preview">
-                                    <span class="ss-vid-angle-num">4</span>
-                                    <button class="ss-vid-clear-btn" data-slot="3">&times;</button>
-                                </div>
-                                <button class="ss-vid-capture-btn" data-slot="3">Capture 4</button>
-                            </div>
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip — the final video ends with Angle 1 repeated. Recording with no angles uses the current view.</p>
+                        <p class="ss-angles-hint">Position the model then capture up to 3 angles. Records a full loop at each angle with smooth camera transitions.</p>
                     </div>
                     <div class="screenshot-buttons">
                         <button class="ss-btn ss-video">Record Video</button>
@@ -3665,7 +3658,7 @@ class ThreeJSApp {
         });
 
         // Video angle capture/clear
-        this._videoAngles = [null, null, null, null];
+        this._videoAngles = [null, null, null];
         panel.querySelectorAll('.ss-vid-capture-btn').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const slot = parseInt(btn.dataset.slot);
@@ -3684,8 +3677,8 @@ class ThreeJSApp {
             });
         });
         panel.querySelector('.ss-angles-clear-all').addEventListener('click', () => {
-            this._videoAngles = [null, null, null, null];
-            [0, 1, 2, 3].forEach(i => this.updateVideoAngleSlot(i));
+            this._videoAngles = [null, null, null];
+            [0, 1, 2].forEach(i => this.updateVideoAngleSlot(i));
         });
 
         // AI Post button - only visible when server says AI is available

@@ -209,6 +209,7 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
         quality: 'high',
         loops: 1,
         cameraAngles: [],
+        transitionSeconds: 1.5,
         videoBitsPerSecond: null,
         addTimestamp: true,
         frameWidth: null,
@@ -321,28 +322,34 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
 
     let startTime = null;
 
-    // Multi-angle setup: build segments as [...captured angles, angle[0] repeated]
-    // Each segment is a hard cut — no transitions.
+    // Multi-angle setup
     const angles = settings.cameraAngles || [];
     const isMultiAngle = angles.length >= 2;
-    const segDuration = duration * loops;
+    const smoothstep = t => t * t * (3 - 2 * t);
 
-    let segments = null;
+    let multiSegments = null;
     let effectiveTotalDuration = totalDuration;
 
     if (isMultiAngle) {
-        // Append first angle at the end so the video loops back seamlessly
-        segments = [...angles, angles[0]];
-        effectiveTotalDuration = segments.length * segDuration;
-    }
-
-    // Snap camera to first angle (or single angle) before first frame
-    if (angles.length >= 1) {
-        const a = angles[0];
+        const loopDur = duration * loops;
+        const transDur = settings.transitionSeconds;
+        multiSegments = [];
+        for (let i = 0; i < angles.length; i++) {
+            multiSegments.push({ type: 'loop', idx: i, dur: loopDur });
+            multiSegments.push({ type: 'trans', from: i, to: (i + 1) % angles.length, dur: transDur });
+        }
+        effectiveTotalDuration = multiSegments.reduce((s, seg) => s + seg.dur, 0);
+        // Position camera at first angle
         tempCamera.up.set(0, 1, 0);
-        tempCamera.position.copy(a.position);
-        tempCamera.fov = a.fov * fovScale;
-        tempCamera.lookAt(a.target);
+        tempCamera.position.copy(angles[0].position);
+        tempCamera.fov = angles[0].fov * fovScale;
+        tempCamera.lookAt(angles[0].target);
+        tempCamera.updateProjectionMatrix();
+    } else if (angles.length === 1) {
+        tempCamera.up.set(0, 1, 0);
+        tempCamera.position.copy(angles[0].position);
+        tempCamera.fov = angles[0].fov * fovScale;
+        tempCamera.lookAt(angles[0].target);
         tempCamera.updateProjectionMatrix();
     }
 
@@ -350,21 +357,43 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
         if (startTime === null) startTime = timestamp;
 
         const elapsedSeconds = ((timestamp - startTime) / 1000) * playbackSpeed;
-
-        // Hard-cut camera to the correct segment
-        if (isMultiAngle && segments) {
-            const segIdx = Math.min(Math.floor(elapsedSeconds / segDuration), segments.length - 1);
-            const a = segments[segIdx];
-            tempCamera.up.set(0, 1, 0);
-            tempCamera.position.copy(a.position);
-            tempCamera.fov = a.fov * fovScale;
-            tempCamera.lookAt(a.target);
-            tempCamera.updateProjectionMatrix();
-        }
-
         const animationTime = elapsedSeconds < effectiveTotalDuration
             ? (elapsedSeconds % duration)
             : duration;
+
+        // Update camera for multi-angle mode
+        if (isMultiAngle && multiSegments) {
+            let t = elapsedSeconds;
+            let found = false;
+            for (const seg of multiSegments) {
+                if (t <= seg.dur) {
+                    if (seg.type === 'loop') {
+                        tempCamera.position.copy(angles[seg.idx].position);
+                        tempCamera.fov = angles[seg.idx].fov * fovScale;
+                        tempCamera.lookAt(angles[seg.idx].target);
+                    } else {
+                        const a = angles[seg.from];
+                        const b = angles[seg.to];
+                        const raw = seg.dur > 0 ? Math.min(1, t / seg.dur) : 1;
+                        const ease = smoothstep(raw);
+                        tempCamera.position.lerpVectors(a.position, b.position, ease);
+                        tempCamera.fov = a.fov + (b.fov - a.fov) * ease;
+                        tempCamera.lookAt(new THREE.Vector3().lerpVectors(a.target, b.target, ease));
+                    }
+                    tempCamera.updateProjectionMatrix();
+                    found = true;
+                    break;
+                }
+                t -= seg.dur;
+            }
+            if (!found) {
+                const last = angles[angles.length - 1];
+                tempCamera.position.copy(last.position);
+                tempCamera.fov = last.fov * fovScale;
+                tempCamera.lookAt(last.target);
+                tempCamera.updateProjectionMatrix();
+            }
+        }
 
         action.time = animationTime;
         mixer.update(0);

@@ -3029,15 +3029,8 @@ class ThreeJSApp {
                                 </div>
                                 <button class="ss-vid-capture-btn" data-slot="2">Capture 3</button>
                             </div>
-                            <div class="ss-vid-angle-slot" data-slot="3">
-                                <div class="ss-vid-angle-preview">
-                                    <span class="ss-vid-angle-num">4</span>
-                                    <button class="ss-vid-clear-btn" data-slot="3">&times;</button>
-                                </div>
-                                <button class="ss-vid-capture-btn" data-slot="3">Capture 4</button>
-                            </div>
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip — the final video ends with Angle 1 repeated. Recording with no angles uses the current view.</p>
+                        <p class="ss-angles-hint">Position the model then capture up to 3 angles. Records a full loop at each angle with smooth camera transitions.</p>
                     </div>
                     <div class="screenshot-buttons">
                         <button class="ss-btn ss-video">Record Video</button>
@@ -3473,114 +3466,6 @@ class ThreeJSApp {
             }
             .ss-ai-status.error { color: #ff6b6b; }
             .ss-ai-status.success { color: #4ade80; }
-            .ss-angles-section {
-                margin: 14px 0 10px 0;
-                border-top: 1px solid rgba(255,255,255,0.1);
-                padding-top: 12px;
-            }
-            .ss-angles-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 8px;
-            }
-            .ss-angles-label {
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: 0.5px;
-                text-transform: uppercase;
-                opacity: 0.85;
-            }
-            .ss-angles-clear-all {
-                background: transparent;
-                border: none;
-                color: rgba(255,255,255,0.5);
-                font-size: 11px;
-                cursor: pointer;
-                text-decoration: underline;
-                padding: 2px 4px;
-            }
-            .ss-angles-clear-all:hover { color: #fff; }
-            .ss-angles-strip {
-                display: flex;
-                gap: 8px;
-            }
-            .ss-vid-angle-slot {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                align-items: center;
-            }
-            .ss-vid-angle-preview {
-                width: 100%;
-                aspect-ratio: 1;
-                border: 1px dashed rgba(255,255,255,0.25);
-                border-radius: 6px;
-                background: rgba(255,255,255,0.04);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                position: relative;
-            }
-            .ss-vid-angle-preview.captured {
-                border: 1px solid rgba(74,158,255,0.6);
-            }
-            .ss-vid-angle-preview img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
-            .ss-vid-angle-num {
-                font-size: 20px;
-                opacity: 0.3;
-                font-weight: 700;
-            }
-            .ss-vid-clear-btn {
-                position: absolute;
-                top: 3px;
-                right: 3px;
-                width: 18px;
-                height: 18px;
-                background: rgba(0,0,0,0.7);
-                border: none;
-                border-radius: 50%;
-                color: #fff;
-                font-size: 11px;
-                cursor: pointer;
-                display: none;
-                align-items: center;
-                justify-content: center;
-                padding: 0;
-                line-height: 1;
-            }
-            .ss-vid-clear-btn:hover { background: rgba(200,50,50,0.85); }
-            .ss-vid-angle-preview.captured .ss-vid-clear-btn {
-                display: flex;
-            }
-            .ss-vid-capture-btn {
-                width: 100%;
-                padding: 5px 4px;
-                background: rgba(255,255,255,0.08);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 5px;
-                color: #fff;
-                font-size: 10px;
-                cursor: pointer;
-                transition: background 0.15s;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .ss-vid-capture-btn:hover { background: rgba(255,255,255,0.15); }
-            .ss-angles-hint {
-                font-size: 10px;
-                opacity: 0.5;
-                margin: 6px 0 0 0;
-                line-height: 1.4;
-            }
             /* Hide AI section on mobile-sized viewports */
             @media (max-width: 768px) {
                 .ss-ai-section { display: none !important; }
@@ -3662,30 +3547,6 @@ class ThreeJSApp {
 
         panel.querySelector('.ss-video').addEventListener('click', () => {
             this.recordCustomVideo();
-        });
-
-        // Video angle capture/clear
-        this._videoAngles = [null, null, null, null];
-        panel.querySelectorAll('.ss-vid-capture-btn').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const slot = parseInt(btn.dataset.slot);
-                btn.textContent = 'Capturing...';
-                btn.disabled = true;
-                await this.captureVideoAngle(slot);
-                btn.disabled = false;
-            });
-        });
-        panel.querySelectorAll('.ss-vid-clear-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const slot = parseInt(btn.dataset.slot);
-                this._videoAngles[slot] = null;
-                this.updateVideoAngleSlot(slot);
-            });
-        });
-        panel.querySelector('.ss-angles-clear-all').addEventListener('click', () => {
-            this._videoAngles = [null, null, null, null];
-            [0, 1, 2, 3].forEach(i => this.updateVideoAngleSlot(i));
         });
 
         // AI Post button - only visible when server says AI is available
@@ -4109,12 +3970,10 @@ class ThreeJSApp {
             recordButton.disabled = true;
             recordButton.classList.add('recording');
         }
-        const capturedAngles = (this._videoAngles || []).filter(a => a !== null);
         if (status) {
             status.className = 'ss-video-status';
             const loopLabel = videoLoops === 1 ? '1 loop' : `${videoLoops} loops`;
-            const angleLabel = capturedAngles.length >= 2 ? `, ${capturedAngles.length} angles` : '';
-            status.textContent = `Recording ${loopLabel}${angleLabel} (${videoQuality} quality)...`;
+            status.textContent = `Recording ${loopLabel} (${videoQuality} quality)...`;
         }
 
         try {
@@ -4125,7 +3984,6 @@ class ThreeJSApp {
                 fps: 30,
                 quality: videoQuality,
                 loops: videoLoops,
-                cameraAngles: capturedAngles,
                 frameWidth,
                 frameHeight,
                 containerWidth,
@@ -4158,82 +4016,6 @@ class ThreeJSApp {
                 recordButton.disabled = false;
                 recordButton.classList.remove('recording');
             }
-        }
-    }
-
-    /**
-     * Capture current camera position/target/fov as a video angle, render a thumbnail.
-     */
-    async captureVideoAngle(slotIndex) {
-        const camera = this.cameraManager.getCamera();
-        const controls = this.cameraManager.getControls();
-        const scene = this.sceneManager.getScene();
-
-        const position = camera.position.clone();
-        const target = controls.target.clone();
-        const fov = camera.fov;
-
-        // Render small thumbnail from current view
-        const THUMB = 96;
-        const thumbCanvas = document.createElement('canvas');
-        thumbCanvas.width = THUMB;
-        thumbCanvas.height = THUMB;
-        const thumbRenderer = new THREE.WebGLRenderer({
-            canvas: thumbCanvas,
-            antialias: false,
-            preserveDrawingBuffer: true,
-            alpha: false
-        });
-        thumbRenderer.setSize(THUMB, THUMB);
-        thumbRenderer.setPixelRatio(1);
-        thumbRenderer.shadowMap.enabled = this.renderer.shadowMap.enabled;
-        thumbRenderer.shadowMap.type = this.renderer.shadowMap.type;
-        thumbRenderer.toneMapping = this.renderer.toneMapping;
-        thumbRenderer.toneMappingExposure = this.renderer.toneMappingExposure;
-        thumbRenderer.setClearColor(this.renderer.getClearColor(new THREE.Color()), this.renderer.getClearAlpha());
-
-        const thumbCam = camera.clone();
-        thumbCam.aspect = 1;
-        thumbCam.updateProjectionMatrix();
-        thumbRenderer.render(scene, thumbCam);
-        const thumbnailUrl = thumbCanvas.toDataURL('image/jpeg', 0.8);
-        thumbRenderer.dispose();
-
-        if (!this._videoAngles) this._videoAngles = [null, null, null];
-        this._videoAngles[slotIndex] = { position, target, fov, thumbnailUrl };
-        this.updateVideoAngleSlot(slotIndex);
-    }
-
-    /**
-     * Refresh a single angle slot's UI to reflect captured/empty state.
-     */
-    updateVideoAngleSlot(slotIndex) {
-        if (!this.screenshotPanel) return;
-        const slot = this.screenshotPanel.querySelector(`.ss-vid-angle-slot[data-slot="${slotIndex}"]`);
-        if (!slot) return;
-
-        const preview = slot.querySelector('.ss-vid-angle-preview');
-        const numLabel = slot.querySelector('.ss-vid-angle-num');
-        const capBtn = slot.querySelector('.ss-vid-capture-btn');
-        const angleData = this._videoAngles?.[slotIndex];
-
-        if (angleData) {
-            preview.classList.add('captured');
-            if (numLabel) numLabel.style.display = 'none';
-            let img = preview.querySelector('img');
-            if (!img) {
-                img = document.createElement('img');
-                img.alt = `Angle ${slotIndex + 1}`;
-                preview.insertBefore(img, preview.querySelector('.ss-vid-clear-btn'));
-            }
-            img.src = angleData.thumbnailUrl;
-            if (capBtn) capBtn.textContent = `Recapture ${slotIndex + 1}`;
-        } else {
-            preview.classList.remove('captured');
-            if (numLabel) numLabel.style.display = '';
-            const img = preview.querySelector('img');
-            if (img) img.remove();
-            if (capBtn) capBtn.textContent = `Capture ${slotIndex + 1}`;
         }
     }
 

@@ -3684,8 +3684,8 @@ class ThreeJSApp {
             });
         });
         panel.querySelector('.ss-angles-clear-all').addEventListener('click', () => {
-            this._videoAngles = [null, null, null, null];
-            [0, 1, 2, 3].forEach(i => this.updateVideoAngleSlot(i));
+            this._videoAngles = [null, null, null];
+            [0, 1, 2].forEach(i => this.updateVideoAngleSlot(i));
         });
 
         // AI Post button - only visible when server says AI is available

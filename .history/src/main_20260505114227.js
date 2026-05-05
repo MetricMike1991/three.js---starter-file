@@ -3029,15 +3029,8 @@ class ThreeJSApp {
                                 </div>
                                 <button class="ss-vid-capture-btn" data-slot="2">Capture 3</button>
                             </div>
-                            <div class="ss-vid-angle-slot" data-slot="3">
-                                <div class="ss-vid-angle-preview">
-                                    <span class="ss-vid-angle-num">4</span>
-                                    <button class="ss-vid-clear-btn" data-slot="3">&times;</button>
-                                </div>
-                                <button class="ss-vid-capture-btn" data-slot="3">Capture 4</button>
-                            </div>
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip — the final video ends with Angle 1 repeated. Recording with no angles uses the current view.</p>
+                        <p class="ss-angles-hint">Position the model then capture up to 3 angles. Records a full loop at each angle with smooth camera transitions.</p>
                     </div>
                     <div class="screenshot-buttons">
                         <button class="ss-btn ss-video">Record Video</button>
@@ -3665,7 +3658,7 @@ class ThreeJSApp {
         });
 
         // Video angle capture/clear
-        this._videoAngles = [null, null, null, null];
+        this._videoAngles = [null, null, null];
         panel.querySelectorAll('.ss-vid-capture-btn').forEach(btn => {
             btn.addEventListener('click', async () => {
                 const slot = parseInt(btn.dataset.slot);
@@ -3684,8 +3677,8 @@ class ThreeJSApp {
             });
         });
         panel.querySelector('.ss-angles-clear-all').addEventListener('click', () => {
-            this._videoAngles = [null, null, null, null];
-            [0, 1, 2, 3].forEach(i => this.updateVideoAngleSlot(i));
+            this._videoAngles = [null, null, null];
+            [0, 1, 2].forEach(i => this.updateVideoAngleSlot(i));
         });
 
         // AI Post button - only visible when server says AI is available
@@ -4158,82 +4151,6 @@ class ThreeJSApp {
                 recordButton.disabled = false;
                 recordButton.classList.remove('recording');
             }
-        }
-    }
-
-    /**
-     * Capture current camera position/target/fov as a video angle, render a thumbnail.
-     */
-    async captureVideoAngle(slotIndex) {
-        const camera = this.cameraManager.getCamera();
-        const controls = this.cameraManager.getControls();
-        const scene = this.sceneManager.getScene();
-
-        const position = camera.position.clone();
-        const target = controls.target.clone();
-        const fov = camera.fov;
-
-        // Render small thumbnail from current view
-        const THUMB = 96;
-        const thumbCanvas = document.createElement('canvas');
-        thumbCanvas.width = THUMB;
-        thumbCanvas.height = THUMB;
-        const thumbRenderer = new THREE.WebGLRenderer({
-            canvas: thumbCanvas,
-            antialias: false,
-            preserveDrawingBuffer: true,
-            alpha: false
-        });
-        thumbRenderer.setSize(THUMB, THUMB);
-        thumbRenderer.setPixelRatio(1);
-        thumbRenderer.shadowMap.enabled = this.renderer.shadowMap.enabled;
-        thumbRenderer.shadowMap.type = this.renderer.shadowMap.type;
-        thumbRenderer.toneMapping = this.renderer.toneMapping;
-        thumbRenderer.toneMappingExposure = this.renderer.toneMappingExposure;
-        thumbRenderer.setClearColor(this.renderer.getClearColor(new THREE.Color()), this.renderer.getClearAlpha());
-
-        const thumbCam = camera.clone();
-        thumbCam.aspect = 1;
-        thumbCam.updateProjectionMatrix();
-        thumbRenderer.render(scene, thumbCam);
-        const thumbnailUrl = thumbCanvas.toDataURL('image/jpeg', 0.8);
-        thumbRenderer.dispose();
-
-        if (!this._videoAngles) this._videoAngles = [null, null, null];
-        this._videoAngles[slotIndex] = { position, target, fov, thumbnailUrl };
-        this.updateVideoAngleSlot(slotIndex);
-    }
-
-    /**
-     * Refresh a single angle slot's UI to reflect captured/empty state.
-     */
-    updateVideoAngleSlot(slotIndex) {
-        if (!this.screenshotPanel) return;
-        const slot = this.screenshotPanel.querySelector(`.ss-vid-angle-slot[data-slot="${slotIndex}"]`);
-        if (!slot) return;
-
-        const preview = slot.querySelector('.ss-vid-angle-preview');
-        const numLabel = slot.querySelector('.ss-vid-angle-num');
-        const capBtn = slot.querySelector('.ss-vid-capture-btn');
-        const angleData = this._videoAngles?.[slotIndex];
-
-        if (angleData) {
-            preview.classList.add('captured');
-            if (numLabel) numLabel.style.display = 'none';
-            let img = preview.querySelector('img');
-            if (!img) {
-                img = document.createElement('img');
-                img.alt = `Angle ${slotIndex + 1}`;
-                preview.insertBefore(img, preview.querySelector('.ss-vid-clear-btn'));
-            }
-            img.src = angleData.thumbnailUrl;
-            if (capBtn) capBtn.textContent = `Recapture ${slotIndex + 1}`;
-        } else {
-            preview.classList.remove('captured');
-            if (numLabel) numLabel.style.display = '';
-            const img = preview.querySelector('img');
-            if (img) img.remove();
-            if (capBtn) capBtn.textContent = `Capture ${slotIndex + 1}`;
         }
     }
 

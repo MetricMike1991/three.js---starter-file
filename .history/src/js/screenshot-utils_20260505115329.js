@@ -209,6 +209,7 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
         quality: 'high',
         loops: 1,
         cameraAngles: [],
+        transitionSeconds: 1.5,
         videoBitsPerSecond: null,
         addTimestamp: true,
         frameWidth: null,
