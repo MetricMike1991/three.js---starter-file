@@ -1,0 +1,94 @@
+{
+  "exerciseId": "weighted_push_up",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/227.%20Weighted%20Push%20Up/227.%20Weighted%20Push%20Up%20SD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Weighted Push Up is an advanced variation of the standard push up that adds external resistance via a weight plate, dip belt, or weighted vest.\n\nBy increasing the load, this exercise builds greater chest, shoulder, and triceps strength while continuing to train core stability.\n\nIt is an effective way to progress beyond bodyweight push ups without needing a bench press setup."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increases upper body pushing strength beyond standard push ups\n- Builds muscle mass in the chest, shoulders, and triceps\n- Strengthens the core and stabilizer muscles\n- Progresses bodyweight training with scalable resistance\n- Improves pressing power transferable to bench press\n- Requires minimal equipment\n- Trains shoulder stability under load"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major, Triceps Brachii, Anterior Deltoids\n\nSecondary: Core, Serratus Anterior, Rotator Cuff, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Secure a weight plate to a dip belt around your waist, or place it on your upper back.\n2. Assume a plank position with your hands slightly wider than shoulder-width apart.\n3. Keep your body in a straight line from head to heels.\n4. Engage your core and squeeze your glutes.\n5. Position your head in a neutral spine alignment."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lower your chest toward the ground while keeping your body straight.\n2. Keep elbows tracking at roughly 45 degrees to your torso.\n3. Descend until your chest is just above the floor.\n4. Push through your palms to return to the starting position.\n5. Fully extend the arms without locking out aggressively.\n6. Repeat for the desired number of reps, adjusting the weight as necessary."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sagging hips or piked hips breaking the plank line\n- Flaring elbows too wide, stressing the shoulders\n- Partial range of motion, not lowering chest to floor\n- Allowing the weight to shift off the upper back\n- Holding the breath throughout the entire rep\n- Adding load before mastering standard push ups\n- Craning the neck forward or looking up"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Weight Plate, Dip Belt, or Weighted Vest\n- Flat, Stable Surface\n- Optional: Exercise Mat for Comfort\n- Optional: Push Up Handles or Parallettes\n- Optional: Spotter to Place/Remove the Weight"
+        },
+        {
+          "heading": "Loading the Weight",
+          "content": "1. Dip Belt: Thread a plate onto the belt chain and fasten around your waist.\n2. Plate on Back: Have a partner place the plate on your upper back between the shoulder blades.\n3. Weighted Vest: Fasten the vest snugly so it does not shift during reps.\n4. Start light to confirm the load stays centered.\n5. Progress weight gradually once form is solid.\n6. Avoid loads that force you to lose the plank line."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hand Placement: Slightly wider than shoulder-width, fingers forward.\n2. Feet: Together or hip-width for balance.\n3. Hips: In line with shoulders and heels.\n4. Core: Braced throughout the set.\n5. Head: Neutral, gaze slightly ahead of the hands.\n6. Breathing: Inhale down, exhale on the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bench_press", "barbell_bench_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Standard Push Up: Bodyweight progression stepping-stone\n- Bench Press: Barbell alternative for heavy loading\n- Dumbbell Bench Press: Unilateral pressing with stabilization\n- Dips: Closed-chain pressing with greater triceps emphasis\n- Decline Push Up: Shifts emphasis to upper chest and shoulders\n- Archer Push Up: Unilateral bodyweight progression"
+        },
+        {
+          "heading": "Push Up Variations",
+          "content": "Weighted Push Up: Added external resistance\nDeficit Push Up: Hands elevated for greater range of motion\nTempo Push Up: Slow eccentric for hypertrophy\nPlyometric Push Up: Explosive power training\nClose-Grip Push Up: Triceps emphasis\nSpoto Press Push Up: Pause just above the floor"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Use push up handles or dumbbells to keep wrists neutral\nShoulder Issues: Narrow elbow path, reduce load\nLower Back Discomfort: Brace core harder or reduce weight\nNo Dip Belt: Use a weighted vest or plate on upper back\nLearning Stage: Master strict bodyweight push ups first\nLimited Equipment: Use a loaded backpack as resistance"
+        }
+      ]
+    }
+  }
+}

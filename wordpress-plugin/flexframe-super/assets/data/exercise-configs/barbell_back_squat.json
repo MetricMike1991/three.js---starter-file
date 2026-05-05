@@ -1,111 +1,51 @@
 {
   "exerciseId": "barbell_back_squat",
-  "modelUrl": "https://FlexFrame.b-cdn.net/Barbell%20Squat%20Test.glb",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/01.%20Barbell%20Back%20Squat/01.%20Barbell%20Back%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/01.%20Barbell%20Back%20Squat/01.%20Barbell%20Back%20Squat%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/01.%20Barbell%20Back%20Squat/01.%20Barbell%20Back%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/01.%20Barbell%20Back%20Squat/01.%20Barbell%20Back%20Squat%20USDZ.usdz"
+  },
   "model": {
-    "position": [
-      0,
-      -0.02,
-      0
-    ],
-    "rotation": [
-      0,
-      0,
-      0
-    ],
-    "scale": [
-      1,
-      1,
-      1
-    ]
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
   },
   "camera": {
-    "position": [
-      1.4793332926364997,
-      1.914480641072077,
-      1.9247715563184604
-    ],
-    "rotation": [
-      -0.47109657868879745,
-      0.572339228338964,
-      0.26916732029130996
-    ],
-    "target": [
-      0.005322879470179136,
-      0.8761025321694268,
-      -0.1138774404433232
-    ]
+    "position": [-1.908682194822944, 1.6303865545292116, -1.9317696165594502],
+    "rotation": [-2.7786413004413815, -0.7187518014781474, -2.896555670566038],
+    "target": [0.05316600666927143, 0.8342329407129991, 0.16460664074825349]
   },
-  "lighting": {
-    "directionalLight": {
-      "intensity": 1.43,
-      "color": "#ffffff",
-      "castShadow": true,
-      "shadowBias": 0,
-      "shadowBlur": 1,
-      "shadowMapWidth": 1024,
-      "shadowMapHeight": 1024,
-      "posX": 1.35,
-      "posY": 1.57,
-      "posZ": 0.9,
-      "showHelper": false,
-      "position": {
-        "x": 1.35,
-        "y": 1.57,
-        "z": 0.9
-      }
-    },
-    "ambientLight": {
-      "intensity": 0.4,
-      "color": "#ffffff"
-    }
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
   },
-  "ground": {
-    "mode": "Infinite Canvas",
-    "color": "#222222",
-    "roughness": 1,
-    "metalness": 0,
-    "shadowOpacity": 0.4,
-    "receiveShadow": true,
-    "castShadow": false,
-    "visible": true
+  "cameraHQ": {
+    "position": [2.508091342607618, 1.5418577502109398, 1.8506211084198814],
+    "rotation": [-0.3509725708084824, 0.8981816097849369, 0.2789205491417762],
+    "target": [-0.06678375659912202, 0.8367226367926659, -0.0752879793848977]
   },
-  "background": {
-    "gradientTop": "#3865ad",
-    "gradientBottom": "#0101bc",
-    "gradientAlpha": 1
-  },
-  "dustParticles": {
-    "count": 1150,
-    "size": 0.0095,
-    "sizeRandomness": 1.4,
-    "color": "#0d529c",
-    "opacity": 1,
-    "speed": 0.5,
-    "horizontalRange": 3,
-    "verticalRange": 2,
-    "verticalOffset": 1,
-    "visible": true,
-    "blur": 0.31,
-    "depthBlur": false,
-    "depthBlurStrength": 0.16,
-    "depthFocusDistance": 2,
-    "depthFocusRange": 1
-  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/01.%20Barbell%20Back%20Squat/Barbell%20Back%20Squat_250x250_2026-03-16T10-00-57.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Barbell",
+  "type": "Strength",
   "rightMenuTabs": {
     "exerciseInformation": {
       "title": "Exercise Information",
       "sections": [
         {
           "heading": "Overview",
-          "content": "The Barbell Back Squat is a fundamental compound exercise that targets the lower body, primarily the quadriceps, glutes, and hamstrings. It's considered one of the most effective exercises for building overall lower body strength and mass."
+          "content": "The Barbell Back Squat is a fundamental compound exercise and one of the most effective movements for building overall lower body strength and mass.\n\nWith the barbell positioned across the upper back, this exercise targets the quadriceps, glutes, and hamstrings while also engaging the core and spinal erectors for stabilization.\n\nWidely considered the king of all leg exercises, the barbell back squat is a staple in strength training, powerlifting, and athletic performance programs."
         },
         {
           "heading": "Benefits",
-          "content": "Builds lower body strength and power. Increases muscle mass in legs and glutes. Improves core stability and balance. Enhances athletic performance. Increases bone density."
+          "content": "- Builds exceptional lower body strength and power\n- Increases muscle mass in the quads, glutes, and hamstrings\n- Improves core stability and overall balance\n- Enhances athletic performance across all sports\n- Increases bone density and joint health\n- Boosts testosterone and growth hormone production\n- Develops functional movement patterns used in daily life"
         },
         {
           "heading": "Muscles Worked",
-          "content": "Primary: Quadriceps. Secondary: Glutes, Hamstrings, Erector Spinae, Core."
+          "content": "Primary: Quadriceps, Gluteus Maximus\n\nSecondary: Hamstrings, Erector Spinae, Core, Adductors, Calves"
         }
       ]
     },
@@ -114,15 +54,15 @@
       "sections": [
         {
           "heading": "Starting Position",
-          "content": "1. Position the barbell at upper chest height on the rack.\n2. Step under the bar and position it on your upper back/traps.\n3. Grip the bar with hands slightly wider than shoulder-width.\n4. Unrack the bar and step back 2-3 steps."
+          "content": "1. Position the barbell at upper chest height on the squat rack.\n2. Step under the bar and position it across your upper back on your traps (high bar) or rear delts (low bar).\n3. Grip the bar with hands slightly wider than shoulder-width.\n4. Brace your core, lift the bar off the rack, and step back 2-3 steps.\n5. Set your feet shoulder-width apart with toes pointed slightly outward (15-30 degrees).\n6. Stand tall with your chest up and shoulders back."
         },
         {
           "heading": "Execution",
-          "content": "1. Set your feet shoulder-width apart, toes slightly pointed out.\n2. Brace your core and take a deep breath.\n3. Initiate the movement by breaking at the hips and knees simultaneously.\n4. Descend until thighs are parallel to the ground or lower.\n5. Drive through your mid-foot and heels to stand back up.\n6. Exhale at the top of the movement."
+          "content": "1. Take a deep breath and brace your core.\n2. Initiate the movement by breaking at the hips and knees simultaneously.\n3. Lower your body in a controlled manner, keeping your chest up and back straight.\n4. Descend until your thighs are at least parallel to the ground.\n5. Keep your knees tracking over your toes throughout the movement.\n6. Drive through your mid-foot and heels to stand back up.\n7. Exhale at the top and squeeze your glutes to complete the rep.\n8. Repeat for the desired number of reps."
         },
         {
           "heading": "Common Mistakes",
-          "content": "- Knees caving inward\n- Rounding the lower back\n- Not reaching proper depth\n- Lifting heels off the ground\n- Looking up or down (keep neck neutral)"
+          "content": "- Knees caving inward during the descent or ascent\n- Rounding the lower back under load\n- Not reaching proper depth (at least parallel)\n- Lifting heels off the ground or shifting weight to toes\n- Looking up or down instead of keeping the neck neutral\n- Hips rising faster than shoulders (good-morning squat)\n- Not bracing the core before each rep\n- Using too much weight and sacrificing form"
         }
       ]
     },
@@ -131,32 +71,33 @@
       "sections": [
         {
           "heading": "Equipment Needed",
-          "content": "- Barbell\n- Squat Rack or Power Rack\n- Weight Plates\n- Safety Bars/Spotter Arms (recommended)\n- Lifting Belt (optional)\n- Squat Shoes (optional)"
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Squat Rack or Power Rack\n- Weight Plates\n- Safety Bars or Spotter Arms (recommended)\n- Optional: Lifting Belt (for heavy loads)\n- Optional: Squat Shoes or Flat-soled Shoes\n- Optional: Chalk (for grip)"
         },
         {
           "heading": "Rack Setup",
-          "content": "1. Set the J-hooks at upper chest height (easier to unrack).\n2. Set safety bars just below your bottom squat position.\n3. Load the barbell evenly on both sides.\n4. Use collars to secure the plates.\n5. Clear the area around the rack of any obstacles."
+          "content": "1. Set the J-hooks at upper chest height for easy unracking.\n2. Set safety bars just below your bottom squat position.\n3. Load the barbell evenly on both sides.\n4. Use collars to secure the plates.\n5. Clear the area around the rack of any obstacles.\n6. Ensure you have enough space to step back and squat safely."
         },
         {
           "heading": "Body Setup",
-          "content": "1. Bar Position: High bar (on traps) or Low bar (rear delts).\n2. Grip: Thumbless or full grip, hands as close as comfortable.\n3. Elbow Position: Down and back, creating upper back tension.\n4. Stance: Feet shoulder-width, toes 15-30° out.\n5. Core: Deep breath and brace before each rep."
+          "content": "1. Bar Position: High bar (on traps) or Low bar (on rear delts).\n2. Grip: Thumbless or full grip, hands as close together as comfortable.\n3. Elbow Position: Down and back to create upper back tightness.\n4. Stance: Feet shoulder-width apart, toes pointed out 15-30 degrees.\n5. Core: Take a deep breath and brace before each rep.\n6. Head: Neutral position, eyes looking forward.\n7. Chest: Up and proud throughout the movement."
         }
       ]
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_goblet_squat", "bodyweight_squat"],
       "sections": [
         {
           "heading": "Similar Exercises",
-          "content": "- Front Squat: Barbell held in front, more quad emphasis\n- Goblet Squat: Dumbbell or kettlebell held at chest\n- Bulgarian Split Squat: Single-leg variation\n- Leg Press: Machine-based alternative\n- Hack Squat: Machine squat variation"
+          "content": "- Front Squat: Barbell held in front rack position, more quad emphasis\n- Goblet Squat: Dumbbell or kettlebell held at chest level\n- Bulgarian Split Squat: Single-leg squat variation\n- Leg Press: Machine-based alternative for lower body\n- Hack Squat: Machine squat variation with back support\n- Box Squat: Squat to a box for depth control"
         },
         {
-          "heading": "Progression/Regression",
-          "content": "Easier: Bodyweight Squat, Box Squat, Wall Squat\nHarder: Pause Squat, Tempo Squat, Front Squat"
+          "heading": "Back Squat Variations",
+          "content": "High Bar Back Squat: Bar on upper traps, more upright torso, quad emphasis\nLow Bar Back Squat: Bar on rear delts, more hip hinge, glute/hamstring emphasis\nPause Squat: Pause at the bottom for strength development\nTempo Squat: Controlled eccentric for muscle building\nBox Squat: Squat to a box for consistent depth\n1.5 Rep Squat: Full rep plus half rep for extra time under tension"
         },
         {
           "heading": "If You Have Limitations",
-          "content": "Knee Issues: Try box squats, reduce depth\nBack Issues: Front squat, goblet squat, or leg press\nMobility Issues: Goblet squat, elevated heel squat shoes\nNo Barbell: Dumbbell goblet squat, Bulgarian split squat"
+          "content": "Knee Issues: Try box squats or reduce depth, focus on form\nBack Issues: Front squat, goblet squat, or leg press\nMobility Issues: Goblet squat, use squat shoes with elevated heels\nNo Barbell: Dumbbell goblet squat or Bulgarian split squat\nBeginner: Start with bodyweight squats, progress to goblet squat first\nWant More Challenge: Add pause reps, tempo work, or deficit squats"
         }
       ]
     }

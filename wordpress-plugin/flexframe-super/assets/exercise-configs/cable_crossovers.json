@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_crossovers",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/60.%20Cable%20Crossovers/60.%20Cable%20Crossovers%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/60.%20Cable%20Crossovers/60.%20Cable%20Crossovers%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/60.%20Cable%20Crossovers/60.%20Cable%20Crossovers%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/60.%20Cable%20Crossovers/60.%20Cable%20Crossovers%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.48488164609505, 2.7473602446229073, 4.742482598597058],
+    "rotation": [-0.3370493388721314, 0.4975728644960995, 0.165719713440961],
+    "target": [-0.015745342733809047, 1.224835635188941, 0.3976317336204555]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.038359498284989, 2.4363026634566722, -3.4647466111117238],
+    "rotation": [-2.754920300143904, -0.5574509416933975, -2.9294311596584888],
+    "target": [0.006069511455859753, 1.1995903258964344, -0.427412324543617]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/60.%20Cable%20Crossovers/Cable%20Crossovers_250x250_2026-03-14T14-12-54.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Crossover is an isolation exercise that targets the chest muscles using a dual cable machine with the pulleys set to the highest position.\n\nBy pulling the handles downward and across the body, this exercise places the pectorals under constant tension throughout the entire range of motion.\n\nCable Crossovers are an excellent finishing exercise for chest workouts, helping to develop the inner chest, improve muscle definition, and create a fuller chest appearance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Constant tension on the chest throughout the entire movement\n- Excellent for targeting the inner chest and creating definition\n- Allows for a greater range of motion than pressing exercises\n- Provides a deep stretch at the top and strong contraction at the bottom\n- Low impact on joints compared to heavy pressing movements\n- Easy to adjust weight for drop sets and progressive overload\n- Versatile — can be modified by adjusting pulley height and body angle"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major (Sternal Head emphasis), Pectoralis Minor\n\nSecondary: Anterior Deltoids, Biceps (stabilization), Core (stabilization), Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set the pulleys on a cable machine to the highest position.\n2. Attach a single handle to each pulley.\n3. Stand in the center of the cable machine and grasp a handle in each hand.\n4. Step forward with one foot in front of the other for a staggered stance.\n5. Lean slightly forward from the hips, keeping your back straight.\n6. Extend your arms out to the sides with a slight bend in the elbows.\n7. Your body should form a slight T-shape with the cables pulling your arms back."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. With a slight bend in the elbows, bring your hands together in front of your chest in a wide arc.\n2. Focus on squeezing the chest muscles as your hands come together.\n3. Cross your hands slightly over each other at the bottom of the movement for a full contraction.\n4. Pause briefly and squeeze the chest at the bottom position.\n5. Slowly return your hands to the starting position in a controlled manner.\n6. Feel the stretch across your chest at the top of the movement.\n7. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and relying on momentum\n- Bending the elbows too much, turning it into a pressing movement\n- Not maintaining the slight forward lean throughout the set\n- Rushing through reps without controlling the eccentric phase\n- Standing too far forward or too far back in the cable station\n- Shrugging the shoulders up instead of keeping them down and back\n- Not bringing the hands far enough together to achieve a full contraction\n- Using the arms to pull rather than focusing on the chest squeeze"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Dual Cable Machine (Cable Crossover Station)\n- Two Single Handle Attachments\n- Appropriate Weight Selection"
+        },
+        {
+          "heading": "Cable Machine Setup",
+          "content": "1. Set both pulleys to the highest position on the cable machine.\n2. Attach a single D-handle to each side.\n3. Select an appropriate weight — start lighter to master form.\n4. Ensure the cables run smoothly without any obstructions.\n5. Stand in the center of the machine, equidistant from each pulley.\n6. Test the range of motion with light weight before starting your working sets."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Staggered stance with one foot slightly forward for balance.\n2. Knees: Slightly bent for stability.\n3. Torso: Slight forward lean from the hips, back straight.\n4. Shoulders: Down and back, not shrugged up.\n5. Arms: Extended out to the sides with a slight bend in the elbows.\n6. Elbows: Maintain the same slight bend throughout the movement.\n7. Core: Engaged throughout to maintain posture.\n8. Head: Neutral, looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flat_dumbbell_chest_press", "incline_dumbbell_chest_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Flat Dumbbell Chest Press: Compound pressing with chest emphasis\n- Incline Dumbbell Chest Press: Upper chest compound movement\n- Pec Deck Machine: Machine-based chest fly variation\n- Dumbbell Flyes: Free weight isolation for chest\n- Low Cable Crossover: Pulleys set low for upper chest emphasis\n- Bodyweight Push Up: Bodyweight chest pressing movement"
+        },
+        {
+          "heading": "Cable Crossover Variations",
+          "content": "High Cable Crossover: Pulleys set high, targets lower/inner chest\nLow Cable Crossover: Pulleys set low, targets upper chest\nMid-Height Cable Crossover: Pulleys at shoulder height for mid-chest\nSingle Arm Cable Crossover: Unilateral version for imbalance correction\nIncline Cable Crossover: Performed on an incline bench for upper chest\nSeated Cable Crossover: Seated version for stricter form and more isolation"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "No Cable Machine: Use resistance bands anchored at a high point\nShoulder Pain: Reduce range of motion or use a lower pulley setting\nLower Back Strain: Engage your core more and reduce the forward lean\nBeginner: Start with light weight and focus on the chest squeeze\nElbow Pain: Ensure elbows maintain a slight bend and reduce weight\nWant More Challenge: Add pause reps at the contracted position or slow the eccentric"
+        }
+      ]
+    }
+  }
+}

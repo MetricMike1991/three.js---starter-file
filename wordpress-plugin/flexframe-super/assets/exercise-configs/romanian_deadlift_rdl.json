@@ -1,0 +1,101 @@
+{
+  "exerciseId": "romanian_deadlift_rdl",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/04.%20Romanian%20Deadlift%20RDL%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/04.%20Romanian%20Deadlift%20RDL%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/04.%20Romanian%20Deadlift%20RDL%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/04.%20Romanian%20Deadlift%20RDL/04.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.8637607338160422, 1.3361363004521156, -2.036401696729252],
+    "rotation": [-2.948840458947329, -0.7287865348311031, -3.0123373860340283],
+    "target": [0.00970678693881249, 0.9341321447988793, 0.023305965218724443]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.1693265074260895, 1.5002379853291494, 1.8202484698787922],
+    "rotation": [-0.28217136435447926, 0.8369567311980023, 0.21205061420519083],
+    "target": [-0.020293320350583642, 0.9503928766480831, -0.07637928974793808]
+  },
+  "customTextures": {},
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Romanian Deadlift (RDL) is a hip-hinge movement that primarily targets the hamstrings and glutes.\n\nUnlike a conventional deadlift which starts from the floor, the RDL begins from a standing position and emphasises the eccentric (lowering) phase.\n\nThis exercise is essential for developing posterior chain strength, improving hip mobility, and building a strong foundation for athletic performance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Excellent hamstring and glute development\n- Improves hip hinge mechanics and movement patterns\n- Strengthens the entire posterior chain\n- Enhances athletic performance for running, jumping, and sprinting\n- Reduces risk of hamstring injuries\n- Builds grip strength and upper back stability\n- Improves posture by strengthening spinal erectors\n- Greater time under tension compared to conventional deadlifts"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings, Glutes\n\nSecondary: Erector Spinae, Trapezius, Latissimus Dorsi, Core, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand tall with feet hip-width apart.\n2. Hold a barbell with an overhand grip, hands slightly wider than shoulder-width.\n3. Keep your chest up, shoulders back, and core braced.\n4. Maintain a slight bend in your knees throughout the movement.\n5. The barbell should rest against your thighs.\n6. Keep your back flat and your gaze forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Push your hips back while maintaining a flat back.\n3. Allow the barbell to travel down the front of your legs, keeping it close to your body.\n4. Lower the weight until you feel a deep stretch in your hamstrings (typically around mid-shin level).\n5. Keep your knees slightly bent but avoid bending them further as you descend.\n6. Pause briefly at the bottom of the movement.\n7. Drive your hips forward to return to the starting position.\n8. Squeeze your glutes at the top and stand fully upright."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back during the descent\n- Bending the knees too much (turning it into a squat)\n- Letting the bar drift away from the body\n- Not hinging at the hips enough\n- Going too heavy before mastering form\n- Not maintaining tension in the hamstrings\n- Hyperextending the back at the top\n- Rushing through the eccentric (lowering) phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Olympic Barbell (45 lbs/20 kg)\n- Weight Plates\n- Squat Rack or Power Rack (to unrack the bar at hip height)\n- Optional: Lifting Straps (for grip assistance on heavy sets)\n- Optional: Lifting Belt (for heavier loads)\n- Optional: Chalk (improves grip)\n- Recommended: Flat-soled shoes for stable footing"
+        },
+        {
+          "heading": "Setting Up the Bar",
+          "content": "1. Set the barbell in a squat rack at about hip height.\n2. Load the appropriate weight on the bar.\n3. Step up to the bar and grip it with an overhand grip.\n4. Unrack the bar and take one or two steps back.\n5. Position your feet hip-width apart.\n6. Establish your starting position before beginning the first rep."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Hip-width apart, toes pointing forward or slightly out.\n2. Grip: Overhand, just outside shoulder-width.\n3. Knees: Slight bend, maintained throughout the movement.\n4. Hips: Primary hinge point — push back, not down.\n5. Back: Flat and neutral spine at all times.\n6. Shoulders: Pulled back and depressed, lats engaged.\n7. Core: Braced tightly throughout the entire movement.\n8. Head: Neutral position, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["conventional_deadlift", "sumo_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Conventional Deadlift: Full range of motion from the floor\n- Stiff-Leg Deadlift: Straighter knees for more hamstring emphasis\n- Single-Leg Romanian Deadlift: Unilateral balance and stability\n- Good Mornings: Barbell on back, similar hip hinge\n- Sumo Deadlift: Wide stance variation with more hip involvement\n- Cable Pull-Through: Machine alternative for hip hinge pattern"
+        },
+        {
+          "heading": "RDL Variations",
+          "content": "Barbell RDL: Standard bilateral version with barbell\nDumbbell RDL: Allows more freedom of movement\nSingle-Leg RDL: Develops balance and addresses imbalances\nSnatch-Grip RDL: Wider grip increases upper back demand\nDeficit RDL: Standing on platform for extra range of motion\nBanded RDL: Accommodating resistance at the top of the lift\nPaused RDL: Pause at bottom for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Hamstring Tightness: Start with partial range and gradually increase depth\nLower Back Issues: Use lighter loads and focus on bracing, or substitute with cable pull-throughs\nGrip Issues: Use lifting straps or switch to dumbbell RDLs\nBalance Problems: Use a Smith machine or landmine variation\nNo Barbell: Dumbbell or kettlebell RDLs work great\nLearning Stage: Start with light weight, use a dowel rod on your back to check alignment"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "hip_hyperextension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/36.%20The%20HIP%20Hyperextension/36.%20The%20HIP%20Hyperextension%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/36.%20The%20HIP%20Hyperextension/36.%20The%20HIP%20Hyperextension%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/36.%20The%20HIP%20Hyperextension/36.%20The%20HIP%20Hyperextension%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/36.%20The%20HIP%20Hyperextension/36.%20The%20HIP%20Hyperextension%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [3.1056717921013455, 1.3102449906167601, 1.1945566009801991],
+    "rotation": [-0.3659971365761495, 1.1592417059536622, 0.33779918191539315],
+    "target": [-0.01825784184040441, 0.8222622584276935, -0.07866803248769584]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.1045515827161014, 1.1734802546313507, 2.2808822508665925],
+    "rotation": [-0.15184783375925012, 0.759120539917434, 0.10493826005335978],
+    "target": [0.0023785248360805498, 0.8383282871582683, 0.0907156934260956]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/36.%20The%20HIP%20Hyperextension/The%20Hip%20Hyperextension_250x250_2026-03-09T15-24-48.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Hip Hyperextension is a posterior chain exercise performed on a hyperextension bench that primarily targets the glutes and hamstrings through a hip hinge movement.\n\nBy positioning the pad at the hip crease, the movement isolates the hip extensors rather than the lower back, making it one of the best exercises for glute development.\n\nThis exercise is excellent for building strong glutes, improving hip extension strength, and supporting performance in squats and deadlifts."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the glutes and hamstrings with minimal lower back stress\n- Strengthens the posterior chain for better squat and deadlift performance\n- Improves hip extension strength and power\n- Can be loaded with a plate or dumbbell for progressive overload\n- Helps correct anterior pelvic tilt and improve posture\n- Great for glute activation and mind-muscle connection\n- Low impact exercise suitable for all fitness levels\n- Excellent warm-up or finisher for leg and glute training\n- Helps prevent hamstring and lower back injuries"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus, Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus)\n\nSecondary: Erector Spinae (lower back), Adductors, Core (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the foot plate or pad position so that your hip crease is at the top of the pad.\n2. Step onto the foot plate and secure your feet.\n3. Position your hips at the top edge of the pad so you can bend freely at the hips.\n4. Cross your arms over your chest or hold a weight plate against your chest for added resistance.\n5. Start with your body in a straight line from head to heels.\n6. Keep your knees at a consistent slight bend throughout."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Bend at the hips while maintaining a straight back and consistent knee angle.\n2. Go as low as you can by closing the angle at the hips.\n3. Maintain a straight back position throughout — do not round your spine.\n4. You should feel a deep stretch in the hamstrings and glutes at the bottom.\n5. Drive your hips into the pad and squeeze your glutes to return to the starting position.\n6. Focus on using the glutes to power the movement, not the lower back.\n7. Hold the top position briefly and squeeze the glutes hard.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the back instead of maintaining a neutral spine\n- Using the lower back to lift instead of the glutes\n- Hyperextending the spine at the top (going past neutral)\n- Pad positioned too high (above the hip crease)\n- Pad positioned too low (at the thighs instead of hips)\n- Bending the knees excessively during the movement\n- Rushing through reps without controlling the descent\n- Not squeezing the glutes at the top\n- Going too heavy too soon and losing form\n- Swinging or using momentum"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Hyperextension Bench (45-degree or flat)\n- Optional: Weight Plate or Dumbbell for added resistance\n- Optional: Resistance Band for variable resistance\n- Recommended: Non-slip footwear"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the pad height so your hip crease sits at the top edge of the pad.\n2. Ensure the foot plate is at a comfortable distance.\n3. Lock all adjustment pins securely.\n4. Test the range of motion with bodyweight first.\n5. If using added weight, have it ready before stepping onto the machine."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hips: Positioned at the top edge of the pad — hip crease should be free to bend.\n2. Back: Straight and neutral throughout — no rounding or hyperextension.\n3. Knees: Slight consistent bend — do not lock out or bend excessively.\n4. Feet: Secured firmly on the foot plate.\n5. Arms: Crossed over chest, or holding a weight plate against the chest.\n6. Head: Neutral position, following the line of the spine.\n7. Core: Engaged to support a neutral spine.\n8. Glutes: Actively squeezing at the top of each rep."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["romanian_deadlift_rdl", "barbell_deadlift", "dumbbell_walking_lunges"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Romanian Deadlift: Barbell hip hinge for glutes and hamstrings\n- Glute Bridge: Floor-based glute isolation exercise\n- Hip Thrust: Barbell-loaded glute exercise on a bench\n- Cable Pull-Through: Cable-based hip hinge movement\n- Good Morning: Barbell hip hinge with bar on back\n- Reverse Hyperextension: Machine-based glute and hamstring exercise"
+        },
+        {
+          "heading": "Hip Extension Variations",
+          "content": "Bodyweight Hyperextension: Standard unloaded version\nWeighted Hyperextension: Hold a plate or dumbbell for added resistance\nBanded Hyperextension: Loop a band around the neck and under the foot plate\nSlow Tempo Hyperextension: 3-4 second eccentric for muscle building\nPause Hyperextension: Hold at the bottom for a deep stretch\nSingle Leg Hyperextension: One leg at a time for unilateral work\nTwisting Hyperextension: Add a rotation at the top for oblique engagement"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Focus on glute squeeze, avoid hyperextending at the top\nHamstring Tightness: Reduce range of motion until flexibility improves\nHip Pain: Adjust pad position and reduce range of motion\nNo Hyperextension Bench: Use a stability ball or perform glute bridges\nBeginner: Start with bodyweight only, focus on form and glute activation\nPost-Injury: Use bodyweight with limited range and slow controlled reps\nBalance Issues: Hold the handles if available for extra support"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_swing_hip_hinge",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.0042103138337874, 1.5604791161231995, -2.0819024823545056],
+    "rotation": [-2.8330110805002096, -0.7497799139870298, -2.927685307110367],
+    "target": [-0.045712694424371224, 0.9217122164034743, -0.07801743662934821]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9062840706484987, 1.4850440050507845, 1.9488509596524264],
+    "rotation": [-0.27053984315429674, 0.7784691927387767, 0.1923376587599467],
+    "target": [-0.09919513959420517, 0.9415969582937894, -0.010650708217781342]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/50.%20The%20Kettlebell%20Swing%20(Hip%20hinge)/The%20Kettlebell%20Swing%20(Hip%20Hinge)_250x250_2026-03-12T11-06-03.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Kettlebell",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Swing is a dynamic, explosive hip-hinge movement that uses the power of the glutes and hamstrings to swing a kettlebell to shoulder height.\n\nThis is not a squat or an arm lift — the swing is driven entirely by the hips snapping forward, making it one of the most effective exercises for building posterior chain power and cardiovascular conditioning.\n\nWidely regarded as the king of kettlebell exercises, the swing develops explosive hip drive, burns calories at a high rate, and builds total-body endurance."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Develops explosive hip power and glute strength\n- Outstanding cardiovascular conditioning and calorie burn\n- Strengthens the entire posterior chain in one movement\n- Improves hip hinge mechanics and athletic performance\n- Builds grip strength and endurance\n- Time-efficient — high metabolic demand in short time\n- Enhances core stability and anti-flexion strength"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes\n\nSecondary: Hamstrings, Erector Spinae, Core (Rectus Abdominis, Obliques), Shoulders (Deltoids), Forearms and Grip, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart or slightly wider.\n2. Place a kettlebell about a foot in front of you on the ground.\n3. Hinge at the hips and grip the kettlebell handle with both hands.\n4. Pull your shoulders back and down, keeping your back flat.\n5. Tilt the kettlebell toward you and hike it back between your legs to initiate the swing.\n6. Your weight should be in your heels and mid-foot."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Stand with your feet shoulder-width apart, holding a kettlebell with both hands in front of your body.\n2. Hinge forward at the hips, pushing your glutes back and keeping your back straight.\n3. Swing the kettlebell back between your legs, keeping your arms straight and your core engaged.\n4. Drive your hips forward to swing the kettlebell up to shoulder height, and allow it to swing back down between your legs, repeating the movement for the desired number of reps.\n5. At the top of the swing, squeeze your glutes hard and stand tall — do not lean back.\n6. Let gravity bring the bell back down and absorb it by hinging at the hips again."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Squatting instead of hinging — the swing is a hip-driven movement, not a squat\n- Using the arms to lift the kettlebell instead of driving with the hips\n- Rounding the lower back during the backswing\n- Leaning back excessively at the top of the swing\n- Not engaging the glutes at the top — the hips should snap to full extension\n- Swinging the kettlebell too high (above shoulder height)\n- Bending the arms during the swing instead of keeping them straight"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for ballistic movement)\n- Flat, stable surface with enough room for the swing arc\n- Optional: Chalk for grip assistance\n- Optional: Exercise mat or rubber flooring for surface protection\n- Recommended: Ensure clear space in front and behind you"
+        },
+        {
+          "heading": "Choosing Your Kettlebell Weight",
+          "content": "1. Beginners: Start with 8-12 kg (men) or 4-8 kg (women).\n2. Intermediate: 16-24 kg (men) or 8-16 kg (women).\n3. Advanced: 24-32 kg (men) or 16-24 kg (women).\n4. The swing uses large muscle groups explosively, so you can typically go heavier than pressing exercises.\n5. If you cannot control the bell at the top of the swing, reduce the weight.\n6. The kettlebell should feel challenging but allow crisp hip snaps every rep."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width or slightly wider, toes pointed slightly out.\n2. Knees: Soft bend — they bend naturally with the hinge but do not squat.\n3. Hips: The engine of the movement — drive them forward explosively.\n4. Spine: Flat and neutral throughout — no rounding at any point.\n5. Shoulders: Pulled back and down, connected to the torso.\n6. Arms: Straight throughout, acting as ropes attached to the bell.\n7. Grip: Firm but relaxed — hook the fingers over the handle."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["kettlebell_rdl", "conventional_deadlift"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Kettlebell Clean: Explosive pull to the rack position\n- Kettlebell Snatch: Full overhead swing in one motion\n- Hip Thrust: Glute-dominant movement without the ballistic element\n- Broad Jump: Explosive hip extension for power\n- Cable Pull Through: Machine-based hip hinge with constant tension\n- Kettlebell RDL: Controlled hip hinge without the swing"
+        },
+        {
+          "heading": "Kettlebell Swing Variations",
+          "content": "Two-Hand Kettlebell Swing: Standard swing with both hands on the handle\nSingle Arm Kettlebell Swing: One hand on the bell for anti-rotation demand\nHand-to-Hand Kettlebell Swing: Switching hands at the top of each rep\nBanded Kettlebell Swing: Resistance band for extra tension at the top\nDouble Kettlebell Swing: Two kettlebells for maximum loading\nKettlebell Swing to Squat: Combining swing with a goblet squat catch"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Focus on bracing the core and ensure you are hinging, not squatting\nGrip Fatigue: Use chalk, reduce rep count, or use a lighter bell\nShoulder Issues: Keep the swing to chest height or below\nHip Mobility Restrictions: Work on hip hinge drills before adding the swing\nCardiovascular Limitation: Start with fewer reps and build sets gradually\nLearning Stage: Master the kettlebell deadlift and hip hinge pattern before progressing to the swing"
+        }
+      ]
+    }
+  }
+}

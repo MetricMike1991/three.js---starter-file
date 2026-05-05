@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_loaded_leg_press_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/70.%20Cable%20Loaded%20Leg%20Press%20Machine/70.%20Cable%20Loaded%20Leg%20Press%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/70.%20Cable%20Loaded%20Leg%20Press%20Machine/70.%20Cable%20Loaded%20Leg%20Press%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/70.%20Cable%20Loaded%20Leg%20Press%20Machine/70.%20Cable%20Loaded%20Leg%20Press%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/70.%20Cable%20Loaded%20Leg%20Press%20Machine/70.%20Cable%20Loaded%20Leg%20Press%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-3.1202037468475807, 2.023891063354622, -1.2288692838555906],
+    "rotation": [-2.4804107029286575, -0.989187558617425, -2.5651600497137164],
+    "target": [-0.007038919151718618, 0.7670451567164581, 0.3866127693662942]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.48808306395981, 2.157630535441988, 1.3482853443734517],
+    "rotation": [-0.6949728475478699, 0.8505255589540923, 0.559788380368681],
+    "target": [-0.022935978301377127, 0.7465632225569412, -0.34418802818864613]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/70.%20Cable%20Loaded%20Leg%20Press%20Machine/Cable%20Loaded%20Leg%20Press%20Machine_250x250_2026-03-17T22-52-14.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Leg Press Machine is a seated compound exercise that targets the quadriceps, glutes, and hamstrings using a pin-selected cable weight stack.\n\nPerformed from a seated position with the back against a pad, you press your feet into a fixed platform to drive the seat backward against the cable resistance.\n\nThe cable-loaded mechanism provides smooth, consistent tension and makes weight selection quick and convenient, making this an excellent machine for building lower body strength and size."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the quadriceps, glutes, and hamstrings in a single movement\n- Cable mechanism delivers smooth and consistent resistance\n- Pin-selected weight stack allows quick weight changes between sets\n- Back support reduces lower back stress compared to free-weight squats\n- Safe to train to failure without a spotter\n- Adjustable foot placement shifts emphasis between muscle groups\n- Suitable for all fitness levels from beginner to advanced"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps (Rectus Femoris, Vastus Lateralis, Vastus Medialis, Vastus Intermedius)\n\nSecondary: Gluteus Maximus, Hamstrings, Calves (Gastrocnemius, Soleus)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the machine with your back pressed flat against the seat pad.\n2. Position your feet slightly outside shoulder-width apart on the platform.\n3. Point your toes slightly outward for natural knee tracking.\n4. Use the lever to slide the seat into the lower starting position.\n5. Lock the seat into place once in position.\n6. Grip the handles at the sides of the seat for stability."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. With the seat locked in position, press your feet firmly into the platform.\n2. Drive through the full foot to push your body and seat backward against the resistance.\n3. Extend your legs until they are almost straight — do not lock out your knees.\n4. Pause briefly at the extended position.\n5. Slowly allow the seat to return forward by bending the knees under control.\n6. Lower until your knees reach approximately 90 degrees of flexion.\n7. Repeat for the desired number of reps.\n8. Use the lever to secure the seat when finished."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Locking out the knees at full extension\n- Allowing the lower back to round or lift off the seat pad\n- Placing feet too narrow or too wide on the platform\n- Pushing through the toes instead of the full foot\n- Using too much weight and reducing the range of motion\n- Letting the knees cave inward during the press\n- Bouncing at the bottom of the movement instead of controlling the eccentric\n- Not securing the seat lever after completing the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Leg Press Machine\n- Pin-selected weight stack (built into the machine)\n- Optional: Knee Sleeves (for joint support on heavier sets)\n- Recommended: Flat-soled shoes for stable foot contact on the platform"
+        },
+        {
+          "heading": "Foot Placement Guide",
+          "content": "1. Standard (shoulder-width, mid-platform): Balanced quad, glute, and hamstring engagement.\n2. Low on platform: Greater quadriceps emphasis, more knee flexion.\n3. High on platform: Greater glute and hamstring emphasis.\n4. Narrow stance: More outer quad (vastus lateralis) focus.\n5. Wide stance: More inner quad (vastus medialis) and adductor engagement.\n6. Toes pointed slightly outward for natural knee tracking.\n7. Experiment to find the position that feels strongest and most comfortable."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat against the seat pad throughout the exercise.\n2. Hips: Firmly in the seat — do not let them lift during the press.\n3. Feet: Slightly outside shoulder-width, toes pointed slightly outward.\n4. Knees: Tracking over the toes, not caving inward.\n5. Hands: Gripping the side handles for stability.\n6. Head: Resting against the head pad if available, eyes forward.\n7. Core: Lightly braced to support the spine during pressing."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["hack_squat", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Plate Loaded Leg Press: Similar movement with plate-loaded resistance\n- Hack Squat: Machine-based compound quad exercise\n- Barbell Back Squat: Free-weight compound leg exercise\n- Front Squat: Barbell squat with anterior loading for quad emphasis\n- Smith Machine Squat: Fixed-path squat with barbell guidance\n- Goblet Squat: Dumbbell or kettlebell squat for beginners"
+        },
+        {
+          "heading": "Leg Press Variations",
+          "content": "Standard Leg Press: Both feet shoulder-width on the platform\nSingle Leg Press: One foot at a time for unilateral development\nNarrow Stance Leg Press: Feet close together for outer quad emphasis\nWide Stance Leg Press: Feet wide for inner quad and adductor focus\nHigh Foot Leg Press: Feet high on platform for glute and hamstring emphasis\nCalf Press: Pressing with the balls of the feet for calf development"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce depth, avoid full lockout, and use lighter weight\nLower Back Issues: Ensure back stays flat on the pad throughout\nAnkle Mobility: Place feet slightly higher on the platform\nHip Tightness: Use a moderate stance width and reduce depth\nNo Leg Press Machine: Use hack squat, goblet squat, or barbell squat instead\nBeginner: Start with a light weight to learn the movement and find your best foot position"
+        }
+      ]
+    }
+  }
+}

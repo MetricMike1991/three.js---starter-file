@@ -1,0 +1,102 @@
+{
+  "exerciseId": "weighted_chin_ups",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/225.%20Weighted%20Chin%20Ups/225.%20Weighted%20Chin%20Ups%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/225.%20Weighted%20Chin%20Ups/225.%20Weighted%20Chin%20Ups%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/225.%20Weighted%20Chin%20Ups/225.%20Weighted%20Chin%20Ups%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.81099361033627, 2.7372494031774233, 3.905019977133001],
+    "rotation": [-0.3640204187391656, 0.4613146663644307, 0.16799440936576737],
+    "target": [-0.0017346513544500522, 1.4388997205420646, 0.49727678584263024]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/225.%20Weighted%20Chin%20Ups/Weighted%20Chin%20Ups_250x250_2026-04-23T22-06-25.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Weighted Chin Up is an advanced vertical pulling exercise that adds external load to the bodyweight chin up using a dip belt, weight vest, or similar.\n\nPulling with a supinated (palms-in) grip places a large stimulus on the lats and biceps while heavily recruiting the upper back.\n\nIt is one of the most effective exercises for building upper-body pulling strength, arm size, and back thickness."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds maximal upper-body pulling strength\n- Heavy recruitment of the lats and biceps\n- Strengthens the grip and forearms\n- Improves scapular control and shoulder health\n- Scalable load makes long-term progression easy\n- Transfers to deadlifts, rows, and other pulling lifts\n- Minimal equipment needed"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Biceps Brachii\n\nSecondary: Rhomboids, Middle/Lower Trapezius, Rear Deltoids, Forearms, Core"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Attach weight securely using a dip belt, weight vest, or held dumbbell.\n2. Stand under a sturdy pull-up bar.\n3. Chalk up or dry your hands if needed."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Grip the pull-up bar with palms facing you (supinated).\n2. Hands roughly shoulder-width apart or slightly closer.\n3. Hang with arms extended, shoulders packed, and core braced."
+        },
+        {
+          "heading": "Pull",
+          "content": "1. Initiate the pull by depressing the shoulder blades.\n2. Drive the elbows down and back, leading with the chest.\n3. Pull until the chin clears the bar."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Lower the body under control to a full hang.\n2. Keep tension in the lats and shoulders at the bottom.\n3. Repeat for the desired number of repetitions, adjusting load as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Kipping or using leg drive instead of strict form\n- Incomplete range of motion at the top or bottom\n- Shrugging the shoulders to the ears\n- Flaring the elbows out instead of driving down\n- Adding weight before mastering strict bodyweight reps\n- Letting the load swing during the rep\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sturdy pull-up bar\n- Dip belt with chain, weight vest, or dumbbell between the feet\n- Weight plates appropriate for your strength\n- Chalk for grip (optional)\n- Optional: Lifting straps for very heavy sets\n- Optional: Box or step to reach the bar"
+        },
+        {
+          "heading": "Weight Attachment",
+          "content": "1. Load plates onto the dip belt and secure the belt around the waist.\n2. Alternatively, pinch a dumbbell between the feet or wear a weight vest.\n3. Start with light load and build up gradually.\n4. Confirm all attachments are secure before leaving the floor."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Grip: Supinated (palms facing you), shoulder-width or slightly closer.\n2. Body: Feet together or slightly crossed, hips slightly in front of the bar.\n3. Torso: Ribs down, core braced, slight posterior pelvic tilt.\n4. Shoulders: Packed and down at the start of each rep.\n5. Head: Neutral, eyes forward or slightly up."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bodyweight Chin Up: Unloaded variation\n- Weighted Pull Up: Pronated grip variation\n- Lat Pulldown: Cable variation for easier loading\n- Band-Assisted Chin Up: Assisted variation for beginners\n- Inverted Row: Horizontal pulling alternative\n- Barbell Row: Free-weight pulling alternative"
+        },
+        {
+          "heading": "Weighted Chin Up Variations",
+          "content": "Weighted Chin Up: Described here\nWeighted Pull Up: Pronated grip for more lat emphasis\nWeighted Neutral-Grip Chin Up: Palms facing each other\nWeighted Close-Grip Chin Up: Narrow grip for more bicep\nTempo Weighted Chin Up: Slow eccentric for hypertrophy\nPause Weighted Chin Up: Pause at the top for more tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range at the bottom and keep shoulders packed\nElbow Pain: Try a neutral or wider grip\nGrip Issues: Use chalk or lifting straps\nCan Not Do Bodyweight Chin Up: Use band-assisted or negatives first\nLoad Too Light: Add more plates to the belt\nLoad Too Heavy: Reduce load or drop to bodyweight reps\nBeginners: Master strict bodyweight chin ups before adding load"
+        }
+      ]
+    }
+  }
+}

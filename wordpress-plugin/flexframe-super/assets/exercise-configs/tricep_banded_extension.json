@@ -1,0 +1,102 @@
+{
+  "exerciseId": "tricep_banded_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/212.%20Tricep%20Banded%20Extension/212.%20Tricep%20Banded%20Extension%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/212.%20Tricep%20Banded%20Extension/212.%20Tricep%20Banded%20Extension%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/212.%20Tricep%20Banded%20Extension/212.%20Tricep%20Banded%20Extension%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.7093284577940995, 1.7403816601158921, -1.753326869740971],
+    "rotation": [-2.658964712562604, 0.688653035943181, 2.820166763221198],
+    "target": [-0.09466224807069357, 0.7231616092489461, 0.1880971429118488]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/212.%20Tricep%20Banded%20Extension/Tricep%20Banded%20Extension_250x250_2026-04-23T08-12-50.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tricep Banded Extension is an isolation exercise that mirrors the cable tricep pushdown using a resistance band anchored overhead on a pull-up bar or squat rack.\n\nPressing the band down and forward against accommodating tension delivers strong contraction and pump in the triceps, with emphasis on the lateral head.\n\nIt is a joint-friendly accessory movement for building elbow extension strength, arm size, and upper-body detail."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the triceps with constant band tension\n- Emphasises the lateral head of the triceps\n- Low-impact and joint-friendly\n- Portable and equipment-efficient\n- Reinforces scapular and core stability\n- Easily scaled by changing band thickness or distance from the anchor\n- Great finisher for upper-body training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (emphasis on Lateral Head)\n\nSecondary: Core, Forearms, Shoulders (stabilisers)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Secure the band to the pull-up bar or squat rack overhead.\n2. Stand far enough away to create tension at the top.\n3. Adopt a stable stance, feet shoulder-width apart."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Hold the band handle with both hands close together in front of your chest.\n2. Tuck the elbows close to the sides of the torso.\n3. Brace the core and pack the shoulders."
+        },
+        {
+          "heading": "Extension",
+          "content": "1. Exhale and extend the arms fully forward and downward.\n2. Drive through the triceps to lockout.\n3. Keep the elbows pinned; only the forearms move."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Inhale as you bend your elbows back to the starting position.\n2. Control the eccentric and maintain tension.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the elbows to flare or drift forward\n- Leaning excessively forward to use bodyweight\n- Using momentum instead of controlled triceps extension\n- Shrugging the shoulders during the rep\n- Using a band that is too heavy and breaking form\n- Incomplete lockout at the bottom\n- Losing core bracing during the set"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handle (or loop band)\n- Pull-up bar or squat rack for an overhead anchor\n- Athletic shoes for secure footing\n- Optional: Lighter and heavier bands for progression\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Loop the band securely over a high anchor point.\n2. Step back until there is tension at the top of the rep.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm the anchor and grip are secure before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, a slight hinge at the hips.\n2. Torso: Tall, chest up, slight forward lean.\n3. Arms: Elbows tucked close to the sides, wrists neutral.\n4. Shoulders: Packed and down, not shrugged.\n5. Head: Neutral, eyes forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Tricep Pushdown: Machine-based equivalent\n- Tricep Banded Kickback: Peak-contraction band variation\n- Overhead Tricep Extension: Long-head focused variation\n- Dumbbell Tricep Kickback: Free-weight variation\n- Bench Dips: Bodyweight triceps movement\n- Close-Grip Bench Press: Compound triceps movement"
+        },
+        {
+          "heading": "Tricep Banded Extension Variations",
+          "content": "Two-Handed Band Extension: Described here\nSingle-Arm Band Extension: Unilateral variation\nReverse-Grip Band Extension: Supinated grip for medial head focus\nRope-Style Band Extension: Split at the bottom for more contraction\nTempo Band Extension: Slow eccentric for hypertrophy\nPause Band Extension: Pause at lockout for more tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Lighten the band and keep the elbows pinned\nShoulder Issues: Keep the shoulders packed and reduce range\nLower Back Issues: Stand tall with a neutral spine and braced core\nBand Too Light: Step back further or use a heavier band\nBand Too Heavy: Use a lighter band or reduce distance from the anchor\nBeginners: Start with a light band to learn the pattern"
+        }
+      ]
+    }
+  }
+}

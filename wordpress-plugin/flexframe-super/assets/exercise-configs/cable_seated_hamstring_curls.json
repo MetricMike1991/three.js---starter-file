@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_seated_hamstring_curls",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/78.%20Cable%20Seated%20Hamstring%20Curls/78.%20Cable%20Seated%20Hamstring%20Curls%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/78.%20Cable%20Seated%20Hamstring%20Curls/78.%20Cable%20Seated%20Hamstring%20Curls%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/78.%20Cable%20Seated%20Hamstring%20Curls/78.%20Cable%20Seated%20Hamstring%20Curls%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/78.%20Cable%20Seated%20Hamstring%20Curls/78.%20Cable%20Seated%20Hamstring%20Curls%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-0.9147061577422431, 2.0075229724020183, -1.7963520136866742],
+    "rotation": [-2.5032586550613583, -0.7785922468056526, -2.6612390507080312],
+    "target": [1.1640850847298831, 0.7518816104408276, -0.10401601659121762]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.0595983341844064, 1.807746916106363, 1.6904512220079315],
+    "rotation": [-0.5558983796432633, 0.8744395023175335, 0.4447638859758125],
+    "target": [-1.170041407159357, 0.824019316478269, 0.10698711894713969]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/78.%20Cable%20Seated%20Hamstring%20Curls/Cable%20Seated%20Hamstring%20Curls_250x250_2026-03-19T00-17-33.webp",
+  "primaryMuscleGroup": "Hamstrings",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Seated Hamstring Curl is a machine-based isolation exercise that targets the hamstrings through a knee flexion movement.\n\nPerformed in a seated position with cable resistance, this exercise provides smooth and consistent tension throughout the range of motion.\n\nIt is an excellent choice for developing hamstring strength, size, and muscular endurance while keeping the hips and lower back in a safe, supported position."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the hamstrings effectively with minimal lower back involvement\n- Cable resistance provides smooth, consistent tension throughout the movement\n- Seated position supports the hips and lower back\n- Easy to adjust weight with a pin-loaded stack\n- Great for building hamstring hypertrophy and endurance\n- Helps correct muscular imbalances between quads and hamstrings\n- Reduces risk of hamstring strains by strengthening the muscles through their full range"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Hamstrings (Biceps Femoris, Semitendinosus, Semimembranosus)\n\nSecondary: Gastrocnemius (Calves), Popliteus"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on the machine with your back firmly against the back pad.\n2. Extend your legs straight out in front of you.\n3. Hook your heels under the ankle pads.\n4. Grasp the handles on either side of the seat for stability.\n5. Keep your thighs and hips firmly pressed into the seat.\n6. Sit tall with your core engaged."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Contract your hamstrings and curl your heels up towards your glutes.\n2. Keep your thighs and hips firmly pressed into the seat throughout the movement.\n3. Squeeze your hamstrings at the peak of the contraction.\n4. Slowly lower your heels back to the starting position with control.\n5. Maintain a steady tempo — avoid using momentum.\n6. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting your hips off the seat during the curl\n- Using momentum to swing the weight rather than controlled contraction\n- Not going through the full range of motion\n- Rushing the eccentric (lowering) phase\n- Pointing toes excessively, which shifts emphasis to the calves\n- Gripping the handles too tightly, causing upper body tension\n- Setting the ankle pad too high on the calf or too low on the foot\n- Using too much weight and compromising form"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Seated Hamstring Curl Machine\n- Adjustable seat and ankle pad (built into the machine)\n- Weight stack with pin selection"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select your desired weight using the pin on the weight stack.\n2. Adjust the seat position so your knees are aligned with the machine's pivot point.\n3. Adjust the ankle pad so it sits comfortably just above your heels on the lower calf.\n4. Sit down with your back firmly against the back pad.\n5. Extend your legs and hook your heels under the ankle pads.\n6. Grasp the handles on either side of the seat.\n7. You are now ready to begin the exercise."
+        },
+        {
+          "heading": "Pad Alignment Guide",
+          "content": "1. The ankle pad should rest on the lower calf, just above the heel.\n2. If the pad is too high, it reduces range of motion and comfort.\n3. If the pad is too low, it can slip off during the movement.\n4. Your knees should be at or just past the edge of the seat.\n5. Knees should align with the machine's pivot point for smooth movement.\n6. Back should be fully in contact with the back pad.\n7. Thigh pad (if present) should hold your legs down without excessive pressure.\n8. Test with a light weight to ensure proper alignment before loading up."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["single_leg_hamstring_curl", "romanian_deadlift_rdl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Single Leg Hamstring Curl: Plate-loaded unilateral hamstring curl\n- Romanian Deadlift RDL: Free weight hip hinge targeting hamstrings\n- Glute Ham Raise: Bodyweight hamstring and glute exercise\n- Kettlebell RDL: Kettlebell variation of the Romanian deadlift\n- Single Leg Kettlebell Stiff Leg Deadlift: Unilateral hamstring focus\n- Lying Hamstring Curl: Face-down machine curl variation"
+        },
+        {
+          "heading": "Hamstring Curl Variations",
+          "content": "Cable Seated Hamstring Curl: Standard seated curl with cable resistance\nSingle Leg Hamstring Curl: Plate-loaded standing single leg curl\nLying Hamstring Curl: Face-down on a bench with ankle pad\nBanded Hamstring Curl: Using resistance bands for home training\nSwiss Ball Hamstring Curl: Bodyweight curl using a stability ball\nSliding Hamstring Curl: Floor-based curl using sliders or a towel"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce range of motion and use lighter weight\nLower Back Issues: Ensure back stays firmly against the pad throughout\nCalf Cramping: Keep feet relaxed and avoid pointing toes\nNo Machine Available: Use Swiss ball hamstring curls or sliding curls\nBeginner: Start with light weight and focus on slow, controlled reps\nMuscle Imbalance: Perform single leg curls to address weaker side"
+        }
+      ]
+    }
+  }
+}

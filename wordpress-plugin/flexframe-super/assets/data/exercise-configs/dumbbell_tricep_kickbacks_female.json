@@ -1,0 +1,113 @@
+{
+  "exerciseId": "dumbbell_tricep_kickbacks_female",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/273.%20Dumbbell%20Tricep%20Kickbacks%20Female/273.%20Dumbbell%20Tricep%20Kickbacks%20Female%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/273.%20Dumbbell%20Tricep%20Kickbacks%20Female/273.%20Dumbbell%20Tricep%20Kickbacks%20Female%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.2868714555952003, 2.999479524564161, 1.890097644469383],
+    "rotation": [-0.7977499105330507, 0.6684756671114893, 0.5659673282279662],
+    "target": [0.05972743012650499, 0.9809834163768585, -0.07914047385669223]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.286871735084785, 2.9994799060968282, 1.8900969372993832],
+    "rotation": [-0.7977501845128053, 0.6684757662223635, 0.5659676331201263],
+    "target": [0.05972743012650499, 0.9809834163768585, -0.07914047385669223]
+  },
+  "customTextures": [],
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/273.%20Dumbbell%20Tricep%20Kickbacks%20Female/Dumbbell%20Tricep%20Kickbacks%20Female_250x250_2026-04-25T13-30-17.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Tricep Kickback is an isolation exercise that targets the triceps brachii by extending the elbow against the resistance of a dumbbell.\n\nPerformed in a hinged-over position with the upper arm pinned to the side, the kickback emphasizes the long head of the triceps and elbow lockout strength.\n\nIt is a popular accessory movement for adding arm size and definition with minimal equipment."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the triceps brachii\n- Emphasizes the long head of the triceps\n- Reinforces shoulder stability and core control\n- Requires minimal equipment\n- Easily scaled by adjusting weight or tempo\n- Improves elbow extension power for pressing movements\n- Excellent finisher for arm training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps Brachii (Long Head Emphasis)\n\nSecondary: Posterior Deltoids, Forearms, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Stand with your feet shoulder-width apart and knees slightly bent.\n2. Hinge forward at the waist while keeping your back straight.\n3. Hold a dumbbell in each hand with palms facing in (neutral grip)."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Keep your upper arms close to your body and parallel to the floor.\n2. Bend the elbows to about 90 degrees with the dumbbells under the elbows.\n3. Brace the core and pack the shoulders."
+        },
+        {
+          "heading": "Extend",
+          "content": "1. Extend your arms backward until they are fully extended.\n2. Focus on using your triceps to drive the movement.\n3. Keep the upper arms still; only the forearms move."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Pause briefly at the top of the movement.\n2. Return the dumbbells to the starting position under control.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the upper arms drop below parallel\n- Swinging the dumbbells with momentum\n- Rounding the lower back during the hinge\n- Locking out the elbows aggressively at the top\n- Shrugging the shoulders toward the ears\n- Using a weight too heavy to control\n- Standing too upright and reducing tension"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Pair of dumbbells with appropriate weight\n- Flat, non-slip floor surface\n- Athletic shoes for foot traction\n- Optional: Mirror to monitor form\n- Optional: Mat for joint comfort"
+        },
+        {
+          "heading": "Body Hinge",
+          "content": "1. Set feet shoulder-width apart with a slight bend in the knees.\n2. Hinge forward from the hips, not the lower back.\n3. Allow the torso to come close to parallel with the floor.\n4. Maintain a neutral spine from the head to the tailbone."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, knees soft.\n2. Torso: Hinged forward, back flat, core braced.\n3. Arms: Upper arms parallel to the floor and tucked to the ribs.\n4. Shoulders: Packed and down, away from the ears.\n5. Head: Neutral, eyes looking down and slightly forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_skull_crusher_v2", "tricep_dips_on_bench"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Tricep Kickback: Constant-tension cable variation\n- Tricep Pushdown: Standing isolation movement\n- Skull Crusher: Lying tricep extension\n- Overhead Tricep Extension: Long-head focused isolation\n- Close-Grip Push Up: Bodyweight triceps pressing\n- Bench Tricep Dip: Bodyweight triceps lockout"
+        },
+        {
+          "heading": "Dumbbell Tricep Kickback Variations",
+          "content": "Two-Arm Standing Kickback: Described here\nSingle-Arm Bench-Supported Kickback: One arm on a bench for stability\nIncline Bench Kickback: Chest supported on an incline bench\nKneeling Kickback: Reduces lower-back demand\nTempo Kickback: Slow eccentric for hypertrophy\nPause Kickback: Pause at full extension for greater triceps tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Use a bench-supported variation\nElbow Pain: Reduce range of motion and lighten the weight\nShoulder Issues: Keep the upper arms tight to the body\nWeight Too Heavy: Drop a dumbbell size\nWeight Too Light: Add weight or slow the eccentric\nBeginners: Start with a light dumbbell to learn the elbow-only path"
+        }
+      ]
+    }
+  }
+}

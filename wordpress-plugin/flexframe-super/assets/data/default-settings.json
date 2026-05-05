@@ -51,7 +51,7 @@
       }
     },
     "ambientLight": {
-      "intensity": 1.52,
+      "intensity": 0.3,
       "color": "#ffffff"
     }
   },
@@ -81,7 +81,7 @@
   },
   "playerStyling": {
     "backgroundColor": "#7d7d7d",
-    "backgroundOpacity": 0.3,
+    "backgroundOpacity": 0.2,
     "playerWidth": 95,
     "showTimeDisplay": true,
     "buttonColor": "#ffffff",
@@ -101,8 +101,8 @@
     "thumbnailLabelOpacity": 0.1
   },
   "menuV2Styling": {
-    "backgroundColor": "#1a1a1a",
-    "backgroundOpacity": 0.95,
+    "backgroundColor": "#8f8f8f",
+    "backgroundOpacity": 0.2,
     "textColor": "#ffffff",
     "textOpacity": 1,
     "accentColor": "USE_PRIMARY_COLOR",

@@ -1,0 +1,102 @@
+{
+  "exerciseId": "resistance_band_rows",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/204.%20Resistance%20Band%20Rows/204.%20Resistance%20Band%20Rows%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/204.%20Resistance%20Band%20Rows/204.%20Resistance%20Band%20Rows%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/204.%20Resistance%20Band%20Rows/204.%20Resistance%20Band%20Rows%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.165070123186035, 1.5256591958459367, -1.9066092394478122],
+    "rotation": [-2.8303158123019676, -0.8455740519667061, -2.9053180962850726],
+    "target": [-0.0052219559428403235, 0.9393332395276265, -0.08422670668412126]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/204.%20Resistance%20Band%20Rows/Resistance%20Band%20Rows_250x250_2026-04-23T06-41-17.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Resistance Band Row is a pulling exercise that mimics a bent-over row using a resistance band anchored under the feet.\n\nIt targets the mid-back, lats, and rear delts while providing accommodating resistance that increases through the range of motion.\n\nThis exercise is a great substitute for dumbbell or barbell rows, especially for home, travel, or rehabilitation settings."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds strength and size in the mid-back and lats\n- Improves posture and shoulder blade control\n- Accommodating band tension increases through the pull\n- Joint-friendly compared to heavy barbell rowing\n- Portable and easy to set up anywhere\n- Scalable by changing band thickness or stance width\n- Excellent accessory for deadlift and pull-up work"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Rear Deltoids, Biceps, Forearms, Core, Erector Spinae"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Anchor the Band",
+          "content": "1. Step on the resistance band with both feet.\n2. Set your feet hip-width apart.\n3. Check that the band is evenly balanced under your feet."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Bend at your hips and knees to maintain a bent-over position.\n2. Keep your back straight and chest up.\n3. Let your arms hang straight down, holding the handles with some band tension."
+        },
+        {
+          "heading": "Row",
+          "content": "1. Pull the resistance band handles toward your lower ribcage.\n2. Squeeze your shoulder blades together at the top of the pull.\n3. Keep elbows tracking close to the body, not flaring outward."
+        },
+        {
+          "heading": "Lower and Repeat",
+          "content": "1. Slowly extend your arms, maintaining control as you return to the starting position.\n2. Keep a slight knee bend and engage your core throughout.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the lower back in the bent-over position\n- Using momentum to yank the handles instead of controlled pulling\n- Shrugging the shoulders up instead of squeezing the blades together\n- Standing up through the rep and losing the hinge position\n- Flaring the elbows out too wide\n- Using a band that is too heavy and breaking form\n- Rushing the eccentric (return) phase"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Resistance Band with Handles (or loop band)\n- Flat, stable surface to stand on\n- Athletic shoes for secure footing\n- Optional: Ankle strap for alternate anchoring\n- Optional: Lighter and heavier bands for progression"
+        },
+        {
+          "heading": "Band Adjustments",
+          "content": "1. Stand on the middle of the band with both feet.\n2. Wider stance creates more tension; narrower stance reduces it.\n3. Choose a band thickness appropriate for your strength level.\n4. Confirm grip on both handles is even before starting."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet hip-width apart, band under both feet.\n2. Hinge: Bend at hips with soft knees, back flat, chest up.\n3. Torso Angle: About 45 degrees to the floor.\n4. Core: Braced throughout the rep.\n5. Head: Neutral, eyes looking slightly ahead on the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bentover_barbell_row"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Bent-Over Barbell Row: Heavy compound back builder\n- Dumbbell Row: Unilateral free-weight row\n- Seated Cable Row: Machine alternative for back work\n- T-Bar Row: Heavy chest-supported rowing variation\n- Inverted Row: Bodyweight horizontal pulling\n- Chest-Supported Row: Machine row with torso support"
+        },
+        {
+          "heading": "Resistance Band Row Variations",
+          "content": "Two-Handed Band Row: Described here\nSingle-Arm Band Row: Unilateral variation for balance\nSeated Band Row: Band anchored in front, legs extended\nHigh-to-Low Band Row: Band anchored high, pulled down and back\nTempo Band Row: Slow eccentric for hypertrophy\nPause Band Row: Pause at peak contraction for control"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Issues: Use a seated or chest-supported variation\nShoulder Pain: Keep elbows tucked, reduce range of motion\nBalance Issues: Perform seated on a bench or the floor\nBand Too Light: Step wider or use a heavier band\nBand Too Heavy: Use a lighter band or narrower stance\nBeginners: Start light to learn the hinge and pull pattern"
+        }
+      ]
+    }
+  }
+}

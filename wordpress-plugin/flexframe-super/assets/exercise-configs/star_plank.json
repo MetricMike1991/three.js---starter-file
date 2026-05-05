@@ -1,0 +1,105 @@
+{
+  "exerciseId": "star_plank",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/159.%20Star%20Plank/159.%20Star%20Plank%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/159.%20Star%20Plank/159.%20Star%20Plank%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/159.%20Star%20Plank/159.%20Star%20Plank%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/159.%20Star%20Plank/159.%20Star%20Plank%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.4526345998910517, 1.3920540772916743, 1.3750577451459576],
+    "rotation": [-0.6813446413134152, -0.9734309531884606, -0.5906231304915227],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.5504650893811005, 1.0815937379083487, 1.0068370508749325],
+    "rotation": [-0.6734926886584295, -0.91678415416802, -0.5645429905682824],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/159.%20Star%20Plank/Star%20Plank_250x250_2026-04-12T16-28-01.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Star Plank is an advanced bodyweight core exercise where you hold a prone position with your arms and legs spread wide, forming a star shape while keeping your body lifted off the ground.\n\nThis isometric hold challenges the entire core, back extensors, glutes, and shoulders simultaneously, making it one of the most demanding plank variations.\n\nIt is used in bodyweight training, gymnastics, and athletic conditioning programmes for building total body tension, core endurance, and posterior chain strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Engages the entire core including deep stabilising muscles\n- Strengthens the posterior chain — lower back, glutes, and hamstrings\n- No equipment required — can be performed anywhere\n- Builds total body tension and isometric strength\n- Improves body awareness and proprioception\n- Challenges shoulder stability and upper back endurance\n- Can be used as a progression from standard planks for advanced trainees"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Erector Spinae, Transverse Abdominis\n\nSecondary: Glutes, Deltoids, Rhomboids, Hip Flexors, Quadriceps"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Lie face down on the ground on a mat.\n2. Extend your arms straight out to the sides so your body forms a T shape.\n3. Extend your legs behind you, spreading them wide apart.\n4. Your body should resemble a star or X shape when viewed from above.\n5. Engage your core before initiating the lift."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core, glutes, and back muscles simultaneously.\n2. Lift your torso, arms, and legs off the ground at the same time.\n3. Maintain a straight line from head to toe — do not excessively arch the lower back.\n4. Keep your arms and legs extended and elevated, forming a star shape.\n5. Hold the position for the desired duration, breathing steadily throughout.\n6. Focus on keeping your body lifted and your core muscles fully engaged.\n7. Slowly lower your torso, arms, and legs back down to the ground with control."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Hyperextending the lower back instead of maintaining a neutral spine\n- Holding the breath instead of breathing steadily throughout the hold\n- Lifting the head too high and straining the neck\n- Not engaging the glutes, placing all the stress on the lower back\n- Allowing the arms or legs to drop during the hold\n- Rushing into the position without properly bracing the core first\n- Holding for too long with poor form — shorter holds with correct form are more effective"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Exercise mat (recommended for comfort)\n- No other equipment required"
+        },
+        {
+          "heading": "Space Requirements",
+          "content": "1. Find a flat, open area with enough space to lie fully extended with arms and legs spread wide.\n2. Use an exercise mat for comfort and to protect your hips and torso.\n3. Ensure there is clearance on all sides for the star position."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Torso: Face down, lifted off the ground during the hold.\n2. Arms: Extended straight out to the sides, elevated off the ground.\n3. Legs: Spread wide apart, lifted off the ground.\n4. Core: Fully engaged and braced throughout the hold.\n5. Glutes: Squeezed to support the lower back and maintain elevation.\n6. Head: In a neutral position — look slightly ahead of you, not straight up.\n7. Breathing: Steady and controlled throughout the entire hold."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["flutter_kicks", "deadbug", "jack_knife"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Superman Hold: Prone back extension with arms forward for posterior chain strength\n- Standard Plank: Forearm or hand plank for core endurance\n- Side Plank: Lateral core hold for oblique and hip stability\n- Reverse Plank: Supine hold targeting the posterior chain and core\n- Bird Dog: Contralateral arm and leg extension for core stability\n- Hollow Body Hold: Supine isometric core hold"
+        },
+        {
+          "heading": "Star Plank Variations",
+          "content": "Standard Star Plank: Full star shape hold with arms and legs spread\nHalf Star Plank: Lift only the upper body or lower body to reduce difficulty\nStar Plank Pulses: Small up-and-down pulses at the top for added difficulty\nWeighted Star Plank: Hold light ankle weights or wrist weights for added resistance\nStar Plank with Reach: Alternate reaching one arm forward during the hold\nTimed Progression: Start with 10-second holds and build to 30+ seconds\nStar Plank to Superman: Transition between star and superman positions"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce the height of the lift and focus on engaging the glutes to protect the spine\nShoulder Issues: Keep the arms closer to the body rather than fully extended\nNeck Strain: Keep the head in a neutral position — do not look up\nBeginner: Start with a standard prone hold (arms by your sides) and progress to the star shape\nHip Discomfort: Reduce the width of the leg spread\nPost-Injury: Consult a physiotherapist before performing prone extension exercises"
+        }
+      ]
+    }
+  }
+}

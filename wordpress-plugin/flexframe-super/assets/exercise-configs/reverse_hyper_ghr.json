@@ -1,0 +1,105 @@
+{
+  "exerciseId": "reverse_hyper_ghr",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/93.%20Reverse%20Hyper%20GHR/93.%20Reverse%20Hyper%20GHR%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/93.%20Reverse%20Hyper%20GHR/93.%20Reverse%20Hyper%20GHR%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/93.%20Reverse%20Hyper%20GHR/93.%20Reverse%20Hyper%20GHR%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/93.%20Reverse%20Hyper%20GHR/93.%20Reverse%20Hyper%20GHR%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.7619524730952052, 2.271232199790409, 2.103595840473963],
+    "rotation": [-0.6369702401466717, 0.6254612445598691, 0.40876024959113944],
+    "target": [-0.022712542151589094, 0.8014558722016599, 0.11699580662952144]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.860417249771057, 1.8598621003064473, -1.938847284474303],
+    "rotation": [-2.6270841735111223, -0.7338971620866328, -2.7796560915312383],
+    "target": [0.023968783478477994, 0.8317464962630652, -0.12011624723793261]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/93.%20Reverse%20Hyper%20GHR/Reverse%20Hyper%20GHR_250x250_2026-03-23T00-15-07.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Reverse Hyper on a Glute Ham Raise (GHR) machine is a posterior chain exercise that targets the glutes, hamstrings, and lower back.\n\nBy lying face down on the GHR pad and raising the legs behind the body, this movement isolates the hip extensors without placing compressive load on the spine.\n\nIt is widely used for building glute and hamstring strength, improving hip extension power, and as a rehabilitation exercise for the lower back."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets the glutes and hamstrings through hip extension\n- Decompresses the spine — beneficial for lower back health\n- Strengthens the erector spinae without heavy spinal loading\n- Improves posterior chain development for athletic performance\n- Can be used for rehabilitation and prehabilitation\n- Builds hip extension strength transferable to squats and deadlifts\n- Low impact on the knees and ankles"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Glutes, Hamstrings, Erector Spinae\n\nSecondary: Hip Adductors, Core (stabilisation)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Position the front of your hips at the front of the Glute Ham Raise machine.\n2. Lay face down over the round pad so your hips are supported.\n3. Grip onto the part of the GHR machine that would usually support your legs.\n4. Allow your legs to hang straight down towards the floor.\n5. Keep your upper body stable and your core engaged.\n6. Maintain a neutral spine throughout the setup."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. In a slow and controlled manner, raise both legs up from the floor.\n2. Allow the roller pad to support your body weight at the hips.\n3. Focus on squeezing your glutes and hamstrings to drive the movement.\n4. You should end this movement when your legs are slightly higher than parallel.\n5. Hold briefly at the top, squeezing the glutes.\n6. Lower your legs back down under control to the starting position.\n7. Avoid using momentum — keep the movement strict and deliberate."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the legs up using momentum instead of muscle contraction\n- Hyperextending the lower back at the top of the movement\n- Positioning the hips too far forward or back on the pad\n- Not controlling the eccentric (lowering) phase\n- Gripping too tightly and tensing the upper body\n- Rushing through reps without proper glute engagement\n- Raising the legs too high beyond a controlled range of motion"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Glute Ham Raise (GHR) Machine\n- Optional: Ankle weights for added resistance\n- Optional: Resistance band looped around ankles for progressive overload"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the GHR pad height so your hips sit at the edge of the round pad.\n2. The pad should support your hip bones comfortably.\n3. Ensure the machine is stable and locked in position.\n4. The foot plate or leg holders should be accessible for you to grip.\n5. Position yourself so your legs can hang freely without touching the floor at full extension."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hips: Positioned at the front edge of the round pad.\n2. Torso: Lying face down, upper body stable.\n3. Hands: Gripping the leg supports or handles firmly.\n4. Core: Braced to prevent excessive lumbar extension.\n5. Legs: Hanging straight down to start, together throughout the movement.\n6. Head: Neutral, looking down at the floor."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_hip_thrust", "romanian_deadlift_rdl"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Reverse Hyperextension Machine: Dedicated machine for the same movement pattern\n- Back Extension: Targets the erector spinae with more lower back emphasis\n- Barbell Hip Thrust: Heavy hip extension movement targeting glutes\n- Romanian Deadlift: Hip hinge with hamstring and glute focus\n- Glute Ham Raise: Uses the same machine but works the hamstrings through knee flexion\n- Cable Pull-Through: Standing hip extension with cable resistance"
+        },
+        {
+          "heading": "Reverse Hyper Variations",
+          "content": "Reverse Hyper on GHR: Standard variation using the GHR machine\nReverse Hyper on Bench: Performed lying on a flat bench with legs hanging off\nBanded Reverse Hyper: Adding band resistance for progressive overload\nWeighted Reverse Hyper: Ankle weights or dumbbell between feet\nSingle Leg Reverse Hyper: Unilateral version for addressing imbalances\nSlow Tempo Reverse Hyper: Extended eccentric for greater time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: This exercise can help decompress the spine — start light and controlled\nNo GHR Machine: Use a flat bench or stability ball as an alternative surface\nHip Discomfort: Adjust pad position so hip bones are not pressing directly into the pad\nWeak Glutes: Start with bodyweight only and focus on the mind-muscle connection\nBeginner: Perform with bent knees to reduce the lever arm and difficulty\nLimited Range of Motion: Only raise legs to a comfortable height and progress gradually"
+        }
+      ]
+    }
+  }
+}

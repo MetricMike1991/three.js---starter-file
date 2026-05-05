@@ -1,0 +1,105 @@
+{
+  "exerciseId": "stability_ball_chest_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/140.%20Stability%20Ball%20Chest%20Press/140.%20Stability%20Ball%20Chest%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/140.%20Stability%20Ball%20Chest%20Press/140.%20Stability%20Ball%20Chest%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/140.%20Stability%20Ball%20Chest%20Press/140.%20Stability%20Ball%20Chest%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/140.%20Stability%20Ball%20Chest%20Press/140.%20Stability%20Ball%20Chest%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.3907083606609227, 2.347637356900677, 2.41399414669055],
+    "rotation": [-0.8164044044194881, 0.5098885588662699, 0.4789884990108229],
+    "target": [0.03763854491566487, 0.5845042989669975, 0.7569421675255483]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.493368300942227, 2.0784397285570524, 2.121726140201301],
+    "rotation": [-0.8536165761928172, 0.634445745079544, 0.5969489852460658],
+    "target": [0.0028633031369932884, 0.5520540492623631, 0.7905797240052984]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/140.%20Stability%20Ball%20Chest%20Press/Stability%20Ball%20Chest%20Press_250x250_2026-04-06T11-46-55.webp",
+  "primaryMuscleGroup": "Chest",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Stability Ball Chest Press is a dumbbell pressing exercise performed while lying on a stability ball instead of a traditional bench.\n\nThe unstable surface of the ball forces the core and stabiliser muscles to work significantly harder to maintain balance, adding an extra challenge to the standard dumbbell chest press.\n\nThis exercise is excellent for building chest strength while simultaneously improving core stability, balance, and functional pressing power."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Increased core activation compared to a standard bench press\n- Develops chest strength with an added stability challenge\n- Engages glutes and hamstrings to maintain body position\n- Improves balance and proprioception through the unstable surface\n- Allows for a greater range of motion than a flat bench\n- Builds functional pressing strength applicable to real-world movements\n- Dumbbells allow independent arm movement, correcting imbalances"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Pectoralis Major, Anterior Deltoids, Triceps\n\nSecondary: Core, Glutes, Hamstrings, Serratus Anterior, Rotator Cuff"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit on a stability ball with your feet flat on the floor.\n2. Hold a pair of dumbbells at chest level with elbows bent and pointing out to the sides.\n3. Slowly walk your feet forward while rolling your body down the ball.\n4. Continue until your head and shoulders are resting on the ball.\n5. Lift your hips so that your body forms a straight line from knees to shoulders.\n6. Position your feet shoulder-width apart for stability.\n7. Engage your core and squeeze your glutes to maintain the bridge position.\n8. Hold the dumbbells at chest level with palms facing forward."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Brace your core and maintain your hip bridge position.\n2. Push the dumbbells up toward the ceiling, extending your arms fully.\n3. Do not lock out your elbows at the top of the movement.\n4. Keep the dumbbells over your chest, not over your face.\n5. Pause briefly at the top of the press.\n6. Slowly lower the dumbbells back down to chest level with control.\n7. Keep your core engaged and body stable throughout the movement.\n8. Avoid letting your hips drop or sag during the press.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Allowing the hips to drop during the press\n- Rolling too far forward or backward on the ball\n- Locking out the elbows at the top of the movement\n- Using momentum instead of controlled pressing\n- Feet too close together, reducing stability\n- Not engaging the core throughout the exercise\n- Lowering the dumbbells too quickly without control\n- Flaring the elbows too wide, stressing the shoulders\n- Using too heavy a weight before mastering the balance"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Stability Ball (Swiss Ball) — appropriately sized for your height\n- Pair of Dumbbells (appropriate weight for your level)\n- Non-Slip Floor Surface\n- Open Floor Space\n- Optional: Mirror for form checking\n- Optional: Spotter for heavier weights"
+        },
+        {
+          "heading": "Choosing Your Setup",
+          "content": "1. Ball size should match your height for proper positioning.\n2. Under 5'0\" (152 cm): 45 cm ball.\n3. 5'0\" - 5'5\" (152-165 cm): 55 cm ball.\n4. 5'6\" - 5'11\" (168-180 cm): 65 cm ball.\n5. 6'0\" and above (183+ cm): 75 cm ball.\n6. Start with lighter dumbbells than you would use on a flat bench.\n7. The instability reduces your pressing capacity by roughly 15-20%.\n8. Master the balance and position before increasing weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Head and Shoulders: Resting on top of the stability ball.\n2. Hips: Lifted, forming a straight line from knees to shoulders.\n3. Feet: Flat on the floor, shoulder-width apart.\n4. Core: Braced and engaged throughout.\n5. Glutes: Squeezed to maintain the bridge position.\n6. Dumbbells: At chest level, palms facing forward.\n7. Elbows: Bent at 90 degrees at the bottom of the movement.\n8. Head: Neutral, resting naturally on the ball."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_bench_press", "bodyweight_push_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Bench Press: Standard flat bench pressing\n- Barbell Bench Press: Heavier bilateral pressing option\n- Push Up: Bodyweight chest pressing movement\n- Incline Dumbbell Press: Angled pressing for upper chest emphasis\n- Cable Chest Fly: Isolation movement for chest development\n- Floor Press: Pressing from the floor for reduced range of motion"
+        },
+        {
+          "heading": "Stability Ball Variations",
+          "content": "Stability Ball Chest Press: Standard dumbbell press on ball\nStability Ball Chest Fly: Fly movement on ball for isolation\nStability Ball Incline Press: Ball positioned for incline angle\nStability Ball Single Arm Press: Unilateral press for core challenge\nStability Ball Squeeze Press: Neutral grip press with dumbbells together\nStability Ball Pullover: Pullover movement on ball for chest and lats"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Balance Issues: Start with lighter weights and wider foot placement\nShoulder Pain: Reduce range of motion or use a neutral grip\nLower Back Discomfort: Focus on keeping hips elevated and core braced\nNo Stability Ball: Use a flat bench for standard dumbbell press\nNo Dumbbells: Perform push-ups with feet on the stability ball\nLearning Stage: Practice the hip bridge on the ball without weights first"
+        }
+      ]
+    }
+  }
+}

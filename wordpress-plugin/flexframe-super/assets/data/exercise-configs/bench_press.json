@@ -98,15 +98,15 @@
       "sections": [
         {
           "heading": "Overview",
-          "content": "The Barbell Bench Press is one of the most popular upper body exercises, primarily targeting the chest muscles (pectoralis major), along with the triceps and anterior deltoids. It's a fundamental movement for building upper body strength and size."
+          "content": "The Barbell Bench Press is one of the most popular upper body exercises, primarily targeting the chest muscles (pectoralis major), along with the triceps and anterior deltoids.\n\nIt's a fundamental movement for building upper body strength and size."
         },
         {
           "heading": "Benefits",
-          "content": "Builds chest, shoulder, and tricep strength. Increases upper body muscle mass. Improves pushing power for sports. Enhances shoulder stability. Great for overall upper body development."
+          "content": "- Builds chest, shoulder, and tricep strength\n- Increases upper body muscle mass\n- Improves pushing power for sports\n- Enhances shoulder stability\n- Great for overall upper body development"
         },
         {
           "heading": "Muscles Worked",
-          "content": "Primary: Pectoralis Major (Chest). Secondary: Triceps, Anterior Deltoids, Serratus Anterior."
+          "content": "Primary: Pectoralis Major (Chest)\n\nSecondary: Triceps, Anterior Deltoids, Serratus Anterior"
         }
       ]
     },
@@ -146,6 +146,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["incline_barbell_bench_press", "flat_dumbbell_chest_press"],
       "sections": [
         {
           "heading": "Similar Exercises",

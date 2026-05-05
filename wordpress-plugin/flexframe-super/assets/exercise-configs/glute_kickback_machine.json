@@ -1,0 +1,105 @@
+{
+  "exerciseId": "glute_kickback_machine",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/26.%20Glute%20Kickback%20Machine/26.%20Glute%20Kickback%20Machine%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/26.%20Glute%20Kickback%20Machine/26.%20Glute%20Kickback%20Machine%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/26.%20Glute%20Kickback%20Machine/26.%20Glute%20Kickback%20Machine%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/26.%20Glute%20Kickback%20Machine/26.%20Glute%20Kickback%20Machine%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-3.7252462672853244, 1.8412935878192203, -1.964667479344902],
+    "rotation": [-2.6332085049331946, -1.0305894961040418, -2.6957892728948387],
+    "target": [-0.0767548935209195, 0.7762294115793617, -0.05334436583026885]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.675658375089611, 2.3213324386991268, -2.535844494775025],
+    "rotation": [-2.586878808640349, 0.7164609941120257, 2.7551435174863497],
+    "target": [0.07283625031381218, 0.7470721215662272, 0.004883944971258592]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/26.%20Glute%20Kickback%20Machine/Glute%20Kickback%20Machine_250x250_2026-03-08T18-28-21.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Glute Kickback Machine is an isolation exercise that targets the gluteus maximus through a hip extension movement.\n\nPerformed on a dedicated machine, it allows you to focus on one leg at a time, ensuring balanced glute development and a strong mind-muscle connection.\n\nThe machine provides a guided movement path and consistent resistance, making it an excellent choice for isolating the glutes without heavy spinal loading."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly isolates the gluteus maximus\n- Unilateral movement corrects muscle imbalances between legs\n- Minimal spinal loading compared to squats or deadlifts\n- Machine-guided path ensures consistent form\n- Easy to adjust resistance for progressive overload\n- Excellent mind-muscle connection for glute activation\n- Great finisher exercise after compound leg movements\n- Suitable for all fitness levels"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Core Stabilizers, Hip Extensors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Position your hips against the front of the largest pad on the machine.\n2. Grip the handles firmly for stability.\n3. Place one foot on the foot plate with your knee bent.\n4. Keep your standing leg firmly planted on the platform.\n5. Engage your core and maintain a neutral spine.\n6. Keep your hips square and pressed into the front pad."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Extend your leg backward as far as you can in a controlled motion.\n2. Keep your hips square and pressed firmly into the front pad throughout.\n3. Drive the movement from your glute, not your lower back.\n4. Contract the glute hard at the end of the range of motion.\n5. Hold the peak contraction for 1-2 seconds.\n6. Return to the starting position slowly and under control.\n7. Complete all reps on one leg before switching to the other.\n8. Maintain equal reps and weight for both legs."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back to extend the range of motion\n- Lifting the hips off the pad during the kick\n- Using momentum rather than controlled glute contraction\n- Not achieving full hip extension at the top\n- Rushing through reps without squeezing at the peak\n- Rotating the hips during the movement\n- Using too much weight and compensating with lower back\n- Not keeping the core engaged throughout"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Glute Kickback Machine\n- Optional: Ankle Strap (if using a cable variation)\n- Recommended: Non-slip footwear for stable footing"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the hip pad height so it aligns with your hip crease.\n2. Set the foot plate to a comfortable starting position.\n3. Select an appropriate weight — start light to establish form.\n4. Ensure all adjustment pins and safety mechanisms are locked in place.\n5. Test the range of motion with no weight before adding resistance."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Hips: Pressed firmly against the front pad throughout.\n2. Core: Engaged and braced to prevent lower back arching.\n3. Standing Leg: Firmly planted, slight bend in the knee.\n4. Working Leg: Foot positioned in the center of the foot plate.\n5. Hands: Gripping the handles for stability.\n6. Back: Neutral spine — no excessive arching or rounding.\n7. Head: Neutral position, looking straight ahead or slightly down."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_walking_lunges", "barbell_back_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Glute Kickback: Similar movement with cable resistance\n- Donkey Kicks: Bodyweight floor variation\n- Hip Thrust: Bilateral glute-focused compound movement\n- Single-Leg Hip Thrust: Unilateral glute isolation\n- Reverse Hyperextension: Glute and hamstring focus\n- Step-Ups: Functional unilateral glute exercise"
+        },
+        {
+          "heading": "Glute Kickback Variations",
+          "content": "Machine Glute Kickback: Standard guided machine movement\nCable Glute Kickback: Adjustable resistance with constant tension\nBanded Glute Kickback: Resistance band on all fours\nSmith Machine Glute Kickback: Using bar for single-leg press back\nPulse Kickback: Small pulses at peak contraction for burnout\nSlow Tempo Kickback: 3-4 second eccentric for time under tension\nAnkle Weight Kickback: Floor-based with added resistance"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Adjust foot plate position, reduce range of motion\nHip Pain: Reduce weight and range, focus on controlled movement\nLower Back Pain: Ensure hips stay pressed into the pad, reduce weight\nNo Glute Kickback Machine: Use cable machine with ankle strap\nNo Equipment: Perform bodyweight donkey kicks or fire hydrants\nBalance Issues: Grip the handles firmly, start with lighter weight\nLearning Stage: Start with bodyweight donkey kicks to learn the movement pattern"
+        }
+      ]
+    }
+  }
+}

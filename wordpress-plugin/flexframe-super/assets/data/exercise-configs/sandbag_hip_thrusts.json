@@ -1,0 +1,102 @@
+{
+  "exerciseId": "sandbag_hip_thrusts",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/220.%20Sandbag%20Hip%20Thrusts/220.%20Sandbag%20Hip%20Thrusts%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/220.%20Sandbag%20Hip%20Thrusts/220.%20Sandbag%20Hip%20Thrusts%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/220.%20Sandbag%20Hip%20Thrusts/220.%20Sandbag%20Hip%20Thrusts%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.888989945247874, 0.5916899649026514, 0.04167196464293002],
+    "rotation": [-1.1557932224092067, -1.5231459194598824, -1.1553740212310935],
+    "target": [-0.00899818589345363, 0.4660110446040522, -0.01370121616205672]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/220.%20Sandbag%20Hip%20Thrusts/Sandbag%20Hip%20Thrusts_250x250_2026-04-23T21-27-34.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Sandbag Hip Thrust is a glute-focused exercise performed with the upper back supported on a bench and a sandbag loaded across the hips.\n\nDriving the hips to full extension against the sandbag strongly activates the glutes through a long range of motion.\n\nIt is a joint-friendly, portable alternative to the barbell hip thrust and is excellent for glute hypertrophy and hip extension strength."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Directly targets the glutes through full hip extension\n- Builds hip extension strength and power\n- Low spinal load compared with squats and deadlifts\n- Softer padding on the hips than a barbell\n- Portable and home-gym friendly\n- Easily scaled by changing sandbag weight\n- Great accessory for squats, deadlifts, and sprinting"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Gluteus Maximus\n\nSecondary: Hamstrings, Quadriceps, Core, Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Set Up",
+          "content": "1. Sit on the ground with your upper back against a bench or elevated surface.\n2. Position the bench so it contacts just below the shoulder blades.\n3. Place the sandbag on your lap, just above your hips."
+        },
+        {
+          "heading": "Starting Position",
+          "content": "1. Plant your feet firmly on the ground, shoulder-width apart.\n2. Shins roughly vertical when hips are extended.\n3. Hold the sandbag with both hands to keep it stable."
+        },
+        {
+          "heading": "Thrust",
+          "content": "1. Drive through the heels to lift the hips toward the ceiling.\n2. Squeeze the glutes hard at the top and finish with hips fully extended.\n3. Keep the ribs down and torso in a straight line from shoulders to knees."
+        },
+        {
+          "heading": "Return and Repeat",
+          "content": "1. Lower the hips back down under control.\n2. Keep the core braced throughout.\n3. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Overextending the lower back instead of extending the hips\n- Pushing through the toes rather than the heels\n- Letting the knees cave inward\n- Tucking the chin to the chest or flaring the ribs\n- Using a sandbag that is too heavy and breaking form\n- Incomplete lockout at the top\n- Resting the bag too low on the thighs"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Sandbag appropriate to your strength level\n- Sturdy bench or elevated surface\n- Flat, stable training surface\n- Athletic shoes with flat, stable soles\n- Optional: Hip pad for extra comfort\n- Optional: Mirror to monitor form"
+        },
+        {
+          "heading": "Bench and Sandbag Placement",
+          "content": "1. Position the bench behind you and make sure it will not slide.\n2. Sit with your upper back against the edge of the bench.\n3. Place the sandbag in the crease of the hips, not on the thighs.\n4. Hold the bag with both hands to stop it shifting during the rep."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, toes slightly out.\n2. Torso: Ribs down, core braced, chin tucked slightly.\n3. Back: Upper back supported, lower back neutral.\n4. Hips: Bag loaded across the crease of the hips.\n5. Head: Neutral, eyes up and slightly forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": [],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Hip Thrust: Heaviest loaded variation\n- Dumbbell Hip Thrust: Free-weight variation\n- Glute Bridge: Floor-based variation\n- Single-Leg Hip Thrust: Unilateral variation\n- Hip Thrust Machine: Machine-based variation\n- Cable Pull-Through: Hinge-focused glute exercise"
+        },
+        {
+          "heading": "Sandbag Hip Thrust Variations",
+          "content": "Sandbag Hip Thrust: Described here\nSandbag Glute Bridge: Floor-based variation\nSingle-Leg Sandbag Hip Thrust: Unilateral variation\nTempo Sandbag Hip Thrust: Slow eccentric for hypertrophy\nPause Sandbag Hip Thrust: Pause at lockout for more tension\nFeet-Elevated Sandbag Hip Thrust: Longer range of motion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Reduce range, avoid overextension\nKnee Pain: Bring the feet slightly forward and reduce load\nHip Pinch: Adjust bag position and reduce depth\nBench Discomfort: Use a padded bench or add a pad\nBag Too Light: Add sand or upgrade to a heavier bag\nBag Too Heavy: Use a lighter bag or switch to a glute bridge\nBeginners: Start with a bodyweight glute bridge"
+        }
+      ]
+    }
+  }
+}

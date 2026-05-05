@@ -1,0 +1,105 @@
+{
+  "exerciseId": "dumbbell_goblet_box_squat",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/115.%20Dumbbell%20Goblet%20Box%20Squat/115.%20Dumbbell%20Goblet%20Box%20Squat%20SD_compressed.glb",
+  "modelUrlHQ": "",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/115.%20Dumbbell%20Goblet%20Box%20Squat/115.%20Dumbbell%20Goblet%20Box%20Squat%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/115.%20Dumbbell%20Goblet%20Box%20Squat/115.%20Dumbbell%20Goblet%20Box%20Squat%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.1251406859335973, 1.0914789918138328, 2.1708808916695137],
+    "rotation": [-0.225729617202034, -0.4720731696262833, -0.10404943712797173],
+    "target": [-0.0012755568131472075, 0.5988190496173477, 0.025554357242082465]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.0904584158921384, 0.6650368700532072, -0.631927870389482],
+    "rotation": [-2.728186614624417, -0.9377780335090253, -2.8016350188798054],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/115.%20Dumbbell%20Goblet%20Box%20Squat/Dumbbell%20Goblet%20Box%20Squat_250x250_2026-03-30T15-37-57.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Dumbbell Goblet Box Squat combines the front-loaded goblet position with a box squat to create a controlled and effective lower body exercise.\n\nHolding a dumbbell vertically at the chest encourages an upright torso and engages the core, while the box provides a consistent depth target and reinforces proper sit-back mechanics.\n\nThis exercise is ideal for beginners learning squat form with added resistance, as well as intermediate lifters looking to refine depth consistency and hip drive."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Front-loaded dumbbell position promotes an upright torso and reduces lower back stress\n- Box provides a consistent depth target for every rep\n- Teaches proper sit-back mechanics and hip hinge pattern\n- Engages the core throughout the movement due to the goblet hold\n- Builds quadricep, glute, and core strength simultaneously\n- Dumbbells are widely available in most gyms and home setups\n- Great stepping stone between bodyweight and barbell squats"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes\n\nSecondary: Core, Hamstrings, Upper Back, Forearms (grip), Hip Flexors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Pick up a dumbbell and hold it vertically by one end in front of your chest.\n2. Keep your elbows pointed down and the dumbbell close to your body.\n3. Stand in front of a sturdy box or bench with your feet shoulder-width apart.\n4. Point your toes slightly outward at about 15-30 degrees.\n5. Engage your core and maintain an upright posture."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Push your hips back and bend your knees to begin the descent.\n2. Keep your chest up and back straight throughout the movement.\n3. Lower yourself in a controlled manner until you are seated on the box.\n4. Ensure your thighs are parallel to the ground at the bottom.\n5. Pause briefly on the box while maintaining core tension.\n6. Push through your heels to stand back up to the starting position.\n7. Squeeze your glutes at the top of the movement.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Letting the dumbbell drift away from the chest during the descent\n- Plopping down onto the box instead of lowering with control\n- Rocking forward off the box to generate momentum\n- Letting the knees cave inward during the ascent\n- Rounding the upper or lower back under load\n- Completely relaxing on the box and losing core tension\n- Using a box that is too high, limiting range of motion"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Dumbbell (appropriate weight for your fitness level)\n- Sturdy Box, Bench, or Step (appropriate height for your leg length)\n- Flat, Non-Slip Surface"
+        },
+        {
+          "heading": "Dumbbell Setup",
+          "content": "1. Choose a dumbbell weight that allows you to maintain proper form throughout all reps.\n2. Hold the dumbbell vertically by cupping one end with both hands.\n3. Keep elbows pointed downward and the dumbbell tight against your upper chest.\n4. Beginners should start light and focus on movement mechanics.\n5. Ensure a secure grip on the dumbbell before starting the set."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Shoulder-width apart, toes slightly turned out.\n2. Dumbbell: Held vertically, cupped at one end, tight against the chest.\n3. Elbows: Pointed downward, close to the body.\n4. Core: Braced and engaged throughout the movement.\n5. Back: Straight with a neutral spine, upright torso.\n6. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["kettlebell_goblet_box_squat", "bodyweight_box_squat"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Kettlebell Goblet Box Squat: Same movement pattern using a kettlebell instead\n- Bodyweight Box Squat: Unloaded version for learning the movement pattern\n- Bodyweight Squat: Standard squat without the box\n- Barbell Back Squat: Heavier loaded squat with barbell on the back\n- Bulgarian Split Squat: Single-leg variation for unilateral development"
+        },
+        {
+          "heading": "Variations",
+          "content": "Dumbbell Goblet Box Squat: Standard goblet hold with box depth guide\nPaused Dumbbell Goblet Box Squat: Extended pause on the box for strength\nSlow Tempo Goblet Box Squat: Controlled descent for time under tension\nWide Stance Goblet Box Squat: Wider feet for greater glute and adductor emphasis\nNarrow Stance Goblet Box Squat: Closer feet for greater quad emphasis\nDumbbell Goblet Squat: Same goblet hold without the box"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Discomfort: Adjust grip on the dumbbell or switch to a kettlebell\nKnee Pain: Use a higher box to reduce range of motion\nLower Back Issues: Focus on keeping the chest up and core tight throughout\nShoulder Mobility Issues: Hold the dumbbell lower on the chest\nHip Mobility Restrictions: Start with a higher box and progress to lower heights"
+        }
+      ]
+    }
+  }
+}

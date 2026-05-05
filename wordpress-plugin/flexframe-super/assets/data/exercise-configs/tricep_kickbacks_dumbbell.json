@@ -1,0 +1,105 @@
+{
+  "exerciseId": "tricep_kickbacks_dumbbell",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/63.%20Tricep%20Kickbacks%20Dumbbell/63.%20Tricep%20Kickbacks%20Dumbbell%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/63.%20Tricep%20Kickbacks%20Dumbbell/63.%20Tricep%20Kickbacks%20Dumbbell%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/63.%20Tricep%20Kickbacks%20Dumbbell/63.%20Tricep%20Kickbacks%20Dumbbell%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/63.%20Tricep%20Kickbacks%20Dumbbell/63.%20Tricep%20Kickbacks%20Dumbbell%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.4243045178465032, 1.9753434540955124, 0.06151458285041245],
+    "rotation": [-0.8579733803172868, -0.9831781763195568, -0.7664310277565136],
+    "target": [-0.038519509940917435, 0.7730847398126742, -0.9777769132375396]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.92598230002231, 1.3380537902983365, 0.5497554110069474],
+    "rotation": [-2.0799477880328547, 1.3463992144809147, 2.090825990702099],
+    "target": [0.014773910342001595, 0.7578774889093274, 0.873636053648541]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/63.%20Tricep%20Kickbacks%20Dumbbell/Tricep%20Kickbacks%20Dumbbell_250x250_2026-03-16T11-13-11.webp",
+  "primaryMuscleGroup": "Triceps",
+  "equipmentType": "Dumbbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Tricep Kickback is an isolation exercise that targets the triceps using a dumbbell and a flat bench for support.\n\nBy extending the arm backward while keeping the upper arm parallel to the floor, this exercise effectively isolates the triceps through a full range of motion.\n\nTricep Kickbacks are an excellent exercise for building arm definition, improving tricep strength, and serving as a finishing movement in arm or push-day workouts."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Effectively isolates the triceps for targeted development\n- Excellent for building arm definition and tone\n- Requires only a dumbbell and bench, making it accessible\n- Unilateral movement helps correct muscle imbalances between arms\n- Low risk of injury when performed with controlled form\n- Great finishing exercise for tricep workouts\n- Improves elbow extension strength used in pressing movements"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Triceps (Lateral Head, Long Head, Medial Head)\n\nSecondary: Rear Deltoids (stabilization), Core (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Place one hand and the same-side knee on a flat bench for support.\n2. Hold a dumbbell in the opposite hand with a neutral grip (palm facing inward).\n3. Keep your back flat and parallel to the floor.\n4. Position your upper arm parallel to the floor with your elbow bent at a 90-degree angle.\n5. Keep your elbow tucked close to your body.\n6. Your head should be in a neutral position, looking down."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Keeping your upper arm stationary and parallel to the floor, extend your elbow.\n2. Straighten your arm fully behind you by contracting your tricep.\n3. Squeeze your tricep hard at the top of the movement when the arm is fully extended.\n4. Pause briefly at the fully extended position.\n5. Slowly lower the dumbbell back to the 90-degree starting position.\n6. Keep the movement controlled — only the forearm should move.\n7. Complete all reps on one side, then switch to the other arm."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the dumbbell or using momentum to extend the arm\n- Dropping the upper arm below parallel, reducing tricep engagement\n- Not fully extending the arm at the top of the movement\n- Moving the upper arm instead of keeping it stationary\n- Rushing through reps without controlling the eccentric phase\n- Using too much weight, which compromises form\n- Rounding the back instead of keeping it flat\n- Not squeezing the tricep at the top of the movement"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- One Dumbbell\n- Flat Bench\n- Appropriate Weight Selection"
+        },
+        {
+          "heading": "Bench Setup",
+          "content": "1. Position a flat bench in a clear area.\n2. Select an appropriate dumbbell weight — start lighter to master form.\n3. Place one hand and the same-side knee on the bench.\n4. The opposite foot should be on the floor for stability.\n5. Ensure the bench is stable and secure before beginning.\n6. Pick up the dumbbell with your free hand."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Flat and parallel to the floor.\n2. Supporting Arm: Straight, hand placed firmly on the bench.\n3. Supporting Knee: On the bench for balance.\n4. Working Arm: Upper arm parallel to the floor, elbow at 90 degrees.\n5. Elbow: Tucked close to the body, not flared out.\n6. Grip: Neutral grip with palm facing inward.\n7. Head: Neutral position, looking down.\n8. Core: Engaged to maintain a flat back position."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["tricep_cable_extension", "overhead_tricep_cable_extensions"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Tricep Cable Extension: Cable pushdown for tricep isolation\n- Overhead Tricep Cable Extensions: Overhead extension targeting the long head\n- Skull Crushers: Lying tricep extension with barbell or dumbbells\n- Close Grip Bench Press: Compound pressing with tricep emphasis\n- Dips: Bodyweight tricep-dominant pressing movement\n- Diamond Push Ups: Bodyweight tricep isolation"
+        },
+        {
+          "heading": "Kickback Variations",
+          "content": "Single Arm Dumbbell Kickback: Standard one-arm variation with bench support\nStanding Bent-Over Kickback: Both arms simultaneously without bench\nCable Kickback: Using a low cable for constant tension\nResistance Band Kickback: Band variation for home workouts\nIncline Bench Kickback: Lying face down on an incline bench\nSlow Tempo Kickback: Extended eccentric for increased time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Elbow Pain: Reduce weight and focus on slow, controlled reps\nShoulder Pain: Ensure the upper arm stays parallel and reduce weight\nLower Back Strain: Focus on core engagement and proper bench positioning\nNo Bench: Perform standing bent-over kickbacks\nBeginner: Start with very light weight and master keeping the upper arm still\nWant More Challenge: Add a pause at full extension or slow the eccentric"
+        }
+      ]
+    }
+  }
+}

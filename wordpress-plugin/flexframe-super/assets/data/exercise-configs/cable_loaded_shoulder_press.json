@@ -1,0 +1,105 @@
+{
+  "exerciseId": "cable_loaded_shoulder_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/72.%20Cable%20Loaded%20Shoulder%20Press/72.%20Cable%20Loaded%20Shoulder%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/72.%20Cable%20Loaded%20Shoulder%20Press/72.%20Cable%20Loaded%20Shoulder%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/72.%20Cable%20Loaded%20Shoulder%20Press/72.%20Cable%20Loaded%20Shoulder%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/72.%20Cable%20Loaded%20Shoulder%20Press/72.%20Cable%20Loaded%20Shoulder%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.7271581753938303, 1.6770675189165436, -2.1585130409725446],
+    "rotation": [-2.757012866144809, -0.9029206823984949, -2.8339124075939512],
+    "target": [0.0046393928653271806, 0.86863393448825, -0.1610633726314599]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.8797904455253325, 1.777180414554827, 2.5359973926514234],
+    "rotation": [-0.37935015375333625, 0.6446768374099257, 0.23513878285810194],
+    "target": [-0.004519293607346229, 0.8490667825613685, 0.20791073208268576]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/72.%20Cable%20Loaded%20Shoulder%20Press/Cable%20Loaded%20Shoulder%20Press_250x250_2026-03-18T10-18-50.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Shoulder Press is a seated pressing exercise performed on a machine that uses a cable and weight stack for resistance.\n\nFrom a seated position with back support, you press handles overhead to target the deltoids and triceps. The cable mechanism provides smooth, consistent resistance throughout the pressing motion.\n\nThis machine is ideal for safely building shoulder strength and size without the stabilisation demands of free-weight overhead pressing."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Targets all three heads of the deltoids with emphasis on the anterior and lateral heads\n- Cable mechanism provides smooth, constant tension throughout the press\n- Seated position with back support reduces lower back stress\n- Pin-selected weight stack allows quick resistance changes between sets\n- Fixed movement path makes it beginner-friendly and safe to train to failure\n- Effective for building shoulder strength, size, and pressing power\n- Good alternative for those who cannot overhead press with free weights due to stability or injury limitations"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Deltoids (Anterior, Lateral, and Posterior heads)\n\nSecondary: Triceps Brachii, Upper Trapezius, Serratus Anterior"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the seat height so the handles are at approximately shoulder level.\n2. Select the appropriate weight on the pin-selected stack.\n3. Sit down with your back firmly against the back pad.\n4. Grasp the handles with an overhand grip, hands shoulder-width apart.\n5. Plant your feet flat on the floor for stability.\n6. Brace your core and keep your chest up."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Press the handles overhead by extending your arms upward.\n2. Drive through the palms and keep your elbows tracking in line with your shoulders.\n3. Continue pressing until your arms are fully extended but not locked out.\n4. Pause briefly at the top and squeeze your shoulders.\n5. Slowly lower the handles back to the starting position under control.\n6. Stop when the handles return to shoulder height or when you feel a comfortable stretch.\n7. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Arching the lower back excessively instead of keeping it flat against the pad\n- Locking out the elbows at the top, placing stress on the joints\n- Flaring the elbows too far forward or backward instead of pressing in line with the shoulders\n- Using momentum or bouncing at the bottom of the rep\n- Setting the seat too low, causing the starting position to be below shoulder level\n- Shrugging the shoulders up toward the ears during the press\n- Rushing the lowering phase instead of controlling the negative"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Shoulder Press Machine\n- Pin-selected weight stack (built into the machine)\n- Optional: Wrist wraps for heavier sets\n- Flat-soled shoes recommended for stable foot placement"
+        },
+        {
+          "heading": "Seat Adjustment Guide",
+          "content": "1. Sit on the machine and check that the handles align with your shoulders.\n2. If the handles are above your shoulders, raise the seat.\n3. If the handles are below your shoulders, lower the seat.\n4. Your upper arms should be roughly parallel to the floor at the starting position.\n5. Ensure your back is fully supported by the back pad.\n6. Feet should be flat on the floor — use the foot rest if available.\n7. The correct seat height prevents excessive shoulder strain and maximises pressing power."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Pressed firmly against the back pad throughout the movement.\n2. Feet: Flat on the floor or foot rest for a stable base.\n3. Grip: Overhand, shoulder-width apart on the handles.\n4. Elbows: In line with the shoulders, not flared excessively forward.\n5. Core: Braced to support the spine during pressing.\n6. Head: In a neutral position, looking straight ahead.\n7. Shoulders: Down and back — avoid shrugging during the press."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_overhead_press", "barbell_seated_shoulder_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Overhead Press: Standing free-weight shoulder press for overall shoulder development\n- Barbell Seated Shoulder Press: Seated barbell pressing with back support\n- Dumbbell Shoulder Press: Allows independent arm movement and greater range of motion\n- Smith Machine Shoulder Press: Fixed-path pressing with a barbell\n- Arnold Press: Dumbbell variation with rotation for full deltoid engagement\n- Cable Lateral Raise: Isolation movement for the lateral deltoids"
+        },
+        {
+          "heading": "Shoulder Press Variations",
+          "content": "Standard Shoulder Press: Both arms pressing simultaneously with even grip\nSingle Arm Shoulder Press: One arm at a time for unilateral development\nWide Grip Press: Wider hand placement for more lateral deltoid emphasis\nNarrow Grip Press: Closer hand placement for more tricep involvement\nPartial Range Press: Top-half reps for lockout strength\nSlow Eccentric Press: Emphasising the lowering phase for muscle growth"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Pain: Reduce range of motion, avoid pressing behind the head, and lower the weight\nElbow Pain: Avoid full lockout at the top and reduce weight\nLower Back Issues: Ensure back stays fully against the pad throughout\nWrist Discomfort: Adjust grip width or use wrist wraps for support\nNeck Tension: Keep head neutral, avoid jutting chin forward during pressing\nBeginner: Start with a light weight to learn the pressing path and build shoulder stability"
+        }
+      ]
+    }
+  }
+}

@@ -115,15 +115,15 @@
       "sections": [
         {
           "heading": "Overview",
-          "content": "The Barbell Deadlift is one of the most fundamental compound exercises in strength training. It involves lifting a loaded barbell from the ground to a standing position, engaging nearly every major muscle group in the body. Known as the king of lifts, the deadlift builds total body strength, power, and muscle mass."
+          "content": "The Barbell Deadlift is one of the most fundamental compound exercises in strength training.\n\nIt involves lifting a loaded barbell from the ground to a standing position, engaging nearly every major muscle group in the body.\n\nKnown as the king of lifts, the deadlift builds total body strength, power, and muscle mass."
         },
         {
           "heading": "Benefits",
-          "content": "Builds total body strength and power. Develops posterior chain muscles (hamstrings, glutes, lower back). Improves grip strength and core stability. Increases bone density and connective tissue strength. Enhances athletic performance and functional strength. Burns significant calories due to multiple muscle engagement. Improves posture and spinal stability."
+          "content": "- Builds total body strength and power\n- Develops posterior chain muscles (hamstrings, glutes, lower back)\n- Improves grip strength and core stability\n- Increases bone density and connective tissue strength\n- Enhances athletic performance and functional strength\n- Burns significant calories due to multiple muscle engagement\n- Improves posture and spinal stability"
         },
         {
           "heading": "Muscles Worked",
-          "content": "Primary: Erector Spinae, Glutes, Hamstrings, Quadriceps. Secondary: Trapezius, Latissimus Dorsi, Rhomboids, Core, Forearms and Grip, Calves."
+          "content": "Primary: Erector Spinae, Glutes, Hamstrings, Quadriceps\n\nSecondary: Trapezius, Latissimus Dorsi, Rhomboids, Core, Forearms and Grip, Calves"
         }
       ]
     },
@@ -163,6 +163,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["sumo_deadlift", "romanian_deadlift_rdl"],
       "sections": [
         {
           "heading": "Similar Exercises",

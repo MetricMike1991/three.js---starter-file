@@ -1,0 +1,105 @@
+{
+  "exerciseId": "smith_machine_behind_back_shrug",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/183.%20Smith%20Machine%20Behind%20Back%20Shrug/183.%20Smith%20Machine%20Behind%20Back%20Shrug%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/183.%20Smith%20Machine%20Behind%20Back%20Shrug/183.%20Smith%20Machine%20Behind%20Back%20Shrug%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/183.%20Smith%20Machine%20Behind%20Back%20Shrug/183.%20Smith%20Machine%20Behind%20Back%20Shrug%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/183.%20Smith%20Machine%20Behind%20Back%20Shrug/183.%20Smith%20Machine%20Behind%20Back%20Shrug%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-1.1288428069690482, 1.454278651353202, -3.0320441838478502],
+    "rotation": [-2.926864128398197, -0.3674641279223602, -3.0634032581621233],
+    "target": [-0.006767107904673948, 0.8331715283803457, -0.1841152619672232]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-1.9002732539301375, 2.095989726292786, -3.299818229941116],
+    "rotation": [-2.7665510921264724, -0.5187450202062954, -2.948835806877068],
+    "target": [-0.043989196886360306, 0.9049200846946786, -0.2742999241926538]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/183.%20Smith%20Machine%20Behind%20Back%20Shrug/Smith%20Machine%20Behind%20Back%20Shrug_250x250_2026-04-22T10-00-09.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Smith Machine Behind Back Shrug is a trapezius-focused exercise that combines the behind-the-back bar position with the stability of a Smith machine.\n\nThe fixed bar path allows you to focus purely on the shrug motion while targeting the upper and mid trapezius along with the rear deltoids.\n\nThis variation is ideal for lifters who want the behind-back shrug's benefits with added stability and safety."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Fixed bar path allows focus on trap contraction\n- Emphasizes upper and mid trapezius\n- Engages rear deltoids and rhomboids\n- Safer than free barbell version — easy to rack if needed\n- Allows heavier loads with reduced stabilizer demand\n- Great for isolating the traps\n- Improves posture and shoulder stability"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Upper Trapezius, Middle Trapezius\n\nSecondary: Rear Deltoids, Rhomboids, Levator Scapulae, Forearms and Grip"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand inside the Smith machine with your feet shoulder-width apart.\n2. Position the barbell of the Smith machine behind your back at hip level.\n3. Hold the barbell with an overhand grip.\n4. Place your hands slightly wider than shoulder-width apart.\n5. Unrack the bar by rotating your wrists.\n6. Keep your back straight and chest lifted.\n7. Relax your arms and shoulders."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Lift your shoulders as high as possible by shrugging them towards your ears.\n2. Squeeze your trapezius at the top of the movement.\n3. Lower your shoulders back down under control.\n4. Repeat the shrug for the desired number of repetitions.\n5. Focus on engaging your shoulder muscles.\n6. Maintain proper form throughout the movement.\n7. Adjust the weight as needed."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rolling the shoulders instead of shrugging straight up\n- Using too much weight and compromising form\n- Bending the arms to assist the lift\n- Leaning forward or rounding the back\n- Insufficient range of motion\n- Jerking the weight with momentum\n- Not pausing at the top for full contraction\n- Standing too far from the bar"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Smith Machine\n- Weight Plates\n- Optional: Lifting Straps (for grip assistance)\n- Optional: Chalk (improves grip)\n- Flat-soled shoes recommended"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart, inside the Smith machine.\n2. Bar Position: Behind back at hip level.\n3. Grip: Overhand, slightly wider than shoulders.\n4. Arms: Fully extended, relaxed.\n5. Chest: Lifted, shoulders back.\n6. Back: Straight with natural arch.\n7. Head: Neutral, eyes forward.\n8. Core: Engaged for stability."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start with light weight to master the movement.\n2. Set the bar at the correct hip height before loading.\n3. Focus on straight-up shrug motion.\n4. Add pauses at the top for greater contraction.\n5. Gradually increase weight as strength improves.\n6. Use straps when grip becomes the limiting factor.\n7. Keep reps in the 8-15 range for hypertrophy."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_shrugs_behind_back", "barbell_shrugs"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Shrugs Behind Back: Free-weight version of this movement\n- Barbell Shrugs (Front): Traditional bar-in-front variation\n- Dumbbell Shrug: Allows greater range of motion\n- Trap Bar Shrug: Neutral grip positioning\n- Smith Machine Shrug (Front): Fixed path with bar in front\n- Cable Shrug: Constant tension variation"
+        },
+        {
+          "heading": "Trap Variations",
+          "content": "Smith Machine Shrug Front: Classic trap builder on fixed path\nBarbell Shrug: Free weight version\nDumbbell Shrug: Free range of motion\nTrap Bar Shrug: Neutral hand position\nCable Face Pull: Rear delt and upper trap combo\nFarmer's Carry: Dynamic trap and grip work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Impingement: Try dumbbell shrugs with neutral grip\nGrip Issues: Use lifting straps\nLower Back Pain: Reduce weight, focus on form\nLimited Mobility: Use a trap bar instead\nNo Smith Machine: Use a free barbell behind back\nBeginner: Start with lighter front shrugs first"
+        }
+      ]
+    }
+  }
+}

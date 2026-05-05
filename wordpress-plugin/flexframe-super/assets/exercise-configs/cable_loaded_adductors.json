@@ -1,0 +1,103 @@
+{
+  "exerciseId": "cable_loaded_adductors",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/82.%20Cable%20Loaded%20Adductors/82.%20Cable%20Loaded%20Adductors%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/82.%20Cable%20Loaded%20Adductors/82.%20Cable%20Loaded%20Adductors%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/82.%20Cable%20Loaded%20Adductors/82.%20Cable%20Loaded%20Adductors%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.314371227899215, 1.6537490026193518, -1.964389381834691],
+    "rotation": [-2.655931427653116, 0.85625462142552, 2.7621921394231093],
+    "target": [0.024717750331649684, 0.726615806238374, -0.20788247633632242]
+  },
+  "cameraHQ": {
+    "position": [-2.2862639494389074, 2.1415569003653303, 2.2260389278345043],
+    "rotation": [-0.6092037739807665, -0.7401258762352037, -0.4398020206521404],
+    "target": [-0.027855496996622927, 0.726615950931786, 0.19813109710520196]
+  },
+  "modelHQ": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "customTextures": {},
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Cables",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Cable Loaded Adductor Machine targets the inner thigh muscles, primarily the adductor magnus, adductor longus, and adductor brevis.\n\nThis seated machine exercise involves squeezing your legs inward against cable-driven resistance, isolating the inner thighs and hip adductors.\n\nIt is an essential exercise for developing inner thigh strength, improving hip stability, and supporting balanced lower body development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates and strengthens the inner thigh adductor muscles\n- Improves hip stability and medial knee support\n- Cable resistance provides smooth, consistent tension throughout the range of motion\n- Helps prevent groin strains and adductor injuries\n- Supports balanced leg development alongside abductor work\n- Improves performance in squats, lunges, and lateral movements\n- Easy to adjust resistance via the pin-loaded weight stack\n- Excellent for rehabilitation and prehabilitation of the hip and groin complex"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Adductor Magnus, Adductor Longus, Adductor Brevis, Gracilis\n\nSecondary: Pectineus, Gluteus Maximus (lower fibres), Core Stabilisers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the weight on the machine using the pin selector.\n2. Sit on the seat with your back firmly pressed against the back pad.\n3. Place the inside of your legs against the leg pads.\n4. Position your feet flat on the footrests or platform.\n5. Grasp the handles on either side of the seat for stability.\n6. Sit upright with your core engaged and chest up.\n7. Your legs should be spread apart in the starting position.\n8. Ensure the seat height and pad positions are comfortable."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Slowly squeeze your thighs together, pressing against the leg pads.\n3. Focus on contracting the inner thigh muscles as you bring your legs inward.\n4. Continue squeezing until your legs come together or as close as your range allows.\n5. Pause for a moment at the fully contracted position.\n6. Slowly release and return your legs to the starting position under control.\n7. Do not let the weight stack slam — maintain tension throughout.\n8. Keep your back pressed firmly against the pad during the entire movement.\n9. Remember to breathe steadily and not lock out your knees to maintain tension on the muscles."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Using too much weight and losing control of the movement\n- Rushing through reps without focusing on the contraction\n- Leaning forward or lifting off the back pad\n- Not using a full range of motion\n- Letting the weight stack slam at the end of each rep\n- Relying on momentum instead of controlled muscle contraction\n- Holding your breath instead of breathing steadily\n- Positioning too far forward or back on the seat"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Cable Loaded Abductor/Adductor Machine\n- Pin-loaded weight stack for easy resistance adjustment\n- No additional equipment required\n- Optional: Resistance band around knees for warm-up activation"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Select an appropriate weight using the pin on the weight stack.\n2. Start light to warm up the inner thigh muscles before increasing load.\n3. Adjust the starting leg position if the machine allows it.\n4. Ensure the machine is set to adduction mode (legs squeeze inward).\n5. Some machines have a lever to switch between abduction and adduction — verify the correct setting.\n6. Check that the seat and pad positions are secure before beginning."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Seat Position: Sit with your back flat against the back pad.\n2. Leg Position: Inside of legs pressed firmly against the leg pads.\n3. Feet: Flat on the footrests or floor in front of you.\n4. Grip: Hands on the side handles for stability.\n5. Core: Braced and engaged throughout the movement.\n6. Posture: Upright, chest up, shoulders relaxed.\n7. Starting Position: Legs apart, ready to squeeze inward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["cable_loaded_abductors", "cable_kickback_glutes"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Loaded Abductors: The opposite movement — pushing legs outward\n- Copenhagen Plank: Bodyweight adductor exercise using a bench\n- Sumo Squat: Wide stance squat emphasising inner thighs\n- Standing Cable Adduction: Single-leg cable adduction from a standing position\n- Banded Adduction: Using a resistance band for inner thigh work\n- Cossack Squat: Lateral squat variation targeting adductors"
+        },
+        {
+          "heading": "Adductor Variations",
+          "content": "Seated Cable Adduction: Standard machine-based hip adduction\nStanding Cable Adduction: Single-leg adduction using a low cable\nBanded Adduction: Using a resistance band around the ankles or knees\nCopenhagen Plank: Side plank variation with adductor engagement\nSumo Squat: Wide stance squat for inner thigh and glute emphasis\nSlide Board Adduction: Sliding disc exercise for dynamic adductor work"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Groin Pain: Reduce the range of motion and use lighter weight\nKnee Issues: Ensure the pad is positioned on the inner thigh, not the knee\nLower Back Pain: Focus on keeping your back firmly against the pad\nLimited Mobility: Start with a smaller range and gradually increase\nNo Machine Available: Use resistance bands or bodyweight adduction exercises\nRehabilitation: Start with very light weight and focus on activation, not load"
+        }
+      ]
+    }
+  }
+}

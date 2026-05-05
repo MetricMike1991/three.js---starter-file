@@ -1,10 +1,10 @@
 {
   "exerciseId": "sumo_deadlift",
-  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.%20Sumo%20Deadlift.glb",
-  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.Sumo-New%20glb.glb",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/06.%20The%20Sumo%20Deadlift%20SD%204.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/06.%20The%20Sumo%20Deadlift%20HD2_compressed.glb",
   "ar": {
-    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006.%20Sumo%20Deadlift.glb",
-    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/006%20Sumo%20Old%20USDZ.usdz"
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/06.%20The%20Sumo%20Deadlift%20AR%203_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/06.%20The%20Sumo%20Deadlift%20AR%203_compressed.glb"
   },
   "model": {
     "position": [0, 0.01, 0],
@@ -12,16 +12,25 @@
     "scale": [1, 1, 1]
   },
   "camera": {
-    "position": [-2.0396129458241874, 1.976660146865588, -3.6596543800431336],
+    "position": [-2.459442042452855, 2.498582422144673, -4.498597493376091],
     "rotation": [-2.9604920325800856, -0.46748461081623716, -3.0592635066158063],
-    "target": [-0.0076632727363665585, 1.251669748925433, 0.2997305618465005]
+    "target": [0.02756233574912606, 1.6112305759291228, 0.34749087971961784]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
   },
   "cameraHQ": {
-    "position": [0.3798746575381708, 0.7456513469674413, 1.506634506084074],
-    "rotation": [-0.14030009312252273, 0.2468528986919587, 0.034495853285236674],
-    "target": [-0.001196998270907459, 0.534179968210387, 0.009258364469898259]
+    "position": [1.5226020354617826, 1.4903615054342612, 2.7485728097678592],
+    "rotation": [-0.1760528374841768, 0.4883099102917297, 0.08326343906509212],
+    "target": [-0.0020528372608013823, 0.9876775243181346, -0.0771681923040017]
   },
   "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/006.%20Sumo%20Deadlift/TheSumoDeadliftThumb.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Barbell",
+  "type": "Strength",
   "rightMenuTabs": {
     "exerciseInformation": {
       "title": "Exercise Information",

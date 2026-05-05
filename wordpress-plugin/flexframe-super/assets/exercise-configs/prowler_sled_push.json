@@ -1,0 +1,94 @@
+{
+  "exerciseId": "prowler_sled_push",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/190.%20Prowler%20Sled%20Push%20SD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/190.%20Prowler%20Sled%20Push%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/190.%20Prowler%20Sled%20Push%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.3269883987202005, 1.241432042418858, -0.9224217090567057],
+    "rotation": [-2.418402885563671, -1.0421503729124049, -2.4903121757993025],
+    "target": [-0.018058106108908126, 0.34892644576978554, 0.08865572603297185]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/190.%20Prowler%20Sled%20Push/Prowler%20Sled%20Push_250x250_2026-04-22T11-30-30.webp",
+  "primaryMuscleGroup": "Glutes",
+  "equipmentType": "Machines",
+  "type": "Cardio",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Prowler Sled Push is a full-body conditioning exercise performed by pushing a weighted sled across the floor.\n\nIt combines leg drive, core stability, and upper body bracing, making it an incredibly effective tool for building explosive power, strength-endurance, and cardiovascular fitness.\n\nBecause there is no eccentric phase, prowler pushes produce minimal muscle soreness while delivering a maximal training stimulus."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds explosive leg and hip power\n- Excellent cardiovascular conditioning\n- Trains the entire posterior chain\n- Low impact on joints (no eccentric load)\n- Minimal muscle soreness afterwards\n- Scalable — adjust load and distance\n- Boosts work capacity and GPP\n- Strong mental toughness builder"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps, Glutes, Hamstrings, Calves\n\nSecondary: Core, Lower Back, Shoulders, Chest, Triceps (bracing)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Load the Prowler sled with the desired amount of weight.\n2. Adjust the handles to a comfortable height for pushing.\n3. Stand behind the Prowler with your feet shoulder-width apart.\n4. Bend at your hips and knees to lower your body into a squatting position.\n5. Grip the handles with your hands at about chest height.\n6. Keep your back straight and core braced.\n7. Lean forward into the sled."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Push the Prowler sled forward by extending your hips and knees explosively.\n2. Keep your back straight and maintain a strong core as you drive the sled forward.\n3. Use powerful strides and maintain a brisk pace.\n4. Continue pushing the sled for the desired distance or time.\n5. Maintain good form throughout the entire push.\n6. Keep a consistent and controlled pace.\n7. When finished, carefully stop the sled and step away.\n8. Rest as needed between sets."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Standing too upright — reduces leg drive\n- Looking down instead of ahead\n- Short, choppy strides\n- Rounding the lower back\n- Bending the elbows excessively\n- Loading too much weight and sacrificing pace\n- Holding breath throughout the effort\n- Stopping abruptly without controlling the sled"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Prowler Sled\n- Weight Plates\n- Flat, smooth surface (turf, rubber, or concrete)\n- Training shoes with good grip\n- Optional: Gloves for hand comfort\n- Clear lane of at least 10-20 metres"
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Feet shoulder-width apart behind the sled.\n2. Body Angle: Leaning forward at roughly 45 degrees.\n3. Grip: Firm on the handles at chest height.\n4. Arms: Extended, elbows mostly straight.\n5. Back: Flat with a neutral spine.\n6. Core: Braced hard throughout.\n7. Head: Neutral, eyes looking slightly ahead.\n8. Feet: Driving through the balls of the feet."
+        },
+        {
+          "heading": "Progression Tips",
+          "content": "1. Start light to learn the pushing mechanics.\n2. Focus on powerful leg drive, not pace, at first.\n3. Keep pushes short (10-20m) for power work.\n4. Use longer distances for conditioning work.\n5. Gradually increase weight once form is solid.\n6. Vary grip heights — low for power, high for speed.\n7. Alternate forward and backward sled work for balance.\n8. Manage rest periods based on your goal."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["battlerope", "farmers_walk"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Sled Drag: Pulled variation for posterior chain\n- Reverse Sled Drag: Quad-focused backward pulling\n- Farmer's Walk: Full-body loaded carry\n- Battle Ropes: Cardiovascular conditioning\n- Hill Sprints: Similar power/conditioning blend\n- Yoke Carry: Heavy loaded locomotion"
+        },
+        {
+          "heading": "Conditioning Variations",
+          "content": "Heavy Push: Short distance, maximum load — power focus\nLight Push: Long distance, fast pace — conditioning focus\nHigh Handle Push: More upright, speed biased\nLow Handle Push: Lower body angle, strength biased\nSled Drag (Forwards/Backwards): Alternative stimulus\nSprint Intervals: Pure cardiovascular option"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Issues: Use high handles and lighter loads\nKnee Issues: Reduce load and shorten stride\nShoulder Issues: Keep arms extended and avoid excessive bracing\nNo Sled Available: Use a weight plate pushed on a towel or hill sprints\nLimited Space: Focus on short, heavy pushes\nBeginner: Start with bodyweight pace and very light load to learn the pattern"
+        }
+      ]
+    }
+  }
+}

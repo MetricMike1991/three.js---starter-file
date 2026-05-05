@@ -1,0 +1,105 @@
+{
+  "exerciseId": "kettlebell_thrusters",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/134.%20Kettlebell%20Thrusters/134.%20Kettlebell%20Thrusters%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/134.%20Kettlebell%20Thrusters/134.%20Kettlebell%20Thrusters%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/134.%20Kettlebell%20Thrusters/134.%20Kettlebell%20Thrusters%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/134.%20Kettlebell%20Thrusters/134.%20Kettlebell%20Thrusters%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [1.38673089219814, 1.1765662202217335, 2.4140268789785124],
+    "rotation": [-0.11135578823119816, 0.5431564427462401, 0.057728069541300414],
+    "target": [0.02648876821236634, 0.926192058625945, 0.17491187787165233]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [2.551609930419829, 1.4524706907441376, 2.737502527377978],
+    "rotation": [-0.09257911268500729, 0.7840172496693797, 0.06546657946373835],
+    "target": [0.004910178503061618, 1.2163850088797112, 0.19469561313956704]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/134.%20Kettlebell%20Thrusters/Kettlebell%20Thrusters_250x250_2026-04-06T09-54-32.webp",
+  "primaryMuscleGroup": "Shoulders",
+  "equipmentType": "Kettlebell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Kettlebell Thruster is a dynamic full-body compound exercise that combines a goblet squat with an overhead press into one seamless movement.\n\nUsing a single kettlebell held at the chest, this exercise builds total body strength, power, and endurance.\n\nThe unique shape of the kettlebell challenges grip and wrist stability, making this an excellent functional training exercise for athletes and fitness enthusiasts alike."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Full-body compound movement engaging multiple muscle groups simultaneously\n- Builds explosive power through the squat-to-press transition\n- Excellent for cardiovascular conditioning and metabolic training\n- Develops shoulder strength and overhead stability\n- Kettlebell shape improves grip strength and wrist stability\n- Highly efficient calorie-burning exercise\n- Compact equipment makes it ideal for home or gym training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Shoulders, Quadriceps, Glutes\n\nSecondary: Triceps, Core, Hamstrings, Upper Back, Forearms"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Stand with your feet shoulder-width apart.\n2. Hold a kettlebell with both hands, palms facing inward.\n3. Rest the kettlebell against your chest at collarbone height.\n4. Keep your elbows tucked in close to your body.\n5. Engage your core and maintain a neutral spine.\n6. Keep your chest up and shoulders back.\n7. Distribute your weight evenly across both feet.\n8. Look straight ahead with a neutral head position."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Lower your body into a squat by bending at the hips and knees.\n3. Keep your chest up and knees aligned with your toes throughout.\n4. Squat down until your thighs are at least parallel to the ground.\n5. Drive explosively through your heels to stand up.\n6. Use the upward momentum from the squat to press the kettlebell overhead.\n7. Fully extend your arms at the top of the press.\n8. Slowly lower the kettlebell back to your chest with control.\n9. Immediately descend into the next squat and repeat for the desired reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Not squatting deep enough before initiating the press\n- Pressing the kettlebell before fully standing from the squat\n- Letting the knees cave inward during the squat\n- Leaning too far forward and losing an upright torso\n- Not using the momentum from the squat to assist the press\n- Holding the kettlebell too far from the chest in the starting position\n- Rushing the movement and losing control\n- Not fully extending the arms overhead\n- Rounding the lower back at the bottom of the squat"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Kettlebell (appropriate weight for your level)\n- Flat, Non-Slip Floor Surface\n- Adequate Overhead Clearance\n- Optional: Weightlifting Shoes for improved stability\n- Optional: Mirror for form checking\n- Optional: Chalk for improved grip"
+        },
+        {
+          "heading": "Choosing Your Weight",
+          "content": "1. Start lighter than you think — the overhead press is the limiting factor.\n2. Choose a weight you can press overhead for 10+ reps comfortably.\n3. The squat portion will feel easy; the press should be challenging.\n4. Beginner men: 8-12 kg kettlebell.\n5. Beginner women: 4-8 kg kettlebell.\n6. Intermediate lifters: 12-20 kg kettlebell.\n7. Focus on mastering the movement pattern before increasing load.\n8. If you can't maintain good form, reduce the weight."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Stance: Shoulder-width apart, toes slightly turned out.\n2. Kettlebell Position: Held at chest with both hands, palms facing in.\n3. Elbows: Tucked close to the body.\n4. Torso: Upright throughout the entire movement.\n5. Core: Braced and engaged at all times.\n6. Knees: Track over toes during squat, do not cave inward.\n7. Overhead: Full lockout with arms extended.\n8. Head: Neutral position, eyes looking forward."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["dumbbell_thruster", "barbell_overhead_press"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Dumbbell Thruster: Two dumbbells for independent arm movement\n- Barbell Thruster: Heavier loading option with a barbell\n- Kettlebell Goblet Squat: Squat-only variation without the press\n- Barbell Overhead Press: Isolates the pressing component\n- Wall Ball: Similar movement pattern with a medicine ball\n- Kettlebell Push Press: Less squat depth, more explosive press"
+        },
+        {
+          "heading": "Thruster Variations",
+          "content": "Kettlebell Thruster: Single kettlebell held at chest\nDouble Kettlebell Thruster: Two kettlebells for increased load\nDumbbell Thruster: Dumbbells at shoulders, squat and press\nBarbell Thruster: Barbell in front rack position\nSingle Arm Kettlebell Thruster: Unilateral version for core engagement\nTempo Kettlebell Thruster: Controlled descent for muscle building\nPaused Kettlebell Thruster: Pause at bottom of squat for strength"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Mobility Issues: Work on overhead mobility, use lighter weight\nKnee Pain: Reduce squat depth or use a box squat variation\nWrist Discomfort: Adjust grip position on the kettlebell handle\nLower Back Issues: Focus on core bracing, reduce weight\nNo Kettlebell: Use dumbbells, a barbell, or resistance bands\nLearning Stage: Practice the goblet squat and press separately before combining"
+        }
+      ]
+    }
+  }
+}

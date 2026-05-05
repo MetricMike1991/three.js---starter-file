@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_45_degree_leg_press",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/32.%2045%20Degree%20Leg%20Press/32.%20Plate%20Loaded%2045%20Degree%20Leg%20Press%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/32.%2045%20Degree%20Leg%20Press/32.%20Plate%20Loaded%2045%20Degree%20Leg%20Press%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/32.%2045%20Degree%20Leg%20Press/32.%20Plate%20Loaded%2045%20Degree%20Leg%20Press%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/32.%2045%20Degree%20Leg%20Press/32.%20Plate%20Loaded%2045%20Degree%20Leg%20Press%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [3.0065829132713255, 1.7083774859163419, 2.0044227443955887],
+    "rotation": [-0.41753686158026215, 0.8920939425401766, 0.3324901910554092],
+    "target": [-0.011492877363286014, 0.7213127296438211, -0.22059319462387178]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.6370444592075906, 1.9158287645457264, -1.5772591308414077],
+    "rotation": [-2.5045891874910433, -0.8594024730626241, -2.630772075591192],
+    "target": [0.010158155506638584, 0.5586564594836538, 0.25701397940227244]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/32.%2045%20Degree%20Leg%20Press/Plate%20Loaded%2045%20Degree%20Leg%20Press_250x250_2026-03-09T09-56-40.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded 45 Degree Leg Press is a compound lower body exercise performed on an angled sled machine.\n\nThe 45-degree angle allows you to load heavy weight safely while targeting the quadriceps, glutes, and hamstrings through a controlled range of motion.\n\nThis machine is a staple in any leg training program, offering a safe way to push heavy loads without the spinal compression of squats."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Allows heavy loading with reduced spinal compression\n- Targets quads, glutes, and hamstrings simultaneously\n- Foot placement variations shift emphasis between muscle groups\n- Safer than free-weight squats for heavy training\n- Excellent for building overall leg mass and strength\n- Great for progressive overload with small weight increments\n- Supports unilateral (single-leg) variations\n- Ideal for drop sets by quickly removing plates\n- Reduced balance requirements let you focus purely on pushing"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps (Rectus Femoris, Vastus Lateralis, Vastus Medialis, Vastus Intermedius)\n\nSecondary: Gluteus Maximus, Hamstrings, Calves (Gastrocnemius, Soleus), Adductors"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit into position on the leg press with your back and head firmly against the padded support.\n2. Position your feet on the platform at shoulder width apart.\n3. Higher foot placement emphasizes more glutes while a lower foot position will emphasize your quads.\n4. Ensure your feet are fully planted on the foot plate.\n5. Grip the side handles for stability.\n6. Press the foot plate away from you and then release the safety mechanism. (This will vary from machine to machine so ask an instructor for help)."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Press the foot plate until your legs are nearly fully straight. Stop before your knees fully lock out.\n2. Keep your back fully pressed into the back pad throughout the movement.\n3. Begin to lower the weight plate towards your body by bending at the knees and hips.\n4. Keep your feet fully planted on the foot plate at all times.\n5. Only go as low as you can keep your feet fully planted and your back fully pressed into the back pad.\n6. Drive through your heels and midfoot to press the weight back up.\n7. Maintain control throughout both the lowering and pressing phases.\n8. Repeat for the desired number of reps.\n\nTIP: If your feet keep coming off the platform, try a higher foot position."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Locking out the knees completely at the top\n- Letting the hips lift off the seat at the bottom\n- Feet coming off the platform during the descent\n- Lowering the weight too far and rounding the lower back\n- Using too much weight with a partial range of motion\n- Pushing through toes instead of heels and midfoot\n- Bouncing the weight at the bottom of the rep\n- Not engaging the safety mechanism between sets\n- Placing feet too narrow or too wide for comfort\n- Rushing through reps without controlling the eccentric"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- 45 Degree Leg Press Machine\n- Weight Plates (Olympic size)\n- Optional: Knee Sleeves for joint support\n- Recommended: Non-slip footwear with flat soles"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the back pad angle if your machine allows it.\n2. Load equal weight on both sides of the sled.\n3. Ensure the safety stops/catches are properly set.\n4. Test the safety mechanism before loading heavy weight.\n5. Check that the sled moves smoothly along the rails.\n6. Wipe down the foot platform if slippery."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Fully pressed into the back pad — no gaps.\n2. Head: Resting against the headrest if available.\n3. Feet: Shoulder-width apart on the platform, fully planted.\n4. Foot Position: Higher = more glutes, Lower = more quads, Wide = more adductors.\n5. Knees: Tracking in line with your toes throughout the movement.\n6. Hands: Gripping the side handles firmly for stability.\n7. Core: Braced to protect the lower back.\n8. Hips: Maintaining contact with the seat throughout the full range of motion."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "dumbbell_goblet_squat", "dumbbell_walking_lunges"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Barbell Back Squat: Free-weight compound leg exercise\n- Hack Squat Machine: Similar motion with different back support angle\n- Horizontal Leg Press: Seated variation with horizontal sled\n- Smith Machine Squat: Guided barbell squat with safety catches\n- Goblet Squat: Dumbbell front-loaded squat\n- Bulgarian Split Squat: Single-leg emphasis with rear foot elevated"
+        },
+        {
+          "heading": "Foot Position Variations",
+          "content": "High & Wide: Emphasizes glutes and hamstrings\nLow & Narrow: Emphasizes quadriceps\nShoulder Width (Standard): Balanced quad and glute activation\nSingle Leg Press: Unilateral training for balanced development\nCalf Press: Toes on edge of platform for calf raises\nSumo Stance: Wide with toes turned out for inner thigh emphasis"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Use a higher foot position and limit range of motion\nLower Back Pain: Ensure you're not lowering too deep — stop before your hips tilt\nHip Pain: Try a wider stance with toes slightly turned out\nNo Leg Press Machine: Use barbell squats or goblet squats as alternatives\nAnkle Mobility Issues: Place feet higher on the platform\nLearning Stage: Start with the sled only (no plates) to learn the movement pattern\nPost-Injury: Use light weight with slow, controlled reps and limited range"
+        }
+      ]
+    }
+  }
+}

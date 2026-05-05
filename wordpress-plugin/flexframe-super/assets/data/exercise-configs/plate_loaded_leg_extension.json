@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_leg_extension",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/38.%20The%20Plate%20Loaded%20Leg%20Extension/38.%20The%20Plate%20Loaded%20Leg%20SD%20Extension_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/38.%20The%20Plate%20Loaded%20Leg%20Extension/38.%20The%20Plate%20Loaded%20Leg%20Extension%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/38.%20The%20Plate%20Loaded%20Leg%20Extension/38.%20The%20Plate%20Loaded%20Leg%20AR%20Extension_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/38.%20The%20Plate%20Loaded%20Leg%20Extension/38.%20The%20Plate%20Loaded%20Leg%20ExtensionUSDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.0225528690100067, 1.850057076891483, -1.7153124134321702],
+    "rotation": [-2.5417576372252375, -0.7798026893666681, -2.6933633296332284],
+    "target": [-0.007043953178832996, 0.6994851210237563, -0.03293050682728577]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.9096570911597452, 2.1783328272096374, 2.052730534997484],
+    "rotation": [-0.642974922264248, 0.6449452634926282, 0.42316321277203867],
+    "target": [0.012459862291763631, 0.666194525336695, 0.034334395012794436]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/38.%20The%20Plate%20Loaded%20Leg%20Extension/The%20Plate%20Loaded%20Leg%20Extension_250x250_2026-03-10T21-41-57.webp",
+  "primaryMuscleGroup": "Quads",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Leg Extension is an isolation exercise that targets the quadriceps using a seated machine with plate-loaded resistance.\n\nThis exercise focuses entirely on knee extension, making it one of the most effective movements for isolating and developing the four heads of the quadriceps.\n\nThe plate-loaded design provides a natural resistance curve and allows for precise progressive overload, making it a staple in any leg training program."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Isolates the quadriceps with no other muscle group compensation\n- Plate-loaded design provides a natural resistance curve\n- Excellent for building quad definition and separation\n- Great for warming up the knees before heavy compound lifts\n- Allows precise progressive overload with small weight increments\n- Ideal for drop sets by quickly removing plates\n- Reduces stress on the lower back compared to squats\n- Supports unilateral (single-leg) training for balanced development\n- Perfect for high-rep burnout sets at the end of leg training"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Quadriceps (Rectus Femoris, Vastus Lateralis, Vastus Medialis, Vastus Intermedius)\n\nSecondary: Tibialis Anterior (shin muscles for foot stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Adjust the back pad of the seat so your knees are just in front of the bottom seat pad.\n2. Sit down and press your back firmly into the back pad.\n3. Position the roller pad so it is on the shin just above the ankles.\n4. Grip the handles on either side of the seat firmly.\n5. Feet should be pointing straight ahead or slightly turned out.\n6. Start with your legs bent at approximately 90 degrees."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Grip the handles and extend your legs to a straight position.\n2. Hold yourself firmly into the seat throughout the movement.\n3. Squeeze the quadriceps hard at the top of the movement.\n4. Hold the fully extended position briefly for peak contraction.\n5. Slowly lower the weight back to the starting position with control.\n6. Do not let the weight slam back — maintain tension throughout.\n7. Stop just before the weight stack touches to keep constant tension.\n8. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Lifting the hips off the seat during the extension\n- Using momentum to swing the weight up\n- Not achieving full leg extension at the top\n- Letting the weight drop on the eccentric (lowering phase)\n- Roller pad positioned too high on the shin or on the ankle joint\n- Seat back too far forward, causing knees to be behind the seat edge\n- Pointing toes excessively inward or outward\n- Rushing through reps without squeezing at the top\n- Using too much weight and losing control\n- Not gripping the handles, causing the body to shift"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Leg Extension Machine\n- Weight Plates (Olympic size)\n- Optional: Knee Sleeves for joint support\n- Recommended: Non-slip footwear"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the back pad so your knees align with the pivot point of the machine.\n2. The back of your knees should be just in front of the seat edge.\n3. Adjust the roller pad so it sits on the lower shin, just above the ankles.\n4. Load equal weight on both sides of the machine.\n5. Test the range of motion with no weight before loading.\n6. Ensure all adjustment pins are locked securely."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Back: Firmly pressed into the back pad — no gaps.\n2. Hips: Seated fully on the seat, not sliding forward.\n3. Knees: Aligned with the pivot point of the machine.\n4. Shins: Roller pad positioned just above the ankles.\n5. Feet: Pointing straight ahead or slightly turned out.\n6. Hands: Gripping the side handles firmly for stability.\n7. Core: Engaged to keep the torso stable.\n8. Head: Neutral position, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["barbell_back_squat", "dumbbell_goblet_squat", "dumbbell_walking_lunges"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Cable Leg Extension: Constant tension variation using cables\n- Sissy Squat: Bodyweight quad isolation exercise\n- Front Squat: Barbell compound with quad emphasis\n- Goblet Squat: Dumbbell front-loaded squat for quads\n- Bulgarian Split Squat: Single-leg compound with quad focus\n- Wall Sit: Isometric quad hold exercise"
+        },
+        {
+          "heading": "Leg Extension Variations",
+          "content": "Bilateral Leg Extension: Standard two-leg version\nSingle Leg Extension: One leg at a time for balanced development\nSlow Tempo Extension: 3-4 second eccentric for muscle building\nPause Extension: Hold at full extension for increased difficulty\n1.5 Rep Extension: Full rep then half rep for extra time under tension\nDrop Set Extension: Remove plates progressively for exhaustion\nPartial Rep Extension: Top-half reps for peak contraction focus"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Knee Pain: Reduce range of motion — avoid full flexion at the bottom\nPatellar Tendinitis: Use lighter weight with slow, controlled reps\nHip Flexor Tightness: Ensure the seat back is properly adjusted\nNo Leg Extension Machine: Use sissy squats or wall sits\nBeginner: Start with very light weight, focus on squeezing the quads\nPost-Injury: Use partial range of motion with minimal weight\nBalance Issues: Grip the handles firmly and focus on controlled movement"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,105 @@
+{
+  "exerciseId": "inverted_row_barbell",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/266.%20Inverted%20Row%20Barbell/266.%20Inverted%20Row%20Barbell%20HD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/266.%20Inverted%20Row%20Barbell/266.%20Inverted%20Row%20Barbell%20HD_compressed.glb",
+  "ar": {
+    "glb": "",
+    "usdz": ""
+  },
+  "model": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [-2.925736287661135, 2.082681507394444, -2.6159732022327757],
+    "rotation": [-2.720300285747076, -0.7500371955180234, -2.845124572985037],
+    "target": [0.05629352427981471, 0.7737662679248968, 0.30490712033729844]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.925736287660988, 2.082681507394544, -2.615973202232891],
+    "rotation": [-2.720300285747031, -0.7500371955182352, -2.8451245729849397],
+    "target": [0.05629352428063927, 0.7737662679251226, 0.3049071203365468]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/266.%20Inverted%20Row%20Barbell/Inverted%20Row%20Barbell_250x250_2026-04-25T12-44-44.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Barbell",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Inverted Row with a Barbell is a bodyweight horizontal pulling exercise performed beneath a barbell set at approximately waist height in a squat rack.\n\nWith the body suspended beneath the bar and the heels on the ground, the lifter pulls the chest up to the bar while squeezing the shoulder blades together.\n\nThis movement is an excellent foundational pulling exercise that builds upper-back, lat, and bicep strength while reinforcing scapular control and core stability - making it a key stepping stone toward pull-ups and a useful counter-balance to pressing work."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds horizontal pulling strength using bodyweight\n- Develops the upper back, lats, rear delts, and biceps\n- Strengthens scapular retractors for healthy posture\n- Increases core and glute engagement as stabilisers\n- Adjustable difficulty via bar height and body angle\n- Excellent counter-balance to bench press and push-ups\n- Great progression toward pull-ups and chin-ups\n- Lower-impact alternative to weighted barbell rows\n- Suitable for all levels - beginner to advanced\n- Easy to set up in any rack with a barbell"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Posterior Deltoids, Biceps Brachii, Brachialis, Forearms (grip), Core (stabiliser), Glutes (stabiliser)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Set a barbell in a squat rack at approximately waist height.\n2. Lie on your back underneath the bar.\n3. Grab the bar with both hands slightly wider than shoulder-width, palms facing away (overhand grip).\n4. Position your body so the bar is directly above your upper chest.\n5. Extend your legs out so your heels are on the ground.\n6. Form a straight line from your head through your hips to your heels.\n7. Engage your core and squeeze your glutes.\n8. Pull your shoulder blades down and slightly back.\n9. Hang from the bar with arms fully extended.\n10. Take a deep breath and prepare to pull."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Exhale and pull your chest up towards the bar.\n2. Lead with your elbows, driving them back and down.\n3. Squeeze your shoulder blades together at the top.\n4. Maintain a rigid body line - no sagging hips or raised glutes.\n5. Pull until your chest reaches the bar (or as close as possible).\n6. Pause briefly at the top with shoulder blades fully retracted.\n7. Inhale and lower yourself back to the starting position with control.\n8. Allow a slight stretch in the lats at the bottom without losing scapular control.\n9. Maintain control throughout the entire range of motion.\n10. Repeat for the desired number of repetitions."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Sagging hips or raised glutes (loss of neutral spine)\n- Pulling with the arms only and not engaging the back\n- Not retracting the shoulder blades at the top\n- Partial range of motion at the top or bottom\n- Allowing the head to crane forward toward the bar\n- Rocking the body or using momentum\n- Setting the bar too low and grinding the floor with the lower back\n- Setting the bar too high and reducing the challenge unintentionally\n- Holding the breath for multiple reps\n- Letting the elbows flare excessively wide"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Barbell (Olympic bar, typically 20 kg / 45 lbs)\n- Squat Rack or Smith Machine to hold the bar\n- Comfortable athletic clothing\n- Supportive, flat-soled footwear\n- Optional: Chalk for grip\n- Optional: Lifting Gloves for hand comfort\n- Non-slip flooring to prevent the feet from sliding"
+        },
+        {
+          "heading": "Programming Options",
+          "content": "1. Beginner: 3 sets of 8-10 reps with the bar set higher (more vertical body angle).\n2. Intermediate: 3-4 sets of 10-12 reps with the bar at waist height.\n3. Advanced: 4-5 sets of 8-12 reps with the bar lower or feet elevated.\n4. Hypertrophy Focus: 3-4 sets of 8-12 reps with controlled tempo.\n5. Endurance Focus: 2-3 sets of 15-20 reps with an easier angle.\n6. Tempo Focus: 3 sets of 8-10 reps with 3-second eccentric.\n7. Pause Focus: 3 sets of 6-8 reps with 2-second pause at the top.\n8. Rest: 60-120 seconds between sets.\n9. Progression: Lower the bar, elevate the feet, or add a weight vest."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Bar Height: Approximately waist height for the standard variation.\n2. Grip: Overhand, slightly wider than shoulder-width.\n3. Body Line: Straight from head to heels.\n4. Body Angle: More horizontal = harder, more vertical = easier.\n5. Hips: Neither sagging nor raised.\n6. Shoulders: Pulled down and back at the top of each rep.\n7. Elbows: Driven back and down during the pull.\n8. Head: Neutral - do not crane forward.\n9. Core: Braced throughout the movement.\n10. Glutes: Squeezed to maintain body line.\n11. Breathing: Inhale on descent, exhale on the pull."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bentover_barbell_row", "pull_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Suspended Ring Row: Unstable-grip horizontal pulling alternative\n- TRX Row: Suspension-trainer alternative with handles\n- Bentover Barbell Row: Loaded barbell horizontal pull\n- Dumbbell Row: Single-arm horizontal pull\n- Seated Cable Row: Machine-based horizontal pull\n- Chest-Supported Row: Reduces lower back stress\n- Pull-Up: Vertical pulling alternative\n- Lat Pulldown: Machine vertical pulling alternative"
+        },
+        {
+          "heading": "Inverted Row Variations",
+          "content": "Standard Inverted Row: Classic execution with overhand grip\nUnderhand Inverted Row: Palms facing up for more biceps emphasis\nNeutral-Grip Inverted Row: Palms facing each other (requires landmine or specialty bar)\nFeet-Elevated Inverted Row: Feet on a box for increased difficulty\nWeighted Inverted Row: Add a weight vest for extra resistance\nArcher Inverted Row: Shift bodyweight side to side for unilateral focus\nSingle-Arm Inverted Row: Advanced unilateral progression\nTempo Inverted Row: 3-5 second eccentric for time under tension\nPause Inverted Row: 2-3 second pause at the top with shoulder blades retracted\nL-Sit Inverted Row: Legs held out in front for added core demand"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Wrist Pain: Try a neutral or underhand grip\nShoulder Pain: Reduce range of motion or use a more vertical body angle\nElbow Pain: Avoid pulling too aggressively at the top\nLower Back Pain: Focus on bracing the core and squeezing the glutes\nLimited Strength: Raise the bar higher to reduce load\nGrip Issues: Use chalk or lifting gloves\nNo Squat Rack: Use a Smith machine, suspension trainer, or two chairs with a sturdy bar\nBeginner: Start with a high bar and gradually lower it as strength improves\nShoulder Instability: Ensure shoulders are packed down and back before pulling"
+        }
+      ]
+    }
+  }
+}

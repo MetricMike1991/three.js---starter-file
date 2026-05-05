@@ -1,0 +1,105 @@
+{
+  "exerciseId": "roman_chair_ab_crunch",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/100.%20Roman%20Chair%20Ab%20Crunch/100.%20Roman%20Chair%20Ab%20Crunch%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/100.%20Roman%20Chair%20Ab%20Crunch/100.%20Roman%20Chair%20Ab%20Crunch%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/100.%20Roman%20Chair%20Ab%20Crunch/100.%20Roman%20Chair%20Ab%20Crunch%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/100.%20Roman%20Chair%20Ab%20Crunch/100.%20Roman%20Chair%20Ab%20Crunch%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0.9909814486340887, 1.2704657694273123, 1.3754512563841412],
+    "rotation": [-0.4258475611245047, 0.5553627651855539, 0.2347541741289579],
+    "target": [0.02657362407443987, 0.6284276854480345, -0.039961912271669696]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [1.6320579035256002, 1.6310839614817065, 2.538073873524759],
+    "rotation": [-0.23841271135617711, 0.5213146537580257, 0.12045052615037728],
+    "target": [0.07614851371327647, 0.9912811139601869, -0.09448038229267548]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders%202/100.%20Roman%20Chair%20Ab%20Crunch/Roman%20Chair%20Ab%20Crunch_250x250_2026-03-24T22-37-51.webp",
+  "primaryMuscleGroup": "Abs",
+  "equipmentType": "Body Weight",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Roman Chair Ab Crunch is an abdominal exercise performed on a Roman chair (captain's chair) station where you support yourself on forearm pads and lift your knees toward your chest.\n\nThis exercise primarily targets the rectus abdominis and hip flexors, with the hanging position increasing the range of motion and difficulty compared to floor-based crunches.\n\nIt is an effective bodyweight movement for building core strength and definition without the need for additional equipment."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Effectively isolates the abdominal muscles\n- Greater range of motion than traditional floor crunches\n- No additional equipment needed beyond the Roman chair\n- Reduces strain on the neck and lower back compared to sit-ups\n- Builds functional core strength for everyday activities\n- Can be progressed by adding ankle weights or slowing the tempo\n- Suitable for intermediate to advanced fitness levels"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Rectus Abdominis, Hip Flexors\n\nSecondary: Obliques, Transverse Abdominis, Forearms (stabilization)"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Step onto the Roman chair and position your forearms on the armrests.\n2. Press your back firmly against the backrest pad.\n3. Grip the handles for stability.\n4. Allow your legs to hang straight down, feet off the ground.\n5. Engage your core and maintain a neutral spine before beginning."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Engage your core muscles and brace your abs.\n2. Exhale as you lift your knees towards your chest in a controlled motion.\n3. Focus on curling your pelvis upward to maximize abdominal contraction.\n4. Pause briefly at the top of the movement, squeezing your abs.\n5. Inhale as you slowly lower your legs back down to the starting position.\n6. Avoid swinging or using momentum to lift your legs.\n7. Repeat the movement for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Swinging the legs using momentum instead of controlled movement\n- Not lifting the knees high enough to fully engage the abs\n- Arching the lower back away from the pad\n- Shrugging the shoulders up toward the ears\n- Using the hip flexors exclusively instead of engaging the abs\n- Dropping the legs too quickly on the lowering phase\n- Holding breath throughout the movement\n- Gripping the handles too tightly, creating unnecessary tension"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Roman Chair (Captain's Chair) Station\n- Optional: Ankle Weights (for added resistance)\n- Optional: Medicine Ball (held between knees for progression)"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the armrest height if the machine allows it.\n2. Ensure the backrest pad is secure and in good condition.\n3. Check that the handles are clean and provide a solid grip.\n4. Position yourself so your forearms rest comfortably on the pads.\n5. Your back should be flat against the backrest when in the starting position."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Forearms: Resting flat on the armrest pads.\n2. Hands: Gripping the handles firmly but not excessively.\n3. Back: Pressed flat against the backrest pad.\n4. Shoulders: Down and relaxed, away from ears.\n5. Legs: Hanging straight down, feet together.\n6. Core: Engaged and braced before initiating the movement.\n7. Head: Neutral position, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_crunch", "hanging_leg_raise"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Hanging Leg Raise: Performed from a pull-up bar for greater difficulty\n- Bodyweight Crunch: Floor-based alternative for beginners\n- Cable Crunch: Adjustable resistance using a cable machine\n- Decline Sit-Up: Bench-based crunch with gravity assistance\n- Ab Wheel Rollout: Advanced core exercise for full abdominal engagement\n- Lying Leg Raise: Floor-based lower ab focus"
+        },
+        {
+          "heading": "Roman Chair Variations",
+          "content": "Roman Chair Knee Raise: Standard knee-to-chest movement\nRoman Chair Straight Leg Raise: Legs kept straight for increased difficulty\nRoman Chair Oblique Raise: Knees raised to one side for oblique activation\nRoman Chair Bicycle: Alternating knee drives mimicking cycling motion\nWeighted Roman Chair Crunch: Ankle weights or medicine ball for progression\nSlow Tempo Roman Chair Crunch: Extended lowering phase for time under tension"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Shoulder Issues: Ensure armrests are adjusted to reduce shoulder strain\nLower Back Pain: Keep back firmly pressed against the pad at all times\nHip Flexor Tightness: Focus on pelvic tilt rather than knee height\nGrip Fatigue: Use wrist wraps or padded handles\nNo Roman Chair Available: Substitute with hanging knee raises or floor crunches\nLearning Stage: Start with small knee raises and gradually increase range of motion"
+        }
+      ]
+    }
+  }
+}

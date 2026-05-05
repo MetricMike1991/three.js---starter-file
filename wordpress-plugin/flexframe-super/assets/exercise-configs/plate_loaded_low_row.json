@@ -1,0 +1,105 @@
+{
+  "exerciseId": "plate_loaded_low_row",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/28.%20Plate%20Loaded%20Low%20Row/28.%20Plate%20Loaded%20Low%20Row%20SD_compressed.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Exercise%20Folders/28.%20Plate%20Loaded%20Low%20Row/28.%20Plate%20Loaded%20Low%20Row%20HD_compressed.glb",
+  "ar": {
+    "glb": "https://FlexFrame.b-cdn.net/Exercise%20Folders/28.%20Plate%20Loaded%20Low%20Row/28.%20Plate%20Loaded%20Low%20Row%20AR_compressed.glb",
+    "usdz": "https://FlexFrame.b-cdn.net/Exercise%20Folders/28.%20Plate%20Loaded%20Low%20Row/28.%20Plate%20Loaded%20Low%20Row%20USDZ.usdz"
+  },
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [2.8734811209987647, 1.675584873434514, 2.118490197454022],
+    "rotation": [-0.39713357879138, 0.9366197776370699, 0.3258250291816639],
+    "target": [0.005833325832459928, 0.859778555352805, 0.17340115013571242]
+  },
+  "modelHQ": {
+    "position": [0, -0.02, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "cameraHQ": {
+    "position": [-2.110375200354829, 1.9969861057255585, -2.018985765921868],
+    "rotation": [-2.558317009250376, -0.7882175240389009, -2.7039488664621683],
+    "target": [-0.013792984941179495, 0.8487633325626989, -0.27888579930574553]
+  },
+  "customTextures": {},
+  "thumbnailUrl": "https://FlexFrame.b-cdn.net/Exercise%20Folders/28.%20Plate%20Loaded%20Low%20Row/Plate%20Loaded%20Low%20Row_250x250_2026-03-08T20-00-50.webp",
+  "primaryMuscleGroup": "Back",
+  "equipmentType": "Machines",
+  "type": "Strength",
+  "rightMenuTabs": {
+    "exerciseInformation": {
+      "title": "Exercise Information",
+      "sections": [
+        {
+          "heading": "Overview",
+          "content": "The Plate Loaded Low Row is a compound back exercise performed on a plate-loaded machine that targets the middle and lower back, lats, and rhomboids.\n\nThe seated position with a chest pad provides stability and reduces lower back strain, allowing you to focus on pulling heavy weight with strict form.\n\nThis machine mimics the movement pattern of a seated cable row but with a plate-loaded resistance curve, offering a more natural feel and the ability to load significant weight for back development."
+        },
+        {
+          "heading": "Benefits",
+          "content": "- Builds thickness in the middle and lower back\n- Chest pad support reduces lower back strain\n- Allows heavy loading for progressive overload\n- Plate-loaded design provides a natural resistance curve\n- Develops grip strength and forearm endurance\n- Improves posture by strengthening posterior chain\n- Great for building a thick, dense back\n- Suitable for all experience levels"
+        },
+        {
+          "heading": "Muscles Worked",
+          "content": "Primary: Latissimus Dorsi, Rhomboids, Middle Trapezius\n\nSecondary: Rear Deltoids, Biceps Brachii, Brachialis, Erector Spinae, Core Stabilizers"
+        }
+      ]
+    },
+    "howToGuide": {
+      "title": "How To Guide",
+      "sections": [
+        {
+          "heading": "Starting Position",
+          "content": "1. Sit at the low-row machine with your feet firmly planted on the platform.\n2. Keep your knees slightly bent for comfort and stability.\n3. Grasp the handles with both hands using an overhand or neutral grip.\n4. Sit upright with your chest pressed against the pad (if available).\n5. Keep your back straight and chest up.\n6. Pull your shoulder blades down and back before starting."
+        },
+        {
+          "heading": "Execution",
+          "content": "1. Take a deep breath and brace your core.\n2. Pull the handles toward your body, driving your elbows back.\n3. Squeeze your shoulder blades together at the peak of the contraction.\n4. Focus on pulling with your back muscles, not your arms.\n5. Hold the contraction for a brief moment.\n6. Slowly release the handles back to the starting position with control.\n7. Maintain a straight back and engaged core throughout.\n8. Do not let the weight slam down between reps.\n9. Repeat for the desired number of reps."
+        },
+        {
+          "heading": "Common Mistakes",
+          "content": "- Rounding the back during the pull\n- Using momentum or jerking the weight\n- Pulling primarily with the biceps instead of the back\n- Not squeezing the shoulder blades together at the top\n- Leaning too far forward or backward\n- Letting the weight drop uncontrolled on the return\n- Grip too wide or too narrow for target muscles\n- Not maintaining a neutral spine throughout"
+        }
+      ]
+    },
+    "setupGuide": {
+      "title": "Set Up Guide",
+      "sections": [
+        {
+          "heading": "Equipment Needed",
+          "content": "- Plate Loaded Low Row Machine\n- Weight Plates (Olympic size)\n- Optional: Lifting Straps (for grip support on heavy sets)\n- Optional: Chalk (for improved grip)\n- Recommended: Non-slip footwear"
+        },
+        {
+          "heading": "Machine Setup",
+          "content": "1. Adjust the seat height so the handles align with your mid-torso.\n2. Adjust the chest pad so you can reach the handles with arms fully extended.\n3. Load equal weight on both sides of the machine.\n4. Ensure all pins and safety mechanisms are secured.\n5. Test the range of motion with no weight before loading."
+        },
+        {
+          "heading": "Body Setup",
+          "content": "1. Feet: Firmly planted on the platform or floor.\n2. Knees: Slightly bent for comfort.\n3. Chest: Pressed lightly against the chest pad.\n4. Back: Straight, neutral spine throughout.\n5. Shoulders: Down and back, away from ears.\n6. Grip: Overhand or neutral, depending on handle type.\n7. Core: Engaged throughout the movement.\n8. Head: Neutral position, looking straight ahead."
+        }
+      ]
+    },
+    "alternativeExercises": {
+      "title": "Alternative Exercises",
+      "suggestedExercises": ["seated_lat_pulldown", "bodyweight_pull_up"],
+      "sections": [
+        {
+          "heading": "Similar Exercises",
+          "content": "- Seated Cable Row: Cable-based alternative with constant tension\n- Barbell Bent-Over Row: Free-weight compound back movement\n- Dumbbell Single-Arm Row: Unilateral back exercise\n- T-Bar Row: Plate-loaded rowing variation\n- Chest-Supported Dumbbell Row: Removes lower back involvement\n- Inverted Row: Bodyweight rowing movement"
+        },
+        {
+          "heading": "Low Row Variations",
+          "content": "Standard Plate Loaded Low Row: Classic back-building movement\nWide Grip Row: Greater emphasis on rear delts and upper back\nNarrow Grip Row: More lat and lower back focus\nSingle-Arm Row: Unilateral work for imbalance correction\nSlow Tempo Row: Controlled eccentric for muscle building\nPause Row: Hold at peak contraction for increased difficulty\nDrop Set Row: Remove plates progressively for muscle exhaustion"
+        },
+        {
+          "heading": "If You Have Limitations",
+          "content": "Lower Back Pain: Use the chest pad for support, reduce weight\nShoulder Pain: Adjust grip width, try neutral grip handles\nGrip Weakness: Use lifting straps or chalk\nNo Plate Loaded Machine: Use cable row or barbell rows\nLimited Plates: Use resistance bands or bodyweight inverted rows\nLearning Stage: Start light, focus on squeezing the back muscles\nMobility Issues: Adjust seat and pad positions for comfortable range"
+        }
+      ]
+    }
+  }
+}

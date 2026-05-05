@@ -134,15 +134,15 @@
       "sections": [
         {
           "heading": "Overview",
-          "content": "The Seated Lat Pulldown is a fundamental upper body compound exercise that primarily targets the latissimus dorsi muscles. It's one of the most effective exercises for building back width and developing a V-taper physique. This cable-based movement allows for controlled resistance throughout the entire range of motion."
+          "content": "The Seated Lat Pulldown is a fundamental upper body compound exercise that primarily targets the latissimus dorsi muscles.\n\nIt's one of the most effective exercises for building back width and developing a V-taper physique.\n\nThis cable-based movement allows for controlled resistance throughout the entire range of motion."
         },
         {
           "heading": "Benefits",
-          "content": "Develops back width and thickness. Improves upper body pulling strength. Enhances shoulder stability and posture. Easier to learn than pull-ups for beginners. Builds grip strength. Allows for progressive overload with adjustable weight."
+          "content": "- Develops back width and thickness\n- Improves upper body pulling strength\n- Enhances shoulder stability and posture\n- Easier to learn than pull-ups for beginners\n- Builds grip strength\n- Allows for progressive overload with adjustable weight"
         },
         {
           "heading": "Muscles Worked",
-          "content": "Primary: Latissimus Dorsi (Lats). Secondary: Biceps Brachii, Rhomboids, Trapezius (Middle and Lower), Rear Deltoids, Teres Major."
+          "content": "Primary: Latissimus Dorsi (Lats)\n\nSecondary: Biceps Brachii, Rhomboids, Trapezius (Middle and Lower), Rear Deltoids, Teres Major"
         }
       ]
     },
@@ -182,6 +182,7 @@
     },
     "alternativeExercises": {
       "title": "Alternative Exercises",
+      "suggestedExercises": ["bodyweight_pull_up", "cable_lat_pull_down_station"],
       "sections": [
         {
           "heading": "Similar Exercises",
