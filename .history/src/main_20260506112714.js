@@ -2918,12 +2918,12 @@ class ThreeJSApp {
         panel.innerHTML = `
             <div class="screenshot-panel-header">
                 <span>Screenshot Settings</span>
+                <button class="screenshot-panel-close">✕</button>
             </div>
             <div class="screenshot-panel-content">
                 <div class="ss-tabs">
                     <button class="ss-tab active" data-tab="screenshot">Screenshot</button>
                     <button class="ss-tab" data-tab="video">Video</button>
-                    <button class="ss-tab" data-tab="ai" style="display:none">A.I Image</button>
                 </div>
                 <div class="ss-tab-panel" data-panel="screenshot">
                     <div class="screenshot-presets">
@@ -2998,14 +2998,6 @@ class ThreeJSApp {
                         <label>Show Floor Shadow</label>
                         <input type="checkbox" id="vid-floor-shadow">
                     </div>
-                    <div class="screenshot-row checkbox-row">
-                        <label>Overlay Logo</label>
-                        <input type="checkbox" id="vid-overlay-logo">
-                    </div>
-                    <div class="screenshot-row checkbox-row">
-                        <label>Overlay Exercise Name</label>
-                        <input type="checkbox" id="vid-overlay-name">
-                    </div>
                     <div class="screenshot-row">
                         <label>Filename</label>
                         <input type="text" id="vid-filename" value="video">
@@ -3023,7 +3015,7 @@ class ThreeJSApp {
                                 </div>
                                 <button class="ss-vid-capture-btn" data-slot="0">Capture 1</button>
                                 <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
+                                    <summary class="ss-vid-adv-toggle">&#9881; Advanced</summary>
                                     <div class="ss-vid-adv-body">
                                         <div class="ss-vid-adv-row">
                                             <span class="ss-vid-adv-label">Pan</span>
@@ -3044,17 +3036,6 @@ class ThreeJSApp {
                                                 <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="0">R ▶</button>
                                             </div>
                                         </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="0">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </details>
                             </div>
@@ -3065,7 +3046,7 @@ class ThreeJSApp {
                                 </div>
                                 <button class="ss-vid-capture-btn" data-slot="1">Capture 2</button>
                                 <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
+                                    <summary class="ss-vid-adv-toggle">&#9881; Advanced</summary>
                                     <div class="ss-vid-adv-body">
                                         <div class="ss-vid-adv-row">
                                             <span class="ss-vid-adv-label">Pan</span>
@@ -3086,17 +3067,6 @@ class ThreeJSApp {
                                                 <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="1">R ▶</button>
                                             </div>
                                         </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="1">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </details>
                             </div>
@@ -3107,7 +3077,7 @@ class ThreeJSApp {
                                 </div>
                                 <button class="ss-vid-capture-btn" data-slot="2">Capture 3</button>
                                 <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
+                                    <summary class="ss-vid-adv-toggle">&#9881; Advanced</summary>
                                     <div class="ss-vid-adv-body">
                                         <div class="ss-vid-adv-row">
                                             <span class="ss-vid-adv-label">Pan</span>
@@ -3128,17 +3098,6 @@ class ThreeJSApp {
                                                 <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="2">R ▶</button>
                                             </div>
                                         </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="2">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </details>
                             </div>
@@ -3149,7 +3108,7 @@ class ThreeJSApp {
                                 </div>
                                 <button class="ss-vid-capture-btn" data-slot="3">Capture 4</button>
                                 <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
+                                    <summary class="ss-vid-adv-toggle">&#9881; Advanced</summary>
                                     <div class="ss-vid-adv-body">
                                         <div class="ss-vid-adv-row">
                                             <span class="ss-vid-adv-label">Pan</span>
@@ -3170,29 +3129,23 @@ class ThreeJSApp {
                                                 <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="3">R ▶</button>
                                             </div>
                                         </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="3">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
                                     </div>
                                 </details>
                             </div>
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip in sequence. Recording with no angles uses the current view.</p>
+                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip — the final video ends with Angle 1 repeated. Recording with no angles uses the current view.</p>
                     </div>
                     <div class="screenshot-buttons">
                         <button class="ss-btn ss-video">Record Video</button>
                     </div>
                     <div class="ss-video-status" id="ss-video-status"></div>
                 </div>
-                <div class="ss-tab-panel" data-panel="ai" style="display:none">
+                <div class="ss-ai-section ss-group" data-group="ai" style="display:none;">
+                    <div class="ss-group-header">
+                        <span class="ss-group-title">AI Social Media Post</span>
+                        <span class="ss-group-chevron">▾</span>
+                    </div>
+                    <div class="ss-group-body">
                         <input type="hidden" class="ss-ai-provider" value="openai" />
                         <div class="ss-ai-style-row">
                             <label class="ss-ai-style-label">Figure style</label>
@@ -3220,9 +3173,9 @@ class ThreeJSApp {
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>
                         <div class="ss-ai-status"></div>
+                    </div>
                 </div>
             </div>
-            <button class="screenshot-panel-close">✕ Close</button>
         `;
         
         // Add styles
@@ -3258,23 +3211,18 @@ class ThreeJSApp {
                 font-weight: 600;
             }
             .screenshot-panel-close {
-                display: block;
-                width: auto;
-                margin: 0 auto 12px;
-                padding: 5px 20px;
-                background: rgba(255, 255, 255, 0.07);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                border-radius: 20px;
-                color: rgba(255,255,255,0.5);
-                font-size: 11px;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 18px;
                 cursor: pointer;
-                text-align: center;
-                letter-spacing: 0.05em;
+                opacity: 0.7;
+                padding: 4px 8px;
+                border-radius: 4px;
             }
             .screenshot-panel-close:hover {
-                background: rgba(255, 60, 60, 0.25);
-                border-color: rgba(255, 80, 80, 0.45);
-                color: rgba(255,255,255,0.9);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.1);
             }
             .screenshot-panel-content {
                 padding: 16px;
@@ -3435,8 +3383,8 @@ class ThreeJSApp {
                 border-radius: 50%;
                 animation: ss-spin 0.7s linear infinite;
             }
-            .ss-ai-tab-content {
-                margin-top: 0;
+            .ss-ai-section {
+                margin-top: 12px;
             }
             .ss-group {
                 border: 1px solid rgba(255, 255, 255, 0.12);
@@ -3729,81 +3677,9 @@ class ThreeJSApp {
                 margin: 6px 0 0 0;
                 line-height: 1.4;
             }
-            /* Per-slot Advanced settings */
-            .ss-vid-adv {
-                width: 100%;
-            }
-            .ss-vid-adv-toggle {
-                font-size: 8px;
-                line-height: 1.2;
-                opacity: 0.4;
-                cursor: pointer;
-                list-style: none;
-                text-align: center;
-                padding: 2px 0 1px;
-                user-select: none;
-                letter-spacing: 0.02em;
-            }
-            .ss-vid-adv-toggle::-webkit-details-marker { display: none; }
-            .ss-vid-adv-toggle:hover { opacity: 0.8; }
-            details[open] .ss-vid-adv-toggle { opacity: 0.7; }
-            .ss-vid-adv-body {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                padding: 5px 0 3px;
-                border-top: 1px solid rgba(255,255,255,0.08);
-                margin-top: 2px;
-            }
-            .ss-vid-adv-row {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-            }
-            .ss-vid-adv-label {
-                font-size: 9px;
-                opacity: 0.5;
-                min-width: 18px;
-            }
-            .ss-vid-pan-deg,
-            .ss-vid-loop-count {
-                flex: 1;
-                min-width: 0;
-                background: rgba(255,255,255,0.07);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 4px;
-                color: #fff;
-                font-size: 9px;
-                padding: 2px 3px;
-                cursor: pointer;
-            }
-            .ss-vid-pan-deg option,
-            .ss-vid-loop-count option { background: #1a1a2e; }
-            .ss-vid-dir-toggle {
-                display: flex;
-                flex: 1;
-                gap: 3px;
-            }
-            .ss-vid-dir-btn {
-                flex: 1;
-                padding: 3px 2px;
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 4px;
-                color: rgba(255,255,255,0.45);
-                font-size: 9px;
-                cursor: pointer;
-                transition: background 0.15s, color 0.15s, border-color 0.15s;
-            }
-            .ss-vid-dir-btn.active {
-                background: rgba(74,158,255,0.2);
-                border-color: rgba(74,158,255,0.55);
-                color: #6ab4ff;
-            }
-            .ss-vid-dir-btn:hover:not(.active) { background: rgba(255,255,255,0.12); color: #fff; }
-            /* Hide AI tab on mobile-sized viewports */
+            /* Hide AI section on mobile-sized viewports */
             @media (max-width: 768px) {
-                .ss-tab[data-tab="ai"] { display: none !important; }
+                .ss-ai-section { display: none !important; }
             }
         `;
         
@@ -3903,24 +3779,17 @@ class ThreeJSApp {
                 this.updateVideoAngleSlot(slot);
             });
         });
-        panel.querySelectorAll('.ss-vid-dir-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const slot = btn.dataset.slot;
-                panel.querySelectorAll(`.ss-vid-dir-btn[data-slot="${slot}"]`).forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
         panel.querySelector('.ss-angles-clear-all').addEventListener('click', () => {
             this._videoAngles = [null, null, null, null];
             [0, 1, 2, 3].forEach(i => this.updateVideoAngleSlot(i));
         });
 
-        // AI Post tab - only visible when server says AI is available
-        const aiTabBtn = panel.querySelector('.ss-tab[data-tab="ai"]');
+        // AI Post button - only visible when server says AI is available
+        const aiSection = panel.querySelector('.ss-ai-section');
         const aiBtn = panel.querySelector('.ss-ai-generate');
         const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
-        if (window.flexframeSettings?.aiRenderEnabled && aiTabBtn && aiBtn && !isMobileViewport()) {
-            aiTabBtn.style.display = 'inline-block';
+        if (window.flexframeSettings?.aiRenderEnabled && aiSection && aiBtn && !isMobileViewport()) {
+            aiSection.style.display = 'block';
 
             // Style toggle: only one button can be active at a time.
             const styleButtons = panel.querySelectorAll('.ss-ai-style-btn');
@@ -4311,8 +4180,6 @@ class ThreeJSApp {
         const height = parseInt(this.screenshotPanel?.querySelector('#vid-height')?.value) || 2500;
         const baseFilename = this.screenshotPanel?.querySelector('#vid-filename')?.value || 'video';
         const showFloorShadow = this.screenshotPanel?.querySelector('#vid-floor-shadow')?.checked || false;
-        const overlayLogo = this.screenshotPanel?.querySelector('#vid-overlay-logo')?.checked || false;
-        const overlayName = this.screenshotPanel?.querySelector('#vid-overlay-name')?.checked || false;
         const videoQuality = this.screenshotPanel?.querySelector('#vid-quality')?.value || 'ultra';
         const videoLoops = parseInt(this.screenshotPanel?.querySelector('#vid-loops')?.value) || 1;
         const recordButton = this.screenshotPanel?.querySelector('.ss-video');
@@ -4338,16 +4205,7 @@ class ThreeJSApp {
             recordButton.disabled = true;
             recordButton.classList.add('recording');
         }
-        const capturedAngles = (this._videoAngles || []).map((a, i) => {
-            if (!a) return null;
-            const slotEl = this.screenshotPanel?.querySelector(`.ss-vid-angle-slot[data-slot="${i}"]`);
-            const panDeg = parseFloat(slotEl?.querySelector('.ss-vid-pan-deg')?.value || '0') || 0;
-            const activeDir = slotEl?.querySelector('.ss-vid-dir-btn.active');
-            const panDir = activeDir?.dataset.dir === 'right' ? -1 : 1;
-            const loopVal = slotEl?.querySelector('.ss-vid-loop-count')?.value;
-            const perLoops = loopVal ? Math.max(1, parseInt(loopVal)) : null;
-            return { ...a, panDegrees: panDeg, panDirection: panDir, loops: perLoops };
-        }).filter(a => a !== null);
+        const capturedAngles = (this._videoAngles || []).filter(a => a !== null);
         if (status) {
             status.className = 'ss-video-status';
             const loopLabel = videoLoops === 1 ? '1 loop' : `${videoLoops} loops`;
@@ -4369,9 +4227,7 @@ class ThreeJSApp {
                 containerWidth,
                 containerHeight,
                 showFloorShadow,
-                ground: this.ground,
-                overlayLogoUrl: overlayLogo ? (window.flexframeSettings?.logoUrl || null) : null,
-                overlayExerciseName: overlayName ? (this.currentExerciseName || null) : null
+                ground: this.ground
             });
 
             if (result.success) {

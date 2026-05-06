@@ -263,84 +263,27 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
     canvas.width = settings.width;
     canvas.height = settings.height;
 
-    // Build a HUD scene rendered via orthographic camera on top of the 3D scene.
-    // Orthographic space: x = [-aspect, aspect], y = [-1, 1] (Y-up).
-    const vidAspect = settings.width / settings.height;
-    const hudScene = new THREE.Scene();
-    const hudCamera = new THREE.OrthographicCamera(-vidAspect, vidAspect, 1, -1, 0, 10);
-    const hudObjects = []; // for cleanup
-
-    // Helper: load a URL as an Image element
-    const loadImage = (url) => new Promise((resolve) => {
-        const img = new Image();
-        img.crossOrigin = 'anonymous';
-        img.onload = () => resolve(img);
-        img.onerror = () => resolve(null);
-        img.src = url;
-    });
-
-    // Logo plane — top-left corner
+    // Pre-load overlay logo if needed
+    let overlayLogoImg = null;
     if (settings.overlayLogoUrl) {
-        const img = await loadImage(settings.overlayLogoUrl).catch(() => null);
-        if (img) {
-            const logoTex = new THREE.Texture(img);
-            logoTex.needsUpdate = true;
-            const logoAspect = img.naturalWidth / img.naturalHeight;
-            const logoW = vidAspect * 0.18; // ~18% of screen width
-            const logoH = logoW / logoAspect;
-            const pad = vidAspect * 0.03;
-            const geo = new THREE.PlaneGeometry(logoW, logoH);
-            const mat = new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, depthTest: false, depthWrite: false });
-            const mesh = new THREE.Mesh(geo, mat);
-            mesh.position.set(-vidAspect + pad + logoW / 2, 1 - pad - logoH / 2, -1);
-            hudScene.add(mesh);
-            hudObjects.push({ geo, mat, tex: logoTex });
-        }
+        try {
+            overlayLogoImg = await new Promise((resolve) => {
+                const img = new Image();
+                img.crossOrigin = 'anonymous';
+                img.onload = () => resolve(img);
+                img.onerror = () => resolve(null);
+                img.src = settings.overlayLogoUrl;
+            });
+        } catch (_) { overlayLogoImg = null; }
     }
 
-    // Exercise name plane — top-centre, text drawn onto a canvas texture
-    if (settings.overlayExerciseName) {
-        const textCanvas = document.createElement('canvas');
-        const fontSize = 72;
-        const pillPadX = 48;
-        const pillPadY = 24;
-        textCanvas.height = fontSize + pillPadY * 2;
-        const ctx = textCanvas.getContext('2d');
-        ctx.font = `600 ${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
-        const textW = ctx.measureText(settings.overlayExerciseName).width;
-        textCanvas.width = Math.ceil(textW + pillPadX * 2);
-        // Redraw after resize
-        ctx.font = `600 ${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
-        ctx.clearRect(0, 0, textCanvas.width, textCanvas.height);
-        // Pill bg
-        const r = textCanvas.height / 2;
-        ctx.fillStyle = 'rgba(0,0,0,0.5)';
-        ctx.beginPath();
-        ctx.moveTo(r, 0); ctx.lineTo(textCanvas.width - r, 0);
-        ctx.arcTo(textCanvas.width, 0, textCanvas.width, textCanvas.height, r);
-        ctx.lineTo(textCanvas.width, textCanvas.height - r);
-        ctx.arcTo(textCanvas.width, textCanvas.height, 0, textCanvas.height, r);
-        ctx.lineTo(r, textCanvas.height);
-        ctx.arcTo(0, textCanvas.height, 0, 0, r);
-        ctx.lineTo(0, r);
-        ctx.arcTo(0, 0, textCanvas.width, 0, r);
-        ctx.closePath();
-        ctx.fill();
-        ctx.fillStyle = '#ffffff';
-        ctx.textAlign = 'center';
-        ctx.textBaseline = 'middle';
-        ctx.fillText(settings.overlayExerciseName, textCanvas.width / 2, textCanvas.height / 2);
-        const textTex = new THREE.CanvasTexture(textCanvas);
-        const tAspect = textCanvas.width / textCanvas.height;
-        const planeH = 0.12; // height as fraction of half-screen
-        const planeW = planeH * tAspect;
-        const padY = 0.04;
-        const geo = new THREE.PlaneGeometry(planeW, planeH);
-        const mat = new THREE.MeshBasicMaterial({ map: textTex, transparent: true, depthTest: false, depthWrite: false });
-        const mesh = new THREE.Mesh(geo, mat);
-        mesh.position.set(0, 1 - padY - planeH / 2, -1);
-        hudScene.add(mesh);
-        hudObjects.push({ geo, mat, tex: textTex });
+    // When overlays are needed we need a separate 2D composite canvas for captureStream,
+    // because a canvas can only hold one context type (WebGL OR 2D, not both).
+    const needsComposite = !!(overlayLogoImg || settings.overlayExerciseName);
+    const streamCanvas = needsComposite ? document.createElement('canvas') : canvas;
+    if (needsComposite) {
+        streamCanvas.width = settings.width;
+        streamCanvas.height = settings.height;
     }
 
     const tempRenderer = new THREE.WebGLRenderer({
@@ -387,8 +330,8 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
         animationPlayer.updatePlayPauseIcon();
     }
 
-    const stream = canvas.captureStream(settings.fps);
-    const ctx2d = null; // overlays handled via HUD scene
+    const stream = streamCanvas.captureStream(settings.fps);
+    const ctx2d = needsComposite ? streamCanvas.getContext('2d') : null;
     const chunks = [];
     const recorder = new MediaRecorder(stream, {
         mimeType,
@@ -407,7 +350,7 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
 
     let startTime = null;
 
-    // Multi-angle setup: build segments from captured angles only (no repeat)
+    // Multi-angle setup: build segments as [...captured angles, angle[0] repeated]
     // Each segment is a hard cut — no transitions. Each slot can have its own loop count.
     const angles = settings.cameraAngles || [];
     const isMultiAngle = angles.length >= 2;
@@ -419,7 +362,8 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
     let effectiveTotalDuration;
 
     if (isMultiAngle) {
-        segments = [...angles];
+        // Append first angle at the end so the video loops back seamlessly
+        segments = [...angles, angles[0]];
         segDurations = segments.map(a => duration * Math.max(1, a.loops || loops));
         segStarts = [];
         let t = 0;
@@ -490,11 +434,57 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
         animationPlayer.updateSliderPosition();
         tempRenderer.render(scene, tempCamera);
 
-        // Render HUD scene on top (orthographic, no depth clear)
-        if (hudScene.children.length > 0) {
-            tempRenderer.autoClear = false;
-            tempRenderer.render(hudScene, hudCamera);
-            tempRenderer.autoClear = true;
+        // Draw 2D overlays on top of the WebGL frame
+        if (needsComposite && ctx2d) {
+            const W = settings.width;
+            const H = settings.height;
+            const pad = Math.round(W * 0.025);
+
+            // Blit WebGL canvas into composite canvas first
+            ctx2d.drawImage(canvas, 0, 0);
+
+            if (overlayLogoImg) {
+                const maxW = Math.round(W * 0.15);
+                const scale = Math.min(maxW / overlayLogoImg.naturalWidth, maxW / overlayLogoImg.naturalHeight, 1);
+                const lw = Math.round(overlayLogoImg.naturalWidth * scale);
+                const lh = Math.round(overlayLogoImg.naturalHeight * scale);
+                ctx2d.save();
+                ctx2d.shadowColor = 'rgba(0,0,0,0.55)';
+                ctx2d.shadowBlur = Math.round(W * 0.008);
+                ctx2d.drawImage(overlayLogoImg, pad, pad, lw, lh);
+                ctx2d.restore();
+            }
+
+            if (settings.overlayExerciseName) {
+                const fontSize = Math.round(H * 0.038);
+                ctx2d.save();
+                ctx2d.font = `600 ${fontSize}px -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif`;
+                ctx2d.textAlign = 'center';
+                ctx2d.textBaseline = 'top';
+                const text = settings.overlayExerciseName;
+                const tw = ctx2d.measureText(text).width;
+                const tx = W / 2;
+                const ty = pad;
+                const pillPad = Math.round(fontSize * 0.35);
+                const pillH = fontSize + pillPad * 2;
+                const pillW = tw + pillPad * 3;
+                const pillX = tx - pillW / 2;
+                const r = pillH / 2;
+                ctx2d.fillStyle = 'rgba(0,0,0,0.45)';
+                ctx2d.beginPath();
+                ctx2d.moveTo(pillX + r, ty - pillPad);
+                ctx2d.arcTo(pillX + pillW, ty - pillPad, pillX + pillW, ty - pillPad + pillH, r);
+                ctx2d.arcTo(pillX + pillW, ty - pillPad + pillH, pillX, ty - pillPad + pillH, r);
+                ctx2d.arcTo(pillX, ty - pillPad + pillH, pillX, ty - pillPad, r);
+                ctx2d.arcTo(pillX, ty - pillPad, pillX + pillW, ty - pillPad, r);
+                ctx2d.closePath();
+                ctx2d.fill();
+                ctx2d.fillStyle = '#ffffff';
+                ctx2d.shadowColor = 'rgba(0,0,0,0.6)';
+                ctx2d.shadowBlur = Math.round(fontSize * 0.2);
+                ctx2d.fillText(text, tx, ty);
+                ctx2d.restore();
+            }
         }
 
         if (elapsedSeconds < effectiveTotalDuration) {
@@ -557,8 +547,6 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
         }
 
         stream.getTracks().forEach(track => track.stop());
-        // Dispose HUD resources
-        hudObjects.forEach(({ geo, mat, tex }) => { geo.dispose(); mat.dispose(); tex.dispose(); });
         tempRenderer.dispose();
     }
 };

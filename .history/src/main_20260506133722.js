@@ -3185,7 +3185,7 @@ class ThreeJSApp {
                                 </details>
                             </div>
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip in sequence. Recording with no angles uses the current view.</p>
+                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip — the final video ends with Angle 1 repeated. Recording with no angles uses the current view.</p>
                     </div>
                     <div class="screenshot-buttons">
                         <button class="ss-btn ss-video">Record Video</button>
@@ -3222,7 +3222,6 @@ class ThreeJSApp {
                         <div class="ss-ai-status"></div>
                 </div>
             </div>
-            <button class="screenshot-panel-close">✕ Close</button>
         `;
         
         // Add styles
@@ -3259,22 +3258,25 @@ class ThreeJSApp {
             }
             .screenshot-panel-close {
                 display: block;
-                width: auto;
-                margin: 0 auto 12px;
-                padding: 5px 20px;
-                background: rgba(255, 255, 255, 0.07);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                border-radius: 20px;
-                color: rgba(255,255,255,0.5);
-                font-size: 11px;
+                width: calc(100% - 32px);
+                margin: 8px 16px 0;
+                padding: 8px;
+                background: rgba(255, 255, 255, 0.08);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                border-radius: 0 0 10px 10px;
+                color: rgba(255,255,255,0.7);
+                font-size: 13px;
                 cursor: pointer;
                 text-align: center;
-                letter-spacing: 0.05em;
+                letter-spacing: 0.03em;
+                position: relative;
+                top: -1px;
+                margin-bottom: -1px;
             }
             .screenshot-panel-close:hover {
-                background: rgba(255, 60, 60, 0.25);
-                border-color: rgba(255, 80, 80, 0.45);
-                color: rgba(255,255,255,0.9);
+                background: rgba(255, 60, 60, 0.35);
+                border-color: rgba(255, 80, 80, 0.5);
+                color: #fff;
             }
             .screenshot-panel-content {
                 padding: 16px;

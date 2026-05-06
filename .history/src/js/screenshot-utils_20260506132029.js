@@ -407,7 +407,7 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
 
     let startTime = null;
 
-    // Multi-angle setup: build segments from captured angles only (no repeat)
+    // Multi-angle setup: build segments as [...captured angles, angle[0] repeated]
     // Each segment is a hard cut — no transitions. Each slot can have its own loop count.
     const angles = settings.cameraAngles || [];
     const isMultiAngle = angles.length >= 2;
@@ -419,7 +419,8 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
     let effectiveTotalDuration;
 
     if (isMultiAngle) {
-        segments = [...angles];
+        // Append first angle at the end so the video loops back seamlessly
+        segments = [...angles, angles[0]];
         segDurations = segments.map(a => duration * Math.max(1, a.loops || loops));
         segStarts = [];
         let t = 0;

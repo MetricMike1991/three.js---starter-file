@@ -2918,12 +2918,13 @@ class ThreeJSApp {
         panel.innerHTML = `
             <div class="screenshot-panel-header">
                 <span>Screenshot Settings</span>
+                <button class="screenshot-panel-close">✕</button>
             </div>
             <div class="screenshot-panel-content">
                 <div class="ss-tabs">
                     <button class="ss-tab active" data-tab="screenshot">Screenshot</button>
                     <button class="ss-tab" data-tab="video">Video</button>
-                    <button class="ss-tab" data-tab="ai" style="display:none">A.I Image</button>
+                    <button class="ss-tab" data-tab="ai">A.I Image</button>
                 </div>
                 <div class="ss-tab-panel" data-panel="screenshot">
                     <div class="screenshot-presets">
@@ -3185,7 +3186,7 @@ class ThreeJSApp {
                                 </details>
                             </div>
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip in sequence. Recording with no angles uses the current view.</p>
+                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip — the final video ends with Angle 1 repeated. Recording with no angles uses the current view.</p>
                     </div>
                     <div class="screenshot-buttons">
                         <button class="ss-btn ss-video">Record Video</button>
@@ -3222,7 +3223,6 @@ class ThreeJSApp {
                         <div class="ss-ai-status"></div>
                 </div>
             </div>
-            <button class="screenshot-panel-close">✕ Close</button>
         `;
         
         // Add styles
@@ -3258,23 +3258,18 @@ class ThreeJSApp {
                 font-weight: 600;
             }
             .screenshot-panel-close {
-                display: block;
-                width: auto;
-                margin: 0 auto 12px;
-                padding: 5px 20px;
-                background: rgba(255, 255, 255, 0.07);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                border-radius: 20px;
-                color: rgba(255,255,255,0.5);
-                font-size: 11px;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 18px;
                 cursor: pointer;
-                text-align: center;
-                letter-spacing: 0.05em;
+                opacity: 0.7;
+                padding: 4px 8px;
+                border-radius: 4px;
             }
             .screenshot-panel-close:hover {
-                background: rgba(255, 60, 60, 0.25);
-                border-color: rgba(255, 80, 80, 0.45);
-                color: rgba(255,255,255,0.9);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.1);
             }
             .screenshot-panel-content {
                 padding: 16px;

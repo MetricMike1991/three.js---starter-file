@@ -2918,12 +2918,12 @@ class ThreeJSApp {
         panel.innerHTML = `
             <div class="screenshot-panel-header">
                 <span>Screenshot Settings</span>
+                <button class="screenshot-panel-close">✕</button>
             </div>
             <div class="screenshot-panel-content">
                 <div class="ss-tabs">
                     <button class="ss-tab active" data-tab="screenshot">Screenshot</button>
                     <button class="ss-tab" data-tab="video">Video</button>
-                    <button class="ss-tab" data-tab="ai" style="display:none">A.I Image</button>
                 </div>
                 <div class="ss-tab-panel" data-panel="screenshot">
                     <div class="screenshot-presets">
@@ -3185,14 +3185,19 @@ class ThreeJSApp {
                                 </details>
                             </div>
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip in sequence. Recording with no angles uses the current view.</p>
+                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip — the final video ends with Angle 1 repeated. Recording with no angles uses the current view.</p>
                     </div>
                     <div class="screenshot-buttons">
                         <button class="ss-btn ss-video">Record Video</button>
                     </div>
                     <div class="ss-video-status" id="ss-video-status"></div>
                 </div>
-                <div class="ss-tab-panel" data-panel="ai" style="display:none">
+                <div class="ss-ai-section ss-group" data-group="ai" style="display:none;">
+                    <div class="ss-group-header">
+                        <span class="ss-group-title">AI Social Media Post</span>
+                        <span class="ss-group-chevron">▾</span>
+                    </div>
+                    <div class="ss-group-body">
                         <input type="hidden" class="ss-ai-provider" value="openai" />
                         <div class="ss-ai-style-row">
                             <label class="ss-ai-style-label">Figure style</label>
@@ -3220,9 +3225,9 @@ class ThreeJSApp {
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>
                         <div class="ss-ai-status"></div>
+                    </div>
                 </div>
             </div>
-            <button class="screenshot-panel-close">✕ Close</button>
         `;
         
         // Add styles
@@ -3258,23 +3263,18 @@ class ThreeJSApp {
                 font-weight: 600;
             }
             .screenshot-panel-close {
-                display: block;
-                width: auto;
-                margin: 0 auto 12px;
-                padding: 5px 20px;
-                background: rgba(255, 255, 255, 0.07);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                border-radius: 20px;
-                color: rgba(255,255,255,0.5);
-                font-size: 11px;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 18px;
                 cursor: pointer;
-                text-align: center;
-                letter-spacing: 0.05em;
+                opacity: 0.7;
+                padding: 4px 8px;
+                border-radius: 4px;
             }
             .screenshot-panel-close:hover {
-                background: rgba(255, 60, 60, 0.25);
-                border-color: rgba(255, 80, 80, 0.45);
-                color: rgba(255,255,255,0.9);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.1);
             }
             .screenshot-panel-content {
                 padding: 16px;
@@ -3435,8 +3435,8 @@ class ThreeJSApp {
                 border-radius: 50%;
                 animation: ss-spin 0.7s linear infinite;
             }
-            .ss-ai-tab-content {
-                margin-top: 0;
+            .ss-ai-section {
+                margin-top: 12px;
             }
             .ss-group {
                 border: 1px solid rgba(255, 255, 255, 0.12);
@@ -3801,9 +3801,9 @@ class ThreeJSApp {
                 color: #6ab4ff;
             }
             .ss-vid-dir-btn:hover:not(.active) { background: rgba(255,255,255,0.12); color: #fff; }
-            /* Hide AI tab on mobile-sized viewports */
+            /* Hide AI section on mobile-sized viewports */
             @media (max-width: 768px) {
-                .ss-tab[data-tab="ai"] { display: none !important; }
+                .ss-ai-section { display: none !important; }
             }
         `;
         
@@ -3915,12 +3915,12 @@ class ThreeJSApp {
             [0, 1, 2, 3].forEach(i => this.updateVideoAngleSlot(i));
         });
 
-        // AI Post tab - only visible when server says AI is available
-        const aiTabBtn = panel.querySelector('.ss-tab[data-tab="ai"]');
+        // AI Post button - only visible when server says AI is available
+        const aiSection = panel.querySelector('.ss-ai-section');
         const aiBtn = panel.querySelector('.ss-ai-generate');
         const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
-        if (window.flexframeSettings?.aiRenderEnabled && aiTabBtn && aiBtn && !isMobileViewport()) {
-            aiTabBtn.style.display = 'inline-block';
+        if (window.flexframeSettings?.aiRenderEnabled && aiSection && aiBtn && !isMobileViewport()) {
+            aiSection.style.display = 'block';
 
             // Style toggle: only one button can be active at a time.
             const styleButtons = panel.querySelectorAll('.ss-ai-style-btn');
@@ -4369,9 +4369,7 @@ class ThreeJSApp {
                 containerWidth,
                 containerHeight,
                 showFloorShadow,
-                ground: this.ground,
-                overlayLogoUrl: overlayLogo ? (window.flexframeSettings?.logoUrl || null) : null,
-                overlayExerciseName: overlayName ? (this.currentExerciseName || null) : null
+                ground: this.ground
             });
 
             if (result.success) {
