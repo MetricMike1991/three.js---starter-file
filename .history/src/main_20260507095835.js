@@ -413,8 +413,10 @@ class ThreeJSApp {
         // Screenshot manager disabled for now
         this.screenshotManager = null;
 
-        // Initialize annotation manager (init() called after setupRenderer below)
+        // Initialize annotation manager
         this.annotationManager = new AnnotationManager();
+        const _viewerContainer = document.getElementById('flexframe-viewer-container') || this.sceneManager.getCanvas().parentElement;
+        this.annotationManager.init(this.renderer, this.cameraManager.getCamera(), _viewerContainer);
         
         // Set scene reference for camera raycasting
         this.cameraManager.setScene(this.sceneManager.getScene());
@@ -466,13 +468,6 @@ class ThreeJSApp {
 
         // Setup components
         this.setupRenderer();
-
-        // Init annotation manager now that renderer exists
-        {
-            const _vc = document.getElementById('flexframe-viewer-container') || this.sceneManager.getCanvas().parentElement;
-            this.annotationManager.init(this.renderer, this.cameraManager.getCamera(), _vc);
-        }
-
         this.setupGround();
         this.setupGUI();
         // Don't load a default model - wait for user to select an exercise
