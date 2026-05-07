@@ -5607,7 +5607,12 @@ function flexframe_settings_page() {
                         </div>
 
                         <!-- Per-exercise table -->
-                        <h4 style="margin:0 0 6px;"><?php _e('Annotations by Exercise', 'flexframe-viewer'); ?></h4>
+                        <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px;">
+                            <h4 style="margin:0;"><?php _e('Annotations by Exercise', 'flexframe-viewer'); ?></h4>
+                            <button type="button" class="button button-small" id="ff-ann-refresh-btn" title="<?php esc_attr_e('Refresh list', 'flexframe-viewer'); ?>">
+                                <span class="dashicons dashicons-update" style="vertical-align:middle;"></span>
+                            </button>
+                        </div>
                         <p class="description" style="margin-bottom:12px;"><?php _e('Only exercises with at least one annotation are shown.', 'flexframe-viewer'); ?></p>
                         <div id="ff-ann-exercise-wrap">
                             <p id="ff-ann-loading"><?php _e('Loading…', 'flexframe-viewer'); ?></p>
@@ -14086,6 +14091,11 @@ function flexframe_settings_page() {
                 $table.show();
             });
         }
+
+        // Refresh button
+        jQuery(document).on('click', '#ff-ann-refresh-btn', function() {
+            loadExerciseTable();
+        });
 
         // Load when step is expanded (content is hidden = about to open)
         jQuery(document).on('click', '#flexframe-annotations-step .flexframe-step-header', function() {
