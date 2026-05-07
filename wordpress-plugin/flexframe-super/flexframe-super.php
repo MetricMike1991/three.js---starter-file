@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame Super
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.45.7
+ * Version: 1.45.9
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.45.7');
+define('FLEXFRAME_VERSION', '1.45.9');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Force HTTPS to prevent mixed-content warnings on SSL sites
 define('FLEXFRAME_PLUGIN_URL', str_replace('http://', 'https://', plugin_dir_url(__FILE__)));
@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DlMSgbU0.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CAbCy6h1.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5316,7 +5316,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DlMSgbU0.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CAbCy6h1.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6390,7 +6390,7 @@ function flexframe_register_annotations_api() {
         return $wpdb->prefix . 'flexframe_annotations';
     };
 
-    // GET /flexframe/v1/annotations?exercise_id=... — public
+    // GET /flexframe/v1/annotations?exercise_id=... — public (respects hidden list)
     register_rest_route('flexframe/v1', '/annotations', array(
         'methods'             => 'GET',
         'callback'            => function(WP_REST_Request $req) use ($table_check) {
@@ -6398,11 +6398,16 @@ function flexframe_register_annotations_api() {
             $table = $table_check();
             $exercise_id = sanitize_text_field($req->get_param('exercise_id'));
             if (!$exercise_id) return new WP_Error('missing_param', 'exercise_id required', array('status' => 400));
+            // Respect admin-configured hidden exercises
+            $hidden = get_option('flexframe_hidden_annotation_exercises', array());
+            if (is_array($hidden) && in_array($exercise_id, $hidden, true)) {
+                return rest_ensure_response(array());
+            }
             $rows = $wpdb->get_results($wpdb->prepare(
                 "SELECT id, exercise_id, label, body_text, bone_name, offset_x, offset_y, offset_z FROM $table WHERE exercise_id = %s ORDER BY id ASC",
                 $exercise_id
             ), ARRAY_A);
-            return rest_ensure_response($rows ?: array());
+            return rest_ensure_response($rows ? $rows : array());
         },
         'permission_callback' => '__return_true',
     ));
@@ -6478,7 +6483,131 @@ add_action('rest_api_init', 'flexframe_register_annotations_api');
 
 /*
  * ============================================================================
- * AI Social Media Render (v1 — minimal viable test)
+ * Annotations Admin AJAX
+ * ============================================================================
+ */
+
+// List all exercises that have annotations (with count + hidden status)
+function flexframe_ajax_annotations_exercise_list() {
+    check_ajax_referer('flexframe_settings_nonce', 'nonce');
+    if (!current_user_can('manage_options')) wp_send_json_error('Permission denied');
+    global $wpdb;
+    $table = $wpdb->prefix . 'flexframe_annotations';
+    $rows = $wpdb->get_results(
+        "SELECT exercise_id, COUNT(*) as total FROM $table GROUP BY exercise_id ORDER BY exercise_id ASC",
+        ARRAY_A
+    );
+    $hidden = get_option('flexframe_hidden_annotation_exercises', array());
+    if (!is_array($hidden)) $hidden = array();
+    $result = array();
+    foreach ($rows as $r) {
+        $result[] = array(
+            'exercise_id' => $r['exercise_id'],
+            'total'       => intval($r['total']),
+            'hidden'      => in_array($r['exercise_id'], $hidden, true),
+        );
+    }
+    wp_send_json_success($result);
+}
+add_action('wp_ajax_flexframe_annotations_exercise_list', 'flexframe_ajax_annotations_exercise_list');
+
+// Export all annotations as JSON
+function flexframe_ajax_annotations_export() {
+    check_ajax_referer('flexframe_settings_nonce', 'nonce');
+    if (!current_user_can('manage_options')) wp_send_json_error('Permission denied');
+    global $wpdb;
+    $table = $wpdb->prefix . 'flexframe_annotations';
+    $rows = $wpdb->get_results(
+        "SELECT exercise_id, label, body_text, bone_name, offset_x, offset_y, offset_z FROM $table ORDER BY id ASC",
+        ARRAY_A
+    );
+    wp_send_json_success(array('annotations' => $rows ? $rows : array()));
+}
+add_action('wp_ajax_flexframe_annotations_export', 'flexframe_ajax_annotations_export');
+
+// Import annotations from JSON (skips exact duplicates)
+function flexframe_ajax_annotations_import() {
+    check_ajax_referer('flexframe_settings_nonce', 'nonce');
+    if (!current_user_can('manage_options')) wp_send_json_error('Permission denied');
+    $raw  = isset($_POST['data']) ? wp_unslash($_POST['data']) : '';
+    $data = json_decode($raw, true);
+    if (!is_array($data) || !isset($data['annotations']) || !is_array($data['annotations'])) {
+        wp_send_json_error('Invalid JSON format');
+    }
+    global $wpdb;
+    $table = $wpdb->prefix . 'flexframe_annotations';
+    $added = 0; $skipped = 0;
+    foreach ($data['annotations'] as $ann) {
+        if (!is_array($ann)) { $skipped++; continue; }
+        $exercise_id = sanitize_text_field(isset($ann['exercise_id']) ? $ann['exercise_id'] : '');
+        $label       = sanitize_text_field(isset($ann['label']) ? $ann['label'] : '');
+        $body_text   = sanitize_textarea_field(isset($ann['body_text']) ? $ann['body_text'] : '');
+        $bone_name   = sanitize_text_field(isset($ann['bone_name']) ? $ann['bone_name'] : '');
+        $offset_x    = floatval(isset($ann['offset_x']) ? $ann['offset_x'] : 0);
+        $offset_y    = floatval(isset($ann['offset_y']) ? $ann['offset_y'] : 0);
+        $offset_z    = floatval(isset($ann['offset_z']) ? $ann['offset_z'] : 0);
+        if (!$exercise_id || !$label) { $skipped++; continue; }
+        $exists = $wpdb->get_var($wpdb->prepare(
+            "SELECT id FROM $table WHERE exercise_id=%s AND label=%s AND bone_name=%s AND ABS(offset_x-%f)<0.0001 AND ABS(offset_y-%f)<0.0001 AND ABS(offset_z-%f)<0.0001 LIMIT 1",
+            $exercise_id, $label, $bone_name, $offset_x, $offset_y, $offset_z
+        ));
+        if ($exists) { $skipped++; continue; }
+        $now = current_time('mysql');
+        $wpdb->insert($table, array(
+            'exercise_id' => $exercise_id,
+            'label'       => $label,
+            'body_text'   => $body_text,
+            'bone_name'   => $bone_name,
+            'offset_x'    => $offset_x,
+            'offset_y'    => $offset_y,
+            'offset_z'    => $offset_z,
+            'created_at'  => $now,
+            'updated_at'  => $now,
+        ));
+        $added++;
+    }
+    wp_send_json_success(array('added' => $added, 'skipped' => $skipped));
+}
+add_action('wp_ajax_flexframe_annotations_import', 'flexframe_ajax_annotations_import');
+
+// Toggle hidden state for an exercise's annotations
+function flexframe_ajax_annotations_toggle_hidden() {
+    check_ajax_referer('flexframe_settings_nonce', 'nonce');
+    if (!current_user_can('manage_options')) wp_send_json_error('Permission denied');
+    $exercise_id = sanitize_text_field(isset($_POST['exercise_id']) ? $_POST['exercise_id'] : '');
+    $hide        = !empty($_POST['hidden']) && $_POST['hidden'] !== 'false';
+    if (!$exercise_id) wp_send_json_error('Missing exercise_id');
+    $hidden = get_option('flexframe_hidden_annotation_exercises', array());
+    if (!is_array($hidden)) $hidden = array();
+    if ($hide) {
+        if (!in_array($exercise_id, $hidden, true)) $hidden[] = $exercise_id;
+    } else {
+        $hidden = array_values(array_filter($hidden, function($v) use ($exercise_id) { return $v !== $exercise_id; }));
+    }
+    update_option('flexframe_hidden_annotation_exercises', $hidden);
+    wp_send_json_success(array('hidden' => $hide));
+}
+add_action('wp_ajax_flexframe_annotations_toggle_hidden', 'flexframe_ajax_annotations_toggle_hidden');
+
+// Delete all annotations for a specific exercise
+function flexframe_ajax_annotations_delete_exercise() {
+    check_ajax_referer('flexframe_settings_nonce', 'nonce');
+    if (!current_user_can('manage_options')) wp_send_json_error('Permission denied');
+    $exercise_id = sanitize_text_field(isset($_POST['exercise_id']) ? $_POST['exercise_id'] : '');
+    if (!$exercise_id) wp_send_json_error('Missing exercise_id');
+    global $wpdb;
+    $table   = $wpdb->prefix . 'flexframe_annotations';
+    $deleted = $wpdb->delete($table, array('exercise_id' => $exercise_id));
+    $hidden  = get_option('flexframe_hidden_annotation_exercises', array());
+    if (is_array($hidden)) {
+        update_option('flexframe_hidden_annotation_exercises',
+            array_values(array_filter($hidden, function($v) use ($exercise_id) { return $v !== $exercise_id; })));
+    }
+    wp_send_json_success(array('deleted' => intval($deleted)));
+}
+add_action('wp_ajax_flexframe_annotations_delete_exercise', 'flexframe_ajax_annotations_delete_exercise');
+
+/**
  * ============================================================================
  *
  * REST endpoint: POST /wp-json/flexframe/v1/ai-render

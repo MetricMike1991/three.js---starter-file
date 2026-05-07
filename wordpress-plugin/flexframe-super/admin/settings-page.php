@@ -5571,6 +5571,63 @@ function flexframe_settings_page() {
                 <!-- End Step 11 -->
                 <?php endif; ?>
 
+                <!-- Step 12: Exercise Annotations -->
+                <div class="flexframe-step-section collapsed" id="flexframe-annotations-step">
+                    <div class="flexframe-step-header">
+                        <span class="flexframe-step-number">12</span>
+                        <span class="flexframe-step-title"><?php _e('Exercise Annotations', 'flexframe-viewer'); ?></span>
+                        <span class="flexframe-step-toggle">▼</span>
+                    </div>
+                    <div class="flexframe-step-content" style="display:none;">
+                        <p class="description" style="margin-bottom:18px;">
+                            <?php _e('Manage point-of-interest annotations attached to 3D exercise models. Export/import to transfer between sites, show/hide per-exercise, or delete all annotations for an exercise.', 'flexframe-viewer'); ?>
+                        </p>
+
+                        <!-- Export / Import row -->
+                        <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px;">
+                            <div style="flex:1;min-width:240px;background:rgba(0,0,0,0.03);border:1px solid #ddd;border-radius:6px;padding:16px;">
+                                <h4 style="margin:0 0 6px;"><?php _e('Export All Annotations', 'flexframe-viewer'); ?></h4>
+                                <p class="description" style="margin-bottom:10px;"><?php _e('Download a JSON file with every annotation across all exercises.', 'flexframe-viewer'); ?></p>
+                                <button type="button" class="button button-secondary" id="ff-ann-export-btn">
+                                    <span class="dashicons dashicons-download" style="vertical-align:middle;margin-right:4px;"></span>
+                                    <?php _e('Export JSON', 'flexframe-viewer'); ?>
+                                </button>
+                                <span id="ff-ann-export-status" style="display:none;margin-left:10px;color:#00a32a;"></span>
+                            </div>
+                            <div style="flex:1;min-width:240px;background:rgba(0,0,0,0.03);border:1px solid #ddd;border-radius:6px;padding:16px;">
+                                <h4 style="margin:0 0 6px;"><?php _e('Import Annotations', 'flexframe-viewer'); ?></h4>
+                                <p class="description" style="margin-bottom:10px;"><?php _e('Import from a JSON file. Exact duplicates are skipped automatically.', 'flexframe-viewer'); ?></p>
+                                <input type="file" id="ff-ann-import-file" accept=".json" style="display:none;">
+                                <button type="button" class="button button-secondary" id="ff-ann-import-btn">
+                                    <span class="dashicons dashicons-upload" style="vertical-align:middle;margin-right:4px;"></span>
+                                    <?php _e('Import JSON', 'flexframe-viewer'); ?>
+                                </button>
+                                <span id="ff-ann-import-status" style="display:none;margin-left:10px;"></span>
+                            </div>
+                        </div>
+
+                        <!-- Per-exercise table -->
+                        <h4 style="margin:0 0 6px;"><?php _e('Annotations by Exercise', 'flexframe-viewer'); ?></h4>
+                        <p class="description" style="margin-bottom:12px;"><?php _e('Only exercises with at least one annotation are shown.', 'flexframe-viewer'); ?></p>
+                        <div id="ff-ann-exercise-wrap">
+                            <p id="ff-ann-loading"><?php _e('Loading…', 'flexframe-viewer'); ?></p>
+                            <table class="wp-list-table widefat fixed striped" id="ff-ann-exercise-table" style="display:none;">
+                                <thead>
+                                    <tr>
+                                        <th><?php _e('Exercise ID', 'flexframe-viewer'); ?></th>
+                                        <th style="width:80px;text-align:center;"><?php _e('Count', 'flexframe-viewer'); ?></th>
+                                        <th style="width:120px;text-align:center;"><?php _e('Visible', 'flexframe-viewer'); ?></th>
+                                        <th style="width:130px;text-align:center;"><?php _e('Actions', 'flexframe-viewer'); ?></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="ff-ann-exercise-tbody"></tbody>
+                            </table>
+                            <p id="ff-ann-empty" style="display:none;color:#666;"><?php _e('No annotations found.', 'flexframe-viewer'); ?></p>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Step 12 -->
+
                 <div class="flexframe-button-row">
                     <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
                     <?php if ($is_admin_user) : ?>
@@ -13995,6 +14052,108 @@ function flexframe_settings_page() {
             });
         });
     });
+
+    // ── Annotations Admin (Step 12) ───────────────────────────────────────
+    (function() {
+        var annNonce = '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>';
+
+        function annAjax(action, data, cb) {
+            jQuery.post(ajaxurl, jQuery.extend({ action: action, nonce: annNonce }, data), function(r) {
+                if (r.success) cb(null, r.data);
+                else cb(r.data || 'Error');
+            }).fail(function() { cb('Request failed'); });
+        }
+
+        function loadExerciseTable() {
+            var $loading = jQuery('#ff-ann-loading');
+            var $table   = jQuery('#ff-ann-exercise-table');
+            var $empty   = jQuery('#ff-ann-empty');
+            var $tbody   = jQuery('#ff-ann-exercise-tbody');
+            $loading.show(); $table.hide(); $empty.hide();
+            annAjax('flexframe_annotations_exercise_list', {}, function(err, rows) {
+                $loading.hide();
+                if (err || !rows || !rows.length) { $empty.show(); return; }
+                $tbody.empty();
+                jQuery.each(rows, function(i, row) {
+                    var safeId = jQuery('<span>').text(row.exercise_id).html();
+                    var tr = jQuery('<tr></tr>');
+                    tr.append('<td><code>' + safeId + '</code></td>');
+                    tr.append('<td style="text-align:center;">' + row.total + '</td>');
+                    tr.append('<td style="text-align:center;"><label><input type="checkbox" class="ff-ann-visible-chk" data-id="' + safeId + '" ' + (row.hidden ? '' : 'checked') + '> Visible</label></td>');
+                    tr.append('<td style="text-align:center;"><button type="button" class="button button-small button-link-delete ff-ann-del-btn" data-id="' + safeId + '">Delete All</button></td>');
+                    $tbody.append(tr);
+                });
+                $table.show();
+            });
+        }
+
+        // Load when step is expanded (content is hidden = about to open)
+        jQuery(document).on('click', '#flexframe-annotations-step .flexframe-step-header', function() {
+            var $content = jQuery('#flexframe-annotations-step .flexframe-step-content');
+            if ($content.is(':visible')) return; // closing, skip
+            loadExerciseTable();
+        });
+
+        // Toggle visibility
+        jQuery(document).on('change', '.ff-ann-visible-chk', function() {
+            var $chk = jQuery(this);
+            var id   = $chk.data('id');
+            var hide = !$chk.prop('checked');
+            annAjax('flexframe_annotations_toggle_hidden', { exercise_id: id, hidden: hide ? '1' : '0' }, function(err) {
+                if (err) { alert('Error: ' + err); $chk.prop('checked', !hide); }
+            });
+        });
+
+        // Delete all for exercise
+        jQuery(document).on('click', '.ff-ann-del-btn', function() {
+            var id   = jQuery(this).data('id');
+            var $btn = jQuery(this);
+            if (!confirm('Delete ALL annotations for "' + id + '"? This cannot be undone.')) return;
+            $btn.prop('disabled', true).text('Deleting…');
+            annAjax('flexframe_annotations_delete_exercise', { exercise_id: id }, function(err) {
+                if (err) { alert('Error: ' + err); $btn.prop('disabled', false).text('Delete All'); return; }
+                $btn.closest('tr').fadeOut(300, function() { jQuery(this).remove(); });
+            });
+        });
+
+        // Export
+        jQuery('#ff-ann-export-btn').on('click', function() {
+            var $btn = jQuery(this).prop('disabled', true);
+            var $st  = jQuery('#ff-ann-export-status').hide();
+            annAjax('flexframe_annotations_export', {}, function(err, data) {
+                $btn.prop('disabled', false);
+                if (err) { alert('Export error: ' + err); return; }
+                var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+                var url  = URL.createObjectURL(blob);
+                var a    = document.createElement('a');
+                a.href = url; a.download = 'flexframe-annotations.json'; a.click();
+                URL.revokeObjectURL(url);
+                $st.text('Exported ' + data.annotations.length + ' annotation(s).').show();
+            });
+        });
+
+        // Import
+        jQuery('#ff-ann-import-btn').on('click', function() {
+            jQuery('#ff-ann-import-file').val('').trigger('click');
+        });
+        jQuery('#ff-ann-import-file').on('change', function() {
+            var file = this.files[0];
+            if (!file) return;
+            var $st = jQuery('#ff-ann-import-status').hide();
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var $btn = jQuery('#ff-ann-import-btn').prop('disabled', true);
+                $st.text('Importing…').css('color','#666').show();
+                annAjax('flexframe_annotations_import', { data: e.target.result }, function(err, data) {
+                    $btn.prop('disabled', false);
+                    if (err) { $st.text('Error: ' + err).css('color','#d63638').show(); return; }
+                    $st.text('Added ' + data.added + ', skipped ' + data.skipped + '.').css('color','#00a32a').show();
+                    loadExerciseTable();
+                });
+            };
+            reader.readAsText(file);
+        });
+    })();
     </script>
     <?php
 }
