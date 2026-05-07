@@ -4462,8 +4462,6 @@ class ThreeJSApp {
         this.screenshotPanel.classList.toggle('visible', newState);
 
         // Hide/show watermark logo while panel is open
-        // A body class is used so the watermark's own setInterval guard respects the state
-        document.body.classList.toggle('ff-panel-open', newState);
         const watermark = document.getElementById('flexframe-watermark-wrap') || document.getElementById('flexframe-watermark');
         if (watermark) watermark.style.setProperty('display', newState ? 'none' : '', 'important');
 

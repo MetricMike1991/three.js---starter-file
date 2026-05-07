@@ -574,11 +574,7 @@ class ThreeJSApp {
             exerciseSlug = window.location.hash.substring(1); // Remove the #
         }
         
-        if (!exerciseSlug) {
-            // No URL param — load a random exercise
-            this.loadRandomExercise();
-            return;
-        }
+        if (!exerciseSlug) return;
         
         console.log('🔗 URL exercise parameter found:', exerciseSlug);
         
@@ -592,28 +588,6 @@ class ThreeJSApp {
         this.waitForExercisesAndSelect(normalizedSlug, exerciseSlug);
     }
     
-    async loadRandomExercise() {
-        let attempts = 0;
-        const maxAttempts = 50;
-        while (attempts < maxAttempts) {
-            const exercises = window.menuManager?.menus?.search?.allExercises;
-            if (exercises?.length > 0) {
-                const exercise = exercises[Math.floor(Math.random() * exercises.length)];
-                console.log('[FlexFrame] Loading random exercise:', exercise.name);
-                const event = new CustomEvent('exercisesSelected', {
-                    detail: { item: exercise, menuType: 'random-default' }
-                });
-                document.dispatchEvent(event);
-                if (window.menuManager?.menus?.search) {
-                    window.menuManager.menus.search.selectedId = exercise.id;
-                }
-                return;
-            }
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
-        }
-    }
-
     async waitForExercisesAndSelect(normalizedSlug, originalSlug) {
         // Wait for menu manager to be available
         let attempts = 0;
@@ -3263,7 +3237,6 @@ class ThreeJSApp {
                             <input class="ss-share-input" id="ss-share-input" type="text" readonly />
                             <button class="ss-share-copy-btn" id="ss-share-copy-btn">Copy</button>
                         </div>
-                        <div class="ss-share-tip">Post this link alongside your video so your audience can view the exercise and try it for themselves.</div>
                     </div>
                 </div>
                 <div class="ss-tab-panel" data-panel="ai" style="display:none">
@@ -3542,16 +3515,6 @@ class ThreeJSApp {
             }
             .ss-share-copy-btn:hover { background: rgba(255,255,255,0.25); }
             .ss-share-copy-btn.copied { background: rgba(74,222,128,0.25); color: #4ade80; border-color: #4ade80; }
-            .ss-share-tip {
-                margin-top: 8px;
-                font-size: 11px;
-                line-height: 1.5;
-                color: rgba(255,255,255,0.55);
-                background: rgba(255,255,255,0.04);
-                border-left: 2px solid rgba(255,255,255,0.2);
-                border-radius: 0 6px 6px 0;
-                padding: 6px 8px;
-            }
             @keyframes ss-spin {
                 to { transform: rotate(360deg); }
             }
@@ -4460,13 +4423,7 @@ class ThreeJSApp {
         const newState = forceState !== undefined ? forceState : !isVisible;
         
         this.screenshotPanel.classList.toggle('visible', newState);
-
-        // Hide/show watermark logo while panel is open
-        // A body class is used so the watermark's own setInterval guard respects the state
-        document.body.classList.toggle('ff-panel-open', newState);
-        const watermark = document.getElementById('flexframe-watermark-wrap') || document.getElementById('flexframe-watermark');
-        if (watermark) watermark.style.setProperty('display', newState ? 'none' : '', 'important');
-
+        
         // Show/hide frame with panel (always on when panel is open)
         if (newState) {
             // Show frame and update it based on the active tab

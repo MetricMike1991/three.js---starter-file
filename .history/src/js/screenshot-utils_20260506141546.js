@@ -222,7 +222,6 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
         ground: null,
         overlayLogoUrl: null,
         overlayLogoPosition: 'top-left', // 'top-left' | 'top-center'
-        overlayLogoScale: 1,
         overlayExerciseName: null,
         ...options
     };
@@ -288,10 +287,9 @@ const recordTimelineVideo = async (renderer, scene, camera, animationPlayer, mix
             const logoTex = new THREE.Texture(img);
             logoTex.needsUpdate = true;
             const logoAspect = img.naturalWidth / img.naturalHeight;
-            const logoScale = settings.overlayLogoScale || 1;
-            const logoW = vidAspect * 0.18 * logoScale;
+            const logoW = vidAspect * 0.18; // ~18% of screen width
             const logoH = logoW / logoAspect;
-            const pad = vidAspect * 0.03 * logoScale;
+            const pad = vidAspect * 0.03;
             const geo = new THREE.PlaneGeometry(logoW, logoH);
             const mat = new THREE.MeshBasicMaterial({ map: logoTex, transparent: true, depthTest: false, depthWrite: false });
             const mesh = new THREE.Mesh(geo, mat);

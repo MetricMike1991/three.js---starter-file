@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame Super
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.45.4
+ * Version: 1.45.0
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.45.4');
+define('FLEXFRAME_VERSION', '1.45.0');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Force HTTPS to prevent mixed-content warnings on SSL sites
 define('FLEXFRAME_PLUGIN_URL', str_replace('http://', 'https://', plugin_dir_url(__FILE__)));
@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B7C2QMUh.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-D1yKkdM4.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5252,8 +5252,6 @@ function flexframe_viewer_shortcode($atts) {
             // Nuclear guard: re-apply all styles every 2 seconds
             // This defeats any theme JS that might override styles after load
             setInterval(function() {
-                // Don't override visibility if screenshot panel is open
-                if (document.body.classList.contains('ff-panel-open')) return;
                 ws.cssText = 'position:fixed;top:0;left:0;width:100vw;height:100vh;margin:0;padding:0;pointer-events:none;z-index:1;overflow:hidden;box-sizing:border-box;';
                 s.position = 'absolute';
                 s.top = posYcss + '%';
@@ -5316,7 +5314,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-B7C2QMUh.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-D1yKkdM4.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');

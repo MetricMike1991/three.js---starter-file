@@ -574,11 +574,7 @@ class ThreeJSApp {
             exerciseSlug = window.location.hash.substring(1); // Remove the #
         }
         
-        if (!exerciseSlug) {
-            // No URL param — load a random exercise
-            this.loadRandomExercise();
-            return;
-        }
+        if (!exerciseSlug) return;
         
         console.log('🔗 URL exercise parameter found:', exerciseSlug);
         
@@ -592,28 +588,6 @@ class ThreeJSApp {
         this.waitForExercisesAndSelect(normalizedSlug, exerciseSlug);
     }
     
-    async loadRandomExercise() {
-        let attempts = 0;
-        const maxAttempts = 50;
-        while (attempts < maxAttempts) {
-            const exercises = window.menuManager?.menus?.search?.allExercises;
-            if (exercises?.length > 0) {
-                const exercise = exercises[Math.floor(Math.random() * exercises.length)];
-                console.log('[FlexFrame] Loading random exercise:', exercise.name);
-                const event = new CustomEvent('exercisesSelected', {
-                    detail: { item: exercise, menuType: 'random-default' }
-                });
-                document.dispatchEvent(event);
-                if (window.menuManager?.menus?.search) {
-                    window.menuManager.menus.search.selectedId = exercise.id;
-                }
-                return;
-            }
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
-        }
-    }
-
     async waitForExercisesAndSelect(normalizedSlug, originalSlug) {
         // Wait for menu manager to be available
         let attempts = 0;
@@ -3017,7 +2991,7 @@ class ThreeJSApp {
                     <div class="vid-preset-panel" id="vid-preset-square" style="display:none">
                         <div class="vid-preset-info">
                             <span class="vid-preset-info-label">Square Post</span>
-                            <span class="vid-preset-info-dim">2000 × 2000</span>
+                            <span class="vid-preset-info-dim">2500 × 2500</span>
                         </div>
                         <div class="screenshot-buttons" style="margin-top:10px">
                             <button class="ss-btn ss-video ss-video-preset" data-preset="square">Record Square Video</button>
@@ -3252,19 +3226,11 @@ class ThreeJSApp {
                         <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip in sequence. Recording with no angles uses the current view.</p>
                     </div>
                         <div class="screenshot-buttons">
-                            <button class="ss-btn ss-video ss-video-custom">Record Video</button>
+                            <button class="ss-btn ss-video">Record Video</button>
                         </div>
                         </div><!-- /vid-custom-body -->
                     </details><!-- /vid-custom-details -->
                     <div class="ss-video-status" id="ss-video-status"></div>
-                    <div class="ss-share-link" id="ss-share-link" style="display:none">
-                        <div class="ss-share-label">Share this exercise:</div>
-                        <div class="ss-share-row">
-                            <input class="ss-share-input" id="ss-share-input" type="text" readonly />
-                            <button class="ss-share-copy-btn" id="ss-share-copy-btn">Copy</button>
-                        </div>
-                        <div class="ss-share-tip">Post this link alongside your video so your audience can view the exercise and try it for themselves.</div>
-                    </div>
                 </div>
                 <div class="ss-tab-panel" data-panel="ai" style="display:none">
                         <input type="hidden" class="ss-ai-provider" value="openai" />
@@ -3483,74 +3449,11 @@ class ThreeJSApp {
                 font-size: 11px;
                 color: rgba(255, 255, 255, 0.68);
             }
-            .ss-video-status.counting {
-                font-size: 15px;
-                font-weight: 700;
-                color: #ffffff;
-                background: rgba(255,255,255,0.08);
-                border: 1px solid rgba(255,255,255,0.18);
-                border-radius: 10px;
-                padding: 10px 14px;
-                text-align: center;
-                letter-spacing: 0.01em;
-            }
             .ss-video-status.error {
                 color: #ff6b6b;
             }
             .ss-video-status.success {
                 color: #4ade80;
-            }
-            .ss-share-link {
-                margin-top: 10px;
-                padding: 10px 12px;
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 10px;
-            }
-            .ss-share-label {
-                font-size: 10px;
-                color: rgba(255,255,255,0.5);
-                margin-bottom: 6px;
-                text-transform: uppercase;
-                letter-spacing: 0.06em;
-            }
-            .ss-share-row {
-                display: flex;
-                gap: 6px;
-            }
-            .ss-share-input {
-                flex: 1;
-                background: rgba(0,0,0,0.3);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 6px;
-                color: #fff;
-                font-size: 11px;
-                padding: 5px 8px;
-                outline: none;
-                cursor: text;
-            }
-            .ss-share-copy-btn {
-                background: rgba(255,255,255,0.15);
-                border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 6px;
-                color: #fff;
-                font-size: 11px;
-                padding: 5px 10px;
-                cursor: pointer;
-                white-space: nowrap;
-                transition: background 0.2s;
-            }
-            .ss-share-copy-btn:hover { background: rgba(255,255,255,0.25); }
-            .ss-share-copy-btn.copied { background: rgba(74,222,128,0.25); color: #4ade80; border-color: #4ade80; }
-            .ss-share-tip {
-                margin-top: 8px;
-                font-size: 11px;
-                line-height: 1.5;
-                color: rgba(255,255,255,0.55);
-                background: rgba(255,255,255,0.04);
-                border-left: 2px solid rgba(255,255,255,0.2);
-                border-radius: 0 6px 6px 0;
-                padding: 6px 8px;
             }
             @keyframes ss-spin {
                 to { transform: rotate(360deg); }
@@ -4135,7 +4038,7 @@ class ThreeJSApp {
             this.takeCustomScreenshot();
         });
 
-        panel.querySelector('.ss-video-custom').addEventListener('click', () => {
+        panel.querySelector('.ss-video').addEventListener('click', () => {
             this.recordCustomVideo();
         });
 
@@ -4146,10 +4049,10 @@ class ThreeJSApp {
             });
         });
 
-        // Video preset buttons — UI only, never touch custom form inputs
-        this._vidPresetConfigs = {
-            vertical: { w: 1080, h: 1920, loops: 5, pan: 360, logoPosition: 'top-center', logoScale: 2 },
-            square:   { w: 2000, h: 2000, loops: 5, pan: 360, logoPosition: 'top-left',   logoScale: 1 },
+        // Video preset buttons — toggle their panel and apply dimensions
+        const vidPresetConfigs = {
+            vertical: { w: 1080, h: 1920, loops: 5, pan: 360, logoPosition: 'top-center' },
+            square:   { w: 2500, h: 2500, loops: 5, pan: 360, logoPosition: 'top-left' },
         };
         panel.querySelectorAll('.vid-preset-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -4161,9 +4064,22 @@ class ThreeJSApp {
                 if (!isActive) {
                     btn.classList.add('active');
                     panel.querySelector(`#vid-preset-${preset}`).style.display = 'block';
-                    // Only update the frame overlay preview — nothing else
-                    const cfg = this._vidPresetConfigs[preset];
-                    if (cfg) this.updateScreenshotFramePanel(cfg.w, cfg.h);
+                    const cfg = vidPresetConfigs[preset];
+                    if (cfg) {
+                        // Dimensions
+                        panel.querySelector('#vid-width').value = cfg.w;
+                        panel.querySelector('#vid-height').value = cfg.h;
+                        // Global loops
+                        panel.querySelector('#vid-loops').value = cfg.loops;
+                        // Logo on + position
+                        panel.querySelector('#vid-overlay-logo').checked = true;
+                        panel.querySelector('#vid-logo-position').value = cfg.logoPosition;
+                        // Apply 360° pan + left direction to all slots
+                        panel.querySelectorAll('.ss-vid-pan-deg').forEach(sel => { sel.value = cfg.pan; });
+                        panel.querySelectorAll('.ss-vid-loop-count').forEach(sel => { sel.value = ''; }); // use global
+                        // Update frame overlay
+                        this.updateScreenshotFramePanel(cfg.w, cfg.h);
+                    }
                 }
             });
         });
@@ -4460,13 +4376,7 @@ class ThreeJSApp {
         const newState = forceState !== undefined ? forceState : !isVisible;
         
         this.screenshotPanel.classList.toggle('visible', newState);
-
-        // Hide/show watermark logo while panel is open
-        // A body class is used so the watermark's own setInterval guard respects the state
-        document.body.classList.toggle('ff-panel-open', newState);
-        const watermark = document.getElementById('flexframe-watermark-wrap') || document.getElementById('flexframe-watermark');
-        if (watermark) watermark.style.setProperty('display', newState ? 'none' : '', 'important');
-
+        
         // Show/hide frame with panel (always on when panel is open)
         if (newState) {
             // Show frame and update it based on the active tab
@@ -4593,128 +4503,6 @@ class ThreeJSApp {
             if (this.ground) {
                 this.ground.visible = originalGroundVisible;
             }
-        }
-    }
-
-    /**
-     * Record using a named preset — auto-captures current view to slot 0 if no angles are set,
-     * ensuring the preset pan setting is actually applied.
-     */
-    async recordPresetVideo(presetKey) {
-        const panel = this.screenshotPanel;
-        if (!panel) return;
-
-        // If no angles are captured yet, auto-capture the current view into slot 0
-        const hasAngles = (this._videoAngles || []).some(a => a !== null);
-        if (!hasAngles) {
-            const captureBtn = panel.querySelector('.ss-vid-capture-btn[data-slot="0"]');
-            if (captureBtn) {
-                captureBtn.textContent = 'Capturing...';
-                captureBtn.disabled = true;
-            }
-            await this.captureVideoAngle(0);
-            if (captureBtn) {
-                captureBtn.disabled = false;
-            }
-        }
-
-        // Build preset-specific recording settings — completely independent of custom form inputs
-        const cfg = this._vidPresetConfigs?.[presetKey];
-        if (!cfg) return;
-
-        const renderer = this.renderer;
-        const scene = this.sceneManager.getScene();
-        const camera = this.cameraManager.getCamera();
-        const allRecordButtons = this.screenshotPanel?.querySelectorAll('.ss-video, .ss-video-preset') || [];
-        const status = this.screenshotPanel?.querySelector('#ss-video-status');
-
-        // Frame dimensions for crop
-        let frameWidth = null, frameHeight = null, containerWidth = null, containerHeight = null;
-        if (this.screenshotFramePanel) {
-            const container = document.getElementById('flexframe-viewer-container');
-            if (container) {
-                const containerRect = container.getBoundingClientRect();
-                containerWidth = containerRect.width;
-                containerHeight = containerRect.height;
-                // Compute frame size for this preset's aspect ratio
-                const vw = window.innerWidth, vh = window.innerHeight;
-                const targetAspect = cfg.w / cfg.h;
-                const viewportAspect = vw / vh;
-                if (targetAspect > viewportAspect) {
-                    frameWidth = Math.min(cfg.w, vw * 0.8);
-                    frameHeight = frameWidth / targetAspect;
-                } else {
-                    frameHeight = Math.min(cfg.h, vh * 0.8);
-                    frameWidth = frameHeight * targetAspect;
-                }
-            }
-        }
-
-        allRecordButtons.forEach(b => { b.disabled = true; b.classList.add('recording'); });
-        if (status) { status.className = 'ss-video-status'; status.textContent = `Recording ${cfg.loops} loops (ultra quality)...`; }
-
-        // Show share link
-        const shareDiv = panel.querySelector('#ss-share-link');
-        const shareInput = panel.querySelector('#ss-share-input');
-        const shareCopyBtn = panel.querySelector('#ss-share-copy-btn');
-        if (shareDiv && shareInput && this.currentExerciseId) {
-            const baseUrl = window.flexframeSettings?.viewerPageUrl
-                || (window.location.origin + window.location.pathname);
-            const shareUrl = baseUrl.replace(/\?.*$/, '') + '?exercise=' + encodeURIComponent(this.currentExerciseId);
-            shareInput.value = shareUrl;
-            shareDiv.style.display = 'block';
-            if (shareCopyBtn) {
-                shareCopyBtn.onclick = () => {
-                    navigator.clipboard?.writeText(shareUrl).then(() => {
-                        shareCopyBtn.textContent = 'Copied!';
-                        shareCopyBtn.classList.add('copied');
-                        setTimeout(() => { shareCopyBtn.textContent = 'Copy'; shareCopyBtn.classList.remove('copied'); }, 2000);
-                    });
-                };
-            }
-        }
-
-        // 30-second countdown
-        let countdownSec = 20;
-        if (status) { status.className = 'ss-video-status counting'; status.textContent = `Generating 360 Degree Video… ${countdownSec}s`; }
-        const countdownTimer = setInterval(() => {
-            countdownSec--;
-            if (countdownSec > 0 && status) status.textContent = `Generating 360 Degree Video… ${countdownSec}s`;
-        }, 1000);
-
-        // Build angles with preset pan applied
-        const capturedAngles = (this._videoAngles || [])
-            .map(a => a ? { ...a, panDegrees: cfg.pan, panDirection: 1, loops: null } : null)
-            .filter(a => a !== null);
-
-        try {
-            const result = await ScreenshotUtils.recordTimelineVideo(renderer, scene, camera, this.animationPlayer, this.mixer, {
-                width: cfg.w,
-                height: cfg.h,
-                filename: `${presetKey}_video_${cfg.w}x${cfg.h}`,
-                fps: 30,
-                quality: 'ultra',
-                loops: cfg.loops,
-                cameraAngles: capturedAngles,
-                frameWidth, frameHeight, containerWidth, containerHeight,
-                showFloorShadow: false,
-                ground: this.ground,
-                overlayLogoUrl: window.flexframeSettings?.logoUrl || null,
-                overlayLogoPosition: cfg.logoPosition,
-                overlayLogoScale: cfg.logoScale ?? 1,
-                overlayExerciseName: null,
-            });
-            clearInterval(countdownTimer);
-            if (status) {
-                status.className = 'ss-video-status';
-                status.classList.add(result.success ? 'success' : 'error');
-                status.textContent = result.success ? `Saved ${result.filename}` : (result.error || 'Recording failed.');
-            }
-        } catch (error) {
-            clearInterval(countdownTimer);
-            if (status) { status.className = 'ss-video-status error'; status.textContent = error.message || 'Recording failed.'; }
-        } finally {
-            allRecordButtons.forEach(b => { b.disabled = false; b.classList.remove('recording'); });
         }
     }
 
