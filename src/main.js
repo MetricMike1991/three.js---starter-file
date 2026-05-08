@@ -78,6 +78,7 @@ import SettingsManager from './js/settings.js';
 import AnimationPlayer from './js/animation-player.js';
 import { ScreenshotUtils } from './js/screenshot-utils.js';
 import { AnnotationManager } from './js/annotation-manager.js';
+import { BatchRecorder } from './js/batch-recorder.js';
 import { MultiThumbnailMenuSystem } from './js/multi-thumbnail-menu.js';
 import { RightMenuSystem } from './js/right-menu-system.js';
 import { arHandler } from './js/ar-handler.js';
@@ -415,6 +416,7 @@ class ThreeJSApp {
 
         // Initialize annotation manager (init() called after setupRenderer below)
         this.annotationManager = new AnnotationManager();
+        this.batchRecorder = new BatchRecorder(this);
         
         // Set scene reference for camera raycasting
         this.cameraManager.setScene(this.sceneManager.getScene());
@@ -5791,6 +5793,64 @@ class ThreeJSApp {
         }
     }
     
+    /**
+     * Load an exercise programmatically and await the model being ready.
+     * Called by both the exercisesSelected DOM event and the BatchRecorder.
+     * YouTube-only exercises are skipped immediately.
+     */
+    async _handleExerciseSelected(exercise) {
+        this.currentExerciseName = exercise.name;
+        this.currentExerciseId   = exercise.id || '';
+        if (this.annotationManager) this.annotationManager.setExerciseId(this.currentExerciseId);
+
+        // Skip YouTube-only custom exercises
+        if (exercise.source === 'custom' && exercise.youtubeUrl) return;
+
+        this.hideYouTubeViewer();
+
+        if (!exercise.configUrl) return;
+
+        const resolvedConfigUrl  = getAssetUrl(exercise.configUrl.replace('./', ''));
+        const response           = await fetch(resolvedConfigUrl + `?t=${Date.now()}`);
+        if (!response.ok) throw new Error(`Config fetch failed: ${response.status}`);
+        const config = await response.json();
+
+        this.currentConfig    = config;
+        arHandler.updateConfig(config, exercise.thumbnailUrl);
+        this.pendingModelConfig = config.model;
+        this.modelUrlSQ         = config.modelUrl || config.modelUrlSQ;
+        this.modelUrlHQ         = config.modelUrlHQ;
+        this.currentModelQuality = 'SQ';
+        this.isQualitySwitching  = false;
+        this.isModelLoading      = false;
+        this.updateQualityButtonVisibility();
+
+        if (this.modelUrlSQ) {
+            await this.loadModel(this.modelUrlSQ);
+        } else if (this.modelUrlHQ) {
+            this.currentModelQuality = 'HQ';
+            await this.loadModel(this.modelUrlHQ);
+        }
+
+        if (config.camera) {
+            const camera   = this.cameraManager.getCamera();
+            const controls = this.cameraManager.getControls();
+            if (config.camera.position) camera.position.set(...config.camera.position);
+            if (config.camera.rotation) camera.rotation.set(...config.camera.rotation);
+            if (config.camera.target)   controls.target.set(...config.camera.target);
+            controls.update();
+            this.cameraManager.updateOriginalState(
+                config.camera.position,
+                config.camera.rotation,
+                config.camera.target
+            );
+        }
+
+        if (config.rightMenuTabs && window.rightMenuManager) {
+            window.rightMenuManager.updateFromConfig(config.rightMenuTabs, exercise);
+        }
+    }
+
     loadModel(modelUrl = getAssetUrl('models/exercise.glb')) {
         return new Promise((resolve, reject) => {
         // Show loading spinner
