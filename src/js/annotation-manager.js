@@ -27,6 +27,9 @@ export class AnnotationManager {
         this.markerEls    = new Map();    // annotationId (number|string) -> DOM element
         this.activeCard   = null;
 
+        // wp_localize_script casts booleans to strings: true→"1", false→""
+        // Use ?? true so annotations are ON by default if key is absent
+        this.enabled     = Boolean(window.flexframeSettings?.annotationsEnabled ?? true);
         this.isLoggedIn  = !!(window.flexframeSettings?.isLoggedIn);
         this.restUrl     = window.flexframeSettings?.restUrl     || '';
         this.restNonce   = window.flexframeSettings?.restNonce   || '';
@@ -39,6 +42,8 @@ export class AnnotationManager {
     // ─── Public API ──────────────────────────────────────────────────────────
 
     init(renderer, camera, container) {
+        if (!this.enabled) return;
+
         this.renderer  = renderer;
         this.camera    = camera;
         this.container = container;
@@ -81,6 +86,7 @@ export class AnnotationManager {
     }
 
     setExerciseId(id) {
+        if (!this.enabled) return;
         this.exerciseId = id;
         this._clearAll();
         if (id) this._loadAnnotations();
@@ -88,6 +94,7 @@ export class AnnotationManager {
 
     /** Call from main animate() loop */
     update() {
+        if (!this.enabled) return;
         if (!this.camera || !this.renderer || !this.model || this._bones.length === 0) return;
 
         const canvas = this.renderer.domElement;

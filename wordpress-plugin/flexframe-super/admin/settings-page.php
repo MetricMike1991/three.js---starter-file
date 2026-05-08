@@ -2334,6 +2334,13 @@ function flexframe_register_settings() {
         'sanitize_callback' => 'rest_sanitize_boolean',
         'default' => false
     ));
+
+    // ========== Annotations (Step 12) ==========
+    register_setting('flexframe_settings_group', 'flexframe_annotations_enabled', array(
+        'type' => 'boolean',
+        'sanitize_callback' => 'rest_sanitize_boolean',
+        'default' => true
+    ));
 }
 add_action('admin_init', 'flexframe_register_settings');
 
@@ -5582,6 +5589,16 @@ function flexframe_settings_page() {
                         <p class="description" style="margin-bottom:18px;">
                             <?php _e('Manage point-of-interest annotations attached to 3D exercise models. Export/import to transfer between sites, show/hide per-exercise, or delete all annotations for an exercise.', 'flexframe-viewer'); ?>
                         </p>
+
+                        <!-- Enable / disable toggle -->
+                        <div style="margin-bottom:20px;padding:12px 16px;background:rgba(0,0,0,0.03);border:1px solid #ddd;border-radius:6px;display:flex;align-items:center;gap:12px;">
+                            <label style="display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;">
+                                <input type="checkbox" name="flexframe_annotations_enabled" value="1"
+                                    <?php checked(get_option('flexframe_annotations_enabled', true)); ?>>
+                                <?php _e('Enable Annotations', 'flexframe-viewer'); ?>
+                            </label>
+                            <span class="description" style="margin:0;"><?php _e('When unchecked, annotation markers are hidden from all visitors and no Shift+click placement is available.', 'flexframe-viewer'); ?></span>
+                        </div>
 
                         <!-- Export / Import row -->
                         <div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:24px;">

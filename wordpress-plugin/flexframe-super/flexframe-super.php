@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame Super
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.45.9
+ * Version: 1.45.11
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.45.9');
+define('FLEXFRAME_VERSION', '1.45.11');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Force HTTPS to prevent mixed-content warnings on SSL sites
 define('FLEXFRAME_PLUGIN_URL', str_replace('http://', 'https://', plugin_dir_url(__FILE__)));
@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CAbCy6h1.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BlBFzbEj.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -4595,7 +4595,8 @@ function flexframe_enqueue_assets() {
             'aiProviders' => array(
                 'openai' => defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '',
                 'gemini' => defined('FLEXFRAME_GEMINI_KEY') && FLEXFRAME_GEMINI_KEY !== '',
-            )
+            ),
+            'annotationsEnabled' => (bool) get_option('flexframe_annotations_enabled', true),
         );
         
         flexframe_log('Passing settings to JavaScript', $settings_data);
@@ -5316,7 +5317,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CAbCy6h1.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-BlBFzbEj.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
