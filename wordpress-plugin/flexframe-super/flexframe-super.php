@@ -3,7 +3,7 @@
  * Plugin Name: FlexFrame Super
  * Plugin URI: https://flexframe.com
  * Description: 3D interactive exercise viewer with customizable logo and materials
- * Version: 1.45.22
+ * Version: 1.45.23
  * Author: FlexFrame
  * Author URI: https://flexframe.com
  * License: GPL v2 or later
@@ -33,7 +33,7 @@ function flexframe_log($message, $data = null) {
 }
 
 // Define plugin constants
-define('FLEXFRAME_VERSION', '1.45.22');
+define('FLEXFRAME_VERSION', '1.45.23');
 define('FLEXFRAME_PLUGIN_DIR', plugin_dir_path(__FILE__));
 // Force HTTPS to prevent mixed-content warnings on SSL sites
 define('FLEXFRAME_PLUGIN_URL', str_replace('http://', 'https://', plugin_dir_url(__FILE__)));
@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-JlFhi79Y.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DQm6VotD.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -4542,6 +4542,7 @@ function flexframe_enqueue_assets() {
         $settings_data = array(
             'primaryColorMode' => $primary_color_mode,
             'primaryColor' => $primary_color,
+            'primaryColorUpdated' => (int) get_option('flexframe_primary_color_updated', 0),
             'logoUrl' => $logo_url,
             'logoThreshold' => $logo_threshold,
             'logoBorderEnabled' => (bool) $logo_border_enabled,
@@ -4801,6 +4802,10 @@ function flexframe_save_primary_color() {
     // Update the primary color option
     update_option('flexframe_primary_color', $primary_color);
     
+    // Record when the primary color last changed (server time) so the Theme
+    // Editor's localStorage override can be compared against PHP-settings saves.
+    update_option('flexframe_primary_color_updated', time());
+    
     // Also set primary color mode to 'custom' when saving a custom color
     update_option('flexframe_primary_color_mode', 'custom');
     
@@ -4879,7 +4884,8 @@ function flexframe_save_primary_color() {
         'message' => 'Primary color saved successfully',
         'color' => $primary_color,
         'saved_color' => $saved_color,
-        'saved_mode' => $saved_mode
+        'saved_mode' => $saved_mode,
+        'updated' => (int) get_option('flexframe_primary_color_updated', 0)
     ]);
 }
 add_action('wp_ajax_flexframe_save_primary_color', 'flexframe_save_primary_color');
@@ -5317,7 +5323,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-JlFhi79Y.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DQm6VotD.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');

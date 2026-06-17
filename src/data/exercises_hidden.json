@@ -4995,5 +4995,18 @@
                             "step3":  "Engage your core and shoulders to maintain stability as you begin walking. Keep your gaze forward and your body straight, avoiding any leaning or tilting to the sides.",
                             "step4":  "Walk a predetermined distance or for a set period of time. Once completed, carefully lower the kettlebell back to shoulder height and then to the ground in a controlled manner, switching arms if necessary to repeat the exercise on the other side."
                         }
+    },
+    {
+        "id":  "chris_test",
+        "name":  "Chris Test (Hidden)",
+        "thumbnailUrl":  "",
+        "configUrl":  "https://FlexFrame.b-cdn.net/Hidden%20Exercises%20For%20Video%20Recording/chris_test.json",
+        "muscleGroup":  [
+
+                        ],
+        "equipment":  [
+
+                      ],
+        "type":  "Strength"
     }
 ]

@@ -1,0 +1,19 @@
+{
+  "exerciseId": "chris_test",
+  "modelUrlSQ": "https://FlexFrame.b-cdn.net/Hidden%20Exercises%20For%20Video%20Recording/Chris_Test.glb",
+  "modelUrlHQ": "https://FlexFrame.b-cdn.net/Hidden%20Exercises%20For%20Video%20Recording/Chris_Test.glb",
+  "model": {
+    "position": [0, 0, 0],
+    "rotation": [0, 0, 0],
+    "scale": [1, 1, 1]
+  },
+  "camera": {
+    "position": [0, 1.5, 3],
+    "rotation": [0, 0, 0],
+    "target": [0, 1, 0]
+  },
+  "customTextures": {},
+  "primaryMuscleGroup": "",
+  "equipmentType": "",
+  "type": "Strength"
+}

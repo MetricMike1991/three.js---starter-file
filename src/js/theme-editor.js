@@ -131,6 +131,30 @@ class ThemeEditor {
         
         // Then load settings to populate the inputs
         this.loadCurrentSettings();
+
+        // Primary color source-of-truth resolution.
+        // WordPress (PHP/Client settings) is authoritative. We only fall back to a
+        // locally-cached color when it is NEWER than WordPress's saved value — i.e.
+        // the user just saved via the Theme Editor and full-page caching is still
+        // serving stale inline CSS. Otherwise WordPress wins and we refresh
+        // localStorage, so a stale Theme Editor color can never override a more
+        // recent change made in the PHP/Client settings page. Both timestamps come
+        // from the server clock, so there is no client/server skew to worry about.
+        const _ws = window.flexframeSettings || {};
+        const _wpColor = typeof _ws.primaryColor === 'string' ? _ws.primaryColor : '';
+        const _wpTs = parseInt(_ws.primaryColorUpdated || 0, 10) || 0;
+        const _lsColor = localStorage.getItem('ff_primary_color');
+        const _lsTs = parseInt(localStorage.getItem('ff_primary_color_ts') || '0', 10) || 0;
+        const _hexOk = /^#[0-9A-Fa-f]{6}$/;
+
+        if (_lsColor && _hexOk.test(_lsColor) && _lsTs > _wpTs) {
+            // Local cache is newer than the server value → apply over stale CSS.
+            this.applyPrimaryColorToElements(_lsColor);
+        } else if (_wpColor && _hexOk.test(_wpColor)) {
+            // WordPress is the source of truth → discard any stale local override.
+            localStorage.setItem('ff_primary_color', _wpColor);
+            localStorage.setItem('ff_primary_color_ts', String(_wpTs));
+        }
         
         // Check for URL parameter to auto-open
         const urlParams = new URLSearchParams(window.location.search);
@@ -200,10 +224,21 @@ class ThemeEditor {
     loadCurrentSettings() {
         // Load current settings from the app
         const ws = window.flexframeSettings || {};
-        
+
+        // Resolve the primary color using the same server-timestamp rule as init():
+        // WordPress is authoritative, and a localStorage value only wins when it is
+        // NEWER than WordPress's saved value (i.e. the user just saved via the Theme
+        // Editor and full-page caching is still serving stale data). This prevents a
+        // stale cached color from masking a more recent PHP/Client settings save.
+        const _storedPrimary = localStorage.getItem('ff_primary_color');
+        const _storedPrimaryTs = parseInt(localStorage.getItem('ff_primary_color_ts') || '0', 10) || 0;
+        const _wpPrimaryTs = parseInt(ws.primaryColorUpdated || 0, 10) || 0;
+        const _validStored = _storedPrimary && /^#[0-9A-Fa-f]{6}$/.test(_storedPrimary) && _storedPrimaryTs > _wpPrimaryTs;
+        const _resolvedPrimary = _validStored ? _storedPrimary : (ws.primaryColor || '#4a9eff');
+
         this.currentSettings = {
-            // Primary Color (Step 1)
-            primaryColor: ws.primaryColor || '#4a9eff',
+            // Primary Color (Step 1) — localStorage wins only when newer than WordPress
+            primaryColor: _resolvedPrimary,
             
             // UI Settings
             spinnerColor: ws.uiSettings?.spinnerColor || '#00f510',
@@ -287,7 +322,7 @@ class ThemeEditor {
             chromeMetalness: ws.equipmentMaterials?.CHROME?.metalness ?? 1,
             chromeRoughness: ws.equipmentMaterials?.CHROME?.roughness ?? 0.1,
             
-            color1Color: ws.equipmentMaterials?.COLOR1?.color || ws.primaryColor || '#4a9eff',
+            color1Color: ws.equipmentMaterials?.COLOR1?.color || _resolvedPrimary || '#4a9eff',
             color1Opacity: ws.equipmentMaterials?.COLOR1?.opacity ?? 1,
             color1Metalness: ws.equipmentMaterials?.COLOR1?.metalness ?? 0.5,
             color1Roughness: ws.equipmentMaterials?.COLOR1?.roughness ?? 0.5,
@@ -1235,6 +1270,20 @@ class ThemeEditor {
             const hexDisplay = this.panel.querySelector('[data-hex-for="color1Color"]');
             if (hexDisplay) hexDisplay.textContent = color;
         }
+        // Push the new brand color to the live 3D model's COLOR1/brand materials
+        // (and their HD / XCLOTHES counterparts) so the model accent follows the
+        // primary color, mirroring the server-side propagation done on save.
+        if (window.model && typeof this.updateEquipmentMaterial === 'function') {
+            this.updateEquipmentMaterial('color1');
+            if (typeof this.updateXClothesMaterialColor === 'function') {
+                this.updateXClothesMaterialColor(color);
+            }
+            if (typeof this.updateHDMaterialColor === 'function') {
+                this.updateHDMaterialColor('XCOLOR', color);
+                this.updateHDMaterialColor('BUMPER', color);
+                this.updateHDMaterialColor('XBUMPER', color);
+            }
+        }
         
         // 8. NOW update Menu V2 styling with the new accent/heading colors set above
         this.updateMenuStyling();
@@ -1270,10 +1319,17 @@ class ThemeEditor {
         .then(response => response.json())
         .then(data => {
             if (data.success) {
+                // Persist to localStorage so the color survives full-page cache hits on future loads.
+                // Store the server timestamp so a later PHP-settings save can supersede this value.
+                localStorage.setItem('ff_primary_color', color);
+                const _savedTs = (data.data && data.data.updated) ? data.data.updated : Math.floor(Date.now() / 1000);
+                localStorage.setItem('ff_primary_color_ts', String(_savedTs));
                 btn.textContent = 'Applying...';
-                // Reload page with cache-busting to force fresh load
+                // Reload page with cache-busting to force fresh load.
+                // Preserve openThemeEditor=1 so the Theme Editor re-opens after the
+                // reload instead of leaving the user on a page with no way back to it.
                 setTimeout(() => {
-                    window.location.href = window.location.href.split('?')[0] + '?t=' + Date.now();
+                    window.location.href = window.location.href.split('?')[0] + '?openThemeEditor=1&t=' + Date.now();
                 }, 500);
             } else {
                 btn.textContent = 'Error!';

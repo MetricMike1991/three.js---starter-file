@@ -77,8 +77,6 @@ import ParticleSystem from './js/particles.js';
 import SettingsManager from './js/settings.js';
 import AnimationPlayer from './js/animation-player.js';
 import { ScreenshotUtils } from './js/screenshot-utils.js';
-import { AnnotationManager } from './js/annotation-manager.js';
-import { BatchRecorder } from './js/batch-recorder.js';
 import { MultiThumbnailMenuSystem } from './js/multi-thumbnail-menu.js';
 import { RightMenuSystem } from './js/right-menu-system.js';
 import { arHandler } from './js/ar-handler.js';
@@ -220,7 +218,6 @@ class ThreeJSApp {
             const exercise = e.detail.item;
             this.currentExerciseName = exercise.name;
             this.currentExerciseId = exercise.id || '';
-            if (this.annotationManager) this.annotationManager.setExerciseId(this.currentExerciseId);
             
             // Show "Add to Workout" button if workout page is configured
             this.showAddToWorkoutButton(exercise);
@@ -413,10 +410,6 @@ class ThreeJSApp {
         
         // Screenshot manager disabled for now
         this.screenshotManager = null;
-
-        // Initialize annotation manager (init() called after setupRenderer below)
-        this.annotationManager = new AnnotationManager();
-        this.batchRecorder = new BatchRecorder(this);
         
         // Set scene reference for camera raycasting
         this.cameraManager.setScene(this.sceneManager.getScene());
@@ -468,13 +461,6 @@ class ThreeJSApp {
 
         // Setup components
         this.setupRenderer();
-
-        // Init annotation manager now that renderer exists
-        {
-            const _vc = document.getElementById('flexframe-viewer-container') || this.sceneManager.getCanvas().parentElement;
-            this.annotationManager.init(this.renderer, this.cameraManager.getCamera(), _vc);
-        }
-
         this.setupGround();
         this.setupGUI();
         // Don't load a default model - wait for user to select an exercise
@@ -529,6 +515,16 @@ class ThreeJSApp {
         
         // Check for test model from WordPress settings
         this.checkForTestModel();
+
+        // If no specific exercise or test model was requested, auto-load a random
+        // exercise from the library so the viewer isn't empty on first open.
+        // Skip in embed mode (iframes always receive an explicit exercise param).
+        if (!window.flexframeSettings?.embedMode &&
+            !window.flexframeSettings?.testModelEnabled &&
+            !new URLSearchParams(window.location.search).get('exercise') &&
+            !window.location.hash) {
+            this.loadRandomExercise();
+        }
         
         // Listen for postMessage requests from parent (embed customizer)
         this.setupPostMessageListener();
@@ -588,11 +584,7 @@ class ThreeJSApp {
             exerciseSlug = window.location.hash.substring(1); // Remove the #
         }
         
-        if (!exerciseSlug) {
-            // No URL param — load a random exercise
-            this.loadRandomExercise();
-            return;
-        }
+        if (!exerciseSlug) return;
         
         console.log('🔗 URL exercise parameter found:', exerciseSlug);
         
@@ -606,28 +598,6 @@ class ThreeJSApp {
         this.waitForExercisesAndSelect(normalizedSlug, exerciseSlug);
     }
     
-    async loadRandomExercise() {
-        let attempts = 0;
-        const maxAttempts = 50;
-        while (attempts < maxAttempts) {
-            const exercises = window.menuManager?.menus?.search?.allExercises;
-            if (exercises?.length > 0) {
-                const exercise = exercises[Math.floor(Math.random() * exercises.length)];
-                console.log('[FlexFrame] Loading random exercise:', exercise.name);
-                const event = new CustomEvent('exercisesSelected', {
-                    detail: { item: exercise, menuType: 'random-default' }
-                });
-                document.dispatchEvent(event);
-                if (window.menuManager?.menus?.search) {
-                    window.menuManager.menus.search.selectedId = exercise.id;
-                }
-                return;
-            }
-            await new Promise(resolve => setTimeout(resolve, 100));
-            attempts++;
-        }
-    }
-
     async waitForExercisesAndSelect(normalizedSlug, originalSlug) {
         // Wait for menu manager to be available
         let attempts = 0;
@@ -701,6 +671,46 @@ class ThreeJSApp {
             console.error('🧪 [Model Tester] Failed to load test model:', error);
             this._isTestModel = false;
         }
+    }
+
+    /**
+     * Auto-load a random exercise from the library when the viewer opens with no
+     * specific exercise requested. Waits for the menu system to finish loading its
+     * exercise list, then dispatches an exercisesSelected event for a random entry,
+     * exactly as if the user had clicked a thumbnail.
+     */
+    async loadRandomExercise() {
+        let attempts = 0;
+        const maxAttempts = 50; // 5 s max
+
+        while (attempts < maxAttempts) {
+            const menuManager = window.menuManager;
+            const exercises = menuManager?.menus?.search?.allExercises;
+
+            if (exercises?.length > 0) {
+                // Filter out any exercises that are hidden
+                const hidden = window.flexframeSettings?.hiddenExercises || [];
+                const visible = exercises.filter(ex => !hidden.includes(ex.id));
+                const pool = visible.length > 0 ? visible : exercises;
+
+                const randomExercise = pool[Math.floor(Math.random() * pool.length)];
+                console.log('🎲 [Random Exercise] Auto-loading:', randomExercise.name);
+
+                document.dispatchEvent(new CustomEvent('exercisesSelected', {
+                    detail: { item: randomExercise, menuType: 'auto-random' }
+                }));
+
+                if (menuManager.menus.search) {
+                    menuManager.menus.search.selectedId = randomExercise.id;
+                }
+                return;
+            }
+
+            await new Promise(resolve => setTimeout(resolve, 100));
+            attempts++;
+        }
+
+        console.warn('⚠️ [Random Exercise] Timed out waiting for exercise list');
     }
 
     /**
@@ -2958,329 +2968,58 @@ class ThreeJSApp {
         panel.innerHTML = `
             <div class="screenshot-panel-header">
                 <span>Screenshot Settings</span>
+                <button class="screenshot-panel-close">✕</button>
             </div>
             <div class="screenshot-panel-content">
-                <div class="ss-tabs">
-                    <button class="ss-tab active" data-tab="screenshot">Screenshot</button>
-                    <button class="ss-tab" data-tab="video">Video</button>
-                    <button class="ss-tab" data-tab="ai" style="display:none">A.I Image</button>
-                </div>
-                <div class="ss-tab-panel" data-panel="screenshot">
-                    <div class="screenshot-presets">
-                        <button class="ss-preset-btn" id="ss-preset-thumbnail">Thumbnail</button>
-                        <button class="ss-preset-btn" id="ss-preset-hd">HD</button>
+                <div class="ss-group collapsed" data-group="screenshot">
+                    <div class="ss-group-header">
+                        <span class="ss-group-title">Screenshot</span>
+                        <span class="ss-group-chevron">▾</span>
                     </div>
-                    <div class="screenshot-row">
-                        <label>Width</label>
-                        <input type="number" id="ss-width" value="800" min="100" max="4096">
-                    </div>
-                    <div class="screenshot-row">
-                        <label>Height</label>
-                        <input type="number" id="ss-height" value="800" min="100" max="4096">
-                    </div>
-                    <div class="screenshot-row">
-                        <label>Format</label>
-                        <select id="ss-format">
-                            <option value="png">PNG</option>
-                            <option value="jpg">JPG</option>
-                            <option value="webp">WebP</option>
-                        </select>
-                    </div>
-                    <div class="screenshot-row checkbox-row">
-                        <label>Transparent Background</label>
-                        <input type="checkbox" id="ss-transparent">
-                    </div>
-                    <div class="screenshot-row checkbox-row">
-                        <label>Show Floor Shadow</label>
-                        <input type="checkbox" id="ss-floor-shadow">
-                    </div>
-                    <div class="screenshot-row">
-                        <label>Filename</label>
-                        <input type="text" id="ss-filename" value="screenshot">
-                    </div>
-                    <div class="screenshot-buttons">
-                        <button class="ss-btn ss-custom">Take Screenshot</button>
-                    </div>
-                </div>
-                <div class="ss-tab-panel" data-panel="video" style="display:none">
-                    <!-- Preset buttons -->
-                    <div class="vid-preset-row">
-                        <input type="hidden" id="vid-logo-position" value="top-left">
-                        <button class="vid-preset-btn" data-preset="vertical">
-                            <span class="vid-preset-thumb vid-preset-thumb--vertical"></span>
-                            <span class="vid-preset-name">Vertical Video</span>
-                            <span class="vid-preset-ratio">9:16</span>
-                        </button>
-                        <button class="vid-preset-btn" data-preset="square">
-                            <span class="vid-preset-thumb vid-preset-thumb--square"></span>
-                            <span class="vid-preset-name">Square Video</span>
-                            <span class="vid-preset-ratio">1:1</span>
-                        </button>
-                    </div>
-                    <!-- Vertical preset panel -->
-                    <div class="vid-preset-panel" id="vid-preset-vertical" style="display:none">
-                        <div class="vid-preset-info">
-                            <span class="vid-preset-info-label">Story / Reels</span>
-                            <span class="vid-preset-info-dim">1080 × 1920</span>
+                    <div class="ss-group-body">
+                        <div class="screenshot-presets">
+                            <button class="ss-preset-btn" id="ss-preset-thumbnail">Thumbnail</button>
+                            <button class="ss-preset-btn" id="ss-preset-hd">HD</button>
                         </div>
-                        <div class="screenshot-buttons" style="margin-top:10px">
-                            <button class="ss-btn ss-video ss-video-preset" data-preset="vertical">Record Vertical Video</button>
+                        <div class="screenshot-row">
+                            <label>Width</label>
+                            <input type="number" id="ss-width" value="800" min="100" max="4096">
                         </div>
-                    </div>
-                    <!-- Square preset panel -->
-                    <div class="vid-preset-panel" id="vid-preset-square" style="display:none">
-                        <div class="vid-preset-info">
-                            <span class="vid-preset-info-label">Square Post</span>
-                            <span class="vid-preset-info-dim">2000 × 2000</span>
+                        <div class="screenshot-row">
+                            <label>Height</label>
+                            <input type="number" id="ss-height" value="800" min="100" max="4096">
                         </div>
-                        <div class="screenshot-buttons" style="margin-top:10px">
-                            <button class="ss-btn ss-video ss-video-preset" data-preset="square">Record Square Video</button>
+                        <div class="screenshot-row">
+                            <label>Format</label>
+                            <select id="ss-format">
+                                <option value="png">PNG</option>
+                                <option value="jpg">JPG</option>
+                                <option value="webp">WebP</option>
+                            </select>
                         </div>
-                    </div>
-                    <!-- Custom settings collapsible -->
-                    <details class="vid-custom-details">
-                        <summary class="vid-custom-summary">&#9662; Custom Video Settings</summary>
-                        <div class="vid-custom-body">
-                    <div class="screenshot-row">
-                        <label>Width</label>
-                        <input type="number" id="vid-width" value="2500" min="100" max="4096">
-                    </div>
-                    <div class="screenshot-row">
-                        <label>Height</label>
-                        <input type="number" id="vid-height" value="2500" min="100" max="4096">
-                    </div>
-                    <div class="screenshot-row">
-                        <label>Quality</label>
-                        <select id="vid-quality">
-                            <option value="low">Low</option>
-                            <option value="high">High</option>
-                            <option value="ultra" selected>Ultra</option>
-                        </select>
-                    </div>
-                    <div class="screenshot-row">
-                        <label>Playback Loops</label>
-                        <select id="vid-loops">
-                            <option value="1" selected>1&times; (full play)</option>
-                            <option value="2">2&times;</option>
-                            <option value="3">3&times;</option>
-                            <option value="4">4&times;</option>
-                            <option value="5">5&times;</option>
-                            <option value="6">6&times;</option>
-                            <option value="7">7&times;</option>
-                            <option value="8">8&times;</option>
-                            <option value="9">9&times;</option>
-                            <option value="10">10&times;</option>
-                        </select>
-                    </div>
-                    <div class="screenshot-row checkbox-row">
-                        <label>Show Floor Shadow</label>
-                        <input type="checkbox" id="vid-floor-shadow">
-                    </div>
-                    <div class="screenshot-row checkbox-row">
-                        <label>Overlay Logo</label>
-                        <input type="checkbox" id="vid-overlay-logo">
-                    </div>
-                    <div class="screenshot-row checkbox-row">
-                        <label>Overlay Exercise Name</label>
-                        <input type="checkbox" id="vid-overlay-name">
-                    </div>
-                    <div class="screenshot-row">
-                        <label>Filename</label>
-                        <input type="text" id="vid-filename" value="video">
-                    </div>
-                    <div class="ss-angles-section">
-                        <div class="ss-angles-header">
-                            <span class="ss-angles-label">Camera Angles</span>
-                            <button class="ss-angles-clear-all">Clear All</button>
+                        <div class="screenshot-row checkbox-row">
+                            <label>Transparent Background</label>
+                            <input type="checkbox" id="ss-transparent">
                         </div>
-                        <div class="ss-angles-strip">
-                            <div class="ss-vid-angle-slot" data-slot="0">
-                                <div class="ss-vid-angle-preview">
-                                    <span class="ss-vid-angle-num">1</span>
-                                    <button class="ss-vid-clear-btn" data-slot="0">&times;</button>
-                                </div>
-                                <button class="ss-vid-capture-btn" data-slot="0">Capture 1</button>
-                                <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
-                                    <div class="ss-vid-adv-body">
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Pan</span>
-                                            <select class="ss-vid-pan-deg" data-slot="0">
-                                                <option value="0">None</option>
-                                                <option value="15">15°</option>
-                                                <option value="30">30°</option>
-                                                <option value="45">45°</option>
-                                                <option value="90">90°</option>
-                                                <option value="180">180°</option>
-                                                <option value="360">360°</option>
-                                            </select>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Dir</span>
-                                            <div class="ss-vid-dir-toggle">
-                                                <button type="button" class="ss-vid-dir-btn active" data-dir="left" data-slot="0">◀ L</button>
-                                                <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="0">R ▶</button>
-                                            </div>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="0">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </details>
-                            </div>
-                            <div class="ss-vid-angle-slot" data-slot="1">
-                                <div class="ss-vid-angle-preview">
-                                    <span class="ss-vid-angle-num">2</span>
-                                    <button class="ss-vid-clear-btn" data-slot="1">&times;</button>
-                                </div>
-                                <button class="ss-vid-capture-btn" data-slot="1">Capture 2</button>
-                                <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
-                                    <div class="ss-vid-adv-body">
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Pan</span>
-                                            <select class="ss-vid-pan-deg" data-slot="1">
-                                                <option value="0">None</option>
-                                                <option value="15">15°</option>
-                                                <option value="30">30°</option>
-                                                <option value="45">45°</option>
-                                                <option value="90">90°</option>
-                                                <option value="180">180°</option>
-                                                <option value="360">360°</option>
-                                            </select>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Dir</span>
-                                            <div class="ss-vid-dir-toggle">
-                                                <button type="button" class="ss-vid-dir-btn active" data-dir="left" data-slot="1">◀ L</button>
-                                                <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="1">R ▶</button>
-                                            </div>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="1">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </details>
-                            </div>
-                            <div class="ss-vid-angle-slot" data-slot="2">
-                                <div class="ss-vid-angle-preview">
-                                    <span class="ss-vid-angle-num">3</span>
-                                    <button class="ss-vid-clear-btn" data-slot="2">&times;</button>
-                                </div>
-                                <button class="ss-vid-capture-btn" data-slot="2">Capture 3</button>
-                                <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
-                                    <div class="ss-vid-adv-body">
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Pan</span>
-                                            <select class="ss-vid-pan-deg" data-slot="2">
-                                                <option value="0">None</option>
-                                                <option value="15">15°</option>
-                                                <option value="30">30°</option>
-                                                <option value="45">45°</option>
-                                                <option value="90">90°</option>
-                                                <option value="180">180°</option>
-                                                <option value="360">360°</option>
-                                            </select>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Dir</span>
-                                            <div class="ss-vid-dir-toggle">
-                                                <button type="button" class="ss-vid-dir-btn active" data-dir="left" data-slot="2">◀ L</button>
-                                                <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="2">R ▶</button>
-                                            </div>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="2">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </details>
-                            </div>
-                            <div class="ss-vid-angle-slot" data-slot="3">
-                                <div class="ss-vid-angle-preview">
-                                    <span class="ss-vid-angle-num">4</span>
-                                    <button class="ss-vid-clear-btn" data-slot="3">&times;</button>
-                                </div>
-                                <button class="ss-vid-capture-btn" data-slot="3">Capture 4</button>
-                                <details class="ss-vid-adv">
-                                    <summary class="ss-vid-adv-toggle">&#9662; Advanced</summary>
-                                    <div class="ss-vid-adv-body">
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Pan</span>
-                                            <select class="ss-vid-pan-deg" data-slot="3">
-                                                <option value="0">None</option>
-                                                <option value="15">15°</option>
-                                                <option value="30">30°</option>
-                                                <option value="45">45°</option>
-                                                <option value="90">90°</option>
-                                                <option value="180">180°</option>
-                                                <option value="360">360°</option>
-                                            </select>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Dir</span>
-                                            <div class="ss-vid-dir-toggle">
-                                                <button type="button" class="ss-vid-dir-btn active" data-dir="left" data-slot="3">◀ L</button>
-                                                <button type="button" class="ss-vid-dir-btn" data-dir="right" data-slot="3">R ▶</button>
-                                            </div>
-                                        </div>
-                                        <div class="ss-vid-adv-row">
-                                            <span class="ss-vid-adv-label">Loops</span>
-                                            <select class="ss-vid-loop-count" data-slot="3">
-                                                <option value="">Global</option>
-                                                <option value="1">1×</option>
-                                                <option value="2">2×</option>
-                                                <option value="3">3×</option>
-                                                <option value="4">4×</option>
-                                                <option value="5">5×</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </details>
-                            </div>
+                        <div class="screenshot-row checkbox-row">
+                            <label>Show Floor Shadow</label>
+                            <input type="checkbox" id="ss-floor-shadow">
                         </div>
-                        <p class="ss-angles-hint">Set up to 4 camera angles. Each angle records a full clip in sequence. Recording with no angles uses the current view.</p>
-                    </div>
+                        <div class="screenshot-row">
+                            <label>Filename</label>
+                            <input type="text" id="ss-filename" value="screenshot">
+                        </div>
                         <div class="screenshot-buttons">
-                            <button class="ss-btn ss-video ss-video-custom">Record Video</button>
+                            <button class="ss-btn ss-custom">Take Screenshot</button>
                         </div>
-                        </div><!-- /vid-custom-body -->
-                    </details><!-- /vid-custom-details -->
-                    <div class="ss-video-status" id="ss-video-status"></div>
-                    <div class="ss-share-link" id="ss-share-link" style="display:none">
-                        <div class="ss-share-label">Share this exercise:</div>
-                        <div class="ss-share-row">
-                            <input class="ss-share-input" id="ss-share-input" type="text" readonly />
-                            <button class="ss-share-copy-btn" id="ss-share-copy-btn">Copy</button>
-                        </div>
-                        <div class="ss-share-tip">Post this link alongside your video so your audience can view the exercise and try it for themselves.</div>
                     </div>
                 </div>
-                <div class="ss-tab-panel" data-panel="ai" style="display:none">
+                <div class="ss-ai-section ss-group" data-group="ai" style="display:none;">
+                    <div class="ss-group-header">
+                        <span class="ss-group-title">AI Social Media Post</span>
+                        <span class="ss-group-chevron">▾</span>
+                    </div>
+                    <div class="ss-group-body">
                         <input type="hidden" class="ss-ai-provider" value="openai" />
                         <div class="ss-ai-style-row">
                             <label class="ss-ai-style-label">Figure style</label>
@@ -3308,9 +3047,9 @@ class ThreeJSApp {
                         </div>
                         <button class="ss-btn ss-ai-generate">Generate AI Post</button>
                         <div class="ss-ai-status"></div>
+                    </div>
                 </div>
             </div>
-            <button class="screenshot-panel-close">✕ Close</button>
         `;
         
         // Add styles
@@ -3346,61 +3085,21 @@ class ThreeJSApp {
                 font-weight: 600;
             }
             .screenshot-panel-close {
-                display: block;
-                width: auto;
-                margin: 0 auto 12px;
-                padding: 5px 20px;
-                background: rgba(255, 255, 255, 0.07);
-                border: 1px solid rgba(255, 255, 255, 0.18);
-                border-radius: 20px;
-                color: rgba(255,255,255,0.5);
-                font-size: 11px;
+                background: none;
+                border: none;
+                color: #fff;
+                font-size: 18px;
                 cursor: pointer;
-                text-align: center;
-                letter-spacing: 0.05em;
+                opacity: 0.7;
+                padding: 4px 8px;
+                border-radius: 4px;
             }
             .screenshot-panel-close:hover {
-                background: rgba(255, 60, 60, 0.25);
-                border-color: rgba(255, 80, 80, 0.45);
-                color: rgba(255,255,255,0.9);
+                opacity: 1;
+                background: rgba(255, 255, 255, 0.1);
             }
             .screenshot-panel-content {
                 padding: 16px;
-            }
-            .ss-tabs {
-                display: flex;
-                margin-bottom: 14px;
-                border-radius: 8px;
-                overflow: hidden;
-                border: 1px solid rgba(255, 255, 255, 0.15);
-                background: rgba(255, 255, 255, 0.04);
-            }
-            .ss-tab {
-                flex: 1;
-                padding: 9px 12px;
-                background: transparent;
-                border: none;
-                color: rgba(255, 255, 255, 0.6);
-                font-size: 12px;
-                font-weight: 500;
-                cursor: pointer;
-                transition: all 0.15s;
-                letter-spacing: 0.3px;
-            }
-            .ss-tab + .ss-tab {
-                border-left: 1px solid rgba(255, 255, 255, 0.15);
-            }
-            .ss-tab:hover {
-                background: rgba(255, 255, 255, 0.08);
-                color: #fff;
-            }
-            .ss-tab.active {
-                background: var(--ss-primary-color, #4a9eff);
-                color: #fff;
-                font-weight: 600;
-            }
-            .ss-tab-panel {
-                padding-top: 4px;
             }
             .screenshot-presets {
                 display: flex;
@@ -3479,115 +3178,8 @@ class ThreeJSApp {
             .ss-custom:hover {
                 filter: brightness(1.1);
             }
-            .ss-video {
-                background: rgba(255, 255, 255, 0.12);
-                color: #fff;
-                border: 1px solid rgba(255, 255, 255, 0.22);
-            }
-            .ss-video:hover {
-                background: rgba(255, 255, 255, 0.2);
-            }
-            .ss-video:disabled {
-                opacity: 0.55;
-                cursor: not-allowed;
-            }
-            .ss-video-status {
-                margin-top: 8px;
-                min-height: 14px;
-                font-size: 11px;
-                color: rgba(255, 255, 255, 0.68);
-            }
-            .ss-video-status.counting {
-                font-size: 15px;
-                font-weight: 700;
-                color: #ffffff;
-                background: rgba(255,255,255,0.08);
-                border: 1px solid rgba(255,255,255,0.18);
-                border-radius: 10px;
-                padding: 10px 14px;
-                text-align: center;
-                letter-spacing: 0.01em;
-            }
-            .ss-video-status.error {
-                color: #ff6b6b;
-            }
-            .ss-video-status.success {
-                color: #4ade80;
-            }
-            .ss-share-link {
-                margin-top: 10px;
-                padding: 10px 12px;
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 10px;
-            }
-            .ss-share-label {
-                font-size: 10px;
-                color: rgba(255,255,255,0.5);
-                margin-bottom: 6px;
-                text-transform: uppercase;
-                letter-spacing: 0.06em;
-            }
-            .ss-share-row {
-                display: flex;
-                gap: 6px;
-            }
-            .ss-share-input {
-                flex: 1;
-                background: rgba(0,0,0,0.3);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 6px;
-                color: #fff;
-                font-size: 11px;
-                padding: 5px 8px;
-                outline: none;
-                cursor: text;
-            }
-            .ss-share-copy-btn {
-                background: rgba(255,255,255,0.15);
-                border: 1px solid rgba(255,255,255,0.2);
-                border-radius: 6px;
-                color: #fff;
-                font-size: 11px;
-                padding: 5px 10px;
-                cursor: pointer;
-                white-space: nowrap;
-                transition: background 0.2s;
-            }
-            .ss-share-copy-btn:hover { background: rgba(255,255,255,0.25); }
-            .ss-share-copy-btn.copied { background: rgba(74,222,128,0.25); color: #4ade80; border-color: #4ade80; }
-            .ss-share-tip {
-                margin-top: 8px;
-                font-size: 11px;
-                line-height: 1.5;
-                color: rgba(255,255,255,0.55);
-                background: rgba(255,255,255,0.04);
-                border-left: 2px solid rgba(255,255,255,0.2);
-                border-radius: 0 6px 6px 0;
-                padding: 6px 8px;
-            }
-            @keyframes ss-spin {
-                to { transform: rotate(360deg); }
-            }
-            .ss-video.recording {
-                position: relative;
-                color: transparent !important;
-                pointer-events: none;
-            }
-            .ss-video.recording::after {
-                content: '';
-                position: absolute;
-                inset: 0;
-                margin: auto;
-                width: 16px;
-                height: 16px;
-                border: 2px solid rgba(255,255,255,0.3);
-                border-top-color: #fff;
-                border-radius: 50%;
-                animation: ss-spin 0.7s linear infinite;
-            }
-            .ss-ai-tab-content {
-                margin-top: 0;
+            .ss-ai-section {
+                margin-top: 12px;
             }
             .ss-group {
                 border: 1px solid rgba(255, 255, 255, 0.12);
@@ -3772,289 +3364,9 @@ class ThreeJSApp {
             }
             .ss-ai-status.error { color: #ff6b6b; }
             .ss-ai-status.success { color: #4ade80; }
-            .ss-angles-section {
-                margin: 14px 0 10px 0;
-                border-top: 1px solid rgba(255,255,255,0.1);
-                padding-top: 12px;
-            }
-            .ss-angles-header {
-                display: flex;
-                align-items: center;
-                justify-content: space-between;
-                margin-bottom: 8px;
-            }
-            .ss-angles-label {
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: 0.5px;
-                text-transform: uppercase;
-                opacity: 0.85;
-            }
-            .ss-angles-clear-all {
-                background: transparent;
-                border: none;
-                color: rgba(255,255,255,0.5);
-                font-size: 11px;
-                cursor: pointer;
-                text-decoration: underline;
-                padding: 2px 4px;
-            }
-            .ss-angles-clear-all:hover { color: #fff; }
-            .ss-angles-strip {
-                display: flex;
-                gap: 8px;
-            }
-            .ss-vid-angle-slot {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                align-items: center;
-            }
-            .ss-vid-angle-preview {
-                width: 100%;
-                aspect-ratio: 1;
-                border: 1px dashed rgba(255,255,255,0.25);
-                border-radius: 6px;
-                background: rgba(255,255,255,0.04);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                overflow: hidden;
-                position: relative;
-            }
-            .ss-vid-angle-preview.captured {
-                border: 1px solid rgba(74,158,255,0.6);
-            }
-            .ss-vid-angle-preview img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                display: block;
-            }
-            .ss-vid-angle-num {
-                font-size: 20px;
-                opacity: 0.3;
-                font-weight: 700;
-            }
-            .ss-vid-clear-btn {
-                position: absolute;
-                top: 3px;
-                right: 3px;
-                width: 18px;
-                height: 18px;
-                background: rgba(0,0,0,0.7);
-                border: none;
-                border-radius: 50%;
-                color: #fff;
-                font-size: 11px;
-                cursor: pointer;
-                display: none;
-                align-items: center;
-                justify-content: center;
-                padding: 0;
-                line-height: 1;
-            }
-            .ss-vid-clear-btn:hover { background: rgba(200,50,50,0.85); }
-            .ss-vid-angle-preview.captured .ss-vid-clear-btn {
-                display: flex;
-            }
-            .ss-vid-capture-btn {
-                width: 100%;
-                padding: 5px 4px;
-                background: rgba(255,255,255,0.08);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 5px;
-                color: #fff;
-                font-size: 10px;
-                cursor: pointer;
-                transition: background 0.15s;
-                white-space: nowrap;
-                overflow: hidden;
-                text-overflow: ellipsis;
-            }
-            .ss-vid-capture-btn:hover { background: rgba(255,255,255,0.15); }
-            .ss-angles-hint {
-                font-size: 10px;
-                opacity: 0.5;
-                margin: 6px 0 0 0;
-                line-height: 1.4;
-            }
-            /* Per-slot Advanced settings */
-            .ss-vid-adv {
-                width: 100%;
-            }
-            .ss-vid-adv-toggle {
-                font-size: 8px;
-                line-height: 1.2;
-                opacity: 0.4;
-                cursor: pointer;
-                list-style: none;
-                text-align: center;
-                padding: 2px 0 1px;
-                user-select: none;
-                letter-spacing: 0.02em;
-            }
-            .ss-vid-adv-toggle::-webkit-details-marker { display: none; }
-            .ss-vid-adv-toggle:hover { opacity: 0.8; }
-            details[open] .ss-vid-adv-toggle { opacity: 0.7; }
-            .ss-vid-adv-body {
-                display: flex;
-                flex-direction: column;
-                gap: 5px;
-                padding: 5px 0 3px;
-                border-top: 1px solid rgba(255,255,255,0.08);
-                margin-top: 2px;
-            }
-            .ss-vid-adv-row {
-                display: flex;
-                align-items: center;
-                gap: 5px;
-            }
-            .ss-vid-adv-label {
-                font-size: 9px;
-                opacity: 0.5;
-                min-width: 18px;
-            }
-            .ss-vid-pan-deg,
-            .ss-vid-loop-count {
-                flex: 1;
-                min-width: 0;
-                background: rgba(255,255,255,0.07);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 4px;
-                color: #fff;
-                font-size: 9px;
-                padding: 2px 3px;
-                cursor: pointer;
-            }
-            .ss-vid-pan-deg option,
-            .ss-vid-loop-count option { background: #1a1a2e; }
-            .ss-vid-dir-toggle {
-                display: flex;
-                flex: 1;
-                gap: 3px;
-            }
-            .ss-vid-dir-btn {
-                flex: 1;
-                padding: 3px 2px;
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 4px;
-                color: rgba(255,255,255,0.45);
-                font-size: 9px;
-                cursor: pointer;
-                transition: background 0.15s, color 0.15s, border-color 0.15s;
-            }
-            .ss-vid-dir-btn.active {
-                background: rgba(74,158,255,0.2);
-                border-color: rgba(74,158,255,0.55);
-                color: #6ab4ff;
-            }
-            .ss-vid-dir-btn:hover:not(.active) { background: rgba(255,255,255,0.12); color: #fff; }
-            /* Hide AI tab on mobile-sized viewports */
+            /* Hide AI section on mobile-sized viewports */
             @media (max-width: 768px) {
-                .ss-tab[data-tab="ai"] { display: none !important; }
-            }
-            /* Video preset buttons */
-            .vid-preset-row {
-                display: flex;
-                gap: 8px;
-                margin-bottom: 10px;
-            }
-            .vid-preset-btn {
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                gap: 5px;
-                padding: 10px 8px;
-                background: rgba(255,255,255,0.06);
-                border: 1px solid rgba(255,255,255,0.15);
-                border-radius: 10px;
-                color: #fff;
-                cursor: pointer;
-                transition: background 0.15s, border-color 0.15s;
-            }
-            .vid-preset-btn:hover {
-                background: rgba(255,255,255,0.12);
-                border-color: rgba(255,255,255,0.3);
-            }
-            .vid-preset-btn.active {
-                background: rgba(74,158,255,0.15);
-                border-color: rgba(74,158,255,0.5);
-            }
-            .vid-preset-thumb {
-                display: block;
-                border: 2px solid rgba(255,255,255,0.4);
-                border-radius: 3px;
-                background: rgba(255,255,255,0.08);
-            }
-            .vid-preset-thumb--vertical {
-                width: 18px;
-                height: 32px;
-            }
-            .vid-preset-thumb--square {
-                width: 26px;
-                height: 26px;
-            }
-            .vid-preset-name {
-                font-size: 11px;
-                font-weight: 600;
-                text-align: center;
-                line-height: 1.2;
-            }
-            .vid-preset-ratio {
-                font-size: 10px;
-                color: rgba(255,255,255,0.45);
-            }
-            /* Preset info panel */
-            .vid-preset-panel {
-                background: rgba(74,158,255,0.08);
-                border: 1px solid rgba(74,158,255,0.25);
-                border-radius: 8px;
-                padding: 10px 12px;
-                margin-bottom: 10px;
-                font-size: 12px;
-            }
-            .vid-preset-info {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
-            }
-            .vid-preset-info-label {
-                color: rgba(255,255,255,0.7);
-                font-weight: 500;
-            }
-            .vid-preset-info-dim {
-                color: rgba(74,158,255,0.9);
-                font-weight: 600;
-                font-size: 11px;
-            }
-            /* Custom settings collapsible */
-            .vid-custom-details {
-                border: 1px solid rgba(255,255,255,0.12);
-                border-radius: 8px;
-                margin-bottom: 10px;
-                overflow: hidden;
-            }
-            .vid-custom-summary {
-                display: flex;
-                align-items: center;
-                gap: 6px;
-                padding: 8px 12px;
-                background: rgba(255,255,255,0.06);
-                cursor: pointer;
-                font-size: 12px;
-                font-weight: 500;
-                color: rgba(255,255,255,0.7);
-                list-style: none;
-                user-select: none;
-            }
-            .vid-custom-summary::-webkit-details-marker { display: none; }
-            .vid-custom-summary:hover { color: #fff; background: rgba(255,255,255,0.1); }
-            .vid-custom-body {
-                padding: 10px 4px 4px;
+                .ss-ai-section { display: none !important; }
             }
         `;
         
@@ -4080,29 +3392,7 @@ class ThreeJSApp {
             this.toggleScreenshotPanel(false);
         });
 
-        // Tab switching
-        panel.querySelectorAll('.ss-tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                panel.querySelectorAll('.ss-tab').forEach(t => t.classList.remove('active'));
-                panel.querySelectorAll('.ss-tab-panel').forEach(p => { p.style.display = 'none'; });
-                tab.classList.add('active');
-                panel.querySelector(`.ss-tab-panel[data-panel="${tab.dataset.tab}"]`).style.display = 'block';
-                // Update frame overlay for the newly active tab's dimensions
-                if (tab.dataset.tab === 'video') {
-                    this.updateScreenshotFramePanel(
-                        parseInt(panel.querySelector('#vid-width').value),
-                        parseInt(panel.querySelector('#vid-height').value)
-                    );
-                } else if (tab.dataset.tab === 'screenshot') {
-                    this.updateScreenshotFramePanel(
-                        parseInt(panel.querySelector('#ss-width').value),
-                        parseInt(panel.querySelector('#ss-height').value)
-                    );
-                }
-            });
-        });
-
-        // Collapsible group headers (AI section)
+        // Collapsible group headers
         panel.querySelectorAll('.ss-group-header').forEach(header => {
             header.addEventListener('click', () => {
                 header.parentElement.classList.toggle('collapsed');
@@ -4115,12 +3405,6 @@ class ThreeJSApp {
         });
         panel.querySelector('#ss-height').addEventListener('input', (e) => {
             this.updateScreenshotFramePanel(parseInt(panel.querySelector('#ss-width').value), parseInt(e.target.value));
-        });
-        panel.querySelector('#vid-width').addEventListener('input', (e) => {
-            this.updateScreenshotFramePanel(parseInt(e.target.value), parseInt(panel.querySelector('#vid-height').value));
-        });
-        panel.querySelector('#vid-height').addEventListener('input', (e) => {
-            this.updateScreenshotFramePanel(parseInt(panel.querySelector('#vid-width').value), parseInt(e.target.value));
         });
         
         // Preset buttons
@@ -4149,76 +3433,12 @@ class ThreeJSApp {
             this.takeCustomScreenshot();
         });
 
-        panel.querySelector('.ss-video-custom').addEventListener('click', () => {
-            this.recordCustomVideo();
-        });
-
-        // Preset-specific record buttons (already have correct settings applied by preset click)
-        panel.querySelectorAll('.ss-video-preset').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                await this.recordPresetVideo(btn.dataset.preset);
-            });
-        });
-
-        // Video preset buttons — UI only, never touch custom form inputs
-        this._vidPresetConfigs = {
-            vertical: { w: 1080, h: 1920, loops: 5, pan: 360, logoPosition: 'top-center', logoScale: 2 },
-            square:   { w: 2000, h: 2000, loops: 5, pan: 360, logoPosition: 'top-left',   logoScale: 1 },
-        };
-        panel.querySelectorAll('.vid-preset-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const preset = btn.dataset.preset;
-                const isActive = btn.classList.contains('active');
-                // Deactivate all
-                panel.querySelectorAll('.vid-preset-btn').forEach(b => b.classList.remove('active'));
-                panel.querySelectorAll('.vid-preset-panel').forEach(p => { p.style.display = 'none'; });
-                if (!isActive) {
-                    btn.classList.add('active');
-                    panel.querySelector(`#vid-preset-${preset}`).style.display = 'block';
-                    // Only update the frame overlay preview — nothing else
-                    const cfg = this._vidPresetConfigs[preset];
-                    if (cfg) this.updateScreenshotFramePanel(cfg.w, cfg.h);
-                }
-            });
-        });
-
-        // Video angle capture/clear
-        this._videoAngles = [null, null, null, null];
-        panel.querySelectorAll('.ss-vid-capture-btn').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const slot = parseInt(btn.dataset.slot);
-                btn.textContent = 'Capturing...';
-                btn.disabled = true;
-                await this.captureVideoAngle(slot);
-                btn.disabled = false;
-            });
-        });
-        panel.querySelectorAll('.ss-vid-clear-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                const slot = parseInt(btn.dataset.slot);
-                this._videoAngles[slot] = null;
-                this.updateVideoAngleSlot(slot);
-            });
-        });
-        panel.querySelectorAll('.ss-vid-dir-btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                const slot = btn.dataset.slot;
-                panel.querySelectorAll(`.ss-vid-dir-btn[data-slot="${slot}"]`).forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-            });
-        });
-        panel.querySelector('.ss-angles-clear-all').addEventListener('click', () => {
-            this._videoAngles = [null, null, null, null];
-            [0, 1, 2, 3].forEach(i => this.updateVideoAngleSlot(i));
-        });
-
-        // AI Post tab - only visible when server says AI is available
-        const aiTabBtn = panel.querySelector('.ss-tab[data-tab="ai"]');
+        // AI Post button - only visible when server says AI is available
+        const aiSection = panel.querySelector('.ss-ai-section');
         const aiBtn = panel.querySelector('.ss-ai-generate');
         const isMobileViewport = () => window.matchMedia('(max-width: 768px)').matches;
-        if (window.flexframeSettings?.aiRenderEnabled && aiTabBtn && aiBtn && !isMobileViewport()) {
-            aiTabBtn.style.display = 'inline-block';
+        if (window.flexframeSettings?.aiRenderEnabled && aiSection && aiBtn && !isMobileViewport()) {
+            aiSection.style.display = 'block';
 
             // Style toggle: only one button can be active at a time.
             const styleButtons = panel.querySelectorAll('.ss-ai-style-btn');
@@ -4317,14 +3537,12 @@ class ThreeJSApp {
         document.addEventListener('exercisesSelected', () => {
             if (this.currentExerciseName) {
                 panel.querySelector('#ss-filename').value = this.currentExerciseName;
-                panel.querySelector('#vid-filename').value = this.currentExerciseName;
             }
         });
         
         // Set initial filename
         if (this.currentExerciseName) {
             panel.querySelector('#ss-filename').value = this.currentExerciseName;
-            panel.querySelector('#vid-filename').value = this.currentExerciseName;
         }
     }
     
@@ -4474,26 +3692,13 @@ class ThreeJSApp {
         const newState = forceState !== undefined ? forceState : !isVisible;
         
         this.screenshotPanel.classList.toggle('visible', newState);
-
-        // Hide/show watermark logo while panel is open
-        // A body class is used so the watermark's own setInterval guard respects the state
-        document.body.classList.toggle('ff-panel-open', newState);
-        const watermark = document.getElementById('flexframe-watermark-wrap') || document.getElementById('flexframe-watermark');
-        if (watermark) watermark.style.setProperty('display', newState ? 'none' : '', 'important');
-
+        
         // Show/hide frame with panel (always on when panel is open)
         if (newState) {
-            // Show frame and update it based on the active tab
+            // Show frame and update it
             this.toggleScreenshotFramePanel(true);
-            const activeTab = this.screenshotPanel.querySelector('.ss-tab.active')?.dataset.tab;
-            let width, height;
-            if (activeTab === 'video') {
-                width = parseInt(this.screenshotPanel.querySelector('#vid-width').value);
-                height = parseInt(this.screenshotPanel.querySelector('#vid-height').value);
-            } else {
-                width = parseInt(this.screenshotPanel.querySelector('#ss-width').value);
-                height = parseInt(this.screenshotPanel.querySelector('#ss-height').value);
-            }
+            const width = parseInt(this.screenshotPanel.querySelector('#ss-width').value);
+            const height = parseInt(this.screenshotPanel.querySelector('#ss-height').value);
             this.updateScreenshotFramePanel(width, height);
             
             // Update filename
@@ -4607,311 +3812,6 @@ class ThreeJSApp {
             if (this.ground) {
                 this.ground.visible = originalGroundVisible;
             }
-        }
-    }
-
-    /**
-     * Record using a named preset — auto-captures current view to slot 0 if no angles are set,
-     * ensuring the preset pan setting is actually applied.
-     */
-    async recordPresetVideo(presetKey) {
-        const panel = this.screenshotPanel;
-        if (!panel) return;
-
-        // If no angles are captured yet, auto-capture the current view into slot 0
-        const hasAngles = (this._videoAngles || []).some(a => a !== null);
-        if (!hasAngles) {
-            const captureBtn = panel.querySelector('.ss-vid-capture-btn[data-slot="0"]');
-            if (captureBtn) {
-                captureBtn.textContent = 'Capturing...';
-                captureBtn.disabled = true;
-            }
-            await this.captureVideoAngle(0);
-            if (captureBtn) {
-                captureBtn.disabled = false;
-            }
-        }
-
-        // Build preset-specific recording settings — completely independent of custom form inputs
-        const cfg = this._vidPresetConfigs?.[presetKey];
-        if (!cfg) return;
-
-        const renderer = this.renderer;
-        const scene = this.sceneManager.getScene();
-        const camera = this.cameraManager.getCamera();
-        const allRecordButtons = this.screenshotPanel?.querySelectorAll('.ss-video, .ss-video-preset') || [];
-        const status = this.screenshotPanel?.querySelector('#ss-video-status');
-
-        // Frame dimensions for crop
-        let frameWidth = null, frameHeight = null, containerWidth = null, containerHeight = null;
-        if (this.screenshotFramePanel) {
-            const container = document.getElementById('flexframe-viewer-container');
-            if (container) {
-                const containerRect = container.getBoundingClientRect();
-                containerWidth = containerRect.width;
-                containerHeight = containerRect.height;
-                // Compute frame size for this preset's aspect ratio
-                const vw = window.innerWidth, vh = window.innerHeight;
-                const targetAspect = cfg.w / cfg.h;
-                const viewportAspect = vw / vh;
-                if (targetAspect > viewportAspect) {
-                    frameWidth = Math.min(cfg.w, vw * 0.8);
-                    frameHeight = frameWidth / targetAspect;
-                } else {
-                    frameHeight = Math.min(cfg.h, vh * 0.8);
-                    frameWidth = frameHeight * targetAspect;
-                }
-            }
-        }
-
-        allRecordButtons.forEach(b => { b.disabled = true; b.classList.add('recording'); });
-        if (status) { status.className = 'ss-video-status'; status.textContent = `Recording ${cfg.loops} loops (ultra quality)...`; }
-
-        // Show share link
-        const shareDiv = panel.querySelector('#ss-share-link');
-        const shareInput = panel.querySelector('#ss-share-input');
-        const shareCopyBtn = panel.querySelector('#ss-share-copy-btn');
-        if (shareDiv && shareInput && this.currentExerciseId) {
-            const baseUrl = window.flexframeSettings?.viewerPageUrl
-                || (window.location.origin + window.location.pathname);
-            const shareUrl = baseUrl.replace(/\?.*$/, '') + '?exercise=' + encodeURIComponent(this.currentExerciseId);
-            shareInput.value = shareUrl;
-            shareDiv.style.display = 'block';
-            if (shareCopyBtn) {
-                shareCopyBtn.onclick = () => {
-                    navigator.clipboard?.writeText(shareUrl).then(() => {
-                        shareCopyBtn.textContent = 'Copied!';
-                        shareCopyBtn.classList.add('copied');
-                        setTimeout(() => { shareCopyBtn.textContent = 'Copy'; shareCopyBtn.classList.remove('copied'); }, 2000);
-                    });
-                };
-            }
-        }
-
-        // 30-second countdown
-        let countdownSec = 20;
-        if (status) { status.className = 'ss-video-status counting'; status.textContent = `Generating 360 Degree Video… ${countdownSec}s`; }
-        const countdownTimer = setInterval(() => {
-            countdownSec--;
-            if (countdownSec > 0 && status) status.textContent = `Generating 360 Degree Video… ${countdownSec}s`;
-        }, 1000);
-
-        // Build angles with preset pan applied
-        const capturedAngles = (this._videoAngles || [])
-            .map(a => a ? { ...a, panDegrees: cfg.pan, panDirection: 1, loops: null } : null)
-            .filter(a => a !== null);
-
-        try {
-            const result = await ScreenshotUtils.recordTimelineVideo(renderer, scene, camera, this.animationPlayer, this.mixer, {
-                width: cfg.w,
-                height: cfg.h,
-                filename: `${presetKey}_video_${cfg.w}x${cfg.h}`,
-                fps: 30,
-                quality: 'ultra',
-                loops: cfg.loops,
-                cameraAngles: capturedAngles,
-                frameWidth, frameHeight, containerWidth, containerHeight,
-                showFloorShadow: false,
-                ground: this.ground,
-                overlayLogoUrl: window.flexframeSettings?.logoUrl || null,
-                overlayLogoPosition: cfg.logoPosition,
-                overlayLogoScale: cfg.logoScale ?? 1,
-                overlayExerciseName: null,
-            });
-            clearInterval(countdownTimer);
-            if (status) {
-                status.className = 'ss-video-status';
-                status.classList.add(result.success ? 'success' : 'error');
-                status.textContent = result.success ? `Saved ${result.filename}` : (result.error || 'Recording failed.');
-            }
-        } catch (error) {
-            clearInterval(countdownTimer);
-            if (status) { status.className = 'ss-video-status error'; status.textContent = error.message || 'Recording failed.'; }
-        } finally {
-            allRecordButtons.forEach(b => { b.disabled = false; b.classList.remove('recording'); });
-        }
-    }
-
-    /**
-     * Record one full animation play-through as a WebM video.
-     */
-    async recordCustomVideo() {
-        const renderer = this.renderer;
-        const scene = this.sceneManager.getScene();
-        const camera = this.cameraManager.getCamera();
-
-        const width = parseInt(this.screenshotPanel?.querySelector('#vid-width')?.value) || 2500;
-        const height = parseInt(this.screenshotPanel?.querySelector('#vid-height')?.value) || 2500;
-        const baseFilename = this.screenshotPanel?.querySelector('#vid-filename')?.value || 'video';
-        const showFloorShadow = this.screenshotPanel?.querySelector('#vid-floor-shadow')?.checked || false;
-        const overlayLogo = this.screenshotPanel?.querySelector('#vid-overlay-logo')?.checked || false;
-        const overlayName = this.screenshotPanel?.querySelector('#vid-overlay-name')?.checked || false;
-        const overlayLogoPosition = this.screenshotPanel?.querySelector('#vid-logo-position')?.value || 'top-left';
-        const videoQuality = this.screenshotPanel?.querySelector('#vid-quality')?.value || 'ultra';
-        const videoLoops = parseInt(this.screenshotPanel?.querySelector('#vid-loops')?.value) || 1;
-        const recordButton = this.screenshotPanel?.querySelector('.ss-video');
-        const allRecordButtons = this.screenshotPanel?.querySelectorAll('.ss-video, .ss-video-preset') || [];
-        const status = this.screenshotPanel?.querySelector('#ss-video-status');
-
-        const filename = `${baseFilename}_${width}x${height}`;
-
-        let frameWidth = null, frameHeight = null;
-        let containerWidth = null, containerHeight = null;
-
-        if (this.screenshotFramePanel) {
-            const container = document.getElementById('flexframe-viewer-container');
-            if (container) {
-                const containerRect = container.getBoundingClientRect();
-                containerWidth = containerRect.width;
-                containerHeight = containerRect.height;
-                frameWidth = parseFloat(this.screenshotFramePanel.style.width) || 0;
-                frameHeight = parseFloat(this.screenshotFramePanel.style.height) || 0;
-            }
-        }
-
-        if (recordButton) {
-            recordButton.disabled = true;
-            recordButton.classList.add('recording');
-        }
-        allRecordButtons.forEach(b => { b.disabled = true; b.classList.add('recording'); });
-        const capturedAngles = (this._videoAngles || []).map((a, i) => {
-            if (!a) return null;
-            const slotEl = this.screenshotPanel?.querySelector(`.ss-vid-angle-slot[data-slot="${i}"]`);
-            const panDeg = parseFloat(slotEl?.querySelector('.ss-vid-pan-deg')?.value || '0') || 0;
-            const activeDir = slotEl?.querySelector('.ss-vid-dir-btn.active');
-            const panDir = activeDir?.dataset.dir === 'right' ? -1 : 1;
-            const loopVal = slotEl?.querySelector('.ss-vid-loop-count')?.value;
-            const perLoops = loopVal ? Math.max(1, parseInt(loopVal)) : null;
-            return { ...a, panDegrees: panDeg, panDirection: panDir, loops: perLoops };
-        }).filter(a => a !== null);
-        if (status) {
-            status.className = 'ss-video-status';
-            const loopLabel = videoLoops === 1 ? '1 loop' : `${videoLoops} loops`;
-            const angleLabel = capturedAngles.length >= 2 ? `, ${capturedAngles.length} angles` : '';
-            status.textContent = `Recording ${loopLabel}${angleLabel} (${videoQuality} quality)...`;
-        }
-
-        try {
-            const result = await ScreenshotUtils.recordTimelineVideo(renderer, scene, camera, this.animationPlayer, this.mixer, {
-                width,
-                height,
-                filename,
-                fps: 30,
-                quality: videoQuality,
-                loops: videoLoops,
-                cameraAngles: capturedAngles,
-                frameWidth,
-                frameHeight,
-                containerWidth,
-                containerHeight,
-                showFloorShadow,
-                ground: this.ground,
-                overlayLogoUrl: overlayLogo ? (window.flexframeSettings?.logoUrl || null) : null,
-                overlayLogoPosition: overlayLogoPosition,
-                overlayExerciseName: overlayName ? (this.currentExerciseName || null) : null
-            });
-
-            if (result.success) {
-                console.log(`🎥 Video saved: ${result.filename} (${width}x${height})`);
-                if (status) {
-                    status.classList.add('success');
-                    status.textContent = `Saved ${result.filename}`;
-                }
-            } else {
-                console.error('Video recording failed:', result.error);
-                if (status) {
-                    status.classList.add('error');
-                    status.textContent = result.error || 'Video recording failed.';
-                }
-            }
-        } catch (error) {
-            console.error('Video recording error:', error);
-            if (status) {
-                status.classList.add('error');
-                status.textContent = error.message || 'Video recording failed.';
-            }
-        } finally {
-            if (recordButton) {
-                recordButton.disabled = false;
-                recordButton.classList.remove('recording');
-            }
-            allRecordButtons.forEach(b => { b.disabled = false; b.classList.remove('recording'); });
-        }
-    }
-
-    /**
-     * Capture current camera position/target/fov as a video angle, render a thumbnail.
-     */
-    async captureVideoAngle(slotIndex) {
-        const camera = this.cameraManager.getCamera();
-        const controls = this.cameraManager.getControls();
-        const scene = this.sceneManager.getScene();
-
-        const position = camera.position.clone();
-        const target = controls.target.clone();
-        const fov = camera.fov;
-
-        // Render small thumbnail from current view
-        const THUMB = 96;
-        const thumbCanvas = document.createElement('canvas');
-        thumbCanvas.width = THUMB;
-        thumbCanvas.height = THUMB;
-        const thumbRenderer = new THREE.WebGLRenderer({
-            canvas: thumbCanvas,
-            antialias: false,
-            preserveDrawingBuffer: true,
-            alpha: false
-        });
-        thumbRenderer.setSize(THUMB, THUMB);
-        thumbRenderer.setPixelRatio(1);
-        thumbRenderer.shadowMap.enabled = this.renderer.shadowMap.enabled;
-        thumbRenderer.shadowMap.type = this.renderer.shadowMap.type;
-        thumbRenderer.toneMapping = this.renderer.toneMapping;
-        thumbRenderer.toneMappingExposure = this.renderer.toneMappingExposure;
-        thumbRenderer.setClearColor(this.renderer.getClearColor(new THREE.Color()), this.renderer.getClearAlpha());
-
-        const thumbCam = camera.clone();
-        thumbCam.aspect = 1;
-        thumbCam.updateProjectionMatrix();
-        thumbRenderer.render(scene, thumbCam);
-        const thumbnailUrl = thumbCanvas.toDataURL('image/jpeg', 0.8);
-        thumbRenderer.dispose();
-
-        if (!this._videoAngles) this._videoAngles = [null, null, null];
-        this._videoAngles[slotIndex] = { position, target, fov, thumbnailUrl };
-        this.updateVideoAngleSlot(slotIndex);
-    }
-
-    /**
-     * Refresh a single angle slot's UI to reflect captured/empty state.
-     */
-    updateVideoAngleSlot(slotIndex) {
-        if (!this.screenshotPanel) return;
-        const slot = this.screenshotPanel.querySelector(`.ss-vid-angle-slot[data-slot="${slotIndex}"]`);
-        if (!slot) return;
-
-        const preview = slot.querySelector('.ss-vid-angle-preview');
-        const numLabel = slot.querySelector('.ss-vid-angle-num');
-        const capBtn = slot.querySelector('.ss-vid-capture-btn');
-        const angleData = this._videoAngles?.[slotIndex];
-
-        if (angleData) {
-            preview.classList.add('captured');
-            if (numLabel) numLabel.style.display = 'none';
-            let img = preview.querySelector('img');
-            if (!img) {
-                img = document.createElement('img');
-                img.alt = `Angle ${slotIndex + 1}`;
-                preview.insertBefore(img, preview.querySelector('.ss-vid-clear-btn'));
-            }
-            img.src = angleData.thumbnailUrl;
-            if (capBtn) capBtn.textContent = `Recapture ${slotIndex + 1}`;
-        } else {
-            preview.classList.remove('captured');
-            if (numLabel) numLabel.style.display = '';
-            const img = preview.querySelector('img');
-            if (img) img.remove();
-            if (capBtn) capBtn.textContent = `Capture ${slotIndex + 1}`;
         }
     }
 
@@ -5793,64 +4693,6 @@ class ThreeJSApp {
         }
     }
     
-    /**
-     * Load an exercise programmatically and await the model being ready.
-     * Called by both the exercisesSelected DOM event and the BatchRecorder.
-     * YouTube-only exercises are skipped immediately.
-     */
-    async _handleExerciseSelected(exercise) {
-        this.currentExerciseName = exercise.name;
-        this.currentExerciseId   = exercise.id || '';
-        if (this.annotationManager) this.annotationManager.setExerciseId(this.currentExerciseId);
-
-        // Skip YouTube-only custom exercises
-        if (exercise.source === 'custom' && exercise.youtubeUrl) return;
-
-        this.hideYouTubeViewer();
-
-        if (!exercise.configUrl) return;
-
-        const resolvedConfigUrl  = getAssetUrl(exercise.configUrl.replace('./', ''));
-        const response           = await fetch(resolvedConfigUrl + `?t=${Date.now()}`);
-        if (!response.ok) throw new Error(`Config fetch failed: ${response.status}`);
-        const config = await response.json();
-
-        this.currentConfig    = config;
-        arHandler.updateConfig(config, exercise.thumbnailUrl);
-        this.pendingModelConfig = config.model;
-        this.modelUrlSQ         = config.modelUrl || config.modelUrlSQ;
-        this.modelUrlHQ         = config.modelUrlHQ;
-        this.currentModelQuality = 'SQ';
-        this.isQualitySwitching  = false;
-        this.isModelLoading      = false;
-        this.updateQualityButtonVisibility();
-
-        if (this.modelUrlSQ) {
-            await this.loadModel(this.modelUrlSQ);
-        } else if (this.modelUrlHQ) {
-            this.currentModelQuality = 'HQ';
-            await this.loadModel(this.modelUrlHQ);
-        }
-
-        if (config.camera) {
-            const camera   = this.cameraManager.getCamera();
-            const controls = this.cameraManager.getControls();
-            if (config.camera.position) camera.position.set(...config.camera.position);
-            if (config.camera.rotation) camera.rotation.set(...config.camera.rotation);
-            if (config.camera.target)   controls.target.set(...config.camera.target);
-            controls.update();
-            this.cameraManager.updateOriginalState(
-                config.camera.position,
-                config.camera.rotation,
-                config.camera.target
-            );
-        }
-
-        if (config.rightMenuTabs && window.rightMenuManager) {
-            window.rightMenuManager.updateFromConfig(config.rightMenuTabs, exercise);
-        }
-    }
-
     loadModel(modelUrl = getAssetUrl('models/exercise.glb')) {
         return new Promise((resolve, reject) => {
         // Show loading spinner
@@ -6575,7 +5417,6 @@ class ThreeJSApp {
                 });
                 
                 this.sceneManager.getScene().add(model);
-                if (this.annotationManager) this.annotationManager.setModel(model);
                 
                 // Hide loading spinner
                 const loader = document.getElementById('model-loader');
@@ -8711,9 +7552,6 @@ class ThreeJSApp {
         // Update animation player
         this.animationPlayer.update(deltaTime);
         
-        // Update annotation markers (screen-space projection)
-        if (this.annotationManager) this.annotationManager.update();
-
         // Render
         this.renderer.render(this.sceneManager.getScene(), this.cameraManager.getCamera());
         

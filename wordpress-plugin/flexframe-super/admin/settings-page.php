@@ -2352,6 +2352,11 @@ add_action('admin_init', 'flexframe_register_settings');
 function flexframe_propagate_primary_color($old_value, $new_value) {
     if (empty($new_value) || $new_value === $old_value) return;
     
+    // Record when the primary color last changed (server time). The Theme Editor
+    // uses this to decide whether a locally-cached color override is stale, so a
+    // newer change made here in the PHP/Client settings page always wins.
+    update_option('flexframe_primary_color_updated', time());
+    
     // V2 Side Menus
     update_option('flexframe_menu_v2_accent_color', $new_value);
     update_option('flexframe_menu_v2_heading_bg_color', $new_value);
@@ -4868,7 +4873,7 @@ function flexframe_settings_page() {
                                 $ai_key_defined   = defined('FLEXFRAME_OPENAI_KEY') && FLEXFRAME_OPENAI_KEY !== '';
                                 ?>
 
-                                <?php if (!$ai_key_defined): ?>
+                                <?php if (flexframe_is_super_admin() && !$ai_key_defined): ?>
                                 <div class="notice notice-warning inline" style="margin: 0 0 16px; padding: 8px 12px;">
                                     <p style="margin: 4px 0;"><strong><?php _e('OpenAI API key not configured.', 'flexframe-viewer'); ?></strong>
                                     <?php _e('Add this line to <code>wp-config.php</code> to enable the AI Coach:', 'flexframe-viewer'); ?></p>
@@ -4885,6 +4890,7 @@ function flexframe_settings_page() {
                                             <p class="description"><?php _e('Master switch — uncheck to completely hide the chat widget.', 'flexframe-viewer'); ?></p>
                                         </td>
                                     </tr>
+                                    <?php if (flexframe_is_super_admin()) : ?>
                                     <tr>
                                         <th scope="row"><?php _e('Public access', 'flexframe-viewer'); ?></th>
                                         <td>
@@ -4949,6 +4955,7 @@ function flexframe_settings_page() {
                                             <p class="description" style="color: #b32d2e;"><?php _e('⚠ Strongly recommended ON for anonymous users — disabling allows public visitors to use your OpenAI quota for general conversation. Only relevant when Public access is ON.', 'flexframe-viewer'); ?></p>
                                         </td>
                                     </tr>
+                                    <?php endif; ?>
                                     <tr>
                                         <th scope="row"><label for="flexframe_ai_coach_bot_name"><?php _e('Bot name', 'flexframe-viewer'); ?></label></th>
                                         <td>
@@ -4974,6 +4981,7 @@ function flexframe_settings_page() {
                                     </tr>
                                 </table>
 
+                                <?php if (flexframe_is_super_admin()) : ?>
                                 <?php
                                 $wo_img_tpl = get_option('flexframe_ai_workout_image_prompt_template', '');
                                 $wo_cap_tpl = get_option('flexframe_ai_workout_caption_template', '');
@@ -5049,6 +5057,7 @@ function flexframe_settings_page() {
                                     </a>
                                     <span style="margin-left: 8px; color: #666; font-size: 12px;"><?php _e('The AI keeps a 5-minute snapshot of your exercise list. Click if a freshly added exercise isn\'t showing up in chat answers yet.', 'flexframe-viewer'); ?></span>
                                 </p>
+                                <?php endif; ?>
 
                                 <script>
                                 jQuery(function($){
@@ -5578,7 +5587,8 @@ function flexframe_settings_page() {
                 <!-- End Step 11 -->
                 <?php endif; ?>
 
-                <!-- Step 12: Exercise Annotations -->
+                <!-- Step 12: Exercise Annotations (super admin only) -->
+                <?php if (function_exists('flexframe_is_super_admin') && flexframe_is_super_admin()) : ?>
                 <div class="flexframe-step-section collapsed" id="flexframe-annotations-step">
                     <div class="flexframe-step-header">
                         <span class="flexframe-step-number">12</span>
@@ -5649,6 +5659,7 @@ function flexframe_settings_page() {
                     </div>
                 </div>
                 <!-- End Step 12 -->
+                <?php endif; ?>
 
                 <div class="flexframe-button-row">
                     <?php submit_button('Save Settings', 'primary', 'submit', false); ?>
