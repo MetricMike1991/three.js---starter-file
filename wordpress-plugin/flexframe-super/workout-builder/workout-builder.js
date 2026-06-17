@@ -28,6 +28,11 @@
     let finderFilteredResults = [];
     let finderTargetUid = null;   // Which card the finder is assigning to
 
+    // Create-exercise modal state
+    let createModal = null;
+    let createSelectedType = 'Strength';
+    let createThumbnailUrl = '';
+
     // ─── DOM References ──────────────────────────────────────
     let root, exerciseList;
     let workoutNameInput, statExercises, statDuration;
@@ -89,6 +94,9 @@
         finderTypeGrid = root.querySelector('.ffwb-filter-type-grid');
         finderMusclesGrid = root.querySelector('.ffwb-filter-muscles-grid');
         finderEquipmentGrid = root.querySelector('.ffwb-filter-equipment-grid');
+
+        // Create-exercise modal (rendered as a sibling of root, not inside it)
+        createModal = document.querySelector('.ffwb-modal-create');
     }
 
     function applyPrimaryColor() {
@@ -203,6 +211,10 @@
             filterAndRenderResults();
         });
         finderClearFiltersBtn?.addEventListener('click', clearAllFilters);
+
+        // Create Exercise (from the empty / no-results state)
+        root.querySelector('.ffwb-btn-create-exercise')?.addEventListener('click', () => openCreateModal(finderSearchQuery));
+        bindCreateModalEvents();
 
         // Header buttons
         root.querySelector('.ffwb-btn-share')?.addEventListener('click', () => saveWorkout('public'));
@@ -339,6 +351,7 @@
     function assignExerciseToCard(uid, catalogueExercise) {
         const card = workoutExercises.find(e => e.uid === uid);
         if (!card) return;
+        trackExerciseUsage(catalogueExercise);
         card.exerciseId = catalogueExercise.id;
         card.name = catalogueExercise.name;
         card.thumbnailUrl = catalogueExercise.thumbnailUrl || '';
@@ -356,6 +369,209 @@
         buildFilterSection(finderMusclesGrid, MUSCLES, 'muscle');
         buildFilterSection(finderEquipmentGrid, EQUIPMENT, 'equipment');
         filterAndRenderResults();
+    }
+
+    // ─── Create Exercise (on the fly) ─────────────────────────
+    function openCreateModal(prefillName) {
+        if (!createModal) return;
+
+        // Populate muscle dropdown once
+        const muscleSel = createModal.querySelector('.ffwb-create-muscle');
+        if (muscleSel && !muscleSel.dataset.populated) {
+            muscleSel.innerHTML = '<option value="">— Select —</option>' +
+                MUSCLES.map(m => `<option value="${m}">${m}</option>`).join('');
+            muscleSel.dataset.populated = '1';
+        }
+
+        const nameInput = createModal.querySelector('.ffwb-create-name');
+        const desc = createModal.querySelector('.ffwb-create-desc');
+        const err = createModal.querySelector('.ffwb-create-error');
+        const results = createModal.querySelector('.ffwb-create-thumb-results');
+        const query = createModal.querySelector('.ffwb-create-thumb-query');
+
+        const cleanName = (prefillName || '').trim().replace(/\b\w/g, c => c.toUpperCase());
+        if (nameInput) nameInput.value = cleanName;
+        if (desc) desc.value = '';
+        if (muscleSel) muscleSel.value = selectedMuscleFilter || '';
+        createSelectedType = selectedTypeFilter === 'Cardio' ? 'Cardio' : 'Strength';
+        updateCreateTypeButtons();
+        setCreateThumbnail('');
+        if (results) { results.style.display = 'none'; results.innerHTML = ''; }
+        if (query) query.value = cleanName;
+        if (err) { err.style.display = 'none'; err.textContent = ''; }
+
+        createModal.style.display = 'flex';
+        setTimeout(() => nameInput && nameInput.focus(), 50);
+    }
+
+    function closeCreateModal() {
+        if (createModal) createModal.style.display = 'none';
+    }
+
+    function updateCreateTypeButtons() {
+        if (!createModal) return;
+        createModal.querySelectorAll('.ffwb-type-btn').forEach(btn => {
+            btn.classList.toggle('is-active', btn.dataset.type === createSelectedType);
+        });
+    }
+
+    function setCreateThumbnail(url) {
+        createThumbnailUrl = url || '';
+        const thumbImg = createModal.querySelector('.ffwb-create-thumb-img');
+        const thumbPh = createModal.querySelector('.ffwb-create-thumb-placeholder');
+        if (!thumbImg || !thumbPh) return;
+        if (url) {
+            thumbImg.src = url;
+            thumbImg.style.display = '';
+            thumbPh.style.display = 'none';
+        } else {
+            thumbImg.style.display = 'none';
+            thumbImg.src = '';
+            thumbPh.style.display = '';
+        }
+    }
+
+    function bindCreateModalEvents() {
+        if (!createModal) return;
+        createModal.querySelector('.ffwb-modal-backdrop')?.addEventListener('click', closeCreateModal);
+        createModal.querySelector('.ffwb-create-close')?.addEventListener('click', closeCreateModal);
+        createModal.querySelector('.ffwb-create-cancel')?.addEventListener('click', closeCreateModal);
+
+        createModal.querySelectorAll('.ffwb-type-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                createSelectedType = btn.dataset.type;
+                updateCreateTypeButtons();
+            });
+        });
+
+        const searchBtn = createModal.querySelector('.ffwb-create-thumb-search-btn');
+        const query = createModal.querySelector('.ffwb-create-thumb-query');
+        searchBtn?.addEventListener('click', () => searchThumbnails(query ? query.value : ''));
+        query?.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') { e.preventDefault(); searchThumbnails(query.value); }
+        });
+
+        createModal.querySelector('.ffwb-create-thumb-upload-btn')?.addEventListener('click', openMediaUpload);
+        createModal.querySelector('.ffwb-create-save')?.addEventListener('click', saveCreatedExercise);
+    }
+
+    async function searchThumbnails(q) {
+        q = (q || '').trim();
+        const results = createModal.querySelector('.ffwb-create-thumb-results');
+        if (!q || !results) return;
+        results.style.display = 'grid';
+        results.innerHTML = '<div class="ffwb-create-thumb-loading">Searching…</div>';
+        try {
+            const res = await fetch(`${SETTINGS.restUrl}image-search?q=${encodeURIComponent(q)}`, {
+                headers: { 'X-WP-Nonce': SETTINGS.nonce }
+            });
+            const items = await res.json();
+            if (!Array.isArray(items) || items.length === 0) {
+                results.innerHTML = '<div class="ffwb-create-thumb-loading">No images found</div>';
+                return;
+            }
+            results.innerHTML = items.map(it =>
+                `<div class="ffwb-create-thumb-result" data-url="${it.thumb}"><img src="${it.thumb}" alt="${(it.title || '').replace(/"/g, '&quot;')}" loading="lazy"></div>`
+            ).join('');
+            results.querySelectorAll('.ffwb-create-thumb-result').forEach(el => {
+                el.addEventListener('click', () => {
+                    results.querySelectorAll('.ffwb-create-thumb-result').forEach(r => r.classList.remove('is-selected'));
+                    el.classList.add('is-selected');
+                    setCreateThumbnail(el.dataset.url);
+                });
+            });
+        } catch (e) {
+            results.innerHTML = '<div class="ffwb-create-thumb-loading">Search failed</div>';
+        }
+    }
+
+    function openMediaUpload() {
+        if (!window.wp || !window.wp.media) {
+            showToast('Media library unavailable');
+            return;
+        }
+        const frame = window.wp.media({
+            title: 'Select Thumbnail',
+            button: { text: 'Use image' },
+            multiple: false
+        });
+        frame.on('select', () => {
+            const att = frame.state().get('selection').first().toJSON();
+            const url = (att.sizes && att.sizes.medium) ? att.sizes.medium.url : att.url;
+            setCreateThumbnail(url);
+            const results = createModal.querySelector('.ffwb-create-thumb-results');
+            if (results) results.querySelectorAll('.ffwb-create-thumb-result').forEach(r => r.classList.remove('is-selected'));
+        });
+        frame.open();
+    }
+
+    async function saveCreatedExercise() {
+        const nameInput = createModal.querySelector('.ffwb-create-name');
+        const desc = createModal.querySelector('.ffwb-create-desc');
+        const muscleSel = createModal.querySelector('.ffwb-create-muscle');
+        const err = createModal.querySelector('.ffwb-create-error');
+        const saveBtn = createModal.querySelector('.ffwb-create-save');
+
+        const name = (nameInput ? nameInput.value : '').trim();
+        if (!name) {
+            if (err) { err.textContent = 'Please enter an exercise name.'; err.style.display = 'block'; }
+            nameInput && nameInput.focus();
+            return;
+        }
+        if (err) err.style.display = 'none';
+        if (saveBtn) saveBtn.disabled = true;
+
+        const payload = {
+            name,
+            type: createSelectedType,
+            muscleGroup: muscleSel ? muscleSel.value : '',
+            description: desc ? desc.value.trim() : '',
+            thumbnailUrl: createThumbnailUrl || ''
+        };
+
+        try {
+            const res = await fetch(`${SETTINGS.restUrl}custom-exercise`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': SETTINGS.nonce },
+                body: JSON.stringify(payload)
+            });
+            const data = await res.json();
+            if (!res.ok || !data.success || !data.exercise) {
+                throw new Error((data && data.message) || 'Could not save exercise.');
+            }
+            const ex = data.exercise;
+            // Make it immediately usable without a reload
+            exerciseCatalogue.push(ex);
+            closeCreateModal();
+            // Insert straight into the workout to preserve momentum
+            if (finderTargetUid) {
+                assignExerciseToCard(finderTargetUid, ex);
+            } else {
+                addExercise(ex);
+            }
+            showToast(`"${ex.name}" added`);
+            if (finderSearchInput) { finderSearchInput.value = ''; finderSearchQuery = ''; }
+        } catch (e) {
+            if (err) { err.textContent = e.message || 'Could not save exercise.'; err.style.display = 'block'; }
+        } finally {
+            if (saveBtn) saveBtn.disabled = false;
+        }
+    }
+
+    function trackExerciseUsage(ex) {
+        if (!ex || ex.source !== 'custom' || !SETTINGS.restUrl) return;
+        try {
+            fetch(`${SETTINGS.restUrl}track-exercise-usage`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json', 'X-WP-Nonce': SETTINGS.nonce },
+                body: JSON.stringify({
+                    exercise_id: ex.id,
+                    name: ex.name,
+                    muscleGroup: (ex.muscleGroup && ex.muscleGroup[0]) || '',
+                    type: ex.type || 'Strength'
+                })
+            });
+        } catch (e) { /* non-blocking */ }
     }
 
     function buildFilterSection(container, items, filterType) {
@@ -511,6 +727,11 @@
 
         if (results.length === 0) {
             finderResultsGrid.innerHTML = '';
+            const createLabel = finderNoResults.querySelector('.ffwb-create-exercise-label');
+            if (createLabel) {
+                const q = (finderSearchQuery || '').trim();
+                createLabel.textContent = q ? `Create "${q}"` : 'Create Exercise';
+            }
             finderNoResults.style.display = 'flex';
             return;
         }
@@ -558,6 +779,7 @@
 
     // ─── Exercise Cards ──────────────────────────────────────
     function addExercise(catalogueExercise, options = {}) {
+        trackExerciseUsage(catalogueExercise);
         const uid = generateUid();
         const card = {
             uid,

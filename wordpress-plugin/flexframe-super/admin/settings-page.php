@@ -372,6 +372,7 @@ function flexframe_create_privacy_policy_page() {
 <ul>
 <li><strong>Hosting providers</strong> — Our website hosting provider processes data on our behalf under a Data Processing Agreement (DPA).</li>
 <li><strong>Email service providers</strong> — If you consent to marketing, your email may be shared with our email marketing provider to deliver communications.</li>
+<li><strong>YouTube (Google LLC)</strong> — Some exercises are presented as embedded YouTube videos. We embed these using YouTube&apos;s privacy-enhanced mode (youtube-nocookie.com), which does not set tracking or advertising cookies unless and until you choose to play a video. If you play an embedded video, YouTube may process data in accordance with <a href="https://policies.google.com/privacy">Google&apos;s Privacy Policy</a>.</li>
 <li><strong>Legal obligations</strong> — We may disclose data if required by law or to protect our legal rights.</li>
 </ul>
 <!-- /wp:list -->
@@ -406,11 +407,23 @@ function flexframe_create_privacy_policy_page() {
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
-<h2>11. Cookies</h2>
+<h2>11. Cookies and Local Storage</h2>
 <!-- /wp:heading -->
 
 <!-- wp:paragraph -->
-<p>Our Workout Builder may use essential cookies for functionality. We do not use tracking or advertising cookies in the Workout Builder. For details on cookies used across the wider website, please refer to our main cookie policy.</p>
+<p>We do not use tracking or advertising cookies in the Workout Builder or Exercise Viewer. The only storage we use is strictly necessary or functional:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul>
+<li><strong>Essential cookies</strong> — Standard WordPress cookies are used to keep you signed in to client accounts and to operate core site functionality.</li>
+<li><strong>Functional local storage</strong> — Your browser&apos;s local storage is used to remember things you asked us to save, such as auto-saved workout drafts and your chosen theme and colour preferences. This data stays on your device, is not transmitted to us for tracking, and is not used for advertising.</li>
+<li><strong>Embedded YouTube videos</strong> — Exercise videos are embedded using YouTube&apos;s privacy-enhanced mode (youtube-nocookie.com). No YouTube tracking or advertising cookies are set unless you actively choose to play a video.</li>
+</ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>Because we do not deploy non-essential tracking cookies, a cookie consent banner is not required for the Workout Builder or Exercise Viewer. For details on cookies used across the wider website, please refer to our main cookie policy.</p>
 <!-- /wp:paragraph -->
 
 <!-- wp:heading -->
@@ -2755,9 +2768,9 @@ function flexframe_settings_page() {
                                         </div>
                                         
                                         <div class="custom-exercise-form-row">
-                                            <label for="ce-youtube"><strong><?php _e('YouTube URL', 'flexframe-viewer'); ?></strong> <span class="required">*</span></label>
+                                            <label for="ce-youtube"><strong><?php _e('YouTube URL', 'flexframe-viewer'); ?></strong> <span class="optional">(<?php _e('optional', 'flexframe-viewer'); ?>)</span></label>
                                             <input type="url" id="ce-youtube" placeholder="<?php _e('https://www.youtube.com/watch?v=...', 'flexframe-viewer'); ?>" />
-                                            <p class="description"><?php _e('Paste a YouTube video URL. This will be displayed instead of a 3D model.', 'flexframe-viewer'); ?></p>
+                                            <p class="description"><?php _e('Optional. Paste a YouTube video URL to play instead of a 3D model. Leave blank for a quick info-only exercise.', 'flexframe-viewer'); ?></p>
                                         </div>
                                         
                                         <div class="custom-exercise-form-row">
@@ -2888,6 +2901,65 @@ function flexframe_settings_page() {
                             <p class="description" style="margin-top: 16px;">
                                 <?php _e('💡 Custom exercises use YouTube videos instead of 3D models. They appear in both the Exercise Viewer and the Workout Builder. Remember to click "Save Settings" to save your changes.', 'flexframe-viewer'); ?>
                             </p>
+
+                            <hr style="margin: 24px 0; border: none; border-top: 1px solid #e2e4e7;" />
+
+                            <!-- Custom Exercise Usage Log -->
+                            <div class="flexframe-custom-exercise-usage">
+                                <div class="custom-exercises-section-header">
+                                    <span class="custom-exercises-icon">📊</span>
+                                    <h3><?php _e('Custom Exercise Usage Log', 'flexframe-viewer'); ?></h3>
+                                </div>
+                                <p class="step-description" style="margin-bottom: 16px;">
+                                    <?php _e('Exercises clients have created on the fly in the Workout Builder, with how often each has been created and added to workouts. Use this to decide which 3D exercises to build next.', 'flexframe-viewer'); ?>
+                                </p>
+                                <?php
+                                global $wpdb;
+                                $usage_table = $wpdb->prefix . 'flexframe_exercise_usage';
+                                $usage_rows = array();
+                                // Only query if the table exists.
+                                if ($wpdb->get_var($wpdb->prepare("SHOW TABLES LIKE %s", $usage_table)) === $usage_table) {
+                                    $usage_rows = $wpdb->get_results(
+                                        "SELECT exercise_name, muscle_group, type, created_count, workout_count, last_used
+                                         FROM {$usage_table}
+                                         ORDER BY workout_count DESC, created_count DESC, last_used DESC
+                                         LIMIT 500",
+                                        ARRAY_A
+                                    );
+                                }
+                                if (empty($usage_rows)) :
+                                ?>
+                                    <div class="custom-exercises-empty">
+                                        <span class="empty-icon">📊</span>
+                                        <p><?php _e('No custom exercises have been created yet.', 'flexframe-viewer'); ?></p>
+                                    </div>
+                                <?php else : ?>
+                                    <table class="widefat striped flexframe-usage-table" style="margin-top: 8px;">
+                                        <thead>
+                                            <tr>
+                                                <th><?php _e('Exercise', 'flexframe-viewer'); ?></th>
+                                                <th><?php _e('Muscle', 'flexframe-viewer'); ?></th>
+                                                <th><?php _e('Type', 'flexframe-viewer'); ?></th>
+                                                <th style="text-align:center;"><?php _e('Times Created', 'flexframe-viewer'); ?></th>
+                                                <th style="text-align:center;"><?php _e('Added to Workouts', 'flexframe-viewer'); ?></th>
+                                                <th><?php _e('Last Used', 'flexframe-viewer'); ?></th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($usage_rows as $row) : ?>
+                                            <tr>
+                                                <td><strong><?php echo esc_html($row['exercise_name']); ?></strong></td>
+                                                <td><?php echo esc_html($row['muscle_group'] ?: '—'); ?></td>
+                                                <td><?php echo esc_html($row['type'] ?: '—'); ?></td>
+                                                <td style="text-align:center;"><?php echo (int) $row['created_count']; ?></td>
+                                                <td style="text-align:center;"><?php echo (int) $row['workout_count']; ?></td>
+                                                <td><?php echo $row['last_used'] ? esc_html(date_i18n(get_option('date_format') . ' H:i', strtotime($row['last_used']))) : '—'; ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                <?php endif; ?>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -12621,13 +12693,9 @@ function flexframe_settings_page() {
                     $('#ce-name').focus();
                     return false;
                 }
-                if (!exercise.youtubeUrl) {
-                    alert('Please enter a YouTube URL.');
-                    $('#ce-youtube').focus();
-                    return false;
-                }
-                if (!extractYouTubeId(exercise.youtubeUrl)) {
-                    alert('Please enter a valid YouTube URL.');
+                // YouTube URL is optional. Only validate the format if one was entered.
+                if (exercise.youtubeUrl && !extractYouTubeId(exercise.youtubeUrl)) {
+                    alert('Please enter a valid YouTube URL (or leave it blank).');
                     $('#ce-youtube').focus();
                     return false;
                 }

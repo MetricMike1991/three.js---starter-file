@@ -99,7 +99,13 @@ function flexframe_enqueue_workout_builder_assets() {
         'shareHash'     => isset($_GET['workout']) ? sanitize_text_field($_GET['workout']) : '',
         'viewerPageUrl' => get_option('flexframe_viewer_page_url', ''),
         'privacyPolicyUrl' => get_option('flexframe_privacy_policy_url', ''),
+        'canUploadThumbnail' => current_user_can('upload_files'),
     ));
+
+    // Enable the media library picker for users allowed to upload (staff/admins).
+    if (current_user_can('upload_files')) {
+        wp_enqueue_media();
+    }
 
     // ── AI Coach (admin-toggled; requires OpenAI key) ──
     $ai_master      = (bool) get_option('flexframe_ai_coach_enabled', true);
@@ -270,6 +276,10 @@ function flexframe_workout_builder_shortcode($atts) {
                             <div class="ffwb-finder-no-results" style="display:none;">
                                 <svg width="40" height="40" viewBox="0 0 24 24" fill="currentColor" opacity="0.3"><path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/></svg>
                                 <p>No exercises match your filters</p>
+                                <button type="button" class="ffwb-btn ffwb-btn-create-exercise">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                    <span class="ffwb-create-exercise-label">Create Exercise</span>
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -348,6 +358,67 @@ function flexframe_workout_builder_shortcode($atts) {
                 </div>
             </div>
         </div>
+
+        <!-- Create Exercise modal (quick on-the-fly creation) -->
+        <div class="ffwb-modal ffwb-modal-create" style="display:none;">
+        <div class="ffwb-modal-backdrop"></div>
+        <div class="ffwb-modal-content">
+            <button type="button" class="ffwb-modal-close ffwb-create-close">&times;</button>
+            <h3 class="ffwb-modal-title">Create Exercise</h3>
+            <p class="ffwb-modal-subtitle">Add a quick exercise to your library.</p>
+
+            <div class="ffwb-create-field">
+                <label for="ffwb-create-name">Name <span class="ffwb-req">*</span></label>
+                <input type="text" id="ffwb-create-name" class="ffwb-create-name" placeholder="e.g. Pistol Squat" autocomplete="off">
+            </div>
+
+            <div class="ffwb-create-field">
+                <label>Type</label>
+                <div class="ffwb-create-type-toggle">
+                    <button type="button" class="ffwb-type-btn ffwb-type-strength is-active" data-type="Strength">Strength</button>
+                    <button type="button" class="ffwb-type-btn ffwb-type-cardio" data-type="Cardio">Cardio</button>
+                </div>
+            </div>
+
+            <div class="ffwb-create-field ffwb-create-muscle-field">
+                <label for="ffwb-create-muscle">Muscle group</label>
+                <select id="ffwb-create-muscle" class="ffwb-create-muscle"></select>
+            </div>
+
+            <div class="ffwb-create-field">
+                <label for="ffwb-create-desc">Description <span class="ffwb-optional">(optional)</span></label>
+                <textarea id="ffwb-create-desc" class="ffwb-create-desc" rows="2" placeholder="Short instructions or cues..."></textarea>
+            </div>
+
+            <div class="ffwb-create-field">
+                <label>Thumbnail <span class="ffwb-optional">(optional)</span></label>
+                <div class="ffwb-create-thumb-preview">
+                    <div class="ffwb-create-thumb-placeholder">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" opacity="0.4"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+                    </div>
+                    <img class="ffwb-create-thumb-img" alt="" style="display:none;">
+                </div>
+                <div class="ffwb-create-thumb-search">
+                    <input type="text" class="ffwb-create-thumb-query" placeholder="Search for an image online...">
+                    <button type="button" class="ffwb-btn ffwb-btn-small ffwb-create-thumb-search-btn">Search</button>
+                    <?php if (current_user_can('upload_files')): ?>
+                    <button type="button" class="ffwb-btn ffwb-btn-small ffwb-create-thumb-upload-btn">Upload</button>
+                    <?php endif; ?>
+                </div>
+                <div class="ffwb-create-thumb-results" style="display:none;"></div>
+            </div>
+
+            <div class="ffwb-create-error" style="display:none;"></div>
+
+            <div class="ffwb-modal-actions ffwb-create-actions">
+                <button type="button" class="ffwb-btn ffwb-btn-secondary ffwb-create-cancel">Cancel</button>
+                <button type="button" class="ffwb-btn ffwb-btn-primary ffwb-create-save">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg>
+                    Add &amp; Insert
+                </button>
+            </div>
+        </div>
+    </div>
     </div>
 
     <!-- Print-only layout (hidden on screen, visible on print) -->

@@ -4363,7 +4363,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DQm6VotD.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DFY5b0uE.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5323,7 +5323,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DQm6VotD.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DFY5b0uE.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6487,6 +6487,199 @@ function flexframe_register_annotations_api() {
     ));
 }
 add_action('rest_api_init', 'flexframe_register_annotations_api');
+
+/**
+ * ============================================================================
+ * Custom Exercises — On-the-fly creation + usage tracking
+ * ============================================================================
+ */
+
+// Usage-tracking table: one row per custom exercise id, with created/workout counters.
+function flexframe_create_exercise_usage_table() {
+    global $wpdb;
+    $table = $wpdb->prefix . 'flexframe_exercise_usage';
+    $charset_collate = $wpdb->get_charset_collate();
+    $sql = "CREATE TABLE IF NOT EXISTS $table (
+        id bigint(20) NOT NULL AUTO_INCREMENT,
+        exercise_id varchar(191) NOT NULL DEFAULT '',
+        exercise_name varchar(255) NOT NULL DEFAULT '',
+        muscle_group varchar(255) NOT NULL DEFAULT '',
+        type varchar(50) NOT NULL DEFAULT '',
+        created_count bigint(20) NOT NULL DEFAULT 0,
+        workout_count bigint(20) NOT NULL DEFAULT 0,
+        created_by bigint(20) NOT NULL DEFAULT 0,
+        created_at datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        last_used datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+        PRIMARY KEY (id),
+        UNIQUE KEY exercise_id (exercise_id)
+    ) $charset_collate;";
+    require_once ABSPATH . 'wp-admin/includes/upgrade.php';
+    dbDelta($sql);
+}
+add_action('plugins_loaded', 'flexframe_create_exercise_usage_table');
+
+// Insert or increment a usage row. $event is 'created' or 'workout'.
+function flexframe_log_exercise_usage($id, $name, $muscle, $type, $event) {
+    global $wpdb;
+    $table = $wpdb->prefix . 'flexframe_exercise_usage';
+    $now = current_time('mysql');
+    $exists = $wpdb->get_var($wpdb->prepare("SELECT id FROM $table WHERE exercise_id = %s", $id));
+    if ($exists) {
+        if ($event === 'created') {
+            $wpdb->query($wpdb->prepare("UPDATE $table SET created_count = created_count + 1, last_used = %s WHERE exercise_id = %s", $now, $id));
+        } else {
+            $wpdb->query($wpdb->prepare("UPDATE $table SET workout_count = workout_count + 1, last_used = %s WHERE exercise_id = %s", $now, $id));
+        }
+    } else {
+        $wpdb->insert($table, array(
+            'exercise_id'   => $id,
+            'exercise_name' => $name,
+            'muscle_group'  => $muscle,
+            'type'          => $type,
+            'created_count' => $event === 'created' ? 1 : 0,
+            'workout_count' => $event === 'workout' ? 1 : 0,
+            'created_by'    => get_current_user_id(),
+            'created_at'    => $now,
+            'last_used'     => $now,
+        ));
+    }
+}
+
+function flexframe_register_custom_exercise_api() {
+    // POST /custom-exercise — create an exercise on the fly (public; nonce + rate-limited)
+    register_rest_route('flexframe/v1', '/custom-exercise', array(
+        'methods'             => 'POST',
+        'callback'            => 'flexframe_rest_create_custom_exercise',
+        'permission_callback' => '__return_true',
+    ));
+
+    // GET /image-search?q=... — keyless image lookup via Openverse (CC-licensed)
+    register_rest_route('flexframe/v1', '/image-search', array(
+        'methods'             => 'GET',
+        'callback'            => 'flexframe_rest_image_search',
+        'permission_callback' => '__return_true',
+    ));
+
+    // POST /track-exercise-usage — increment "added to workout" counter
+    register_rest_route('flexframe/v1', '/track-exercise-usage', array(
+        'methods'             => 'POST',
+        'callback'            => 'flexframe_rest_track_exercise_usage',
+        'permission_callback' => '__return_true',
+    ));
+}
+add_action('rest_api_init', 'flexframe_register_custom_exercise_api');
+
+function flexframe_rest_create_custom_exercise(WP_REST_Request $req) {
+    // Light abuse protection for anonymous submissions.
+    if (!is_user_logged_in()) {
+        $ip  = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+        $key = 'ff_ce_rl_' . md5($ip);
+        $count = (int) get_transient($key);
+        if ($count >= 30) {
+            return new WP_Error('rate_limited', 'Too many submissions. Please try again later.', array('status' => 429));
+        }
+        set_transient($key, $count + 1, HOUR_IN_SECONDS);
+    }
+
+    $name = sanitize_text_field((string) $req->get_param('name'));
+    if ($name === '') {
+        return new WP_Error('missing_name', 'Exercise name is required.', array('status' => 400));
+    }
+    $muscle      = sanitize_text_field((string) $req->get_param('muscleGroup'));
+    $type        = $req->get_param('type') === 'Cardio' ? 'Cardio' : 'Strength';
+    $description = sanitize_textarea_field((string) $req->get_param('description'));
+    $thumbnail   = esc_url_raw((string) $req->get_param('thumbnailUrl'));
+
+    // Build a unique, readable id.
+    $base = sanitize_key(str_replace(' ', '_', strtolower($name)));
+    if ($base === '') { $base = 'custom'; }
+    $id = $base . '_' . substr(md5(uniqid('', true)), 0, 6);
+
+    $exercise = array(
+        'id'            => $id,
+        'name'          => $name,
+        'thumbnailUrl'  => $thumbnail,
+        'configUrl'     => '',
+        'youtubeUrl'    => '',
+        'source'        => 'custom',
+        'showInfo'      => $description !== '',
+        'showInViewer'  => false, // no 3D model — workout builder only
+        'showInWorkout' => true,
+        'muscleGroup'   => $muscle !== '' ? array($muscle) : array(),
+        'equipment'     => array(),
+        'type'          => $type,
+        'information'   => array(
+            'step1' => $description,
+            'step2' => '',
+            'step3' => '',
+            'step4' => '',
+        ),
+        'quickCreated'  => true,
+    );
+
+    // Append to the shared custom-exercises option.
+    $json = get_option('flexframe_custom_exercises', '[]');
+    $list = json_decode($json, true);
+    if (!is_array($list)) { $list = array(); }
+    $list[] = $exercise;
+    update_option('flexframe_custom_exercises', wp_json_encode($list));
+
+    // Record creation in the usage log.
+    flexframe_log_exercise_usage($id, $name, $muscle, $type, 'created');
+
+    return rest_ensure_response(array('success' => true, 'exercise' => $exercise));
+}
+
+function flexframe_rest_track_exercise_usage(WP_REST_Request $req) {
+    $id = sanitize_text_field((string) $req->get_param('exercise_id'));
+    if ($id === '') {
+        return new WP_Error('missing_id', 'exercise_id is required.', array('status' => 400));
+    }
+    $name   = sanitize_text_field((string) $req->get_param('name'));
+    $muscle = sanitize_text_field((string) $req->get_param('muscleGroup'));
+    $type   = $req->get_param('type') === 'Cardio' ? 'Cardio' : 'Strength';
+    flexframe_log_exercise_usage($id, $name, $muscle, $type, 'workout');
+    return rest_ensure_response(array('success' => true));
+}
+
+function flexframe_rest_image_search(WP_REST_Request $req) {
+    $q = sanitize_text_field((string) $req->get_param('q'));
+    if ($q === '') {
+        return rest_ensure_response(array());
+    }
+    $endpoint = add_query_arg(array(
+        'q'         => rawurlencode($q),
+        'page_size' => 12,
+        'mature'    => 'false',
+    ), 'https://api.openverse.org/v1/images/');
+
+    $resp = wp_remote_get($endpoint, array(
+        'timeout' => 8,
+        'headers' => array('Accept' => 'application/json'),
+    ));
+    if (is_wp_error($resp)) {
+        return rest_ensure_response(array());
+    }
+    $body = json_decode(wp_remote_retrieve_body($resp), true);
+    $out  = array();
+    if (!empty($body['results']) && is_array($body['results'])) {
+        foreach ($body['results'] as $img) {
+            $thumb = '';
+            if (!empty($img['thumbnail'])) {
+                $thumb = $img['thumbnail'];
+            } elseif (!empty($img['url'])) {
+                $thumb = $img['url'];
+            }
+            if ($thumb === '') { continue; }
+            $out[] = array(
+                'thumb' => esc_url_raw($thumb),
+                'url'   => esc_url_raw(!empty($img['url']) ? $img['url'] : $thumb),
+                'title' => sanitize_text_field(!empty($img['title']) ? $img['title'] : ''),
+            );
+        }
+    }
+    return rest_ensure_response($out);
+}
 
 /*
  * ============================================================================

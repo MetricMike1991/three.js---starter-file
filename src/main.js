@@ -230,9 +230,9 @@ class ThreeJSApp {
                 }
             }
             
-            // ── Custom YouTube exercise ──
-            if (exercise.source === 'custom' && exercise.youtubeUrl) {
-                // Clean up any active 3D model before showing YouTube
+            // ── Custom exercise (YouTube video or quick info-only) ──
+            if (exercise.source === 'custom') {
+                // Clean up any active 3D model before showing the custom view
                 if (this.mixer) {
                     this.mixer.stopAllAction();
                     this.mixer = null;
@@ -242,7 +242,12 @@ class ThreeJSApp {
                     window.model = null;
                 }
                 
-                this.showYouTubeViewer(exercise.youtubeUrl, exercise.id, exercise.name);
+                if (exercise.youtubeUrl) {
+                    this.showYouTubeViewer(exercise.youtubeUrl, exercise.id, exercise.name);
+                } else {
+                    // No video and no 3D model — show a branded placeholder
+                    this.showCustomPlaceholder(exercise);
+                }
                 this.animationPlayer.setVisibility(false);
                 
                 // Hide or show right info menu based on showInfo setting
@@ -4355,6 +4360,63 @@ class ThreeJSApp {
     /**
      * Show YouTube iframe overlay inside the viewer container, hiding the 3D canvas
      */
+    showCustomPlaceholder(exercise) {
+        const container = document.getElementById('flexframe-viewer-container');
+        if (!container) return;
+
+        // Hide the 3D canvas
+        const canvas = container.querySelector('canvas.webgl');
+        if (canvas) canvas.style.display = 'none';
+
+        // Hide the model loader if visible
+        const loader = document.getElementById('model-loader');
+        if (loader) loader.style.display = 'none';
+
+        // Reuse the same overlay element as the YouTube viewer so teardown is shared
+        let overlay = document.getElementById('ffx-youtube-overlay');
+        if (!overlay) {
+            overlay = document.createElement('div');
+            overlay.id = 'ffx-youtube-overlay';
+            Object.assign(overlay.style, {
+                position: 'fixed',
+                top: '0',
+                left: '0',
+                width: '100%',
+                height: '100%',
+                zIndex: '2',
+                background: 'rgba(0, 0, 0, 0.85)',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                padding: '5%'
+            });
+            container.appendChild(overlay);
+        }
+
+        const primary = (window.flexframeSettings && window.flexframeSettings.primaryColor) || '#ec2f2c';
+        const thumb = exercise.thumbnailUrl
+            ? `<img src="${exercise.thumbnailUrl}" alt="" style="width:120px;height:120px;object-fit:cover;border-radius:16px;margin-bottom:20px;box-shadow:0 8px 30px rgba(0,0,0,0.5);">`
+            : `<div style="width:120px;height:120px;border-radius:16px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.12);">
+                   <svg width="48" height="48" viewBox="0 0 24 24" fill="${primary}" opacity="0.7"><path d="M13.49 5.48c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm-3.6 13.9l1-4.4 2.1 2v6h2v-7.5l-2.1-2 .6-3c1.3 1.5 3.3 2.5 5.5 2.5v-2c-1.9 0-3.5-1-4.3-2.4l-1-1.6c-.4-.6-1-1-1.7-1-.3 0-.5.1-.8.1l-5.2 2.2v4.7h2v-3.4l1.8-.7-1.6 8.1-4.9-1-.4 2 7 1.4z"/></svg>
+               </div>`;
+
+        overlay.style.display = 'flex';
+        overlay.innerHTML = `
+            <div style="text-align:center;color:#fff;max-width:480px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+                ${thumb}
+                <div style="font-size:22px;font-weight:700;margin-bottom:8px;">${exercise.name || 'Custom Exercise'}</div>
+                <div style="font-size:13px;color:rgba(255,255,255,0.65);line-height:1.5;">
+                    This is a custom exercise. ${exercise.showInfo ? 'See the information panel for details.' : 'No 3D model or video is available yet.'}
+                </div>
+            </div>`;
+
+        // Hide animation player controls (they don't apply here)
+        const playerBar = document.querySelector('.animation-player');
+        if (playerBar) playerBar.classList.add('ffx-yt-hide');
+        const triggerArea = document.querySelector('.animation-player-trigger');
+        if (triggerArea) triggerArea.classList.add('ffx-yt-hide');
+    }
+
     showYouTubeViewer(youtubeUrl, exerciseId, exerciseName) {
         const videoId = this.extractYouTubeId(youtubeUrl);
         if (!videoId) {
@@ -4395,11 +4457,15 @@ class ThreeJSApp {
         }
         
         overlay.style.display = 'flex';
+        // Use youtube-nocookie.com (privacy-enhanced mode) so no tracking/advertising
+        // cookies are set until the visitor actually plays the video. This avoids the
+        // need for a prior-consent cookie banner. The video ID is normalised from any
+        // YouTube URL format by extractYouTubeId(), so pasting a normal link works.
         overlay.innerHTML = `
             <div class="ffx-yt-wrapper">
                 <div class="ffx-yt-video-box">
                     <iframe 
-                        src="https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
+                        src="https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1" 
                         style="width:100%;height:100%;border:none;" 
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen></iframe>
