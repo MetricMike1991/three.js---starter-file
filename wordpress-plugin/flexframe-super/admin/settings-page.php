@@ -4303,6 +4303,7 @@ function flexframe_settings_page() {
                                                 <th><?php _e('Logo', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('URL', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('Theme', 'flexframe-viewer'); ?></th>
+                                                <th><?php _e('Engagement', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('Actions', 'flexframe-viewer'); ?></th>
                                             </tr>
                                         </thead>
@@ -4322,6 +4323,7 @@ function flexframe_settings_page() {
                                                 }
                                                 
                                                 $demo_url = get_permalink($page_id);
+                                                $demo_stats = function_exists('flexframe_get_demo_stats') ? flexframe_get_demo_stats($page_id) : array('views' => 0, 'visitors' => 0, 'engaged' => 0, 'avg_seconds' => 0, 'last_seen' => '');
                                             ?>
                                             <tr data-page-id="<?php echo esc_attr($page_id); ?>">
                                                 <td class="demo-name-cell">
@@ -4378,6 +4380,28 @@ function flexframe_settings_page() {
                                                         <span class="dashicons dashicons-update" style="margin-top: 3px;"></span>
                                                         <?php _e('Apply', 'flexframe-viewer'); ?>
                                                     </button>
+                                                </td>
+                                                <td class="demo-stats-cell">
+                                                    <?php if ($demo_stats['views'] > 0) :
+                                                        $last_ago = function_exists('flexframe_demo_time_ago') ? flexframe_demo_time_ago($demo_stats['last_seen']) : '';
+                                                    ?>
+                                                        <button type="button" class="demo-stats-summary demo-stats-toggle" data-page-id="<?php echo esc_attr($page_id); ?>" title="<?php esc_attr_e('Show recent visits', 'flexframe-viewer'); ?>">
+                                                            <span class="demo-stat-line">
+                                                                <strong><?php echo esc_html($demo_stats['views']); ?></strong> <?php echo esc_html(_n('view', 'views', $demo_stats['views'], 'flexframe-viewer')); ?>
+                                                                · <strong><?php echo esc_html($demo_stats['visitors']); ?></strong> <?php echo esc_html(_n('visitor', 'visitors', $demo_stats['visitors'], 'flexframe-viewer')); ?>
+                                                            </span>
+                                                            <span class="demo-stat-line demo-stat-sub">
+                                                                <?php if ($demo_stats['engaged'] > 0) : ?>
+                                                                    <span class="demo-stat-engaged"><span class="dashicons dashicons-yes-alt"></span><?php echo esc_html($demo_stats['engaged']); ?> <?php esc_html_e('engaged', 'flexframe-viewer'); ?></span>
+                                                                <?php endif; ?>
+                                                                <?php if ($last_ago) : ?>
+                                                                    <span class="demo-stat-lastseen"><?php echo esc_html($last_ago); ?></span>
+                                                                <?php endif; ?>
+                                                            </span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <span class="demo-stats-none"><?php esc_html_e('No views yet', 'flexframe-viewer'); ?></span>
+                                                    <?php endif; ?>
                                                 </td>
                                                 <td class="demo-actions-cell">
                                                     <a href="<?php echo esc_url($demo_url); ?>" target="_blank" class="button button-small" title="<?php _e('View', 'flexframe-viewer'); ?>">
@@ -9133,6 +9157,93 @@ function flexframe_settings_page() {
             border-color: #00a32a !important;
             color: #fff !important;
         }
+        /* ── Demo engagement stats ── */
+        .demo-stats-cell {
+            min-width: 150px;
+        }
+        .demo-stats-none {
+            color: #8c8f94;
+            font-size: 12px;
+            font-style: italic;
+        }
+        .demo-stats-summary {
+            display: flex;
+            flex-direction: column;
+            gap: 2px;
+            background: none;
+            border: none;
+            padding: 4px 6px;
+            margin: -4px -6px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+            transition: background 0.15s ease;
+        }
+        .demo-stats-summary:hover {
+            background: #f0f6fc;
+        }
+        .demo-stat-line {
+            font-size: 12px;
+            color: #1d2327;
+            line-height: 1.5;
+        }
+        .demo-stat-line strong {
+            color: #2271b1;
+        }
+        .demo-stat-sub {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            color: #646970;
+        }
+        .demo-stat-engaged {
+            display: inline-flex;
+            align-items: center;
+            gap: 2px;
+            color: #00a32a;
+            font-weight: 600;
+        }
+        .demo-stat-engaged .dashicons {
+            font-size: 14px;
+            width: 14px;
+            height: 14px;
+        }
+        .demo-stat-lastseen {
+            white-space: nowrap;
+        }
+        .demo-stats-detail-row > td {
+            background: #f6f7f7;
+            padding: 0 !important;
+        }
+        .demo-stats-detail {
+            padding: 12px 16px;
+        }
+        .ffda-detail-empty {
+            margin: 4px 0;
+            color: #646970;
+            font-style: italic;
+        }
+        .ffda-detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+        }
+        .ffda-detail-table th {
+            text-align: left;
+            padding: 6px 10px;
+            border-bottom: 2px solid #c3c4c7;
+            color: #50575e;
+            font-weight: 600;
+        }
+        .ffda-detail-table td {
+            padding: 6px 10px;
+            border-bottom: 1px solid #e0e0e0;
+            color: #1d2327;
+        }
+        .ffda-detail-table tr:last-child td {
+            border-bottom: none;
+        }
         
         /* Demo Logo Upload (Create Form) */
         .demo-logo-upload-wrapper {
@@ -13435,6 +13546,45 @@ function flexframe_settings_page() {
             });
         });
         
+        // Toggle demo engagement detail panel (recent visits)
+        $(document).on('click', '.demo-stats-toggle', function() {
+            var $btn = $(this);
+            var pageId = $btn.data('page-id');
+            var $row = $btn.closest('tr');
+            var $existing = $row.next('.demo-stats-detail-row');
+
+            // Collapse if already open
+            if ($existing.length) {
+                $existing.slideUp(150, function() { $(this).remove(); });
+                return;
+            }
+
+            var colCount = $row.children('td').length;
+            var $detail = $('<tr class="demo-stats-detail-row"><td colspan="' + colCount + '"><div class="demo-stats-detail"><span class="spinner is-active" style="float:none;margin:0;"></span> Loading…</div></td></tr>');
+            $row.after($detail);
+            var $cell = $detail.find('.demo-stats-detail');
+
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_demo_analytics_detail',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    page_id: pageId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $cell.html(response.data.html);
+                    } else {
+                        $cell.html('<p class="ffda-detail-empty">' + (response.data && response.data.message ? response.data.message : 'Could not load stats.') + '</p>');
+                    }
+                },
+                error: function() {
+                    $cell.html('<p class="ffda-detail-empty">An error occurred loading stats.</p>');
+                }
+            });
+        });
+
         // Helper: Refresh the demo pages list HTML
         function refreshDemoPagesList(demoPages) {
             var $list = $('#flexframe-demo-pages-list');

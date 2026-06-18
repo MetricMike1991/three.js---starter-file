@@ -150,6 +150,9 @@ flexframe_log('Plugin loaded', array('version' => '1.40.0', 'plugin_url' => plug
 // Include admin settings
 require_once FLEXFRAME_PLUGIN_DIR . 'admin/settings-page.php';
 
+// Include demo page analytics (cookie-free usage tracking)
+require_once FLEXFRAME_PLUGIN_DIR . 'admin/demo-analytics.php';
+
 /**
  * ========== CLIENT ACCESS SYSTEM ==========
  * Custom role & capability for gym/client accounts to access
@@ -6279,6 +6282,10 @@ function flexframe_activate() {
 
     // Create annotations table
     flexframe_create_annotations_table();
+
+    // Create demo page analytics table
+    flexframe_create_demo_views_table();
+    update_option('flexframe_demo_views_table_version', '1');
     
     // Set default options
     add_option('flexframe_logo_url', '');
