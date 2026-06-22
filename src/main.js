@@ -219,6 +219,10 @@ class ThreeJSApp {
             this.currentExerciseName = exercise.name;
             this.currentExerciseId = exercise.id || '';
             
+            // Usage analytics: log this exercise view (cookie-free; no-op if tracking is off
+            // or on demo pages where the beacon isn't loaded).
+            try { window.flexframeUsage && window.flexframeUsage.viewExercise(exercise.name); } catch (err) {}
+            
             // Show "Add to Workout" button if workout page is configured
             this.showAddToWorkoutButton(exercise);
             
@@ -4657,6 +4661,9 @@ class ThreeJSApp {
             // Toggle quality
             this.currentModelQuality = this.currentModelQuality === 'SQ' ? 'HQ' : 'SQ';
             const modelUrl = this.currentModelQuality === 'SQ' ? this.modelUrlSQ : this.modelUrlHQ;
+            
+            // Usage analytics: record which quality the user switched TO (SD/HD).
+            try { window.flexframeUsage && window.flexframeUsage.track('quality', { detail: this.currentModelQuality === 'SQ' ? 'SD' : 'HD', exercise: this.currentExerciseName || '' }); } catch (err) {}
             
             console.log('Switching to', this.currentModelQuality, 'model:', modelUrl);
             

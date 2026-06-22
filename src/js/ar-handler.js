@@ -112,6 +112,12 @@ export class ARHandler {
             return;
         }
 
+        // Usage analytics: record an AR open (cookie-free; no-op if tracking off).
+        try {
+            const arName = (window.app && window.app.currentExerciseName) || this.currentConfig.exerciseId || '';
+            window.flexframeUsage && window.flexframeUsage.track('ar', { exercise: arName });
+        } catch (err) {}
+
         const deviceType = this.getDeviceType();
         console.log('[FlexFrame AR] Device type:', deviceType);
 

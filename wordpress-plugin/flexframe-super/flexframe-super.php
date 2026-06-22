@@ -153,6 +153,9 @@ require_once FLEXFRAME_PLUGIN_DIR . 'admin/settings-page.php';
 // Include demo page analytics (cookie-free usage tracking)
 require_once FLEXFRAME_PLUGIN_DIR . 'admin/demo-analytics.php';
 
+// Include main viewer usage analytics (cookie-free)
+require_once FLEXFRAME_PLUGIN_DIR . 'admin/usage-analytics.php';
+
 /**
  * ========== CLIENT ACCESS SYSTEM ==========
  * Custom role & capability for gym/client accounts to access
@@ -4366,7 +4369,7 @@ function flexframe_enqueue_assets() {
         // Register Vite-generated JavaScript bundle (must register before localizing)
         wp_register_script(
             'flexframe-viewer-script',
-            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DFY5b0uE.js',
+            FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CKi9vK2q.js',
             array(),
             FLEXFRAME_VERSION,
             true
@@ -5326,7 +5329,7 @@ function flexframe_embed_mode_redirect() {
     
     // Get the CSS and JS asset URLs
     $css_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CITazHAQ.css';
-    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-DFY5b0uE.js';
+    $js_url = FLEXFRAME_PLUGIN_URL . 'assets/assets/index-CKi9vK2q.js';
     
     // ── Gather ALL the same settings the normal enqueue builds ──
     $primary_color_mode = get_option('flexframe_primary_color_mode', 'custom');
@@ -6286,6 +6289,10 @@ function flexframe_activate() {
     // Create demo page analytics table
     flexframe_create_demo_views_table();
     update_option('flexframe_demo_views_table_version', '1');
+
+    // Create viewer usage analytics table
+    flexframe_create_usage_events_table();
+    update_option('flexframe_usage_events_table_version', '1');
     
     // Set default options
     add_option('flexframe_logo_url', '');

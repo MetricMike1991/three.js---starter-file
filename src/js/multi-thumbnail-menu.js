@@ -33,7 +33,23 @@ class ThumbnailDropdownMenu {
             
             if (!searchInput || !searchActionBtn) return;
             
-            // Generate suggestions based on exercise data
+            // Usage analytics: log searches (query + result count) cookie-free.
+            // Debounced so we record the final query, not every keystroke.
+            const logSearchUsage = () => {
+                const q = (this.searchQuery || '').trim();
+                if (q.length < 2) return;
+                const count = Array.isArray(this.filteredData) ? this.filteredData.length : 0;
+                try { window.flexframeUsage && window.flexframeUsage.track('search', { detail: q, num: count }); } catch (err) {}
+            };
+            const scheduleSearchLog = () => {
+                if (this._searchLogTimer) clearTimeout(this._searchLogTimer);
+                this._searchLogTimer = setTimeout(logSearchUsage, 1200);
+            };
+            const logSearchNow = () => {
+                if (this._searchLogTimer) { clearTimeout(this._searchLogTimer); this._searchLogTimer = null; }
+                logSearchUsage();
+            };
+            
             const generateSuggestions = () => {
                 if (!this.allExercises || this.allExercises.length === 0) return;
                 
@@ -80,6 +96,7 @@ class ThumbnailDropdownMenu {
                 updateButtonIcon();
                 this.filterDataForMenu();
                 this.renderVirtualizedGrid();
+                scheduleSearchLog();
             });
             
             // Handle Enter key
@@ -89,6 +106,7 @@ class ThumbnailDropdownMenu {
                     updateButtonIcon();
                     this.filterDataForMenu();
                     this.renderVirtualizedGrid();
+                    logSearchNow();
                 }
             });
             

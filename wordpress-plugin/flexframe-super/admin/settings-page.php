@@ -4288,7 +4288,116 @@ function flexframe_settings_page() {
                             <?php
                             $demo_pages = get_option('flexframe_demo_pages', array());
                             $custom_presets_list = get_option('flexframe_custom_presets', array());
+
+                            // ── Pre-compute enriched, action-sorted rows + summary counts ──
+                            $demo_rows   = array();
+                            $demo_counts = array('overdue' => 0, 'due' => 0, 'hot' => 0, 'expiring' => 0, 'expired' => 0, 'needs_action' => 0);
+                            foreach ($demo_pages as $page_id => $demo) {
+                                $trial = function_exists('flexframe_get_demo_trial')
+                                    ? flexframe_get_demo_trial($page_id)
+                                    : array('status' => 'new', 'started' => false, 'days_left' => null, 'expired' => false, 'next_action' => '', 'followups' => array());
+
+                                // Derive boolean flags.
+                                $has_overdue = false;
+                                $has_due     = false;
+                                if (!empty($trial['followups']) && is_array($trial['followups'])) {
+                                    foreach ($trial['followups'] as $f) {
+                                        if ($f['state'] === 'overdue') { $has_overdue = true; }
+                                        if ($f['state'] === 'due')     { $has_due = true; }
+                                    }
+                                }
+                                $is_hot      = ($trial['status'] === 'hot');
+                                $is_won      = ($trial['status'] === 'won');
+                                $is_expired  = !empty($trial['expired']);
+                                $is_active   = (!empty($trial['started']) && !$is_expired);
+                                $is_expiring = ($is_active && $trial['days_left'] !== null && (int) $trial['days_left'] <= 7 && (int) $trial['days_left'] >= 0);
+                                $needs_action = ($has_overdue || $has_due || $is_hot);
+
+                                // Tally summary counts.
+                                if ($has_overdue)  { $demo_counts['overdue']++; }
+                                if ($has_due)      { $demo_counts['due']++; }
+                                if ($is_hot)       { $demo_counts['hot']++; }
+                                if ($is_expiring)  { $demo_counts['expiring']++; }
+                                if ($is_expired)   { $demo_counts['expired']++; }
+                                if ($needs_action) { $demo_counts['needs_action']++; }
+
+                                // Urgency priority (lower = floats to top).
+                                if ($has_overdue)      { $priority = 0; }
+                                elseif ($has_due)      { $priority = 1; }
+                                elseif ($is_hot)       { $priority = 2; }
+                                elseif ($is_expiring)  { $priority = 3; }
+                                elseif ($is_expired)   { $priority = 4; }
+                                elseif ($is_active)    { $priority = 5; }
+                                elseif ($is_won)       { $priority = 7; }
+                                elseif ($trial['status'] === 'lost') { $priority = 8; }
+                                else                   { $priority = 6; }
+
+                                // Filter tokens consumed by the JS tab/summary filters.
+                                $tokens = array('all');
+                                if ($needs_action) { $tokens[] = 'needs-action'; }
+                                if ($has_overdue)  { $tokens[] = 'overdue'; }
+                                if ($has_due)      { $tokens[] = 'due'; }
+                                if ($is_hot)       { $tokens[] = 'hot'; }
+                                if ($is_active)    { $tokens[] = 'active'; }
+                                if ($is_expiring)  { $tokens[] = 'expiring'; }
+                                if ($is_expired)   { $tokens[] = 'expired'; }
+                                if ($is_won)       { $tokens[] = 'won'; }
+
+                                $demo_rows[] = array(
+                                    'page_id'  => $page_id,
+                                    'demo'     => $demo,
+                                    'trial'    => $trial,
+                                    'priority' => $priority,
+                                    'tokens'   => implode(' ', $tokens),
+                                );
+                            }
+
+                            // Stable sort by urgency priority.
+                            usort($demo_rows, function ($a, $b) {
+                                if ($a['priority'] === $b['priority']) {
+                                    return strcasecmp(
+                                        isset($a['demo']['name']) ? $a['demo']['name'] : '',
+                                        isset($b['demo']['name']) ? $b['demo']['name'] : ''
+                                    );
+                                }
+                                return $a['priority'] - $b['priority'];
+                            });
                             ?>
+                            <?php if (!empty($demo_pages)) : ?>
+                            <div class="demo-dashboard-controls">
+                                <div class="demo-summary-bar">
+                                    <button type="button" class="demo-summary-pill summary-overdue<?php echo $demo_counts['overdue'] === 0 ? ' is-zero' : ''; ?>" data-filter="overdue">
+                                        <span class="summary-dot"></span><strong><?php echo (int) $demo_counts['overdue']; ?></strong> <?php esc_html_e('overdue', 'flexframe-viewer'); ?>
+                                    </button>
+                                    <button type="button" class="demo-summary-pill summary-due<?php echo $demo_counts['due'] === 0 ? ' is-zero' : ''; ?>" data-filter="due">
+                                        <span class="summary-dot"></span><strong><?php echo (int) $demo_counts['due']; ?></strong> <?php esc_html_e('due now', 'flexframe-viewer'); ?>
+                                    </button>
+                                    <button type="button" class="demo-summary-pill summary-hot<?php echo $demo_counts['hot'] === 0 ? ' is-zero' : ''; ?>" data-filter="hot">
+                                        <span class="summary-dot"></span><strong><?php echo (int) $demo_counts['hot']; ?></strong> <?php esc_html_e('hot', 'flexframe-viewer'); ?>
+                                    </button>
+                                    <button type="button" class="demo-summary-pill summary-expiring<?php echo $demo_counts['expiring'] === 0 ? ' is-zero' : ''; ?>" data-filter="expiring">
+                                        <span class="summary-dot"></span><strong><?php echo (int) $demo_counts['expiring']; ?></strong> <?php esc_html_e('expiring soon', 'flexframe-viewer'); ?>
+                                    </button>
+                                    <button type="button" class="demo-summary-pill summary-expired<?php echo $demo_counts['expired'] === 0 ? ' is-zero' : ''; ?>" data-filter="expired">
+                                        <span class="summary-dot"></span><strong><?php echo (int) $demo_counts['expired']; ?></strong> <?php esc_html_e('expired', 'flexframe-viewer'); ?>
+                                    </button>
+                                </div>
+                                <div class="demo-dashboard-row">
+                                    <div class="demo-filter-tabs">
+                                        <button type="button" class="demo-filter-tab is-active" data-filter="all"><?php esc_html_e('All', 'flexframe-viewer'); ?></button>
+                                        <button type="button" class="demo-filter-tab" data-filter="needs-action"><?php esc_html_e('Needs action', 'flexframe-viewer'); ?></button>
+                                        <button type="button" class="demo-filter-tab" data-filter="hot"><?php esc_html_e('Hot', 'flexframe-viewer'); ?></button>
+                                        <button type="button" class="demo-filter-tab" data-filter="active"><?php esc_html_e('Active trials', 'flexframe-viewer'); ?></button>
+                                        <button type="button" class="demo-filter-tab" data-filter="expired"><?php esc_html_e('Expired', 'flexframe-viewer'); ?></button>
+                                        <button type="button" class="demo-filter-tab" data-filter="won"><?php esc_html_e('Won', 'flexframe-viewer'); ?></button>
+                                    </div>
+                                    <div class="demo-search-wrap">
+                                        <span class="dashicons dashicons-search"></span>
+                                        <input type="search" id="demo-search-input" placeholder="<?php esc_attr_e('Search by name…', 'flexframe-viewer'); ?>" />
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endif; ?>
                             <div id="flexframe-demo-pages-list">
                                 <?php if (empty($demo_pages)) : ?>
                                     <div class="demo-empty-state">
@@ -4304,11 +4413,16 @@ function flexframe_settings_page() {
                                                 <th><?php _e('URL', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('Theme', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('Engagement', 'flexframe-viewer'); ?></th>
+                                                <th><?php _e('Status &amp; Trial', 'flexframe-viewer'); ?></th>
                                                 <th><?php _e('Actions', 'flexframe-viewer'); ?></th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <?php foreach ($demo_pages as $page_id => $demo) : 
+                                            <?php foreach ($demo_rows as $__row) :
+                                                $page_id    = $__row['page_id'];
+                                                $demo       = $__row['demo'];
+                                                $demo_trial = $__row['trial'];
+                                                $row_tokens = $__row['tokens'];
                                                 // Get the theme display name
                                                 $theme_display = $demo['theme_preset'];
                                                 if ($theme_display === 'current') {
@@ -4324,8 +4438,12 @@ function flexframe_settings_page() {
                                                 
                                                 $demo_url = get_permalink($page_id);
                                                 $demo_stats = function_exists('flexframe_get_demo_stats') ? flexframe_get_demo_stats($page_id) : array('views' => 0, 'visitors' => 0, 'engaged' => 0, 'avg_seconds' => 0, 'last_seen' => '');
+                                                $status_labels = function_exists('flexframe_demo_status_labels') ? flexframe_demo_status_labels() : array('new' => 'New');
+                                                $cur_status = isset($demo_trial['status']) ? $demo_trial['status'] : 'new';
+                                                $cur_status_label = isset($status_labels[$cur_status]) ? $status_labels[$cur_status] : ucfirst($cur_status);
                                             ?>
-                                            <tr data-page-id="<?php echo esc_attr($page_id); ?>">
+                                            <tr data-page-id="<?php echo esc_attr($page_id); ?>" data-filters="<?php echo esc_attr($row_tokens); ?>" data-name="<?php echo esc_attr(strtolower(isset($demo['name']) ? $demo['name'] : '')); ?>">
+
                                                 <td class="demo-name-cell">
                                                     <strong><?php echo esc_html($demo['name']); ?></strong>
                                                 </td>
@@ -4403,6 +4521,19 @@ function flexframe_settings_page() {
                                                         <span class="demo-stats-none"><?php esc_html_e('No views yet', 'flexframe-viewer'); ?></span>
                                                     <?php endif; ?>
                                                 </td>
+                                                <td class="demo-status-cell" data-page-id="<?php echo esc_attr($page_id); ?>">
+                                                    <span class="demo-status-badge status-<?php echo esc_attr($demo_trial['expired'] ? 'expired' : $cur_status); ?>">
+                                                        <?php echo esc_html($demo_trial['expired'] ? __('Expired', 'flexframe-viewer') : $cur_status_label); ?>
+                                                    </span>
+                                                    <?php if (!empty($demo_trial['started']) && !$demo_trial['expired'] && $demo_trial['days_left'] !== null) : ?>
+                                                        <span class="demo-trial-days"><?php echo esc_html(sprintf(_n('%d day left', '%d days left', max(0, (int) $demo_trial['days_left']), 'flexframe-viewer'), max(0, (int) $demo_trial['days_left']))); ?></span>
+                                                    <?php elseif (empty($demo_trial['started'])) : ?>
+                                                        <span class="demo-trial-days demo-trial-idle"><?php esc_html_e('Not started', 'flexframe-viewer'); ?></span>
+                                                    <?php endif; ?>
+                                                    <?php if (!empty($demo_trial['next_action'])) : ?>
+                                                        <span class="demo-action-due" title="<?php esc_attr_e('Follow-up email due', 'flexframe-viewer'); ?>"><span class="dashicons dashicons-email-alt"></span><?php echo esc_html($demo_trial['next_action']); ?></span>
+                                                    <?php endif; ?>
+                                                </td>
                                                 <td class="demo-actions-cell">
                                                     <a href="<?php echo esc_url($demo_url); ?>" target="_blank" class="button button-small" title="<?php _e('View', 'flexframe-viewer'); ?>">
                                                         <span class="dashicons dashicons-visibility" style="margin-top: 3px;"></span>
@@ -4410,6 +4541,18 @@ function flexframe_settings_page() {
                                                     <button type="button" class="button button-small demo-refresh-btn" data-page-id="<?php echo esc_attr($page_id); ?>" title="<?php _e('Refresh snapshot to current settings', 'flexframe-viewer'); ?>">
                                                         <span class="dashicons dashicons-image-rotate" style="margin-top: 3px;"></span>
                                                     </button>
+                                                    <button type="button" class="button button-small ffda-reset-btn" data-page-id="<?php echo esc_attr($page_id); ?>" title="<?php esc_attr_e('Reset stats &amp; trial clock (use after your own testing)', 'flexframe-viewer'); ?>">
+                                                        <span class="dashicons dashicons-clock" style="margin-top: 3px;"></span>
+                                                    </button>
+                                                    <?php if (!empty($demo_trial['forced'])) : ?>
+                                                        <button type="button" class="button button-small ffda-reactivate-btn" data-page-id="<?php echo esc_attr($page_id); ?>" title="<?php esc_attr_e('Reactivate (remove manual expiry)', 'flexframe-viewer'); ?>">
+                                                            <span class="dashicons dashicons-controls-play" style="margin-top: 3px;"></span>
+                                                        </button>
+                                                    <?php else : ?>
+                                                        <button type="button" class="button button-small ffda-expire-btn" data-page-id="<?php echo esc_attr($page_id); ?>" title="<?php esc_attr_e('Expire now &amp; show the CTA', 'flexframe-viewer'); ?>">
+                                                            <span class="dashicons dashicons-lock" style="margin-top: 3px;"></span>
+                                                        </button>
+                                                    <?php endif; ?>
                                                     <button type="button" class="button button-small button-link-delete demo-delete-btn" data-page-id="<?php echo esc_attr($page_id); ?>" data-name="<?php echo esc_attr($demo['name']); ?>">
                                                         <span class="dashicons dashicons-trash" style="margin-top: 3px;"></span>
                                                     </button>
@@ -4421,7 +4564,42 @@ function flexframe_settings_page() {
                                 <?php endif; ?>
                             </div>
                         </div>
-                        
+
+                        <?php
+                        $cta_heading = get_option('flexframe_demo_cta_heading', '');
+                        $cta_message = get_option('flexframe_demo_cta_message', '');
+                        $cta_button  = get_option('flexframe_demo_cta_button', '');
+                        $cta_url     = get_option('flexframe_demo_cta_url', '');
+                        ?>
+                        <div class="flexframe-demo-cta-section">
+                            <h3><span class="dashicons dashicons-megaphone"></span> <?php _e('Demo Expiry Message', 'flexframe-viewer'); ?></h3>
+                            <p class="step-description">
+                                <?php _e('When a demo trial ends, the viewer is replaced with this branded call-to-action. Use <code>{gym}</code> to insert the demo/gym name. Leave blank to use sensible defaults.', 'flexframe-viewer'); ?>
+                            </p>
+                            <div class="demo-cta-grid">
+                                <label class="demo-cta-field">
+                                    <span><?php _e('Heading', 'flexframe-viewer'); ?></span>
+                                    <input type="text" id="demo-cta-heading" value="<?php echo esc_attr($cta_heading); ?>" placeholder="<?php esc_attr_e('Your demo has ended', 'flexframe-viewer'); ?>" />
+                                </label>
+                                <label class="demo-cta-field">
+                                    <span><?php _e('Message', 'flexframe-viewer'); ?></span>
+                                    <textarea id="demo-cta-message" rows="2" placeholder="<?php esc_attr_e('We hope you enjoyed exploring this branded 3D workout experience. Ready to bring it to {gym}?', 'flexframe-viewer'); ?>"><?php echo esc_textarea($cta_message); ?></textarea>
+                                </label>
+                                <label class="demo-cta-field demo-cta-field-half">
+                                    <span><?php _e('Button text', 'flexframe-viewer'); ?></span>
+                                    <input type="text" id="demo-cta-button" value="<?php echo esc_attr($cta_button); ?>" placeholder="<?php esc_attr_e('Get in touch', 'flexframe-viewer'); ?>" />
+                                </label>
+                                <label class="demo-cta-field demo-cta-field-half">
+                                    <span><?php _e('Button link (URL, tel: or mailto:)', 'flexframe-viewer'); ?></span>
+                                    <input type="text" id="demo-cta-url" value="<?php echo esc_attr($cta_url); ?>" placeholder="https://your-site.com/contact" />
+                                </label>
+                            </div>
+                            <div class="demo-cta-actions">
+                                <button type="button" class="button button-primary" id="demo-cta-save"><?php _e('Save CTA Message', 'flexframe-viewer'); ?></button>
+                                <span class="demo-cta-status" id="demo-cta-status"></span>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 
@@ -9041,6 +9219,10 @@ function flexframe_settings_page() {
         .flexframe-demo-list-section {
             margin-top: 8px;
         }
+        #flexframe-demo-pages-list {
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
         .flexframe-demo-list-section h3 {
             display: flex;
             align-items: center;
@@ -9243,6 +9425,315 @@ function flexframe_settings_page() {
         }
         .ffda-detail-table tr:last-child td {
             border-bottom: none;
+        }
+        /* ── Status & Trial column ── */
+        .demo-status-cell {
+            min-width: 130px;
+        }
+        .demo-status-badge {
+            display: inline-block;
+            padding: 2px 10px;
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .04em;
+            line-height: 1.7;
+            color: #fff;
+        }
+        .demo-status-badge.status-new      { background: #8c8f94; }
+        .demo-status-badge.status-engaged  { background: #2271b1; }
+        .demo-status-badge.status-hot      { background: #d63638; }
+        .demo-status-badge.status-won      { background: #00a32a; }
+        .demo-status-badge.status-lost     { background: #50575e; }
+        .demo-status-badge.status-expired  { background: #b32d2e; }
+        .demo-trial-days {
+            display: block;
+            font-size: 11px;
+            color: #646970;
+            margin-top: 4px;
+        }
+        .demo-trial-days.demo-trial-idle {
+            font-style: italic;
+        }
+        .demo-action-due {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+            margin-top: 5px;
+            padding: 2px 8px;
+            border-radius: 6px;
+            background: #fcf0d6;
+            color: #8a6d00;
+            font-size: 11px;
+            font-weight: 600;
+        }
+        .demo-action-due .dashicons {
+            font-size: 13px;
+            width: 13px;
+            height: 13px;
+        }
+        /* ── CRM panel (inside the expand) ── */
+        .ffda-crm {
+            margin-bottom: 16px;
+        }
+        .ffda-crm-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 24px;
+            align-items: flex-start;
+            margin-bottom: 14px;
+        }
+        .ffda-crm-block {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .ffda-crm-block.ffda-crm-reset {
+            margin-left: auto;
+            justify-content: flex-end;
+        }
+        .ffda-crm-label {
+            font-size: 11px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: .05em;
+            color: #50575e;
+        }
+        .ffda-status-select {
+            min-width: 130px;
+            height: 30px;
+        }
+        .ffda-mark-hot {
+            margin-top: 4px;
+        }
+        .ffda-trial-pill {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .ffda-trial-pill.ffda-trial-active  { background: #e6f4ea; color: #00733b; }
+        .ffda-trial-pill.ffda-trial-expired { background: #fce9e9; color: #b32d2e; }
+        .ffda-trial-pill.ffda-trial-pending { background: #f0f0f1; color: #646970; font-style: italic; }
+        .ffda-trial-meta {
+            font-size: 11px;
+            color: #646970;
+        }
+        .ffda-followups {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .ffda-followup-list {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .ffda-followup {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 7px 12px;
+            border-radius: 8px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+        .ffda-followup.ffda-fu-due {
+            border-color: #dba617;
+            background: #fcf6e6;
+        }
+        .ffda-followup.ffda-fu-overdue {
+            border-color: #d63638;
+            background: #fcf0f0;
+        }
+        .ffda-followup.ffda-fu-sent {
+            background: #f3faf4;
+            border-color: #c3e6cd;
+        }
+        .ffda-fu-label {
+            font-weight: 600;
+            color: #1d2327;
+            min-width: 150px;
+        }
+        .ffda-fu-status {
+            font-size: 12px;
+        }
+        .ffda-fu-due-label   { color: #8a6d00; font-weight: 700; }
+        .ffda-fu-overdue-label { color: #b32d2e; font-weight: 700; }
+        .ffda-fu-sent-label  { color: #00733b; display: inline-flex; align-items: center; gap: 3px; }
+        .ffda-fu-sent-label .dashicons { font-size: 15px; width: 15px; height: 15px; }
+        .ffda-fu-muted       { color: #8c8f94; }
+        .ffda-fu-mark {
+            margin-left: auto !important;
+        }
+        .ffda-fu-undo {
+            margin-left: auto;
+            color: #b32d2e;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .ffda-recent-wrap {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        /* ── Demo expiry CTA settings ── */
+        .flexframe-demo-cta-section {
+            margin-top: 24px;
+            padding-top: 20px;
+            border-top: 1px solid #e0e0e0;
+        }
+        .flexframe-demo-cta-section h3 {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 0 0 6px;
+        }
+        .demo-cta-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin: 14px 0;
+        }
+        .demo-cta-field {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1 1 100%;
+        }
+        .demo-cta-field.demo-cta-field-half {
+            flex: 1 1 calc(50% - 7px);
+        }
+        .demo-cta-field > span {
+            font-size: 12px;
+            font-weight: 600;
+            color: #50575e;
+        }
+        .demo-cta-field input[type="text"],
+        .demo-cta-field textarea {
+            width: 100%;
+            padding: 8px 10px;
+            font-size: 13px;
+        }
+        .demo-cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .demo-cta-status.success { color: #00a32a; font-weight: 600; }
+        .demo-cta-status.error { color: #d63638; font-weight: 600; }
+        /* ── Demo dashboard controls (summary bar + tabs + search) ── */
+        .demo-dashboard-controls {
+            margin-bottom: 16px;
+        }
+        .demo-summary-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 14px;
+        }
+        .demo-summary-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            padding: 8px 14px;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            background: #fff;
+            cursor: pointer;
+            font-size: 13px;
+            color: #1d2327;
+            transition: transform .1s ease, box-shadow .1s ease;
+        }
+        .demo-summary-pill:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 10px rgba(0,0,0,.08);
+        }
+        .demo-summary-pill strong {
+            font-size: 16px;
+            font-weight: 800;
+        }
+        .demo-summary-pill .summary-dot {
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+        }
+        .demo-summary-pill.summary-overdue  .summary-dot { background: #d63638; }
+        .demo-summary-pill.summary-due      .summary-dot { background: #dba617; }
+        .demo-summary-pill.summary-hot      .summary-dot { background: #e6543b; }
+        .demo-summary-pill.summary-expiring .summary-dot { background: #2271b1; }
+        .demo-summary-pill.summary-expired  .summary-dot { background: #8c8f94; }
+        .demo-summary-pill.summary-overdue  strong { color: #d63638; }
+        .demo-summary-pill.summary-due      strong { color: #8a6d00; }
+        .demo-summary-pill.summary-hot      strong { color: #e6543b; }
+        .demo-summary-pill.summary-expiring strong { color: #2271b1; }
+        .demo-summary-pill.is-zero {
+            opacity: .45;
+        }
+        .demo-summary-pill.is-zero:hover {
+            transform: none;
+            box-shadow: none;
+        }
+        .demo-dashboard-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .demo-filter-tabs {
+            display: inline-flex;
+            flex-wrap: wrap;
+            gap: 4px;
+            background: #f0f0f1;
+            padding: 4px;
+            border-radius: 10px;
+        }
+        .demo-filter-tab {
+            border: none;
+            background: transparent;
+            padding: 6px 14px;
+            border-radius: 7px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #50575e;
+            cursor: pointer;
+            transition: background .12s ease, color .12s ease;
+        }
+        .demo-filter-tab:hover {
+            color: #1d2327;
+        }
+        .demo-filter-tab.is-active {
+            background: #fff;
+            color: #2271b1;
+            box-shadow: 0 1px 3px rgba(0,0,0,.1);
+        }
+        .demo-search-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        .demo-search-wrap .dashicons {
+            position: absolute;
+            left: 9px;
+            color: #8c8f94;
+            font-size: 18px;
+            width: 18px;
+            height: 18px;
+            pointer-events: none;
+        }
+        .demo-search-wrap input[type="search"] {
+            padding: 7px 12px 7px 32px;
+            border-radius: 8px;
+            border: 1px solid #c3c4c7;
+            font-size: 13px;
+            min-width: 200px;
         }
         
         /* Demo Logo Upload (Create Form) */
@@ -13584,6 +14075,278 @@ function flexframe_settings_page() {
                 }
             });
         });
+
+        // CRM: update the main-row status badge after a status change
+        function updateDemoStatusBadge(pageId, status, label, expired) {
+            var $cell = $('.demo-status-cell[data-page-id="' + pageId + '"]');
+            if (!$cell.length) return;
+            var $badge = $cell.find('.demo-status-badge');
+            $badge.attr('class', 'demo-status-badge status-' + (expired ? 'expired' : status));
+            $badge.text(expired ? 'Expired' : label);
+        }
+
+        // CRM: change lifecycle status (from the detail-panel dropdown)
+        $(document).on('change', '.ffda-status-select', function() {
+            var $sel = $(this);
+            var pageId = $sel.data('page-id');
+            var status = $sel.val();
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_demo_set_status',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    page_id: pageId,
+                    status: status
+                },
+                success: function(response) {
+                    if (response.success) {
+                        updateDemoStatusBadge(pageId, response.data.status, response.data.label, false);
+                    } else {
+                        alert(response.data.message || 'Could not update status.');
+                    }
+                },
+                error: function() { alert('An error occurred updating status.'); }
+            });
+        });
+
+        // CRM: quick "mark hot" button
+        $(document).on('click', '.ffda-mark-hot', function() {
+            var pageId = $(this).data('page-id');
+            var $sel = $('.ffda-status-select[data-page-id="' + pageId + '"]');
+            $sel.val('hot').trigger('change');
+        });
+
+        // CRM: manually expire a demo now (triggers the CTA on the demo page)
+        $(document).on('click', '.ffda-expire-btn, .ffda-reactivate-btn', function() {
+            var $btn = $(this);
+            var pageId = $btn.data('page-id');
+            var reactivate = $btn.hasClass('ffda-reactivate-btn');
+            var msg = reactivate
+                ? 'Reactivate this demo? The trial CTA will be removed and the viewer restored (the original trial timer still applies).'
+                : 'Expire this demo now? Visitors will immediately see the branded "demo ended" call-to-action instead of the viewer.';
+            if (!confirm(msg)) { return; }
+
+            $btn.prop('disabled', true);
+            var $panel = $btn.closest('.demo-stats-detail');
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_demo_force_expire',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    page_id: pageId,
+                    mode: reactivate ? 'reactivate' : 'expire'
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Refresh the CRM panel (swaps the Expire/Reactivate button).
+                        if ($panel.length && response.data.html) {
+                            $panel.find('.ffda-crm').replaceWith(response.data.html);
+                        }
+                        // If the click came from the Actions column, swap that button too.
+                        if ($btn.closest('.demo-actions-cell').length) {
+                            if (response.data.forced) {
+                                $btn.removeClass('ffda-expire-btn').addClass('ffda-reactivate-btn')
+                                    .attr('title', 'Reactivate (remove manual expiry)')
+                                    .html('<span class="dashicons dashicons-controls-play" style="margin-top: 3px;"></span>');
+                            } else {
+                                $btn.removeClass('ffda-reactivate-btn').addClass('ffda-expire-btn')
+                                    .attr('title', 'Expire now & show the CTA')
+                                    .html('<span class="dashicons dashicons-lock" style="margin-top: 3px;"></span>');
+                            }
+                            $btn.prop('disabled', false);
+                        }
+                        // Update the main-row status badge.
+                        updateDemoStatusBadge(pageId, response.data.status, response.data.label, response.data.expired);
+                        // Reflect expired state in the trial line.
+                        var $statusCell = $('.demo-status-cell[data-page-id="' + pageId + '"]');
+                        if (response.data.expired) {
+                            $statusCell.find('.demo-trial-days').remove();
+                            $statusCell.find('.demo-action-due').remove();
+                        }
+                    } else {
+                        alert((response.data && response.data.message) || 'Could not update.');
+                        $btn.prop('disabled', false);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred.');
+                    $btn.prop('disabled', false);
+                }
+            });
+        });
+
+        // Save the global demo expiry CTA message
+        $('#demo-cta-save').on('click', function() {
+            var $btn = $(this);
+            var $status = $('#demo-cta-status');
+            $btn.prop('disabled', true);
+            $status.removeClass('error success').text('Saving…');
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_demo_save_cta',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    heading: $('#demo-cta-heading').val(),
+                    message: $('#demo-cta-message').val(),
+                    button: $('#demo-cta-button').val(),
+                    url: $('#demo-cta-url').val()
+                },
+                success: function(response) {
+                    if (response.success) {
+                        $status.addClass('success').text('Saved');
+                    } else {
+                        $status.addClass('error').text(response.data.message || 'Could not save.');
+                    }
+                    $btn.prop('disabled', false);
+                    setTimeout(function() { $status.text('').removeClass('success error'); }, 2500);
+                },
+                error: function() {
+                    $status.addClass('error').text('An error occurred.');
+                    $btn.prop('disabled', false);
+                }
+            });
+        });
+
+        // ── Demo dashboard: filter tabs, summary pills & name search ──
+        var demoActiveFilter = 'all';
+        function applyDemoFilters() {
+            var term = ($('#demo-search-input').val() || '').toLowerCase().trim();
+            var visible = 0;
+            $('.demo-pages-table tbody tr').not('.demo-stats-detail-row').not('.demo-no-matches').each(function() {
+                var $tr = $(this);
+                var tokens = (' ' + ($tr.data('filters') || '') + ' ');
+                var name = ($tr.data('name') || '') + '';
+                var matchFilter = (demoActiveFilter === 'all') || (tokens.indexOf(' ' + demoActiveFilter + ' ') !== -1);
+                var matchSearch = (term === '') || (name.indexOf(term) !== -1);
+                if (matchFilter && matchSearch) {
+                    $tr.show();
+                    visible++;
+                    $tr.next('.demo-stats-detail-row').show();
+                } else {
+                    $tr.hide();
+                    $tr.next('.demo-stats-detail-row').hide();
+                }
+            });
+            var $tbody = $('.demo-pages-table tbody');
+            $tbody.find('.demo-no-matches').remove();
+            if (visible === 0) {
+                var cols = $('.demo-pages-table thead th').length || 7;
+                $tbody.append('<tr class="demo-no-matches"><td colspan="' + cols + '" style="text-align:center;padding:24px;color:#646970;">No demos match this view.</td></tr>');
+            }
+        }
+
+        // Filter tabs
+        $(document).on('click', '.demo-filter-tab', function() {
+            $('.demo-filter-tab').removeClass('is-active');
+            $(this).addClass('is-active');
+            demoActiveFilter = $(this).data('filter');
+            applyDemoFilters();
+        });
+
+        // Summary pills jump to their matching filter
+        $(document).on('click', '.demo-summary-pill', function() {
+            var filter = $(this).data('filter');
+            var $tab = $('.demo-filter-tab[data-filter="' + filter + '"]');
+            if ($tab.length) {
+                $tab.trigger('click');
+            } else {
+                // Summary-only filters (overdue/due/expiring) have no tab — apply directly.
+                $('.demo-filter-tab').removeClass('is-active');
+                demoActiveFilter = filter;
+                applyDemoFilters();
+            }
+        });
+
+        // Name search
+        $(document).on('input', '#demo-search-input', function() {
+            applyDemoFilters();
+        });
+
+        // CRM: reset stats + trial timer for a demo
+        $(document).on('click', '.ffda-reset-btn', function() {
+            var $btn = $(this);
+            var pageId = $btn.data('page-id');
+            if (!confirm('Reset all stats and the trial timer for this demo? This clears recorded views and restarts the trial. Use this after your own testing before sending the link.')) {
+                return;
+            }
+            $btn.prop('disabled', true);
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_demo_reset',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    page_id: pageId
+                },
+                success: function(response) {
+                    if (response.success) {
+                        // Collapse the detail row and clear the main-row indicators.
+                        var $detail = $('.demo-stats-detail-row').filter(function() {
+                            return $(this).find('[data-page-id="' + pageId + '"]').length > 0;
+                        });
+                        $detail.slideUp(150, function() { $(this).remove(); });
+                        updateDemoStatusBadge(pageId, 'new', 'New', false);
+                        var $statusCell = $('.demo-status-cell[data-page-id="' + pageId + '"]');
+                        $statusCell.find('.demo-trial-days').attr('class', 'demo-trial-days demo-trial-idle').text('Not started');
+                        $statusCell.find('.demo-action-due').remove();
+                        var $engCell = $('.demo-stats-toggle[data-page-id="' + pageId + '"]').closest('.demo-stats-cell');
+                        if ($engCell.length) {
+                            $engCell.html('<span class="demo-stats-none">No views yet</span>');
+                        }
+                    } else {
+                        alert(response.data.message || 'Could not reset.');
+                        $btn.prop('disabled', false);
+                    }
+                },
+                error: function() {
+                    alert('An error occurred during reset.');
+                    $btn.prop('disabled', false);
+                }
+            });
+        });
+
+        // CRM: mark / undo a follow-up email
+        $(document).on('click', '.ffda-fu-mark, .ffda-fu-undo', function() {
+            var $btn = $(this);
+            var pageId = $btn.data('page-id');
+            var key = $btn.data('key');
+            var undo = $btn.hasClass('ffda-fu-undo') ? 1 : 0;
+            var $panel = $btn.closest('.demo-stats-detail');
+            $.ajax({
+                url: ajaxurl,
+                type: 'POST',
+                data: {
+                    action: 'flexframe_demo_mark_followup',
+                    nonce: '<?php echo wp_create_nonce('flexframe_settings_nonce'); ?>',
+                    page_id: pageId,
+                    key: key,
+                    undo: undo
+                },
+                success: function(response) {
+                    if (response.success && response.data.html) {
+                        // Replace just the CRM block; leave the recent-visits table.
+                        $panel.find('.ffda-crm').replaceWith(response.data.html);
+                        // Refresh the main-row "due" chip.
+                        refreshDemoActionChip(pageId, $panel);
+                    }
+                },
+                error: function() { alert('An error occurred updating the follow-up.'); }
+            });
+        });
+
+        // Recompute the main-row "due" chip from the panel's follow-up states.
+        function refreshDemoActionChip(pageId, $panel) {
+            var $statusCell = $('.demo-status-cell[data-page-id="' + pageId + '"]');
+            $statusCell.find('.demo-action-due').remove();
+            var $due = $panel.find('.ffda-followup.ffda-fu-overdue, .ffda-followup.ffda-fu-due').first();
+            if ($due.length) {
+                var label = $due.find('.ffda-fu-label').text();
+                $statusCell.append('<span class="demo-action-due"><span class="dashicons dashicons-email-alt"></span>' + label + '</span>');
+            }
+        }
 
         // Helper: Refresh the demo pages list HTML
         function refreshDemoPagesList(demoPages) {

@@ -203,7 +203,9 @@ function flexframe_workout_builder_shortcode($atts) {
         <!-- Logo -->
         <?php if ($settings['logoUrl']): ?>
             <div class="ffwb-logo-wrap">
-                <img src="<?php echo esc_url($settings['logoUrl']); ?>" alt="Logo" class="ffwb-logo">
+                <a href="<?php echo esc_url(home_url('/')); ?>" class="ffwb-logo-link" aria-label="<?php esc_attr_e('Back to homepage', 'flexframe-viewer'); ?>">
+                    <img src="<?php echo esc_url($settings['logoUrl']); ?>" alt="Logo" class="ffwb-logo">
+                </a>
             </div>
         <?php endif; ?>
 
